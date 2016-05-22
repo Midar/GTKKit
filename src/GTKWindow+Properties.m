@@ -56,12 +56,20 @@
 		GTK_WIDGET (gtk_window_get_transient_for (GTK_WINDOW (self.widget)))];
 }
 
+- (bool)destroyWithParent {
+    return gtk_window_get_destroy_with_parent (GTK_WINDOW (self.widget));
+}
+
 - (void)setDestroyWithParent:(bool)setting {
 	gtk_window_set_destroy_with_parent (GTK_WINDOW (self.widget), setting);
 }
 
 - (bool)maximized {
 	return gtk_window_is_maximized (GTK_WINDOW (self.widget));
+}
+
+- (bool)decorated {
+    return gtk_window_get_decorated (GTK_WINDOW (self.widget));
 }
 
 - (void)setDecorated:(bool)setting {

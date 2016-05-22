@@ -17,7 +17,7 @@ OF_ASSUME_NONNULL_BEGIN
 @property (readonly) bool maximized;
 @property bool decorated;
 @property bool deletable;
-@property bool active;
+@property (readonly) bool active;
 @end
 
 OF_ASSUME_NONNULL_END

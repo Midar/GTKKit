@@ -6,12 +6,12 @@
 
 @implementation GTKWindow (Properties)
 
-- (void)setTitle:(OFString * OF_NONNULL)title {
+- (void)setTitle:(OFString * _Nonnull)title {
 	const char * newTitle = [title UTF8String];
 	gtk_window_set_title(GTK_WINDOW (self.widget), newTitle);
 }
 
-- (OFString * OF_NONNULL)title {
+- (OFString * _Nonnull)title {
 	const char *title = gtk_window_get_title (GTK_WINDOW (self.widget));
 	return [OFString stringWithUTF8String: title];
 }

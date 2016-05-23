@@ -4,7 +4,27 @@
 
 static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event, GTKWindow *sender) {
 	// Eventually, this callback will determine what kind of event led to a window-state-event
-	// being fired, and call the appropriate code to handle it.
+	// being fired, and call the appropriate code to handle it. For now, this is just
+	// testing code to figure out the best way to analyze and dispatch the event handling
+	// code.
+    printf("Window event dispatch callback has been called.\n");
+    
+	if(event->changed_mask == GDK_WINDOW_STATE_MAXIMIZED){
+	    if(event->new_window_state == GDK_WINDOW_STATE_MAXIMIZED) {
+            printf("Window has been maximized.\n");
+	    } else {
+            printf("Window has been unmaximized.\n");
+	    }
+    }
+    
+    if(event->changed_mask == GDK_WINDOW_STATE_ICONIFIED) {
+        printf("Window has been minimized or unminimized.\n");
+	}
+	 
+	if(event->changed_mask == GDK_WINDOW_STATE_FULLSCREEN) {
+        printf("Window has been made fullscreen or non-fullscreen.\n");
+	}
+	
 	return TRUE;
 }
 

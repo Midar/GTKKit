@@ -10,6 +10,7 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKWindow (Actions)
 - (void)present;
 - (bool)activateDefaultWidget;
+- (bool)activateFocusedWidget;
 - (void)close;
 - (void)minimize;
 - (void)unminimize;

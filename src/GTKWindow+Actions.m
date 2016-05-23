@@ -17,6 +17,11 @@
 	return gtk_window_activate_default(GTK_WINDOW(self.widget));
 }
 
+- (bool)activateFocusedWidget
+{
+	return gtk_window_activate_focus(GTK_WINDOW(self.widget));
+}
+
 - (void)close
 {
 	id <GTKWindowDelegate> delegate = self.delegate;

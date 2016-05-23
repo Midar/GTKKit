@@ -51,9 +51,18 @@
 	gtk_window_set_transient_for (GTK_WINDOW (self.widget), GTK_WINDOW ([window widget]));
 }
 
+- (void)setAttachedToWindow:(GTKWindow *)window {
+	gtk_window_set_attached_to (GTK_WINDOW (self.widget), GTK_WIDGET ([window widget]));
+}
+
 - (GTKWindow *)transientForWindow {
 	return [GTKWindow widgetFromGtkWidget:
 		GTK_WIDGET (gtk_window_get_transient_for (GTK_WINDOW (self.widget)))];
+}
+
+- (GTKWindow *)attachedToWindow {
+	return [GTKWindow widgetFromGtkWidget:
+		GTK_WIDGET (gtk_window_get_attached_to (GTK_WINDOW (self.widget)))];
 }
 
 - (bool)destroyWithParent {

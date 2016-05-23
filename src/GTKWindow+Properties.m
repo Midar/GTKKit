@@ -97,4 +97,12 @@
 	return gtk_window_is_active (GTK_WINDOW (self.widget));
 }
 
+- (bool)hideTitlebarWhenMaximized {
+	return gtk_window_get_hide_titlebar_when_maximized (GTK_WINDOW (self.widget));
+}
+
+- (void)setHideTitlebarWhenMaximized:(bool)hide {
+	gtk_window_set_hide_titlebar_when_maximized (GTK_WINDOW (self.widget), hide);
+}
+
 @end

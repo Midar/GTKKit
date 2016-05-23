@@ -3,27 +3,56 @@
 #import "GTKWindow.h"
 
 static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event, GTKWindow *sender) {
-	// Eventually, this callback will determine what kind of event led to a window-state-event
-	// being fired, and call the appropriate code to handle it. For now, this is just
-	// testing code to figure out the best way to analyze and dispatch the event handling
-	// code.
-    printf("Window event dispatch callback has been called.\n");
+	// This code determines the type of window event which has happened, and dispatches to the
+  // appropriate delegate method, if it exists.
     
-	if(event->changed_mask == GDK_WINDOW_STATE_MAXIMIZED){
-	    if(event->new_window_state == GDK_WINDOW_STATE_MAXIMIZED) {
-            printf("Window has been maximized.\n");
-	    } else {
-            printf("Window has been unmaximized.\n");
-	    }
+	if(event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED){
+    if(event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) {
+      if( [sender.delegate respondsToSelector: @selector(windowDidMaximize:)] ) {
+        [sender.delegate windowDidMaximize: sender];
+      }
+    } else {
+      if( [sender.delegate respondsToSelector: @selector(windowDidUnmaximize:)] ) {
+        [sender.delegate windowDidUnmaximize: sender];
+      }
     }
+  }
     
-    if(event->changed_mask == GDK_WINDOW_STATE_ICONIFIED) {
-        printf("Window has been minimized or unminimized.\n");
-	}
+  if(event->changed_mask & GDK_WINDOW_STATE_ICONIFIED) {
+    if(event->new_window_state & GDK_WINDOW_STATE_ICONIFIED) {
+      if( [sender.delegate respondsToSelector: @selector(windowDidMinimize:)] ) {
+        [sender.delegate windowDidMinimize: sender];
+      }
+    } else {
+      if( [sender.delegate respondsToSelector: @selector(windowDidUnminimize:)] ) {
+        [sender.delegate windowDidUnminimize: sender];
+      }
+    }
+  }
 	 
-	if(event->changed_mask == GDK_WINDOW_STATE_FULLSCREEN) {
-        printf("Window has been made fullscreen or non-fullscreen.\n");
-	}
+  if(event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN) {
+    if(event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) {
+      if( [sender.delegate respondsToSelector: @selector(windowDidFullscreen:)] ) {
+        [sender.delegate windowDidFullscreen: sender];
+      }
+    } else {
+      if( [sender.delegate respondsToSelector: @selector(windowDidUnfullscreen:)] ) {
+        [sender.delegate windowDidUnfullscreen: sender];
+      }
+    }
+  }
+	 
+  if(event->changed_mask & GDK_WINDOW_STATE_FOCUSED) {
+    if(event->new_window_state & GDK_WINDOW_STATE_FOCUSED) {
+      if( [sender.delegate respondsToSelector: @selector(windowDidFocus:)] ) {
+        [sender.delegate windowDidFocus: sender];
+      }
+    } else {
+      if( [sender.delegate respondsToSelector: @selector(windowDidUnfocus:)] ) {
+        [sender.delegate windowDidUnfocus: sender];
+      }
+    }
+  }
 	
 	return TRUE;
 }

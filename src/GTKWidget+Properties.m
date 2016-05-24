@@ -53,4 +53,36 @@
   gtk_widget_set_valign(GTK_WIDGET(self.widget), align);
 }
 
+- (int)marginStart {
+  return gtk_widget_get_margin_start(GTK_WIDGET(self.widget));
+}
+
+- (void)setMarginStart:(int)margin {
+  gtk_widget_set_margin_start(GTK_WIDGET(self.widget), margin);
+}
+
+- (int)marginEnd {
+  return gtk_widget_get_margin_end(GTK_WIDGET(self.widget));
+}
+
+- (void)setMarginEnd:(int)margin {
+  gtk_widget_set_margin_end(GTK_WIDGET(self.widget), margin);
+}
+
+- (int)marginTop {
+  return gtk_widget_get_margin_top(GTK_WIDGET(self.widget));
+}
+
+- (void)setMarginTop:(int)margin {
+  gtk_widget_set_margin_top(GTK_WIDGET(self.widget), margin);
+}
+
+- (int)marginBottom {
+  return gtk_widget_get_margin_bottom(GTK_WIDGET(self.widget));
+}
+
+- (void)setMarginBottom:(int)margin {
+  gtk_widget_set_margin_bottom(GTK_WIDGET(self.widget), margin);
+}
+
 @end

@@ -14,6 +14,10 @@ OF_ASSUME_NONNULL_BEGIN
 @property (readonly) bool isFocus;
 @property GtkAlign horizontalAlign;
 @property GtkAlign verticalAlign;
+@property int marginStart;
+@property int marginEnd;
+@property int marginTop;
+@property int marginBottom;
 @end
 
 OF_ASSUME_NONNULL_END

@@ -29,7 +29,8 @@ SRCS = GTKBin.m				\
        GTKWindow+Actions.m		\
        GTKWindow+Properties.m		\
        GTKWindow.m        \
-       GTKOverlay.m
+       GTKOverlay.m        \
+       GTKOverlay+Actions.m
 
 
 INCLUDES := ${SRCS:.m=.h}

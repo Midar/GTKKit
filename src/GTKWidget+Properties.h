@@ -12,6 +12,8 @@ OF_ASSUME_NONNULL_BEGIN
 @property (readonly) bool effectiveSensitivity;
 @property double opacity;
 @property (readonly) bool isFocus;
+@property GtkAlign horizontalAlign;
+@property GtkAlign verticalAlign;
 @end
 
 OF_ASSUME_NONNULL_END

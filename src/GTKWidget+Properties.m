@@ -37,5 +37,20 @@
 	gtk_widget_set_opacity (GTK_WIDGET (self.widget), opacity);
 }
 
+- (GtkAlign)horizontalAlign {
+  return gtk_widget_get_halign(GTK_WIDGET(self.widget));
+}
+
+- (void)setHorizontalAlign:(GtkAlign)align {
+  gtk_widget_set_halign(GTK_WIDGET(self.widget), align);
+}
+
+- (GtkAlign)verticalAlign {
+  return gtk_widget_get_valign(GTK_WIDGET(self.widget));
+}
+
+- (void)setVerticalAlign:(GtkAlign)align {
+  gtk_widget_set_valign(GTK_WIDGET(self.widget), align);
+}
 
 @end

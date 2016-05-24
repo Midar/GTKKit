@@ -9,6 +9,8 @@ OF_ASSUME_NONNULL_BEGIN
 
 - (bool)overlayChildPassthrough:(GTKWidget*)child;
 
+- (void)setOverlayChildPassthrough:(GTKWidget*)child to:(bool)newValue;
+
 @end
 
 OF_ASSUME_NONNULL_END

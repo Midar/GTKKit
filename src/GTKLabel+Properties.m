@@ -9,7 +9,9 @@
 }
 
 - (void)setLabel:(OFString *)label {
-	gtk_label_set_text (GTK_LABEL (self.widget), [label UTF8String]);
+  @autoreleasepool {
+    gtk_label_set_text (GTK_LABEL (self.widget), [label UTF8String]);
+  }
 }
 
 - (float)xAlign {

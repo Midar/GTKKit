@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 	};
 	[w show];
   
-  Delegate *d = [[Delegate alloc] init];
+  Delegate *d = [Delegate new];
   w.delegate = d;
 
 	gtk_main();

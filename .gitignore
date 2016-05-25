@@ -12,3 +12,4 @@ config.status
 configure
 extra.mk
 tests/window/window
+tests/windowdelegate/windowdelegate

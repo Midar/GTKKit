@@ -18,6 +18,8 @@ OF_ASSUME_NONNULL_BEGIN
 @property int marginEnd;
 @property int marginTop;
 @property int marginBottom;
+@property bool expandHorizontal;
+@property bool expandVertical;
 @end
 
 OF_ASSUME_NONNULL_END

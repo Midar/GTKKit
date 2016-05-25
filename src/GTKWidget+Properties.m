@@ -85,4 +85,20 @@
   gtk_widget_set_margin_bottom(GTK_WIDGET(self.widget), margin);
 }
 
+- (bool)expandHorizontal {
+  return gtk_widget_get_hexpand(GTK_WIDGET(self.widget));
+}
+
+- (void)setExpandHorizontal:(bool)expand {
+  gtk_widget_set_hexpand(GTK_WIDGET(self.widget), expand);
+}
+
+- (bool)expandVertical {
+  return gtk_widget_get_vexpand(GTK_WIDGET(self.widget));
+}
+
+- (void)setExpandVertical:(bool)expand {
+  gtk_widget_set_vexpand(GTK_WIDGET(self.widget), expand);
+}
+
 @end

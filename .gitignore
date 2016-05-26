@@ -12,4 +12,4 @@ config.status
 configure
 extra.mk
 tests/window/window
-tests/windowdelegate/windowdelegate
+tests/button/button

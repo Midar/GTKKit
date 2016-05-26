@@ -1,3 +1,3 @@
-SUBDIRS = window windowdelegate
+SUBDIRS = window
 
 include ../buildsys.mk

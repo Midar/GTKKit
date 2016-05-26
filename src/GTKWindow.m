@@ -11,9 +11,8 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
 static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
   if ([sender.delegate respondsToSelector: @selector(windowShouldClose:)]) {
     if ([sender.delegate windowShouldClose: sender]) {
-      if ([sender.delegate respondsToSelector: @selector(windowWillClose:)]) {
+      if ([sender.delegate respondsToSelector: @selector(windowWillClose:)])
         [sender.delegate windowWillClose: sender];
-      }
       return FALSE;
     } else {
       return TRUE;

@@ -6,4 +6,6 @@
 
 - (void)applicationWillTerminate;
 
+- (void)windowWillClose:(GTKWindow *)sender;
+
 @end

@@ -1,5 +1,5 @@
 PROG_NOINST = window
-SRCS = GtkWindowTests.m
+SRCS = AppDelegate.m
 
 include ../../buildsys.mk
 

@@ -22,5 +22,4 @@
 #import "GTKWindow+Actions.h"
 #import "GTKWindow+Properties.h"
 #import "GTKEntry.h"
-#import "Protocols/GTKButtonDelegate.h"
 #import "Protocols/GTKWindowDelegate.h"

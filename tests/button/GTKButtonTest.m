@@ -8,7 +8,6 @@ OF_APPLICATION_DELEGATE(GTKButtonTest)
   GTKButton *button;
 }
 
-
 - (id)init {
   gtk_init(NULL, NULL);
   self = [super init];
@@ -20,7 +19,7 @@ OF_APPLICATION_DELEGATE(GTKButtonTest)
   window = [GTKWindow new];
   window.size = of_dimension(300,200);
   window.onDestroy = ^ () {
-    exit(0);
+    [OFApplication terminate];
   };
   
   button = [GTKButton new];
@@ -37,6 +36,10 @@ OF_APPLICATION_DELEGATE(GTKButtonTest)
 
 - (void)buttonClicked:(id)sender {
   printf("Hello, world!\n");
+}
+
+- (void)applicationWillTerminate {
+  gtk_main_quit();
 }
 
 @end

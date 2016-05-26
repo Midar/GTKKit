@@ -57,6 +57,23 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
 	return TRUE;
 }
 
+static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
+  if ([sender.delegate respondsToSelector: @selector(windowShouldClose:)]) {
+    if ([sender.delegate windowShouldClose: sender]) {
+      if ([sender.delegate respondsToSelector: @selector(windowWillClose:)])
+        [sender.delegate windowWillClose: sender];
+      return FALSE;
+    } else {
+      return TRUE;
+    }
+  } else {
+    if ([sender.delegate respondsToSelector: @selector(windowWillClose:)]) {
+      [sender.delegate windowWillClose: sender];
+    }
+    return FALSE;
+  }
+}
+
 @implementation GTKWindow
 
 @synthesize defaultSize=_defaultSize;
@@ -69,7 +86,8 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
 
 - (id)init {
 	self = [super init];
-	g_signal_connect(G_OBJECT (self.widget), "window-state-event", G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
+  g_signal_connect(G_OBJECT (self.widget), "window-state-event", G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
+  g_signal_connect(G_OBJECT (self.widget), "delete-event", G_CALLBACK (window_delete_request), (__bridge void*) self);
 	return self;
 }
 

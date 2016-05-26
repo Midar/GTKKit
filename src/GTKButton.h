@@ -12,6 +12,8 @@ OF_ASSUME_NONNULL_BEGIN
 @property (copy) GTKCallback onClick;
 @property OF_NULLABLE_PROPERTY (unsafe_unretained)
     id <GTKButtonDelegate> delegate;
+@property SEL action;
+@property (unsafe_unretained) id target;
 @end
 
 OF_ASSUME_NONNULL_END

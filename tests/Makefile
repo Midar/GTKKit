@@ -1,3 +1,3 @@
-SUBDIRS = window
+SUBDIRS = window button
 
 include ../buildsys.mk

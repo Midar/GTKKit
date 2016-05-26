@@ -3,15 +3,17 @@
 #import "GTKButton.h"
 
 static void buttonClicked(GtkWidget *button, GTKButton *sender) {
-
-	if (sender.delegate)
-		[sender.delegate buttonClicked: sender];
-
-	if (sender.onClick)
-		sender.onClick(sender);
+  #pragma clang diagnostic push
+  #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+  if (sender.target && sender.action)
+    [sender.target performSelector: sender.action withObject: sender];
+  #pragma clang diagnostic pop
 }
 
 @implementation GTKButton
+
+@synthesize target;
+@synthesize action;
 
 - (id)createWidget {
 	self.widget = gtk_button_new ();

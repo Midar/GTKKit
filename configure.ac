@@ -49,5 +49,5 @@ dnl and add OBJCFPPFLAGS to CPPFLAGS, thus we need to AC_SUBST these ourself.
 AC_SUBST(CPP)
 AC_SUBST(CPPFLAGS)
 
-AC_CONFIG_FILES([buildsys.mk extra.mk])
+AC_CONFIG_FILES([buildsys.mk extra.mk GTKKit.pc])
 AC_OUTPUT

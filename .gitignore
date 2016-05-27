@@ -13,3 +13,4 @@ configure
 extra.mk
 tests/window/window
 tests/button/button
+GTKKit.pc

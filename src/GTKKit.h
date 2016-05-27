@@ -22,4 +22,5 @@
 #import "GTKWindow+Actions.h"
 #import "GTKWindow+Properties.h"
 #import "GTKEntry.h"
-#import "Protocols/GTKWindowDelegate.h"
+#import "GTKWindowDelegate.h"
+#import "Orientable.h"

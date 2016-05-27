@@ -2,7 +2,7 @@
 #import <gtk/gtk.h>
 
 #import "GTKBin.h"
-#import "Protocols/GTKWindowDelegate.h"
+#import "GTKWindowDelegate.h"
 
 OF_ASSUME_NONNULL_BEGIN
 

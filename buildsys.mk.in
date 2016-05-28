@@ -88,6 +88,7 @@ localedir = @localedir@
 localename ?= ${PACKAGE_NAME}
 mandir = @mandir@
 mansubdir ?= man1
+pkgconfigdir = @datarootdir@/pkgconfig
 
 OBJS1 = ${SRCS:.c=.o}
 OBJS2 = ${OBJS1:.cc=.o}
@@ -699,6 +700,15 @@ install: all install-extra
 		fi \
 	done
 
+	for i in ${PC_FILES}; do \
+		${INSTALL_STATUS}; \
+		if ${MKDIR_P} ${prefix}/share/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/share/pkgconfig/$$i; then \
+			${INSTALL_OK}; \
+		else \
+			${INSTALL_FAILED}; \
+		fi \
+	done
+
 install-extra:
 
 uninstall: uninstall-extra
@@ -785,6 +795,16 @@ uninstall: uninstall-extra
 	for i in ${MAN}; do \
 		if test -f ${DESTDIR}${mandir}/${mansubdir}/$$i; then \
 			if rm -f ${DESTDIR}${mandir}/${mansubdir}/$$i; then \
+				${DELETE_OK}; \
+			else \
+				${DELETE_FAILED}; \
+			fi \
+		fi \
+	done
+
+	for i in ${PC_FILES}; do \
+		if test -f ${prefix}/share/pkgconfig/$$i; then \
+			if rm -f ${prefix}/share/pkgconfig/$$i; then \
 				${DELETE_OK}; \
 			else \
 				${DELETE_FAILED}; \

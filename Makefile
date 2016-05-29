@@ -1,5 +1,5 @@
 SUBDIRS = src tests
-PC_FILES = $(wildcard *.pc)
+PC_FILES = GTKKit.pc
 
 tests: src
 

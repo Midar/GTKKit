@@ -702,10 +702,18 @@ install: all install-extra
 
 	for i in ${PC_FILES}; do \
 		${INSTALL_STATUS}; \
-		if ${MKDIR_P} ${prefix}/share/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/share/pkgconfig/$$i; then \
-			${INSTALL_OK}; \
-		else \
-			${INSTALL_FAILED}; \
+		if test -d ${prefix}/share/pkgconfig; then \
+			if ${MKDIR_P} ${prefix}/share/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/share/pkgconfig/$$i; then \
+				${INSTALL_OK}; \
+			else \
+				${INSTALL_FAILED}; \
+			fi \
+		elif test -d ${prefix}/libdata/pkgconfig; then \
+			if ${MKDIR_P} ${prefix}/libdata/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/share/pkgconfig/$$i; then \
+				${INSTALL_OK}; \
+			else \
+				${INSTALL_FAILED}; \
+			fi \
 		fi \
 	done
 
@@ -811,6 +819,17 @@ uninstall: uninstall-extra
 			fi \
 		fi \
 	done
+
+	for i in ${PC_FILES}; do \
+		if test -f ${prefix}/libdata/pkgconfig/$$i; then \
+			if rm -f ${prefix}/libdata/pkgconfig/$$i; then \
+				${DELETE_OK}; \
+			else \
+				${DELETE_FAILED}; \
+			fi \
+		fi \
+	done
+
 
 uninstall-extra:
 

@@ -714,7 +714,7 @@ install: all install-extra
 	for i in ${PC_FILES}; do \
 		${INSTALL_STATUS}; \
 		if test -d ${prefix}/libdata/pkgconfig; then \
-			if ${MKDIR_P} ${prefix}/libdata/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/share/pkgconfig/$$i; then \
+			if ${MKDIR_P} ${prefix}/libdata/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/libdata/pkgconfig/$$i; then \
 				${INSTALL_OK}; \
 			else \
 				${INSTALL_FAILED}; \

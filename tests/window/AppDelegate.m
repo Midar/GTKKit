@@ -39,4 +39,12 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   [OFApplication terminate];
 }
 
+- (void)windowDidMinimize:(GTKWindow *)sender {
+  printf("Window was minimized.\n");
+}
+
+- (void)windowDidUnminimize:(GTKWindow *)sender {
+  printf("Window was unminimized.\n");
+}
+
 @end

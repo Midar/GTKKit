@@ -13,7 +13,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKWidget: OFObject
 @property (assign) GtkWidget *widget;
-@property OF_NULLABLE_PROPERTY (assign, unsafe_unretained) GTKCallback onDestroy;
+@property OF_NULLABLE_PROPERTY (copy) GTKCallback onDestroy;
 
 /**
  * Create a new widget.

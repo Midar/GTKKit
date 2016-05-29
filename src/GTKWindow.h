@@ -9,7 +9,7 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKWindow: GTKBin
 @property of_dimension_t defaultSize;
 @property of_dimension_t size;
-@property OF_NULLABLE_PROPERTY (unsafe_unretained)
+@property OF_NULLABLE_PROPERTY (weak)
     id <GTKWindowDelegate> delegate;
 @end
 

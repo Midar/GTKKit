@@ -708,7 +708,12 @@ install: all install-extra
 			else \
 				${INSTALL_FAILED}; \
 			fi \
-		elif test -d ${prefix}/libdata/pkgconfig; then \
+		fi \
+	done
+
+	for i in ${PC_FILES}; do \
+		${INSTALL_STATUS}; \
+		if test -d ${prefix}/libdata/pkgconfig; then \
 			if ${MKDIR_P} ${prefix}/libdata/pkgconfig && ${INSTALL} -m 644 $$i ${prefix}/share/pkgconfig/$$i; then \
 				${INSTALL_OK}; \
 			else \

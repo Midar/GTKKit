@@ -12,9 +12,6 @@ static void buttonClicked(GtkWidget *button, GTKButton *sender) {
 
 @implementation GTKButton
 
-@synthesize target;
-@synthesize action;
-
 - (id)createWidget {
 	self.widget = gtk_button_new ();
 	return self;

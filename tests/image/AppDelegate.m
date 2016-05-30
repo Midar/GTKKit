@@ -35,19 +35,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   gtk_main_quit();
 }
 
-// This demonstrates the use of a GTKWindowDelegate method. This males the
-// application exit when the window is closed.
-
 - (void)windowWillClose:(GTKWindow *)sender {
   [OFApplication terminate];
-}
-
-- (void)windowDidMinimize:(GTKWindow *)sender {
-  printf("Window was minimized.\n");
-}
-
-- (void)windowDidUnminimize:(GTKWindow *)sender {
-  printf("Window was unminimized.\n");
 }
 
 @end

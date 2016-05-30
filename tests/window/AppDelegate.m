@@ -32,7 +32,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   gtk_main_quit();
 }
 
-// This demonstrates the use of a GTKWindowDelegate method. This males the
+// This demonstrates the use of a GTKWindowDelegate method. This makes the
 // application exit when the window is closed.
 
 - (void)windowWillClose:(GTKWindow *)sender {

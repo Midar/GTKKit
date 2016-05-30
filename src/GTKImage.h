@@ -10,6 +10,10 @@ OF_ASSUME_NONNULL_BEGIN
 
 @property OF_NULLABLE_PROPERTY (strong) OFString *imageFile;
 
+@property OF_NULLABLE_PROPERTY (strong) OFString *iconName;
+
+@property GtkIconSize iconSize;
+
 @end
 
 OF_ASSUME_NONNULL_END

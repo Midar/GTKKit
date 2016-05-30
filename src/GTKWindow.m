@@ -76,6 +76,9 @@ static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWin
 
 @implementation GTKWindow
 
+@synthesize defaultSize=_defaultSize;
+@synthesize size=_size;
+
 - (id)createWidget {
 	self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 	return self;
@@ -89,20 +92,20 @@ static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWin
 }
 
 - (of_dimension_t)defaultSize {
-  return self.defaultSize;
+	return _defaultSize;
 }
 
 - (void)setDefaultSize:(of_dimension_t)size {
-	self.defaultSize = size;
+	_defaultSize = size;
 	gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
 }
 
 - (of_dimension_t)size {
-  return self.size;
+	return _size;
 }
 
 - (void)setSize:(of_dimension_t)size {
-	self.size = size;
+	_size = size;
 	gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
 }
 

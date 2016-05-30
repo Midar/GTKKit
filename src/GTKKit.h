@@ -23,4 +23,5 @@
 #import "GTKWindow+Properties.h"
 #import "GTKEntry.h"
 #import "GTKWindowDelegate.h"
+#import "GTKImage.h"
 #import "Orientable.h"

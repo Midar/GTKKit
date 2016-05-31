@@ -24,7 +24,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   scale.target = self;
   scale.action = @selector(scaleValueChanged:);
   scale.min = 0;
-  scale.max = 200;
+  scale.max = 100;
+  scale.digits = 0;
   
   [window addWidget: scale];
   

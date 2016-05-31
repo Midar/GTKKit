@@ -1,11 +1,11 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "GTKBin.h"
+#import "GTKOverlay.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKOverlay: GTKBin (Properties)
+@interface GTKOverlay (Properties)
 
 - (bool)overlayChildPassthrough:(GTKWidget*)child;
 

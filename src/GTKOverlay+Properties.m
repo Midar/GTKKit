@@ -1,8 +1,8 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
-#import "GTKOverlay.h"
+#import "GTKOverlay+Properties.h"
 
-@implementation GTKOverlay (Actions)
+@implementation GTKOverlay (Properties)
 
 
 - (bool)overlayChildPassthrough:(GTKWidget*)child {

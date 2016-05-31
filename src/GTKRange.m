@@ -48,7 +48,7 @@
   gtk_range_set_value(GTK_RANGE(self.widget), newValue);
 }
 
-- (double)getValue {
+- (double)value {
   return gtk_range_get_value(GTK_RANGE(self.widget));
 }
 
@@ -57,17 +57,29 @@
   gtk_range_set_increments(GTK_RANGE(self.widget), newValue, newValue);
 }
 
+- (void)min:(double)min max:(double)max {
+  _min = min;
+  _max = max;
+  gtk_range_set_range(GTK_RANGE(self.widget), min, max);
+}
+
+- (double)min {
+  return _min;
+}
+
 - (void)setMin:(double)newValue {
-  _min = newValue;
-  gtk_range_set_range(GTK_RANGE(self.widget), newValue, self.max);
+  [self min: newValue max: self.max ];
+}
+
+- (double)max {
+  return _max;
 }
 
 - (void)setMax:(double)newValue {
-  _max = newValue;
-  gtk_range_set_range(GTK_RANGE(self.widget), self.min, newValue);
+  [self min: self.min max: newValue ];
 }
 
-- (int)getRoundDigits {
+- (int)roundDigits {
   return gtk_range_get_round_digits(GTK_RANGE(self.widget));
 }
 

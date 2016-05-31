@@ -4,7 +4,10 @@
 
 #import "GTKWidget.h"
 
-@interface GTKRange: GTKWidget
+@interface GTKRange: GTKWidget {
+  double _min;
+  double _max;
+}
 
 @property double fillLevel;
 
@@ -18,10 +21,12 @@
 
 @property (nonatomic) double stepSize;
 
+@property int roundDigts;
+
 @property (nonatomic) double min;
 
 @property (nonatomic) double max;
 
-@property int roundDigts;
+- (void)min:(double)min max:(double)max;
 
 @end

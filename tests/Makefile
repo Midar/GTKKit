@@ -4,6 +4,7 @@ SUBDIRS = window \
           scale \
           progressbar \
           spinner \
-          togglebutton
+          togglebutton \
+          checkbutton
 
 include ../buildsys.mk

@@ -33,4 +33,5 @@
 #import "GTKSpinner.h"
 #import "GTKToggleButton.h"
 #import "GTKToggleButton+Properties.h"
+#import "GTKCheckButton.h"
 #import "Orientable.h"

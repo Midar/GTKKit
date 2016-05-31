@@ -6,9 +6,7 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKScale (Properties) <Orientable>
-
-@property int digits;
+@interface GTKScale (Properties)
 @property bool drawValue;
 @property bool hasOrigin;
 @property GtkPositionType valuePosition;
@@ -27,9 +25,6 @@ OF_ASSUME_NONNULL_BEGIN
               withText:(OFString *) text;
 
 - (void)clearMarks;
-
-- (void)setFormatStringBefore:(OFString *)before
-                        after:(OFString *)after;
 
 @end
 

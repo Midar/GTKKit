@@ -19,6 +19,8 @@ static gchar* format_gtk_scale_value(GtkScale *scale, gdouble value, GTKScale *s
 
 @implementation GTKScale
 
+@dynamic digits;
+
 - (id)createWidget {
   GtkAdjustment *adj = gtk_adjustment_new (0, 0, 0, 1.0, 1.0, 0);
 	self.widget = gtk_scale_new (GTK_ORIENTATION_HORIZONTAL, adj);
@@ -33,6 +35,31 @@ static gchar* format_gtk_scale_value(GtkScale *scale, gdouble value, GTKScale *s
 - (id)init {
 	self = [super init];
 	return self;
+}
+
+- (int)digits {
+  return gtk_scale_get_digits(GTK_SCALE(self.widget));
+}
+
+- (void)setDigits:(int)newValue {
+  gtk_scale_set_digits(GTK_SCALE(self.widget), newValue);
+}
+
+- (void)setFormatStringBefore:(OFString *)newValue {
+  _formatStringBefore = newValue;
+  [self setFormatStringBefore: newValue
+                        after: self.formatStringAfter];
+}
+
+- (void)setFormatStringAfter:(OFString *)newValue {
+  _formatStringAfter = newValue;
+  [self setFormatStringBefore: self.formatStringBefore
+                        after: newValue];
+}
+
+- (void)setFormatStringBefore:(OFString *)before
+                        after:(OFString *)after {
+  self.formatString = [OFString stringWithFormat: @"%s%%.%if%s", [before UTF8String], self.digits, [after UTF8String] ];
 }
 
 @end

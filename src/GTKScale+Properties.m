@@ -5,19 +5,10 @@
 
 @implementation GTKScale (Properties)
 
-@dynamic digits;
 @dynamic drawValue;
 @dynamic valuePosition;
 @dynamic hasOrigin;
 @dynamic formattedValue;
-
-- (int)digits {
-  return gtk_scale_get_digits(GTK_SCALE(self.widget));
-}
-
-- (void)setDigits:(int)newValue {
-  gtk_scale_set_digits(GTK_SCALE(self.widget), newValue);
-}
 
 - (bool)drawValue {
   return gtk_scale_get_digits(GTK_SCALE(self.widget));
@@ -73,11 +64,6 @@
 
 - (void)clearMarks {
   gtk_scale_clear_marks(GTK_SCALE(self.widget));
-}
-
-- (void)setFormatStringBefore:(OFString *)before
-                        after:(OFString *)after {
-  self.formatString = [OFString stringWithFormat: @"%s%%.%if%s", [before UTF8String], self.digits, [after UTF8String] ];
 }
 
 - (OFString *)formattedValue {

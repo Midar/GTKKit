@@ -27,4 +27,7 @@
 #import "GTKRange.h"
 #import "GTKScale.h"
 #import "GTKScale+Properties.h"
+#import "GTKProgressBar.h"
+#import "GTKProgressBar+Properties.h"
+#import "GTKProgressBar+Actions.h"
 #import "Orientable.h"

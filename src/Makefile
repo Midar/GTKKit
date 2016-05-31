@@ -35,7 +35,10 @@ SRCS = GTKBin.m				\
        GTKImage.m     \
        GTKRange.m     \
        GTKScale.m     \
-       GTKScale+Properties.m
+       GTKScale+Properties.m     \
+       GTKProgressBar.m     \
+       GTKProgressBar+Properties.m     \
+       GTKProgressBar+Actions.m
 
 
 INCLUDES := ${SRCS:.m=.h}

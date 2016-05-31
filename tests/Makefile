@@ -1,6 +1,7 @@
 SUBDIRS = window \
           button \
           image \
-          scale
+          scale \
+          progressbar
 
 include ../buildsys.mk

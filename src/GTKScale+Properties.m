@@ -8,8 +8,10 @@
 @dynamic digits;
 @dynamic drawValue;
 @dynamic valuePosition;
+@dynamic hasOrigin;
+@dynamic formattedValue;
 
-- (int)getDigits {
+- (int)digits {
   return gtk_scale_get_digits(GTK_SCALE(self.widget));
 }
 
@@ -71,6 +73,15 @@
 
 - (void)clearMarks {
   gtk_scale_clear_marks(GTK_SCALE(self.widget));
+}
+
+- (void)setFormatStringBefore:(OFString *)before
+                        after:(OFString *)after {
+  self.formatString = [OFString stringWithFormat: @"%s%%.%if%s", [before UTF8String], self.digits, [after UTF8String] ];
+}
+
+- (OFString *)formattedValue {
+  return [OFString stringWithFormat: (OFConstantString *)self.formatString, self.value];
 }
 
 @end

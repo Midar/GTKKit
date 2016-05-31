@@ -12,6 +12,7 @@ OF_ASSUME_NONNULL_BEGIN
 @property bool drawValue;
 @property bool hasOrigin;
 @property GtkPositionType valuePosition;
+@property (readonly) OFString *formattedValue;
 
 - (void)addMarkAtValue:(double)value
           withPosition:(GtkPositionType) pos
@@ -26,6 +27,9 @@ OF_ASSUME_NONNULL_BEGIN
               withText:(OFString *) text;
 
 - (void)clearMarks;
+
+- (void)setFormatStringBefore:(OFString *)before
+                        after:(OFString *)after;
 
 @end
 

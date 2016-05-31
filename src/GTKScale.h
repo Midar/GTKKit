@@ -10,6 +10,8 @@ OF_ASSUME_NONNULL_BEGIN
 @property OF_NULLABLE_PROPERTY (assign) SEL action;
 @property OF_NULLABLE_PROPERTY (weak) id target;
 
+@property OFString *formatString;
+
 @end
 
 OF_ASSUME_NONNULL_END

@@ -26,6 +26,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   scale.min = 0;
   scale.max = 100;
   scale.digits = 0;
+  scale.stepSize = 10;
+  [scale setFormatStringBefore: @"-->" after: @"<--"];
   
   [window addWidget: scale];
   
@@ -50,7 +52,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 }
 
 - (void)scaleValueChanged:(GTKScale *)sender {
-  printf("New scale value: %f\n", sender.value);
+  printf("New formatted scale value: %s\n", [sender.formattedValue UTF8String]);
 }
 
 

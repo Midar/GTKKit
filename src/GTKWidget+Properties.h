@@ -20,6 +20,8 @@ OF_ASSUME_NONNULL_BEGIN
 @property int marginBottom;
 @property bool expandHorizontal;
 @property bool expandVertical;
+@property int widthRequest;
+@property int heightRequest;
 @end
 
 OF_ASSUME_NONNULL_END

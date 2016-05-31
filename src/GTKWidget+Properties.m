@@ -5,6 +5,9 @@
 
 @implementation GTKWidget (Properties)
 
+@dynamic widthRequest;
+@dynamic heightRequest;
+
 - (void)setName:(OFString *)name {
 	gtk_widget_set_name(GTK_WIDGET (self.widget), [name UTF8String]);
 }
@@ -99,6 +102,26 @@
 
 - (void)setExpandVertical:(bool)expand {
   gtk_widget_set_vexpand(GTK_WIDGET(self.widget), expand);
+}
+
+- (int)heightRequest {
+  int height;
+  g_object_get (G_OBJECT (self.widget), "height-request", &height, NULL);
+  return height;
+}
+
+- (void)setHeightRequest:(int)height {
+  g_object_set (G_OBJECT (self.widget), "height-request", height, NULL);
+}
+
+- (int)widthRequest {
+  int width;
+  g_object_get (G_OBJECT (self.widget), "width-request", &width, NULL);
+  return width;
+}
+
+- (void)setWidthRequest:(int)width {
+  g_object_set (G_OBJECT (self.widget), "width-request", width, NULL);
 }
 
 @end

@@ -2,6 +2,7 @@ SUBDIRS = window \
           button \
           image \
           scale \
-          progressbar
+          progressbar \
+          spinner
 
 include ../buildsys.mk

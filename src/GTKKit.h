@@ -30,4 +30,5 @@
 #import "GTKProgressBar.h"
 #import "GTKProgressBar+Properties.h"
 #import "GTKProgressBar+Actions.h"
+#import "GTKSpinner.h"
 #import "Orientable.h"

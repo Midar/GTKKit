@@ -39,7 +39,9 @@ SRCS = GTKBin.m                     \
        GTKProgressBar.m             \
        GTKProgressBar+Properties.m  \
        GTKProgressBar+Actions.m     \
-       GTKSpinner.m
+       GTKSpinner.m                 \
+       GTKToggleButton.m            \
+       GTKToggleButton+Properties.m
 
 
 INCLUDES := ${SRCS:.m=.h}

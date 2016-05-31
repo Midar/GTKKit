@@ -3,6 +3,7 @@ SUBDIRS = window \
           image \
           scale \
           progressbar \
-          spinner
+          spinner \
+          togglebutton
 
 include ../buildsys.mk

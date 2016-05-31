@@ -3,39 +3,36 @@
 
 OF_APPLICATION_DELEGATE(AppDelegate)
 
-@implementation AppDelegate {
-  GTKWindow *window;
-  GTKScale *scale;
-}
+@implementation AppDelegate
 
 - (id)init {
   gtk_init(NULL,NULL);
   self = [super init];
   
-  window = [GTKWindow new];
-  window.size = of_dimension(300,200);
+  self.window = [GTKWindow new];
+  self.window.size = of_dimension(300,200);
   
   // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
-  window.delegate = self;
+  self.window.delegate = self;
   
-  window.title = @"Hello, World!";
+  self.window.title = @"Hello, World!";
   
-  scale = [GTKScale new];
-  scale.target = self;
-  scale.action = @selector(scaleValueChanged:);
-  scale.min = 0;
-  scale.max = 100;
-  scale.digits = 0;
-  scale.stepSize = 10;
-  [scale setFormatStringBefore: @"-->" after: @"<--"];
+  self.scale = [GTKScale new];
+  self.scale.target = self;
+  self.scale.action = @selector(scaleValueChanged:);
+  self.scale.min = 0;
+  self.scale.max = 100;
+  self.scale.digits = 0;
+  self.scale.stepSize = 10;
+  [self.scale setFormatStringBefore: @"-->" after: @"<--"];
   
-  [window addWidget: scale];
+  [self.window addWidget: self.scale];
   
   return self;
 }
 
 - (void)applicationDidFinishLaunching {
-  [window showAll];
+  [self.window showAll];
   
   gtk_main();
 }

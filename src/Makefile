@@ -33,7 +33,9 @@ SRCS = GTKBin.m				\
        GTKOverlay+Actions.m       \
        GTKOverlay+Properties.m     \
        GTKImage.m     \
-       GTKRange.m
+       GTKRange.m     \
+       GTKScale.m     \
+       GTKScale+Properties.m
 
 
 INCLUDES := ${SRCS:.m=.h}

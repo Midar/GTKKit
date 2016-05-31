@@ -25,4 +25,6 @@
 #import "GTKWindowDelegate.h"
 #import "GTKImage.h"
 #import "GTKRange.h"
+#import "GTKScale.h"
+#import "GTKScale+Properties.h"
 #import "Orientable.h"

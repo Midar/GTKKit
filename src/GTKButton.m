@@ -16,13 +16,13 @@ static void buttonClicked(GtkWidget *button, GTKButton *sender) {
 @synthesize action;
 
 - (id)createWidget {
-	self.widget = gtk_button_new ();
+  self.widget = gtk_button_new ();
+  g_signal_connect(GTK_WIDGET (self.widget), "clicked", G_CALLBACK (buttonClicked), (__bridge void*) self);
 	return self;
 }
 
 - (id)init {
 	self = [super init];
-	g_signal_connect(GTK_WIDGET (self.widget), "clicked", G_CALLBACK (buttonClicked), (__bridge void*) self);
 	return self;
 }
 

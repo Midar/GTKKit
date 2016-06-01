@@ -5,6 +5,7 @@ SUBDIRS = window \
           progressbar \
           spinner \
           togglebutton \
-          checkbutton
+          checkbutton \
+          menu
 
 include ../buildsys.mk

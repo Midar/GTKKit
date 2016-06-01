@@ -2,7 +2,7 @@
 #import <gtk/gtk.h>
 #import "GTKMenuItem.h"
 
-static void menuItemActivated(GtkWidget *button, GTKMenuItem *sender) {
+static void menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender) {
   #pragma clang diagnostic push
   #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
   if (sender.target && sender.action)
@@ -12,17 +12,15 @@ static void menuItemActivated(GtkWidget *button, GTKMenuItem *sender) {
 
 @implementation GTKMenuItem
 
-@synthesize target;
-@synthesize action;
-
 - (id)createWidget {
-  self.widget = gtk_menu_item_new ();
+  self.widget = gtk_menu_item_new();
   g_signal_connect(GTK_WIDGET (self.widget), "activate", G_CALLBACK (menuItemActivated), (__bridge void*) self);
 	return self;
 }
 
 - (id)init {
 	self = [super init];
+  gtk_widget_show_all(GTK_WIDGET(self.widget));
 	return self;
 }
 

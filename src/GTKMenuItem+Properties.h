@@ -12,7 +12,10 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKMenuItem (Properties)
 
 @property OFString *label;
-@property (weak) GTKMenu *submenu;
+@property GTKMenu *submenu;
+
+- (id)initWithLabel:(OFString *)label;
++ (id)menuItemWithLabel:(OFString *)label;
 
 @end
 

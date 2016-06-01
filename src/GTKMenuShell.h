@@ -8,8 +8,6 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKMenuShell: GTKContainer
 
-@property OFMutableArray *menuItems;
-
 - (void)appendMenuItem:(GTKMenuItem *)menuItem;
 
 - (void)prependMenuItem:(GTKMenuItem *)menuItem;

@@ -1,11 +1,17 @@
 #import "GTKKit.h"
-#import "MenuExample.h"
 
 @interface AppDelegate : OFObject <OFApplicationDelegate, GTKWindowDelegate>
 
 @property GTKWindow *window;
-@property MenuExample *menu;
+
 @property GTKButton *button;
+
+
+@property GTKMenu *menu;
+@property GTKMenuItem *fooMenu;
+@property GTKMenuItem *barMenu;
+@property GTKMenuItem *bazMenu;
+
 
 - (void)buttonClicked:(GTKButton *)sender;
 

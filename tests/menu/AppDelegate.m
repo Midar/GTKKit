@@ -20,16 +20,23 @@ AppDelegate *appDelegate;
   
   self.window.title = @"Hello, World!";
   
-  self.menu = [MenuExample new];
+  self.menu = [GTKMenu new];
   
-  self.menu.fooMenu.target = self;
-  self.menu.fooMenu.action = @selector(fooMenuClicked:);
+  self.fooMenu = [GTKMenuItem menuItemWithLabel: @"Foo"];
+  self.fooMenu.target = self;
+  self.fooMenu.action = @selector(fooMenuClicked:);
   
-  self.menu.barMenu.target = self;
-  self.menu.barMenu.action = @selector(barMenuClicked:);
+  self.barMenu = [GTKMenuItem menuItemWithLabel: @"Bar"];
+  self.barMenu.target = self;
+  self.barMenu.action = @selector(barMenuClicked:);
   
-  self.menu.bazMenu.target = self;
-  self.menu.bazMenu.action = @selector(bazMenuClicked:);
+  self.bazMenu = [GTKMenuItem menuItemWithLabel: @"Baz"];
+  self.bazMenu.target = self;
+  self.bazMenu.action = @selector(bazMenuClicked:);
+  
+  [self.menu appendMenuItem: self.fooMenu];
+  [self.menu appendMenuItem: self.barMenu];
+  [self.menu appendMenuItem: self.bazMenu];
   
   self.button = [GTKButton new];
   self.button.label = @"Click me!";

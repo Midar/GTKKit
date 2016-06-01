@@ -1,5 +1,5 @@
 PROG_NOINST = menu
-SRCS = MenuExample.m AppDelegate.m
+SRCS = AppDelegate.m
 
 include ../../buildsys.mk
 

@@ -26,3 +26,4 @@ tests/progressbar/progressbar 7
 tests/progressbar/window
 tests/spinner/spinner
 tests/checkbutton/checkbutton
+tests/togglebutton/togglebutton

@@ -34,4 +34,8 @@
 #import "GTKToggleButton.h"
 #import "GTKToggleButton+Properties.h"
 #import "GTKCheckButton.h"
+#import "GTKMenuItem.h"
+#import "GTKMenuItem+Properties.h"
+#import "GTKMenuShell.h"
+#import "GTKMenu.h"
 #import "Orientable.h"

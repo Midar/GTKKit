@@ -42,7 +42,11 @@ SRCS = GTKBin.m                     \
        GTKSpinner.m                 \
        GTKToggleButton.m            \
        GTKToggleButton+Properties.m \
-       GtkCheckButton.m
+       GTKCheckButton.m             \
+       GTKMenuItem.m                \
+       GTKMenuItem+Properties.m     \
+       GTKMenuShell.m               \
+       GTKMenu.m
 
 
 INCLUDES := ${SRCS:.m=.h}

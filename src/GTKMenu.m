@@ -12,7 +12,7 @@
 - (id)init {
 	self = [super init];
   if (self) {
-    
+    g_object_set(G_OBJECT(self.widget), "width-request", 200, NULL);
   }
 	return self;
 }

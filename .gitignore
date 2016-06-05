@@ -29,3 +29,4 @@ tests/checkbutton/checkbutton
 tests/togglebutton/togglebutton
 tests/menu/menu
 tests/switch/switch
+tests/headerbar/headerbar

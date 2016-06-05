@@ -1,12 +1,13 @@
-SUBDIRS = window \
-          button \
-          image \
-          scale \
-          progressbar \
-          spinner \
-          togglebutton \
-          checkbutton \
-          menu \
-          switch
+SUBDIRS = window        \
+          button        \
+          image         \
+          scale         \
+          progressbar   \
+          spinner       \
+          togglebutton  \
+          checkbutton   \
+          menu          \
+          switch        \
+          headerbar
 
 include ../buildsys.mk

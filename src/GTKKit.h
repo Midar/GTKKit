@@ -38,4 +38,5 @@
 #import "GTKMenuItem+Properties.h"
 #import "GTKMenuShell.h"
 #import "GTKMenu.h"
+#import "GTKSeparator.h"
 #import "Orientable.h"

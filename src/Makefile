@@ -46,7 +46,8 @@ SRCS = GTKBin.m                     \
        GTKMenuItem.m                \
        GTKMenuItem+Properties.m     \
        GTKMenuShell.m               \
-       GTKMenu.m
+       GTKMenu.m                    \
+       GTKSeparator.m
 
 
 INCLUDES := ${SRCS:.m=.h}

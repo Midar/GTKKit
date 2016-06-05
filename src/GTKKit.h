@@ -39,4 +39,5 @@
 #import "GTKMenuShell.h"
 #import "GTKMenu.h"
 #import "GTKSeparator.h"
+#import "GTKSwitch.h"
 #import "Orientable.h"

@@ -6,6 +6,7 @@ SUBDIRS = window \
           spinner \
           togglebutton \
           checkbutton \
-          menu
+          menu \
+          switch
 
 include ../buildsys.mk

@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKRange.h"
 #import "typedefs.h"
 

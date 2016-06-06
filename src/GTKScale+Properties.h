@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKScale.h"
 #import "Orientable.h"
 #import "typedefs.h"

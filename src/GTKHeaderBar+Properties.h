@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKHeaderBar.h"
 
 OF_ASSUME_NONNULL_BEGIN

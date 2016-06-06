@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKProgressBar+Actions.h"
 
 @implementation GTKProgressBar (Actions)

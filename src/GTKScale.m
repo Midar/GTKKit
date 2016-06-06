@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKScale.h"
 
 static gboolean gtk_scale_value_changed(GtkScale *scale, GtkScrollType scroll, gdouble value, GTKScale *sender)

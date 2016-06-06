@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKMenuItem.h"
 #import "typedefs.h"
 #import "GTKMenu.h"

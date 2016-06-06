@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKButton.h"
 
 static void buttonClicked(GtkWidget *button, GTKButton *sender)

@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKOverlay.h"
 #import "GTKOverlay+Actions.h"
 

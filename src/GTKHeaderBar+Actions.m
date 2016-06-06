@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKHeaderBar+Actions.h"
 
 @implementation GTKHeaderBar (Actions)

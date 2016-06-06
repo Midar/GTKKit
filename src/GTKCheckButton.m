@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKCheckButton.h"
 
 static void buttonToggled(GtkWidget *button, GTKButton *sender)

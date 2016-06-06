@@ -1,5 +1,7 @@
 #import <ObjFW/ObjFW.h>
+
 #import <gtk/gtk.h>
+
 #import "GTKMenuItem.h"
 
 static void menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)

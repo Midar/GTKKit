@@ -4,16 +4,22 @@
 
 #import "GTKScale.h"
 
-static gboolean gtk_scale_value_changed(GtkScale *scale, GtkScrollType scroll, gdouble value, GTKScale *sender)
+static gboolean gtk_scale_value_changed(GtkScale *scale,
+                                        GtkScrollType scroll,
+                                        gdouble value,
+                                        GTKScale *sender)
 {
   if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
+    void (*methodImplementation)(id, SEL, id) = \
+        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
     methodImplementation(sender.target, sender.action, sender);
   }
   return FALSE;
 }
 
-static gchar* format_gtk_scale_value(GtkScale *scale, gdouble value, GTKScale *sender)
+static gchar* format_gtk_scale_value(GtkScale *scale,
+                                     gdouble value,
+                                     GTKScale *sender)
 {
   return g_strdup_printf ([sender.formatString UTF8String],
                           gtk_scale_get_digits (scale), value);

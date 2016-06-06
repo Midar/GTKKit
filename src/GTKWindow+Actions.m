@@ -26,7 +26,6 @@
       [self.delegate windowShouldClose: self]) {
     if ([self.delegate respondsToSelector: @selector(windowWillClose:)])
       [self.delegate windowWillClose: self];
-
     gtk_window_close(GTK_WINDOW(self.widget));
   }
 }
@@ -38,7 +37,6 @@
     if ([self.delegate respondsToSelector:
         @selector(windowWillMinimize:)])
       [self.delegate windowWillMinimize:self];
-
     gtk_window_iconify(GTK_WINDOW(self.widget));
   }
 }
@@ -55,7 +53,6 @@
     if ([self.delegate respondsToSelector:
         @selector(windowWillMaximize:)])
       [self.delegate windowWillMaximize:self];
-
     gtk_window_maximize(GTK_WINDOW(self.widget));
   }
 }

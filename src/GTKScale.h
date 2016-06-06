@@ -14,11 +14,7 @@ OF_ASSUME_NONNULL_BEGIN
 @property int digits;
 @property OF_NULLABLE_PROPERTY (assign) SEL action;
 @property OF_NULLABLE_PROPERTY (weak) id target;
-@property OFString *formatString;
-@property (nonatomic) OFString *formatStringBefore;
-@property (nonatomic) OFString *formatStringAfter;
-- (void)setFormatStringBefore:(OFString *)before
-                        after:(OFString *)after;
+@property OFConstantString *formatString;
 @end
 
 OF_ASSUME_NONNULL_END

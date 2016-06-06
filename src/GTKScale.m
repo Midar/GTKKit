@@ -46,10 +46,7 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
   gtk_scale_set_digits(GTK_SCALE(self.widget), 2);
   gtk_scale_set_value_pos (GTK_SCALE(self.widget), GTK_POS_TOP);
 
-  self.formatStringBefore = @"";
-  self.formatStringAfter = @"";
-  self.formatString = [OFString stringWithFormat: @"%%.%df",
-                          gtk_scale_get_digits(GTK_SCALE(self.widget))];
+  self.formatString = @"%f";
 
   return self;
 }
@@ -71,28 +68,4 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
 {
   gtk_scale_set_digits(GTK_SCALE(self.widget), newValue);
 }
-
-- (void)setFormatStringBefore:(OFString *)newValue
-{
-  _formatStringBefore = newValue;
-  [self setFormatStringBefore: newValue
-                        after: self.formatStringAfter];
-}
-
-- (void)setFormatStringAfter:(OFString *)newValue
-{
-  _formatStringAfter = newValue;
-  [self setFormatStringBefore: self.formatStringBefore
-                        after: newValue];
-}
-
-- (void)setFormatStringBefore:(OFString *)before
-                        after:(OFString *)after
-{
-  self.formatString = [OFString stringWithFormat: @"%s%%.%if%s",
-                      [before UTF8String],
-                      self.digits,
-                      [after UTF8String] ];
-}
-
 @end

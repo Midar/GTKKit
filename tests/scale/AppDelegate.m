@@ -24,8 +24,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.scale.max = 100;
   self.scale.digits = 0;
   self.scale.stepSize = 10;
-  self.scale.formatStringBefore = @"-->";
-  self.scale.formatStringAfter = @"<--";
+  self.scale.formatString = @"Value: %.2f";
 
   [self.window addWidget: self.scale];
 

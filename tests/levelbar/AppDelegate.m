@@ -48,7 +48,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.scale.max = 100;
   self.scale.digits = 1;
   self.scale.stepSize = 1;
-  self.scale.formatStringAfter = @"%%";
+  self.scale.formatString = @"%.0f%%";
 
   [self.grid attachWidget: self.scale
                      left: 1

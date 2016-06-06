@@ -28,8 +28,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.lbar.marginBottom = 10;
   self.lbar.marginStart = 10;
   self.lbar.marginEnd = 10;
-  self.lbar.min = 0;
-  self.lbar.max = 100;
+  self.lbar.minValue = 0;
+  self.lbar.maxValue = 100;
 
   [self.grid attachWidget: self.lbar
                      left: 1
@@ -44,8 +44,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.scale.marginEnd = 10;
   self.scale.target = self;
   self.scale.action = @selector(scaleValueChanged:);
-  self.scale.min = 0;
-  self.scale.max = 100;
+  self.scale.minValue = 0;
+  self.scale.maxValue = 100;
   self.scale.digits = 1;
   self.scale.stepSize = 1;
   self.scale.formatString = @"%.0f%%";

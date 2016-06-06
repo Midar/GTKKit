@@ -17,9 +17,9 @@ OF_ASSUME_NONNULL_BEGIN
 @property double value;
 @property (nonatomic) double stepSize;
 @property int roundDigts;
-@property (nonatomic) double min;
-@property (nonatomic) double max;
-- (void)min:(double)min max:(double)max;
+@property (nonatomic) double minValue;
+@property (nonatomic) double maxValue;
+- (void)minValue:(double)min maxValue:(double)max;
 @end
 
 OF_ASSUME_NONNULL_END

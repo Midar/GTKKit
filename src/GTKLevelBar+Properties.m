@@ -25,22 +25,22 @@
   gtk_level_bar_set_value(GTK_LEVEL_BAR(self.widget), value);
 }
 
-- (double)min
+- (double)minValue
 {
   return gtk_level_bar_get_min_value(GTK_LEVEL_BAR(self.widget));
 }
 
-- (void)setMin:(double)value
+- (void)setMinValue:(double)value
 {
   gtk_level_bar_set_min_value(GTK_LEVEL_BAR(self.widget), value);
 }
 
-- (double)max
+- (double)maxValue
 {
   return gtk_level_bar_get_max_value(GTK_LEVEL_BAR(self.widget));
 }
 
-- (void)setMax:(double)value
+- (void)setMaxValue:(double)value
 {
   gtk_level_bar_set_max_value(GTK_LEVEL_BAR(self.widget), value);
 }

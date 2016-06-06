@@ -20,8 +20,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.scale = [GTKScale new];
   self.scale.target = self;
   self.scale.action = @selector(scaleValueChanged:);
-  self.scale.min = 0;
-  self.scale.max = 100;
+  self.scale.minValue = 0;
+  self.scale.maxValue = 100;
   self.scale.digits = 0;
   self.scale.stepSize = 10;
   self.scale.formatString = @"Value: %.2f";

@@ -9,8 +9,8 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKLevelBar (Properties)
 @property GtkLevelBarMode mode;
 @property double value;
-@property double min;
-@property double max;
+@property double minValue;
+@property double maxValue;
 @property bool inverted;
 @end
 

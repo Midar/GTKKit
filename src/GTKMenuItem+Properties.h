@@ -3,7 +3,6 @@
 #import <gtk/gtk.h>
 
 #import "GTKMenuItem.h"
-#import "typedefs.h"
 #import "GTKMenu.h"
 
 @class GTKMenu;

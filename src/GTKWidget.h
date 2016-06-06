@@ -2,9 +2,6 @@
 
 #import <gtk/gtk.h>
 
-#import "typedefs.h"
-#import "macros.h"
-
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWidget: OFObject

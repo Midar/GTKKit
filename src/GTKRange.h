@@ -2,7 +2,6 @@
 
 #import <gtk/gtk.h>
 
-#import "typedefs.h"
 #import "GTKWidget.h"
 
 OF_ASSUME_NONNULL_BEGIN

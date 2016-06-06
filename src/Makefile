@@ -57,10 +57,8 @@ SRCS = GTKBin.m                     \
 
 INCLUDES = ${SRCS:.m=.h}            \
            GTKKit.h                 \
-           typedefs.h               \
            GTKWindowDelegate.h      \
-           Orientable.h             \
-					 macros.h
+           Orientable.h
 
 include ../buildsys.mk
 

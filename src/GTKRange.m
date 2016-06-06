@@ -3,7 +3,6 @@
 #import <gtk/gtk.h>
 
 #import "GTKRange.h"
-#import "typedefs.h"
 
 @implementation GTKRange
 - (void)setFillLevel:(double)newValue

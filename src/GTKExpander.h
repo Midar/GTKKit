@@ -3,7 +3,6 @@
 #import <gtk/gtk.h>
 
 #import "GTKBin.h"
-#import "typedefs.h"
 
 OF_ASSUME_NONNULL_BEGIN
 

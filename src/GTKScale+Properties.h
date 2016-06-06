@@ -4,7 +4,6 @@
 
 #import "GTKScale.h"
 #import "Orientable.h"
-#import "typedefs.h"
 
 OF_ASSUME_NONNULL_BEGIN
 

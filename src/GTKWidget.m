@@ -3,7 +3,6 @@
 #import <gtk/gtk.h>
 
 #import "GTKWidget.h"
-#import "typedefs.h"
 
 @implementation GTKWidget
 + (instancetype)widgetFromGtkWidget:(GtkWidget *)w

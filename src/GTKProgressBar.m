@@ -3,10 +3,10 @@
 #import "GTKProgressBar.h"
 
 @implementation GTKProgressBar
-
-- (id)createWidget {
+- init
+{
+  self = [super init];
   self.widget = gtk_progress_bar_new();
-	return self;
+  return self;
 }
-
 @end

@@ -4,8 +4,4 @@
 
 @implementation GTKContainer
 
-- (id)createWidget {
-	return self;
-}
-
 @end

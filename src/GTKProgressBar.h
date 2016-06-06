@@ -5,7 +5,6 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKProgressBar: GTKWidget
-
 @end
 
 OF_ASSUME_NONNULL_END

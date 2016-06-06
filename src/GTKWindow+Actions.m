@@ -1,7 +1,5 @@
 #import <ObjFW/ObjFW.h>
-
 #import <gtk/gtk.h>
-
 #import "GTKContainer.h"
 #import "GTKWindow.h"
 #import "GTKWindow+Actions.h"
@@ -24,12 +22,10 @@
 
 - (void)close
 {
-	id <GTKWindowDelegate> delegate = self.delegate;
-
-	if ([delegate respondsToSelector: @selector(windowShouldClose:)] &&
-	    [delegate windowShouldClose: self]) {
-		if ([delegate respondsToSelector: @selector(windowWillClose:)])
-			[delegate windowWillClose: self];
+	if ([self.delegate respondsToSelector: @selector(windowShouldClose:)] &&
+	    [self.delegate windowShouldClose: self]) {
+		if ([self.delegate respondsToSelector: @selector(windowWillClose:)])
+			[self.delegate windowWillClose: self];
 
 		gtk_window_close(GTK_WINDOW(self.widget));
 	}
@@ -37,13 +33,11 @@
 
 - (void)minimize
 {
-	id <GTKWindowDelegate> delegate = self.delegate;
-
-	if ([delegate respondsToSelector: @selector(windowShouldMinimize:)] &&
-	    [delegate windowShouldMinimize: self]) {
-		if ([delegate respondsToSelector:
+	if ([self.delegate respondsToSelector: @selector(windowShouldMinimize:)] &&
+	    [self.delegate windowShouldMinimize: self]) {
+		if ([self.delegate respondsToSelector:
 		    @selector(windowWillMinimize:)])
-			[delegate windowWillMinimize:self];
+			[self.delegate windowWillMinimize:self];
 
 		gtk_window_iconify(GTK_WINDOW(self.widget));
 	}

@@ -3,10 +3,10 @@
 #import "GTKHeaderBar.h"
 
 @implementation GTKHeaderBar
-
-- (id)createWidget {
+- init
+{
+  self = [super init];
 	self.widget = gtk_header_bar_new();
-	return self;
+  return self;
 }
-
 @end

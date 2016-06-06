@@ -6,9 +6,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKMenu: GTKMenuShell
-
 - (void)popup;
-
 @end
 
 OF_ASSUME_NONNULL_END

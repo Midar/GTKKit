@@ -3,10 +3,10 @@
 #import "GTKLabel.h"
 
 @implementation GTKLabel
-
-- (id)createWidget {
+- init
+{
+  self = [super init];
 	self.widget = gtk_label_new(NULL);
-	return self;
+  return self;
 }
-
 @end

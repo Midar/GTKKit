@@ -3,15 +3,10 @@
 #import "GTKOverlay.h"
 
 @implementation GTKOverlay
-
-- (id)createWidget {
+- init
+{
+  self = [super init];
 	self.widget = gtk_overlay_new();
-	return self;
+  return self;
 }
-
-- (id)init {
-	self = [super init];
-	return self;
-}
-
 @end

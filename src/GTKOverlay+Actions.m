@@ -4,13 +4,14 @@
 #import "GTKOverlay+Actions.h"
 
 @implementation GTKOverlay (Actions)
-
-- (void)addOverlayChild:(GTKWidget*)child {
+- (void)addOverlayChild:(GTKWidget*)child
+{
   gtk_overlay_add_overlay(GTK_OVERLAY(self.widget), GTK_WIDGET([child widget]));
 }
 
-- (void)reorderOverlayChild:(GTKWidget*)child toIndex:(int)index {
+- (void)reorderOverlayChild:(GTKWidget*)child
+                    toIndex:(int)index
+{
   gtk_overlay_reorder_overlay(GTK_OVERLAY(self.widget), GTK_WIDGET([child widget]), index);
 }
-
 @end

@@ -1,15 +1,10 @@
 #import "GTKExpander.h"
 
 @implementation GTKExpander
-
-- (id)createWidget {
+- init
+{
+  self = [super init];
   self.widget = gtk_expander_new ("");
   return self;
 }
-
-- (id)init {
-  self = [super init];
-  return self;
-}
-
 @end

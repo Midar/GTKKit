@@ -4,70 +4,77 @@
 #import "GTKScale+Properties.h"
 
 @implementation GTKScale (Properties)
-
-@dynamic drawValue;
-@dynamic valuePosition;
-@dynamic hasOrigin;
-@dynamic formattedValue;
-
-- (bool)drawValue {
+- (bool)drawValue
+{
   return gtk_scale_get_digits(GTK_SCALE(self.widget));
 }
 
-- (void)setDrawValue:(bool)newValue {
+- (void)setDrawValue:(bool)newValue
+{
   gtk_scale_set_draw_value(GTK_SCALE(self.widget), newValue);
 }
 
-- (bool)hasOrigin {
+- (bool)hasOrigin
+{
   return gtk_scale_get_has_origin(GTK_SCALE(self.widget));
 }
 
-- (void)setHasOrigin:(bool)newValue {
+- (void)setHasOrigin:(bool)newValue
+{
   gtk_scale_set_has_origin(GTK_SCALE(self.widget), newValue);
 }
 
-- (GtkPositionType)valuePosition {
+- (GtkPositionType)valuePosition
+{
   return gtk_scale_get_value_pos(GTK_SCALE(self.widget));
 }
 
-- (void)setValuePosition:(GtkPositionType)newValue {
+- (void)setValuePosition:(GtkPositionType)newValue
+{
   gtk_scale_set_value_pos(GTK_SCALE(self.widget), newValue);
 }
 
-- (GtkOrientation)orientation {
+- (GtkOrientation)orientation
+{
   return gtk_orientable_get_orientation(GTK_ORIENTABLE(self.widget));
 }
 
-- (void)setOrientation:(GtkOrientation)orientation {
+- (void)setOrientation:(GtkOrientation)orientation
+{
   gtk_orientable_set_orientation(GTK_ORIENTABLE(self.widget), orientation);
 }
 
 - (void)addMarkAtValue:(double)value
           withPosition:(GtkPositionType) pos
-              withText:(OFString *) text {
+              withText:(OFString *) text
+{
   gtk_scale_add_mark(GTK_SCALE(self.widget), value, pos, [text UTF8String]);
 }
 
-- (void)addMarkAtValue:(double)value {
+- (void)addMarkAtValue:(double)value
+{
   gtk_scale_add_mark(GTK_SCALE(self.widget), value, self.valuePosition, NULL);
 }
 
 - (void)addMarkAtValue:(double)value
-              withText:(OFString *) text {
+              withText:(OFString *) text
+{
   gtk_scale_add_mark(GTK_SCALE(self.widget), value, self.valuePosition, [text UTF8String]);
 }
 
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos {
+          withPosition:(GtkPositionType) pos
+{
   gtk_scale_add_mark(GTK_SCALE(self.widget), value, pos, NULL);
 }
 
-- (void)clearMarks {
+- (void)clearMarks
+{
   gtk_scale_clear_marks(GTK_SCALE(self.widget));
 }
 
-- (OFString *)formattedValue {
+- (OFString *)formattedValue
+{
   return [OFString stringWithFormat: (OFConstantString *)self.formatString, self.value];
 }
-
 @end

@@ -1,13 +1,11 @@
 #import <ObjFW/ObjFW.h>
-
 #import <gtk/gtk.h>
-
 #import "GTKLabel.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKLabel (Properties)
-@property (copy) OFString *label;
+@property OFString *label;
 @property float xAlign;
 @property float yAlign;
 @property GtkJustification justify;

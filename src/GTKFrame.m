@@ -3,9 +3,10 @@
 #import "GTKFrame.h"
 
 @implementation GTKFrame
-
-- (id)createWidget {
-	self.widget = gtk_frame_new(NULL);
-	return self;
+- init
+{
+	self = [super init];
+  self.widget = gtk_frame_new(NULL);
+  return self;
 }
 @end

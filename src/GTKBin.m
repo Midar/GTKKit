@@ -4,14 +4,10 @@
 
 @implementation GTKBin
 
-- (id)createWidget {
-	return self;
-}
-
-- (GTKWidget *)childWidget {
+- (GTKWidget *)childWidget
+{
 	GtkWidget *w = gtk_bin_get_child (GTK_BIN (self.widget));
-	GTKWidget *newWidget = [GTKWidget widgetFromGtkWidget: w];
-	return newWidget;
+	return [GTKWidget widgetFromGtkWidget: w];
 }
 
 @end

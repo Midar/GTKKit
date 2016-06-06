@@ -4,124 +4,147 @@
 #import "GTKWidget.h"
 
 @implementation GTKWidget (Properties)
-
-@dynamic widthRequest;
-@dynamic heightRequest;
-
-- (void)setName:(OFString *)name {
+- (void)setName:(OFString *)name
+{
 	gtk_widget_set_name(GTK_WIDGET (self.widget), [name UTF8String]);
 }
 
-- (OFString *)name {
+- (OFString *)name
+{
 	return @(gtk_widget_get_name(GTK_WIDGET (self.widget)));
 }
 
-- (bool)isFocus {
+- (bool)isFocus
+{
 	return gtk_widget_is_focus (GTK_WIDGET (self.widget));
 }
 
-- (void)setSensitive:(bool)sensitive {
+- (void)setSensitive:(bool)sensitive
+{
 	gtk_widget_set_sensitive (GTK_WIDGET (self.widget), sensitive);
 }
 
-- (bool)sensitive {
+- (bool)sensitive
+{
 	return gtk_widget_get_sensitive (GTK_WIDGET (self.widget));
 }
 
-- (bool)effectiveSensitivity {
+- (bool)effectiveSensitivity
+{
 	return gtk_widget_is_sensitive (GTK_WIDGET (self.widget));
 }
 
-- (double)opacity {
+- (double)opacity
+{
 	return gtk_widget_get_opacity (GTK_WIDGET (self.widget));
 }
 
-- (void)setOpacity:(double)opacity {
+- (void)setOpacity:(double)opacity
+{
 	gtk_widget_set_opacity (GTK_WIDGET (self.widget), opacity);
 }
 
-- (GtkAlign)horizontalAlign {
+- (GtkAlign)horizontalAlign
+{
   return gtk_widget_get_halign(GTK_WIDGET(self.widget));
 }
 
-- (void)setHorizontalAlign:(GtkAlign)align {
+- (void)setHorizontalAlign:(GtkAlign)align
+{
   gtk_widget_set_halign(GTK_WIDGET(self.widget), align);
 }
 
-- (GtkAlign)verticalAlign {
+- (GtkAlign)verticalAlign
+{
   return gtk_widget_get_valign(GTK_WIDGET(self.widget));
 }
 
-- (void)setVerticalAlign:(GtkAlign)align {
+- (void)setVerticalAlign:(GtkAlign)align
+{
   gtk_widget_set_valign(GTK_WIDGET(self.widget), align);
 }
 
-- (int)marginStart {
+- (int)marginStart
+{
   return gtk_widget_get_margin_start(GTK_WIDGET(self.widget));
 }
 
-- (void)setMarginStart:(int)margin {
+- (void)setMarginStart:(int)margin
+{
   gtk_widget_set_margin_start(GTK_WIDGET(self.widget), margin);
 }
 
-- (int)marginEnd {
+- (int)marginEnd
+{
   return gtk_widget_get_margin_end(GTK_WIDGET(self.widget));
 }
 
-- (void)setMarginEnd:(int)margin {
+- (void)setMarginEnd:(int)margin
+{
   gtk_widget_set_margin_end(GTK_WIDGET(self.widget), margin);
 }
 
-- (int)marginTop {
+- (int)marginTop
+{
   return gtk_widget_get_margin_top(GTK_WIDGET(self.widget));
 }
 
-- (void)setMarginTop:(int)margin {
+- (void)setMarginTop:(int)margin
+{
   gtk_widget_set_margin_top(GTK_WIDGET(self.widget), margin);
 }
 
-- (int)marginBottom {
+- (int)marginBottom
+{
   return gtk_widget_get_margin_bottom(GTK_WIDGET(self.widget));
 }
 
-- (void)setMarginBottom:(int)margin {
+- (void)setMarginBottom:(int)margin
+{
   gtk_widget_set_margin_bottom(GTK_WIDGET(self.widget), margin);
 }
 
-- (bool)expandHorizontal {
+- (bool)expandHorizontal
+{
   return gtk_widget_get_hexpand(GTK_WIDGET(self.widget));
 }
 
-- (void)setExpandHorizontal:(bool)expand {
+- (void)setExpandHorizontal:(bool)expand
+{
   gtk_widget_set_hexpand(GTK_WIDGET(self.widget), expand);
 }
 
-- (bool)expandVertical {
+- (bool)expandVertical
+{
   return gtk_widget_get_vexpand(GTK_WIDGET(self.widget));
 }
 
-- (void)setExpandVertical:(bool)expand {
+- (void)setExpandVertical:(bool)expand
+{
   gtk_widget_set_vexpand(GTK_WIDGET(self.widget), expand);
 }
 
-- (int)heightRequest {
+- (int)heightRequest
+{
   int height;
   g_object_get (G_OBJECT (self.widget), "height-request", &height, NULL);
   return height;
 }
 
-- (void)setHeightRequest:(int)height {
+- (void)setHeightRequest:(int)height
+{
   g_object_set (G_OBJECT (self.widget), "height-request", height, NULL);
 }
 
-- (int)widthRequest {
+- (int)widthRequest
+{
   int width;
   g_object_get (G_OBJECT (self.widget), "width-request", &width, NULL);
   return width;
 }
 
-- (void)setWidthRequest:(int)width {
+- (void)setWidthRequest:(int)width
+{
   g_object_set (G_OBJECT (self.widget), "width-request", width, NULL);
 }
-
 @end

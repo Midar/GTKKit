@@ -3,10 +3,10 @@
 #import "GTKGrid.h"
 
 @implementation GTKGrid
-
-- (id)createWidget {
-	self.widget = gtk_grid_new();
-	return self;
+- init
+{
+  self = [super init];
+  self.widget = gtk_grid_new();
+  return self;
 }
-
 @end

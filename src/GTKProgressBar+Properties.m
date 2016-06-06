@@ -3,47 +3,48 @@
 #import "GTKProgressBar+Properties.h"
 
 @implementation GTKProgressBar (Properties)
-
-@dynamic value;
-@dynamic inverted;
-@dynamic showText;
-@dynamic text;
-@dynamic ellipsize;
-@dynamic pulseStep;
-
-- (double)value {
+- (double)value
+{
   return gtk_progress_bar_get_fraction(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setValue:(double) newValue {
+- (void)setValue:(double) newValue
+{
   gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
-- (bool)inverted {
+- (bool)inverted
+{
   return gtk_progress_bar_get_inverted(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setInverted:(bool) newValue {
+- (void)setInverted:(bool) newValue
+{
   gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
-- (bool)showText {
+- (bool)showText
+{
   return gtk_progress_bar_get_show_text(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setShowText:(bool) newValue {
+- (void)setShowText:(bool) newValue
+{
   gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
-- (OFString *)text {
+- (OFString *)text
+{
   return @(gtk_progress_bar_get_text(GTK_PROGRESS_BAR(self.widget)));
 }
 
-- (void)setText:(OFString *) newValue {
+- (void)setText:(OFString *) newValue
+{
   gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.widget), [newValue UTF8String]);
 }
 
-- (bool)ellipsize {
+- (bool)ellipsize
+{
   PangoEllipsizeMode ellip = gtk_progress_bar_get_ellipsize(GTK_PROGRESS_BAR(self.widget));
   if (ellip == PANGO_ELLIPSIZE_NONE) {
     return false;
@@ -52,7 +53,8 @@
   }
 }
 
-- (void)setEllipsize:(bool) newValue {
+- (void)setEllipsize:(bool) newValue
+{
   if (newValue) {
     gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget), PANGO_ELLIPSIZE_END);
   } else {
@@ -60,12 +62,13 @@
   }
 }
 
-- (double)pulseStep {
+- (double)pulseStep
+{
   return gtk_progress_bar_get_pulse_step(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setPulseStep:(double) newValue {
+- (void)setPulseStep:(double) newValue
+{
   gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(self.widget), newValue);
 }
-
 @end

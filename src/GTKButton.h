@@ -7,7 +7,9 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKButton: GTKBin
+@interface GTKButton: GTKBin {
+  gulong clickedHandlerID;
+}
 @property (copy) GTKCallback onClick;
 @property OF_NULLABLE_PROPERTY (assign) SEL action;
 @property OF_NULLABLE_PROPERTY (weak) id target;

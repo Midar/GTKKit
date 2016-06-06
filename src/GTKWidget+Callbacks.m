@@ -3,5 +3,4 @@
 #import "typedefs.h"
 
 @implementation GTKWidget (Callbacks)
-
 @end

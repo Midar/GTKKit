@@ -1,7 +1,5 @@
 #import <ObjFW/ObjFW.h>
-
 #import <gtk/gtk.h>
-
 #import "GTKContainer.h"
 
 OF_ASSUME_NONNULL_BEGIN
@@ -13,12 +11,9 @@ OF_ASSUME_NONNULL_BEGIN
 @property unsigned int rowSpacing;
 @property unsigned int columnsSpacing;
 @property int baselineRow;
-
 - (GtkBaselinePosition)baselinePositionForRow: (int)row;
 - (id)baselinePosition: (GtkBaselinePosition)position
 		forRow: (int)row;
 @end
-
-
 
 OF_ASSUME_NONNULL_END

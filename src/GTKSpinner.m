@@ -3,10 +3,11 @@
 #import "GTKSpinner.h"
 
 @implementation GTKSpinner
-
-- (id)createWidget {
+- init
+{
+  self = [super init];
   self.widget = gtk_spinner_new();
-	return self;
+  return self;
 }
 
 - (void)start {
@@ -18,5 +19,4 @@
   self.spinning = false;
   gtk_spinner_stop(GTK_SPINNER(self.widget));
 }
-
 @end

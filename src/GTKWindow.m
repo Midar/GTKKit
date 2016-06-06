@@ -5,7 +5,7 @@
 static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event, GTKWindow *sender) {
 	// This code determines the type of window event which has happened, and dispatches to the
   // appropriate delegate method, if it exists.
-    
+
 	if(event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED){
     if(event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) {
       if( [sender.delegate respondsToSelector: @selector(windowDidMaximize:)] ) {
@@ -17,7 +17,7 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
       }
     }
   }
-    
+
   if(event->changed_mask & GDK_WINDOW_STATE_ICONIFIED) {
     if(event->new_window_state & GDK_WINDOW_STATE_ICONIFIED) {
       if( [sender.delegate respondsToSelector: @selector(windowDidMinimize:)] ) {
@@ -29,7 +29,7 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
       }
     }
   }
-	 
+
   if(event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN) {
     if(event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) {
       if( [sender.delegate respondsToSelector: @selector(windowDidFullscreen:)] ) {
@@ -41,7 +41,7 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
       }
     }
   }
-	 
+
   if(event->changed_mask & GDK_WINDOW_STATE_FOCUSED) {
     if(event->new_window_state & GDK_WINDOW_STATE_FOCUSED) {
       if( [sender.delegate respondsToSelector: @selector(windowDidFocus:)] ) {
@@ -53,7 +53,7 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
       }
     }
   }
-	
+
 	return TRUE;
 }
 
@@ -75,38 +75,34 @@ static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWin
 }
 
 @implementation GTKWindow
-
-@synthesize defaultSize=_defaultSize;
-@synthesize size=_size;
-
-- (id)createWidget {
-	self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-	return self;
-}
-
-- (id)init {
+- (id)init
+{
 	self = [super init];
+  self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
   g_signal_connect(G_OBJECT (self.widget), "window-state-event", G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
   g_signal_connect(G_OBJECT (self.widget), "delete-event", G_CALLBACK (window_delete_request), (__bridge void*) self);
 	return self;
 }
 
-- (of_dimension_t)defaultSize {
+- (of_dimension_t)defaultSize
+{
 	return _defaultSize;
 }
 
-- (void)setDefaultSize:(of_dimension_t)size {
+- (void)setDefaultSize:(of_dimension_t)size
+{
 	_defaultSize = size;
 	gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
 }
 
-- (of_dimension_t)size {
+- (of_dimension_t)size
+{
 	return _size;
 }
 
-- (void)setSize:(of_dimension_t)size {
+- (void)setSize:(of_dimension_t)size
+{
 	_size = size;
 	gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
 }
-
 @end

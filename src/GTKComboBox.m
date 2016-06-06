@@ -3,10 +3,11 @@
 #import "GTKComboBox.h"
 
 @implementation GTKComboBox
-- (instancetype)createWidget
+- init
 {
+  self = [super init];
 	self.widget = gtk_combo_box_text_new ();
-	return self;
+  return self;
 }
 
 - (void)    appendString: (OFString*)string
@@ -25,7 +26,7 @@
 
 - (void)  insertString: (OFString*)string
   withIdentifierString: (OFString*)ID
-	    atPosition:(int)position
+	          atPosition:(int)position
 {
 	gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), position,
 	    [string UTF8String], [ID UTF8String]);

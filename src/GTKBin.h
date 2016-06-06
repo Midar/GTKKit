@@ -7,7 +7,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKBin: GTKContainer
-- (GTKWidget*)childWidget;
+@property (readonly) GTKWidget *childWidget;
 @end
 
 OF_ASSUME_NONNULL_END

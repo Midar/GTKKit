@@ -29,6 +29,8 @@ static gchar* format_gtk_scale_value(GtkScale *scale, gdouble value, GTKScale *s
   formatHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "format-value", G_CALLBACK (format_gtk_scale_value), (__bridge void*) self);
   gtk_scale_set_digits(GTK_SCALE(self.widget), 2);
   gtk_scale_set_value_pos (GTK_SCALE(self.widget), GTK_POS_TOP);
+  self.formatStringBefore = @"";
+  self.formatStringAfter = @"";
   self.formatString = [OFString stringWithFormat: @"%%.%df", gtk_scale_get_digits(GTK_SCALE(self.widget))];
   return self;
 }

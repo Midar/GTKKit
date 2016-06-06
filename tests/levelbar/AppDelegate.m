@@ -18,6 +18,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.window.title = @"GTKLevelBar Demo";
 
   self.grid = [GTKGrid new];
+  self.grid.expandHorizontal = true;
+  self.grid.expandVertical = true;
   self.grid.rowsHomogeneous = true;
 
   self.lbar = [GTKLevelBar new];
@@ -46,6 +48,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.scale.max = 100;
   self.scale.digits = 1;
   self.scale.stepSize = 1;
+  self.scale.formatStringAfter = @"%%";
 
   [self.grid attachWidget: self.scale
                      left: 1

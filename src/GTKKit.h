@@ -43,4 +43,6 @@
 #import "GTKHeaderBar.h"
 #import "GTKHeaderBar+Properties.h"
 #import "GTKHeaderBar+Actions.h"
+#import "GTKLevelBar.h"
+#import "GTKLevelBar+Properties.h"
 #import "Orientable.h"

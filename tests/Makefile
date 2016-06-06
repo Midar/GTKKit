@@ -8,6 +8,7 @@ SUBDIRS = window        \
           checkbutton   \
           menu          \
           switch        \
-          headerbar
+          headerbar     \
+					levelbar
 
 include ../buildsys.mk

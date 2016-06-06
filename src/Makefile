@@ -51,7 +51,9 @@ SRCS = GTKBin.m                     \
        GTKSwitch.m                  \
        GTKHeaderBar.m               \
        GTKHeaderBar+Properties.m    \
-       GTKHeaderBar+Actions.m
+       GTKHeaderBar+Actions.m       \
+			 GTKLevelBar.m                \
+			 GTKLevelBar+Properties.m
 
 INCLUDES = ${SRCS:.m=.h}            \
            GTKKit.h                 \

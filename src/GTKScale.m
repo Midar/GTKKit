@@ -23,15 +23,28 @@ static gchar* format_gtk_scale_value(GtkScale *scale, gdouble value, GTKScale *s
 - init
 {
   self = [super init];
+
   GtkAdjustment *adj = gtk_adjustment_new (0, 0, 0, 1.0, 1.0, 0);
   self.widget = gtk_scale_new (GTK_ORIENTATION_HORIZONTAL, adj);
-  valueChangedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "change-value", G_CALLBACK (gtk_scale_value_changed), (__bridge void*) self);
-  formatHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "format-value", G_CALLBACK (format_gtk_scale_value), (__bridge void*) self);
+
+  valueChangedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
+                              "change-value",
+                              G_CALLBACK (gtk_scale_value_changed),
+                              (__bridge void*) self);
+
+  formatHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
+                        "format-value",
+                        G_CALLBACK (format_gtk_scale_value),
+                        (__bridge void*) self);
+
   gtk_scale_set_digits(GTK_SCALE(self.widget), 2);
   gtk_scale_set_value_pos (GTK_SCALE(self.widget), GTK_POS_TOP);
+
   self.formatStringBefore = @"";
   self.formatStringAfter = @"";
-  self.formatString = [OFString stringWithFormat: @"%%.%df", gtk_scale_get_digits(GTK_SCALE(self.widget))];
+  self.formatString = [OFString stringWithFormat: @"%%.%df",
+                          gtk_scale_get_digits(GTK_SCALE(self.widget))];
+
   return self;
 }
 

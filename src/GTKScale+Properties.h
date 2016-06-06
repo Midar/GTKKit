@@ -5,6 +5,7 @@
 #import "typedefs.h"
 
 OF_ASSUME_NONNULL_BEGIN
+
 @interface GTKScale (Properties)
 @property bool drawValue;
 @property bool hasOrigin;

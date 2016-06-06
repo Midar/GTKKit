@@ -42,7 +42,7 @@ menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
   self = [self init];
   gtk_widget_destroy(GTK_WIDGET(self.widget));
   self.widget = gtk_menu_item_new_with_label("");
-  menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
+  _menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
       "activate", G_CALLBACK (menuItemActivated), (__bridge void*) self);
   self.label = label;
   gtk_widget_show_all(GTK_WIDGET(self.widget));

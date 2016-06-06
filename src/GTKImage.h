@@ -6,7 +6,8 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKImage: GTKWidget {
+@interface GTKImage: GTKWidget
+{
     OFString *_imageFile;
     OFString *_iconName;
 }

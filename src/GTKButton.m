@@ -18,13 +18,13 @@ buttonClicked(GtkWidget *button, GTKButton *sender)
 {
   self = [super init];
   self.widget = gtk_button_new ();
-  clickedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked", G_CALLBACK (buttonClicked), (__bridge void*) self);
+  _clickedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked", G_CALLBACK (buttonClicked), (__bridge void*) self);
   return self;
 }
 
 - (void)dealloc
 {
   if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget), clickedHandlerID);
+    g_signal_handler_disconnect(G_OBJECT (self.widget), _clickedHandlerID);
 }
 @end

@@ -6,9 +6,10 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKScale: GTKRange {
-  gulong valueChangedHandlerID;
-  gulong formatHandlerID;
+@interface GTKScale: GTKRange
+{
+  gulong _valueChangedHandlerID;
+  gulong _formatHandlerID;
 }
 @property int digits;
 @property OF_NULLABLE_PROPERTY (assign) SEL action;

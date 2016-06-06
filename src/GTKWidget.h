@@ -5,7 +5,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWidget: OFObject
-@property (assign) GtkWidget *widget;
+@property GtkWidget *widget;
 + (instancetype)widgetFromGtkWidget: (GtkWidget*)w;
 @end
 

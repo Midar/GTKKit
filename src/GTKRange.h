@@ -6,7 +6,8 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKRange: GTKWidget {
+@interface GTKRange: GTKWidget
+{
   double _min;
   double _max;
 }

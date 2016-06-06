@@ -33,12 +33,12 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
   GtkAdjustment *adj = gtk_adjustment_new (0, 0, 0, 1.0, 1.0, 0);
   self.widget = gtk_scale_new (GTK_ORIENTATION_HORIZONTAL, adj);
 
-  valueChangedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
+  _valueChangedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
                               "change-value",
                               G_CALLBACK (gtk_scale_value_changed),
                               (__bridge void*) self);
 
-  formatHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
+  _formatHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
                         "format-value",
                         G_CALLBACK (format_gtk_scale_value),
                         (__bridge void*) self);
@@ -54,8 +54,8 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
 - (void)dealloc
 {
   if (self.widget != NULL) {
-    g_signal_handler_disconnect(G_OBJECT (self.widget), valueChangedHandlerID);
-    g_signal_handler_disconnect(G_OBJECT (self.widget), formatHandlerID);
+    g_signal_handler_disconnect(G_OBJECT (self.widget), _valueChangedHandlerID);
+    g_signal_handler_disconnect(G_OBJECT (self.widget), _formatHandlerID);
   }
 }
 

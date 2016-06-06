@@ -19,7 +19,7 @@ buttonToggled(GtkWidget *button, GTKButton *sender)
 {
   self = [super init];
   self.widget = gtk_check_button_new ();
-  toggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled",
+  _toggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled",
       G_CALLBACK (buttonToggled), (__bridge void*) self);
 	return self;
 }
@@ -27,6 +27,6 @@ buttonToggled(GtkWidget *button, GTKButton *sender)
 - (void)dealloc
 {
   if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget), toggledHandlerID);
+    g_signal_handler_disconnect(G_OBJECT (self.widget), _toggledHandlerID);
 }
 @end

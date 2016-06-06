@@ -6,8 +6,9 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKMenuItem: GTKBin {
-  gulong menuItemActivatedHandlerID;
+@interface GTKMenuItem: GTKBin
+{
+  gulong _menuItemActivatedHandlerID;
 }
 @property OF_NULLABLE_PROPERTY (assign) SEL action;
 @property OF_NULLABLE_PROPERTY (weak) id target;

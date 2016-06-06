@@ -6,8 +6,9 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKToggleButton: GTKButton {
-  gulong buttonToggledHandlerID;
+@interface GTKToggleButton: GTKButton
+{
+  gulong _buttonToggledHandlerID;
 }
 @end
 

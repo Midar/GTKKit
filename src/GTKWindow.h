@@ -7,7 +7,8 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKWindow: GTKBin {
+@interface GTKWindow: GTKBin
+{
   of_dimension_t _defaultSize;
   of_dimension_t _size;
 }

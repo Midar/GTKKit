@@ -17,12 +17,6 @@ GTKKit.pc
 tests/image/image
 tests/scale/scale
 tests/progressbar/progressbar
-tests/progressbar/progressbar 2
-tests/progressbar/progressbar 3
-tests/progressbar/progressbar 4
-tests/progressbar/progressbar 5
-tests/progressbar/progressbar 6
-tests/progressbar/progressbar 7
 tests/progressbar/window
 tests/spinner/spinner
 tests/checkbutton/checkbutton
@@ -30,3 +24,4 @@ tests/togglebutton/togglebutton
 tests/menu/menu
 tests/switch/switch
 tests/headerbar/headerbar
+tests/*/* [0-9]*

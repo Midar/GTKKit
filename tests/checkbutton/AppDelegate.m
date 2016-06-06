@@ -1,51 +1,54 @@
 #import "GTKKit.h"
-#import "GTKButtonTest.h"
+#import "AppDelegate.h"
 
-OF_APPLICATION_DELEGATE(GTKButtonTest)
+OF_APPLICATION_DELEGATE(AppDelegate)
 
-@implementation GTKButtonTest
-
-- (id)init {
+@implementation AppDelegate
+- init
+{
   gtk_init(NULL, NULL);
-  
+
   self = [super init];
-  
+
   self.window = [GTKWindow new];
   self.window.size = of_dimension(300,200);
   self.window.title = @"Hello, world!";
   self.window.delegate = self;
-  
-  self.button = [GTKToggleButton new];
+
+  self.button = [GTKCheckButton new];
   self.button.target = self;
   self.button.action = @selector(buttonToggled:);
   self.button.label = @"Click me!";
-  
+
   [self.window addWidget: self.button];
-  
+
   return self;
 }
 
-- (void)applicationDidFinishLaunching {
-  
+- (void)applicationDidFinishLaunching
+{
+
   [self.window showAll];
-  
+
   gtk_main();
 }
 
-- (void)buttonToggled:(id)sender {
+- (void)buttonToggled:(id)sender
+{
   if (self.button.active) {
-    printf("Button is active.\n");
+    printf("Button is checked.\n");
   } else {
-    printf("Button is inactive.\n");
+    printf("Button is unchecked.\n");
   }
 }
 
-- (void)applicationWillTerminate {
+- (void)applicationWillTerminate
+{
   gtk_main_quit();
 }
 
-- (void)windowWillClose:(GTKWindow *)sender {
+- (void)windowWillClose:(GTKWindow *)sender
+{
   [OFApplication terminate];
 }
-
 @end

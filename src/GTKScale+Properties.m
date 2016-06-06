@@ -61,7 +61,10 @@
 - (void)addMarkAtValue:(double)value
               withText:(OFString *) text
 {
-  gtk_scale_add_mark(GTK_SCALE(self.widget), value, self.valuePosition, [text UTF8String]);
+  gtk_scale_add_mark(GTK_SCALE(self.widget),
+                     value,
+                     self.valuePosition,
+                     [text UTF8String]);
 }
 
 - (void)addMarkAtValue:(double)value
@@ -77,6 +80,7 @@
 
 - (OFString *)formattedValue
 {
-  return [OFString stringWithFormat: (OFConstantString *)self.formatString, self.value];
+  return [OFString stringWithFormat: (OFConstantString *)self.formatString,
+                                      self.value];
 }
 @end

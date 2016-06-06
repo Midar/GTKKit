@@ -3,6 +3,8 @@
 #import "typedefs.h"
 #import "GTKWidget.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 @interface GTKRange: GTKWidget {
   double _min;
   double _max;
@@ -18,3 +20,5 @@
 @property (nonatomic) double max;
 - (void)min:(double)min max:(double)max;
 @end
+
+OF_ASSUME_NONNULL_END

@@ -19,6 +19,6 @@
 
 - init
 {
-  GTK_INVALID_INIT_METHOD
+  OF_INVALID_INIT_METHOD
 }
 @end

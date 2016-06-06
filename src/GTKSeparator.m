@@ -17,10 +17,8 @@
   return self;
 }
 
-/* FIXME: ARC does not like this at all.
 - init
 {
-  OF_INVALID_INIT_METHOD
+  GTK_INVALID_INIT_METHOD
 }
-*/
 @end

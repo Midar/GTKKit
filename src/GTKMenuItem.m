@@ -13,11 +13,11 @@ static void menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
 @implementation GTKMenuItem
 - init
 {
-	self = [super init];
+  self = [super init];
   self.widget = gtk_menu_item_new();
   menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "activate", G_CALLBACK (menuItemActivated), (__bridge void*) self);
   gtk_widget_show_all(GTK_WIDGET(self.widget));
-	return self;
+  return self;
 }
 
 - (void)dealloc

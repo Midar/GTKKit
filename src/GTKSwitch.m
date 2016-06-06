@@ -7,7 +7,7 @@
 {
   self = [super init];
   self.widget = gtk_switch_new();
-	return self;
+  return self;
 }
 
 - (bool)active

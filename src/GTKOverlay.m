@@ -6,7 +6,7 @@
 - init
 {
   self = [super init];
-	self.widget = gtk_overlay_new();
+  self.widget = gtk_overlay_new();
   return self;
 }
 @end

@@ -6,9 +6,9 @@
 @implementation GTKWidget
 + (instancetype)widgetFromGtkWidget:(GtkWidget *)w
 {
-	GTKWidget *newWidget = [self new];
-	newWidget.widget = w;
-	return newWidget;
+  GTKWidget *newWidget = [self new];
+  newWidget.widget = w;
+  return newWidget;
 }
 
 - (void)dealloc

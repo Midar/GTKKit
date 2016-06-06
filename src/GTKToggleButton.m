@@ -17,7 +17,7 @@ static void buttonToggled(GtkWidget *button, GTKButton *sender)
   gtk_widget_destroy(GTK_WIDGET(self.widget));
   self.widget = gtk_toggle_button_new ();
   buttonToggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled", G_CALLBACK (buttonToggled), (__bridge void*) self);
-	return self;
+  return self;
 }
 
 - (void)dealloc

@@ -6,15 +6,15 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKGrid (Actions)
 - (void)attachWidget: (GTKWidget*)childWidget
-		left: (int)left
-		 top: (int)top
-	       width: (int)width
-	      height: (int)height;
+    left: (int)left
+     top: (int)top
+         width: (int)width
+        height: (int)height;
 - (void)attachWidget: (GTKWidget*)childWidget
-	    toWidget: (GTKWidget*)siblingWidget
-	      onSide: (GtkPositionType)side
-	       width: (int)width
-	      height: (int)height;
+      toWidget: (GTKWidget*)siblingWidget
+        onSide: (GtkPositionType)side
+         width: (int)width
+        height: (int)height;
 - (void)insertRowAtPosition: (int)position;
 - (void)insertColumnAtPosition: (int)position;
 - (void)removeRow: (int)position;

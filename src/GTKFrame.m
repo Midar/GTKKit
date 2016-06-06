@@ -5,7 +5,7 @@
 @implementation GTKFrame
 - init
 {
-	self = [super init];
+  self = [super init];
   self.widget = gtk_frame_new(NULL);
   return self;
 }

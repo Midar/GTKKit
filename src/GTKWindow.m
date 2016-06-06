@@ -3,10 +3,10 @@
 #import "GTKWindow.h"
 
 static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event, GTKWindow *sender) {
-	// This code determines the type of window event which has happened, and dispatches to the
+  // This code determines the type of window event which has happened, and dispatches to the
   // appropriate delegate method, if it exists.
 
-	if(event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED){
+  if(event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED){
     if(event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) {
       if( [sender.delegate respondsToSelector: @selector(windowDidMaximize:)] ) {
         [sender.delegate windowDidMaximize: sender];
@@ -54,7 +54,7 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
     }
   }
 
-	return TRUE;
+  return TRUE;
 }
 
 static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
@@ -77,32 +77,32 @@ static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWin
 @implementation GTKWindow
 - (id)init
 {
-	self = [super init];
+  self = [super init];
   self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
   g_signal_connect(G_OBJECT (self.widget), "window-state-event", G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
   g_signal_connect(G_OBJECT (self.widget), "delete-event", G_CALLBACK (window_delete_request), (__bridge void*) self);
-	return self;
+  return self;
 }
 
 - (of_dimension_t)defaultSize
 {
-	return _defaultSize;
+  return _defaultSize;
 }
 
 - (void)setDefaultSize:(of_dimension_t)size
 {
-	_defaultSize = size;
-	gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
+  _defaultSize = size;
+  gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
 }
 
 - (of_dimension_t)size
 {
-	return _size;
+  return _size;
 }
 
 - (void)setSize:(of_dimension_t)size
 {
-	_size = size;
-	gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
+  _size = size;
+  gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
 }
 @end

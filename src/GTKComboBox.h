@@ -1,7 +1,5 @@
 #import <ObjFW/ObjFW.h>
-
 #import <gtk/gtk.h>
-
 #import "GTKBin.h"
 
 OF_ASSUME_NONNULL_BEGIN
@@ -13,7 +11,7 @@ OF_ASSUME_NONNULL_BEGIN
     withIdentifierString: (OFString*)ID;
 - (void)    insertString: (OFString*)string
     withIdentifierString: (OFString*)ID
-	      atPosition: (int)position;
+        atPosition: (int)position;
 @end
 
 OF_ASSUME_NONNULL_END

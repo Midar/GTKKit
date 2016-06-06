@@ -1,7 +1,5 @@
 #import <ObjFW/ObjFW.h>
-
 #import <gtk/gtk.h>
-
 #import "GTKToggleButton.h"
 #import "typedefs.h"
 

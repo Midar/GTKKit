@@ -6,7 +6,7 @@
 - init
 {
   self = [super init];
-	self.widget = gtk_label_new(NULL);
+  self.widget = gtk_label_new(NULL);
   return self;
 }
 @end

@@ -16,7 +16,7 @@ static void buttonClicked(GtkWidget *button, GTKButton *sender)
   self = [super init];
   self.widget = gtk_button_new ();
   clickedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked", G_CALLBACK (buttonClicked), (__bridge void*) self);
-	return self;
+  return self;
 }
 
 - (void)dealloc

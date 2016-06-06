@@ -56,10 +56,10 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
 
 - (void)dealloc
 {
-    if (self.widget != NULL) {
-      g_signal_handler_disconnect(G_OBJECT (self.widget), valueChangedHandlerID);
-      g_signal_handler_disconnect(G_OBJECT (self.widget), formatHandlerID);
-    }
+  if (self.widget != NULL) {
+    g_signal_handler_disconnect(G_OBJECT (self.widget), valueChangedHandlerID);
+    g_signal_handler_disconnect(G_OBJECT (self.widget), formatHandlerID);
+  }
 }
 
 - (int)digits

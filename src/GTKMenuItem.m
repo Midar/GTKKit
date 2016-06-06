@@ -4,10 +4,12 @@
 
 #import "GTKMenuItem.h"
 
-static void menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
+static void
+menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
 {
   if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
+    void (*methodImplementation)(id, SEL, id) = \
+        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
     methodImplementation(sender.target, sender.action, sender);
   }
 }
@@ -17,7 +19,8 @@ static void menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
 {
   self = [super init];
   self.widget = gtk_menu_item_new();
-  menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "activate", G_CALLBACK (menuItemActivated), (__bridge void*) self);
+  menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
+      "activate", G_CALLBACK (menuItemActivated), (__bridge void*) self);
   gtk_widget_show_all(GTK_WIDGET(self.widget));
   return self;
 }

@@ -4,10 +4,12 @@
 
 #import "GTKCheckButton.h"
 
-static void buttonToggled(GtkWidget *button, GTKButton *sender)
+static void
+buttonToggled(GtkWidget *button, GTKButton *sender)
 {
   if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
+    void (*methodImplementation)(id, SEL, id) = \
+        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
     methodImplementation(sender.target, sender.action, sender);
   }
 }
@@ -17,7 +19,8 @@ static void buttonToggled(GtkWidget *button, GTKButton *sender)
 {
   self = [super init];
   self.widget = gtk_check_button_new ();
-  toggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled", G_CALLBACK (buttonToggled), (__bridge void*) self);
+  toggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled",
+      G_CALLBACK (buttonToggled), (__bridge void*) self);
 	return self;
 }
 

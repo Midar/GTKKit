@@ -4,7 +4,8 @@
 
 #import "GTKToggleButton.h"
 
-static void buttonToggled(GtkWidget *button, GTKButton *sender)
+static void
+buttonToggled(GtkWidget *button, GTKButton *sender)
 {
   if (sender.target && sender.action) {
     void (*methodImplementation)(id, SEL, id) = (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];

@@ -7,7 +7,6 @@
 #import "GTKWindow+Properties.h"
 
 @implementation GTKWindow (Properties)
-
 - (void)setTitle:(OFString * _Nonnull)title
 {
   const char * newTitle = [title UTF8String];

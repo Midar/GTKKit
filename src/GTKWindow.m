@@ -4,7 +4,8 @@
 
 #import "GTKWindow.h"
 
-static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event, GTKWindow *sender) {
+static gboolean
+window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event, GTKWindow *sender) {
   // This code determines the type of window event which has happened, and dispatches to the
   // appropriate delegate method, if it exists.
 
@@ -59,7 +60,8 @@ static gboolean window_state_event_dispatch(GtkWidget *window, GdkEventWindowSta
   return TRUE;
 }
 
-static gboolean window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
+static gboolean
+window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
   if ([sender.delegate respondsToSelector: @selector(windowShouldClose:)]) {
     if ([sender.delegate windowShouldClose: sender]) {
       if ([sender.delegate respondsToSelector: @selector(windowWillClose:)])

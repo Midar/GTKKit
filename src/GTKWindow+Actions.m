@@ -50,13 +50,11 @@
 
 - (void)maximize
 {
-  id <GTKWindowDelegate> delegate = self.delegate;
-
-  if ([delegate respondsToSelector: @selector(windowShouldMaximize:)] &&
-      [delegate windowShouldMaximize: self]) {
-    if ([delegate respondsToSelector:
+  if ([self.delegate respondsToSelector: @selector(windowShouldMaximize:)] &&
+      [self.delegate windowShouldMaximize: self]) {
+    if ([self.delegate respondsToSelector:
         @selector(windowWillMaximize:)])
-      [delegate windowWillMaximize:self];
+      [self.delegate windowWillMaximize:self];
 
     gtk_window_maximize(GTK_WINDOW(self.widget));
   }

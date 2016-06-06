@@ -53,14 +53,12 @@ SRCS = GTKBin.m                     \
        GTKHeaderBar+Properties.m    \
        GTKHeaderBar+Actions.m
 
-
-INCLUDES := ${SRCS:.m=.h}
-INCLUDES += GTKKit.h
-INCLUDES += typedefs.h
-INCLUDES += GTKWindowDelegate.h
-INCLUDES += Orientable.h
+INCLUDES = ${SRCS:.m=.h}            \
+           GTKKit.h                 \
+           typedefs.h               \
+           GTKWindowDelegate.h      \
+           Orientable.h
 
 include ../buildsys.mk
 
-OBJCFLAGS += -fobjc-arc -fobjc-arc-exceptions
 LD = ${OBJC}

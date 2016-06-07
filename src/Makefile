@@ -52,7 +52,11 @@ SRCS = GTKBin.m                     \
        GTKHeaderBar+Properties.m    \
        GTKHeaderBar+Actions.m       \
 			 GTKLevelBar.m                \
-			 GTKLevelBar+Properties.m
+			 GTKLevelBar+Properties.m     \
+			 GTKListBoxRow.m              \
+			 GTKListBox.m                 \
+			 GTKListBox+Actions.m         \
+			 GTKScrolledWindow.m
 
 INCLUDES = ${SRCS:.m=.h}            \
            GTKKit.h                 \

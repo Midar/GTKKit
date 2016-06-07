@@ -9,4 +9,5 @@
 @property GTKLabel *label03;
 @property GTKLabel *label04;
 @property GTKLabel *label05;
+- (void)rowSelectionUpdated:(GTKListBox*)sender;
 @end

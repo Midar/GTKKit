@@ -6,7 +6,11 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKListBox: GTKContainer
+@interface GTKListBox: GTKContainer {
+  gulong _selectedRowsChangedHandlerID;
+}
+@property (weak) id target;
+@property SEL action;
 @end
 
 OF_ASSUME_NONNULL_END

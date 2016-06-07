@@ -25,6 +25,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.listbox.marginEnd = 5;
   self.listbox.marginTop = 5;
   self.listbox.marginBottom = 5;
+  self.listbox.target = self;
+  self.listbox.action = @selector(rowSelectionUpdated:);
 
   [self.scrollbox addWidget: self.listbox];
 
@@ -96,13 +98,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   [OFApplication terminate];
 }
 
-- (void)windowDidMinimize:(GTKWindow *)sender
+- (void)rowSelectionUpdated:(GTKListBox*)sender
 {
-  printf("Window was minimized.\n");
-}
-
-- (void)windowDidUnminimize:(GTKWindow *)sender
-{
-  printf("Window was unminimized.\n");
+  printf("List box selection changed.\n");
 }
 @end

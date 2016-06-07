@@ -1,6 +1,5 @@
 #import "GTKWidget.h"
 #import "GTKWidget+Actions.h"
-#import "GTKWidget+Callbacks.h"
 #import "GTKWidget+Properties.h"
 #import "GTKContainer.h"
 #import "GTKContainer+Actions.h"

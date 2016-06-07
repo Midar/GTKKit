@@ -23,7 +23,6 @@ SRCS = GTKBin.m                     \
        GTKLabel+Properties.m        \
        GTKLabel.m                   \
        GTKWidget+Actions.m          \
-       GTKWidget+Callbacks.m        \
        GTKWidget+Properties.m       \
        GTKWidget.m                  \
        GTKWindow+Actions.m          \

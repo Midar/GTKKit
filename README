@@ -24,11 +24,14 @@ lesser extent:
   GTKHeaderBar
   GTKImage
   GTKLabel
+  GTKListBox
+  GTKListBoxRow
   GTKMenu
   GTKMenuItem
   GTKOverlay
   GTKProgressBar
   GTKScale
+  GTKScrolledWindow
   GTKSeparator
   GTKSpinner (currently broken)
   GTKSwitch

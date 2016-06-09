@@ -8,7 +8,8 @@ static void
 buttonClicked(GtkWidget *button, GTKButton *sender)
 {
   if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
+    void (*methodImplementation)(id, SEL, id) = \
+        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
     methodImplementation(sender.target, sender.action, sender);
   }
 }
@@ -18,7 +19,11 @@ buttonClicked(GtkWidget *button, GTKButton *sender)
 {
   self = [super init];
   self.widget = gtk_button_new ();
-  _clickedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked", G_CALLBACK (buttonClicked), (__bridge void*) self);
+  g_object_ref(G_OBJECT(self.widget));
+  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+      (__bridge void*) self);
+  _clickedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked",
+      G_CALLBACK (buttonClicked), (__bridge void*) self);
   return self;
 }
 

@@ -83,9 +83,12 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
 {
   self = [super init];
   self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_", (__bridge void*) self);
-  g_signal_connect(G_OBJECT (self.widget), "window-state-event", G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
-  g_signal_connect(G_OBJECT (self.widget), "delete-event", G_CALLBACK (window_delete_request), (__bridge void*) self);
+  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+      (__bridge void*) self);
+  g_signal_connect(G_OBJECT (self.widget), "window-state-event",
+      G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
+  g_signal_connect(G_OBJECT (self.widget), "delete-event",
+      G_CALLBACK (window_delete_request), (__bridge void*) self);
   return self;
 }
 
@@ -97,7 +100,8 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
 - (void)setDefaultSize:(of_dimension_t)size
 {
   _defaultSize = size;
-  gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
+  gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width,
+      (int) size.height);
 }
 
 - (of_dimension_t)size
@@ -108,6 +112,7 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
 - (void)setSize:(of_dimension_t)size
 {
   _size = size;
-  gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width, (int) size.height);
+  gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width,
+      (int) size.height);
 }
 @end

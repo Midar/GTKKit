@@ -11,7 +11,8 @@
   self.iconSize = GTK_ICON_SIZE_DIALOG;
   self.widget = gtk_image_new_from_icon_name("dialog-question", self.iconSize);
   g_object_ref(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_", (__bridge void*) self);
+  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+      (__bridge void*) self);
   return self;
 }
 
@@ -29,7 +30,8 @@
 - (void)setIconName:(OFString *)name
 {
   _iconName = name;
-  gtk_image_set_from_icon_name(GTK_IMAGE(self.widget), [name UTF8String], self.iconSize);
+  gtk_image_set_from_icon_name(GTK_IMAGE(self.widget), [name UTF8String],
+      self.iconSize);
 }
 
 - (OFString *)iconName

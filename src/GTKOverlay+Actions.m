@@ -14,6 +14,7 @@
 - (void)reorderOverlayChild:(GTKWidget*)child
                     toIndex:(int)index
 {
-  gtk_overlay_reorder_overlay(GTK_OVERLAY(self.widget), GTK_WIDGET([child widget]), index);
+  gtk_overlay_reorder_overlay(GTK_OVERLAY(self.widget),
+      GTK_WIDGET([child widget]), index);
 }
 @end

@@ -34,7 +34,8 @@ menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
 
 - (void)setSubmenu:(GTKMenu *)submenu
 {
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(self.widget), GTK_WIDGET(submenu.widget));
+  gtk_menu_item_set_submenu(GTK_MENU_ITEM(self.widget),
+      GTK_WIDGET(submenu.widget));
 }
 
 - initWithLabel:(OFString *)label

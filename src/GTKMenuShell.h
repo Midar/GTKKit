@@ -10,7 +10,8 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKMenuShell: GTKContainer
 - (void)appendMenuItem:(GTKMenuItem *)menuItem;
 - (void)prependMenuItem:(GTKMenuItem *)menuItem;
-- (void)insertMenuItem:(GTKMenuItem *)menuItem atPosition:(int)pos;
+- (void)insertMenuItem:(GTKMenuItem *)menuItem
+            atPosition:(int)pos;
 - (void)deactivate;
 @end
 

@@ -22,7 +22,8 @@
 
 - (void)setSubtitle:(OFString *)subtitle
 {
-  gtk_header_bar_set_subtitle(GTK_HEADER_BAR(self.widget), [subtitle UTF8String]);
+  gtk_header_bar_set_subtitle(GTK_HEADER_BAR(self.widget),
+      [subtitle UTF8String]);
 }
 
 - (bool)hasSubtitle

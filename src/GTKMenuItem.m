@@ -20,7 +20,8 @@ menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
   self = [super init];
   self.widget = gtk_menu_item_new();
   g_object_ref(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_", (__bridge void*) self);
+  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+      (__bridge void*) self);
   _menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
       "activate", G_CALLBACK (menuItemActivated), (__bridge void*) self);
   gtk_widget_show_all(GTK_WIDGET(self.widget));
@@ -30,7 +31,8 @@ menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
 - (void)dealloc
 {
   if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget), _menuItemActivatedHandlerID);
+    g_signal_handler_disconnect(G_OBJECT (self.widget),
+        _menuItemActivatedHandlerID);
 }
 
 @end

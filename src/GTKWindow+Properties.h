@@ -20,6 +20,7 @@ OF_ASSUME_NONNULL_BEGIN
 @property bool deletable;
 @property (readonly) bool active;
 @property bool hideTitlebarWhenMaximized;
+@property GTKWidget *titlebar;
 @end
 
 OF_ASSUME_NONNULL_END

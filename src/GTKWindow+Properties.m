@@ -128,4 +128,16 @@
 {
   gtk_window_set_hide_titlebar_when_maximized (GTK_WINDOW (self.widget), hide);
 }
+
+- (GTKWidget*)titlebar
+{
+  GtkWidget *titlebarWidget = gtk_window_get_titlebar(GTK_WINDOW(self.widget));
+  return (__bridge GTKWidget*)g_object_get_data(G_OBJECT(titlebarWidget),
+      "_GTKKIT_WRAPPER_WIDGET_");
+}
+
+- (void)setTitlebar:(GTKWidget*)titlebarWidget
+{
+  gtk_window_set_titlebar(GTK_WINDOW(self.widget), titlebarWidget.widget);
+}
 @end

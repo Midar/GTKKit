@@ -25,6 +25,7 @@ widget_destroyed_handler (GtkWidget *widget, GTKWidget *wrapper)
 {
   // FIXME: This should notify the wrapper that the widget has been destroyed.
   printf("DEBUG: widget %d destroyed.\n", (unsigned int)wrapper);
+  g_object_unref(G_OBJECT(wrapper.widget));
   wrapper.widget = NULL;
 }
 

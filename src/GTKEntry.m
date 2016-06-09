@@ -35,7 +35,8 @@
 
 - (OFString*)stringValue
 {
-  return [OFString stringWithUTF8String: gtk_entry_get_text (GTK_ENTRY (self.widget))];
+  return [OFString stringWithUTF8String:
+      gtk_entry_get_text (GTK_ENTRY (self.widget))];
 }
 
 - (void)setStringValue:(id)text

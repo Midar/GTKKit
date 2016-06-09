@@ -61,12 +61,11 @@
   gtk_list_box_unselect_all(GTK_LIST_BOX(self.widget));
 }
 
-- (GTKListBoxRow*)rowAtIndex:(int)index
+- (void)destroyRowAtIndex:(int)index
 {
   GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
       index);
-  return (__bridge GTKListBoxRow*)g_object_get_data(G_OBJECT(row),
-      "_GTKKIT_WRAPPER_WIDGET_");
+  gtk_widget_destroy(GTK_WIDGET(row));
 }
 
 // This gets the wrapper object for the widget in the selected row. It will
@@ -75,6 +74,14 @@
 - (GTKWidget*)widgetForSelectedRow
 {
   GtkListBoxRow *row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self.widget));
+  GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
+  return [GTKWidget widgetFromGtkWidget: child];
+}
+
+- (GTKWidget*)widgetForRowAtIndex:(int)index
+{
+  GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
+      index);
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
   return [GTKWidget widgetFromGtkWidget: child];
 }

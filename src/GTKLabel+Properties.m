@@ -21,13 +21,13 @@
 #import "GTKLabel+Properties.h"
 
 @implementation GTKLabel (Properties)
-- (OFString *)label
+- (OFString *)text
 {
   return [OFString stringWithUTF8String:
       gtk_label_get_text (GTK_LABEL (self.widget))];
 }
 
-- (void)setLabel:(OFString *)label
+- (void)setText:(OFString *)label
 {
   gtk_label_set_text (GTK_LABEL (self.widget), [label UTF8String]);
 }

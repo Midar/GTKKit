@@ -54,11 +54,11 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.label04 = [GTKLabel new];
   self.label05 = [GTKLabel new];
 
-  self.label01.label = @"Row one";
-  self.label02.label = @"Row two";
-  self.label03.label = @"Row three";
-  self.label04.label = @"Row four";
-  self.label05.label = @"Row five";
+  self.label01.text = @"Row one";
+  self.label02.text = @"Row two";
+  self.label03.text = @"Row three";
+  self.label04.text = @"Row four";
+  self.label05.text = @"Row five";
 
   self.label01.marginStart = 5;
   self.label01.marginEnd = 5;
@@ -114,6 +114,6 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 - (void)rowSelectionUpdated:(GTKListBox*)sender
 {
   GTKLabel *label = (GTKLabel*)sender.widgetForSelectedRow;
-  printf("Row selected: %s\n", [label.label UTF8String]);
+  printf("Row selected: %s\n", [label.text UTF8String]);
 }
 @end

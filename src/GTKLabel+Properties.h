@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKLabel (Properties)
-@property OFString *label;
+@property OFString *text;
 @property float xAlign;
 @property float yAlign;
 @property GtkJustification justify;

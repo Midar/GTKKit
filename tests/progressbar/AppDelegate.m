@@ -52,7 +52,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
   self.label = [GTKLabel new];
   self.label.expandHorizontal = true;
-  self.label.label = @"Value: 0.0";
+  self.label.text = @"Value: 0.0";
   self.label.marginStart = 10;
   self.label.marginEnd = 10;
   self.label.marginBottom = 10;
@@ -102,6 +102,6 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   } else {
     self.pbar.value += 0.1;
   }
-  self.label.label = [OFString stringWithFormat: @"Value: %.1f", self.pbar.value];
+  self.label.text = [OFString stringWithFormat: @"Value: %.1f", self.pbar.value];
 }
 @end

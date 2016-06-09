@@ -7,7 +7,8 @@
 @implementation GTKLabel (Properties)
 - (OFString *)label
 {
-  return [OFString stringWithUTF8String: gtk_label_get_text (GTK_LABEL (self.widget))];
+  return [OFString stringWithUTF8String:
+      gtk_label_get_text (GTK_LABEL (self.widget))];
 }
 
 - (void)setLabel:(OFString *)label

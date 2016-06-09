@@ -17,7 +17,8 @@
 
 - (GTKWidget *)labelWidget
 {
-  return [GTKWidget widgetFromGtkWidget: gtk_frame_get_label_widget (GTK_FRAME (self.widget))];
+  return [GTKWidget widgetFromGtkWidget:
+      gtk_frame_get_label_widget (GTK_FRAME (self.widget))];
 }
 
 - (void)setLabelWidget:(GTKWidget *)labelWidget

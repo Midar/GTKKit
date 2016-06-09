@@ -53,6 +53,7 @@
 
 - (void)setDecorationLayout:(OFString *)layout
 {
-  gtk_header_bar_set_decoration_layout(GTK_HEADER_BAR(self.widget), [layout UTF8String]);
+  gtk_header_bar_set_decoration_layout(GTK_HEADER_BAR(self.widget),
+      [layout UTF8String]);
 }
 @end

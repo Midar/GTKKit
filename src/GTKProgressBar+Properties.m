@@ -42,12 +42,14 @@
 
 - (void)setText:(OFString *) newValue
 {
-  gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.widget), [newValue UTF8String]);
+  gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.widget),
+      [newValue UTF8String]);
 }
 
 - (bool)ellipsize
 {
-  PangoEllipsizeMode ellip = gtk_progress_bar_get_ellipsize(GTK_PROGRESS_BAR(self.widget));
+  PangoEllipsizeMode ellip = \
+      gtk_progress_bar_get_ellipsize(GTK_PROGRESS_BAR(self.widget));
   if (ellip == PANGO_ELLIPSIZE_NONE) {
     return false;
   } else {
@@ -58,9 +60,11 @@
 - (void)setEllipsize:(bool) newValue
 {
   if (newValue) {
-    gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget), PANGO_ELLIPSIZE_END);
+    gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget),
+        PANGO_ELLIPSIZE_END);
   } else {
-    gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget), PANGO_ELLIPSIZE_NONE);
+    gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget),
+        PANGO_ELLIPSIZE_NONE);
   }
 }
 

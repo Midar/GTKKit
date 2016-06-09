@@ -3,7 +3,8 @@
 @implementation GTKExpander (Properties)
 - (OFString *)label
 {
-  return [OFString stringWithUTF8String: gtk_expander_get_label (GTK_EXPANDER (self.widget))];
+  return [OFString stringWithUTF8String:
+      gtk_expander_get_label (GTK_EXPANDER (self.widget))];
 }
 
 - (void)setLabel:(OFString *)label

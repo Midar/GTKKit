@@ -16,7 +16,8 @@ OF_ASSUME_NONNULL_BEGIN
 - (void)unselectRow:(GTKListBoxRow*)row;
 - (void)selectAll;
 - (void)unselectAll;
-- (GTKListBoxRow*)selectedRow;
+- (GTKListBoxRow*)rowAtIndex:(int)index;
+- (GTKListBoxRow*)widgetForSelectedRow;
 @end
 
 OF_ASSUME_NONNULL_END

@@ -19,6 +19,9 @@ listBoxSelectedRowsChanged(GtkListBox *box, GTKListBox *sender)
 {
   self = [super init];
   self.widget = gtk_list_box_new();
+  g_object_ref(G_OBJECT(self.widget));
+  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+      (__bridge void*) self);
   _selectedRowsChangedHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
       "selected-rows-changed", G_CALLBACK (listBoxSelectedRowsChanged),
       (__bridge void*) self);
@@ -27,8 +30,9 @@ listBoxSelectedRowsChanged(GtkListBox *box, GTKListBox *sender)
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
+  if (self.widget != NULL) {
     g_signal_handler_disconnect(G_OBJECT (self.widget),
         _selectedRowsChangedHandlerID);
+  }
 }
 @end

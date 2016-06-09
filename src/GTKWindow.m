@@ -83,6 +83,7 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender) {
 {
   self = [super init];
   self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_", (__bridge void*) self);
   g_signal_connect(G_OBJECT (self.widget), "window-state-event", G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
   g_signal_connect(G_OBJECT (self.widget), "delete-event", G_CALLBACK (window_delete_request), (__bridge void*) self);
   return self;

@@ -90,9 +90,6 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   gtk_main_quit();
 }
 
-// This demonstrates the use of a GTKWindowDelegate method. This makes the
-// application exit when the window is closed.
-
 - (void)windowWillClose:(GTKWindow *)sender
 {
   [OFApplication terminate];
@@ -100,6 +97,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)rowSelectionUpdated:(GTKListBox*)sender
 {
-  printf("List box selection changed.\n");
+  GTKLabel *label = (GTKLabel*)sender.widgetForSelectedRow;
+  printf("Row selected: %s\n", [label.label UTF8String]);
 }
 @end

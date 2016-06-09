@@ -45,9 +45,22 @@
   gtk_list_box_unselect_all(GTK_LIST_BOX(self.widget));
 }
 
-- (GTKListBoxRow*)selectedRow
+- (GTKListBoxRow*)rowAtIndex:(int)index
+{
+  GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
+      index);
+  return (__bridge GTKListBoxRow*)g_object_get_data(G_OBJECT(row),
+      "_GTKKIT_WRAPPER_WIDGET_");
+}
+
+// This gets the wrapper object for the widget in the selected row. It will
+// return it as an id, so you'll have to cast it to the appropriate class. It
+// doesn't need to be retained or released.
+- (id)widgetForSelectedRow
 {
   GtkListBoxRow *row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self.widget));
-  return [GTKListBoxRow widgetFromGtkWidget: GTK_WIDGET(row)];
+  GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
+  return (__bridge GTKListBoxRow*)g_object_get_data(G_OBJECT(child),
+      "_GTKKIT_WRAPPER_WIDGET_");
 }
 @end

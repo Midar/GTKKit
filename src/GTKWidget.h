@@ -29,7 +29,7 @@ OF_ASSUME_NONNULL_BEGIN
 {
   gulong _widgetDestroyedHandlerID;
 }
-@property GtkWidget *widget;
+@property OF_NULLABLE_PROPERTY (assign) GtkWidget * widget;
 + (instancetype)widgetFromGtkWidget: (GtkWidget*)w;
 @end
 

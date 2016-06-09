@@ -10,7 +10,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   gtk_init(NULL,NULL);
 
   self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
+  self.window.size = of_dimension(600,400);
 
   // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
   self.window.delegate = self;
@@ -21,6 +21,7 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.header.title = @"Hello, world!";
   self.header.subtitle = @"This is a header bar.";
   self.header.showCloseButton = true;
+  self.header.decorationLayout = @"close,minimize,maximize:menu";
 
   self.window.titlebar = self.header;
 

@@ -23,7 +23,7 @@ OF_ASSUME_NONNULL_BEGIN
 @property bool expanded;
 @property int spacing;
 @property bool resizeToplevel;
-+ (instancetype)expanderWithLabel: (OFString*)label;
++ (instancetype)expanderWithLabel:(OFString*)label;
 - initWithLabel:(OFString *)label;
 @end
 

@@ -23,9 +23,8 @@
 @implementation GTKWidget
 + (instancetype)widgetFromGtkWidget:(GtkWidget *)w
 {
-  GTKWidget *newWidget = [self new];
-  newWidget.widget = w;
-  return newWidget;
+  return (__bridge GTKWidget*)g_object_get_data(G_OBJECT(w),
+      "_GTKKIT_WRAPPER_WIDGET_");
 }
 
 - (void)dealloc

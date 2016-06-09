@@ -42,6 +42,8 @@ buttonToggled(GtkWidget *button, GTKButton *sender)
       (__bridge void*) self);
   _buttonToggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
       "toggled", G_CALLBACK (buttonToggled), (__bridge void*) self);
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
+      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
 

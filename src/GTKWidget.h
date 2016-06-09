@@ -18,9 +18,17 @@
 
 #import <gtk/gtk.h>
 
+@class GTKWidget;
+
+void
+widget_destroyed_handler (GtkWidget * _Nonnull widget, GTKWidget * _Nonnull wrapper);
+
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWidget: OFObject
+{
+  gulong _widgetDestroyedHandlerID;
+}
 @property GtkWidget *widget;
 + (instancetype)widgetFromGtkWidget: (GtkWidget*)w;
 @end

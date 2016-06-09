@@ -62,6 +62,8 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
                         G_CALLBACK (format_gtk_scale_value),
                         (__bridge void*) self);
 
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
+      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   gtk_scale_set_digits(GTK_SCALE(self.widget), 2);
   gtk_scale_set_value_pos (GTK_SCALE(self.widget), GTK_POS_TOP);
 

@@ -29,6 +29,8 @@
   g_object_set(G_OBJECT(self.widget), "width-request", 200, NULL);
   g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
       (__bridge void*) self);
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
+      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
 

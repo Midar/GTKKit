@@ -30,6 +30,8 @@
       (__bridge void*) self);
   self.buffer = gtk_entry_buffer_new(NULL, -1);
   gtk_entry_set_buffer (GTK_ENTRY (self.widget), self.buffer);
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
+    G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
 

@@ -20,6 +20,13 @@
 
 #import "GTKWidget.h"
 
+void
+widget_destroyed_handler (GtkWidget *widget, GTKWidget *wrapper)
+{
+  // FIXME: This should notify the wrapper that the widget has been destroyed.
+  printf("DEBUG: widget %d destroyed.\n", wrapper);
+}
+
 @implementation GTKWidget
 + (instancetype)widgetFromGtkWidget:(GtkWidget *)w
 {
@@ -30,6 +37,8 @@
 - (void)dealloc
 {
   if (self.widget != NULL)
+    g_signal_handler_disconnect(G_OBJECT (self.widget),
+        _widgetDestroyedHandlerID);
     gtk_widget_destroy(GTK_WIDGET(self.widget));
 }
 @end

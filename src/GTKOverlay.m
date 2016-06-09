@@ -28,6 +28,8 @@
   g_object_ref(G_OBJECT(self.widget));
   g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
       (__bridge void*) self);
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
+      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
 @end

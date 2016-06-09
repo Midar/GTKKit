@@ -40,6 +40,8 @@ buttonClicked(GtkWidget *button, GTKButton *sender)
       (__bridge void*) self);
   _clickedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked",
       G_CALLBACK (buttonClicked), (__bridge void*) self);
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
+      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
 

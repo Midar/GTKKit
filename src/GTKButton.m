@@ -30,6 +30,6 @@ buttonClicked(GtkWidget *button, GTKButton *sender)
 - (void)dealloc
 {
   if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget), _clickedHandlerID);
+    g_signal_handler_disconnect(G_OBJECT(self.widget), _clickedHandlerID);
 }
 @end

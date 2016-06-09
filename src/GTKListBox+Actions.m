@@ -23,46 +23,70 @@
 @implementation GTKListBox (Properties)
 - (void)prependWidget:(GTKWidget*)childWidget
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_prepend(GTK_LIST_BOX(self.widget),
       GTK_WIDGET(childWidget.widget));
 }
 
 - (void)appendWidget:(GTKWidget*)childWidget
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_insert(GTK_LIST_BOX(self.widget),
       GTK_WIDGET(childWidget.widget), -1);
 }
 
 - (void)insertWidget:(GTKWidget*)childWidget atPosition:(int)position
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_insert(GTK_LIST_BOX(self.widget),
       GTK_WIDGET(childWidget.widget), position);
 }
 
 - (void)selectRow:(GTKListBoxRow*)row
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_select_row(GTK_LIST_BOX(self.widget),
       (GTK_LIST_BOX_ROW(row.widget)));
 }
 
 - (void)unselectRow:(GTKListBoxRow*)row
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_unselect_row(GTK_LIST_BOX(self.widget),
       (GTK_LIST_BOX_ROW(row.widget)));
 }
 
 - (void)selectAll
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_select_all(GTK_LIST_BOX(self.widget));
 }
 
 - (void)unselectAll
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_unselect_all(GTK_LIST_BOX(self.widget));
 }
 
 - (void)destroyRowAtIndex:(int)index
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
       index);
   gtk_widget_destroy(GTK_WIDGET(row));
@@ -73,6 +97,9 @@
 // doesn't need to be retained or released.
 - (GTKWidget*)widgetForSelectedRow
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   GtkListBoxRow *row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self.widget));
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
   return [GTKWidget widgetFromGtkWidget: child];
@@ -80,6 +107,9 @@
 
 - (GTKWidget*)widgetForRowAtIndex:(int)index
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
       index);
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));

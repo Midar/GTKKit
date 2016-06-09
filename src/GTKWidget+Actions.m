@@ -24,36 +24,57 @@
 @implementation GTKWidget (Actions)
 - (void)show
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_widget_show(GTK_WIDGET(self.widget));
 }
 
 - (void)showAll
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_widget_show_all(GTK_WIDGET(self.widget));
 }
 
 - (void)destroy
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_widget_destroy(GTK_WIDGET(self.widget));
 }
 
 - (void)hide
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_widget_hide(GTK_WIDGET(self.widget));
 }
 
 - (bool)activate
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_widget_activate(GTK_WIDGET(self.widget));
 }
 
 - (void)grabFocus
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_widget_grab_focus(GTK_WIDGET(self.widget));
 }
 
 - (void)grabDefault
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_widget_grab_default(GTK_WIDGET(self.widget));
 }
 @end

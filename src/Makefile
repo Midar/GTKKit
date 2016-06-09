@@ -56,7 +56,8 @@ SRCS = GTKBin.m                     \
 			 GTKListBoxRow.m              \
 			 GTKListBox.m                 \
 			 GTKListBox+Actions.m         \
-			 GTKScrolledWindow.m
+			 GTKScrolledWindow.m          \
+			 GTKDestroyedWidgetException.m
 
 INCLUDES = ${SRCS:.m=.h}            \
            GTKKit.h                 \

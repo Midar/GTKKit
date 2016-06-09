@@ -35,21 +35,33 @@
 
 - (bool)active
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_switch_get_active(GTK_SWITCH(self.widget));
 }
 
 - (bool)state
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_switch_get_state(GTK_SWITCH(self.widget));
 }
 
 - (void)setActive:(bool)active
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_switch_set_active(GTK_SWITCH(self.widget), active);
 }
 
 - (void)setState:(bool)state
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_switch_set_state(GTK_SWITCH(self.widget), state);
 }
 @end

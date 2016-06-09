@@ -23,6 +23,9 @@
 @implementation GTKOverlay (Properties)
 - (bool)overlayChildPassthrough:(GTKWidget*)child
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_overlay_get_overlay_pass_through(GTK_OVERLAY(self.widget),
       GTK_WIDGET(child.widget));
 }
@@ -30,6 +33,9 @@
 - (void)setOverlayChildPassthrough:(GTKWidget*)child
                                 to:(bool)newValue
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_overlay_set_overlay_pass_through(GTK_OVERLAY(self.widget),
       GTK_WIDGET(child.widget), newValue);
 }

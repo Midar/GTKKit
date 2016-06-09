@@ -35,21 +35,33 @@
 
 - (void)rowChanged
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_row_changed(GTK_LIST_BOX_ROW(self.widget));
 }
 
 - (bool)selected
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_list_box_row_is_selected(GTK_LIST_BOX_ROW(self.widget));
 }
 
 - (GTKWidget*)rowHeader
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return _rowHeader;
 }
 
 - (void)setRowHeader:(GTKWidget*)rowHeader
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   _rowHeader = rowHeader;
   gtk_list_box_row_set_header(GTK_LIST_BOX_ROW(self.widget),
       GTK_WIDGET(rowHeader.widget));
@@ -57,26 +69,41 @@
 
 - (int)rowIndex
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_list_box_row_get_index(GTK_LIST_BOX_ROW(self.widget));
 }
 
 - (bool)activatable
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_list_box_row_get_activatable(GTK_LIST_BOX_ROW(self.widget));
 }
 
 - (void)setActivatable:(bool)activatable
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(self.widget), activatable);
 }
 
 - (bool)selectable
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_list_box_row_get_selectable(GTK_LIST_BOX_ROW(self.widget));
 }
 
 - (void)setSelectable:(bool)selectable
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(self.widget), selectable);
 }
 @end

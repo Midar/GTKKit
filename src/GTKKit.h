@@ -64,3 +64,4 @@
 #import "GTKListBox+Actions.h"
 #import "GTKScrolledWindow.h"
 #import "Orientable.h"
+#import "GTKDestroyedWidgetException.h"

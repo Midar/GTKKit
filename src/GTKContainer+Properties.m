@@ -23,11 +23,17 @@
 @implementation GTKContainer (Properties)
 - (void)setBorderWidth:(unsigned int)borderWidth
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_container_set_border_width (GTK_CONTAINER (self.widget), borderWidth);
 }
 
 - (unsigned int)borderWidth
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_container_get_border_width (GTK_CONTAINER (self.widget));
 }
 @end

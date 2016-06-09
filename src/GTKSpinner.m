@@ -34,11 +34,17 @@
 }
 
 - (void)start {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   self.spinning = true;
   gtk_spinner_start(GTK_SPINNER(self.widget));
 }
 
 - (void)stop {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   self.spinning = false;
   gtk_spinner_stop(GTK_SPINNER(self.widget));
 }

@@ -123,11 +123,17 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender)
 
 - (of_dimension_t)defaultSize
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return _defaultSize;
 }
 
 - (void)setDefaultSize:(of_dimension_t)size
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   _defaultSize = size;
   gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width,
       (int) size.height);
@@ -135,11 +141,17 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender)
 
 - (of_dimension_t)size
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return _size;
 }
 
 - (void)setSize:(of_dimension_t)size
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   _size = size;
   gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width,
       (int) size.height);

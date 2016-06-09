@@ -19,12 +19,18 @@
 @implementation GTKExpander (Properties)
 - (OFString *)label
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return [OFString stringWithUTF8String:
       gtk_expander_get_label (GTK_EXPANDER (self.widget))];
 }
 
 - (void)setLabel:(OFString *)label
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_expander_set_label (GTK_EXPANDER (self.widget), [label UTF8String]);
 }
 
@@ -41,31 +47,49 @@
 
 - (bool)expanded
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_expander_get_expanded (GTK_EXPANDER (self.widget));
 }
 
 - (void)setExpanded:(bool)newValue
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_expander_set_expanded (GTK_EXPANDER (self.widget), newValue);
 }
 
 - (int)spacing
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_expander_get_spacing (GTK_EXPANDER (self.widget));
 }
 
 - (void)setSpacing:(int)newValue
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_expander_set_spacing (GTK_EXPANDER (self.widget), newValue);
 }
 
 - (bool)resizeToplevel
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_expander_get_resize_toplevel (GTK_EXPANDER (self.widget));
 }
 
 - (void)setResizeToplevel:(bool)newValue
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_expander_set_resize_toplevel (GTK_EXPANDER (self.widget), newValue);
 }
 @end

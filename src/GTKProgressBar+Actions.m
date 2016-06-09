@@ -23,6 +23,9 @@
 @implementation GTKProgressBar (Actions)
 - (void)pulse
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_progress_bar_pulse(GTK_PROGRESS_BAR(self.widget));
 }
 @end

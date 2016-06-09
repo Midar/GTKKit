@@ -28,14 +28,17 @@
   g_object_ref(G_OBJECT(self.widget));
   g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
       (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
+  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget),
+      "destroy", G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
 
 - (void)    appendString: (OFString*)string
     withIdentifierString: (OFString*)ID
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(self.widget),
       [string UTF8String], [ID UTF8String]);
 }
@@ -43,6 +46,9 @@
 - (void)   prependString: (OFString*)string
     withIdentifierString: (OFString *)ID
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_combo_box_text_prepend(GTK_COMBO_BOX_TEXT(self.widget),
       [string UTF8String], [ID UTF8String]);
 }
@@ -51,6 +57,9 @@
   withIdentifierString: (OFString*)ID
             atPosition:(int)position
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), position,
       [string UTF8String], [ID UTF8String]);
 }

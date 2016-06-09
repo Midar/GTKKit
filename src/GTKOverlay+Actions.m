@@ -24,12 +24,18 @@
 @implementation GTKOverlay (Actions)
 - (void)addOverlayChild:(GTKWidget*)child
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_overlay_add_overlay(GTK_OVERLAY(self.widget), GTK_WIDGET([child widget]));
 }
 
 - (void)reorderOverlayChild:(GTKWidget*)child
                     toIndex:(int)index
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_overlay_reorder_overlay(GTK_OVERLAY(self.widget),
       GTK_WIDGET([child widget]), index);
 }

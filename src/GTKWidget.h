@@ -18,6 +18,8 @@
 
 #import <gtk/gtk.h>
 
+#import "GTKDestroyedWidgetException.h"
+
 @class GTKWidget;
 
 void

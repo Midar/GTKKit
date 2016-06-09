@@ -23,16 +23,25 @@
 @implementation GTKContainer (Actions)
 - (void)addWidget: (GTKWidget*)childWidget
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_container_add(GTK_CONTAINER(self.widget), [childWidget widget]);
 }
 
 - (void)removeWidget: (GTKWidget*)childWidget
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_container_remove(GTK_CONTAINER(self.widget), [childWidget widget]);
 }
 
 - (void)addAll: (OFArray*)childWidgets
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   for (id childWidget in childWidgets)
     [self addWidget: childWidget];
 }

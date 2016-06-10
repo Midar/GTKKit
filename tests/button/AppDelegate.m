@@ -30,10 +30,9 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.window.title = @"Hello, world!";
   self.window.delegate = self;
 
-  self.button = [GTKButton new];
+  self.button = [GTKButton buttonWithLabel: @"Click me!"];
   self.button.target = self;
   self.button.action = @selector(buttonClicked:);
-  self.button.label = @"Click me!";
 
   [self.window addWidget: self.button];
 

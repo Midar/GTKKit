@@ -23,6 +23,8 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKLabel: GTKWidget
++ (instancetype)labelWithText:(OFString*)text;
+- initWithText:(OFString*)text;
 @end
 
 OF_ASSUME_NONNULL_END

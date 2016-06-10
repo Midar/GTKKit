@@ -21,6 +21,18 @@
 #import "GTKLabel.h"
 
 @implementation GTKLabel
++ (instancetype)labelWithText:(OFString*)text
+{
+  return [[self alloc] initWithText: text];
+}
+
+- initWithText:(OFString*)text
+{
+  self = [self init];
+  gtk_label_set_text(GTK_LABEL(self.widget), [text UTF8String]);
+  return self;
+}
+
 - init
 {
   self = [super init];

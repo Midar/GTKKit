@@ -19,7 +19,6 @@
 #import <gtk/gtk.h>
 
 #import "GTKScale.h"
-#import "Orientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 

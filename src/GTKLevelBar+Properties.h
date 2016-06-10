@@ -19,10 +19,11 @@
 #import <gtk/gtk.h>
 
 #import "GTKLevelBar.h"
+#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKLevelBar (Properties)
+@interface GTKLevelBar (Properties) <GTKOrientable>
 @property GtkLevelBarMode mode;
 @property double value;
 @property double minValue;

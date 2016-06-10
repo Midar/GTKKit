@@ -19,10 +19,11 @@
 #import <gtk/gtk.h>
 
 #import "GTKProgressBar.h"
+#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKProgressBar (Properties)
+@interface GTKProgressBar (Properties) <GTKOrientable>
 @property double value;
 @property bool inverted;
 @property bool showText;

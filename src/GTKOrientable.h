@@ -14,7 +14,6 @@
  * the packaging of this file.
  */
 
-@protocol Orientable
-- (GtkOrientation)orientation;
-- (void)setOrientation:(GtkOrientation)orientation;
+@protocol GTKOrientable
+@property GtkOrientation orientation;
 @end

@@ -18,26 +18,16 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKWidget.h"
-#import "GTKOrientable.h"
+#import "GTKSeparator+Orientable.h"
 
-OF_ASSUME_NONNULL_BEGIN
-
-@interface GTKRange: GTKWidget <GTKOrientable>
+@implementation GTKSeparator (Orientable)
+- (GtkOrientation)orientation
 {
-  double _min;
-  double _max;
+  return gtk_orientable_get_orientation(GTK_ORIENTABLE(self.widget));
 }
-@property double fillLevel;
-@property bool restrictToFillLevel;
-@property bool showFillLevel;
-@property bool inverted;
-@property double value;
-@property (nonatomic) double stepSize;
-@property int roundDigts;
-@property (nonatomic) double minValue;
-@property (nonatomic) double maxValue;
-- (void)minValue:(double)min maxValue:(double)max;
-@end
 
-OF_ASSUME_NONNULL_END
+- (void)setOrientation:(GtkOrientation)orientation
+{
+  gtk_orientable_set_orientation(GTK_ORIENTABLE(self.widget), orientation);
+}
+@end

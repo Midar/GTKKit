@@ -100,4 +100,14 @@
   }
   gtk_level_bar_set_inverted(GTK_LEVEL_BAR(self.widget), inverted);
 }
+
+- (GtkOrientation)orientation
+{
+  return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
+}
+
+- (void)setOrientation:(GtkOrientation)orientation
+{
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
+}
 @end

@@ -31,6 +31,18 @@ buttonClicked(GtkWidget *button, GTKButton *sender)
 }
 
 @implementation GTKButton
++ (instancetype)buttonWithLabel:(OFString*)text
+{
+  return [[self alloc] initWithLabel: text];
+}
+
+- initWithLabel:(OFString*)text
+{
+  self = [self init];
+  gtk_button_set_label(GTK_BUTTON(self.widget), [text UTF8String]);
+  return self;
+}
+
 - init
 {
   self = [super init];

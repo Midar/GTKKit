@@ -28,6 +28,8 @@ OF_ASSUME_NONNULL_BEGIN
 }
 @property OF_NULLABLE_PROPERTY (assign) SEL action;
 @property OF_NULLABLE_PROPERTY (weak) id target;
++ (instancetype)buttonWithLabel:(OFString*)text;
+- initWithLabel:(OFString*)text;
 @end
 
 OF_ASSUME_NONNULL_END

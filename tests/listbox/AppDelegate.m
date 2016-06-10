@@ -48,17 +48,11 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
   [self.window addWidget: self.scrollbox];
 
-  self.label01 = [GTKLabel new];
-  self.label02 = [GTKLabel new];
-  self.label03 = [GTKLabel new];
-  self.label04 = [GTKLabel new];
-  self.label05 = [GTKLabel new];
-
-  self.label01.text = @"Row one";
-  self.label02.text = @"Row two";
-  self.label03.text = @"Row three";
-  self.label04.text = @"Row four";
-  self.label05.text = @"Row five";
+  self.label01 = [GTKLabel labelWithText: @"Row one"];
+  self.label02 = [GTKLabel labelWithText: @"Row two"];
+  self.label03 = [GTKLabel labelWithText: @"Row three"];
+  self.label04 = [GTKLabel labelWithText: @"Row four"];
+  self.label05 = [GTKLabel labelWithText: @"Row five"];
 
   self.label01.marginStart = 5;
   self.label01.marginEnd = 5;

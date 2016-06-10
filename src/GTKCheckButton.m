@@ -34,6 +34,7 @@ buttonToggled(GtkWidget *button, GTKButton *sender)
 - init
 {
   self = [super init];
+  gtk_widget_destroy(GTK_WIDGET(self.widget));
   self.widget = gtk_check_button_new ();
   g_object_ref_sink(G_OBJECT(self.widget));
   g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",

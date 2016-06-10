@@ -19,7 +19,6 @@
 #import <gtk/gtk.h>
 
 #import "GTKListBox.h"
-#import "GTKListBoxRow.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
@@ -28,8 +27,8 @@ OF_ASSUME_NONNULL_BEGIN
 - (void)appendWidget:(GTKWidget*)childWidget;
 - (void)insertWidget:(GTKWidget*)childWidget
           atPosition:(int)position;
-- (void)selectRow:(GTKListBoxRow*)row;
-- (void)unselectRow:(GTKListBoxRow*)row;
+- (void)selectRowAtIndex:(int)index;
+- (void)unselectRowAtIndex:(int)index;
 - (void)selectAll;
 - (void)unselectAll;
 - (void)destroyRowAtIndex:(int)index;

@@ -48,22 +48,26 @@
       GTK_WIDGET(childWidget.widget), position);
 }
 
-- (void)selectRow:(GTKListBoxRow*)row
+- (void)selectRowAtIndex:(int)index
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  GtkListBoxRow *row = \
+      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
   gtk_list_box_select_row(GTK_LIST_BOX(self.widget),
-      (GTK_LIST_BOX_ROW(row.widget)));
+      (GTK_LIST_BOX_ROW(row)));
 }
 
-- (void)unselectRow:(GTKListBoxRow*)row
+- (void)unselectRowAtIndex:(int)index
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  GtkListBoxRow *row = \
+      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
   gtk_list_box_unselect_row(GTK_LIST_BOX(self.widget),
-      (GTK_LIST_BOX_ROW(row.widget)));
+      (GTK_LIST_BOX_ROW(row)));
 }
 
 - (void)selectAll
@@ -115,4 +119,5 @@
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
   return [GTKWidget widgetFromGtkWidget: child];
 }
+
 @end

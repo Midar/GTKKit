@@ -14,6 +14,11 @@
  * the packaging of this file.
  */
 
-#import "GTKDestroyedWidgetException.h"
-#import "GTKNoWrapperForGtkWidgetException.h"
 #import "GTKRowOutOfBoundsException.h"
+
+@implementation GTKRowOutOfBoundsException
+- (OFString*)description
+{
+  return [OFString stringWithUTF8String: "Attempt to access invalid row of GTKListBox"];
+}
+@end

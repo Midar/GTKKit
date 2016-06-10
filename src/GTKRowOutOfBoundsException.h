@@ -14,6 +14,11 @@
  * the packaging of this file.
  */
 
-#import "GTKDestroyedWidgetException.h"
-#import "GTKNoWrapperForGtkWidgetException.h"
-#import "GTKRowOutOfBoundsException.h"
+#import <ObjFW/ObjFW.h>
+
+OF_ASSUME_NONNULL_BEGIN
+
+@interface GTKRowOutOfBoundsException: OFException
+@end
+
+OF_ASSUME_NONNULL_END

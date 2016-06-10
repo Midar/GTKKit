@@ -114,6 +114,9 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  if (index >= self.rowCount) {
+      @throw([GTKRowOutOfBoundsException new]);
+  }
   GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
       index);
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));

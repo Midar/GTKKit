@@ -18,7 +18,7 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKDestroyedWidgetException.h"
+#import "Exceptions.h"
 
 @class GTKWidget;
 

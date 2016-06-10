@@ -59,6 +59,7 @@ SRCS += GTKListBox+Actions.m
 SRCS += GTKScrolledWindow.m
 SRCS += GTKDestroyedWidgetException.m
 SRCS += GTKNoWrapperForGtkWidgetException.m
+SRCS += GTKRowOutOfBoundsException.m
 
 INCLUDES  = ${SRCS:.m=.h}
 INCLUDES += GTKKit.h

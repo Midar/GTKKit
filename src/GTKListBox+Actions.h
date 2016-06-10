@@ -23,6 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKListBox (Properties)
+@property (readonly) int rowCount;
 - (void)prependWidget:(GTKWidget*)childWidget;
 - (void)appendWidget:(GTKWidget*)childWidget;
 - (void)insertWidget:(GTKWidget*)childWidget

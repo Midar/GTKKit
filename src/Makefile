@@ -47,6 +47,7 @@ SRCS = GTKBin.m                     \
        GTKMenuShell.m               \
        GTKMenu.m                    \
        GTKSeparator.m               \
+       GTKSeparator+Orientable.m    \
        GTKSwitch.m                  \
        GTKHeaderBar.m               \
        GTKHeaderBar+Properties.m    \
@@ -60,7 +61,7 @@ SRCS = GTKBin.m                     \
 INCLUDES = ${SRCS:.m=.h}            \
            GTKKit.h                 \
            GTKWindowDelegate.h      \
-           Orientable.h
+           GTKOrientable.h
 
 include ../buildsys.mk
 

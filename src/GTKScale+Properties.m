@@ -99,4 +99,5 @@
   return [OFString stringWithFormat: (OFConstantString *)self.formatString,
                                       self.value];
 }
+
 @end

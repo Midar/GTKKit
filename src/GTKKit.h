@@ -53,6 +53,7 @@
 #import "GTKMenuShell.h"
 #import "GTKMenu.h"
 #import "GTKSeparator.h"
+#import "GTKSeparator+Orientable.h"
 #import "GTKSwitch.h"
 #import "GTKHeaderBar.h"
 #import "GTKHeaderBar+Properties.h"
@@ -62,4 +63,4 @@
 #import "GTKListBox.h"
 #import "GTKListBox+Actions.h"
 #import "GTKScrolledWindow.h"
-#import "Orientable.h"
+#import "GTKOrientable.h"

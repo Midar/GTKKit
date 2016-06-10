@@ -59,7 +59,6 @@
 #import "GTKHeaderBar+Actions.h"
 #import "GTKLevelBar.h"
 #import "GTKLevelBar+Properties.h"
-#import "GTKListBoxRow.h"
 #import "GTKListBox.h"
 #import "GTKListBox+Actions.h"
 #import "GTKScrolledWindow.h"

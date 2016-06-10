@@ -25,7 +25,6 @@ lesser extent:
   GTKImage
   GTKLabel
   GTKListBox
-  GTKListBoxRow
   GTKMenu
   GTKMenuItem
   GTKOverlay

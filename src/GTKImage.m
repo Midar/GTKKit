@@ -26,7 +26,7 @@
   self = [super init];
   self.iconSize = GTK_ICON_SIZE_DIALOG;
   self.widget = gtk_image_new_from_icon_name("dialog-question", self.iconSize);
-  g_object_ref(G_OBJECT(self.widget));
+  g_object_ref_sink(G_OBJECT(self.widget));
   g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
       (__bridge void*) self);
   _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",

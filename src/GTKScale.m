@@ -48,7 +48,7 @@ static gchar* format_gtk_scale_value(GtkScale *scale,
 
   GtkAdjustment *adj = gtk_adjustment_new (0, 0, 0, 1.0, 1.0, 0);
   self.widget = gtk_scale_new (GTK_ORIENTATION_HORIZONTAL, adj);
-  g_object_ref(G_OBJECT(self.widget));
+  g_object_ref_sink(G_OBJECT(self.widget));
   g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
       (__bridge void*) self);
 

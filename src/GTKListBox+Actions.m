@@ -90,4 +90,9 @@
   return [GTKWidget widgetFromGtkWidget: child];
 }
 
+- (int)rowCount
+{
+  GList *rowList = gtk_container_get_children(GTK_CONTAINER(self.widget));
+  return g_list_length(rowList);
+}
 @end

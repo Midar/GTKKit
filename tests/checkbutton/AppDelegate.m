@@ -31,10 +31,9 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.window.title = @"Hello, world!";
   self.window.delegate = self;
 
-  self.button = [GTKCheckButton new];
+  self.button = [GTKCheckButton buttonWithLabel: @"Click me!"];
   self.button.target = self;
   self.button.action = @selector(buttonToggled:);
-  self.button.label = @"Click me!";
 
   [self.window addWidget: self.button];
 

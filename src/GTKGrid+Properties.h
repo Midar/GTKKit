@@ -19,10 +19,11 @@
 #import <gtk/gtk.h>
 
 #import "GTKContainer.h"
+#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKGrid (Properties)
+@interface GTKGrid (Properties) <GTKOrientable>
 @property GtkOrientation orientation;
 @property bool columnsHomogeneous;
 @property bool rowsHomogeneous;

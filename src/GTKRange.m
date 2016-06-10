@@ -113,4 +113,14 @@
 {
   gtk_range_set_round_digits(GTK_RANGE(self.widget), newValue);
 }
+
+- (GtkOrientation)orientation
+{
+  return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
+}
+
+- (void)setOrientation:(GtkOrientation)orientation
+{
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
+}
 @end

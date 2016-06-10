@@ -19,11 +19,10 @@
 #import <gtk/gtk.h>
 
 #import "GTKScale.h"
-#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKScale (Properties) <GTKOrientable>
+@interface GTKScale (Properties)
 @property bool drawValue;
 @property bool hasOrigin;
 @property GtkPositionType valuePosition;

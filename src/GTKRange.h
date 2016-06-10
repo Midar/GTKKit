@@ -19,10 +19,11 @@
 #import <gtk/gtk.h>
 
 #import "GTKWidget.h"
+#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKRange: GTKWidget
+@interface GTKRange: GTKWidget <GTKOrientable>
 {
   double _min;
   double _max;

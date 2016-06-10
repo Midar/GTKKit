@@ -93,4 +93,14 @@
 {
   gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(self.widget), newValue);
 }
+
+- (GtkOrientation)orientation
+{
+  return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
+}
+
+- (void)setOrientation:(GtkOrientation)orientation
+{
+  gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
+}
 @end

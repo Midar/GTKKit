@@ -23,6 +23,10 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKContainer : GTKWidget
+@property unsigned int borderWidth;
+- (void)addWidget: (GTKWidget*)childWidget;
+- (void)removeWidget: (GTKWidget*)childWidget;
+- (void)addAll: (OFArray*)childWidgets;
 @end
 
 OF_ASSUME_NONNULL_END

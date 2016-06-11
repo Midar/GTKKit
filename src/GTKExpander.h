@@ -22,7 +22,36 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class for object which represent containers that can hide their
+ * child.
+ */
 @interface GTKExpander: GTKBin
+/*!
+ * @brief The label to use for the expander.
+ */
+@property OFString *label;
+/*!
+ * @brief Whether or not the expander is expanded.
+ */
+@property bool expanded;
+/*!
+ * @brief Whether or not the expander will resize its parent widget when it
+ * expands or collapses.
+ */
+@property bool resizeToplevel;
+/*!
+ * @brief Constructor to generate an expander with the specified label.
+ *
+ * @param label The string to use as a label.
+ */
++ (instancetype)expanderWithLabel:(OFString*)label;
+/*!
+ * @brief Initialize the expander with the specified label.
+ *
+ * @param label The string to use as a label.
+ */
+- initWithLabel:(OFString *)label;
 @end
 
 OF_ASSUME_NONNULL_END

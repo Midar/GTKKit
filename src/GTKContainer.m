@@ -21,4 +21,29 @@
 #import "GTKContainer.h"
 
 @implementation GTKContainer
+- (void)addWidget: (GTKWidget*)childWidget
+{
+  gtk_container_add(GTK_CONTAINER(self.widget), [childWidget widget]);
+}
+
+- (void)removeWidget: (GTKWidget*)childWidget
+{
+  gtk_container_remove(GTK_CONTAINER(self.widget), [childWidget widget]);
+}
+
+- (void)addAll: (OFArray*)childWidgets
+{
+  for (id childWidget in childWidgets)
+    [self addWidget: childWidget];
+}
+
+- (void)setBorderWidth:(unsigned int)borderWidth
+{
+  gtk_container_set_border_width (GTK_CONTAINER (self.widget), borderWidth);
+}
+
+- (unsigned int)borderWidth
+{
+  return gtk_container_get_border_width (GTK_CONTAINER (self.widget));
+}
 @end

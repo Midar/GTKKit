@@ -26,6 +26,10 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief An abstract parent class for widgets which contain other widgets.
  */
 @interface GTKContainer : GTKWidget
+@property unsigned int borderWidth;
+- (void)addWidget: (GTKWidget*)childWidget;
+- (void)removeWidget: (GTKWidget*)childWidget;
+- (void)addAll: (OFArray*)childWidgets;
 @end
 
 OF_ASSUME_NONNULL_END

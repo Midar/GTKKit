@@ -23,11 +23,33 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief An abstract parent class for menu-related subclasses.
+ */
 @interface GTKMenuShell: GTKContainer
+/*!
+ * @brief Adds a menu item to the end of the menu.
+ *
+ * @param menuItem The menu item to add.
+ */
 - (void)appendMenuItem:(GTKMenuItem *)menuItem;
+/*!
+ * @brief Adds a menu item to the beginning of the menu.
+ *
+ * @param menuItem The menu item to add.
+ */
 - (void)prependMenuItem:(GTKMenuItem *)menuItem;
+/*!
+ * @brief Adds a menu item to the specified position in the menu.
+ *
+ * @param menuItem The menu item to add.
+ * @param position The position at which to place the menu item.
+ */
 - (void)insertMenuItem:(GTKMenuItem *)menuItem
-            atPosition:(int)pos;
+            atPosition:(int)position;
+/*!
+ * @brief Deactivate the menu.
+ */
 - (void)deactivate;
 @end
 

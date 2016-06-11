@@ -14,6 +14,17 @@
  * the packaging of this file.
  */
 
+/*!
+ * @brief A protocol for widgets that have an orientation property.
+ */
 @protocol GTKOrientable
+/*!
+ * @brief The widget's orientation.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_ORIENTATION_HORIZONTAL
+ * - GTK_ORIENTATION_VERTICAL
+ */
 @property GtkOrientation orientation;
 @end

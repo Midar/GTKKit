@@ -32,4 +32,29 @@
       G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
+
+- (bool)overlayChildPassthrough:(GTKWidget*)child
+{
+  return gtk_overlay_get_overlay_pass_through(GTK_OVERLAY(self.widget),
+      GTK_WIDGET(child.widget));
+}
+
+- (void)setOverlayChildPassthrough:(GTKWidget*)child
+                                to:(bool)passthrough
+{
+  gtk_overlay_set_overlay_pass_through(GTK_OVERLAY(self.widget),
+      GTK_WIDGET(child.widget), passthrough);
+}
+
+- (void)addOverlayChild:(GTKWidget*)child
+{
+  gtk_overlay_add_overlay(GTK_OVERLAY(self.widget), GTK_WIDGET([child widget]));
+}
+
+- (void)reorderOverlayChild:(GTKWidget*)child
+                    toIndex:(int)index
+{
+  gtk_overlay_reorder_overlay(GTK_OVERLAY(self.widget),
+      GTK_WIDGET([child widget]), index);
+}
 @end

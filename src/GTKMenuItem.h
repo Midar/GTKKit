@@ -22,12 +22,23 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing items in a menu.
+ */
 @interface GTKMenuItem: GTKBin
 {
   gulong _menuItemActivatedHandlerID;
 }
-@property OF_NULLABLE_PROPERTY (assign) SEL action;
-@property OF_NULLABLE_PROPERTY (weak) id target;
+/*!
+ * @brief The method that should be used in responding to the menu item being
+ * activated.
+ */
+@property (nullable) SEL action;
+/*!
+ * @brief The object which will be sent a message in response to the menu item
+ * being activated.
+ */
+@property (weak) id target;
 @end
 
 OF_ASSUME_NONNULL_END

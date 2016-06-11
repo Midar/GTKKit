@@ -23,7 +23,13 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing a pop-up menu.
+ */
 @interface GTKMenu: GTKMenuShell
+/*!
+ * @brief Make the menu pop-up.
+ */
 - (void)popup;
 @end
 

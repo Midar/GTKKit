@@ -22,7 +22,45 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing a container which stacks its children on the Z
+ * axis.
+ *
+ * An overlay container is appropriate, for example, when one wishes to have
+ * video controls float "above" the video they control, or for paint tools
+ * to behave in a similar manner for the image they manipulate.
+ */
 @interface GTKOverlay: GTKBin
+/*!
+ * @brief Adds an overlay child widget to the overlay container.
+ *
+ * @param child The widget to add to the container.
+ */
+- (void)addOverlayChild:(GTKWidget*)child;
+/*!
+ * @brief Changes the z-index ordering of the specified child widget.
+ *
+ * @param child The child widget to reorder
+ * @param index The new index for the chile widget.
+ */
+- (void)reorderOverlayChild:(GTKWidget*)child
+                    toIndex:(int)index;
+/*!
+ * @brief Gets whether or not the specified child passes its input through to
+ * the widget below. This does not apply to the main child.
+ *
+ * @param child The child widget to check.
+ */
+- (bool)overlayChildPassthrough:(GTKWidget*)child;
+/*!
+* @brief Sets whether or not the specified child passes its input through to
+* the widget below. This does not apply to the main child.
+*
+* @param child The child widget on which to set the property.
+* @param passthrough Whether or not to pass through input.
+*/
+- (void)setOverlayChildPassthrough:(GTKWidget*)child
+                                to:(bool)passthrough;
 @end
 
 OF_ASSUME_NONNULL_END

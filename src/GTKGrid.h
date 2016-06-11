@@ -19,10 +19,43 @@
 #import <gtk/gtk.h>
 
 #import "GTKContainer.h"
+#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKGrid: GTKContainer
+/*!
+ * @brief A container that organizes its children in a grid.
+ */
+@interface GTKGrid: GTKContainer <GTKOrientable>
+/*!
+ * @brief Whether or not each column in the grid has the same width.
+ */
+@property bool columnsHomogeneous;
+/*!
+ * @brief Whether or not each row in the grid has the same height.
+ */
+@property bool rowsHomogeneous;
+/*!
+ * @brief The spacing between each row.
+ */
+@property unsigned int rowSpacing;
+/*!
+ * @brief The spacing between each column.
+ */
+@property unsigned int columnsSpacing;
+/*!
+ * @brief The row which determines the baseline of the grid.
+ */
+@property int baselineRow;
+/*!
+ * @brief Gets the baseline position for the specified row.
+ */
+- (GtkBaselinePosition)baselinePositionForRow: (int)row;
+/*!
+ * @brief Sets the baseline position for the specified row.
+ */
+- (id)setBaselinePosition: (GtkBaselinePosition)position
+                   forRow: (int)row;
 @end
 
 OF_ASSUME_NONNULL_END

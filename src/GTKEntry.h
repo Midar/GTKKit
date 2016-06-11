@@ -22,11 +22,30 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+
+/*!
+ * @brief A class for objecs representing a text entry widget.
+ */
 @interface GTKEntry: GTKWidget
+/*!
+ * @brief The text buffer to use for the text entry widget.
+ */
 @property GtkEntryBuffer *buffer;
-@property id stringValue;
+/*!
+ * @brief The text contained in the buffer.
+ */
+@property OFString *stringValue;
+/*!
+ * @brief Whether or not the text in the entry should be obscured.
+ */
 @property bool textVisible;
+/*!
+ * @brief The maximum number of characters to allow in the entry.
+ */
 @property int maximumLength;
+/*!
+ * @brief Whether or not to draw a frame around the entry.
+ */
 @property bool hasFrame;
 @end
 

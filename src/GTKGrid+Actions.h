@@ -23,19 +23,51 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKGrid (Actions)
+/*!
+ * @brief Attaches a widget to the grid at the specified position.
+ *
+ * @param childWidget The widget to attach to the grid.
+ * @param left The column the left side of the widget should occupy.
+ * @param top The row the top of the widget should occupy.
+ * @param width The number of columns the widget should span.
+ * @param height The number of rows the widget should span.
+ */
 - (void)attachWidget: (GTKWidget*)childWidget
-    left: (int)left
-     top: (int)top
-         width: (int)width
-        height: (int)height;
+                left: (int)left
+                 top: (int)top
+               width: (int)width
+              height: (int)height;
+/*!
+ * @brief Attaches a widget to the grid next to the specified widget.
+ *
+ * @param childWidget The widget to attach to the grid.
+ * @param siblingWidget The widget next to which the child widget should be
+ * attached.
+ * @param onSide The position of the sibling widget to which the child widget
+ * should be attached.
+ * @param width The number of columns the widget should span.
+ * @param height The number of rows the widget should span.
+ */
 - (void)attachWidget: (GTKWidget*)childWidget
-      toWidget: (GTKWidget*)siblingWidget
-        onSide: (GtkPositionType)side
-         width: (int)width
-        height: (int)height;
+            toWidget: (GTKWidget*)siblingWidget
+              onSide: (GtkPositionType)side
+               width: (int)width
+              height: (int)height;
+/*!
+ * @brief Adds a row at the given position.
+ */
 - (void)insertRowAtPosition: (int)position;
+/*!
+* @brief Adds a column at the given position.
+*/
 - (void)insertColumnAtPosition: (int)position;
+/*!
+* @brief Removes a row at the given position.
+*/
 - (void)removeRow: (int)position;
+/*!
+* @brief Removes a column at the given position.
+*/
 - (void)removeColumn: (int)position;
 @end
 

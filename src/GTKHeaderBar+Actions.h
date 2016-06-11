@@ -23,7 +23,17 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKHeaderBar (Actions)
+/*!
+ * @brief Add a widget at the beginning of the header bar.
+ *
+ * @param child The widget to add.
+ */
 - (void)addWidgetAtStart:(GTKWidget *)child;
+/*!
+ * @brief Add a widget at the end of the header bar.
+ *
+ * @param child The widget to add.
+ */
 - (void)addWidgetAtEnd:(GTKWidget *)child;
 @end
 

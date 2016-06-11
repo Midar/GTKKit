@@ -22,11 +22,35 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing a button which allows the user to select from a
+ * list of items.
+ */
 @interface GTKComboBox: GTKBin
+/*!
+ * @brief Adds a string to the end of the  list of choices.
+ *
+ * @param string the string to add to the list.
+ * @param ID a string to use as the ID for the new list option.
+ */
 - (void)    appendString: (OFString*)string
     withIdentifierString: (OFString*)ID;
+    /*!
+     * @brief Adds a string to the beginning of the  list of choices.
+     *
+     * @param string the string to add to the list.
+     * @param ID a string to use as the ID for the new list option.
+     */
 - (void)   prependString: (OFString*)string
     withIdentifierString: (OFString*)ID;
+    /*!
+     * @brief Adds a string to the specified position in the  list of choices.
+     *
+     * @param string the string to add to the list.
+     * @param ID a string to use as the ID for the new list option.
+     * @param position The index of the position into which the string should be
+     * inserted.
+     */
 - (void)    insertString: (OFString*)string
     withIdentifierString: (OFString*)ID
               atPosition: (int)position;

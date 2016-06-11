@@ -14,7 +14,6 @@ SRCS += GTKEntry.m
 SRCS += GTKExpander.m
 SRCS += GTKFrame.m
 SRCS += GTKGrid+Actions.m
-SRCS += GTKGrid+Properties.m
 SRCS += GTKGrid.m
 SRCS += GTKLabel+Properties.m
 SRCS += GTKLabel.m

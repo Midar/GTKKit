@@ -21,7 +21,6 @@
 #import "GTKFrame.h"
 #import "GTKGrid.h"
 #import "GTKGrid+Actions.h"
-#import "GTKGrid+Properties.h"
 #import "GTKLabel.h"
 #import "GTKLabel+Properties.h"
 #import "GTKBin.h"

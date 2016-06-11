@@ -32,9 +32,9 @@
 }
 
 - (void)insertMenuItem:(GTKMenuItem *)menuItem
-            atPosition:(int)pos
+            atPosition:(int)position
 {
-  gtk_menu_shell_insert(GTK_MENU_SHELL(self.widget), menuItem.widget, pos);
+  gtk_menu_shell_insert(GTK_MENU_SHELL(self.widget), menuItem.widget, position);
 }
 
 - (void)deactivate

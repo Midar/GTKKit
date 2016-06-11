@@ -26,10 +26,26 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKMenuItem (Properties)
+/*!
+ * @brief The string to use as a label in the menu item.
+ */
 @property OFString *label;
+/*!
+ * @brief The menu to use as a submenu for the menu item.
+ */
 @property GTKMenu *submenu;
-- (id)initWithLabel:(OFString *)label;
+/*!
+ * @brief Constructor to make a menu item with the specified label.
+ *
+ * @param label The string to use as a label for the menu item.
+ */
 + (id)menuItemWithLabel:(OFString *)label;
+/*!
+ * @brief Initialie the menu item with the specified label.
+ *
+ * @param label The string to use as a label for the menu item.
+ */
+- (id)initWithLabel:(OFString *)label;
 @end
 
 OF_ASSUME_NONNULL_END

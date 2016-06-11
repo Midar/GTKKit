@@ -24,16 +24,61 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKListBox (Properties)
 @property (readonly) int rowCount;
+/*!
+ * @brief Adds a widget to the list box at the beginning.
+ *
+ * @param childWidget The widget to add.
+ */
 - (void)prependWidget:(GTKWidget*)childWidget;
+/*!
+ * @brief Adds a widget to the list box at the end.
+ *
+ * @param childWidget The widget to add.
+ */
 - (void)appendWidget:(GTKWidget*)childWidget;
+/*!
+ * @brief Adds a widget to the list at the specified position.
+ *
+ * @param childWidget The widget to add.
+ * @param position The position at which to place the widget.
+ */
 - (void)insertWidget:(GTKWidget*)childWidget
           atPosition:(int)position;
+/*!
+ * @brief Select the specified row.
+ *
+ * @param index The index of the row to select.
+ */
 - (void)selectRowAtIndex:(int)index;
+/*!
+ * @brief Unselect the specified row.
+ *
+ * @param index The index of the row to unselect.
+ */
 - (void)unselectRowAtIndex:(int)index;
+/*!
+ * @brief Select all rows.
+ */
 - (void)selectAll;
+/*!
+ * @brief Unselect all rows.
+ */
 - (void)unselectAll;
+/*!
+ * @brief Destroys the row at the specified index.
+ *
+ * @param index The index of the row to destroy.
+ */
 - (void)destroyRowAtIndex:(int)index;
+/*!
+ * @brief Gets the widget from the currently seleccted row.
+ */
 - (GTKWidget*)widgetForSelectedRow;
+/*!
+ * @brief Gets the widget for the specified row.
+ *
+ * @param index The index of the row for which to get the widget.
+ */
 - (GTKWidget*)widgetForRowAtIndex:(int)index;
 @end
 

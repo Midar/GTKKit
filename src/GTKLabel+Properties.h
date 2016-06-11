@@ -23,16 +23,72 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKLabel (Properties)
+/*!
+ * @brief The string to use as the label's text.
+ */
 @property OFString *text;
+/*!
+ * @brief The horizontal alignment of the text inside the label's area.
+ */
 @property float xAlign;
+/*!
+ * @brief The vertical alignment of the text inside the label's area.
+ */
 @property float yAlign;
+/*!
+ * @brief The justification of the text in the label.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_JUSTIFY_LEFT
+ * - GTK_JUSTIFY_RIGHT
+ * - GTK_JUSTIFY_CENTER
+ * - GTK_JUSTIFY_FILL
+ */
 @property GtkJustification justify;
+/*!
+ * @brief Whether and how to ellipsize the text of the label if it would
+ * otherwise overflow its alloted space.
+ *
+ * One of the following possible values:
+ *
+ * - PANGO_ELLIPSIZE_NONE
+ * - PANGO_ELLIPSIZE_START
+ * - PANGO_ELLIPSIZE_MIDDLE
+ * - PANGO_ELLIPSIZE_END
+ */
 @property PangoEllipsizeMode ellipsizeMode;
+/*!
+ * @brief The maximum number of characters the label should display.
+ */
 @property int desiredWidthInCharacters;
+/*!
+ * @brief Whether or not the lable should wrap lines the would otherwise
+ * overflow their space.
+ */
 @property bool wrap;
+/*!
+ * @brief The method used to wrap lines.
+ *
+ * One of the following possible values:
+ *
+ * - PANGO_WRAP_WORD
+ * - PANGO_WRAP_CHAR
+ * - PANGO_WRAP_WORD_CHAR
+ */
 @property PangoWrapMode lineWrapMode;
+/*!
+ * @brief Whether or not text in the label should be selectable.
+ */
 @property bool selectable;
+/*!
+ * @brief Whether or not the label is in single-line mode.
+ */
 @property bool singleLineMode;
+/*!
+ * @brief The angle of rotation of the label. This value is ignored if the label is
+ * selectable, wrapped, or ellipsized.
+ */
 @property double angle;
 @end
 

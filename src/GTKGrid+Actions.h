@@ -43,7 +43,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param childWidget The widget to attach to the grid.
  * @param siblingWidget The widget next to which the child widget should be
  * attached.
- * @param onSide The position of the sibling widget to which the child widget
+ * @param side The position of the sibling widget to which the child widget
  * should be attached.
  * @param width The number of columns the widget should span.
  * @param height The number of rows the widget should span.

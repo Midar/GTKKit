@@ -22,13 +22,35 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @class A class for widgets which show an image.
+ */
 @interface GTKImage: GTKWidget
 {
     OFString *_imageFile;
     OFString *_iconName;
 }
+
+/*!
+ * @brief the full path of the image to use.
+ */
 @property OFString *imageFile;
+
+/*!
+ * @brief The name of the GTK+ internal icon to use.
+ */
 @property OFString *iconName;
+
+/*!
+ * @brief The size of the icon to use. One of the folowing possible values:
+ *
+ * - GTK_ICON_SIZE_MENU
+ * - GTK_ICON_SIZE_SMALL_TOOLBAR
+ * - GTK_ICON_SIZE_LARGE_TOOLBAR
+ * - GTK_ICON_SIZE_BUTTON
+ * - GTK_ICON_SIZE_DND
+ * - GTK_ICON_SIZE_DIALOG
+ */
 @property GtkIconSize iconSize;
 @end
 

@@ -23,6 +23,9 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKContainer (Properties)
+/*!
+ * @brief The width of the border of the container.
+ */
 @property unsigned int borderWidth;
 @end
 

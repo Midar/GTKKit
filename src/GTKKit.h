@@ -18,8 +18,6 @@
 #import "GTKWidget+Actions.h"
 #import "GTKWidget+Properties.h"
 #import "GTKContainer.h"
-#import "GTKContainer+Actions.h"
-#import "GTKContainer+Properties.h"
 #import "GTKFrame.h"
 #import "GTKFrame+Properties.h"
 #import "GTKGrid.h"

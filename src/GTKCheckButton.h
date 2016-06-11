@@ -22,10 +22,15 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A button which incorporates a check-box to show its state.
+ */
 @interface GTKCheckButton: GTKToggleButton
 {
   gulong _toggledHandlerID;
 }
++ (instancetype)checkButtonWithLabel:(OFString*)text;
+- initWithLabel:(OFString*)text;
 @end
 
 OF_ASSUME_NONNULL_END

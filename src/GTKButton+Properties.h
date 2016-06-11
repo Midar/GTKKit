@@ -23,7 +23,17 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKButton (Properties)
+/*!
+ * @brief The text of the label to use for the button.
+ */
 @property OFString *label;
+/*!
+ * @brief The relief style of the button; one of the following possible values:
+ *
+ * - GTK_RELIEF_NORMAL
+ * - GTK_RELIEF_HALF
+ * - GTK_RELIEF_NONE
+ */
 @property GtkReliefStyle reliefStyle;
 @end
 

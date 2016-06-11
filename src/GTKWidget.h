@@ -14,6 +14,15 @@
  * the packaging of this file.
  */
 
+ /*!
+  * \mainpage GTKKit
+  *
+  * \section intro_sec Introduction
+  *
+  * GTKKit is a wrapper library, making the GTK+ widget toolkit available to
+  * Objective-C programmers in a familair way.
+  */
+
 #import <ObjFW/ObjFW.h>
 
 #import <gtk/gtk.h>
@@ -27,11 +36,22 @@ widget_destroyed_handler (GtkWidget * _Nonnull widget, GTKWidget * _Nonnull wrap
 
 OF_ASSUME_NONNULL_BEGIN
 
+
+/*!
+ * @brief The core widget class of GTKKit.
+ *
+ * Instances of this abstract class's concrete subclasses implement all GTK+
+ * widget wrappers that make up the bulk of functionality in GTKKit.
+ */
 @interface GTKWidget: OFObject
 {
   gulong _widgetDestroyedHandlerID;
 }
 @property OF_NULLABLE_PROPERTY (assign) GtkWidget * widget;
+/*!
+ * @brief Convenience constructor for locating the wrapper for a GTK+ widget C
+ * pointer using only the pointer itself.
+ */
 + (instancetype)widgetFromGtkWidget: (GtkWidget*)w;
 @end
 

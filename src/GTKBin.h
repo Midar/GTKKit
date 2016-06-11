@@ -21,8 +21,14 @@
 #import "GTKContainer.h"
 
 OF_ASSUME_NONNULL_BEGIN
-
+/*!
+ * @brief A container which holds a sigle child widget.
+ */
 @interface GTKBin: GTKContainer
+/*!
+ * @property childWidget
+ * @brief The widget held in this container.
+ */
 @property (readonly) GTKWidget *childWidget;
 @end
 

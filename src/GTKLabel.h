@@ -22,8 +22,17 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class for widgets which show a text string.
+ */
 @interface GTKLabel: GTKWidget
+/*!
+ * @brief Constructor for making a label with the specified text.
+ */
 + (instancetype)labelWithText:(OFString*)text;
+/*!
+ * @brief Initialize the label with the specified text.
+ */
 - initWithText:(OFString*)text;
 @end
 

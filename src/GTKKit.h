@@ -56,4 +56,5 @@
 #import "GTKListBox.h"
 #import "GTKListBox+Actions.h"
 #import "GTKScrolledWindow.h"
+#import "GTKOverlay.h"
 #import "GTKOrientable.h"

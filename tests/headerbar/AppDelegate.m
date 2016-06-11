@@ -36,8 +36,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.header = [GTKHeaderBar new];
   self.header.title = @"Hello, world!";
   self.header.subtitle = @"This is a header bar.";
-  self.header.showCloseButton = true;
-  self.header.decorationLayout = @"close,minimize,maximize:menu";
+  self.header.showWindowButtons = true;
+  self.header.windowButtonLayout = @"close,minimize,maximize:menu";
 
   self.window.titlebar = self.header;
 

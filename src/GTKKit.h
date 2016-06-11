@@ -51,7 +51,6 @@
 #import "GTKSeparator+Orientable.h"
 #import "GTKSwitch.h"
 #import "GTKHeaderBar.h"
-#import "GTKHeaderBar+Properties.h"
 #import "GTKHeaderBar+Actions.h"
 #import "GTKLevelBar.h"
 #import "GTKLevelBar+Properties.h"

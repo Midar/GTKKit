@@ -32,4 +32,56 @@
       G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
   return self;
 }
+
+- (OFString *)title
+{
+  return @(gtk_header_bar_get_title(GTK_HEADER_BAR(self.widget)));
+}
+
+- (void)setTitle:(OFString *)title
+{
+  gtk_header_bar_set_title(GTK_HEADER_BAR(self.widget), [title UTF8String]);
+}
+
+- (OFString *)subtitle
+{
+  return @(gtk_header_bar_get_subtitle(GTK_HEADER_BAR(self.widget)));
+}
+
+- (void)setSubtitle:(OFString *)subtitle
+{
+  gtk_header_bar_set_subtitle(GTK_HEADER_BAR(self.widget),
+      [subtitle UTF8String]);
+}
+
+- (bool)hasSubtitle
+{
+  return gtk_header_bar_get_has_subtitle(GTK_HEADER_BAR(self.widget));
+}
+
+- (void)setHasSubtitle:(bool)subtitle
+{
+  gtk_header_bar_set_has_subtitle(GTK_HEADER_BAR(self.widget), subtitle);
+}
+
+- (bool)showWindowButtons
+{
+  return gtk_header_bar_get_show_close_button(GTK_HEADER_BAR(self.widget));
+}
+
+- (void)setShowWindowButtons:(bool)show
+{
+  gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(self.widget), show);
+}
+
+- (OFString *)windowButtonLayout
+{
+  return @(gtk_header_bar_get_decoration_layout(GTK_HEADER_BAR(self.widget)));
+}
+
+- (void)setWindowButtonLayout:(OFString *)layout
+{
+  gtk_header_bar_set_decoration_layout(GTK_HEADER_BAR(self.widget),
+      [layout UTF8String]);
+}
 @end

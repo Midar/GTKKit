@@ -45,7 +45,6 @@ SRCS += GTKSeparator.m
 SRCS += GTKSeparator+Orientable.m
 SRCS += GTKSwitch.m
 SRCS += GTKHeaderBar.m
-SRCS += GTKHeaderBar+Properties.m
 SRCS += GTKHeaderBar+Actions.m
 SRCS += GTKLevelBar.m
 SRCS += GTKLevelBar+Properties.m

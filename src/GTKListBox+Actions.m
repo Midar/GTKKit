@@ -53,6 +53,9 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  if (index >= self.rowCount) {
+      @throw([GTKRowOutOfBoundsException new]);
+  }
   GtkListBoxRow *row = \
       gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
   gtk_list_box_select_row(GTK_LIST_BOX(self.widget),
@@ -63,6 +66,9 @@
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
+  }
+  if (index >= self.rowCount) {
+      @throw([GTKRowOutOfBoundsException new]);
   }
   GtkListBoxRow *row = \
       gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
@@ -90,6 +96,9 @@
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
+  }
+  if (index >= self.rowCount) {
+      @throw([GTKRowOutOfBoundsException new]);
   }
   GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
       index);

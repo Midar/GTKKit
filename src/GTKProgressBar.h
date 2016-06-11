@@ -19,10 +19,44 @@
 #import <gtk/gtk.h>
 
 #import "GTKWidget.h"
+#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-@interface GTKProgressBar: GTKWidget
+/*!
+ * @brief A class for displaying the progress of a task as a filling bar.
+ */
+@interface GTKProgressBar: GTKWidget <GTKOrientable>
+/*!
+ * @brief The current value being displayed.
+ */
+@property double value;
+/*!
+ * @brief Whether or not to fill in the progress bar from the opposite side.
+ */
+@property bool inverted;
+/*!
+ * @brief Whether or not to show the text value next to the progress bar.
+ */
+@property bool showText;
+/*!
+ * @brief The text to show next to the progress bar. If this is NULL, the
+ * current value as a percentage will be shown instead.
+ */
+@property OFString *text;
+/*!
+ * @brief Whether or not to ellipsize the text.
+ */
+@property bool ellipsize;
+/*!
+ * @brief The amount by which to increase the value each time the -pulse method
+ * runs.
+ */
+@property double pulseStep;
+/*!
+ * @brief Tell the progress bar to increment its value.
+ */
+- (void)pulse;
 @end
 
 OF_ASSUME_NONNULL_END

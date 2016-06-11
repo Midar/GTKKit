@@ -47,7 +47,6 @@ SRCS += GTKSwitch.m
 SRCS += GTKHeaderBar.m
 SRCS += GTKHeaderBar+Actions.m
 SRCS += GTKLevelBar.m
-SRCS += GTKLevelBar+Properties.m
 SRCS += GTKListBox.m
 SRCS += GTKListBox+Actions.m
 SRCS += GTKScrolledWindow.m

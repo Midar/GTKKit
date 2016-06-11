@@ -22,6 +22,9 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing a clickable button with a customizable label.
+ */
 @interface GTKButton: GTKBin
 {
   gulong _clickedHandlerID;

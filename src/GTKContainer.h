@@ -22,6 +22,9 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief An abstract parent class for widgets which contain other widgets.
+ */
 @interface GTKContainer : GTKWidget
 @end
 

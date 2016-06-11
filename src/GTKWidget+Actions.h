@@ -23,12 +23,44 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWidget (Actions)
+/*!
+ * @brief Marks the widget as visible.
+ *
+ * If the widget is marked visible, but the parent container is not, the widget
+ * will not be shown.
+ */
 - (void)show;
+/*!
+ * @brief Marks the widget and all the widgets it contains as visible.
+ *
+ * If the widget is marked visible, but the parent container is not, the widget
+ * will not be shown.
+ */
 - (void)showAll;
+/*!
+ * @brief Destroys the widget.
+ *
+ * This causes GTK+ to destroy the wrapped widget. It will break any references
+ * it holds to other objects, and GTKKit's built-in destruction event handler
+ * will unreference the widget and set the wrapper object's internal reference
+ * to the widget to NULL.
+ */
 - (void)destroy;
+/*!
+ * @brief Marks the widget as hidden.
+ */
 - (void)hide;
+/*!
+ * @brief Activates the widget as if it had been clicked.
+ */
 - (bool)activate;
+/*!
+ * @brief Makes the widget the focused widget.
+ */
 - (void)grabFocus;
+/*!
+ * @brief Makes the widget the default widget.
+ */
 - (void)grabDefault;
 @end
 

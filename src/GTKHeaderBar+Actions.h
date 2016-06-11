@@ -30,7 +30,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 - (void)addWidgetAtStart:(GTKWidget *)child;
 /*!
- * @brief Add a widget at the ednd of the header bar.
+ * @brief Add a widget at the end of the header bar.
  *
  * @param child The widget to add.
  */

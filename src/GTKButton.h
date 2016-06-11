@@ -24,14 +24,32 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A class representing a clickable button with a customizable label.
+ *
+ * This class makes use of the target-action design pattern.
  */
 @interface GTKButton: GTKBin
 {
   gulong _clickedHandlerID;
 }
-@property OF_NULLABLE_PROPERTY (assign) SEL action;
-@property OF_NULLABLE_PROPERTY (weak) id target;
+/*!
+ * @brief The selector of the method to be used as the action.
+ */
+@property (nullable) SEL action;
+/*!
+ * @brief The object that will act as the target for this button.
+ */
+@property (weak, nullable) id target;
+/*!
+ * @brief Creates a button with the specified label.
+ *
+ * @param text The string to use as a label in the new button.
+ */
 + (instancetype)buttonWithLabel:(OFString*)text;
+/*!
+ * @brief Initializes the button with the specified label.
+ *
+ * @param text The string to use as a label in the new button.
+ */
 - initWithLabel:(OFString*)text;
 @end
 

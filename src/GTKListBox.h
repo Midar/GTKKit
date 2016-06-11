@@ -22,10 +22,21 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A container for widgets organized into a list.
+ */
 @interface GTKListBox: GTKContainer {
   gulong _selectedRowsChangedHandlerID;
 }
+/*!
+ * @brief The object which will be notified when the list's selection state is
+ * changed.
+ */
 @property (weak) id target;
+/*!
+ * @brief The signature of the method that should be used to respond to changes
+ * in the list's selection state.
+ */
 @property SEL action;
 @end
 

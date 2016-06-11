@@ -106,8 +106,8 @@
 }
 
 // This gets the wrapper object for the widget in the selected row. It will
-// return it as an id, so you'll have to cast it to the appropriate class. It
-// doesn't need to be retained or released.
+// return it as a GTKWidget*, so you'll have to cast it to the appropriate
+// class. It doesn't need to be retained or released.
 - (GTKWidget*)widgetForSelectedRow
 {
   if (self.widget == NULL) {
@@ -118,6 +118,9 @@
   return [GTKWidget widgetFromGtkWidget: child];
 }
 
+// This gets the wrapper object for the widget in the given row. It will
+// return it as a GTKWidget*, so you'll have to cast it to the appropriate
+// class. It doesn't need to be retained or released.
 - (GTKWidget*)widgetForRowAtIndex:(int)index
 {
   if (self.widget == NULL) {
@@ -132,6 +135,8 @@
   return [GTKWidget widgetFromGtkWidget: child];
 }
 
+// Because the only way to count a GList is to iterate through it, this takes
+// longer the longer the list is.
 - (int)rowCount
 {
   GList *rowList = gtk_container_get_children(GTK_CONTAINER(self.widget));

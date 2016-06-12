@@ -22,17 +22,84 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing a container that can scroll in either axis.
+ *
+ * Counterintuitively, this is not a window in the conventional sense, just a
+ * container which holds a single widget and can scroll. This container is
+ * appropriate when it is desired to add scrolling capability to another
+ * widget.
+ */
 @interface GTKScrolledWindow: GTKBin
+/*!
+ * @brief The horizonal adjustment of the scrolled window.
+ */
 @property GtkAdjustment *horizontalAdjustment;
+/*!
+ * @brief The vertical adjustment of the scrolled window.
+ */
 @property GtkAdjustment *verticalAdjustment;
+/*!
+ * @brief The horizontal scrolling policy.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_POLICY_ALWAYS
+ * - GTK_POLICY_AUTOMATIC
+ * - GTK_POLICY_NEVER
+ * - GTK_POLICY_EXTERNAL
+ */
 @property GtkPolicyType horizontalScrollingPolicy;
+/*!
+ * @brief The vertical scrolling policy. (see @ref horizontalScrollingPolicy)
+ */
 @property GtkPolicyType verticalScrollingPolicy;
+/*!
+ * @brief The placement of the content with respect to the scrollbars.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_CORNER_TOP_LEFT
+ * - GTK_CORNER_BOTTOM_LEFT
+ * - GTK_CORNER_TOP_RIGHT
+ * - GTK_CORNER_BOTTOM_RIGHT
+ */
 @property GtkCornerType placement;
+/*!
+ * @brief The shadow type of the scrolled window.
+ *
+ * One of the following possible values:
+ * - GTK_SHADOW_NONE
+ * - GTK_SHADOW_IN
+ * - GTK_SHADOW_OUT
+ * - GTK_SHADOW_ETCHED_IN
+ * - GTK_SHADOW_ETCHED_OUT
+ */
 @property GtkShadowType shadowType;
+/*!
+ * @brief The minimum content width of the scrolled window, or -1 if it is not
+ * set.
+ */
 @property int minContentWidth;
+/*!
+ * @brief The minimum content height of the scrolled window, or -1 if it is not
+ * set.
+ */
 @property int minContentHeight;
+/*!
+ * @brief Whether or not kinetic scrolling is enabled. This applies only to
+ * touchscreen devices.
+ */
 @property bool kineticScrollingEnabled;
+/*!
+ * @brief Whether or not overlay scrolling is enabled.
+ */
 @property bool overlayScrollingEnabled;
+/*!
+ * @brief Whether or not the behaviour of kinetic scrolling shoud be modified to
+ * capture the initial event that triggered the scrolling, to play it back if
+ * it is meant to go to the child widget.
+ */
 @property bool captureButtonPress;
 @end
 

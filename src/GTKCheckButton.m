@@ -52,21 +52,4 @@ buttonToggled(GtkWidget *button, GTKButton *sender)
   if (self.widget != NULL)
     g_signal_handler_disconnect(G_OBJECT (self.widget), _toggledHandlerID);
 }
-
-- initWithLabel:(OFString*)text
-{
-  self = [self init];
-  self.label = text;
-  return self;
-}
-
-+ checkButtonWithLabel:(OFString*)text
-{
-  return [[self alloc] initWithLabel: text];
-}
-
-+ (instancetype)buttonWithLabel:(OFString*)text
-{
-  OF_UNRECOGNIZED_SELECTOR
-}
 @end

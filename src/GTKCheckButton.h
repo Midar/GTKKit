@@ -29,18 +29,6 @@ OF_ASSUME_NONNULL_BEGIN
 {
   gulong _toggledHandlerID;
 }
-/*!
- * @brief Make a new checkbutton with the specified label.
- *
- * @param text The text to use as a label.
- */
-+ (instancetype)checkButtonWithLabel:(OFString*)text;
-/*!
- * @brief Initialize a new checkbutton with the specified label.
- *
- * @param text The text to use as a label.
- */
-- initWithLabel:(OFString*)text;
 @end
 
 OF_ASSUME_NONNULL_END

@@ -23,18 +23,69 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKScale (Properties)
-@property bool drawValue;
+/*!
+ * @brief Whether or not to display the value of the scale as text.
+ */
+@property bool showValue;
+/*!
+ * @brief Whether or not the area between the lowest value of the scale and the
+ * current value of the scale will be highlighted.
+ */
 @property bool hasOrigin;
+/*!
+ * @brief The position of the displayed value of the scale.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_POS_LEFT
+ * - GTK_POS_RIGHT
+ * - GTK_POS_TOP
+ * - GTK_POS_BOTTOM
+ */
 @property GtkPositionType valuePosition;
+/*!
+ * @brief The current value of the scale, formatted using the scale's format
+ * string.
+ */
 @property (readonly) OFString *formattedValue;
+/*!
+ * @brief Adds a mark on the scale at the specified value and position, with
+ * the specified text.
+ *
+ * @param value The value at which to place the mark.
+ * @param position The position of the mark. (see @ref valuePosition)
+ * @param text The text to show at the mark.
+ */
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos
+          withPosition:(GtkPositionType) position
               withText:(OFString *) text;
+/*!
+ * @brief Adds a mark on the scale at the specified value, using the default
+ * position.
+ *
+ * @param value The value at which to place the mark.
+ */
 - (void)addMarkAtValue:(double)value;
+/*!
+ * @brief Adds a mark on the scale at the specified value and position.
+ *
+ * @param value The value at which to place the mark.
+ * @param position The position of the mark. (see @ref valuePosition)
+ */
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos;
+          withPosition:(GtkPositionType) position;
+/*!
+ * @brief Adds a mark on the scale at the specified value in the default
+ * position, with the specified text.
+ *
+ * @param value The value at which to place the mark.
+ * @param text The text to show at the mark.
+ */
 - (void)addMarkAtValue:(double)value
               withText:(OFString *) text;
+/*!
+ * @brief Remove all marks from the scale.
+ */
 - (void)clearMarks;
 @end
 

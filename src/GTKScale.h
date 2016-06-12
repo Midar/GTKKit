@@ -22,14 +22,31 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class which implements a slider to control the value of a range.
+ */
 @interface GTKScale: GTKRange
 {
   gulong _valueChangedHandlerID;
   gulong _formatHandlerID;
 }
+/*!
+ * @brief The number of digits of the value used when it is displayed.
+ */
 @property int digits;
-@property OF_NULLABLE_PROPERTY (assign) SEL action;
-@property OF_NULLABLE_PROPERTY (weak) id target;
+/*!
+ * @brief The selector sent to the scale's target when the value changes.
+ */
+@property (nullable) SEL action;
+/*!
+ * @brief The object which is sent a message whe the value of the scale
+ * changes.
+ */
+@property (nullable, weak) id target;
+/*!
+ * @brief The printf-style string used in formatting the displayed value of
+ * the scale.
+ */
 @property OFConstantString *formatString;
 @end
 

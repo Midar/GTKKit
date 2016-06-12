@@ -22,12 +22,12 @@
 #import "GTKScale+Properties.h"
 
 @implementation GTKScale (Properties)
-- (bool)drawValue
+- (bool)showValue
 {
   return gtk_scale_get_digits(GTK_SCALE(self.widget));
 }
 
-- (void)setDrawValue:(bool)newValue
+- (void)setShowValue:(bool)newValue
 {
   gtk_scale_set_draw_value(GTK_SCALE(self.widget), newValue);
 }
@@ -53,10 +53,10 @@
 }
 
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos
+          withPosition:(GtkPositionType) position
               withText:(OFString *) text
 {
-  gtk_scale_add_mark(GTK_SCALE(self.widget), value, pos, [text UTF8String]);
+  gtk_scale_add_mark(GTK_SCALE(self.widget), value, position, [text UTF8String]);
 }
 
 - (void)addMarkAtValue:(double)value
@@ -74,9 +74,9 @@
 }
 
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos
+          withPosition:(GtkPositionType) position
 {
-  gtk_scale_add_mark(GTK_SCALE(self.widget), value, pos, NULL);
+  gtk_scale_add_mark(GTK_SCALE(self.widget), value, position, NULL);
 }
 
 - (void)clearMarks

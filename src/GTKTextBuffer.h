@@ -38,12 +38,22 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @property (readonly) int characterCount;
 /*!
+ * @brief The contents of the buffer. Reading this property results in a new
+ * OFString being allocated with a copy of the string value of the buffer.
+ */
+ @property OFString *stringValue;
+/*!
  * @brief Insert the specified string at the specified position in the buffer.
+ *
+ * @param string The string to insert.
+ * @param positon The position at which to insert the string.
  */
 - (void)insertString:(OFString*)string
           atPosition:(int)position;
 /*!
  * @brief Insert the specified string at the cursor location.
+ *
+ * @param string The string to insert.
  */
 - (void)insertStringAtCursorPosition:(OFString*)string;
 @end

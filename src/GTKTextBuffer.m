@@ -41,16 +41,42 @@
 - (void)insertString:(OFString*)string
           atPosition:(int)position
 {
-  GtkTextIter iter;
-  gtk_text_buffer_get_iter_at_offset(GTK_TEXT_BUFFER(self.bufferHandle),
-      &iter, position);
-  gtk_text_buffer_insert(GTK_TEXT_BUFFER(self.bufferHandle), &iter,
-      [string UTF8String], -1);
+  @autoreleasepool {
+    GtkTextIter iter;
+    gtk_text_buffer_get_iter_at_offset(GTK_TEXT_BUFFER(self.bufferHandle),
+        &iter, position);
+    gtk_text_buffer_insert(GTK_TEXT_BUFFER(self.bufferHandle), &iter,
+        [string UTF8String], -1);
+  }
 }
 
 - (void)insertStringAtCursorPosition:(OFString*)string
 {
-  gtk_text_buffer_insert_at_cursor(GTK_TEXT_BUFFER(self.bufferHandle),
-      [string UTF8String], [string UTF8StringLength]);
+  @autoreleasepool {
+    gtk_text_buffer_insert_at_cursor(GTK_TEXT_BUFFER(self.bufferHandle),
+        [string UTF8String], [string UTF8StringLength]);
+  }
 }
+
+- (OFString*)stringValue
+{
+  GtkTextIter start;
+  GtkTextIter end;
+  gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(self.bufferHandle), &start);
+  gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(self.bufferHandle), &end);
+  char *str = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(self.bufferHandle),
+      &start, &end, true);
+  OFString *returnString = [OFString stringWithUTF8String: str];
+  free(str);
+  return returnString;
+}
+
+- (void)setStringValue:(OFString*)stringValue
+{
+  @autoreleasepool {
+    gtk_text_buffer_set_text(GTK_TEXT_BUFFER(self.bufferHandle),
+        [stringValue UTF8String], [stringValue UTF8StringLength]);
+  }
+}
+
 @end

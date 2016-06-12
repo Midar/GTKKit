@@ -34,22 +34,27 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * - GTK_LEVEL_BAR_MODE_CONTINUOUS
  * - GTK_LEVEL_BAR_MODE_DISCRETE
+ * @throws GTKDestroyedWidgetException
  */
 @property GtkLevelBarMode mode;
 /*!
  * @brief The current value displayed by the level bar.
+ * @throws GTKDestroyedWidgetException
  */
 @property double value;
 /*!
  * @brief The minimum value the level bar can display.
+ * @throws GTKDestroyedWidgetException
  */
 @property double minValue;
 /*!
  * @brief The maximum value the level bar can display.
+ * @throws GTKDestroyedWidgetException
  */
 @property double maxValue;
 /*!
  * @brief Whether or not the level bar's fill grows from the opposite side.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool inverted;
 @end

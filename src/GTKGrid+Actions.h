@@ -31,6 +31,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param top The row the top of the widget should occupy.
  * @param width The number of columns the widget should span.
  * @param height The number of rows the widget should span.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)attachWidget: (GTKWidget*)childWidget
                 left: (int)left
@@ -47,6 +48,7 @@ OF_ASSUME_NONNULL_BEGIN
  * should be attached.
  * @param width The number of columns the widget should span.
  * @param height The number of rows the widget should span.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)attachWidget: (GTKWidget*)childWidget
             toWidget: (GTKWidget*)siblingWidget
@@ -55,18 +57,22 @@ OF_ASSUME_NONNULL_BEGIN
               height: (int)height;
 /*!
  * @brief Adds a row at the given position.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)insertRowAtPosition: (int)position;
 /*!
 * @brief Adds a column at the given position.
+* @throws GTKDestroyedWidgetException
 */
 - (void)insertColumnAtPosition: (int)position;
 /*!
 * @brief Removes a row at the given position.
+* @throws GTKDestroyedWidgetException
 */
 - (void)removeRow: (int)position;
 /*!
 * @brief Removes a column at the given position.
+* @throws GTKDestroyedWidgetException
 */
 - (void)removeColumn: (int)position;
 @end

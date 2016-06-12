@@ -35,61 +35,97 @@
 
 - (GtkLevelBarMode)mode
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_level_bar_get_mode(GTK_LEVEL_BAR(self.widget));
 }
 
 - (void)setMode:(GtkLevelBarMode)mode
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_level_bar_set_mode(GTK_LEVEL_BAR(self.widget), mode);
 }
 
 - (double)value
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_level_bar_get_value(GTK_LEVEL_BAR(self.widget));
 }
 
 - (void)setValue:(double)value
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_level_bar_set_value(GTK_LEVEL_BAR(self.widget), value);
 }
 
 - (double)minValue
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_level_bar_get_min_value(GTK_LEVEL_BAR(self.widget));
 }
 
 - (void)setMinValue:(double)value
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_level_bar_set_min_value(GTK_LEVEL_BAR(self.widget), value);
 }
 
 - (double)maxValue
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_level_bar_get_max_value(GTK_LEVEL_BAR(self.widget));
 }
 
 - (void)setMaxValue:(double)value
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_level_bar_set_max_value(GTK_LEVEL_BAR(self.widget), value);
 }
 
 - (bool)inverted
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_level_bar_get_inverted(GTK_LEVEL_BAR(self.widget));
 }
 
 - (void)setInverted:(bool)inverted
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_level_bar_set_inverted(GTK_LEVEL_BAR(self.widget), inverted);
 }
 
 - (GtkOrientation)orientation
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
 }
 
 - (void)setOrientation:(GtkOrientation)orientation
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
 }
 @end

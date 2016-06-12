@@ -29,22 +29,27 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKEntry: GTKWidget
 /*!
  * @brief The text buffer to use for the text entry widget.
+ * @throws GTKDestroyedWidgetException
  */
 @property GtkEntryBuffer *buffer;
 /*!
  * @brief The text contained in the buffer.
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *stringValue;
 /*!
  * @brief Whether or not the text in the entry should be obscured.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool textVisible;
 /*!
  * @brief The maximum number of characters to allow in the entry.
+ * @throws GTKDestroyedWidgetException
  */
 @property int maximumLength;
 /*!
  * @brief Whether or not to draw a frame around the entry.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool hasFrame;
 @end

@@ -19,7 +19,7 @@
 #import <gtk/gtk.h>
 
 #import "GTKListBox.h"
-#import "GTKListBoxRow.h"
+#import "GTKListBox+Actions.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
@@ -28,6 +28,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Whether or not the specified row is selected.
  *
  * @param index The row to check for selection.
+ * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowSelectedAtIndex:(int)index;
 /*!
@@ -35,12 +36,16 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param index The row for which to set the header
  * @param header The widget to set as the header
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowHeaderAtIndex:(int)index toWidget:(GTKWidget)header;
 /*!
  * @brief Whether or not the specified row is activatable.
  *
  * @param index The row to check.
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowActivatableAtIndex:(int)index;
 /*!
@@ -48,12 +53,16 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param index The row for which to set the activatable property
  * @param activatable Whether or not the row should be activatable.
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowActivatableAtIndex:(int)index to:(bool)activatable;
 /*!
  * @brief Whether or not the specified row is selectable.
  *
  * @param index The row to check.
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowSelectableAtIndex:(int)index;
 /*!
@@ -61,12 +70,16 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param index The row for which to set the activatable property
  * @param selectable Whether or not the row should be selectable.
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowSelectableAtIndex:(int)index to:(bool)selectable;
 /*!
  * @brief Informs the list box that the specified row has changed.
  *
  * @param index The index of the changed row.
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)rowChangedAtIndex:(int)index;
 @end

@@ -29,27 +29,32 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKExpander: GTKBin
 /*!
  * @brief The label to use for the expander.
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
 /*!
  * @brief Whether or not the expander is expanded.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool expanded;
 /*!
  * @brief Whether or not the expander will resize its parent widget when it
  * expands or collapses.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool resizeToplevel;
 /*!
  * @brief Constructor to generate an expander with the specified label.
  *
  * @param label The string to use as a label.
+ * @throws GTKDestroyedWidgetException
  */
 + (instancetype)expanderWithLabel:(OFString*)label;
 /*!
  * @brief Initialize the expander with the specified label.
  *
  * @param label The string to use as a label.
+ * @throws GTKDestroyedWidgetException
  */
 - initWithLabel:(OFString *)label;
 @end

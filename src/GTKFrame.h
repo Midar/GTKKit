@@ -29,6 +29,7 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKFrame: GTKBin
 /*!
  * @brief The string to use as a label for the frame.
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
 /*!
@@ -36,14 +37,17 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * Note that any GTKWidget can be used here, but the most common would be a
  * GTKImage.
+ * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *labelWidget;
 /*!
  * @brief The horizontal alignment of the label.
+ * @throws GTKDestroyedWidgetException
  */
 @property float labelHorizontalAlign;
 /*!
  * @brief The vertical alignment of the label.
+ * @throws GTKDestroyedWidgetException
  */
 @property float labelVerticalAlign;
 @end

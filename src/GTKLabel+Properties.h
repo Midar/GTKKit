@@ -25,14 +25,17 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKLabel (Properties)
 /*!
  * @brief The string to use as the label's text.
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *text;
 /*!
  * @brief The horizontal alignment of the text inside the label's area.
+ * @throws GTKDestroyedWidgetException
  */
 @property float xAlign;
 /*!
  * @brief The vertical alignment of the text inside the label's area.
+ * @throws GTKDestroyedWidgetException
  */
 @property float yAlign;
 /*!
@@ -44,6 +47,7 @@ OF_ASSUME_NONNULL_BEGIN
  * - GTK_JUSTIFY_RIGHT
  * - GTK_JUSTIFY_CENTER
  * - GTK_JUSTIFY_FILL
+ * @throws GTKDestroyedWidgetException
  */
 @property GtkJustification justify;
 /*!
@@ -56,15 +60,18 @@ OF_ASSUME_NONNULL_BEGIN
  * - PANGO_ELLIPSIZE_START
  * - PANGO_ELLIPSIZE_MIDDLE
  * - PANGO_ELLIPSIZE_END
+ * @throws GTKDestroyedWidgetException
  */
 @property PangoEllipsizeMode ellipsizeMode;
 /*!
  * @brief The maximum number of characters the label should display.
+ * @throws GTKDestroyedWidgetException
  */
 @property int desiredWidthInCharacters;
 /*!
  * @brief Whether or not the lable should wrap lines the would otherwise
  * overflow their space.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool wrap;
 /*!
@@ -75,19 +82,23 @@ OF_ASSUME_NONNULL_BEGIN
  * - PANGO_WRAP_WORD
  * - PANGO_WRAP_CHAR
  * - PANGO_WRAP_WORD_CHAR
+ * @throws GTKDestroyedWidgetException
  */
 @property PangoWrapMode lineWrapMode;
 /*!
  * @brief Whether or not text in the label should be selectable.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool selectable;
 /*!
  * @brief Whether or not the label is in single-line mode.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool singleLineMode;
 /*!
- * @brief The angle of rotation of the label. This value is ignored if the label is
- * selectable, wrapped, or ellipsized.
+ * @brief The angle of rotation of the label. This value is ignored if the label
+ * is selectable, wrapped, or ellipsized.
+ * @throws GTKDestroyedWidgetException
  */
 @property double angle;
 @end

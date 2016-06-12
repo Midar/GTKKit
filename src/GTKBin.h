@@ -28,6 +28,8 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
  * @property childWidget
  * @brief The widget held in this container.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 @property (readonly) GTKWidget *childWidget;
 @end

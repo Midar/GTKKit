@@ -33,6 +33,8 @@ OF_ASSUME_NONNULL_BEGIN
  * - GTK_RELIEF_NORMAL
  * - GTK_RELIEF_HALF
  * - GTK_RELIEF_NONE
+ *
+ * @throws GTKDestroyedWidgetException
  */
 @property GtkReliefStyle reliefStyle;
 @end

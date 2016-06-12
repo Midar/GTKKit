@@ -28,18 +28,22 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKHeaderBar: GTKContainer
 /*!
  * @brief The title shown on the header bar.
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *title;
 /*!
  * @brief The subtitle shown on the header bar.
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *subtitle;
 /*!
  * @brief Whether or not to show a subtitle on the header bar.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool hasSubtitle;
 /*!
  * @brief Whether or not to show window control buttons on the header bar.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool showWindowButtons;
 /*!
@@ -55,6 +59,7 @@ OF_ASSUME_NONNULL_BEGIN
  * - close
  * - icon
  * - menu
+ * @throws GTKDestroyedWidgetException
  */
 @property OFString *windowButtonLayout;
 @end

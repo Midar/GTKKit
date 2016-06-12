@@ -23,27 +23,42 @@
 @implementation GTKContainer
 - (void)addWidget: (GTKWidget*)childWidget
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_container_add(GTK_CONTAINER(self.widget), [childWidget widget]);
 }
 
 - (void)removeWidget: (GTKWidget*)childWidget
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_container_remove(GTK_CONTAINER(self.widget), [childWidget widget]);
 }
 
 - (void)addAll: (OFArray*)childWidgets
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   for (id childWidget in childWidgets)
     [self addWidget: childWidget];
 }
 
 - (void)setBorderWidth:(unsigned int)borderWidth
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_container_set_border_width (GTK_CONTAINER (self.widget), borderWidth);
 }
 
 - (unsigned int)borderWidth
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_container_get_border_width (GTK_CONTAINER (self.widget));
 }
 @end

@@ -46,7 +46,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Insert the specified string at the specified position in the buffer.
  *
  * @param string The string to insert.
- * @param positon The position at which to insert the string.
+ * @param position The position at which to insert the string.
  */
 - (void)insertString:(OFString*)string
           atPosition:(int)position;

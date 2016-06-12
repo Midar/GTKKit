@@ -30,8 +30,48 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
  * @brief The buffer to use with the text view widget. Multiple such widgets can
  * share a single buffer if desired.
+ * @throws GTKDestroyedWidgetException
  */
 @property GTKTextBuffer *buffer;
+/*!
+ * @brief The wrap mode of the text view.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_WRAP_NONE
+ * - GTK_WRAP_CHAR
+ * - GTK_WRAP_WORD
+ * - GTK_WRAP_WORD_CHAR
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property GtkWrapMode wrapMode;
+/*!
+ * @brief Whether or not the text view is editable.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property bool editable;
+/*!
+ * @brief Whether or not the cursor is visible.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property bool cursorVisible;
+/*!
+ * @brief Whether the text view is in insert or overwrite mode. Setting this to
+ * true turns on overwrite mode, false sets it to insert mode.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property bool overwriteMode;
+/*!
+ * @brief Moves the cursor so it is within the visible portion of the buffer,
+ * if it is not there already.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+- (void)moveCursorToVisibleArea;
 @end
 
 OF_ASSUME_NONNULL_END

@@ -44,6 +44,78 @@
     return self;
 }
 
+- (void)moveCursorToVisibleArea
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_place_cursor_onscreen(GTK_TEXT_VIEW(self.widget));
+}
+
+- (GtkWrapMode)wrapMode
+{
+    if (self.widget == NULL) {
+      @throw([GTKDestroyedWidgetException new]);
+    }
+    return gtk_text_view_get_wrap_mode(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setWrapMode:(GtkWrapMode)mode
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(self.widget), mode);
+}
+
+- (bool)editable
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_editable(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setEditable:(bool)editable
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_editable(GTK_TEXT_VIEW(self.widget), editable);
+}
+
+- (bool)cursorVisible
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_cursor_visible(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setCursorVisible:(bool)visible
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(self.widget), visible);
+}
+
+- (bool)overwriteMode
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_overwrite(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setOverwriteMode:(bool)mode
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_overwrite(GTK_TEXT_VIEW(self.widget), mode);
+}
+
 // implement <GTKScrollable>
 - (GtkAdjustment*)horizontalAdjustment
 {

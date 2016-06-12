@@ -57,7 +57,7 @@
 @end
 
 /*!
- * @brief A default implementation of the @ref <GTKScrollable> protocol for
+ * @brief A default implementation of the &lt;GTKScrollable&gt; protocol for
  * classes to inherit.
  */
 @interface GTKScrollable: GTKWidget <GTKScrollable>

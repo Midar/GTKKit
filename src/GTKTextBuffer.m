@@ -78,5 +78,4 @@
         [stringValue UTF8String], [stringValue UTF8StringLength]);
   }
 }
-
 @end

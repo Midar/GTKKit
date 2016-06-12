@@ -38,7 +38,6 @@ SRCS += GTKMenuItem+Properties.m
 SRCS += GTKMenuShell.m
 SRCS += GTKMenu.m
 SRCS += GTKSeparator.m
-SRCS += GTKSeparator+Orientable.m
 SRCS += GTKSwitch.m
 SRCS += GTKHeaderBar.m
 SRCS += GTKHeaderBar+Actions.m

@@ -1,0 +1,8 @@
+ /*!
+  * \mainpage GTKKit
+  *
+  * \section intro_sec Introduction
+  *
+  * GTKKit is a wrapper library, making the GTK+ widget toolkit available to
+  * Objective-C programmers in a familiar way.
+  */

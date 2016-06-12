@@ -14,15 +14,6 @@
  * the packaging of this file.
  */
 
- /*!
-  * \mainpage GTKKit
-  *
-  * \section intro_sec Introduction
-  *
-  * GTKKit is a wrapper library, making the GTK+ widget toolkit available to
-  * Objective-C programmers in a familair way.
-  */
-
 #import <ObjFW/ObjFW.h>
 
 #import <gtk/gtk.h>

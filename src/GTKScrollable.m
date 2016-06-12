@@ -14,37 +14,9 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
+#import "GTKScrollable.h"
 
-#import <gtk/gtk.h>
-
-#import "GTKTextView.h"
-
-
-@implementation GTKTextView
-/*
-+ (void)initialize
-{
-	if (self == [GTKTextView class])
-		[self inheritMethodsFromClass: [GTKScrollable class]];
-}
-*/
-
-- init
-{
-    self = [super init];
-    self.widget = gtk_text_view_new();
-    g_object_ref_sink(G_OBJECT(self.widget));
-    g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-        (__bridge void*) self);
-    self.buffer = [GTKTextBuffer new];
-    gtk_text_view_set_buffer (GTK_TEXT_VIEW (self.widget), self.buffer.bufferHandle);
-    _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-    return self;
-}
-
-// implement <GTKScrollable>
+@implementation GTKScrollable
 - (GtkAdjustment*)horizontalAdjustment
 {
   if (self.widget == NULL) {

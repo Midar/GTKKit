@@ -56,3 +56,4 @@
 #import "GTKTextView.h"
 #import "GTKOverlay.h"
 #import "GTKOrientable.h"
+#import "GTKScrollable.h"

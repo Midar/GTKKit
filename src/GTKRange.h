@@ -23,21 +23,59 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief An abstract parent class for classes which display an adjustent in
+ * a value.
+ */
 @interface GTKRange: GTKWidget <GTKOrientable>
 {
   double _min;
   double _max;
 }
+/*
+ * @brief The current fill level of the range.
+ */
 @property double fillLevel;
+/*
+ * @brief Whether or not the range is restricted to the fill level.
+ */
 @property bool restrictToFillLevel;
+/*
+ * @brief Whether or not the range displays the fill level.
+ */
 @property bool showFillLevel;
+/*
+ * @brief Whether the range runs from low to high, or from high to low.
+ */
 @property bool inverted;
+/*
+ * @brief The current value of the range.
+ */
 @property double value;
+/*
+ * @brief The amount by which the value is modified by the arrow keys.
+ */
 @property (nonatomic) double stepSize;
+/*
+ * @brief The number of digits to which to round the value to when it changes.
+ */
 @property int roundDigts;
+/*
+ * @brief The minimum value of the range.
+ */
 @property (nonatomic) double minValue;
+/*
+ * @brief The maximum value of the range.
+ */
 @property (nonatomic) double maxValue;
-- (void)minValue:(double)min maxValue:(double)max;
+/*
+ * @brief Set both the minimum and maximum values of the range in a single
+ * message.
+ *
+ * @param minValue The new minimum value for the range.
+ * @param maxValue The new maximum value for the range.
+ */
+- (void)minValue:(double)minValue maxValue:(double)maxValue;
 @end
 
 OF_ASSUME_NONNULL_END

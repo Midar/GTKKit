@@ -22,7 +22,7 @@
 #import "GTKScale+Properties.h"
 
 @implementation GTKScale (Properties)
-- (bool)drawValue
+- (bool)showValue
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
@@ -30,7 +30,7 @@
   return gtk_scale_get_digits(GTK_SCALE(self.widget));
 }
 
-- (void)setDrawValue:(bool)newValue
+- (void)setShowValue:(bool)newValue
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
@@ -71,13 +71,13 @@
 }
 
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos
+          withPosition:(GtkPositionType) position
               withText:(OFString *) text
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_scale_add_mark(GTK_SCALE(self.widget), value, pos, [text UTF8String]);
+  gtk_scale_add_mark(GTK_SCALE(self.widget), value, position, [text UTF8String]);
 }
 
 - (void)addMarkAtValue:(double)value
@@ -101,12 +101,12 @@
 }
 
 - (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) pos
+          withPosition:(GtkPositionType) position
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_scale_add_mark(GTK_SCALE(self.widget), value, pos, NULL);
+  gtk_scale_add_mark(GTK_SCALE(self.widget), value, position, NULL);
 }
 
 - (void)clearMarks

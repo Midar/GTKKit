@@ -110,14 +110,14 @@
   gtk_range_set_increments(GTK_RANGE(self.widget), newValue, newValue);
 }
 
-- (void)minValue:(double)min maxValue:(double)max
+- (void)minValue:(double)minValue maxValue:(double)maxValue
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  _min = min;
-  _max = max;
-  gtk_range_set_range(GTK_RANGE(self.widget), min, max);
+  _min = minValue;
+  _max = maxValue;
+  gtk_range_set_range(GTK_RANGE(self.widget), minValue, maxValue);
 }
 
 - (double)minValue

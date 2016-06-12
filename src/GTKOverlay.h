@@ -35,6 +35,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Adds an overlay child widget to the overlay container.
  *
  * @param child The widget to add to the container.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)addOverlayChild:(GTKWidget*)child;
 /*!
@@ -42,6 +43,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param child The child widget to reorder
  * @param index The new index for the chile widget.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)reorderOverlayChild:(GTKWidget*)child
                     toIndex:(int)index;
@@ -50,6 +52,7 @@ OF_ASSUME_NONNULL_BEGIN
  * the widget below. This does not apply to the main child.
  *
  * @param child The child widget to check.
+ * @throws GTKDestroyedWidgetException
  */
 - (bool)overlayChildPassthrough:(GTKWidget*)child;
 /*!
@@ -58,6 +61,7 @@ OF_ASSUME_NONNULL_BEGIN
 *
 * @param child The child widget on which to set the property.
 * @param passthrough Whether or not to pass through input.
+* @throws GTKDestroyedWidgetException
 */
 - (void)setOverlayChildPassthrough:(GTKWidget*)child
                                 to:(bool)passthrough;

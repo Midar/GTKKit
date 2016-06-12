@@ -25,6 +25,7 @@
  *
  * - GTK_ORIENTATION_HORIZONTAL
  * - GTK_ORIENTATION_VERTICAL
+ * @throws GTKDestroyedWidgetException
  */
 @property GtkOrientation orientation;
 @end

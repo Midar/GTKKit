@@ -30,6 +30,7 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKSwitch: GTKWidget
 /*!
  * @brief The state of the switch, true for on, false for off.
+ * @throws GTKDestroyedWidgetException
  */
 @property bool active;
 @property bool state;

@@ -32,6 +32,7 @@ OF_ASSUME_NONNULL_BEGIN
 }
 /*!
  * @brief The number of digits of the value used when it is displayed.
+ * @throws GTKDestroyedWidgetException
  */
 @property int digits;
 /*!

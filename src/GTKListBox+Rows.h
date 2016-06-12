@@ -28,6 +28,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Whether or not the specified row is selected.
  *
  * @param index The row to check for selection.
+ * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowSelectedAtIndex:(int)index;

@@ -45,11 +45,17 @@
 
 - (GtkOrientation)orientation
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
 }
 
 - (void)setOrientation:(GtkOrientation)orientation
 {
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
   gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
 }
 @end

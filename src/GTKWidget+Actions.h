@@ -28,6 +28,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * If the widget is marked visible, but the parent container is not, the widget
  * will not be shown.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)show;
 /*!
@@ -35,6 +36,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * If the widget is marked visible, but the parent container is not, the widget
  * will not be shown.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)showAll;
 /*!
@@ -44,22 +46,27 @@ OF_ASSUME_NONNULL_BEGIN
  * it holds to other objects, and GTKKit's built-in destruction event handler
  * will unreference the widget and set the wrapper object's internal reference
  * to the widget to NULL.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)destroy;
 /*!
  * @brief Marks the widget as hidden.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)hide;
 /*!
  * @brief Activates the widget as if it had been clicked.
+ * @throws GTKDestroyedWidgetException
  */
 - (bool)activate;
 /*!
  * @brief Makes the widget the focused widget.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)grabFocus;
 /*!
  * @brief Makes the widget the default widget.
+ * @throws GTKDestroyedWidgetException
  */
 - (void)grabDefault;
 @end

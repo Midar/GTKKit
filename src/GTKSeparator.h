@@ -19,21 +19,11 @@
 #import <gtk/gtk.h>
 
 #import "GTKWidget.h"
-#import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
 
-/*!
- * @brief A class for widgets which separate other widgets.
- */
-@interface GTKSeparator: GTKWidget <GTKOrientable>
-/*!
- * @brief Initialize the separator with the specified orientation.
- */
+@interface GTKSeparator: GTKWidget
 + (instancetype)separatorWithOrientation:(GtkOrientation)orientation;
-/*!
- * @brief Create a new separator with the specified orientation.
- */
 - initWithOrientation:(GtkOrientation)orientation;
 @end
 

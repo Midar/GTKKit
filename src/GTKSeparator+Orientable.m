@@ -18,22 +18,16 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKBin.h"
+#import "GTKSeparator+Orientable.h"
 
-OF_ASSUME_NONNULL_BEGIN
+@implementation GTKSeparator (Orientable)
+- (GtkOrientation)orientation
+{
+  return gtk_orientable_get_orientation(GTK_ORIENTABLE(self.widget));
+}
 
-@interface GTKScrolledWindow: GTKBin
-@property GtkAdjustment *horizontalAdjustment;
-@property GtkAdjustment *verticalAdjustment;
-@property GtkPolicyType horizontalScrollingPolicy;
-@property GtkPolicyType verticalScrollingPolicy;
-@property GtkCornerType placement;
-@property GtkShadowType shadowType;
-@property int minContentWidth;
-@property int minContentHeight;
-@property bool kineticScrollingEnabled;
-@property bool overlayScrollingEnabled;
-@property bool captureButtonPress;
+- (void)setOrientation:(GtkOrientation)orientation
+{
+  gtk_orientable_set_orientation(GTK_ORIENTABLE(self.widget), orientation);
+}
 @end
-
-OF_ASSUME_NONNULL_END

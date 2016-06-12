@@ -46,6 +46,7 @@
 #import "GTKMenuShell.h"
 #import "GTKMenu.h"
 #import "GTKSeparator.h"
+#import "GTKSeparator+Orientable.h"
 #import "GTKSwitch.h"
 #import "GTKHeaderBar.h"
 #import "GTKHeaderBar+Actions.h"

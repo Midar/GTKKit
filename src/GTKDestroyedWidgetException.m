@@ -14,23 +14,11 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
+#import "GTKDestroyedWidgetException.h"
 
-#import <gtk/gtk.h>
-
-#import "GTKBin.h"
-
-@implementation GTKBin
-
-// This returns the wrapper object for the child widget, as a GTKWidget. It
-// can and should be immediately cast to the appropriate class by the sender.
-- (GTKWidget *)childWidget
+@implementation GTKDestroyedWidgetException
+- (OFString*)description
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkWidget *child = (GTK_WIDGET(gtk_bin_get_child(GTK_BIN(self.widget))));
-  return [GTKWidget widgetFromGtkWidget: child];
+  return [OFString stringWithUTF8String: "Attempt to message a destroyed widget!"];
 }
-
 @end

@@ -23,17 +23,24 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKListBox (Properties)
+/*!
+ * @brief The number of rows in the list box.
+ */
 @property (readonly) int rowCount;
 /*!
  * @brief Adds a widget to the list box at the beginning.
  *
  * @param childWidget The widget to add.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 - (void)prependWidget:(GTKWidget*)childWidget;
 /*!
  * @brief Adds a widget to the list box at the end.
  *
  * @param childWidget The widget to add.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 - (void)appendWidget:(GTKWidget*)childWidget;
 /*!
@@ -41,6 +48,8 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param childWidget The widget to add.
  * @param position The position at which to place the widget.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 - (void)insertWidget:(GTKWidget*)childWidget
           atPosition:(int)position;
@@ -48,36 +57,54 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Select the specified row.
  *
  * @param index The index of the row to select.
+ *
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)selectRowAtIndex:(int)index;
 /*!
  * @brief Unselect the specified row.
  *
  * @param index The index of the row to unselect.
+ *
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)unselectRowAtIndex:(int)index;
 /*!
  * @brief Select all rows.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 - (void)selectAll;
 /*!
  * @brief Unselect all rows.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 - (void)unselectAll;
 /*!
  * @brief Destroys the row at the specified index.
  *
  * @param index The index of the row to destroy.
+ *
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (void)destroyRowAtIndex:(int)index;
 /*!
  * @brief Gets the widget from the currently seleccted row.
+ *
+ * @throws GTKDestroyedWidgetException
  */
 - (GTKWidget*)widgetForSelectedRow;
 /*!
  * @brief Gets the widget for the specified row.
  *
  * @param index The index of the row for which to get the widget.
+ *
+ * @throws GTKDestroyedWidgetException
+ * @throws GTKRowOutOfBoundsException
  */
 - (GTKWidget*)widgetForRowAtIndex:(int)index;
 @end

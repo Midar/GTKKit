@@ -14,67 +14,82 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
+#import "GTKExpander+Properties.h"
 
-#import <gtk/gtk.h>
-
-#import "GTKWidget.h"
-#import "GTKWidget+Actions.h"
-
-@implementation GTKWidget (Actions)
-- (void)show
+@implementation GTKExpander (Properties)
+- (OFString *)label
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_widget_show(GTK_WIDGET(self.widget));
+  return [OFString stringWithUTF8String:
+      gtk_expander_get_label (GTK_EXPANDER (self.widget))];
 }
 
-- (void)showAll
+- (void)setLabel:(OFString *)label
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_widget_show_all(GTK_WIDGET(self.widget));
+  gtk_expander_set_label (GTK_EXPANDER (self.widget), [label UTF8String]);
 }
 
-- (void)destroy
++ (instancetype)expanderWithLabel:(OFString *)label
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_widget_destroy(GTK_WIDGET(self.widget));
+  return [[self alloc] initWithLabel: label];
 }
 
-- (void)hide
-{
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_widget_hide(GTK_WIDGET(self.widget));
+- initWithLabel:(OFString *)label {
+  self = [self init];
+  self.label = label;
+  return self;
 }
 
-- (bool)activate
+- (bool)expanded
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return gtk_widget_activate(GTK_WIDGET(self.widget));
+  return gtk_expander_get_expanded (GTK_EXPANDER (self.widget));
 }
 
-- (void)grabFocus
+- (void)setExpanded:(bool)newValue
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_widget_grab_focus(GTK_WIDGET(self.widget));
+  gtk_expander_set_expanded (GTK_EXPANDER (self.widget), newValue);
 }
 
-- (void)grabDefault
+- (int)spacing
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_widget_grab_default(GTK_WIDGET(self.widget));
+  return gtk_expander_get_spacing (GTK_EXPANDER (self.widget));
+}
+
+- (void)setSpacing:(int)newValue
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_expander_set_spacing (GTK_EXPANDER (self.widget), newValue);
+}
+
+- (bool)resizeToplevel
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_expander_get_resize_toplevel (GTK_EXPANDER (self.widget));
+}
+
+- (void)setResizeToplevel:(bool)newValue
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_expander_set_resize_toplevel (GTK_EXPANDER (self.widget), newValue);
 }
 @end

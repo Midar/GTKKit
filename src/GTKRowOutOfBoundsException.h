@@ -16,21 +16,9 @@
 
 #import <ObjFW/ObjFW.h>
 
-#import <gtk/gtk.h>
+OF_ASSUME_NONNULL_BEGIN
 
-#import "GTKBin.h"
-
-@implementation GTKBin
-
-// This returns the wrapper object for the child widget, as a GTKWidget. It
-// can and should be immediately cast to the appropriate class by the sender.
-- (GTKWidget *)childWidget
-{
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkWidget *child = (GTK_WIDGET(gtk_bin_get_child(GTK_BIN(self.widget))));
-  return [GTKWidget widgetFromGtkWidget: child];
-}
-
+@interface GTKRowOutOfBoundsException: OFException
 @end
+
+OF_ASSUME_NONNULL_END

@@ -18,54 +18,75 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKToggleButton+Properties.h"
+#import "GTKFrame+Properties.h"
 
-@implementation GTKToggleButton (Properties)
-- (void)setDrawIndicator:(bool) newValue
+@implementation GTKFrame (Properties)
+- (OFString *)label
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_toggle_button_set_mode(GTK_TOGGLE_BUTTON(self.widget), newValue);
+  return @(gtk_frame_get_label (GTK_FRAME (self.widget)));
 }
 
-- (bool)drawIndicator
+- (void)setLabel:(OFString *)label
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return gtk_toggle_button_get_mode(GTK_TOGGLE_BUTTON(self.widget));
+  gtk_frame_set_label (GTK_FRAME (self.widget), [label UTF8String]);
 }
 
-- (void)setActive:(bool) newValue
+- (GTKWidget *)labelWidget
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.widget), newValue);
+  return [GTKWidget widgetFromGtkWidget:
+      gtk_frame_get_label_widget (GTK_FRAME (self.widget))];
 }
 
-- (bool)active
+- (void)setLabelWidget:(GTKWidget *)labelWidget
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(self.widget));
+  gtk_frame_set_label_widget (GTK_FRAME (self.widget), [labelWidget widget]);
 }
 
-- (void)setInconsistent:(bool) newValue
+- (void)setXAlign:(float)xAlign
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_toggle_button_set_inconsistent(GTK_TOGGLE_BUTTON(self.widget), newValue);
+  g_object_set (G_OBJECT (self.widget), "label-xalign", xAlign, NULL);
 }
 
-- (bool)inconsistent
+- (float)xAlign
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return gtk_toggle_button_get_inconsistent(GTK_TOGGLE_BUTTON(self.widget));
+  float x;
+  g_object_get (G_OBJECT (self.widget), "label-xalign", &x, NULL);
+  return x;
+}
+
+- (void)setYAlign:(float)yAlign
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  g_object_set (G_OBJECT (self.widget), "label-yalign", yAlign, NULL);
+}
+
+- (float)yAlign
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  float y;
+  g_object_get (G_OBJECT (self.widget), "label-yalign", &y, NULL);
+  return y;
 }
 @end

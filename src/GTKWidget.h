@@ -27,6 +27,8 @@
 
 #import <gtk/gtk.h>
 
+#import "Exceptions.h"
+
 @class GTKWidget;
 
 void

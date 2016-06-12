@@ -18,30 +18,22 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKMenu.h"
+#import "GTKContainer+Properties.h"
 
-@implementation GTKMenu
-- init
-{
-  self = [super init];
-  self.widget = gtk_menu_new ();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set(G_OBJECT(self.widget), "width-request", 200, NULL);
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
-}
-
-- (void)popup
+@implementation GTKContainer (Properties)
+- (void)setBorderWidth:(unsigned int)borderWidth
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_menu_popup (GTK_MENU(self.widget),
-                  NULL, NULL, NULL, NULL,
-                  1,
-                  gtk_get_current_event_time());
+  gtk_container_set_border_width (GTK_CONTAINER (self.widget), borderWidth);
+}
+
+- (unsigned int)borderWidth
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_container_get_border_width (GTK_CONTAINER (self.widget));
 }
 @end

@@ -23,14 +23,26 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A widget for toplevel windows.
+ */
 @interface GTKWindow: GTKBin
 {
   of_dimension_t _defaultSize;
   of_dimension_t _size;
 }
+/*!
+ * @brief The default size of the window.
+ */
 @property of_dimension_t defaultSize;
+/*!
+ * @brief The actual size of the window.
+ */
 @property of_dimension_t size;
-@property OF_NULLABLE_PROPERTY (weak)
+/*!
+ * @brief The delegate object for the window.
+ */
+@property (nullable, weak)
     id <GTKWindowDelegate> delegate;
 @end
 

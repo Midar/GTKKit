@@ -24,15 +24,46 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWindow (Actions)
+/*!
+ * @brief Show the window to the user. This may mean unminimizing it, stealing
+ * focus, etc.
+ */
 - (void)present;
+/*!
+ * @brief Activates the default widget of the window.
+ */
 - (bool)activateDefaultWidget;
+/*!
+ * @brief Activates the focused widget of the window.
+ */
 - (bool)activateFocusedWidget;
+/*!
+ * @brief Close the window.
+ */
 - (void)close;
+/*!
+ * @brief Minimie the window.
+ */
 - (void)minimize;
+/*!
+ * @brief Unminimize the window.
+ */
 - (void)unminimize;
+/*!
+ * @brief Maximize the window.
+ */
 - (void)maximize;
+/*!
+ * @brief unmaximize the window.
+ */
 - (void)unmaximize;
+/*!
+ * @brief Make the window fullscreen.
+ */
 - (void)fullscreen;
+/*!
+ * @brief Make the window not fullscreen.
+ */
 - (void)unfullscreen;
 @end
 

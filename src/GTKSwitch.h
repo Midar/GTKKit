@@ -22,7 +22,15 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A class representing a widget which has two states, on and off.
+ *
+ * This is primarily useful in settings dialogs and the like.
+ */
 @interface GTKSwitch: GTKWidget
+/*!
+ * @brief The state of the switch, true for on, false for off.
+ */
 @property bool active;
 @property bool state;
 @end

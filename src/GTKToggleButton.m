@@ -52,4 +52,52 @@ buttonToggled(GtkWidget *button, GTKButton *sender)
     g_signal_handler_disconnect(G_OBJECT (self.widget),
         _buttonToggledHandlerID);
 }
+
+- (void)setDrawIndicator:(bool) newValue
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_toggle_button_set_mode(GTK_TOGGLE_BUTTON(self.widget), newValue);
+}
+
+- (bool)drawIndicator
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_toggle_button_get_mode(GTK_TOGGLE_BUTTON(self.widget));
+}
+
+- (void)setActive:(bool) newValue
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.widget), newValue);
+}
+
+- (bool)active
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(self.widget));
+}
+
+- (void)setInconsistent:(bool) newValue
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_toggle_button_set_inconsistent(GTK_TOGGLE_BUTTON(self.widget), newValue);
+}
+
+- (bool)inconsistent
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_toggle_button_get_inconsistent(GTK_TOGGLE_BUTTON(self.widget));
+}
 @end

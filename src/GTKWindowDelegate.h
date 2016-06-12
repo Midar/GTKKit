@@ -16,16 +16,24 @@
 
 @class GTKWindow;
 
+/*!
+ * @brief A protocol for objects which act as delegates for @ref GTKWindow
+ * objects. All the methods in this protocol are optional.
+ */
 @protocol GTKWindowDelegate <OFObject>
 
 @optional
 
-// This will be sent to the delegate when the window is told to close; if it
-// returns true, the window will close, otherwise it will not.
+/*!
+ * @brief This will be sent to the delegate when the window is told to close;
+ * if it returns true, the window will close, otherwise it will not.
+ */
 - (bool)windowShouldClose: (GTKWindow *)sender;
 
-// This will be sent to the delegate when it has been determined that the
-// window should close, just before the actual closing is done.
+/*!
+ * @brief This will be sent to the delegate when it has been determined that
+ * the window should close, just before the actual closing is done.
+ */
 - (void)windowWillClose: (GTKWindow *)sender;
 
 // This will be sent to the delegate when the window has actually been closed.

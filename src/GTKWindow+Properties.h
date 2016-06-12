@@ -24,18 +24,63 @@
 OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWindow (Properties)
+/*!
+ * @brief The title of the window.
+ */
 @property OFString *title;
+/*!
+ * @brief Whether or not the window is resizable.
+ */
 @property bool resizable;
+/*!
+ * @brief Whether or not the window prevents interacting with any other windows
+ * in the same application.
+ */
 @property bool modal;
+/*!
+ * @brief The position of the window. Note that it is impossible to guarantee
+ * this will be pixel-accurate, as window systems are inconsistent in their
+ * handling of window positions.
+ */
 @property of_point_t position;
+/*!
+ * @brief The window for which this window is transient.
+ */
 @property GTKWindow *transientForWindow;
+/*!
+ * @brief The window to which this window is attached.
+ */
 @property GTKWindow *attachedToWindow;
+/*!
+ * @brief Whether or not this window should be destroyed with its parent.
+ */
 @property bool destroyWithParent;
+/*!
+ * @brief Whether or not the window is maximized.
+ */
 @property (readonly) bool maximized;
+/*!
+ * @brief Whether or not the window should be decorated.
+ */
 @property bool decorated;
+/*!
+ * @brief Whether or not the window should be closable.
+ */
 @property bool deletable;
+/*!
+ * @brief Whether or not the window is active.
+ */
 @property (readonly) bool active;
+/*!
+ * @brief Whether or not the window should hide its titlebar when maximized.
+ */
 @property bool hideTitlebarWhenMaximized;
+/*!
+ * @brief The custom widget to use for a titlebar. If this is set, GTK+ will
+ * make its best efforts to disable the system's window toolbar as well.
+ *
+ * This is primarily intended for use with the @ref GTKHeaderBar widget.
+ */
 @property GTKWidget *titlebar;
 @end
 

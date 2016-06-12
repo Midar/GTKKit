@@ -22,10 +22,25 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
+/*!
+ * @brief A button that retains its state.
+ */
 @interface GTKToggleButton: GTKButton
 {
   gulong _buttonToggledHandlerID;
 }
+/*!
+ * @brief Whether or not to draw a toggle indicator for this button.
+ */
+@property bool drawIndicator;
+/*!
+ * @brief The state of the button.
+ */
+@property bool active;
+/*!
+ * @brief Whether or not the button is in an "inconsistent" state.
+ */
+@property bool inconsistent;
 @end
 
 OF_ASSUME_NONNULL_END

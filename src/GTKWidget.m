@@ -28,10 +28,14 @@ widget_destroyed_handler (GtkWidget *widget, GTKWidget *wrapper)
 }
 
 @implementation GTKWidget
-+ (instancetype)widgetFromGtkWidget:(GtkWidget *)w
++ (instancetype)wrapperForGtkWidget:(GtkWidget *)widget
 {
-  return (__bridge GTKWidget*)g_object_get_data(G_OBJECT(w),
+  GTKWidget *wrapper = (__bridge GTKWidget*)g_object_get_data(G_OBJECT(widget),
       "_GTKKIT_WRAPPER_WIDGET_");
+  if (wrapper == NULL) {
+    @throw([GTKNoWrapperForGtkWidgetException new]);
+  }
+  return wrapper;
 }
 
 - (void)dealloc

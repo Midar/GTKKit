@@ -115,7 +115,7 @@
   }
   GtkListBoxRow *row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self.widget));
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
-  return [GTKWidget widgetFromGtkWidget: child];
+  return [GTKWidget wrapperForGtkWidget: child];
 }
 
 // This gets the wrapper object for the widget in the given row. It will
@@ -132,7 +132,7 @@
   GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
       index);
   GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
-  return [GTKWidget widgetFromGtkWidget: child];
+  return [GTKWidget wrapperForGtkWidget: child];
 }
 
 // Because the only way to count a GList is to iterate through it, this takes

@@ -54,7 +54,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return [GTKWidget widgetFromGtkWidget:
+  return [GTKWidget wrapperForGtkWidget:
       gtk_frame_get_label_widget (GTK_FRAME (self.widget))];
 }
 

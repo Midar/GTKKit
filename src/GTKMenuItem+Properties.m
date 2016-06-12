@@ -54,7 +54,7 @@ menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
     @throw([GTKDestroyedWidgetException new]);
   }
   GtkWidget *menu = gtk_menu_item_get_submenu(GTK_MENU_ITEM(self.widget));
-  return [GTKMenu widgetFromGtkWidget: menu];
+  return [GTKMenu wrapperForGtkWidget: menu];
 }
 
 - (void)setSubmenu:(GTKMenu *)submenu

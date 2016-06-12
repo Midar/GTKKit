@@ -40,10 +40,11 @@ OF_ASSUME_NONNULL_BEGIN
 }
 @property OF_NULLABLE_PROPERTY (assign) GtkWidget * widget;
 /*!
- * @brief Convenience constructor for locating the wrapper for a GTK+ widget C
+ * @brief Convenience method for locating the wrapper for a GTK+ widget C
  * pointer using only the pointer itself.
+ * @throws GTKNoWrapperForGtkWidgetException
  */
-+ (instancetype)widgetFromGtkWidget: (GtkWidget*)w;
++ (instancetype)wrapperForGtkWidget: (GtkWidget*)widget;
 @end
 
 OF_ASSUME_NONNULL_END

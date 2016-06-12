@@ -123,7 +123,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return [GTKWindow widgetFromGtkWidget:
+  return [GTKWindow wrapperForGtkWidget:
     GTK_WIDGET (gtk_window_get_transient_for (GTK_WINDOW (self.widget)))];
 }
 
@@ -132,7 +132,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  return [GTKWindow widgetFromGtkWidget:
+  return [GTKWindow wrapperForGtkWidget:
     GTK_WIDGET (gtk_window_get_attached_to (GTK_WINDOW (self.widget)))];
 }
 

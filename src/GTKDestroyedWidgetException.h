@@ -17,7 +17,10 @@
 #import <ObjFW/ObjFW.h>
 
 OF_ASSUME_NONNULL_BEGIN
-
+/*!
+ * @brief An exception representing the error of attempting to talk to a widget
+ * which has been destroyed.
+ */
 @interface GTKDestroyedWidgetException: OFException
 @end
 

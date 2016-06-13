@@ -28,3 +28,4 @@ tests/*/* [0-9]*
 tests/levelbar/levelbar
 tests/listbox/listbox
 docs/*
+tests/textview/textview

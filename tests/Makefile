@@ -9,7 +9,8 @@ SUBDIRS = window        \
           menu          \
           switch        \
           headerbar     \
-					levelbar      \
-					listbox
+          levelbar      \
+          listbox       \
+          textview
 
 include ../buildsys.mk

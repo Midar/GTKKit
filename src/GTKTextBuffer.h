@@ -27,7 +27,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief The wrapped pointer to the internal GTK+ object representing the
  * buffer.
  */
- @property GtkTextBuffer *bufferHandle;
+@property GtkTextBuffer *bufferHandle;
  /*!
   * @brief The number of lines in the buffer.
   */
@@ -41,7 +41,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief The contents of the buffer. Reading this property results in a new
  * OFString being allocated with a copy of the string value of the buffer.
  */
- @property OFString *stringValue;
+@property OFString *stringValue;
 /*!
  * @brief Insert the specified string at the specified position in the buffer.
  *

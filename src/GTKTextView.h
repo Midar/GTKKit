@@ -27,6 +27,9 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief A widget that displays editable text.
  */
 @interface GTKTextView: GTKContainer <GTKScrollable>
+{
+  GTKTextBuffer *_buffer;
+}
 /*!
  * @brief The buffer to use with the text view widget. Multiple such widgets can
  * share a single buffer if desired.

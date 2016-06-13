@@ -38,10 +38,26 @@
     g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
         (__bridge void*) self);
     self.buffer = [GTKTextBuffer new];
-    gtk_text_view_set_buffer (GTK_TEXT_VIEW (self.widget), self.buffer.bufferHandle);
     _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
       G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
     return self;
+}
+
+- (GTKTextBuffer*)buffer
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return _buffer;
+}
+
+- (void)setBuffer:(GTKTextBuffer*)buffer
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  _buffer = buffer;
+  gtk_text_view_set_buffer (GTK_TEXT_VIEW (self.widget), buffer.bufferHandle);
 }
 
 - (void)moveCursorToVisibleArea

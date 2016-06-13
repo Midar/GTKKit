@@ -25,6 +25,8 @@
 {
   self = [super init];
   self.bufferHandle = gtk_text_buffer_new(NULL);
+  g_object_set_data(G_OBJECT(self.bufferHandle), "_GTKKIT_WRAPPER_WIDGET_",
+      (__bridge void*) self);
   return self;
 }
 

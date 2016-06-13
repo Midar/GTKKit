@@ -1,8 +1,47 @@
  /*!
-  * \mainpage GTKKit
-  *
-  * \section intro_sec Introduction
-  *
-  * GTKKit is a wrapper library, making the GTK+ widget toolkit available to
-  * Objective-C programmers in a familiar way.
-  */
+
+\mainpage GTKKit
+
+\section intro_sec Introduction
+
+GTKKit is a wrapper library, making the GTK+ widget toolkit available to
+Objective-C programmers in a familiar way. The goal is not to adapt all of
+GTK+ to Objective-C, but enable GTK+ based application development in a way
+familiar to Objective-C programmers; thus, GTKKit not only wraps the essential
+classes of GTK+, it also implements such design patterns as target-action and
+the delegate pattern, and seeks to evolve into a true Model-View-Controller
+paradigm, without abandoning the traditional UNIX development tools or the
+runtime dynamism that makes Objective-C so powerful.
+
+\section state_sec Current State
+
+At present, GTKKit implements wrapper classes for many common GTK+ widgets,
+and has usable, if minimalistic, implementations of the delegate and
+target-action patterns in several of those classes. The API is under
+development, and should by no means be considered stable - source-level
+incompatibilities may come up on a weekly or even daily basis.
+
+\section roadmap_sec Roadmap
+
+As the basic API stabilizes, an initial release at version 0.1 will be made;
+after that, various APIs will be marked as unstable, stable, or deprecated;
+changes which break stable APIs will not be integrated into a release until the
+next point release (0.1 to 0.2, for example), while unstable APIs can change
+at any time. Deprecated APIs may be (and probably will be) removed entirely in
+the next point release. Point releases will be made from the "master" branch,
+which will merge in features from feature branches as they stabilize.
+
+\section swift_sec About Swift
+
+The person behind GTKKit is by no means against Swift, and in fact is quite
+fond of the language - and when Swift as a language is more stable, and the
+open-source Swift Foundation library is more complete, would be happy to put in
+the several days to weeks of busy-work porting GTKKit over to Swift and then
+maintaining it in both languages. Most of the code in GTKKit is fairly dull and
+simplistic boilerplate, and most of the hard work has been in adapting the GTK+
+API (which is as object-oriented as a plain C API can reasonably be), on a
+conceptual level, to the design patterns used in Objective-C, most of which are
+also available in Swift. In fact, GTKKit could benefit from several things in
+Swift, such as protocol extensions and the drastically improved enumerations.
+
+*/

@@ -66,6 +66,102 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @property bool overwriteMode;
 /*!
+ * @brief The number of pixels above paragraphs in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int pixelsAboveParagraphs;
+/*!
+ * @brief The number of pixels below paragraphs in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int pixelsBelowParagraphs;
+/*!
+ * @brief The number of pixels between wrapped lines in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int pixelsBetweenWrappedLines;
+/*!
+ * @brief The justification of the text in the text view.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_JUSTIFY_LEFT
+ * - GTK_JUSTIFY_RIGHT
+ * - GTK_JUSTIFY_CENTER
+ * - GTK_JUSTIFY_FILL
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property GtkJustification justification;
+/*!
+ * @brief The padding on the left side of the text in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int paddingLeft;
+/*!
+ * @brief The padding on the right side of the text in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int paddingRight;
+/*!
+ * @brief The padding on the top side of the text in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int paddingTop;
+/*!
+ * @brief The padding on the bottom side of the text in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int paddingBottom;
+/*!
+ * @brief The indentation (in pixels) for paragraphs in the text view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int indent;
+/*!
+ * @brief Whether or not to accept tabs as characters when the tab key is
+ * pressed. If this is false, the tab key will cause focus to move to the
+ * next widget.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property bool acceptTab;
+/*!
+ * @brief The purpose of the text view. This is used by input methods and
+ * on-screen keyboards to alter their behaviour.
+ *
+ * One of the following possible values:
+ *
+ * - GTK_INPUT_PURPOSE_FREE_FORM
+ * - GTK_INPUT_PURPOSE_ALPHA
+ * - GTK_INPUT_PURPOSE_DIGITS
+ * - GTK_INPUT_PURPOSE_NUMBER
+ * - GTK_INPUT_PURPOSE_PHONE
+ * - GTK_INPUT_PURPOSE_URL
+ * - GTK_INPUT_PURPOSE_EMAIL
+ * - GTK_INPUT_PURPOSE_NAME
+ * - GTK_INPUT_PURPOSE_PASSWORD
+ * - GTK_INPUT_PURPOSE_PIN
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property GtkInputPurpose purpose;
+/*!
+ * @brief Whether or not to use a monospaced font to render the text in the text
+ * view.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property bool monospace;
+/*!
  * @brief Moves the cursor so it is within the visible portion of the buffer,
  * if it is not there already.
  *

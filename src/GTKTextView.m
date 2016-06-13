@@ -116,6 +116,198 @@
   gtk_text_view_set_overwrite(GTK_TEXT_VIEW(self.widget), mode);
 }
 
+- (int)pixelsAboveParagraphs
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_pixels_above_lines(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPixelsAboveParagraphs:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_pixels_above_lines(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (int)pixelsBelowParagraphs
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_pixels_below_lines(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPixelsBelowParagraphs:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_pixels_below_lines(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (int)pixelsBetweenWrappedLines
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_pixels_inside_wrap(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPixelsBetweenWrappedLines:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_pixels_inside_wrap(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (GtkJustification)justification
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_justification(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setJustification:(GtkJustification)justify
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_justification(GTK_TEXT_VIEW(self.widget), justify);
+}
+
+- (int)paddingLeft
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_left_margin(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPaddingLeft:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_left_margin(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (int)paddingRight
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_right_margin(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPaddingRight:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_right_margin(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (int)paddingTop
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_top_margin(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPaddingTop:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_top_margin(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (int)paddingBottom
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_bottom_margin(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPaddingBottom:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_bottom_margin(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (int)indent
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_indent(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setIndent:(int)pixels
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_indent(GTK_TEXT_VIEW(self.widget), pixels);
+}
+
+- (bool)acceptTab
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_accepts_tab(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setAcceptTab:(bool)mode
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_accepts_tab(GTK_TEXT_VIEW(self.widget), mode);
+}
+
+- (GtkInputPurpose)purpose
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_input_purpose(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setPurpose:(GtkInputPurpose)purpose
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_input_purpose(GTK_TEXT_VIEW(self.widget), purpose);
+}
+
+- (bool)monospace
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_text_view_get_monospace(GTK_TEXT_VIEW(self.widget));
+}
+
+- (void)setMonospace:(bool)monospace
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_text_view_set_monospace(GTK_TEXT_VIEW(self.widget), monospace);
+}
+
 // implement <GTKScrollable>
 - (GtkAdjustment*)horizontalAdjustment
 {

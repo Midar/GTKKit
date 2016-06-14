@@ -55,5 +55,6 @@
 #import "GTKTextBuffer.h"
 #import "GTKTextView.h"
 #import "GTKOverlay.h"
+#import "GTKPopover.h"
 #import "GTKOrientable.h"
 #import "GTKScrollable.h"

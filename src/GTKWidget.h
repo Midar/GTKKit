@@ -38,7 +38,16 @@ OF_ASSUME_NONNULL_BEGIN
 {
   gulong _widgetDestroyedHandlerID;
 }
-@property OF_NULLABLE_PROPERTY (assign) GtkWidget * widget;
+/*!
+ * @brief The property which stores the pointer to the internal GtkWidget
+ * structure. This is only useful or interesting except to people extending
+ * GTKKit with new widget classes or methods.
+ */
+@property (nullable) GtkWidget * widget;
+/*!
+ * @brief The immediate parent of the widget, if it has one.
+ */
+@property (weak) GTKWidget *parent;
 /*!
  * @brief Convenience method for locating the wrapper for a GTK+ widget C
  * pointer using only the pointer itself.

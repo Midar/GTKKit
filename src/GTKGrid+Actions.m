@@ -30,6 +30,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = self;
   gtk_grid_attach(GTK_GRID(self.widget), GTK_WIDGET(childWidget.widget),
       left, top, width, height);
 }
@@ -43,6 +44,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = self;
   gtk_grid_attach_next_to(GTK_GRID(self.widget),
       GTK_WIDGET(childWidget.widget), GTK_WIDGET(siblingWidget.widget),
       side, width, height);

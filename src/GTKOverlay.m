@@ -66,6 +66,7 @@
   if (child.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  child.parent = self;
   gtk_overlay_add_overlay(GTK_OVERLAY(self.widget), GTK_WIDGET([child widget]));
 }
 

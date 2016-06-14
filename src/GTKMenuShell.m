@@ -26,6 +26,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  menuItem.parent = self;
   gtk_menu_shell_append(GTK_MENU_SHELL(self.widget), menuItem.widget);
 }
 
@@ -34,6 +35,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  menuItem.parent = self;
   gtk_menu_shell_prepend(GTK_MENU_SHELL(self.widget), menuItem.widget);
 }
 
@@ -43,6 +45,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  menuItem.parent = self;
   gtk_menu_shell_insert(GTK_MENU_SHELL(self.widget), menuItem.widget, position);
 }
 

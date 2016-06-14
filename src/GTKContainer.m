@@ -26,6 +26,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = self;
   gtk_container_add(GTK_CONTAINER(self.widget), [childWidget widget]);
 }
 
@@ -34,6 +35,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = NULL;
   gtk_container_remove(GTK_CONTAINER(self.widget), [childWidget widget]);
 }
 

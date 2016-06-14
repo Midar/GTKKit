@@ -26,6 +26,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = self;
   gtk_list_box_prepend(GTK_LIST_BOX(self.widget),
       GTK_WIDGET(childWidget.widget));
 }
@@ -35,6 +36,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = self;
   gtk_list_box_insert(GTK_LIST_BOX(self.widget),
       GTK_WIDGET(childWidget.widget), -1);
 }
@@ -44,6 +46,7 @@
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
+  childWidget.parent = self;
   gtk_list_box_insert(GTK_LIST_BOX(self.widget),
       GTK_WIDGET(childWidget.widget), position);
 }

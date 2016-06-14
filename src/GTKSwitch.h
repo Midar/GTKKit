@@ -25,9 +25,21 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
  * @brief A class representing a widget which has two states, on and off.
  *
- * This is primarily useful in settings dialogs and the like.
+ * This is primarily useful in settings dialogs and the like. It implements the
+ * target-action pattern, to respond to changes in the switch state.
  */
 @interface GTKSwitch: GTKWidget
+{
+  gulong _stateChangedHandlerID;
+}
+/*!
+ * @brief The selector of the method to be used as the action.
+ */
+@property (nullable) SEL action;
+/*!
+ * @brief The object that will act as the target for this switch.
+ */
+@property (weak) id target;
 /*!
  * @brief The state of the switch, true for on, false for off.
  * @throws GTKDestroyedWidgetException

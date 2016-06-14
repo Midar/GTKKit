@@ -32,6 +32,8 @@ OF_APPLICATION_DELEGATE(AppDelegate)
   self.window.delegate = self;
 
   self.gswitch = [GTKSwitch new];
+  self.gswitch.target = self;
+  self.gswitch.action = @selector(switchStateChanged:);
 
   [self.window addWidget: self.gswitch];
 
@@ -54,5 +56,15 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 - (void)windowWillClose:(GTKWindow *)sender
 {
   [OFApplication terminate];
+}
+
+- (void)switchStateChanged:(GTKSwitch*)sender
+{
+  self.exampleProperty = sender.active;
+  if (self.exampleProperty == true) {
+    printf("Switch is active.\n");
+  } else {
+    printf("Switch is inactive.\n");
+  }
 }
 @end

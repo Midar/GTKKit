@@ -61,6 +61,14 @@ OF_ASSUME_NONNULL_BEGIN
 - (void)    insertString: (OFString*)string
     withIdentifierString: (OFString*)ID
               atPosition: (int)position;
+
+/*!
+ * @brief The index of the currently active item in the list, or -1 if there
+ * is no item actve.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property int activeItem;
 @end
 
 OF_ASSUME_NONNULL_END

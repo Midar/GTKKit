@@ -63,4 +63,20 @@
   gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), position,
       [string UTF8String], [ID UTF8String]);
 }
+
+- (int)activeItem
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  return gtk_combo_box_get_active(GTK_COMBO_BOX(self.widget));
+}
+
+- (void)setActiveItem:(int)index
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_combo_box_set_active(GTK_COMBO_BOX(self.widget), index);
+}
 @end

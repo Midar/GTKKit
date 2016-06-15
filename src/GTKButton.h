@@ -40,7 +40,7 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
  * @brief The object that will act as the target for this button.
  */
-@property (weak, nullable) id target;
+@property (weak) id target;
 
 /*!
  * @brief Creates a button with the specified label.

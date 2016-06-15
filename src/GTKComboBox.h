@@ -26,6 +26,22 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief A button which allows the user to select from a list of items.
  */
 @interface GTKComboBox: GTKBin
+{
+  gulong _changedHandlerID;
+}
+
+/*!
+ * @brief The selector of the method to be used as the action when the active
+ * item changes.
+ */
+@property (nullable) SEL action;
+
+/*!
+ * @brief The object that will act as the target for the action when the active
+ * item changes.
+ */
+@property (weak) id target;
+
 /*!
  * @brief Adds a string to the end of the  list of choices.
  *

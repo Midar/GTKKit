@@ -83,6 +83,16 @@ OF_ASSUME_NONNULL_BEGIN
 - (void)removeStringAtIndex: (int)index;
 
 /*!
+* @brief Remove all strings from the list of choices.
+*
+* @param index The index of the position into which the string should be
+* inserted.
+*
+* @throws GTKDestroyedWidgetException
+*/
+- (void)removeAllStrings;
+
+/*!
  * @brief The index of the currently active item in the list, or -1 if there
  * is no item actve.
  *

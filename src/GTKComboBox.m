@@ -87,6 +87,14 @@ comboBoxActiveItemChanged(GtkWidget *combobox, GTKComboBox *sender)
   gtk_combo_box_text_remove(GTK_COMBO_BOX_TEXT(self.widget), index);
 }
 
+- (void)removeAllStrings
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(self.widget));
+}
+
 - (int)activeIndex
 {
   if (self.widget == NULL) {

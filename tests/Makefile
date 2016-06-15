@@ -3,7 +3,6 @@ SUBDIRS = window        \
           image         \
           scale         \
           progressbar   \
-          spinner       \
           togglebutton  \
           checkbutton   \
           menu          \

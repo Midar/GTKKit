@@ -29,7 +29,6 @@ SRCS += GTKRange.m
 SRCS += GTKScale.m
 SRCS += GTKScale+Properties.m
 SRCS += GTKProgressBar.m
-SRCS += GTKSpinner.m
 SRCS += GTKToggleButton.m
 SRCS += GTKCheckButton.m
 SRCS += GTKMenuItem.m

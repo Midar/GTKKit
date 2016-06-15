@@ -37,7 +37,6 @@
 #import "GTKScale.h"
 #import "GTKScale+Properties.h"
 #import "GTKProgressBar.h"
-#import "GTKSpinner.h"
 #import "GTKToggleButton.h"
 #import "GTKCheckButton.h"
 #import "GTKMenuItem.h"

@@ -85,9 +85,6 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
 * @brief Remove all strings from the list of choices.
 *
-* @param index The index of the position into which the string should be
-* inserted.
-*
 * @throws GTKDestroyedWidgetException
 */
 - (void)removeAllStrings;

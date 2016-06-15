@@ -52,14 +52,8 @@ The person behind GTKKit is by no means against Swift, and in fact is quite
 fond of the language - and when Swift as a language is more stable, and the
 open-source Swift Foundation library is more complete, would be happy to put in
 the several days to weeks of busy-work porting GTKKit over to Swift and then
-maintaining it in both languages. Most of the code in GTKKit is fairly dull and
-simplistic boilerplate, and most of the hard work has been in adapting the GTK+
-API (which is as object-oriented as a plain C API can reasonably be), on a
-conceptual level, to the design patterns used in Objective-C, most of which are
-also available in Swift. In fact, GTKKit could benefit from several things in
-Swift, such as protocol extensions and the drastically improved enumerations.
-Alternatively, it's entirely possible that someone will implement an
-Objective-C bridge for the open-source Swift compiler - and if and when that
-happens, work will be done to ensure that GTKKit can be used with it.
+maintaining it in both languages. It's also entirely possible that someone will
+implement an Objective-C bridge for the open-source Swift compiler - and if and
+when that happens, work will be done to ensure that GTKKit can be used with it.
 
 */

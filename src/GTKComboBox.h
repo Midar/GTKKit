@@ -49,7 +49,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)    appendString: (OFString*)string;
+- (void)appendString: (OFString*)string;
 
 /*!
  * @brief Adds a string to the beginning of the  list of choices.
@@ -58,20 +58,29 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)   prependString: (OFString*)string;
+- (void)prependString: (OFString*)string;
 
 /*!
  * @brief Adds a string to the specified position in the  list of choices.
  *
  * @param string the string to add to the list.
- * @param ID a string to use as the ID for the new list option.
- * @param position The index of the position into which the string should be
+ * @param index The index of the position into which the string should be
  * inserted.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)    insertString: (OFString*)string
-              atPosition: (int)position;
+- (void)insertString: (OFString*)string
+             atIndex: (int)index;
+
+/*!
+ * @brief Removed the string at the specified index from the list of choices.
+ *
+ * @param index The index of the position into which the string should be
+ * inserted.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+- (void)removeStringAtIndex: (int)index;
 
 /*!
  * @brief The index of the currently active item in the list, or -1 if there

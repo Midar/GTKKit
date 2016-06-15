@@ -51,7 +51,7 @@ comboBoxActiveItemChanged(GtkWidget *combobox, GTKComboBox *sender)
     g_signal_handler_disconnect(G_OBJECT(self.widget), _changedHandlerID);
 }
 
-- (void)    appendString: (OFString*)string
+- (void)appendString: (OFString*)string
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
@@ -60,7 +60,7 @@ comboBoxActiveItemChanged(GtkWidget *combobox, GTKComboBox *sender)
       [string UTF8String], NULL);
 }
 
-- (void)   prependString: (OFString*)string
+- (void)prependString: (OFString*)string
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
@@ -69,14 +69,22 @@ comboBoxActiveItemChanged(GtkWidget *combobox, GTKComboBox *sender)
       [string UTF8String], NULL);
 }
 
-- (void)  insertString: (OFString*)string
-            atPosition:(int)position
+- (void)insertString: (OFString*)string
+          atIndex:(int)index
 {
   if (self.widget == NULL) {
     @throw([GTKDestroyedWidgetException new]);
   }
-  gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), position,
+  gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), index,
       [string UTF8String], NULL);
+}
+
+- (void)removeStringAtIndex:(int)index
+{
+  if (self.widget == NULL) {
+    @throw([GTKDestroyedWidgetException new]);
+  }
+  gtk_combo_box_text_remove(GTK_COMBO_BOX_TEXT(self.widget), index);
 }
 
 - (int)activeIndex

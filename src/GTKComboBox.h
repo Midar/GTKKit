@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A button which allows the user to select from a list of items.
+ * @brief A button which allows the user to select from a list of strings.
  */
 @interface GTKComboBox: GTKBin
 {
@@ -46,23 +46,19 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Adds a string to the end of the  list of choices.
  *
  * @param string the string to add to the list.
- * @param ID a string to use as the ID for the new list option.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)    appendString: (OFString*)string
-    withIdentifierString: (OFString*)ID;
+- (void)    appendString: (OFString*)string;
 
 /*!
  * @brief Adds a string to the beginning of the  list of choices.
  *
  * @param string the string to add to the list.
- * @param ID a string to use as the ID for the new list option.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)   prependString: (OFString*)string
-    withIdentifierString: (OFString*)ID;
+- (void)   prependString: (OFString*)string;
 
 /*!
  * @brief Adds a string to the specified position in the  list of choices.
@@ -75,7 +71,6 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)    insertString: (OFString*)string
-    withIdentifierString: (OFString*)ID
               atPosition: (int)position;
 
 /*!
@@ -84,7 +79,15 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-@property int activeItem;
+@property int activeIndex;
+
+/*!
+ * @brief The string of the currently active item in the list, or nil if there
+ * is no item actve.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+@property (readonly) OFString *activeString;
 @end
 
 OF_ASSUME_NONNULL_END

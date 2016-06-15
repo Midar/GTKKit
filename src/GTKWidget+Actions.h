@@ -31,6 +31,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)show;
+
 /*!
  * @brief Marks the widget and all the widgets it contains as visible.
  *
@@ -39,6 +40,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)showAll;
+
 /*!
  * @brief Destroys the widget.
  *
@@ -49,21 +51,25 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)destroy;
+
 /*!
  * @brief Marks the widget as hidden.
  * @throws GTKDestroyedWidgetException
  */
 - (void)hide;
+
 /*!
  * @brief Activates the widget as if it had been clicked.
  * @throws GTKDestroyedWidgetException
  */
 - (bool)activate;
+
 /*!
  * @brief Makes the widget the focused widget.
  * @throws GTKDestroyedWidgetException
  */
 - (void)grabFocus;
+
 /*!
  * @brief Makes the widget the default widget.
  * @throws GTKDestroyedWidgetException

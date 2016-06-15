@@ -32,17 +32,20 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
+
 /*!
  * @brief Whether or not the expander is expanded.
  * @throws GTKDestroyedWidgetException
  */
 @property bool expanded;
+
 /*!
  * @brief Whether or not the expander will resize its parent widget when it
  * expands or collapses.
  * @throws GTKDestroyedWidgetException
  */
 @property bool resizeToplevel;
+
 /*!
  * @brief Constructor to generate an expander with the specified label.
  *
@@ -50,6 +53,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 + (instancetype)expanderWithLabel:(OFString*)label;
+
 /*!
  * @brief Initialize the expander with the specified label.
  *

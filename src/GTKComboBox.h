@@ -37,6 +37,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 - (void)    appendString: (OFString*)string
     withIdentifierString: (OFString*)ID;
+
 /*!
  * @brief Adds a string to the beginning of the  list of choices.
  *
@@ -47,6 +48,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 - (void)   prependString: (OFString*)string
     withIdentifierString: (OFString*)ID;
+
 /*!
  * @brief Adds a string to the specified position in the  list of choices.
  *

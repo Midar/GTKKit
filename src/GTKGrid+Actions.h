@@ -38,6 +38,7 @@ OF_ASSUME_NONNULL_BEGIN
                  top: (int)top
                width: (int)width
               height: (int)height;
+
 /*!
  * @brief Attaches a widget to the grid next to the specified widget.
  *
@@ -55,21 +56,25 @@ OF_ASSUME_NONNULL_BEGIN
               onSide: (GtkPositionType)side
                width: (int)width
               height: (int)height;
+
 /*!
  * @brief Adds a row at the given position.
  * @throws GTKDestroyedWidgetException
  */
 - (void)insertRowAtPosition: (int)position;
+
 /*!
 * @brief Adds a column at the given position.
 * @throws GTKDestroyedWidgetException
 */
 - (void)insertColumnAtPosition: (int)position;
+
 /*!
 * @brief Removes a row at the given position.
 * @throws GTKDestroyedWidgetException
 */
 - (void)removeRow: (int)position;
+
 /*!
 * @brief Removes a column at the given position.
 * @throws GTKDestroyedWidgetException

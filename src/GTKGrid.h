@@ -32,31 +32,37 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property bool columnsHomogeneous;
+
 /*!
  * @brief Whether or not each row in the grid has the same height.
  * @throws GTKDestroyedWidgetException
  */
 @property bool rowsHomogeneous;
+
 /*!
  * @brief The spacing between each row.
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int rowSpacing;
+
 /*!
  * @brief The spacing between each column.
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int columnsSpacing;
+
 /*!
  * @brief The row which determines the baseline of the grid.
  * @throws GTKDestroyedWidgetException
  */
 @property int baselineRow;
+
 /*!
  * @brief Gets the baseline position for the specified row.
  * @throws GTKDestroyedWidgetException
  */
 - (GtkBaselinePosition)baselinePositionForRow: (int)row;
+
 /*!
  * @brief Sets the baseline position for the specified row.
  * @throws GTKDestroyedWidgetException

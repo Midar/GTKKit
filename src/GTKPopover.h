@@ -30,21 +30,25 @@ OF_ASSUME_NONNULL_BEGIN
 {
   gulong _closedHandlerID;
 }
+
 /*!
  * @brief The selector of the method to be used as the action when the popover
  * is closed.
  */
 @property (nullable) SEL action;
+
 /*!
  * @brief The object that will act as the target when this popover is closed.
  */
 @property (weak, nullable) id target;
+
 /*!
  * @brief The widget to which this popover is attached.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *attachedWidget;
+
 /*!
  * @brief The widget to make the default widget while this popover is visible;
  * when the popover is dismissed, the previous default will be restored.
@@ -52,6 +56,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *defaultWidget;
+
 /*!
  * @brief The position, relative to the attached widget, that the popover
  * should use.
@@ -66,6 +71,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkPositionType position;
+
 /*!
  * @brief Whether or not the popover should be modal, i.e. if it should grab
  * all the input for the window, including keyboard focus.
@@ -73,6 +79,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property bool modal;
+
 /*!
  * @brief Whether or not the popover should use transition animations on
  * show/hide.
@@ -80,12 +87,14 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property bool enableTransitions;
+
 /*!
  * @brief Create a popover attached to the specified widget.
  *
  * @param widget The widget to which the popover should be attached.
  */
 + (instancetype)popoverAttachedToWidget:(GTKWidget*)widget;
+
 /*!
  * @brief Initialize this popover attached to the specified widget.
  *

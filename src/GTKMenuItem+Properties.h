@@ -31,11 +31,13 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
+
 /*!
  * @brief The menu to use as a submenu for the menu item.
  * @throws GTKDestroyedWidgetException
  */
 @property GTKMenu *submenu;
+
 /*!
  * @brief Constructor to make a menu item with the specified label.
  *
@@ -43,6 +45,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 + (id)menuItemWithLabel:(OFString *)label;
+
 /*!
  * @brief Initialie the menu item with the specified label.
  *

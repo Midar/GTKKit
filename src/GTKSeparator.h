@@ -31,6 +31,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Initialize the separator with the specified orientation.
  */
 + (instancetype)separatorWithOrientation:(GtkOrientation)orientation;
+
 /*!
  * @brief Create a new separator with the specified orientation.
  */

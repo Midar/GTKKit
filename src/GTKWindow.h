@@ -31,22 +31,24 @@ OF_ASSUME_NONNULL_BEGIN
   of_dimension_t _defaultSize;
   of_dimension_t _size;
 }
+
 /*!
  * @brief The default size of the window.
  * @throws GTKDestroyedWidgetException
  */
 @property of_dimension_t defaultSize;
+
 /*!
  * @brief The actual size of the window.
  * @throws GTKDestroyedWidgetException
  */
 @property of_dimension_t size;
+
 /*!
  * @brief The delegate object for the window.
  * @throws GTKDestroyedWidgetException
  */
-@property (nullable, weak)
-    id <GTKWindowDelegate> delegate;
+@property (nullable, weak) id <GTKWindowDelegate> delegate;
 @end
 
 OF_ASSUME_NONNULL_END

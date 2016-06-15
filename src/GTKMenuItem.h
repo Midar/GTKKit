@@ -29,12 +29,14 @@ OF_ASSUME_NONNULL_BEGIN
 {
   gulong _menuItemActivatedHandlerID;
 }
+
 /*!
  * @brief The method that should be used in responding to the menu item being
  * activated.
  * @throws GTKDestroyedWidgetException
  */
 @property (nullable) SEL action;
+
 /*!
  * @brief The object which will be sent a message in response to the menu item
  * being activated.

@@ -28,16 +28,19 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *text;
+
 /*!
  * @brief The horizontal alignment of the text inside the label's area.
  * @throws GTKDestroyedWidgetException
  */
 @property float xAlign;
+
 /*!
  * @brief The vertical alignment of the text inside the label's area.
  * @throws GTKDestroyedWidgetException
  */
 @property float yAlign;
+
 /*!
  * @brief The justification of the text in the label.
  *
@@ -50,6 +53,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkJustification justify;
+
 /*!
  * @brief Whether and how to ellipsize the text of the label if it would
  * otherwise overflow its alloted space.
@@ -63,17 +67,20 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property PangoEllipsizeMode ellipsizeMode;
+
 /*!
  * @brief The maximum number of characters the label should display.
  * @throws GTKDestroyedWidgetException
  */
 @property int desiredWidthInCharacters;
+
 /*!
  * @brief Whether or not the lable should wrap lines the would otherwise
  * overflow their space.
  * @throws GTKDestroyedWidgetException
  */
 @property bool wrap;
+
 /*!
  * @brief The method used to wrap lines.
  *
@@ -85,16 +92,19 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property PangoWrapMode lineWrapMode;
+
 /*!
  * @brief Whether or not text in the label should be selectable.
  * @throws GTKDestroyedWidgetException
  */
 @property bool selectable;
+
 /*!
  * @brief Whether or not the label is in single-line mode.
  * @throws GTKDestroyedWidgetException
  */
 @property bool singleLineMode;
+
 /*!
  * @brief The angle of rotation of the label. This value is ignored if the label
  * is selectable, wrapped, or ellipsized.

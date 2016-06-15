@@ -38,6 +38,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)addOverlayChild:(GTKWidget*)child;
+
 /*!
  * @brief Changes the z-index ordering of the specified child widget.
  *
@@ -47,6 +48,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 - (void)reorderOverlayChild:(GTKWidget*)child
                     toIndex:(int)index;
+
 /*!
  * @brief Gets whether or not the specified child passes its input through to
  * the widget below. This does not apply to the main child.
@@ -55,6 +57,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (bool)overlayChildPassthrough:(GTKWidget*)child;
+
 /*!
 * @brief Sets whether or not the specified child passes its input through to
 * the widget below. This does not apply to the main child.

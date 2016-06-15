@@ -28,20 +28,24 @@ OF_ASSUME_NONNULL_BEGIN
  * buffer.
  */
 @property GtkTextBuffer *bufferHandle;
+
  /*!
   * @brief The number of lines in the buffer.
   */
 @property (readonly) int lineCount;
+
 /*!
  * @brief The number of characters in the buffer. This is not the same as the
  * number of bytes, as the buffer stores text in UTF-8.
  */
 @property (readonly) int characterCount;
+
 /*!
  * @brief The contents of the buffer. Reading this property results in a new
  * OFString being allocated with a copy of the string value of the buffer.
  */
 @property OFString *stringValue;
+
 /*!
  * @brief Insert the specified string at the specified position in the buffer.
  *
@@ -50,6 +54,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 - (void)insertString:(OFString*)string
           atPosition:(int)position;
+
 /*!
  * @brief Insert the specified string at the cursor location.
  *

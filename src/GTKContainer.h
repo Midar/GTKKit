@@ -31,6 +31,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int borderWidth;
+
 /*!
  * @brief Adds the specified widget to the container.
  *
@@ -38,6 +39,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)addWidget: (GTKWidget*)childWidget;
+
 /*!
  * @brief Removes the specified widget from the container.
  *
@@ -45,6 +47,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)removeWidget: (GTKWidget*)childWidget;
+
 /*!
  * @brief Adds an array of widgets to the container.
  *

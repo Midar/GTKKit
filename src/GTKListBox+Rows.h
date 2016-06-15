@@ -32,6 +32,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowSelectedAtIndex:(int)index;
+
 /*!
  * @brief Set the header for the specified row to the specified widget.
  *
@@ -41,6 +42,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowHeaderAtIndex:(int)index toWidget:(GTKWidget)header;
+
 /*!
  * @brief Whether or not the specified row is activatable.
  *
@@ -49,6 +51,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowActivatableAtIndex:(int)index;
+
 /*!
  * @brief Sets whether or not the specified row is activatable.
  *
@@ -58,6 +61,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowActivatableAtIndex:(int)index to:(bool)activatable;
+
 /*!
  * @brief Whether or not the specified row is selectable.
  *
@@ -66,6 +70,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (bool)rowSelectableAtIndex:(int)index;
+
 /*!
 * @brief Sets whether or not the specified row is selectable.
  *
@@ -75,6 +80,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowSelectableAtIndex:(int)index to:(bool)selectable;
+
 /*!
  * @brief Informs the list box that the specified row has changed.
  *

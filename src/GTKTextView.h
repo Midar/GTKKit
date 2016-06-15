@@ -30,12 +30,14 @@ OF_ASSUME_NONNULL_BEGIN
 {
   GTKTextBuffer *_buffer;
 }
+
 /*!
  * @brief The buffer to use with the text view widget. Multiple such widgets can
  * share a single buffer if desired.
  * @throws GTKDestroyedWidgetException
  */
 @property GTKTextBuffer *buffer;
+
 /*!
  * @brief The wrap mode of the text view.
  *
@@ -49,18 +51,21 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkWrapMode wrapMode;
+
 /*!
  * @brief Whether or not the text view is editable.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool editable;
+
 /*!
  * @brief Whether or not the cursor is visible.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool cursorVisible;
+
 /*!
  * @brief Whether the text view is in insert or overwrite mode. Setting this to
  * true turns on overwrite mode, false sets it to insert mode.
@@ -68,24 +73,28 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property bool overwriteMode;
+
 /*!
  * @brief The number of pixels above paragraphs in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int pixelsAboveParagraphs;
+
 /*!
  * @brief The number of pixels below paragraphs in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int pixelsBelowParagraphs;
+
 /*!
  * @brief The number of pixels between wrapped lines in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int pixelsBetweenWrappedLines;
+
 /*!
  * @brief The justification of the text in the text view.
  *
@@ -99,36 +108,42 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkJustification justification;
+
 /*!
  * @brief The padding on the left side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingLeft;
+
 /*!
  * @brief The padding on the right side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingRight;
+
 /*!
  * @brief The padding on the top side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingTop;
+
 /*!
  * @brief The padding on the bottom side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingBottom;
+
 /*!
  * @brief The indentation (in pixels) for paragraphs in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int indent;
+
 /*!
  * @brief Whether or not to accept tabs as characters when the tab key is
  * pressed. If this is false, the tab key will cause focus to move to the
@@ -137,6 +152,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property bool acceptTab;
+
 /*!
  * @brief The purpose of the text view. This is used by input methods and
  * on-screen keyboards to alter their behaviour.
@@ -157,6 +173,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkInputPurpose purpose;
+
 /*!
  * @brief Whether or not to use a monospaced font to render the text in the text
  * view.
@@ -164,6 +181,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property bool monospace;
+
 /*!
  * @brief Moves the cursor so it is within the visible portion of the buffer,
  * if it is not there already.

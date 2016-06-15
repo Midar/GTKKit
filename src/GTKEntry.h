@@ -32,21 +32,25 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkEntryBuffer *buffer;
+
 /*!
  * @brief The text contained in the buffer.
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *stringValue;
+
 /*!
  * @brief Whether or not the text in the entry should be obscured.
  * @throws GTKDestroyedWidgetException
  */
 @property bool textVisible;
+
 /*!
  * @brief The maximum number of characters to allow in the entry.
  * @throws GTKDestroyedWidgetException
  */
 @property int maximumLength;
+
 /*!
  * @brief Whether or not to draw a frame around the entry.
  * @throws GTKDestroyedWidgetException

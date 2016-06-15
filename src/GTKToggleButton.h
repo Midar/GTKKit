@@ -29,16 +29,19 @@ OF_ASSUME_NONNULL_BEGIN
 {
   gulong _buttonToggledHandlerID;
 }
+
 /*!
  * @brief Whether or not to draw a toggle indicator for this button.
  * @throws GTKDestroyedWidgetException
  */
 @property bool drawIndicator;
+
 /*!
  * @brief The state of the button.
  * @throws GTKDestroyedWidgetException
  */
 @property bool active;
+
 /*!
  * @brief Whether or not the button is in an "inconsistent" state.
  * @throws GTKDestroyedWidgetException

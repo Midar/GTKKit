@@ -31,21 +31,25 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *title;
+
 /*!
  * @brief The subtitle shown on the header bar.
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *subtitle;
+
 /*!
  * @brief Whether or not to show a subtitle on the header bar.
  * @throws GTKDestroyedWidgetException
  */
 @property bool hasSubtitle;
+
 /*!
  * @brief Whether or not to show window control buttons on the header bar.
  * @throws GTKDestroyedWidgetException
  */
 @property bool showWindowButtons;
+
 /*!
  * @brief The layout of the window buttons.
  *

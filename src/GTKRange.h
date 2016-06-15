@@ -32,51 +32,61 @@ OF_ASSUME_NONNULL_BEGIN
   double _min;
   double _max;
 }
+
 /*
  * @brief The current fill level of the range.
  * @throws GTKDestroyedWidgetException
  */
 @property double fillLevel;
+
 /*
  * @brief Whether or not the range is restricted to the fill level.
  * @throws GTKDestroyedWidgetException
  */
 @property bool restrictToFillLevel;
+
 /*
  * @brief Whether or not the range displays the fill level.
  * @throws GTKDestroyedWidgetException
  */
 @property bool showFillLevel;
+
 /*
  * @brief Whether the range runs from low to high, or from high to low.
  * @throws GTKDestroyedWidgetException
  */
 @property bool inverted;
+
 /*
  * @brief The current value of the range.
  * @throws GTKDestroyedWidgetException
  */
 @property double value;
+
 /*
  * @brief The amount by which the value is modified by the arrow keys.
  * @throws GTKDestroyedWidgetException
  */
 @property (nonatomic) double stepSize;
+
 /*
  * @brief The number of digits to which to round the value to when it changes.
  * @throws GTKDestroyedWidgetException
  */
 @property int roundDigts;
+
 /*
  * @brief The minimum value of the range.
  * @throws GTKDestroyedWidgetException
  */
 @property (nonatomic) double minValue;
+
 /*
  * @brief The maximum value of the range.
  * @throws GTKDestroyedWidgetException
  */
 @property (nonatomic) double maxValue;
+
 /*
  * @brief Set both the minimum and maximum values of the range in a single
  * message.

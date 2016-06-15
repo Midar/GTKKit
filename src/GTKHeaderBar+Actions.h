@@ -30,6 +30,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 - (void)addWidgetAtStart:(GTKWidget *)child;
+
 /*!
  * @brief Add a widget at the end of the header bar.
  *

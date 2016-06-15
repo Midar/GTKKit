@@ -32,6 +32,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
+
 /*!
  * @brief The custom widget to use as a label for the frame.
  *
@@ -40,11 +41,13 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *labelWidget;
+
 /*!
  * @brief The horizontal alignment of the label.
  * @throws GTKDestroyedWidgetException
  */
 @property float labelHorizontalAlign;
+
 /*!
  * @brief The vertical alignment of the label.
  * @throws GTKDestroyedWidgetException

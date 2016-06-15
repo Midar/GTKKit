@@ -36,11 +36,13 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAdjustment *horizontalAdjustment;
+
 /*!
  * @brief The vertical adjustment of the scrolled window.
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAdjustment *verticalAdjustment;
+
 /*!
  * @brief The horizontal scrolling policy.
  *
@@ -53,11 +55,13 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkPolicyType horizontalScrollingPolicy;
+
 /*!
  * @brief The vertical scrolling policy. (see @ref horizontalScrollingPolicy)
  * @throws GTKDestroyedWidgetException
  */
 @property GtkPolicyType verticalScrollingPolicy;
+
 /*!
  * @brief The placement of the content with respect to the scrollbars.
  *
@@ -70,6 +74,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkCornerType placement;
+
 /*!
  * @brief The shadow type of the scrolled window.
  *
@@ -82,29 +87,34 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property GtkShadowType shadowType;
+
 /*!
  * @brief The minimum content width of the scrolled window, or -1 if it is not
  * set.
  * @throws GTKDestroyedWidgetException
  */
 @property int minContentWidth;
+
 /*!
  * @brief The minimum content height of the scrolled window, or -1 if it is not
  * set.
  * @throws GTKDestroyedWidgetException
  */
 @property int minContentHeight;
+
 /*!
  * @brief Whether or not kinetic scrolling is enabled. This applies only to
  * touchscreen devices.
  * @throws GTKDestroyedWidgetException
  */
 @property bool kineticScrollingEnabled;
+
 /*!
  * @brief Whether or not overlay scrolling is enabled.
  * @throws GTKDestroyedWidgetException
  */
 @property bool overlayScrollingEnabled;
+
 /*!
  * @brief Whether or not the behaviour of kinetic scrolling shoud be modified to
  * capture the initial event that triggered the scrolling, to play it back if

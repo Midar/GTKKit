@@ -29,17 +29,20 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *title;
+
 /*!
  * @brief Whether or not the window is resizable.
  * @throws GTKDestroyedWidgetException
  */
 @property bool resizable;
+
 /*!
  * @brief Whether or not the window prevents interacting with any other windows
  * in the same application.
  * @throws GTKDestroyedWidgetException
  */
 @property bool modal;
+
 /*!
  * @brief The position of the window. Note that it is impossible to guarantee
  * this will be pixel-accurate, as window systems are inconsistent in their
@@ -47,41 +50,49 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  */
 @property of_point_t position;
+
 /*!
  * @brief The window for which this window is transient.
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWindow *transientForWindow;
+
 /*!
  * @brief The window to which this window is attached.
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWindow *attachedToWindow;
+
 /*!
  * @brief Whether or not this window should be destroyed with its parent.
  * @throws GTKDestroyedWidgetException
  */
 @property bool destroyWithParent;
+
 /*!
  * @brief Whether or not the window is maximized.
  * @throws GTKDestroyedWidgetException
  */
 @property (readonly) bool maximized;
+
 /*!
  * @brief Whether or not the window should be decorated.
  * @throws GTKDestroyedWidgetException
  */
 @property bool decorated;
+
 /*!
  * @brief Whether or not the window should be closable.
  * @throws GTKDestroyedWidgetException
  */
 @property bool deletable;
+
 /*!
  * @brief Whether or not the window is active.
  * @throws GTKDestroyedWidgetException
  */
 @property (readonly) bool active;
+
 /*!
  * @brief Whether or not the window should hide its titlebar when maximized.
  * @throws GTKDestroyedWidgetException

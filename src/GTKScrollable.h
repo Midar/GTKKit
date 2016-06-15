@@ -29,11 +29,13 @@
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAdjustment *horizontalAdjustment;
+
 /*!
  * @brief The vertical adjustment of the scrollable widget.
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAdjustment *verticalAdjustment;
+
 /*!
  * @brief The horizontal scrolling policy of the scrollable widget.
  *
@@ -44,6 +46,7 @@
  * @throws GTKDestroyedWidgetException
  */
 @property GtkScrollablePolicy horizontalScrollingPolicy;
+
 /*!
  * @brief The vertical scrolling policy of the scrollable widget.
  *

@@ -27,6 +27,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief The text of the label to use for the button.
  */
 @property OFString *label;
+
 /*!
  * @brief The relief style of the button; one of the following possible values:
  *

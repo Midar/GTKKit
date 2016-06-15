@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class which implements a slider to control the value of a range.
+ * @brief A slider that controls the value of a range.
  */
 @interface GTKScale: GTKRange
 {

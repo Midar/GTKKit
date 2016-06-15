@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a clickable button with a customizable label.
+ * @brief A clickable button with a customizable label.
  *
  * This class makes use of the target-action design pattern.
  */

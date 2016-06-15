@@ -24,7 +24,7 @@ OF_ASSUME_NONNULL_BEGIN
 
 
 /*!
- * @brief A class for objecs representing a text entry widget.
+ * @brief A simple text entry widget.
  */
 @interface GTKEntry: GTKWidget
 /*!

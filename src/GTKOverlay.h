@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a container which stacks its children on the Z
+ * @brief A container which stacks its children on the Z
  * axis.
  *
  * An overlay container is appropriate, for example, when one wishes to have

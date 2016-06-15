@@ -23,8 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a button which allows the user to select from a
- * list of items.
+ * @brief A button which allows the user to select from a list of items.
  */
 @interface GTKComboBox: GTKBin
 /*!

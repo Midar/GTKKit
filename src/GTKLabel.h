@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class for widgets which show a text string.
+ * @brief A widget that displays a UTF-8 text string.
  */
 @interface GTKLabel: GTKWidget
 /*!

@@ -23,7 +23,8 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class implementing a GNOME-style header bar.
+ * @brief A GNOME-style header bar, designed to be used as an alternative to
+ * traditional window titlebars and menubars.
  */
 @interface GTKHeaderBar: GTKContainer
 /*!

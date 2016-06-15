@@ -10,8 +10,23 @@ GTK+ to Objective-C, but enable GTK+ based application development in a way
 familiar to Objective-C programmers; thus, GTKKit not only wraps the essential
 classes of GTK+, it also implements such design patterns as target-action and
 the delegate pattern, and seeks to evolve into a true Model-View-Controller
-paradigm, without abandoning the traditional UNIX development tools or the
+framework, without abandoning the traditional UNIX development tools or the
 runtime dynamism that makes Objective-C so powerful.
+
+GTKKit is not dependent on Cocoa, GNUStep, or any other project, except for the
+ObjFW alternative Objective-C class library and runtime, which it uses to ensure
+platform-independence.
+
+The API of GTKKit is inspired by, but not compatible with, that of Cocoa and
+GNUStep; it uses similar design philosophy and is not afraid to use the same
+solutions when appropriate, but as it is inherently incompatible on a source
+code level, it will not be limited to the choices made on those platforms.
+
+\section deps_sec Dependencies
+
+Obviously, GTKKit depends on a recent version of GTK+. It also requires ObjFW,
+an Objective-C compiler (GCC or Clang), autotools, and a Make utility (GNU and
+BSD Make will both work).
 
 \section state_sec Current State
 
@@ -43,5 +58,8 @@ API (which is as object-oriented as a plain C API can reasonably be), on a
 conceptual level, to the design patterns used in Objective-C, most of which are
 also available in Swift. In fact, GTKKit could benefit from several things in
 Swift, such as protocol extensions and the drastically improved enumerations.
+Alternatively, it's entirely possible that someone will implement an
+Objective-C bridge for the open-source Swift compiler - and if and when that
+happens, work will be done to ensure that GTKKit can be used with it.
 
 */

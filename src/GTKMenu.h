@@ -24,7 +24,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a pop-up menu.
+ * @brief A list of menu items.
  */
 @interface GTKMenu: GTKMenuShell
 /*!

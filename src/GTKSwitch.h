@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a widget which has two states, on and off.
+ * @brief A widget which has two states, on and off.
  *
  * This is primarily useful in settings dialogs and the like. It implements the
  * target-action pattern, to respond to changes in the switch state.

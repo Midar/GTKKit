@@ -23,8 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class for object which represent containers that can hide their
- * child.
+ * @brief A container that can hide its child.
  */
 @interface GTKExpander: GTKBin
 /*!

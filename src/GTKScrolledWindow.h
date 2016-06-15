@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a container that can scroll in either axis.
+ * @brief A container that can scroll in either axis.
  *
  * Counterintuitively, this is not a window in the conventional sense, just a
  * container which holds a single widget and can scroll. This container is

@@ -24,7 +24,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class for widgets which separate other widgets.
+ * @brief A widget which separates other widgets.
  */
 @interface GTKSeparator: GTKWidget <GTKOrientable>
 /*!

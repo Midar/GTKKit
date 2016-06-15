@@ -23,7 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class for widgets which show an image.
+ * @brief A widget that shows an image.
  */
 @interface GTKImage: GTKWidget
 {

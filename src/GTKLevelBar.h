@@ -23,7 +23,7 @@
 
 OF_ASSUME_NONNULL_BEGIN
 /*!
- * @brief A class for widgets which display a value as a bar that fills from
+ * @brief A widget that displays a value as a bar that fills from
  * one side to the other.
  */
 @interface GTKLevelBar: GTKWidget <GTKOrientable>

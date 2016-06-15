@@ -23,7 +23,10 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A container that can show an hide its child using animation.
+ * @brief A container that can show and hide its child using animation.
+ *
+ * You would wrap your widget in a GTKRevealer when you want to be able to add
+ * the ability to animate the revealing and concealing of that widget.
  */
 @interface GTKRevealer: GTKBin
 /*!

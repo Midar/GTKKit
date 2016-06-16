@@ -14,6 +14,7 @@ At the moment, GTKKit is only tested on OS X and FreeBSD.
 Currently, GTKKit implements the following widget classes, to a greater or
 lesser extent:
 
+  GTKActionBar
   GTKButton
   GTKCheckButton
   GTKComboBox
@@ -28,11 +29,14 @@ lesser extent:
   GTKMenu
   GTKMenuItem
   GTKOverlay
+  GTKPopover
   GTKProgressBar
+  GTKRadioButton
+  GTKRevealer
   GTKScale
   GTKScrolledWindow
   GTKSeparator
-  GTKSpinner (currently broken)
   GTKSwitch
+  GTKTextView
   GTKToggleButton
   GTKWindow

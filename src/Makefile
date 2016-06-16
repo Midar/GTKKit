@@ -48,6 +48,7 @@ SRCS += GTKTextView.m
 SRCS += GTKPopover.m
 SRCS += GTKActionBar.m
 SRCS += GTKRevealer.m
+SRCS += GTKRadioButton.m
 SRCS += GTKDestroyedWidgetException.m
 SRCS += GTKNoWrapperForGtkWidgetException.m
 SRCS += GTKRowOutOfBoundsException.m

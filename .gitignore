@@ -29,3 +29,4 @@ tests/levelbar/levelbar
 tests/listbox/listbox
 docs/*
 tests/textview/textview
+tests/radiobutton/radiobutton

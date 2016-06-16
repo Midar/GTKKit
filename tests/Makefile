@@ -10,6 +10,7 @@ SUBDIRS = window        \
           headerbar     \
           levelbar      \
           listbox       \
-          textview
+          textview      \
+					radiobutton
 
 include ../buildsys.mk

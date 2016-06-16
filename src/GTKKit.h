@@ -57,5 +57,6 @@
 #import "GTKPopover.h"
 #import "GTKRevealer.h"
 #import "GTKActionBar.h"
+#import "GTKRadioButton.h"
 #import "GTKOrientable.h"
 #import "GTKScrollable.h"

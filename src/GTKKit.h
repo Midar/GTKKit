@@ -58,5 +58,7 @@
 #import "GTKRevealer.h"
 #import "GTKActionBar.h"
 #import "GTKRadioButton.h"
+#import "GTKStack.h"
+#import "GTKStackSwitcher.h"
 #import "GTKOrientable.h"
 #import "GTKScrollable.h"

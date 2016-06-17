@@ -36,6 +36,8 @@ lesser extent:
   GTKScale
   GTKScrolledWindow
   GTKSeparator
+  GTKStack
+  GTKStackSwitcher
   GTKSwitch
   GTKTextView
   GTKToggleButton

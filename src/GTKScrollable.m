@@ -19,66 +19,42 @@
 @implementation GTKScrollable
 - (GtkAdjustment*)horizontalAdjustment
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scrollable_get_hadjustment(GTK_SCROLLABLE(self.widget));
 }
 
 - (void)setHorizontalAdjustment: (GtkAdjustment*)adjustment
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_scrollable_set_hadjustment(GTK_SCROLLABLE(self.widget), adjustment);
 }
 
 - (GtkAdjustment*)verticalAdjustment
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scrollable_get_vadjustment(GTK_SCROLLABLE(self.widget));
 }
 
 - (void)setVerticalAdjustment: (GtkAdjustment*)adjustment
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_scrollable_set_vadjustment(GTK_SCROLLABLE(self.widget), adjustment);
 }
 
 - (GtkScrollablePolicy)horizontalScrollingPolicy
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scrollable_get_hscroll_policy(GTK_SCROLLABLE(self.widget));
 }
 
 - (void)setHorizontalScrollingPolicy: (GtkScrollablePolicy)policy
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scrollable_set_hscroll_policy(GTK_SCROLLABLE(self.widget),
 	    policy);
 }
 
 - (GtkScrollablePolicy)verticalScrollingPolicy
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scrollable_get_vscroll_policy(GTK_SCROLLABLE(self.widget));
 }
 
 - (void)setVerticalScrollingPolicy: (GtkScrollablePolicy)policy
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scrollable_set_vscroll_policy(GTK_SCROLLABLE(self.widget),
 	    policy);
 }

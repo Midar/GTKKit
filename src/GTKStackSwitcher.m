@@ -23,9 +23,6 @@
 @implementation GTKStackSwitcher
 - (GTKStack*)stack
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	GtkStack *stack = gtk_stack_switcher_get_stack(
 	    GTK_STACK_SWITCHER(self.widget));
 	return [GTKStack wrapperForGtkWidget: GTK_WIDGET(stack)];
@@ -33,12 +30,6 @@
 
 - (void)setStack: (GTKStack*)stack
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (stack.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_stack_switcher_set_stack(GTK_STACK_SWITCHER(self.widget),
 	    GTK_STACK(stack.widget));
 }

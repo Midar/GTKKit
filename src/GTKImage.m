@@ -41,26 +41,17 @@
 
 - (void)setImageFile: (OFString*)filename
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	_imageFile = filename;
 	gtk_image_set_from_file(GTK_IMAGE(self.widget), [filename UTF8String]);
 }
 
 - (OFString*)imageFile
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return _imageFile;
 }
 
 - (void)setIconName: (OFString*)name
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	_iconName = name;
 	gtk_image_set_from_icon_name(GTK_IMAGE(self.widget), [name UTF8String],
 	    self.iconSize);
@@ -68,9 +59,6 @@
 
 - (OFString*)iconName
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return _iconName;
 }
 @end

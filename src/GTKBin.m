@@ -27,9 +27,6 @@
  */
 - (GTKWidget*)childWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	GtkWidget *child = (GTK_WIDGET(gtk_bin_get_child(
 	     GTK_BIN(self.widget))));
 

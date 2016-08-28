@@ -81,17 +81,11 @@ format_gtk_scale_value(GtkScale *scale, gdouble value, GTKScale *sender)
 
 - (int)digits
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_scale_get_digits(GTK_SCALE(self.widget));
 }
 
 - (void)setDigits: (int)newValue
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_scale_set_digits(GTK_SCALE(self.widget), newValue);
 }
 @end

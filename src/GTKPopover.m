@@ -42,7 +42,7 @@ popoverClosed(GtkPopover *popover, GTKPopover *sender)
 	    (__bridge void*)self);
 
 	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
-	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    "destroy", G_CALLBACK(gtkkit_widget_destroyed_handler),
 	    (__bridge void*)self);
 	_closedHandlerID = g_signal_connect(GTK_WIDGET(self.widget), "clicked",
 	    G_CALLBACK(popoverClosed), (__bridge void*)self);

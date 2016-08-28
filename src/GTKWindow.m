@@ -115,7 +115,7 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender)
 	g_signal_connect(G_OBJECT(self.widget), "delete-event",
 	    G_CALLBACK(window_delete_request), (__bridge void*)self);
 	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
-	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    "destroy", G_CALLBACK(gtkkit_widget_destroyed_handler),
 	    (__bridge void*)self);
 
 	return self;

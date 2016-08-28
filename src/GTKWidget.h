@@ -24,7 +24,7 @@ OF_ASSUME_NONNULL_BEGIN
 
 @class GTKWidget;
 
-extern void widget_destroyed_handler(GtkWidget *_Nonnull widget,
+extern void gtkkit_widget_destroyed_handler(GtkWidget *_Nonnull widget,
     GTKWidget *_Nonnull wrapper);
 
 /*!

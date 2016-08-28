@@ -32,7 +32,7 @@
 }
 
 - (void)setRowHeaderAtIndex: (int)index
-		   toWidget: (GTKWidget)header
+		   toWidget: (GTKWidget*)header
 {
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];

@@ -20,74 +20,77 @@
 
 #import "GTKActionBar.h"
 
-OF_ASSUME_NONNULL_BEGIN
-
 @implementation GTKActionBar
 - init
 {
-  self = [super init];
-  self.widget = gtk_action_bar_new ();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget),
-      "destroy", G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_action_bar_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*) self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
-- (void)addWidget:(GTKWidget*)childWidget
+- (void)addWidget: (GTKWidget*)childWidget
 {
-  OF_UNRECOGNIZED_SELECTOR
+	OF_UNRECOGNIZED_SELECTOR
 }
 
-- (GTKWidget *)childWidget
+- (GTKWidget*)childWidget
 {
-  OF_UNRECOGNIZED_SELECTOR
+	OF_UNRECOGNIZED_SELECTOR
 }
 
 - (GTKWidget*)centerWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkWidget *childWidget = \
-      gtk_action_bar_get_center_widget(GTK_ACTION_BAR(self.widget));
-  return [GTKWidget wrapperForGtkWidget: childWidget];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	GtkWidget *childWidget =
+	    gtk_action_bar_get_center_widget(GTK_ACTION_BAR(self.widget));
+
+	return [GTKWidget wrapperForGtkWidget: childWidget];
 }
 
-- (void)setCenterWidget:(GTKWidget*)childWidget
+- (void)setCenterWidget: (GTKWidget*)childWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_action_bar_set_center_widget(GTK_ACTION_BAR(self.widget),
-      childWidget.widget);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_action_bar_set_center_widget(GTK_ACTION_BAR(self.widget),
+	    childWidget.widget);
 }
 
-- (void)addWidgetAtStart:(GTKWidget*)childWidget
+- (void)addWidgetAtStart: (GTKWidget*)childWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_action_bar_pack_start(GTK_ACTION_BAR(self.widget), childWidget.widget);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_action_bar_pack_start(GTK_ACTION_BAR(self.widget),
+	    childWidget.widget);
 }
 
-- (void)addWidgetAtEnd:(GTKWidget*)childWidget
+- (void)addWidgetAtEnd: (GTKWidget*)childWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_action_bar_pack_end(GTK_ACTION_BAR(self.widget), childWidget.widget);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_action_bar_pack_end(GTK_ACTION_BAR(self.widget),
+	    childWidget.widget);
 }
 @end
-
-OF_ASSUME_NONNULL_END

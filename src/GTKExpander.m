@@ -19,73 +19,79 @@
 @implementation GTKExpander
 - init
 {
-  self = [super init];
-  self.widget = gtk_expander_new ("");
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_expander_new("");
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
-- (OFString *)label
+- (OFString*)label
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return [OFString stringWithUTF8String:
-      gtk_expander_get_label (GTK_EXPANDER (self.widget))];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_expander_get_label(GTK_EXPANDER(self.widget)));
 }
 
-- (void)setLabel:(OFString *)label
+- (void)setLabel: (OFString*)label
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_expander_set_label (GTK_EXPANDER (self.widget), [label UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_expander_set_label(GTK_EXPANDER(self.widget), [label UTF8String]);
 }
 
-+ (instancetype)expanderWithLabel:(OFString *)label
++ (instancetype)expanderWithLabel: (OFString*)label
 {
-  return [[self alloc] initWithLabel: label];
+	return [[self alloc] initWithLabel: label];
 }
 
-- initWithLabel:(OFString *)label {
-  self = [self init];
-  self.label = label;
-  return self;
+- initWithLabel: (OFString*)label
+{
+	self = [self init];
+
+	self.label = label;
+
+	return self;
 }
 
 - (bool)expanded
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_expander_get_expanded (GTK_EXPANDER (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_expander_get_expanded(GTK_EXPANDER(self.widget));
 }
 
-- (void)setExpanded:(bool)newValue
+- (void)setExpanded: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_expander_set_expanded (GTK_EXPANDER (self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_expander_set_expanded(GTK_EXPANDER(self.widget), newValue);
 }
 
 - (bool)resizeToplevel
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_expander_get_resize_toplevel (GTK_EXPANDER (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_expander_get_resize_toplevel(GTK_EXPANDER(self.widget));
 }
 
-- (void)setResizeToplevel:(bool)newValue
+- (void)setResizeToplevel: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_expander_set_resize_toplevel (GTK_EXPANDER (self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_expander_set_resize_toplevel(GTK_EXPANDER(self.widget), newValue);
 }
 @end

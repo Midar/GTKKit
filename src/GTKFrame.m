@@ -23,82 +23,87 @@
 @implementation GTKFrame
 - init
 {
-  self = [super init];
-  self.widget = gtk_frame_new(NULL);
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_frame_new(NULL);
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
-- (OFString *)label
+- (OFString*)label
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return @(gtk_frame_get_label (GTK_FRAME (self.widget)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_frame_get_label(GTK_FRAME(self.widget)));
 }
 
-- (void)setLabel:(OFString *)label
+- (void)setLabel: (OFString*)label
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_frame_set_label (GTK_FRAME (self.widget), [label UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_frame_set_label(GTK_FRAME(self.widget), [label UTF8String]);
 }
 
-- (GTKWidget *)labelWidget
+- (GTKWidget*)labelWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return [GTKWidget wrapperForGtkWidget:
-      gtk_frame_get_label_widget (GTK_FRAME (self.widget))];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return [GTKWidget wrapperForGtkWidget:
+	    gtk_frame_get_label_widget(GTK_FRAME(self.widget))];
 }
 
-- (void)setLabelWidget:(GTKWidget *)labelWidget
+- (void)setLabelWidget: (GTKWidget*)labelWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_frame_set_label_widget (GTK_FRAME (self.widget), [labelWidget widget]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_frame_set_label_widget(GTK_FRAME(self.widget),
+	    [labelWidget widget]);
 }
 
-- (void)setLabelHorizontalAlign:(float)xAlign
+- (void)setLabelHorizontalAlign: (float)xAlign
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  g_object_set (G_OBJECT (self.widget), "label-xalign", xAlign, NULL);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	g_object_set(G_OBJECT(self.widget), "label-xalign", xAlign, NULL);
 }
 
 - (float)labelHorizontalAlign
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  float x;
-  g_object_get (G_OBJECT (self.widget), "label-xalign", &x, NULL);
-  return x;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	float x;
+	g_object_get(G_OBJECT(self.widget), "label-xalign", &x, NULL);
+	return x;
 }
 
-- (void)setLabelVerticalAlign:(float)yAlign
+- (void)setLabelVerticalAlign: (float)yAlign
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  g_object_set (G_OBJECT (self.widget), "label-yalign", yAlign, NULL);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	g_object_set(G_OBJECT(self.widget), "label-yalign", yAlign, NULL);
 }
 
 - (float)labelVerticalAlign
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  float y;
-  g_object_get (G_OBJECT (self.widget), "label-yalign", &y, NULL);
-  return y;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	float y;
+	g_object_get(G_OBJECT(self.widget), "label-yalign", &y, NULL);
+	return y;
 }
 @end

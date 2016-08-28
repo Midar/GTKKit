@@ -24,81 +24,89 @@
 static void
 buttonToggled(GtkWidget *button, GTKRadioButton *sender)
 {
-  if (sender.target && sender.action && sender.active) {
-    void (*methodImplementation)(id, SEL, id) = \
-        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
-    methodImplementation(sender.target, sender.action, sender);
-  }
+	if (sender.target != nil && sender.action != NULL && sender.active) {
+		void (*imp)(id, SEL, id) = (void(*)(id, SEL, id))
+		    [sender.target methodForSelector: sender.action];
+		imp(sender.target, sender.action, sender);
+	}
 }
 
 @implementation GTKRadioButton
 - init
 {
-  self = [super init];
-  gtk_widget_destroy(GTK_WIDGET(self.widget));
-  self.widget = gtk_radio_button_new (NULL);
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _toggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled",
-      G_CALLBACK (buttonToggled), (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget),
-      "destroy", G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
+	self = [super init];
+
+	gtk_widget_destroy(GTK_WIDGET(self.widget));
+	self.widget = gtk_radio_button_new(NULL);
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_toggledHandlerID = g_signal_connect(GTK_WIDGET(self.widget), "toggled",
+	    G_CALLBACK(buttonToggled), (__bridge void*)self);
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
 	return self;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget), _toggledHandlerID);
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _toggledHandlerID);
 }
 
-+ (instancetype)radioButtonWithLabelText:(OFString*)labelText;
++ (instancetype)radioButtonWithLabelText: (OFString*)labelText;
 {
-  return [[self alloc] initWithLabelText: labelText];
+	return [[self alloc] initWithLabelText: labelText];
 }
 
-- initWithLabelText:(OFString*)labelText;
+- initWithLabelText: (OFString*)labelText;
 {
-  self = [self init];
-  self.label = labelText;
-  return self;
+	self = [self init];
+
+	self.label = labelText;
+
+	return self;
 }
 
-+ (instancetype)radioButtonWithLabelText:(OFString*)labelText
-             joiningGroupWithRadioButton:(GTKRadioButton*)radioButton
++ (instancetype)radioButtonWithLabelText: (OFString*)labelText
+             joiningGroupWithRadioButton: (GTKRadioButton*)radioButton
 {
-  return [[self alloc] initWithLabelText: labelText
-             joiningGroupWithRadioButton: radioButton];
+	return [[self alloc] initWithLabelText: labelText
+		   joiningGroupWithRadioButton: radioButton];
 }
 
--           initWithLabelText:(OFString*)labelText
-  joiningGroupWithRadioButton:(GTKRadioButton*)radioButton
+-	    initWithLabelText: (OFString*)labelText
+  joiningGroupWithRadioButton: (GTKRadioButton*)radioButton
 {
-  self = [self init];
-  self.label = labelText;
-  [self joinGroupWithRadioButton: radioButton];
-  return self;
+	self = [self init];
+
+	self.label = labelText;
+	[self joinGroupWithRadioButton: radioButton];
+
+	return self;
 }
 
-- (void)joinGroupWithRadioButton:(GTKRadioButton*)radioButton
+- (void)joinGroupWithRadioButton: (GTKRadioButton*)radioButton
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (radioButton.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_radio_button_join_group(GTK_RADIO_BUTTON(self.widget),
-      GTK_RADIO_BUTTON(radioButton.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (radioButton.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_radio_button_join_group(GTK_RADIO_BUTTON(self.widget),
+	    GTK_RADIO_BUTTON(radioButton.widget));
 }
 
 - (void)leaveGroup
 {
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
 
-    if (self.widget == NULL) {
-      @throw([GTKDestroyedWidgetException new]);
-    }
-    gtk_radio_button_join_group(GTK_RADIO_BUTTON(self.widget), NULL);
+	gtk_radio_button_join_group(GTK_RADIO_BUTTON(self.widget), NULL);
 }
 @end

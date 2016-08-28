@@ -74,8 +74,8 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-- (id)setBaselinePosition: (GtkBaselinePosition)position
-                   forRow: (int)row;
+- (void)setBaselinePosition: (GtkBaselinePosition)position
+		     forRow: (int)row;
 @end
 
 OF_ASSUME_NONNULL_END

@@ -23,25 +23,27 @@
 @implementation GTKMenu
 - init
 {
-  self = [super init];
-  self.widget = gtk_menu_new ();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set(G_OBJECT(self.widget), "width-request", 200, NULL);
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_menu_new ();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set(G_OBJECT(self.widget), "width-request", 200, NULL);
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (void)popup
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_menu_popup (GTK_MENU(self.widget),
-                  NULL, NULL, NULL, NULL,
-                  1,
-                  gtk_get_current_event_time());
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_menu_popup(GTK_MENU(self.widget), NULL, NULL, NULL, NULL, 1,
+	    gtk_get_current_event_time());
 }
 @end

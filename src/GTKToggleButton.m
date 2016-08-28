@@ -23,81 +23,88 @@
 static void
 buttonToggled(GtkWidget *button, GTKButton *sender)
 {
-  if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = \
-        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
-    methodImplementation(sender.target, sender.action, sender);
-  }
+	if (sender.target != nil && sender.action != NULL) {
+		void (*imp)(id, SEL, id) = (void(*)(id, SEL, id))
+		    [sender.target methodForSelector: sender.action];
+
+		imp(sender.target, sender.action, sender);
+	}
 }
 
 @implementation GTKToggleButton
 - init
 {
-  self = [super init];
-  gtk_widget_destroy(GTK_WIDGET(self.widget));
-  self.widget = gtk_toggle_button_new ();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _buttonToggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget),
-      "toggled", G_CALLBACK (buttonToggled), (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	gtk_widget_destroy(GTK_WIDGET(self.widget));
+	self.widget = gtk_toggle_button_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_buttonToggledHandlerID = g_signal_connect(GTK_WIDGET(self.widget),
+	    "toggled", G_CALLBACK(buttonToggled), (__bridge void*)self);
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget),
-        _buttonToggledHandlerID);
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _buttonToggledHandlerID);
 }
 
-- (void)setDrawIndicator:(bool) newValue
+- (void)setDrawIndicator: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_toggle_button_set_mode(GTK_TOGGLE_BUTTON(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_toggle_button_set_mode(GTK_TOGGLE_BUTTON(self.widget), newValue);
 }
 
 - (bool)drawIndicator
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_toggle_button_get_mode(GTK_TOGGLE_BUTTON(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_toggle_button_get_mode(GTK_TOGGLE_BUTTON(self.widget));
 }
 
-- (void)setActive:(bool) newValue
+- (void)setActive: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.widget), newValue);
 }
 
 - (bool)active
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(self.widget));
 }
 
-- (void)setInconsistent:(bool) newValue
+- (void)setInconsistent: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_toggle_button_set_inconsistent(GTK_TOGGLE_BUTTON(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_toggle_button_set_inconsistent(
+	    GTK_TOGGLE_BUTTON(self.widget), newValue);
 }
 
 - (bool)inconsistent
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_toggle_button_get_inconsistent(GTK_TOGGLE_BUTTON(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_toggle_button_get_inconsistent(
+	    GTK_TOGGLE_BUTTON(self.widget));
 }
 @end

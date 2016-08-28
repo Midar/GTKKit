@@ -23,127 +23,132 @@
 @implementation GTKGrid
 - init
 {
-  self = [super init];
-  self.widget = gtk_grid_new();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_grid_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (GtkOrientation)orientation
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_orientable_get_orientation(GTK_ORIENTABLE(self.widget));
 }
 
-- (void)setOrientation:(GtkOrientation)orientation
+- (void)setOrientation: (GtkOrientation)orientation
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_orientable_set_orientation(GTK_ORIENTABLE(self.widget),
+	    orientation);
 }
 
-- (void)setColumnsHomogeneous:(bool)setting
+- (void)setColumnsHomogeneous: (bool)setting
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_grid_set_column_homogeneous (GTK_GRID (self.widget), setting);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_grid_set_column_homogeneous(GTK_GRID(self.widget), setting);
 }
 
 - (bool)columnsHomogeneous
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_grid_get_column_homogeneous (GTK_GRID (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_grid_get_column_homogeneous(GTK_GRID(self.widget));
 }
 
-- (void)setRowsHomogeneous:(bool)setting
+- (void)setRowsHomogeneous: (bool)setting
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_grid_set_row_homogeneous (GTK_GRID (self.widget), setting);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_grid_set_row_homogeneous(GTK_GRID(self.widget), setting);
 }
 
 - (bool)rowsHomogeneous
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_grid_get_row_homogeneous (GTK_GRID (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_grid_get_row_homogeneous(GTK_GRID(self.widget));
 }
 
 - (unsigned int)rowSpacing
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_grid_get_row_spacing (GTK_GRID (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_grid_get_row_spacing(GTK_GRID(self.widget));
 }
 
-- (void)setRowSpacing:(unsigned int)spacing
+- (void)setRowSpacing: (unsigned int)spacing
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_grid_set_row_spacing (GTK_GRID (self.widget), spacing);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_grid_set_row_spacing(GTK_GRID(self.widget), spacing);
 }
 
 - (unsigned int)columnSpacing
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_grid_get_column_spacing (GTK_GRID (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_grid_get_column_spacing(GTK_GRID(self.widget));
 }
 
-- (void)setColumnSpacing:(unsigned int)spacing
+- (void)setColumnSpacing: (unsigned int)spacing
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_grid_set_column_spacing (GTK_GRID (self.widget), spacing);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_grid_set_column_spacing(GTK_GRID(self.widget), spacing);
 }
 
 - (int)baselineRow
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_grid_get_baseline_row (GTK_GRID (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_grid_get_baseline_row(GTK_GRID(self.widget));
 }
 
-- (void)setBaselineRow:(int)row
+- (void)setBaselineRow: (int)row
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_grid_set_baseline_row (GTK_GRID (self.widget), row);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_grid_set_baseline_row(GTK_GRID(self.widget), row);
 }
 
-- (GtkBaselinePosition)baselinePositionForRow:(int)row
+- (GtkBaselinePosition)baselinePositionForRow: (int)row
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_grid_get_row_baseline_position (GTK_GRID (self.widget), row);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_grid_get_row_baseline_position(GTK_GRID(self.widget), row);
 }
 
-- (id)setBaselinePosition:(GtkBaselinePosition)position
-                   forRow:(int)row
+- (void)setBaselinePosition: (GtkBaselinePosition)position
+		     forRow: (int)row
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_grid_set_row_baseline_position (GTK_GRID (self.widget), row, position);
-  return self;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_grid_set_row_baseline_position(GTK_GRID(self.widget),
+	    row, position);
 }
 @end

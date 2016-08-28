@@ -23,151 +23,156 @@
 @implementation GTKStack
 - init
 {
-  self = [super init];
-  self.widget = gtk_stack_new();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_stack_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (bool)homogeneous
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_stack_get_homogeneous(GTK_STACK(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_stack_get_homogeneous(GTK_STACK(self.widget));
 }
 
-- (void)setHomogeneous:(bool)homogeneous
+- (void)setHomogeneous: (bool)homogeneous
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_stack_set_homogeneous(GTK_STACK(self.widget), homogeneous);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_stack_set_homogeneous(GTK_STACK(self.widget), homogeneous);
 }
 
 - (unsigned int)transitionDuration
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_stack_get_transition_duration(GTK_STACK(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_stack_get_transition_duration(GTK_STACK(self.widget));
 }
 
-- (void)setTransitionDuration:(unsigned int)duration
+- (void)setTransitionDuration: (unsigned int)duration
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_stack_set_transition_duration(GTK_STACK(self.widget), duration);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_stack_set_transition_duration(GTK_STACK(self.widget), duration);
 }
 
 - (GtkStackTransitionType)transitionType
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_stack_get_transition_type(GTK_STACK(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_stack_get_transition_type(GTK_STACK(self.widget));
 }
 
-- (void)setTransitionType:(GtkStackTransitionType)type
+- (void)setTransitionType: (GtkStackTransitionType)type
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_stack_set_transition_type(GTK_STACK(self.widget), type);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_stack_set_transition_type(GTK_STACK(self.widget), type);
 }
 
 - (bool)inTransition
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_stack_get_transition_running(GTK_STACK(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_stack_get_transition_running(GTK_STACK(self.widget));
 }
 
 - (bool)interpolateSize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_stack_get_interpolate_size(GTK_STACK(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_stack_get_interpolate_size(GTK_STACK(self.widget));
 }
 
-- (void)setInterpolateSize:(bool)interpolate
+- (void)setInterpolateSize: (bool)interpolate
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_stack_set_interpolate_size(GTK_STACK(self.widget), interpolate);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_stack_set_interpolate_size(GTK_STACK(self.widget), interpolate);
 }
 
-- (void)addWidget:(GTKWidget*)childWidget
-        withName:(OFString*)name
+- (void)addWidget: (GTKWidget*)childWidget
+	 withName: (OFString*)name
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  childWidget.parent = self;
-  gtk_stack_add_named(GTK_STACK(self.widget), GTK_WIDGET(childWidget.widget),
-      [name UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	childWidget.parent = self;
+	gtk_stack_add_named(GTK_STACK(self.widget),
+	    GTK_WIDGET(childWidget.widget), [name UTF8String]);
 }
 
-- (void)addWidget:(GTKWidget*)childWidget
-        withName:(OFString*)name
-       withTitle:(OFString*)title
+- (void)addWidget: (GTKWidget*)childWidget
+	 withName: (OFString*)name
+	withTitle: (OFString*)title
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  childWidget.parent = self;
-  gtk_stack_add_titled(GTK_STACK(self.widget), GTK_WIDGET(childWidget.widget),
-      [name UTF8String], [title UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	childWidget.parent = self;
+	gtk_stack_add_titled(GTK_STACK(self.widget),
+	    GTK_WIDGET(childWidget.widget),
+	    [name UTF8String], [title UTF8String]);
 }
 
-- (GTKWidget*)childWithName:(OFString*)name
+- (GTKWidget*)childWithName: (OFString*)name
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkWidget *widget = gtk_stack_get_child_by_name(GTK_STACK(self.widget),
-      [name UTF8String]);
-  return [GTKWidget wrapperForGtkWidget: widget];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	GtkWidget *widget = gtk_stack_get_child_by_name(GTK_STACK(self.widget),
+	    [name UTF8String]);
+	return [GTKWidget wrapperForGtkWidget: widget];
 }
 
-- (void)showChildWithName:(OFString*)name
+- (void)showChildWithName: (OFString*)name
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_stack_set_visible_child_name(GTK_STACK(self.widget), [name UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_stack_set_visible_child_name(GTK_STACK(self.widget),
+	    [name UTF8String]);
 }
 
-- (void)showChildWithName:(OFString*)name
-     usingTransitionType:(GtkStackTransitionType)transition
+- (void)showChildWithName: (OFString*)name
+      usingTransitionType: (GtkStackTransitionType)transition
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_stack_set_visible_child_full(GTK_STACK(self.widget), [name UTF8String],
-      transition);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_stack_set_visible_child_full(GTK_STACK(self.widget),
+	    [name UTF8String], transition);
 }
 
 - (OFString*)visibleChildName
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  const char* name = gtk_stack_get_visible_child_name(GTK_STACK(self.widget));
-  return [OFString stringWithUTF8String: name];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_stack_get_visible_child_name(GTK_STACK(self.widget)));
 }
 @end

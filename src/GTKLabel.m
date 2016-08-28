@@ -21,27 +21,33 @@
 #import "GTKLabel.h"
 
 @implementation GTKLabel
-+ (instancetype)labelWithText:(OFString*)text
++ (instancetype)labelWithText: (OFString*)text
 {
-  return [[self alloc] initWithText: text];
+	return [[self alloc] initWithText: text];
 }
 
-- initWithText:(OFString*)text
+- initWithText: (OFString*)text
 {
-  self = [self init];
-  gtk_label_set_text(GTK_LABEL(self.widget), [text UTF8String]);
-  return self;
+	self = [self init];
+
+	gtk_label_set_text(GTK_LABEL(self.widget), [text UTF8String]);
+
+	return self;
 }
 
 - init
 {
-  self = [super init];
-  self.widget = gtk_label_new(NULL);
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_label_new(NULL);
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 @end

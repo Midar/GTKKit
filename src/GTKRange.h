@@ -104,8 +104,8 @@ OF_ASSUME_NONNULL_BEGIN
  * @param maxValue The new maximum value for the range.
  * @throws GTKDestroyedWidgetException
  */
-- (void)minValue: (double)minValue
-	maxValue: (double)maxValue;
+- (void)setMinValue: (double)minValue
+	   maxValue: (double)maxValue;
 @end
 
 OF_ASSUME_NONNULL_END

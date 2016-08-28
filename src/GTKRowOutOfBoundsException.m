@@ -19,6 +19,6 @@
 @implementation GTKRowOutOfBoundsException
 - (OFString*)description
 {
-  return [OFString stringWithUTF8String: "Attempt to access invalid row of GTKListBox"];
+	return @"Attempt to access invalid row of GTKListBox";
 }
 @end

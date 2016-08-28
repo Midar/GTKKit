@@ -23,146 +23,144 @@
 @implementation GTKProgressBar
 - init
 {
-  self = [super init];
-  self.widget = gtk_progress_bar_new();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_progress_bar_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (double)value
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_progress_bar_get_fraction(GTK_PROGRESS_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_progress_bar_get_fraction(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setValue:(double) newValue
+- (void)setValue: (double)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
 - (bool)inverted
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_progress_bar_get_inverted(GTK_PROGRESS_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_progress_bar_get_inverted(GTK_PROGRESS_BAR(self.widget));
 }
 
 - (void)setInverted:(bool) newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
 - (bool)showText
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_progress_bar_get_show_text(GTK_PROGRESS_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_progress_bar_get_show_text(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setShowText:(bool) newValue
+- (void)setShowText: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
-- (OFString *)text
+- (OFString*)text
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return @(gtk_progress_bar_get_text(GTK_PROGRESS_BAR(self.widget)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_progress_bar_get_text(GTK_PROGRESS_BAR(self.widget)));
 }
 
-- (void)setText:(OFString *) newValue
+- (void)setText: (OFString*)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.widget),
-      [newValue UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.widget),
+	    [newValue UTF8String]);
 }
 
 - (bool)ellipsize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  PangoEllipsizeMode ellip = \
-      gtk_progress_bar_get_ellipsize(GTK_PROGRESS_BAR(self.widget));
-  if (ellip == PANGO_ELLIPSIZE_NONE) {
-    return false;
-  } else {
-    return true;
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	PangoEllipsizeMode ellip =
+	    gtk_progress_bar_get_ellipsize(GTK_PROGRESS_BAR(self.widget));
+
+	return (ellip != PANGO_ELLIPSIZE_NONE);
 }
 
-- (void)setEllipsize:(bool) newValue
+- (void)setEllipsize: (bool)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (newValue) {
-    gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget),
-        PANGO_ELLIPSIZE_END);
-  } else {
-    gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget),
-        PANGO_ELLIPSIZE_NONE);
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.widget),
+	    (newValue ? PANGO_ELLIPSIZE_END : PANGO_ELLIPSIZE_NONE));
 }
 
 - (double)pulseStep
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_progress_bar_get_pulse_step(GTK_PROGRESS_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_progress_bar_get_pulse_step(GTK_PROGRESS_BAR(self.widget));
 }
 
-- (void)setPulseStep:(double) newValue
+- (void)setPulseStep: (double)newValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(self.widget), newValue);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_set_pulse_step(
+	    GTK_PROGRESS_BAR(self.widget), newValue);
 }
 
 - (GtkOrientation)orientation
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_orientable_get_orientation(GTK_ORIENTABLE(self.widget));
 }
 
-- (void)setOrientation:(GtkOrientation)orientation
+- (void)setOrientation: (GtkOrientation)orientation
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_orientable_set_orientation(
+	    GTK_ORIENTABLE(self.widget), orientation);
 }
 
 - (void)pulse
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_progress_bar_pulse(GTK_PROGRESS_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_progress_bar_pulse(GTK_PROGRESS_BAR(self.widget));
 }
 @end

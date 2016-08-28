@@ -24,29 +24,33 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A GNOME-style header bar, designed to be used as an alternative to
- * traditional window titlebars and menubars.
+ *	  traditional window titlebars and menubars.
  */
 @interface GTKHeaderBar: GTKContainer
 /*!
- * @brief The title shown on the header bar.
+ * The title shown on the header bar.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *title;
 
 /*!
- * @brief The subtitle shown on the header bar.
+ * The subtitle shown on the header bar.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *subtitle;
 
 /*!
- * @brief Whether or not to show a subtitle on the header bar.
+ * Whether or not to show a subtitle on the header bar.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool hasSubtitle;
 
 /*!
- * @brief Whether or not to show window control buttons on the header bar.
+ * Whether or not to show window control buttons on the header bar.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool showWindowButtons;
@@ -64,6 +68,7 @@ OF_ASSUME_NONNULL_BEGIN
  * - close
  * - icon
  * - menu
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *windowButtonLayout;

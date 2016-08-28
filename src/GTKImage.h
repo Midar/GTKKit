@@ -27,18 +27,20 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKImage: GTKWidget
 {
-    OFString *_imageFile;
-    OFString *_iconName;
+	OFString *_imageFile;
+	OFString *_iconName;
 }
 
 /*!
- * @brief the full path of the image to use.
+ * The full path of the image to use.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *imageFile;
 
 /*!
- * @brief The name of the GTK+ internal icon to use.
+ * The name of the GTK+ internal icon to use.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *iconName;
@@ -52,6 +54,7 @@ OF_ASSUME_NONNULL_BEGIN
  * - GTK_ICON_SIZE_BUTTON
  * - GTK_ICON_SIZE_DND
  * - GTK_ICON_SIZE_DIALOG
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkIconSize iconSize;

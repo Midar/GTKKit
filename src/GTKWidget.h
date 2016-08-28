@@ -20,13 +20,12 @@
 
 #import "Exceptions.h"
 
-@class GTKWidget;
-
-void
-widget_destroyed_handler (GtkWidget * _Nonnull widget, GTKWidget * _Nonnull wrapper);
-
 OF_ASSUME_NONNULL_BEGIN
 
+@class GTKWidget;
+
+extern void widget_destroyed_handler(GtkWidget *_Nonnull widget,
+    GTKWidget *_Nonnull wrapper);
 
 /*!
  * @brief The core widget class of GTKKit.
@@ -36,24 +35,26 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKWidget: OFObject
 {
-  gulong _widgetDestroyedHandlerID;
+	gulong _widgetDestroyedHandlerID;
 }
 
 /*!
- * @brief The property which stores the pointer to the internal GtkWidget
- * structure. This is only useful or interesting except to people extending
- * GTKKit with new widget classes or methods.
+ * The property which stores the pointer to the internal GtkWidget structure.
+ *
+ * This is only useful or interesting to people extending GTKKit with new
+ * widget classes or methods.
  */
-@property (nullable) GtkWidget * widget;
+@property (nullable) GtkWidget *widget;
 
 /*!
- * @brief The immediate parent of the widget, if it has one.
+ * The immediate parent of the widget, if it has one.
  */
 @property (weak) GTKWidget *parent;
 
 /*!
  * @brief Convenience method for locating the wrapper for a GTK+ widget C
- * pointer using only the pointer itself.
+ *	  pointer using only the pointer itself.
+ *
  * @throws GTKNoWrapperForGtkWidgetException
  */
 + (instancetype)wrapperForGtkWidget: (GtkWidget*)widget;

@@ -24,42 +24,43 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A context-dependent bubble pop-up. This class implements the
- * target-action pattern in response to the pop-up being closed/dismissed.
+ *	  target-action pattern in response to the pop-up being
+ *	  closed/dismissed.
  */
 @interface GTKPopover: GTKBin
 {
-  gulong _closedHandlerID;
+	gulong _closedHandlerID;
 }
 
 /*!
- * @brief The selector of the method to be used as the action when the popover
- * is closed.
+ * The selector of the method to be used as the action when the popover is
+ * closed.
  */
 @property (nullable) SEL action;
 
 /*!
- * @brief The object that will act as the target when this popover is closed.
+ * The object that will act as the target when this popover is closed.
  */
 @property (weak, nullable) id target;
 
 /*!
- * @brief The widget to which this popover is attached.
+ * The widget to which this popover is attached.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *attachedWidget;
 
 /*!
- * @brief The widget to make the default widget while this popover is visible;
- * when the popover is dismissed, the previous default will be restored.
+ * The widget to make the default widget while this popover is visible.
+ *
+ * When the popover is dismissed, the previous default will be restored.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *defaultWidget;
 
 /*!
- * @brief The position, relative to the attached widget, that the popover
- * should use.
+ * The position, relative to the attached widget, that the popover should use.
  *
  * One of the following possible values:
  *
@@ -73,16 +74,15 @@ OF_ASSUME_NONNULL_BEGIN
 @property GtkPositionType position;
 
 /*!
- * @brief Whether or not the popover should be modal, i.e. if it should grab
- * all the input for the window, including keyboard focus.
+ * Whether or not the popover should be modal, i.e. if it should grab all the
+ * input for the window, including keyboard focus.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool modal;
 
 /*!
- * @brief Whether or not the popover should use transition animations on
- * show/hide.
+ * Whether or not the popover should use transition animations on show/hide.
  *
  * @throws GTKDestroyedWidgetException
  */
@@ -93,14 +93,14 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param widget The widget to which the popover should be attached.
  */
-+ (instancetype)popoverAttachedToWidget:(GTKWidget*)widget;
++ (instancetype)popoverAttachedToWidget: (GTKWidget*)widget;
 
 /*!
  * @brief Initialize this popover attached to the specified widget.
  *
  * @param widget The widget to which this popover should be attached.
  */
-- initAttachedToWidget:(GTKWidget*)widget;
+- initAttachedToWidget: (GTKWidget*)widget;
 @end
 
 OF_ASSUME_NONNULL_END

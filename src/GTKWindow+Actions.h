@@ -25,62 +25,73 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWindow (Actions)
 /*!
- * @brief Show the window to the user. This may mean unminimizing it, stealing
- * focus, etc.
+ * @brief Show the window to the user.
+ *
+ * This may mean unminimizing it, stealing focus, etc.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)present;
 
 /*!
  * @brief Activates the default widget of the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (bool)activateDefaultWidget;
 
 /*!
  * @brief Activates the focused widget of the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (bool)activateFocusedWidget;
 
 /*!
  * @brief Close the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)close;
 
 /*!
- * @brief Minimie the window.
+ * @brief Minimize the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)minimize;
 
 /*!
  * @brief Unminimize the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)unminimize;
 
 /*!
  * @brief Maximize the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)maximize;
 
 /*!
- * @brief unmaximize the window.
+ * @brief Unmaximize the window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)unmaximize;
 
 /*!
  * @brief Make the window fullscreen.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)fullscreen;
 
 /*!
  * @brief Make the window not fullscreen.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)unfullscreen;

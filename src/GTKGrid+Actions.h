@@ -59,24 +59,28 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief Adds a row at the given position.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)insertRowAtPosition: (int)position;
 
 /*!
 * @brief Adds a column at the given position.
+*
 * @throws GTKDestroyedWidgetException
 */
 - (void)insertColumnAtPosition: (int)position;
 
 /*!
 * @brief Removes a row at the given position.
+*
 * @throws GTKDestroyedWidgetException
 */
 - (void)removeRow: (int)position;
 
 /*!
 * @brief Removes a column at the given position.
+*
 * @throws GTKDestroyedWidgetException
 */
 - (void)removeColumn: (int)position;

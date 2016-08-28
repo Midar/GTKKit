@@ -26,8 +26,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKBin: GTKContainer
 /*!
- * @property childWidget
- * @brief The widget held in this container.
+ * The widget held in this container.
  *
  * @throws GTKDestroyedWidgetException
  */

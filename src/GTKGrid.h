@@ -28,43 +28,50 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKGrid: GTKContainer <GTKOrientable>
 /*!
- * @brief Whether or not each column in the grid has the same width.
+ * Whether or not each column in the grid has the same width.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool columnsHomogeneous;
 
 /*!
- * @brief Whether or not each row in the grid has the same height.
+ * Whether or not each row in the grid has the same height.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool rowsHomogeneous;
 
 /*!
- * @brief The spacing between each row.
+ * The spacing between each row.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int rowSpacing;
 
 /*!
- * @brief The spacing between each column.
+ * The spacing between each column.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int columnsSpacing;
 
 /*!
- * @brief The row which determines the baseline of the grid.
+ * The row which determines the baseline of the grid.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int baselineRow;
 
 /*!
- * @brief Gets the baseline position for the specified row.
+ * Gets the baseline position for the specified row.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (GtkBaselinePosition)baselinePositionForRow: (int)row;
 
 /*!
- * @brief Sets the baseline position for the specified row.
+ * Sets the baseline position for the specified row.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (id)setBaselinePosition: (GtkBaselinePosition)position

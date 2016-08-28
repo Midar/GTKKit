@@ -22,42 +22,48 @@
 #import "GTKOrientable.h"
 
 OF_ASSUME_NONNULL_BEGIN
+
 /*!
- * @brief A widget that displays a value as a bar that fills from
- * one side to the other.
+ * @brief A widget that displays a value as a bar that fills from one side to
+ *	  the other.
  */
 @interface GTKLevelBar: GTKWidget <GTKOrientable>
 /*!
- * @brief The mode of the level bar.
+ * The mode of the level bar.
  *
  * One of the following possible values:
  *
  * - GTK_LEVEL_BAR_MODE_CONTINUOUS
  * - GTK_LEVEL_BAR_MODE_DISCRETE
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkLevelBarMode mode;
 
 /*!
- * @brief The current value displayed by the level bar.
+ * The current value displayed by the level bar.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property double value;
 
 /*!
- * @brief The minimum value the level bar can display.
+ * The minimum value the level bar can display.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property double minValue;
 
 /*!
- * @brief The maximum value the level bar can display.
+ * The maximum value the level bar can display.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property double maxValue;
 
 /*!
- * @brief Whether or not the level bar's fill grows from the opposite side.
+ * Whether or not the level bar's fill grows from the opposite side.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool inverted;

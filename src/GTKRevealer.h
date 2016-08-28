@@ -30,21 +30,21 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKRevealer: GTKBin
 /*!
- * @brief Whether or not the child widget is fully revealed.
+ * Whether or not the child widget is fully revealed.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property (readonly) bool revealed;
 
 /*!
- * @brief The duration of the transition animation, in milliseconds.
+ * The duration of the transition animation, in milliseconds.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int transitionDuration;
 
 /*!
- * @brief The transition animation type used by the revealer.
+ * The transition animation type used by the revealer.
  *
  * One of the following possible values:
  *

@@ -34,7 +34,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)prependWidget:(GTKWidget*)childWidget;
+- (void)prependWidget: (GTKWidget*)childWidget;
 
 /*!
  * @brief Adds a widget to the list box at the end.
@@ -43,7 +43,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)appendWidget:(GTKWidget*)childWidget;
+- (void)appendWidget: (GTKWidget*)childWidget;
 
 /*!
  * @brief Adds a widget to the list at the specified position.
@@ -53,8 +53,8 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)insertWidget:(GTKWidget*)childWidget
-          atPosition:(int)position;
+- (void)insertWidget: (GTKWidget*)childWidget
+          atPosition: (int)position;
 
 /*!
  * @brief Select the specified row.
@@ -64,7 +64,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)selectRowAtIndex:(int)index;
+- (void)selectRowAtIndex: (int)index;
 
 /*!
  * @brief Unselect the specified row.
@@ -74,7 +74,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)unselectRowAtIndex:(int)index;
+- (void)unselectRowAtIndex: (int)index;
 
 /*!
  * @brief Select all rows.
@@ -98,7 +98,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)destroyRowAtIndex:(int)index;
+- (void)destroyRowAtIndex: (int)index;
 
 /*!
  * @brief Gets the widget from the currently seleccted row.
@@ -115,7 +115,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (GTKWidget*)widgetForRowAtIndex:(int)index;
+- (GTKWidget*)widgetForRowAtIndex: (int)index;
 @end
 
 OF_ASSUME_NONNULL_END

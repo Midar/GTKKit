@@ -38,14 +38,14 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
- - (void)addWidgetAtStart:(GTKWidget*)childWidget;
+- (void)addWidgetAtStart: (GTKWidget*)childWidget;
 
- /*!
-  * @brief Add a widget to the end of the bar (usually the right side).
-  *
-  * @throws GTKDestroyedWidgetException
-  */
-  - (void)addWidgetAtEnd:(GTKWidget*)childWidget;
+/*!
+ * @brief Add a widget to the end of the bar (usually the right side).
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+- (void)addWidgetAtEnd: (GTKWidget*)childWidget;
 @end
 
 OF_ASSUME_NONNULL_END

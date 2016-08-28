@@ -23,8 +23,7 @@
 OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A container which stacks its children on the Z
- * axis.
+ * @brief A container which stacks its children on the Z axis.
  *
  * An overlay container is appropriate, for example, when one wishes to have
  * video controls float "above" the video they control, or for paint tools
@@ -37,7 +36,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param child The widget to add to the container.
  * @throws GTKDestroyedWidgetException
  */
-- (void)addOverlayChild:(GTKWidget*)child;
+- (void)addOverlayChild: (GTKWidget*)child;
 
 /*!
  * @brief Changes the z-index ordering of the specified child widget.
@@ -46,28 +45,28 @@ OF_ASSUME_NONNULL_BEGIN
  * @param index The new index for the chile widget.
  * @throws GTKDestroyedWidgetException
  */
-- (void)reorderOverlayChild:(GTKWidget*)child
-                    toIndex:(int)index;
+- (void)reorderOverlayChild: (GTKWidget*)child
+		    toIndex: (int)index;
 
 /*!
  * @brief Gets whether or not the specified child passes its input through to
- * the widget below. This does not apply to the main child.
+ *	  the widget below. This does not apply to the main child.
  *
  * @param child The child widget to check.
  * @throws GTKDestroyedWidgetException
  */
-- (bool)overlayChildPassthrough:(GTKWidget*)child;
+- (bool)overlayChildPassthrough: (GTKWidget*)child;
 
 /*!
-* @brief Sets whether or not the specified child passes its input through to
-* the widget below. This does not apply to the main child.
-*
-* @param child The child widget on which to set the property.
-* @param passthrough Whether or not to pass through input.
-* @throws GTKDestroyedWidgetException
-*/
-- (void)setOverlayChildPassthrough:(GTKWidget*)child
-                                to:(bool)passthrough;
+ * @brief Sets whether or not the specified child passes its input through to
+ *	  the widget below. This does not apply to the main child.
+ *
+ * @param child The child widget on which to set the property.
+ * @param passthrough Whether or not to pass through input.
+ * @throws GTKDestroyedWidgetException
+ */
+- (void)setOverlayChildPassthrough: (GTKWidget*)child
+				to: (bool)passthrough;
 @end
 
 OF_ASSUME_NONNULL_END

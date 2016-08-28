@@ -27,23 +27,23 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKComboBox: GTKBin
 {
-  gulong _changedHandlerID;
+	gulong _changedHandlerID;
 }
 
 /*!
  * @brief The selector of the method to be used as the action when the active
- * item changes.
+ *	  item changes.
  */
 @property (nullable) SEL action;
 
 /*!
  * @brief The object that will act as the target for the action when the active
- * item changes.
+ *	  item changes.
  */
 @property (weak) id target;
 
 /*!
- * @brief Adds a string to the end of the  list of choices.
+ * @brief Adds a string to the end of the list of choices.
  *
  * @param string the string to add to the list.
  *
@@ -52,7 +52,7 @@ OF_ASSUME_NONNULL_BEGIN
 - (void)appendString: (OFString*)string;
 
 /*!
- * @brief Adds a string to the beginning of the  list of choices.
+ * @brief Adds a string to the beginning of the list of choices.
  *
  * @param string the string to add to the list.
  *
@@ -61,11 +61,11 @@ OF_ASSUME_NONNULL_BEGIN
 - (void)prependString: (OFString*)string;
 
 /*!
- * @brief Adds a string to the specified position in the  list of choices.
+ * @brief Adds a string to the specified position in the list of choices.
  *
  * @param string the string to add to the list.
  * @param index The index of the position into which the string should be
- * inserted.
+ *		inserted.
  *
  * @throws GTKDestroyedWidgetException
  */
@@ -76,7 +76,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Removed the string at the specified index from the list of choices.
  *
  * @param index The index of the position into which the string should be
- * inserted.
+ *		inserted.
  *
  * @throws GTKDestroyedWidgetException
  */
@@ -91,7 +91,7 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief The index of the currently active item in the list, or -1 if there
- * is no item actve.
+ *	  is no item actve.
  *
  * @throws GTKDestroyedWidgetException
  */
@@ -99,7 +99,7 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief The string of the currently active item in the list, or nil if there
- * is no item actve.
+ *	  is no item actve.
  *
  * @throws GTKDestroyedWidgetException
  */

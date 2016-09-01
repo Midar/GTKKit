@@ -35,6 +35,10 @@ extern void widget_destroyed_handler(GtkWidget *_Nonnull widget,
  */
 @interface GTKWidget: OFObject
 {
+#ifdef GTK_WIDGET_M
+@public
+#endif
+	GtkWidget *_widget;
 	gulong _widgetDestroyedHandlerID;
 }
 
@@ -43,8 +47,10 @@ extern void widget_destroyed_handler(GtkWidget *_Nonnull widget,
  *
  * This is only useful or interesting to people extending GTKKit with new
  * widget classes or methods.
+ *
+ * @throws GTKDestroyedWidgetException
  */
-@property (nullable) GtkWidget *widget;
+@property GtkWidget *widget;
 
 /*!
  * The immediate parent of the widget, if it has one.

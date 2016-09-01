@@ -74,9 +74,6 @@ popoverClosed(GtkPopover *popover, GTKPopover *sender)
 
 - (GTKWidget*)attachedWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	GtkWidget *attached = gtk_popover_get_relative_to(
 	    GTK_POPOVER(self.widget));
 	return [GTKWidget wrapperForGtkWidget: attached];
@@ -84,69 +81,42 @@ popoverClosed(GtkPopover *popover, GTKPopover *sender)
 
 - (void)setAttachedWidget: (GTKWidget*)target
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (target.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_popover_set_relative_to(GTK_POPOVER(self.widget),
 	    GTK_WIDGET(target.widget));
 }
 
 - (GtkPositionType)position
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_popover_get_position(GTK_POPOVER(self.widget));
 }
 
 - (void)setPosition: (GtkPositionType)position
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_popover_set_position(GTK_POPOVER(self.widget), position);
 }
 
 - (bool)modal
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_popover_get_modal(GTK_POPOVER(self.widget));
 }
 
 - (void)setModal:(bool)modal
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_popover_set_modal(GTK_POPOVER(self.widget), modal);
 }
 
 - (bool)enableTransitions
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_popover_get_transitions_enabled(GTK_POPOVER(self.widget));
 }
 
 - (void)setEnableTransitions: (bool)enable
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_popover_set_transitions_enabled(GTK_POPOVER(self.widget), enable);
 }
 
 - (GTKWidget*)defaultWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	GtkWidget *attached =
 	    gtk_popover_get_default_widget(GTK_POPOVER(self.widget));
 	return [GTKWidget wrapperForGtkWidget: attached];
@@ -154,12 +124,6 @@ popoverClosed(GtkPopover *popover, GTKPopover *sender)
 
 - (void)setDefaultWidget: (GTKWidget*)target
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (target.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_popover_set_default_widget(GTK_POPOVER(self.widget),
 	    GTK_WIDGET(target.widget));
 }

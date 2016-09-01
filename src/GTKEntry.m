@@ -41,65 +41,41 @@
 
 - (OFString*)stringValue
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return @(gtk_entry_get_text(GTK_ENTRY(self.widget)));
 }
 
 - (void)setStringValue: (id)text
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_entry_set_text(GTK_ENTRY(self.widget), [text UTF8String]);
 }
 
 - (void)setTextVisible: (bool)visible
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_entry_set_visibility(GTK_ENTRY(self.widget), visible);
 }
 
 - (bool)textVisible
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_entry_get_visibility(GTK_ENTRY(self.widget));
 }
 
 - (void)setMaximumLength: (int)max
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_entry_set_max_length(GTK_ENTRY(self.widget), max);
 }
 
 - (int)maximumLength
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_entry_get_max_length(GTK_ENTRY(self.widget));
 }
 
 - (bool)hasFrame
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_entry_get_has_frame(GTK_ENTRY(self.widget));
 }
 
 - (void)setHasFrame: (bool)setting
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_entry_set_has_frame(GTK_ENTRY(self.widget), setting);
 }
 @end

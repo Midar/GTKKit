@@ -25,35 +25,23 @@
 @implementation GTKWindow (Actions)
 - (void)present
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_window_present(GTK_WINDOW(self.widget));
 }
 
 - (bool)activateDefaultWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_window_activate_default(GTK_WINDOW(self.widget));
 }
 
 - (bool)activateFocusedWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_window_activate_focus(GTK_WINDOW(self.widget));
 }
 
 - (void)close
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if ([self.delegate respondsToSelector: @selector(windowShouldClose:)] &&
-	     [self.delegate windowShouldClose: self]) {
+	    [self.delegate windowShouldClose: self]) {
 		if ([self.delegate respondsToSelector:
 		    @selector(windowWillClose:)])
 			[self.delegate windowWillClose: self];
@@ -64,9 +52,6 @@
 
 - (void)minimize
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if ([self.delegate respondsToSelector:
 	    @selector(windowShouldMinimize:)] &&
             [self.delegate windowShouldMinimize: self]) {
@@ -80,17 +65,11 @@
 
 - (void)unminimize
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_window_deiconify(GTK_WINDOW(self.widget));
 }
 
 - (void)maximize
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if ([self.delegate respondsToSelector:
 	    @selector(windowShouldMaximize:)] &&
 	    [self.delegate windowShouldMaximize: self]) {
@@ -104,25 +83,16 @@
 
 - (void)unmaximize
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_window_maximize(GTK_WINDOW(self.widget));
 }
 
 - (void)fullscreen
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_window_fullscreen(GTK_WINDOW(self.widget));
 }
 
 - (void)unfullscreen
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_window_unfullscreen(GTK_WINDOW(self.widget));
 }
 @end

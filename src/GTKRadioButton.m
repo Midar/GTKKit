@@ -92,21 +92,12 @@ buttonToggled(GtkWidget *button, GTKRadioButton *sender)
 
 - (void)joinGroupWithRadioButton: (GTKRadioButton*)radioButton
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (radioButton.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_radio_button_join_group(GTK_RADIO_BUTTON(self.widget),
 	    GTK_RADIO_BUTTON(radioButton.widget));
 }
 
 - (void)leaveGroup
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_radio_button_join_group(GTK_RADIO_BUTTON(self.widget), NULL);
 }
 @end

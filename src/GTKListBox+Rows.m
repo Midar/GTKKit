@@ -23,9 +23,6 @@
 @implementation GTKListBox (Rows)
 - (bool)rowSelectedAtIndex: (int)index
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 
@@ -37,9 +34,6 @@
 - (void)setRowHeaderAtIndex: (int)index
 		   toWidget: (GTKWidget)header
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 
@@ -50,9 +44,6 @@
 
 - (bool)rowActivatableAtIndex: (int)index
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 
@@ -64,9 +55,6 @@
 - (void)setRowActivatableAtIndex: (int)index
 			      to: (bool)activatable
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 
@@ -77,9 +65,6 @@
 
 - (bool)rowSelectableAtIndex: (int)index
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 
@@ -91,9 +76,6 @@
 - (void)setRowSelectableAtIndex: (int)index
 			     to: (bool)selectable
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 
@@ -104,9 +86,6 @@
 
 - (void)rowChangedAtIndex: (int)index
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	if (index >= self.rowCount)
 		@throw [GTKRowOutOfBoundsException new];
 

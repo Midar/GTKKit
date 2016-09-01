@@ -14,6 +14,8 @@
  * the packaging of this file.
  */
 
+#define GTK_WIDGET_M
+
 #import <ObjFW/ObjFW.h>
 
 #import <gtk/gtk.h>
@@ -24,7 +26,7 @@ void
 widget_destroyed_handler(GtkWidget *widget, GTKWidget *wrapper)
 {
 	g_object_unref(G_OBJECT(wrapper.widget));
-	wrapper.widget = NULL;
+	wrapper->_widget = NULL;
 }
 
 @implementation GTKWidget
@@ -41,9 +43,23 @@ widget_destroyed_handler(GtkWidget *widget, GTKWidget *wrapper)
 
 - (void)dealloc
 {
-	if (self.widget != NULL)
-		g_signal_handler_disconnect(G_OBJECT(self.widget),
+	if (_widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(_widget),
 		    _widgetDestroyedHandlerID);
-	gtk_widget_destroy(GTK_WIDGET(self.widget));
+
+	gtk_widget_destroy(GTK_WIDGET(_widget));
+}
+
+- (GtkWidget*)widget
+{
+	if (_widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return _widget;
+}
+
+- (void)setWidget: (GtkWidget*)widget
+{
+	_widget = widget;
 }
 @end

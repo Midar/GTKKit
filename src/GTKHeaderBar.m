@@ -39,85 +39,55 @@
 
 - (OFString*)title
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return @(gtk_header_bar_get_title(GTK_HEADER_BAR(self.widget)));
 }
 
 - (void)setTitle: (OFString*)title
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_header_bar_set_title(GTK_HEADER_BAR(self.widget),
 	    [title UTF8String]);
 }
 
 - (OFString*)subtitle
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return @(gtk_header_bar_get_subtitle(GTK_HEADER_BAR(self.widget)));
 }
 
 - (void)setSubtitle: (OFString*)subtitle
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_header_bar_set_subtitle(GTK_HEADER_BAR(self.widget),
 	    [subtitle UTF8String]);
 }
 
 - (bool)hasSubtitle
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_header_bar_get_has_subtitle(GTK_HEADER_BAR(self.widget));
 }
 
 - (void)setHasSubtitle: (bool)subtitle
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_header_bar_set_has_subtitle(GTK_HEADER_BAR(self.widget), subtitle);
 }
 
 - (bool)showWindowButtons
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_header_bar_get_show_close_button(
 	    GTK_HEADER_BAR(self.widget));
 }
 
 - (void)setShowWindowButtons: (bool)show
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(self.widget), show);
 }
 
 - (OFString*)windowButtonLayout
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return @(gtk_header_bar_get_decoration_layout(
 	    GTK_HEADER_BAR(self.widget)));
 }
 
 - (void)setWindowButtonLayout: (OFString*)layout
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_header_bar_set_decoration_layout(GTK_HEADER_BAR(self.widget),
 	    [layout UTF8String]);
 }

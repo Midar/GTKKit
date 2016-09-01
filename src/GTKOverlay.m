@@ -39,12 +39,6 @@
 
 - (bool)overlayChildPassthrough: (GTKWidget*)child
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (child.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	return gtk_overlay_get_overlay_pass_through(GTK_OVERLAY(self.widget),
 	    GTK_WIDGET(child.widget));
 }
@@ -52,24 +46,12 @@
 - (void)setOverlayChildPassthrough: (GTKWidget*)child
                                 to: (bool)passthrough
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (child.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_overlay_set_overlay_pass_through(GTK_OVERLAY(self.widget),
 	    GTK_WIDGET(child.widget), passthrough);
 }
 
 - (void)addOverlayChild: (GTKWidget*)child
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (child.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	child.parent = self;
 	gtk_overlay_add_overlay(GTK_OVERLAY(self.widget),
 	    GTK_WIDGET([child widget]));
@@ -78,12 +60,6 @@
 - (void)reorderOverlayChild: (GTKWidget*)child
                     toIndex: (int)index
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (child.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_overlay_reorder_overlay(GTK_OVERLAY(self.widget),
 	    GTK_WIDGET([child widget]), index);
 }

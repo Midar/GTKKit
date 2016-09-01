@@ -23,18 +23,12 @@
 @implementation GTKMenuShell
 - (void)appendMenuItem: (GTKMenuItem*)menuItem
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	menuItem.parent = self;
 	gtk_menu_shell_append(GTK_MENU_SHELL(self.widget), menuItem.widget);
 }
 
 - (void)prependMenuItem: (GTKMenuItem*)menuItem
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	menuItem.parent = self;
 	gtk_menu_shell_prepend(GTK_MENU_SHELL(self.widget), menuItem.widget);
 }
@@ -42,9 +36,6 @@
 - (void)insertMenuItem: (GTKMenuItem*)menuItem
             atPosition: (int)position
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	menuItem.parent = self;
 	gtk_menu_shell_insert(GTK_MENU_SHELL(self.widget),
 	    menuItem.widget, position);
@@ -52,9 +43,6 @@
 
 - (void)deactivate
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_menu_shell_deactivate(GTK_MENU_SHELL(self.widget));
 }
 @end

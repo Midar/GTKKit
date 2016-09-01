@@ -40,9 +40,6 @@
 
 - (void)popup
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_menu_popup(GTK_MENU(self.widget), NULL, NULL, NULL, NULL, 1,
 	    gtk_get_current_event_time());
 }

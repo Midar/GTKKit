@@ -49,9 +49,6 @@
 
 - (GTKWidget*)centerWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	GtkWidget *childWidget =
 	    gtk_action_bar_get_center_widget(GTK_ACTION_BAR(self.widget));
 
@@ -60,36 +57,18 @@
 
 - (void)setCenterWidget: (GTKWidget*)childWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (childWidget.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_action_bar_set_center_widget(GTK_ACTION_BAR(self.widget),
 	    childWidget.widget);
 }
 
 - (void)addWidgetAtStart: (GTKWidget*)childWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (childWidget.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_action_bar_pack_start(GTK_ACTION_BAR(self.widget),
 	    childWidget.widget);
 }
 
 - (void)addWidgetAtEnd: (GTKWidget*)childWidget
 {
-	if (self.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
-	if (childWidget.widget == NULL)
-		@throw [GTKDestroyedWidgetException new];
-
 	gtk_action_bar_pack_end(GTK_ACTION_BAR(self.widget),
 	    childWidget.widget);
 }

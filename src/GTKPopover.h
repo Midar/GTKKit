@@ -86,7 +86,7 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @throws GTKDestroyedWidgetException
  */
-@property bool enableTransitions;
+@property bool transitionsEnabled;
 
 /*!
  * @brief Create a popover attached to the specified widget.

@@ -105,12 +105,12 @@ popoverClosed(GtkPopover *popover, GTKPopover *sender)
 	gtk_popover_set_modal(GTK_POPOVER(self.widget), modal);
 }
 
-- (bool)enableTransitions
+- (bool)transitionsEnabled
 {
 	return gtk_popover_get_transitions_enabled(GTK_POPOVER(self.widget));
 }
 
-- (void)setEnableTransitions: (bool)enable
+- (void)setTransitionsEnabled: (bool)enable
 {
 	gtk_popover_set_transitions_enabled(GTK_POPOVER(self.widget), enable);
 }

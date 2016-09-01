@@ -42,7 +42,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKRowOutOfBoundsException
  */
 - (void)setRowHeaderAtIndex: (int)index
-		   toWidget: (GTKWidget)header;
+		   toWidget: (GTKWidget*)header;
 
 /*!
  * @brief Whether or not the specified row is activatable.

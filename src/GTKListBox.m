@@ -45,7 +45,7 @@ listBoxSelectedRowsChanged(GtkListBox *box, GTKListBox *sender)
 	    g_signal_connect(GTK_WIDGET(self.widget), "selected-rows-changed",
 	    G_CALLBACK(listBoxSelectedRowsChanged), (__bridge void*)self);
 	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
-	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    "destroy", G_CALLBACK(gtkkit_widget_destroyed_handler),
 	    (__bridge void*)self);
 
 	return self;

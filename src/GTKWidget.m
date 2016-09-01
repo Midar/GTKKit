@@ -23,7 +23,7 @@
 #import "GTKWidget.h"
 
 void
-widget_destroyed_handler(GtkWidget *widget, GTKWidget *wrapper)
+gtkkit_widget_destroyed_handler(GtkWidget *widget, GTKWidget *wrapper)
 {
 	g_object_unref(G_OBJECT(wrapper.widget));
 	wrapper->_widget = NULL;

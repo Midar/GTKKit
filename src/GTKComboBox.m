@@ -45,7 +45,7 @@ comboBoxActiveItemChanged(GtkWidget *combobox, GTKComboBox *sender)
 	    "changed", G_CALLBACK(comboBoxActiveItemChanged),
 	    (__bridge void*)self);
 	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
-	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    "destroy", G_CALLBACK(gtkkit_widget_destroyed_handler),
 	    (__bridge void*)self);
 
 	return self;

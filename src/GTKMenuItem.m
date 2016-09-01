@@ -44,7 +44,7 @@ menuItemActivated(GtkMenuItem *widget, GTKMenuItem *sender)
 	_menuItemActivatedHandlerID = g_signal_connect(GTK_WIDGET(self.widget),
 	    "activate", G_CALLBACK(menuItemActivated), (__bridge void*)self);
 	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
-	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    "destroy", G_CALLBACK(gtkkit_widget_destroyed_handler),
 	    (__bridge void*)self);
 
 	gtk_widget_show_all(GTK_WIDGET(self.widget));

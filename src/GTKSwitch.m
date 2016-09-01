@@ -43,7 +43,7 @@ switchToggled(GtkSwitch *button, bool state, GTKSwitch *sender)
 	    (__bridge void*)self);
 
 	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
-	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    "destroy", G_CALLBACK(gtkkit_widget_destroyed_handler),
 	    (__bridge void*)self);
 	_stateChangedHandlerID = g_signal_connect(G_OBJECT (self.widget),
 	    "state-set", G_CALLBACK(switchToggled), (__bridge void*)self);

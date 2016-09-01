@@ -30,7 +30,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKSwitch: GTKWidget
 {
-  gulong _stateChangedHandlerID;
+	gulong _stateChangedHandlerID;
 }
 
 /*!
@@ -44,10 +44,17 @@ OF_ASSUME_NONNULL_BEGIN
 @property (weak) id target;
 
 /*!
- * @brief The state of the switch, true for on, false for off.
+ * Whether the switch is active.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool active;
+
+/*!
+ * Whether the state is on or off.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
 @property bool state;
 @end
 

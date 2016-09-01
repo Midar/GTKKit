@@ -20,67 +20,65 @@
 
 #import "GTKRevealer.h"
 
-OF_ASSUME_NONNULL_BEGIN
-
 /*!
  * @brief A container that can show an hide its child using animation.
  */
 @implementation GTKRevealer: GTKBin
 - (bool)revealed
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_revealer_get_child_revealed(GTK_REVEALER(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_revealer_get_child_revealed(GTK_REVEALER(self.widget));
 }
 
 - (unsigned int)transitionDuration
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_revealer_get_transition_duration(GTK_REVEALER(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_revealer_get_transition_duration(GTK_REVEALER(self.widget));
 }
 
-- (void)setTransitionDuration:(unsigned int)duration
+- (void)setTransitionDuration: (unsigned int)duration
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_revealer_set_transition_duration(GTK_REVEALER(self.widget), duration);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_revealer_set_transition_duration(GTK_REVEALER(self.widget),
+	    duration);
 }
 
 - (GtkRevealerTransitionType)transitionType
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_revealer_get_transition_type(GTK_REVEALER(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_revealer_get_transition_type(GTK_REVEALER(self.widget));
 }
 
-- (void)setTransitionType:(GtkRevealerTransitionType)transitionType
+- (void)setTransitionType: (GtkRevealerTransitionType)transitionType
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_revealer_set_transition_type(GTK_REVEALER(self.widget), transitionType);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_revealer_set_transition_type(GTK_REVEALER(self.widget),
+	    transitionType);
 }
 
 - (void)revealChild
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_revealer_set_reveal_child(GTK_REVEALER(self.widget), true);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_revealer_set_reveal_child(GTK_REVEALER(self.widget), true);
 }
 
 - (void)concealChild
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_revealer_set_reveal_child(GTK_REVEALER(self.widget), false);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_revealer_set_reveal_child(GTK_REVEALER(self.widget), false);
 }
 @end
-
-OF_ASSUME_NONNULL_END

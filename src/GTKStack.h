@@ -23,30 +23,31 @@
 OF_ASSUME_NONNULL_BEGIN
 /*!
  * @brief A container which holds its children in a stack, with only one of
- * them visible at a time. It is designed to be controlled using a
- * GTKStackSwitcher, but also exposes an API to control it programmatically.
+ *	  them visible at a time.
+ *
+ * It is designed to be controlled using a GTKStackSwitcher, but also exposes
+ * an API to control it programmatically.
  */
 @interface GTKStack: GTKContainer
 /*!
- * @brief Whether or not the stack should request the same size for all its
- * children. If this is false, the stack may change size when the visible
- * child changes.
+ * Whether or not the stack should request the same size for all its children.
+ *
+ * If this is false, the stack may change size when the visible child changes.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool homogeneous;
 
 /*!
- * @brief The duration, in milliseconds, of the transition animation used when
- * the stack changes its visible child.
+ * The duration, in milliseconds, of the transition animation used when the
+ * stack changes its visible child.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int transitionDuration;
 
 /*!
- * @brief The type of transition to use when this stack changes the visible
- * child.
+ * The type of transition to use when this stack changes the visible child.
  *
  * One of the following possible values:
  *
@@ -76,7 +77,7 @@ OF_ASSUME_NONNULL_BEGIN
 @property GtkStackTransitionType transitionType;
 
 /*!
- * @brief Whether or not the stack is currently in the middle of a transition
+ * Whether or not the stack is currently in the middle of a transition
  * animation.
  *
  * @throws GTKDestroyedWidgetException
@@ -84,8 +85,8 @@ OF_ASSUME_NONNULL_BEGIN
 @property (readonly) bool inTransition;
 
 /*!
- * @brief Whether or not the stack should smoothly change size during the
- * transition animation.
+ * Whether or not the stack should smoothly change size during the transition
+ * animation.
  *
  * @throws GTKDestroyedWidgetException
  */
@@ -93,47 +94,48 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief Adds the specified widget to the stack, identified by the specified
- * name.
+ *	  name.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)addWidget:(GTKWidget*)childWidget
-         withName:(OFString*)name;
+- (void)addWidget: (GTKWidget*)childWidget
+	 withName: (OFString*)name;
 
 /*!
-* @brief Adds the specified widget to the stack, identified by the specified
-* name. Also sets the title, to be used in the GTKStackSwitcher that controls
-* the stack.
-*
-* @throws GTKDestroyedWidgetException
-*/
-- (void)addWidget:(GTKWidget*)childWidget
-        withName:(OFString*)name
-       withTitle:(OFString*)title;
-
-/*!
- * @brief Gets the child widget with the specified name. You will likely have
- * to cast the result to the appropriate class.
+ * @brief Adds the specified widget to the stack, identified by the specified
+ *	  name.
+ *
+ * Also sets the title, to be used in the GTKStackSwitcher that controls the
+ * stack.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (GTKWidget*)childWithName:(OFString*)name;
+- (void)addWidget: (GTKWidget*)childWidget
+	 withName: (OFString*)name
+	withTitle: (OFString*)title;
+
+/*!
+ * @brief Gets the child widget with the specified name.
+ *
+ * @throws GTKDestroyedWidgetException
+ */
+- (OF_KINDOF(GTKWidget*))childWithName: (OFString*)name;
 
 /*!
  * @brief Make the child with the given name the visible one.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)showChildWithName:(OFString*)name;
+- (void)showChildWithName: (OFString*)name;
 
 /*!
  * @brief Make the child with the given name the visible one, using the
- * specified transition type.
+ *	  specified transition type.
  *
  * @throws GTKDestroyedWidgetException
  */
-- (void)showChildWithName:(OFString*)name
-      usingTransitionType:(GtkStackTransitionType)transition;
+- (void)showChildWithName: (OFString*)name
+      usingTransitionType: (GtkStackTransitionType)transition;
 
 /*!
  * @brief Gets the name of the currently visible child.

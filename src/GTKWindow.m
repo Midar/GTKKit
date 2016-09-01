@@ -24,136 +24,136 @@ static gboolean
 window_state_event_dispatch(GtkWidget *window, GdkEventWindowState *event,
     GTKWindow *sender)
 {
-  // This code determines the type of window event which has happened, and
-  // dispatches to the appropriate delegate method, if it exists.
+	/*
+	 * This code determines the type of window event which has happened,
+	 * and dispatches to the appropriate delegate method, if it exists.
+	 */
 
-  if(event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED){
-    if(event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidMaximize:)] ) {
-        [sender.delegate windowDidMaximize: sender];
-      }
-    } else {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidUnmaximize:)] ) {
-        [sender.delegate windowDidUnmaximize: sender];
-      }
-    }
-  }
+	if (event->changed_mask & GDK_WINDOW_STATE_MAXIMIZED) {
+		if (event->new_window_state & GDK_WINDOW_STATE_MAXIMIZED) {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidMaximize:)])
+				[sender.delegate windowDidMaximize: sender];
+		} else {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidUnmaximize:)])
+				[sender.delegate windowDidUnmaximize: sender];
+		}
+	}
 
-  if(event->changed_mask & GDK_WINDOW_STATE_ICONIFIED) {
-    if(event->new_window_state & GDK_WINDOW_STATE_ICONIFIED) {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidMinimize:)] ) {
-        [sender.delegate windowDidMinimize: sender];
-      }
-    } else {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidUnminimize:)] ) {
-        [sender.delegate windowDidUnminimize: sender];
-      }
-    }
-  }
+	if (event->changed_mask & GDK_WINDOW_STATE_ICONIFIED) {
+		if (event->new_window_state & GDK_WINDOW_STATE_ICONIFIED) {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidMinimize:)])
+				[sender.delegate windowDidMinimize: sender];
+		} else {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidUnminimize:)])
+				[sender.delegate windowDidUnminimize: sender];
+		}
+	}
 
-  if(event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN) {
-    if(event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidFullscreen:)] ) {
-        [sender.delegate windowDidFullscreen: sender];
-      }
-    } else {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidUnfullscreen:)] ) {
-        [sender.delegate windowDidUnfullscreen: sender];
-      }
-    }
-  }
+	if (event->changed_mask & GDK_WINDOW_STATE_FULLSCREEN) {
+		if (event->new_window_state & GDK_WINDOW_STATE_FULLSCREEN) {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidFullscreen:)])
+				[sender.delegate windowDidFullscreen: sender];
+		} else {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidUnfullscreen:)])
+				[sender.delegate windowDidUnfullscreen: sender];
+		}
+	}
 
-  if(event->changed_mask & GDK_WINDOW_STATE_FOCUSED) {
-    if(event->new_window_state & GDK_WINDOW_STATE_FOCUSED) {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidFocus:)] ) {
-        [sender.delegate windowDidFocus: sender];
-      }
-    } else {
-      if( [sender.delegate
-              respondsToSelector: @selector(windowDidUnfocus:)] ) {
-        [sender.delegate windowDidUnfocus: sender];
-      }
-    }
-  }
+	if (event->changed_mask & GDK_WINDOW_STATE_FOCUSED) {
+		if (event->new_window_state & GDK_WINDOW_STATE_FOCUSED) {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidFocus:)])
+				[sender.delegate windowDidFocus: sender];
+		} else {
+			if ([sender.delegate respondsToSelector:
+			    @selector(windowDidUnfocus:)])
+				[sender.delegate windowDidUnfocus: sender];
+		}
+	}
 
-  return TRUE;
+	return TRUE;
 }
 
 static gboolean
 window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender)
 {
-  if ([sender.delegate respondsToSelector: @selector(windowShouldClose:)]) {
-    if ([sender.delegate windowShouldClose: sender]) {
-      if ([sender.delegate respondsToSelector: @selector(windowWillClose:)])
-        [sender.delegate windowWillClose: sender];
-      return FALSE;
-    } else {
-      return TRUE;
-    }
-  } else {
-    if ([sender.delegate respondsToSelector: @selector(windowWillClose:)]) {
-      [sender.delegate windowWillClose: sender];
-    }
-    return FALSE;
-  }
+	if ([sender.delegate respondsToSelector:
+	    @selector(windowShouldClose:)]) {
+		bool shouldClose = [sender.delegate windowShouldClose: sender];
+
+		if (shouldClose && [sender.delegate respondsToSelector:
+		    @selector(windowWillClose:)])
+			[sender.delegate windowWillClose: sender];
+
+		return !shouldClose;
+	} else {
+		if ([sender.delegate respondsToSelector:
+		    @selector(windowWillClose:)])
+			[sender.delegate windowWillClose: sender];
+
+		return FALSE;
+	}
 }
 
 @implementation GTKWindow
 - (id)init
 {
-  self = [super init];
-  self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  g_signal_connect(G_OBJECT (self.widget), "window-state-event",
-      G_CALLBACK (window_state_event_dispatch), (__bridge void*) self);
-  g_signal_connect(G_OBJECT (self.widget), "delete-event",
-      G_CALLBACK (window_delete_request), (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	g_signal_connect(G_OBJECT(self.widget), "window-state-event",
+	    G_CALLBACK(window_state_event_dispatch), (__bridge void*)self);
+	g_signal_connect(G_OBJECT(self.widget), "delete-event",
+	    G_CALLBACK(window_delete_request), (__bridge void*)self);
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (of_dimension_t)defaultSize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return _defaultSize;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return _defaultSize;
 }
 
-- (void)setDefaultSize:(of_dimension_t)size
+- (void)setDefaultSize: (of_dimension_t)size
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  _defaultSize = size;
-  gtk_window_set_default_size (GTK_WINDOW (self.widget), (int) size.width,
-      (int) size.height);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	_defaultSize = size;
+	gtk_window_set_default_size(GTK_WINDOW(self.widget), (int)size.width,
+	    (int)size.height);
 }
 
 - (of_dimension_t)size
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return _size;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return _size;
 }
 
-- (void)setSize:(of_dimension_t)size
+- (void)setSize: (of_dimension_t)size
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  _size = size;
-  gtk_window_resize (GTK_WINDOW (self.widget), (int) size.width,
-      (int) size.height);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	_size = size;
+	gtk_window_resize(GTK_WINDOW(self.widget), (int)size.width,
+	    (int)size.height);
 }
 @end

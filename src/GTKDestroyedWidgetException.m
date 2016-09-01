@@ -19,6 +19,6 @@
 @implementation GTKDestroyedWidgetException
 - (OFString*)description
 {
-  return [OFString stringWithUTF8String: "Attempt to message a destroyed widget!"];
+	return @"Attempt to message a destroyed widget!";
 }
 @end

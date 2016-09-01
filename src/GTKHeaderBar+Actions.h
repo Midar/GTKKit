@@ -29,7 +29,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param child The widget to add.
  * @throws GTKDestroyedWidgetException
  */
-- (void)addWidgetAtStart:(GTKWidget *)child;
+- (void)addWidgetAtStart: (GTKWidget*)child;
 
 /*!
  * @brief Add a widget at the end of the header bar.
@@ -37,7 +37,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param child The widget to add.
  * @throws GTKDestroyedWidgetException
  */
-- (void)addWidgetAtEnd:(GTKWidget *)child;
+- (void)addWidgetAtEnd: (GTKWidget*)child;
 @end
 
 OF_ASSUME_NONNULL_END

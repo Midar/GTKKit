@@ -34,36 +34,36 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
  * @brief Create a new radio button, with the specified text as its label.
  */
-+ (instancetype)radioButtonWithLabelText:(OFString*)labelText;
++ (instancetype)radioButtonWithLabelText: (OFString*)labelText;
 
 /*!
  * @brief Initialize this radio button with the specified text as its label.
  */
-- initWithLabelText:(OFString*)labelText;
+- initWithLabelText: (OFString*)labelText;
 
 /*!
  * @brief Create a new radio button, with the specified text as its label, in
  * the same group as the specified button.
  */
-+ (instancetype)radioButtonWithLabelText:(OFString*)labelText
-             joiningGroupWithRadioButton:(GTKRadioButton*)radioButton;
++ (instancetype)radioButtonWithLabelText: (OFString*)labelText
+	     joiningGroupWithRadioButton: (GTKRadioButton*)radioButton;
 
 /*!
 * @brief Initialize this radio button with the specified text as its label, in
 * the same group as the specified button.
 */
--           initWithLabelText:(OFString*)labelText
-  joiningGroupWithRadioButton:(GTKRadioButton*)radioButton;
+-	    initWithLabelText: (OFString*)labelText
+  joiningGroupWithRadioButton: (GTKRadioButton*)radioButton;
 
 /*!
  * @brief Initialize this radio button with the specified text as its label.
  */
-- initWithLabelText:(OFString*)labelText;
+- initWithLabelText: (OFString*)labelText;
 
 /*!
  * @brief Make this button join the group of the specified button.
  */
-- (void)joinGroupWithRadioButton:(GTKRadioButton*)radioButton;
+- (void)joinGroupWithRadioButton: (GTKRadioButton*)radioButton;
 
 /*!
  * @brief Make this button leave its current group.

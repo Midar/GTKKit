@@ -25,77 +25,87 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief An abstract parent class for classes which display an adjustent in
- * a value.
+ *	  a value.
  */
 @interface GTKRange: GTKWidget <GTKOrientable>
 {
-  double _min;
-  double _max;
+	double _min;
+	double _max;
 }
 
-/*
- * @brief The current fill level of the range.
+/**
+ * The current fill level of the range.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property double fillLevel;
 
-/*
- * @brief Whether or not the range is restricted to the fill level.
+/**
+ * Whether or not the range is restricted to the fill level.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool restrictToFillLevel;
 
-/*
- * @brief Whether or not the range displays the fill level.
+/**
+ * Whether or not the range displays the fill level.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool showFillLevel;
 
-/*
- * @brief Whether the range runs from low to high, or from high to low.
+/**
+ * Whether the range runs from low to high, or from high to low.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool inverted;
 
-/*
- * @brief The current value of the range.
+/**
+ * The current value of the range.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property double value;
 
-/*
- * @brief The amount by which the value is modified by the arrow keys.
+/**
+ * The amount by which the value is modified by the arrow keys.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (nonatomic) double stepSize;
 
-/*
- * @brief The number of digits to which to round the value to when it changes.
+/**
+ * The number of digits to which to round the value to when it changes.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int roundDigts;
 
-/*
- * @brief The minimum value of the range.
+/**
+ * The minimum value of the range.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (nonatomic) double minValue;
 
-/*
- * @brief The maximum value of the range.
+/**
+ * The maximum value of the range.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (nonatomic) double maxValue;
 
-/*
+/**
  * @brief Set both the minimum and maximum values of the range in a single
- * message.
+ *	  message.
  *
  * @param minValue The new minimum value for the range.
  * @param maxValue The new maximum value for the range.
  * @throws GTKDestroyedWidgetException
  */
-- (void)minValue:(double)minValue maxValue:(double)maxValue;
+- (void)setMinValue: (double)minValue
+	   maxValue: (double)maxValue;
 @end
 
 OF_ASSUME_NONNULL_END

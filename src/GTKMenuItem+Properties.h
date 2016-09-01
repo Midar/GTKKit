@@ -27,13 +27,15 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKMenuItem (Properties)
 /*!
- * @brief The string to use as a label in the menu item.
+ * The string to use as a label in the menu item.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
 
 /*!
- * @brief The menu to use as a submenu for the menu item.
+ * The menu to use as a submenu for the menu item.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GTKMenu *submenu;
@@ -44,7 +46,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param label The string to use as a label for the menu item.
  * @throws GTKDestroyedWidgetException
  */
-+ (id)menuItemWithLabel:(OFString *)label;
++ (id)menuItemWithLabel: (OFString*)label;
 
 /*!
  * @brief Initialie the menu item with the specified label.
@@ -52,7 +54,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param label The string to use as a label for the menu item.
  * @throws GTKDestroyedWidgetException
  */
-- (id)initWithLabel:(OFString *)label;
+- (id)initWithLabel: (OFString*)label;
 @end
 
 OF_ASSUME_NONNULL_END

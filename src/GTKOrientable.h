@@ -19,12 +19,13 @@
  */
 @protocol GTKOrientable
 /*!
- * @brief The widget's orientation.
+ * The widget's orientation.
  *
  * One of the following possible values:
  *
  * - GTK_ORIENTATION_HORIZONTAL
  * - GTK_ORIENTATION_VERTICAL
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkOrientation orientation;

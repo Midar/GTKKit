@@ -21,23 +21,23 @@
 #import "GTKHeaderBar+Actions.h"
 
 @implementation GTKHeaderBar (Actions)
-- (void)addWidgetAtStart:(GTKWidget *)child
+- (void)addWidgetAtStart: (GTKWidget*)child
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  child.parent = self;
-  gtk_header_bar_pack_start(GTK_HEADER_BAR(self.widget),
-      GTK_WIDGET(child.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	child.parent = self;
+	gtk_header_bar_pack_start(GTK_HEADER_BAR(self.widget),
+	    GTK_WIDGET(child.widget));
 }
 
-- (void)addWidgetAtEnd:(GTKWidget *)child
+- (void)addWidgetAtEnd: (GTKWidget*)child
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  child.parent = self;
-  gtk_header_bar_pack_start(GTK_HEADER_BAR(self.widget),
-      GTK_WIDGET(child.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	child.parent = self;
+	gtk_header_bar_pack_start(GTK_HEADER_BAR(self.widget),
+	    GTK_WIDGET(child.widget));
 }
 @end

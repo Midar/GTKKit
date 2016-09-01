@@ -27,19 +27,21 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKMenuItem: GTKBin
 {
-  gulong _menuItemActivatedHandlerID;
+	gulong _menuItemActivatedHandlerID;
 }
 
 /*!
- * @brief The method that should be used in responding to the menu item being
+ * The method that should be used in responding to the menu item being
  * activated.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (nullable) SEL action;
 
 /*!
- * @brief The object which will be sent a message in response to the menu item
- * being activated.
+ * The object which will be sent a message in response to the menu item being
+ * activated.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (weak) id target;

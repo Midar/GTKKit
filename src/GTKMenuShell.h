@@ -33,7 +33,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param menuItem The menu item to add.
  * @throws GTKDestroyedWidgetException
  */
-- (void)appendMenuItem:(GTKMenuItem *)menuItem;
+- (void)appendMenuItem: (GTKMenuItem*)menuItem;
 
 /*!
  * @brief Adds a menu item to the beginning of the menu.
@@ -41,7 +41,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @param menuItem The menu item to add.
  * @throws GTKDestroyedWidgetException
  */
-- (void)prependMenuItem:(GTKMenuItem *)menuItem;
+- (void)prependMenuItem: (GTKMenuItem*)menuItem;
 
 /*!
  * @brief Adds a menu item to the specified position in the menu.
@@ -50,8 +50,8 @@ OF_ASSUME_NONNULL_BEGIN
  * @param position The position at which to place the menu item.
  * @throws GTKDestroyedWidgetException
  */
-- (void)insertMenuItem:(GTKMenuItem *)menuItem
-            atPosition:(int)position;
+- (void)insertMenuItem: (GTKMenuItem*)menuItem
+	    atPosition: (int)position;
 
 /*!
  * @brief Deactivate the menu.

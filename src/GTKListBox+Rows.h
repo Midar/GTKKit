@@ -31,7 +31,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (bool)rowSelectedAtIndex:(int)index;
+- (bool)rowSelectedAtIndex: (int)index;
 
 /*!
  * @brief Set the header for the specified row to the specified widget.
@@ -41,7 +41,8 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)setRowHeaderAtIndex:(int)index toWidget:(GTKWidget)header;
+- (void)setRowHeaderAtIndex: (int)index
+		   toWidget: (GTKWidget)header;
 
 /*!
  * @brief Whether or not the specified row is activatable.
@@ -50,7 +51,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (bool)rowActivatableAtIndex:(int)index;
+- (bool)rowActivatableAtIndex: (int)index;
 
 /*!
  * @brief Sets whether or not the specified row is activatable.
@@ -60,7 +61,8 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)setRowActivatableAtIndex:(int)index to:(bool)activatable;
+- (void)setRowActivatableAtIndex: (int)index
+			      to: (bool)activatable;
 
 /*!
  * @brief Whether or not the specified row is selectable.
@@ -69,7 +71,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (bool)rowSelectableAtIndex:(int)index;
+- (bool)rowSelectableAtIndex: (int)index;
 
 /*!
 * @brief Sets whether or not the specified row is selectable.
@@ -79,7 +81,8 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)setRowSelectableAtIndex:(int)index to:(bool)selectable;
+- (void)setRowSelectableAtIndex: (int)index
+			     to: (bool)selectable;
 
 /*!
  * @brief Informs the list box that the specified row has changed.
@@ -88,7 +91,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @throws GTKDestroyedWidgetException
  * @throws GTKRowOutOfBoundsException
  */
-- (void)rowChangedAtIndex:(int)index;
+- (void)rowChangedAtIndex: (int)index;
 @end
 
 OF_ASSUME_NONNULL_END

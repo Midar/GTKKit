@@ -23,65 +23,70 @@
 static bool
 switchToggled(GtkSwitch *button, bool state, GTKSwitch *sender)
 {
-  if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = \
-        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
-    methodImplementation(sender.target, sender.action, sender);
-  }
-  return false;
+	if (sender.target != nil && sender.action != NULL) {
+		void (*imp)(id, SEL, id) = (void(*)(id, SEL, id))
+		    [sender.target methodForSelector: sender.action];
+		imp(sender.target, sender.action, sender);
+	}
+
+	return false;
 }
 
 @implementation GTKSwitch
 - init
 {
-  self = [super init];
-  self.widget = gtk_switch_new();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget),
-      "destroy", G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  _stateChangedHandlerID = g_signal_connect(G_OBJECT (self.widget), "state-set",
-      G_CALLBACK (switchToggled), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_switch_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+	_stateChangedHandlerID = g_signal_connect(G_OBJECT (self.widget),
+	    "state-set", G_CALLBACK(switchToggled), (__bridge void*)self);
+
+	return self;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget),
-        _stateChangedHandlerID);
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _stateChangedHandlerID);
 }
 
 - (bool)active
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_switch_get_active(GTK_SWITCH(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_switch_get_active(GTK_SWITCH(self.widget));
 }
 
 - (bool)state
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_switch_get_state(GTK_SWITCH(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_switch_get_state(GTK_SWITCH(self.widget));
 }
 
-- (void)setActive:(bool)active
+- (void)setActive: (bool)active
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_switch_set_active(GTK_SWITCH(self.widget), active);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_switch_set_active(GTK_SWITCH(self.widget), active);
 }
 
-- (void)setState:(bool)state
+- (void)setState: (bool)state
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_switch_set_state(GTK_SWITCH(self.widget), state);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_switch_set_state(GTK_SWITCH(self.widget), state);
 }
 @end

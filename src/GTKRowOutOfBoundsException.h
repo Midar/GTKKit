@@ -20,7 +20,7 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief An exception representing the error of attempting to access a
- * nonexsitent row of a @ref GTKListBox.
+ *	  nonexsitent row of a @ref GTKListBox.
  */
 @interface GTKRowOutOfBoundsException: OFException
 @end

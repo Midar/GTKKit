@@ -23,105 +23,112 @@
 static void
 comboBoxActiveItemChanged(GtkWidget *combobox, GTKComboBox *sender)
 {
-  if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = \
-        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
-    methodImplementation(sender.target, sender.action, sender);
-  }
+	if (sender.target != nil && sender.action != NULL) {
+		void (*imp)(id, SEL, id) = (void(*)(id, SEL, id))
+		    [sender.target methodForSelector: sender.action];
+
+		imp(sender.target, sender.action, sender);
+	}
 }
 
 @implementation GTKComboBox
 - init
 {
-  self = [super init];
-  self.widget = gtk_combo_box_text_new ();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _changedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "changed",
-      G_CALLBACK (comboBoxActiveItemChanged), (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget),
-      "destroy", G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_combo_box_text_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_changedHandlerID = g_signal_connect(GTK_WIDGET(self.widget),
+	    "changed", G_CALLBACK(comboBoxActiveItemChanged),
+	    (__bridge void*)self);
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT(self.widget), _changedHandlerID);
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _changedHandlerID);
 }
 
 - (void)appendString: (OFString*)string
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(self.widget),
-      [string UTF8String], NULL);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_combo_box_text_append(GTK_COMBO_BOX_TEXT(self.widget),
+	    [string UTF8String], NULL);
 }
 
 - (void)prependString: (OFString*)string
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_combo_box_text_prepend(GTK_COMBO_BOX_TEXT(self.widget),
-      [string UTF8String], NULL);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_combo_box_text_prepend(GTK_COMBO_BOX_TEXT(self.widget),
+	    [string UTF8String], NULL);
 }
 
 - (void)insertString: (OFString*)string
-          atIndex:(int)index
+	     atIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), index,
-      [string UTF8String], NULL);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_combo_box_text_insert(GTK_COMBO_BOX_TEXT(self.widget), index,
+	    [string UTF8String], NULL);
 }
 
-- (void)removeStringAtIndex:(int)index
+- (void)removeStringAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_combo_box_text_remove(GTK_COMBO_BOX_TEXT(self.widget), index);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_combo_box_text_remove(GTK_COMBO_BOX_TEXT(self.widget), index);
 }
 
 - (void)removeAllStrings
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(self.widget));
 }
 
 - (int)activeIndex
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_combo_box_get_active(GTK_COMBO_BOX(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_combo_box_get_active(GTK_COMBO_BOX(self.widget));
 }
 
-- (void)setActiveIndex:(int)index
+- (void)setActiveIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_combo_box_set_active(GTK_COMBO_BOX(self.widget), index);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_combo_box_set_active(GTK_COMBO_BOX(self.widget), index);
 }
 
 - (OFString*)activeString
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  const char *str = \
-      gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(self.widget));
-  if (str == NULL) {
-    return nil;
-  } else {
-    return [OFString stringWithUTF8String: str];
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	const char *str =
+	    gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(self.widget));
+
+	if (str == NULL)
+		return nil;
+
+	return @(str);
 }
 @end

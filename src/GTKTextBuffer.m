@@ -23,61 +23,66 @@
 @implementation GTKTextBuffer
 - init
 {
-  self = [super init];
-  self.bufferHandle = gtk_text_buffer_new(NULL);
-  g_object_set_data(G_OBJECT(self.bufferHandle), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.bufferHandle = gtk_text_buffer_new(NULL);
+	g_object_set_data(G_OBJECT(self.bufferHandle),
+	    "_GTKKIT_WRAPPER_WIDGET_", (__bridge void*)self);
+
+	return self;
 }
 
 - (int)lineCount
 {
-  return gtk_text_buffer_get_line_count(GTK_TEXT_BUFFER(self.bufferHandle));
+	return gtk_text_buffer_get_line_count(
+	    GTK_TEXT_BUFFER(self.bufferHandle));
 }
 
 - (int)characterCount
 {
-  return gtk_text_buffer_get_char_count(GTK_TEXT_BUFFER(self.bufferHandle));
+	return gtk_text_buffer_get_char_count(
+	    GTK_TEXT_BUFFER(self.bufferHandle));
 }
 
-- (void)insertString:(OFString*)string
-          atPosition:(int)position
+- (void)insertString: (OFString*)string
+	  atPosition: (int)position
 {
-  @autoreleasepool {
-    GtkTextIter iter;
-    gtk_text_buffer_get_iter_at_offset(GTK_TEXT_BUFFER(self.bufferHandle),
-        &iter, position);
-    gtk_text_buffer_insert(GTK_TEXT_BUFFER(self.bufferHandle), &iter,
-        [string UTF8String], -1);
-  }
+	GtkTextIter iter;
+	gtk_text_buffer_get_iter_at_offset(GTK_TEXT_BUFFER(self.bufferHandle),
+	    &iter, position);
+	gtk_text_buffer_insert(GTK_TEXT_BUFFER(self.bufferHandle), &iter,
+	    [string UTF8String], -1);
 }
 
-- (void)insertStringAtCursorPosition:(OFString*)string
+- (void)insertStringAtCursorPosition: (OFString*)string
 {
-  @autoreleasepool {
-    gtk_text_buffer_insert_at_cursor(GTK_TEXT_BUFFER(self.bufferHandle),
-        [string UTF8String], [string UTF8StringLength]);
-  }
+	gtk_text_buffer_insert_at_cursor(GTK_TEXT_BUFFER(self.bufferHandle),
+	    [string UTF8String], [string UTF8StringLength]);
 }
 
 - (OFString*)stringValue
 {
-  GtkTextIter start;
-  GtkTextIter end;
-  gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(self.bufferHandle), &start);
-  gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(self.bufferHandle), &end);
-  char *str = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(self.bufferHandle),
-      &start, &end, true);
-  OFString *returnString = [OFString stringWithUTF8String: str];
-  free(str);
-  return returnString;
+	GtkTextIter start;
+	GtkTextIter end;
+	gtk_text_buffer_get_start_iter(GTK_TEXT_BUFFER(self.bufferHandle),
+	    &start);
+	gtk_text_buffer_get_end_iter(GTK_TEXT_BUFFER(self.bufferHandle), &end);
+
+	OFString *returnString;
+	char *str = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(self.bufferHandle),
+	    &start, &end, true);
+	@try {
+		returnString = @(str);
+	} @finally {
+		free(str);
+	}
+
+	return returnString;
 }
 
-- (void)setStringValue:(OFString*)stringValue
+- (void)setStringValue: (OFString*)stringValue
 {
-  @autoreleasepool {
-    gtk_text_buffer_set_text(GTK_TEXT_BUFFER(self.bufferHandle),
-        [stringValue UTF8String], [stringValue UTF8StringLength]);
-  }
+	gtk_text_buffer_set_text(GTK_TEXT_BUFFER(self.bufferHandle),
+	    [stringValue UTF8String], [stringValue UTF8StringLength]);
 }
 @end

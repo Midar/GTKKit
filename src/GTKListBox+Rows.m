@@ -21,94 +21,97 @@
 #import "GTKListBox+Rows.h"
 
 @implementation GTKListBox (Rows)
-- (bool)rowSelectedAtIndex:(int)index
+- (bool)rowSelectedAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  return gtk_list_box_row_is_selected(GTK_LIST_BOX_ROW(row));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	return gtk_list_box_row_is_selected(GTK_LIST_BOX_ROW(row));
 }
 
-- (void)setRowHeaderAtIndex:(int)index toWidget:(GTKWidget)header
+- (void)setRowHeaderAtIndex: (int)index
+		   toWidget: (GTKWidget)header
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  gtk_list_box_row_set_header(GTK_LIST_BOX_ROW(row), header.widget);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_list_box_row_set_header(GTK_LIST_BOX_ROW(row), header.widget);
 }
 
-- (bool)rowActivatableAtIndex:(int)index
+- (bool)rowActivatableAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  return gtk_list_box_row_get_activatable(GTK_LIST_BOX_ROW(row));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	return gtk_list_box_row_get_activatable(GTK_LIST_BOX_ROW(row));
 }
 
-- (void)setRowActivatableAtIndex:(int)index to:(bool)activatable
+- (void)setRowActivatableAtIndex: (int)index
+			      to: (bool)activatable
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), activatable)
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_list_box_row_set_activatable(GTK_LIST_BOX_ROW(row), activatable);
 }
 
-- (bool)rowSelectableAtIndex:(int)index
+- (bool)rowSelectableAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  return gtk_list_box_row_get_selectable(GTK_LIST_BOX_ROW(row));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	return gtk_list_box_row_get_selectable(GTK_LIST_BOX_ROW(row));
 }
 
-- (void)setRowSelectableAtIndex:(int)index to:(bool)selectable
+- (void)setRowSelectableAtIndex: (int)index
+			     to: (bool)selectable
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), selectable);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_list_box_row_set_selectable(GTK_LIST_BOX_ROW(row), selectable);
 }
 
-- (void)rowChangedAtIndex:(int)index
+- (void)rowChangedAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  gtk_list_box_row_changed(GTK_LIST_BOX_ROW(row));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_list_box_row_changed(GTK_LIST_BOX_ROW(row));
 }
 @end

@@ -24,20 +24,22 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKScale (Properties)
 /*!
- * @brief Whether or not to display the value of the scale as text.
+ * Whether or not to display the value of the scale as text.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool showValue;
 
 /*!
- * @brief Whether or not the area between the lowest value of the scale and the
+ * Whether or not the area between the lowest value of the scale and the
  * current value of the scale will be highlighted.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool hasOrigin;
 
 /*!
- * @brief The position of the displayed value of the scale.
+ * The position of the displayed value of the scale.
  *
  * One of the following possible values:
  *
@@ -45,38 +47,39 @@ OF_ASSUME_NONNULL_BEGIN
  * - GTK_POS_RIGHT
  * - GTK_POS_TOP
  * - GTK_POS_BOTTOM
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkPositionType valuePosition;
 
 /*!
- * @brief The current value of the scale, formatted using the scale's format
- * string.
+ * The current value of the scale, formatted using the scale's format string.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (readonly) OFString *formattedValue;
 
 /*!
  * @brief Adds a mark on the scale at the specified value and position, with
- * the specified text.
+ *	  the specified text.
  *
  * @param value The value at which to place the mark.
  * @param position The position of the mark. (see @ref valuePosition)
  * @param text The text to show at the mark.
  * @throws GTKDestroyedWidgetException
  */
-- (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) position
-              withText:(OFString *) text;
+- (void)addMarkAtValue: (double)value
+	  withPosition: (GtkPositionType)position
+	      withText: (OFString*)text;
 
 /*!
  * @brief Adds a mark on the scale at the specified value, using the default
- * position.
+ *	  position.
  *
  * @param value The value at which to place the mark.
  * @throws GTKDestroyedWidgetException
  */
-- (void)addMarkAtValue:(double)value;
+- (void)addMarkAtValue: (double)value;
 
 /*!
  * @brief Adds a mark on the scale at the specified value and position.
@@ -85,22 +88,23 @@ OF_ASSUME_NONNULL_BEGIN
  * @param position The position of the mark. (see @ref valuePosition)
  * @throws GTKDestroyedWidgetException
  */
-- (void)addMarkAtValue:(double)value
-          withPosition:(GtkPositionType) position;
+- (void)addMarkAtValue: (double)value
+	  withPosition: (GtkPositionType)position;
 
 /*!
  * @brief Adds a mark on the scale at the specified value in the default
- * position, with the specified text.
+ *	  position, with the specified text.
  *
  * @param value The value at which to place the mark.
  * @param text The text to show at the mark.
  * @throws GTKDestroyedWidgetException
  */
-- (void)addMarkAtValue:(double)value
-              withText:(OFString *) text;
+- (void)addMarkAtValue: (double)value
+	      withText: (OFString*)text;
 
 /*!
  * @brief Remove all marks from the scale.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)clearMarks;

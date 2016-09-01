@@ -21,137 +21,145 @@
 #import "GTKListBox+Actions.h"
 
 @implementation GTKListBox (Properties)
-- (void)prependWidget:(GTKWidget*)childWidget
+- (void)prependWidget: (GTKWidget*)childWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  childWidget.parent = self;
-  gtk_list_box_prepend(GTK_LIST_BOX(self.widget),
-      GTK_WIDGET(childWidget.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	childWidget.parent = self;
+	gtk_list_box_prepend(GTK_LIST_BOX(self.widget),
+	    GTK_WIDGET(childWidget.widget));
 }
 
-- (void)appendWidget:(GTKWidget*)childWidget
+- (void)appendWidget: (GTKWidget*)childWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  childWidget.parent = self;
-  gtk_list_box_insert(GTK_LIST_BOX(self.widget),
-      GTK_WIDGET(childWidget.widget), -1);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	childWidget.parent = self;
+	gtk_list_box_insert(GTK_LIST_BOX(self.widget),
+	    GTK_WIDGET(childWidget.widget), -1);
 }
 
-- (void)insertWidget:(GTKWidget*)childWidget atPosition:(int)position
+- (void)insertWidget: (GTKWidget*)childWidget
+	  atPosition: (int)position
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (childWidget.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  childWidget.parent = self;
-  gtk_list_box_insert(GTK_LIST_BOX(self.widget),
-      GTK_WIDGET(childWidget.widget), position);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (childWidget.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	childWidget.parent = self;
+	gtk_list_box_insert(GTK_LIST_BOX(self.widget),
+	    GTK_WIDGET(childWidget.widget), position);
 }
 
-- (void)selectRowAtIndex:(int)index
+- (void)selectRowAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  gtk_list_box_select_row(GTK_LIST_BOX(self.widget),
-      (GTK_LIST_BOX_ROW(row)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_list_box_select_row(GTK_LIST_BOX(self.widget),
+	    GTK_LIST_BOX_ROW(row));
 }
 
-- (void)unselectRowAtIndex:(int)index
+- (void)unselectRowAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = \
-      gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
-  gtk_list_box_unselect_row(GTK_LIST_BOX(self.widget),
-      (GTK_LIST_BOX_ROW(row)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_list_box_unselect_row(GTK_LIST_BOX(self.widget),
+	    GTK_LIST_BOX_ROW(row));
 }
 
 - (void)selectAll
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_list_box_select_all(GTK_LIST_BOX(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_list_box_select_all(GTK_LIST_BOX(self.widget));
 }
 
 - (void)unselectAll
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_list_box_unselect_all(GTK_LIST_BOX(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_list_box_unselect_all(GTK_LIST_BOX(self.widget));
 }
 
 - (void)destroyRowAtIndex:(int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
-      index);
-  gtk_widget_destroy(GTK_WIDGET(row));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	gtk_widget_destroy(GTK_WIDGET(row));
 }
 
-// This gets the wrapper object for the widget in the selected row. It will
-// return it as a GTKWidget*, so you'll have to cast it to the appropriate
-// class. It doesn't need to be retained or released.
+/*
+ * This gets the wrapper object for the widget in the selected row. It will
+ * return it as a GTKWidget*, so you'll have to cast it to the appropriate
+ * class. It doesn't need to be retained or released.
+ */
 - (GTKWidget*)widgetForSelectedRow
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkListBoxRow *row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self.widget));
-  GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
-  return [GTKWidget wrapperForGtkWidget: child];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_selected_row(GTK_LIST_BOX(self.widget));
+	GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
+	return [GTKWidget wrapperForGtkWidget: child];
 }
 
-// This gets the wrapper object for the widget in the given row. It will
-// return it as a GTKWidget*, so you'll have to cast it to the appropriate
-// class. It doesn't need to be retained or released.
-- (GTKWidget*)widgetForRowAtIndex:(int)index
+/*
+ * This gets the wrapper object for the widget in the given row. It will return
+ * it as a GTKWidget*, so you'll have to cast it to the appropriate class. It
+ * doesn't need to be retained or released.
+ */
+- (GTKWidget*)widgetForRowAtIndex: (int)index
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (index >= self.rowCount) {
-      @throw([GTKRowOutOfBoundsException new]);
-  }
-  GtkListBoxRow *row = gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget),
-      index);
-  GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
-  return [GTKWidget wrapperForGtkWidget: child];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (index >= self.rowCount)
+		@throw [GTKRowOutOfBoundsException new];
+
+	GtkListBoxRow *row =
+	    gtk_list_box_get_row_at_index(GTK_LIST_BOX(self.widget), index);
+	GtkWidget *child = gtk_bin_get_child(GTK_BIN(row));
+	return [GTKWidget wrapperForGtkWidget: child];
 }
 
-// Because the only way to count a GList is to iterate through it, this takes
-// longer the longer the list is.
+/*
+ * Because the only way to count a GList is to iterate through it, this takes
+ * longer the longer the list is.
+ */
 - (int)rowCount
 {
-  GList *rowList = gtk_container_get_children(GTK_CONTAINER(self.widget));
-  return g_list_length(rowList);
+	GList *rowList = gtk_container_get_children(GTK_CONTAINER(self.widget));
+	return g_list_length(rowList);
 }
 @end

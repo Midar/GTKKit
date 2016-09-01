@@ -21,28 +21,29 @@
 #import "GTKWidget.h"
 
 void
-widget_destroyed_handler (GtkWidget *widget, GTKWidget *wrapper)
+widget_destroyed_handler(GtkWidget *widget, GTKWidget *wrapper)
 {
-  g_object_unref(G_OBJECT(wrapper.widget));
-  wrapper.widget = NULL;
+	g_object_unref(G_OBJECT(wrapper.widget));
+	wrapper.widget = NULL;
 }
 
 @implementation GTKWidget
-+ (instancetype)wrapperForGtkWidget:(GtkWidget *)widget
++ (instancetype)wrapperForGtkWidget: (GtkWidget*)widget
 {
-  GTKWidget *wrapper = (__bridge GTKWidget*)g_object_get_data(G_OBJECT(widget),
-      "_GTKKIT_WRAPPER_WIDGET_");
-  if (wrapper == NULL) {
-    @throw([GTKNoWrapperForGtkWidgetException new]);
-  }
-  return wrapper;
+	GTKWidget *wrapper = (__bridge GTKWidget*)g_object_get_data(
+	    G_OBJECT(widget), "_GTKKIT_WRAPPER_WIDGET_");
+
+	if (wrapper == NULL)
+		@throw [GTKNoWrapperForGtkWidgetException new];
+
+	return wrapper;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget),
-        _widgetDestroyedHandlerID);
-    gtk_widget_destroy(GTK_WIDGET(self.widget));
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _widgetDestroyedHandlerID);
+	gtk_widget_destroy(GTK_WIDGET(self.widget));
 }
 @end

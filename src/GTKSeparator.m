@@ -21,41 +21,46 @@
 #import "GTKSeparator.h"
 
 @implementation GTKSeparator
-+ (instancetype)separatorWithOrientation:(GtkOrientation)orientation
++ (instancetype)separatorWithOrientation: (GtkOrientation)orientation
 {
-  return [[self alloc] initWithOrientation: orientation];
+	return [[self alloc] initWithOrientation: orientation];
 }
 
-- initWithOrientation:(GtkOrientation)orientation
+- initWithOrientation: (GtkOrientation)orientation
 {
-  self = [super init];
-  self.widget = gtk_separator_new(orientation);
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_separator_new(orientation);
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - init
 {
-  OF_INVALID_INIT_METHOD
+	OF_INVALID_INIT_METHOD
 }
 
 - (GtkOrientation)orientation
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_orientable_get_orientation (GTK_ORIENTABLE (self.widget));
 }
 
 - (void)setOrientation:(GtkOrientation)orientation
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_orientable_set_orientation (GTK_ORIENTABLE (self.widget), orientation);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_orientable_set_orientation(GTK_ORIENTABLE(self.widget),
+	    orientation);
 }
 @end

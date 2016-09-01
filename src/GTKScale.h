@@ -27,30 +27,29 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKScale: GTKRange
 {
-  gulong _valueChangedHandlerID;
-  gulong _formatHandlerID;
+	gulong _valueChangedHandlerID;
+	gulong _formatHandlerID;
 }
 
 /*!
- * @brief The number of digits of the value used when it is displayed.
+ * The number of digits of the value used when it is displayed.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int digits;
 
 /*!
- * @brief The selector sent to the scale's target when the value changes.
+ * The selector sent to the scale's target when the value changes.
  */
 @property (nullable) SEL action;
 
 /*!
- * @brief The object which is sent a message whe the value of the scale
- * changes.
+ * The object which is sent a message whe the value of the scale changes.
  */
 @property (nullable, weak) id target;
 
 /*!
- * @brief The printf-style string used in formatting the displayed value of
- * the scale.
+ * The printf-style string used in formatting the displayed value of the scale.
  */
 @property OFConstantString *formatString;
 @end

@@ -25,43 +25,47 @@
  */
 @protocol GTKScrollable
 /*!
- * @brief The horizontal adjustment of the scrollable widget.
+ * The horizontal adjustment of the scrollable widget.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAdjustment *horizontalAdjustment;
 
 /*!
- * @brief The vertical adjustment of the scrollable widget.
+ * The vertical adjustment of the scrollable widget.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAdjustment *verticalAdjustment;
 
 /*!
- * @brief The horizontal scrolling policy of the scrollable widget.
+ * The horizontal scrolling policy of the scrollable widget.
  *
  * One of the following possible values:
  *
  * - GTK_SCROLL_MINIMUM (Scrollable adjustments are based on the minimum size)
  * - GTK_SCROLL_NATURAL (Scrollable adjustments are based on the natural size)
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkScrollablePolicy horizontalScrollingPolicy;
 
 /*!
- * @brief The vertical scrolling policy of the scrollable widget.
+ * The vertical scrolling policy of the scrollable widget.
  *
  * One of the following possible values:
  *
  * - GTK_SCROLL_MINIMUM (Scrollable adjustments are based on the minimum size)
  * - GTK_SCROLL_NATURAL (Scrollable adjustments are based on the natural size)
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkScrollablePolicy verticalScrollingPolicy;
 @end
 
 /*!
- * @brief A default implementation of the &lt;GTKScrollable&gt; protocol for
- * classes to inherit.
+ * @brief A default implementation of the GTKScrollable protocol for classes to
+ *	  inherit.
  */
 @interface GTKScrollable: GTKWidget <GTKScrollable>
 @end

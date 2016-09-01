@@ -29,6 +29,7 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKMenu: GTKMenuShell
 /*!
  * @brief Make the menu pop-up.
+ *
  * @throws GTKDestroyedWidgetException
  */
 - (void)popup;

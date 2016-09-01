@@ -24,32 +24,36 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A container which draws a frame around its child, with an optional
- * label.
+ *	  label.
  */
 @interface GTKFrame: GTKBin
 /*!
- * @brief The string to use as a label for the frame.
+ * The string to use as a label for the frame.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *label;
 
 /*!
- * @brief The custom widget to use as a label for the frame.
+ * The custom widget to use as a label for the frame.
  *
  * Note that any GTKWidget can be used here, but the most common would be a
  * GTKImage.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GTKWidget *labelWidget;
 
 /*!
- * @brief The horizontal alignment of the label.
+ * The horizontal alignment of the label.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property float labelHorizontalAlign;
 
 /*!
- * @brief The vertical alignment of the label.
+ * The vertical alignment of the label.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property float labelVerticalAlign;

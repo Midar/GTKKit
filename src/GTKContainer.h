@@ -28,6 +28,7 @@ OF_ASSUME_NONNULL_BEGIN
 @interface GTKContainer : GTKWidget
 /*!
  * @brief The width of the border of the container.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property unsigned int borderWidth;

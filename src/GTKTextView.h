@@ -28,18 +28,20 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKTextView: GTKContainer <GTKScrollable>
 {
-  GTKTextBuffer *_buffer;
+	GTKTextBuffer *_buffer;
 }
 
 /*!
- * @brief The buffer to use with the text view widget. Multiple such widgets can
- * share a single buffer if desired.
+ * The buffer to use with the text view widget.
+ *
+ * Multiple such widgets can share a single buffer if desired.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GTKTextBuffer *buffer;
 
 /*!
- * @brief The wrap mode of the text view.
+ * The wrap mode of the text view.
  *
  * One of the following possible values:
  *
@@ -53,50 +55,49 @@ OF_ASSUME_NONNULL_BEGIN
 @property GtkWrapMode wrapMode;
 
 /*!
- * @brief Whether or not the text view is editable.
+ * Whether or not the text view is editable.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool editable;
 
 /*!
- * @brief Whether or not the cursor is visible.
+ * Whether or not the cursor is visible.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool cursorVisible;
 
 /*!
- * @brief Whether the text view is in insert or overwrite mode. Setting this to
- * true turns on overwrite mode, false sets it to insert mode.
+ * Whether the text view is in insert or overwrite mode.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool overwriteMode;
 
 /*!
- * @brief The number of pixels above paragraphs in the text view.
+ * The number of pixels above paragraphs in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int pixelsAboveParagraphs;
 
 /*!
- * @brief The number of pixels below paragraphs in the text view.
+ * The number of pixels below paragraphs in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int pixelsBelowParagraphs;
 
 /*!
- * @brief The number of pixels between wrapped lines in the text view.
+ * The number of pixels between wrapped lines in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int pixelsBetweenWrappedLines;
 
 /*!
- * @brief The justification of the text in the text view.
+ * The justification of the text in the text view.
  *
  * One of the following possible values:
  *
@@ -110,52 +111,54 @@ OF_ASSUME_NONNULL_BEGIN
 @property GtkJustification justification;
 
 /*!
- * @brief The padding on the left side of the text in the text view.
+ * The padding on the left side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingLeft;
 
 /*!
- * @brief The padding on the right side of the text in the text view.
+ * The padding on the right side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingRight;
 
 /*!
- * @brief The padding on the top side of the text in the text view.
+ * The padding on the top side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingTop;
 
 /*!
- * @brief The padding on the bottom side of the text in the text view.
+ * The padding on the bottom side of the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int paddingBottom;
 
 /*!
- * @brief The indentation (in pixels) for paragraphs in the text view.
+ * The indentation (in pixels) for paragraphs in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property int indent;
 
 /*!
- * @brief Whether or not to accept tabs as characters when the tab key is
- * pressed. If this is false, the tab key will cause focus to move to the
- * next widget.
+ * Whether or not to accept tabs as characters when the tab key is pressed.
+ *
+ * If this is false, the tab key will cause focus to move to the next widget.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool acceptTab;
 
 /*!
- * @brief The purpose of the text view. This is used by input methods and
- * on-screen keyboards to alter their behaviour.
+ * The purpose of the text view.
+ *
+ * This is used by input methods and on-screen keyboards to alter their
+ * behaviour.
  *
  * One of the following possible values:
  *
@@ -175,16 +178,15 @@ OF_ASSUME_NONNULL_BEGIN
 @property GtkInputPurpose purpose;
 
 /*!
- * @brief Whether or not to use a monospaced font to render the text in the text
- * view.
+ * Whether or not to use a monospaced font to render the text in the text view.
  *
  * @throws GTKDestroyedWidgetException
  */
 @property bool monospace;
 
 /*!
- * @brief Moves the cursor so it is within the visible portion of the buffer,
- * if it is not there already.
+ * Moves the cursor so it is within the visible portion of the buffer, if it is
+ * not there already.
  *
  * @throws GTKDestroyedWidgetException
  */

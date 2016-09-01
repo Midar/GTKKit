@@ -23,49 +23,54 @@
 @implementation GTKImage
 - init
 {
-  self = [super init];
-  self.iconSize = GTK_ICON_SIZE_DIALOG;
-  self.widget = gtk_image_new_from_icon_name("dialog-question", self.iconSize);
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	_iconSize = GTK_ICON_SIZE_DIALOG;
+	self.widget = gtk_image_new_from_icon_name("dialog-question",
+	    _iconSize);
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK (widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
-- (void)setImageFile:(OFString *)filename
+- (void)setImageFile: (OFString*)filename
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  _imageFile = filename;
-  gtk_image_set_from_file(GTK_IMAGE(self.widget), [filename UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	_imageFile = filename;
+	gtk_image_set_from_file(GTK_IMAGE(self.widget), [filename UTF8String]);
 }
 
-- (OFString *)imageFile
+- (OFString*)imageFile
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return _imageFile;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return _imageFile;
 }
 
-- (void)setIconName:(OFString *)name
+- (void)setIconName: (OFString*)name
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  _iconName = name;
-  gtk_image_set_from_icon_name(GTK_IMAGE(self.widget), [name UTF8String],
-      self.iconSize);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	_iconName = name;
+	gtk_image_set_from_icon_name(GTK_IMAGE(self.widget), [name UTF8String],
+	    self.iconSize);
 }
 
-- (OFString *)iconName
+- (OFString*)iconName
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return _iconName;
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return _iconName;
 }
 @end

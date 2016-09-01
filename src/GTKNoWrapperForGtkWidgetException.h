@@ -20,7 +20,8 @@ OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief An exception representing the error of attempting to locate the
- * wrapper object for a GtkWidget (or subclass) pointer that doesn't have one.
+ *	  wrapper object for a GtkWidget (or subclass) pointer that doesn't
+ *	  have one.
  */
 @interface GTKNoWrapperForGtkWidgetException: OFException
 @end

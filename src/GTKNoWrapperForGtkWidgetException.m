@@ -19,6 +19,6 @@
 @implementation GTKNoWrapperForGtkWidgetException
 - (OFString*)description
 {
-  return [OFString stringWithUTF8String: "Attempt to locate nonexistent wrapper for GtkWidget pointer."];
+	return @"Attempt to locate nonexistent wrapper for GtkWidget pointer.";
 }
 @end

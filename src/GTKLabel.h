@@ -29,12 +29,12 @@ OF_ASSUME_NONNULL_BEGIN
 /*!
  * @brief Constructor for making a label with the specified text.
  */
-+ (instancetype)labelWithText:(OFString*)text;
++ (instancetype)labelWithText: (OFString*)text;
 
 /*!
  * @brief Initialize the label with the specified text.
  */
-- initWithText:(OFString*)text;
+- initWithText: (OFString*)text;
 @end
 
 OF_ASSUME_NONNULL_END

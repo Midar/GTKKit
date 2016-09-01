@@ -13,6 +13,7 @@
  * files COPYING.LGPL2 and COPYING.LGPL3, respectively, both also included in
  * the packaging of this file.
  */
+
 #import "Exceptions.h"
 #import "GTKWidget.h"
 #import "GTKWidget+Actions.h"

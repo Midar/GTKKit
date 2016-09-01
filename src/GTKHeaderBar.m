@@ -23,95 +23,102 @@
 @implementation GTKHeaderBar
 - init
 {
-  self = [super init];
-  self.widget = gtk_header_bar_new();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_header_bar_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
-- (OFString *)title
+- (OFString*)title
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return @(gtk_header_bar_get_title(GTK_HEADER_BAR(self.widget)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_header_bar_get_title(GTK_HEADER_BAR(self.widget)));
 }
 
-- (void)setTitle:(OFString *)title
+- (void)setTitle: (OFString*)title
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_header_bar_set_title(GTK_HEADER_BAR(self.widget), [title UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_header_bar_set_title(GTK_HEADER_BAR(self.widget),
+	    [title UTF8String]);
 }
 
-- (OFString *)subtitle
+- (OFString*)subtitle
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return @(gtk_header_bar_get_subtitle(GTK_HEADER_BAR(self.widget)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_header_bar_get_subtitle(GTK_HEADER_BAR(self.widget)));
 }
 
-- (void)setSubtitle:(OFString *)subtitle
+- (void)setSubtitle: (OFString*)subtitle
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_header_bar_set_subtitle(GTK_HEADER_BAR(self.widget),
-      [subtitle UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_header_bar_set_subtitle(GTK_HEADER_BAR(self.widget),
+	    [subtitle UTF8String]);
 }
 
 - (bool)hasSubtitle
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_header_bar_get_has_subtitle(GTK_HEADER_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_header_bar_get_has_subtitle(GTK_HEADER_BAR(self.widget));
 }
 
-- (void)setHasSubtitle:(bool)subtitle
+- (void)setHasSubtitle: (bool)subtitle
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_header_bar_set_has_subtitle(GTK_HEADER_BAR(self.widget), subtitle);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_header_bar_set_has_subtitle(GTK_HEADER_BAR(self.widget), subtitle);
 }
 
 - (bool)showWindowButtons
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_header_bar_get_show_close_button(GTK_HEADER_BAR(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_header_bar_get_show_close_button(
+	    GTK_HEADER_BAR(self.widget));
 }
 
-- (void)setShowWindowButtons:(bool)show
+- (void)setShowWindowButtons: (bool)show
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(self.widget), show);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(self.widget), show);
 }
 
-- (OFString *)windowButtonLayout
+- (OFString*)windowButtonLayout
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return @(gtk_header_bar_get_decoration_layout(GTK_HEADER_BAR(self.widget)));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_header_bar_get_decoration_layout(
+	    GTK_HEADER_BAR(self.widget)));
 }
 
-- (void)setWindowButtonLayout:(OFString *)layout
+- (void)setWindowButtonLayout: (OFString*)layout
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_header_bar_set_decoration_layout(GTK_HEADER_BAR(self.widget),
-      [layout UTF8String]);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_header_bar_set_decoration_layout(GTK_HEADER_BAR(self.widget),
+	    [layout UTF8String]);
 }
 @end

@@ -23,134 +23,144 @@
 static void
 popoverClosed(GtkPopover *popover, GTKPopover *sender)
 {
-  if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = \
-        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
-    methodImplementation(sender.target, sender.action, sender);
-  }
+	if (sender.target != nil && sender.action != NULL) {
+		void (*imp)(id, SEL, id) = (void(*)(id, SEL, id))
+		    [sender.target methodForSelector: sender.action];
+
+		imp(sender.target, sender.action, sender);
+	}
 }
 
 @implementation GTKPopover
 - init
 {
-  self = [super init];
-  self.widget = gtk_popover_new(NULL);
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget),
-      "destroy", G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  _closedHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "clicked",
-      G_CALLBACK (popoverClosed), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_popover_new(NULL);
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+	_closedHandlerID = g_signal_connect(GTK_WIDGET(self.widget), "clicked",
+	    G_CALLBACK(popoverClosed), (__bridge void*)self);
+
+	return self;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT(self.widget), _closedHandlerID);
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _closedHandlerID);
 }
 
-+ (instancetype)popoverAttachedToWidget:(GTKWidget*)widget
++ (instancetype)popoverAttachedToWidget: (GTKWidget*)widget
 {
-  return [[self alloc] initAttachedToWidget: widget];
+	return [[self alloc] initAttachedToWidget: widget];
 }
 
-- initAttachedToWidget:(GTKWidget*)widget
+- initAttachedToWidget: (GTKWidget*)widget
 {
-  self = [self init];
-  gtk_popover_set_relative_to(GTK_POPOVER(self.widget),
-      GTK_WIDGET(self.widget));
-  return self;
+	self = [self init];
+
+	gtk_popover_set_relative_to(GTK_POPOVER(self.widget),
+	    GTK_WIDGET(self.widget));
+
+	return self;
 }
 
 - (GTKWidget*)attachedWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkWidget *attached = gtk_popover_get_relative_to(GTK_POPOVER(self.widget));
-  return [GTKWidget wrapperForGtkWidget: attached];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	GtkWidget *attached = gtk_popover_get_relative_to(
+	    GTK_POPOVER(self.widget));
+	return [GTKWidget wrapperForGtkWidget: attached];
 }
 
-- (void)setAttachedWidget:(GTKWidget*)target
+- (void)setAttachedWidget: (GTKWidget*)target
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (target.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_popover_set_relative_to(GTK_POPOVER(self.widget),
-      GTK_WIDGET(target.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (target.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_popover_set_relative_to(GTK_POPOVER(self.widget),
+	    GTK_WIDGET(target.widget));
 }
 
 - (GtkPositionType)position
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_popover_get_position(GTK_POPOVER(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_popover_get_position(GTK_POPOVER(self.widget));
 }
 
-- (void)setPosition:(GtkPositionType)position
+- (void)setPosition: (GtkPositionType)position
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_popover_set_position(GTK_POPOVER(self.widget), position);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_popover_set_position(GTK_POPOVER(self.widget), position);
 }
 
 - (bool)modal
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_popover_get_modal(GTK_POPOVER(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_popover_get_modal(GTK_POPOVER(self.widget));
 }
 
 - (void)setModal:(bool)modal
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_popover_set_modal(GTK_POPOVER(self.widget), modal);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_popover_set_modal(GTK_POPOVER(self.widget), modal);
 }
 
 - (bool)enableTransitions
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_popover_get_transitions_enabled(GTK_POPOVER(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_popover_get_transitions_enabled(GTK_POPOVER(self.widget));
 }
 
-- (void)setEnableTransitions:(bool)enable
+- (void)setEnableTransitions: (bool)enable
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_popover_set_transitions_enabled(GTK_POPOVER(self.widget), enable);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_popover_set_transitions_enabled(GTK_POPOVER(self.widget), enable);
 }
 
 - (GTKWidget*)defaultWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  GtkWidget *attached = gtk_popover_get_default_widget(GTK_POPOVER(self.widget));
-  return [GTKWidget wrapperForGtkWidget: attached];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	GtkWidget *attached =
+	    gtk_popover_get_default_widget(GTK_POPOVER(self.widget));
+	return [GTKWidget wrapperForGtkWidget: attached];
 }
 
-- (void)setDefaultWidget:(GTKWidget*)target
+- (void)setDefaultWidget: (GTKWidget*)target
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if (target.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_popover_set_default_widget(GTK_POPOVER(self.widget),
-      GTK_WIDGET(target.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if (target.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_popover_set_default_widget(GTK_POPOVER(self.widget),
+	    GTK_WIDGET(target.widget));
 }
 @end

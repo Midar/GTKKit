@@ -25,98 +25,104 @@
 @implementation GTKWindow (Actions)
 - (void)present
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_window_present(GTK_WINDOW(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_window_present(GTK_WINDOW(self.widget));
 }
 
 - (bool)activateDefaultWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_window_activate_default(GTK_WINDOW(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_window_activate_default(GTK_WINDOW(self.widget));
 }
 
 - (bool)activateFocusedWidget
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_window_activate_focus(GTK_WINDOW(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_window_activate_focus(GTK_WINDOW(self.widget));
 }
 
 - (void)close
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if ([self.delegate respondsToSelector: @selector(windowShouldClose:)] &&
-      [self.delegate windowShouldClose: self]) {
-    if ([self.delegate respondsToSelector: @selector(windowWillClose:)])
-      [self.delegate windowWillClose: self];
-    gtk_window_close(GTK_WINDOW(self.widget));
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if ([self.delegate respondsToSelector: @selector(windowShouldClose:)] &&
+	     [self.delegate windowShouldClose: self]) {
+		if ([self.delegate respondsToSelector:
+		    @selector(windowWillClose:)])
+			[self.delegate windowWillClose: self];
+
+		gtk_window_close(GTK_WINDOW(self.widget));
+	}
 }
 
 - (void)minimize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if ([self.delegate respondsToSelector: @selector(windowShouldMinimize:)] &&
-      [self.delegate windowShouldMinimize: self]) {
-    if ([self.delegate respondsToSelector:
-        @selector(windowWillMinimize:)])
-      [self.delegate windowWillMinimize:self];
-    gtk_window_iconify(GTK_WINDOW(self.widget));
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if ([self.delegate respondsToSelector:
+	    @selector(windowShouldMinimize:)] &&
+            [self.delegate windowShouldMinimize: self]) {
+		if ([self.delegate respondsToSelector:
+		    @selector(windowWillMinimize:)])
+			[self.delegate windowWillMinimize: self];
+
+		gtk_window_iconify(GTK_WINDOW(self.widget));
+	}
 }
 
 - (void)unminimize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_window_deiconify (GTK_WINDOW (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_window_deiconify(GTK_WINDOW(self.widget));
 }
 
 - (void)maximize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  if ([self.delegate respondsToSelector: @selector(windowShouldMaximize:)] &&
-      [self.delegate windowShouldMaximize: self]) {
-    if ([self.delegate respondsToSelector:
-        @selector(windowWillMaximize:)])
-      [self.delegate windowWillMaximize:self];
-    gtk_window_maximize(GTK_WINDOW(self.widget));
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	if ([self.delegate respondsToSelector:
+	    @selector(windowShouldMaximize:)] &&
+	    [self.delegate windowShouldMaximize: self]) {
+		if ([self.delegate respondsToSelector:
+		    @selector(windowWillMaximize:)])
+			[self.delegate windowWillMaximize: self];
+
+		gtk_window_maximize(GTK_WINDOW(self.widget));
+	}
 }
 
 - (void)unmaximize
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_window_maximize(GTK_WINDOW(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_window_maximize(GTK_WINDOW(self.widget));
 }
 
 - (void)fullscreen
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_window_fullscreen(GTK_WINDOW(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_window_fullscreen(GTK_WINDOW(self.widget));
 }
 
 - (void)unfullscreen
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_window_unfullscreen(GTK_WINDOW(self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_window_unfullscreen(GTK_WINDOW(self.widget));
 }
 @end

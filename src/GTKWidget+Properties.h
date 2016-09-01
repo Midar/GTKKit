@@ -24,40 +24,45 @@ OF_ASSUME_NONNULL_BEGIN
 
 @interface GTKWidget (Properties)
 /*!
- * @brief The name of the widget.
+ * The name of the widget.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property OFString *name;
 
 /*!
- * @brief Whether the widget can be interacted with.
+ * Whether the widget can be interacted with.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool sensitive;
 
 /*!
- * @brief If the widget is sensitive but the parent is not, this will be false,
- * and the widget will be treated as if it were not sensitive.
+ * If the widget is sensitive but the parent is not, this will be false, and
+ * the widget will be treated as if it were not sensitive.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (readonly) bool effectiveSensitivity;
 
 /*!
- * @brief The requested opacity of the widget.
+ * The requested opacity of the widget.
  *
  * In the case of a toplevel window, this relies on the windowing system.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property double opacity;
 
 /*!
- * @brief Whether or not the widget is the focus widget for its window.
+ * Whether or not the widget is the focus widget for its window.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property (readonly) bool isFocus;
 
 /*!
- * @brief The horizontal alignment of the widget.
+ * The horizontal alignment of the widget.
  *
  * If there is extra horizontal space in the widget's container, this property
  * determines whether the widget will be aligned to the left, the centre, or to
@@ -68,12 +73,13 @@ OF_ASSUME_NONNULL_BEGIN
  * - GTK_ALIGN_END (Align the widget to the right)
  * - GTK_ALIGN_CENTER (Align the widget to the center)
  * - GTK_ALIGN_BASELINE (Align the widget to the baseline)
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAlign horizontalAlign;
 
 /*!
- * @brief The vertical alignment of the widget.
+ * The vertical alignment of the widget.
  *
  * If there is extra horizontal space in the widget's container, this property
  * determines whether the widget will be aligned to the top, the middle, or to
@@ -84,62 +90,71 @@ OF_ASSUME_NONNULL_BEGIN
  * - GTK_ALIGN_END (Align the widget to the bottom)
  * - GTK_ALIGN_CENTER (Align the widget to the middle)
  * - GTK_ALIGN_BASELINE (Align the widget to the baseline)
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property GtkAlign verticalAlign;
 
 /*!
- * @brief The margin of the widget on the starting side (left in left-to-right
- * text directions, right in right-to-left).
+ * The margin of the widget on the starting side (left in left-to-right text
+ * directions, right in right-to-left).
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int marginStart;
 
 /*!
- * @brief The margin of the widget on the ending side (right in left-to-right
- * text directions, left in right-to-left).
+ * The margin of the widget on the ending side (right in left-to-right text
+ * directions, left in right-to-left).
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int marginEnd;
 
 /*!
- * @brief The margin of the widget on the top side.
+ * The margin of the widget on the top side.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int marginTop;
 
 /*!
- * @brief The margin of the widget on the bottom side.
+ * The margin of the widget on the bottom side.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int marginBottom;
 
 /*!
- * @brief Whether or not the widget expands to consume all avlailable space in
- * its container in the horizontal axis.
+ * Whether or not the widget expands to consume all avlailable space in its
+ * container in the horizontal axis.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool expandHorizontal;
 
 /*!
- * @brief Whether or not the widget expands to consume all avlailable space in
- * its container in the vertical axis.
+ * Whether or not the widget expands to consume all avlailable space in its
+ * container in the vertical axis.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property bool expandVertical;
 
 /*!
- * @brief The width the widget requests.
+ * The width the widget requests.
  *
  * If the value of this propery is -1, the "natural" width will be used.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int widthRequest;
 
 /*!
- * @brief The height the widget requests.
+ * The height the widget requests.
  *
  * If the value of this propery is -1, the "natural" height will be used.
+ *
  * @throws GTKDestroyedWidgetException
  */
 @property int heightRequest;

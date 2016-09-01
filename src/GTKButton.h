@@ -29,7 +29,7 @@ OF_ASSUME_NONNULL_BEGIN
  */
 @interface GTKButton: GTKBin
 {
-  gulong _clickedHandlerID;
+	gulong _clickedHandlerID;
 }
 
 /*!
@@ -47,14 +47,14 @@ OF_ASSUME_NONNULL_BEGIN
  *
  * @param text The string to use as a label in the new button.
  */
-+ (instancetype)buttonWithLabel:(OFString*)text;
++ (instancetype)buttonWithLabel: (OFString*)text;
 
 /*!
  * @brief Initializes the button with the specified label.
  *
  * @param text The string to use as a label in the new button.
  */
-- initWithLabel:(OFString*)text;
+- initWithLabel: (OFString*)text;
 @end
 
 OF_ASSUME_NONNULL_END

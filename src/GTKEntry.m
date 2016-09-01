@@ -23,83 +23,83 @@
 @implementation GTKEntry
 - init
 {
-  self = [super init];
-  self.widget = gtk_entry_new();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  self.buffer = gtk_entry_buffer_new(NULL, -1);
-  gtk_entry_set_buffer (GTK_ENTRY (self.widget), self.buffer);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-    G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
-  return self;
+	self = [super init];
+
+	self.widget = gtk_entry_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	self.buffer = gtk_entry_buffer_new(NULL, -1);
+	gtk_entry_set_buffer(GTK_ENTRY(self.widget), _buffer);
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
+	return self;
 }
 
 - (OFString*)stringValue
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return [OFString stringWithUTF8String:
-      gtk_entry_get_text (GTK_ENTRY (self.widget))];
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return @(gtk_entry_get_text(GTK_ENTRY(self.widget)));
 }
 
-- (void)setStringValue:(id)text
+- (void)setStringValue: (id)text
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  @autoreleasepool {
-    const char *newStringValue = [text UTF8String];
-    gtk_entry_set_text (GTK_ENTRY (self.widget), newStringValue);
-  }
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_entry_set_text(GTK_ENTRY(self.widget), [text UTF8String]);
 }
 
-- (void)setTextVisible:(bool)visible
+- (void)setTextVisible: (bool)visible
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_entry_set_visibility (GTK_ENTRY (self.widget), visible);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_entry_set_visibility(GTK_ENTRY(self.widget), visible);
 }
 
 - (bool)textVisible
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_entry_get_visibility (GTK_ENTRY (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_entry_get_visibility(GTK_ENTRY(self.widget));
 }
 
-- (void)setMaximumLength:(int)max
+- (void)setMaximumLength: (int)max
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_entry_set_max_length (GTK_ENTRY (self.widget), max);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_entry_set_max_length(GTK_ENTRY(self.widget), max);
 }
 
 - (int)maximumLength
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_entry_get_max_length (GTK_ENTRY (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_entry_get_max_length(GTK_ENTRY(self.widget));
 }
 
 - (bool)hasFrame
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  return gtk_entry_get_has_frame (GTK_ENTRY (self.widget));
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	return gtk_entry_get_has_frame(GTK_ENTRY(self.widget));
 }
 
-- (void)setHasFrame:(bool)setting
+- (void)setHasFrame: (bool)setting
 {
-  if (self.widget == NULL) {
-    @throw([GTKDestroyedWidgetException new]);
-  }
-  gtk_entry_set_has_frame (GTK_ENTRY (self.widget), setting);
+	if (self.widget == NULL)
+		@throw [GTKDestroyedWidgetException new];
+
+	gtk_entry_set_has_frame(GTK_ENTRY(self.widget), setting);
 }
 @end

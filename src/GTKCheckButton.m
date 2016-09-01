@@ -24,32 +24,38 @@
 static void
 buttonToggled(GtkWidget *button, GTKButton *sender)
 {
-  if (sender.target && sender.action) {
-    void (*methodImplementation)(id, SEL, id) = \
-        (void(*)(id, SEL, id))[sender.target methodForSelector: sender.action];
-    methodImplementation(sender.target, sender.action, sender);
-  }
+	if (sender.target != nil && sender.action != NULL) {
+		void (*imp)(id, SEL, id) = (void(*)(id, SEL, id))
+		    [sender.target methodForSelector: sender.action];
+
+		imp(sender.target, sender.action, sender);
+	}
 }
 
 @implementation GTKCheckButton
 - init
 {
-  self = [super init];
-  gtk_widget_destroy(GTK_WIDGET(self.widget));
-  self.widget = gtk_check_button_new ();
-  g_object_ref_sink(G_OBJECT(self.widget));
-  g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
-      (__bridge void*) self);
-  _toggledHandlerID = g_signal_connect(GTK_WIDGET (self.widget), "toggled",
-      G_CALLBACK (buttonToggled), (__bridge void*) self);
-  _widgetDestroyedHandlerID = g_signal_connect(G_OBJECT (self.widget), "destroy",
-      G_CALLBACK (widget_destroyed_handler), (__bridge void*) self);
+	self = [super init];
+
+	gtk_widget_destroy(GTK_WIDGET(self.widget));
+	self.widget = gtk_check_button_new();
+	g_object_ref_sink(G_OBJECT(self.widget));
+	g_object_set_data(G_OBJECT(self.widget), "_GTKKIT_WRAPPER_WIDGET_",
+	    (__bridge void*)self);
+
+	_toggledHandlerID = g_signal_connect(GTK_WIDGET(self.widget),
+	    "toggled", G_CALLBACK(buttonToggled), (__bridge void*)self);
+	_widgetDestroyedHandlerID = g_signal_connect(G_OBJECT(self.widget),
+	    "destroy", G_CALLBACK(widget_destroyed_handler),
+	    (__bridge void*)self);
+
 	return self;
 }
 
 - (void)dealloc
 {
-  if (self.widget != NULL)
-    g_signal_handler_disconnect(G_OBJECT (self.widget), _toggledHandlerID);
+	if (self.widget != NULL)
+		g_signal_handler_disconnect(G_OBJECT(self.widget),
+		    _toggledHandlerID);
 }
 @end

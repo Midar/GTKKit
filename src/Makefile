@@ -5,7 +5,12 @@ STATIC_LIB = ${GTKKIT_STATIC_LIB}
 LIB_MAJOR = 0
 LIB_MINOR = 0
 
-SRCS = GTKActionBar.m				\
+SRCS = GTKResponder.m			\
+			 GTKEvent.m			\
+			 GTKLayoutConstraints.m			\
+			 GTKView.m			\
+			 GTKControl.m			\
+			 GTKActionBar.m				\
        GTKBin.m					\
        GTKButton+Properties.m			\
        GTKButton.m				\

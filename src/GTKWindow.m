@@ -102,7 +102,7 @@ window_delete_request(GtkWidget *window, GdkEvent *event, GTKWindow *sender)
 }
 
 @implementation GTKWindow
-- (id)init
+- init
 {
 	self = [super init];
 

@@ -13,7 +13,3 @@
  * files COPYING.LGPL2 and COPYING.LGPL3, respectively, both also included in
  * the packaging of this file.
  */
-
-#import "GTKDestroyedWidgetException.h"
-#import "GTKNoWrapperForGtkWidgetException.h"
-#import "GTKRowOutOfBoundsException.h"

@@ -16,6 +16,5 @@
 
 #import "GTKKit.h"
 
-@interface AppDelegate : GTKApplicationDelegate <GTKWindowDelegate>
-@property GTKWindow *window;
+@interface AppDelegate : GTKApplicationDelegate
 @end

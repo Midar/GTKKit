@@ -24,24 +24,62 @@
  * the main and GTK+ threads inside a GTKCallBackInfo.
  */
 typedef union GTKCallBackData {
+	/*!
+	 * @brief An interger value.
+	 */
 	int         intValue;
+	/*!
+	 * @brief A long value.
+	 */
 	long        longValue;
+	/*!
+	 * @brief A float value.
+	 */
 	float       floatValue;
+	/*!
+	 * @brief A double value.
+	 */
 	double      doubleValue;
+	/*!
+	 * @brief A generic pointer value.
+	 */
 	gpointer    pointerValue;
+	/*!
+	 * @brief A string value.
+	 */
 	char       *stringValue;
+	/*!
+	 * @brief A GTK+ widget value.
+	 */
 	GtkWidget  *widgetValue;
 } GTKCallBackData;
 
 /*!
  * @brief A structure used to mediate the relationship between the main thread
- * and the GTK+ thread.
+ * and the GTK+ thread. You create and free these structures with makeGTKCallbackInfo()
+ * and freeGTKCallbackInfo().
  */
 typedef struct GTKCallBackInfo {
+	/*!
+	 * @brief The GTK+ widget for the callback.
+	 */
 	GtkWidget       *widget;
+	/*!
+	 * @brief The GTKCallBackData union which manages the parameter and return
+	 * value of the callback.
+	 */
 	GTKCallBackData  data;
+	/*!
+	 * @brief The mutex used by the callback.
+	 */
 	GMutex          *mutex;
+	/*!
+	 * @brief The cond used by the callback.
+	 */
 	GCond           *cond;
+	/*!
+	 * @brief The flag used by the callback.
+	 */
 	gboolean         flag;
 } GTKCallBackInfo;
 

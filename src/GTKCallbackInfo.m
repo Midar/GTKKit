@@ -19,9 +19,9 @@
 GTKCallBackInfo *
 makeGTKCallbackInfo()
 {
-    GTKCallBackInfo *info = calloc(1, sizeof(GTKCallBackInfo));
-    info->mutex = calloc(1, sizeof(GMutex));
-    info->cond = calloc(1, sizeof(GCond));
+    GTKCallBackInfo *info = (GTKCallBackInfo *)calloc(1, sizeof(GTKCallBackInfo));
+    info->mutex = (GMutex *)calloc(1, sizeof(GMutex));
+    info->cond = (GCond *)calloc(1, sizeof(GCond));
 	g_mutex_init(info->mutex);
 	g_cond_init(info->cond);
 	info->flag = false;

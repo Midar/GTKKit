@@ -22,59 +22,59 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
-  gtk_init(NULL, NULL);
+    self = [super init];
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
-  self.window.title = @"Hello, world!";
-  self.window.delegate = self;
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(300,200);
+    self.window.title = @"Hello, world!";
+    self.window.delegate = self;
 
-  self.grid = [GTKGrid new];
+    self.grid = [GTKGrid new];
 
-  self.button1 = [GTKRadioButton radioButtonWithLabelText: @"Option 1"];
-  self.button1.target = self;
-  self.button1.action = @selector(buttonToggled:);
+    self.button1 = [GTKRadioButton radioButtonWithLabelText: @"Option 1"];
+    self.button1.target = self;
+    self.button1.action = @selector(buttonToggled:);
 
-  self.button2 = [GTKRadioButton radioButtonWithLabelText: @"Option 2"
+    self.button2 = [GTKRadioButton radioButtonWithLabelText: @"Option 2"
                               joiningGroupWithRadioButton: self.button1];
-  self.button2.target = self;
-  self.button2.action = @selector(buttonToggled:);
+    self.button2.target = self;
+    self.button2.action = @selector(buttonToggled:);
 
-  self.button3 = [GTKRadioButton radioButtonWithLabelText: @"Option 3"
+    self.button3 = [GTKRadioButton radioButtonWithLabelText: @"Option 3"
                               joiningGroupWithRadioButton: self.button1];
-  self.button3.target = self;
-  self.button3.action = @selector(buttonToggled:);
+    self.button3.target = self;
+    self.button3.action = @selector(buttonToggled:);
 
-  [self.grid attachWidget: self.button1
-                     left: 1
-                      top: 1
-                    width: 1
-                   height: 1];
+    [self.grid attachWidget: self.button1
+                       left: 1
+                        top: 1
+                      width: 1
+                     height: 1];
 
-  [self.grid attachWidget: self.button2
-                     left: 1
-                      top: 2
-                    width: 1
-                   height: 1];
+    [self.grid attachWidget: self.button2
+                       left: 1
+                        top: 2
+                      width: 1
+                     height: 1];
 
-  [self.grid attachWidget: self.button3
-                     left: 1
-                      top: 3
-                    width: 1
-                   height: 1];
+    [self.grid attachWidget: self.button3
+                       left: 1
+                        top: 3
+                      width: 1
+                     height: 1];
 
-  [self.window addWidget: self.grid];
+    [self.window addWidget: self.grid];
 
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
+    [super applicationDidFinishLaunching];
 
-  [self.window showAll];
+    [self.window showAll];
 
-  gtk_main();
+    gtk_main();
 }
 
 - (void)buttonToggled:(id)sender
@@ -88,11 +88,6 @@ OF_APPLICATION_DELEGATE(AppDelegate)
     printf("Option 3");
   }
   printf("\n");
-}
-
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
 }
 
 - (void)windowWillClose:(GTKWindow *)sender

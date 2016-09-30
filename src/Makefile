@@ -10,6 +10,8 @@ SRCS = GTKResponder.m			\
 			 GTKLayoutConstraints.m			\
 			 GTKView.m			\
 			 GTKControl.m			\
+			 GTKViewController.m			\
+			 GTKApplicationDelegate.m			\
 			 GTKActionBar.m				\
        GTKBin.m					\
        GTKButton+Properties.m			\

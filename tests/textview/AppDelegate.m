@@ -22,39 +22,34 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
+    self = [super init];
 
-  gtk_init(NULL,NULL);
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(500,400);
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(500,400);
+    self.window.delegate = self;
 
-  self.window.delegate = self;
+    self.window.title = @"Hello, World!";
 
-  self.window.title = @"Hello, World!";
+    self.textView = [GTKTextView new];
+    self.textView.buffer.stringValue = @"Hello, world. This is some example text.";
+    self.textView.paddingTop = 5;
+    self.textView.paddingBottom = 5;
+    self.textView.paddingLeft = 5;
+    self.textView.paddingRight = 5;
 
-  self.textView = [GTKTextView new];
-  self.textView.buffer.stringValue = @"Hello, world. This is some example text.";
-  self.textView.paddingTop = 5;
-  self.textView.paddingBottom = 5;
-  self.textView.paddingLeft = 5;
-  self.textView.paddingRight = 5;
+    [self.window addWidget: self.textView];
 
-  [self.window addWidget: self.textView];
-
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-  [self.window showAll];
+    [super applicationDidFinishLaunching];
 
-  gtk_main();
-}
+    [self.window showAll];
 
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    gtk_main();
 }
 
 // This demonstrates the use of a GTKWindowDelegate method. This makes the
@@ -62,6 +57,6 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 @end

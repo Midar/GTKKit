@@ -14,10 +14,28 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+#import "GTKApplicationDelegate.h"
 
-@interface AppDelegate : GTKApplicationDelegate <GTKWindowDelegate>
-@property GTKWindow *window;
-@property GTKScale *scale;
-- (void)scaleValueChanged:(GTKScale *)sender;
+@implementation GTKApplicationDelegate
+- init
+{
+    self = [super init];
+
+    [OFApplication.sharedApplication getArgumentCount: &_argc
+                                    andArgumentValues: &_argv];
+
+    gtk_init(_argc, _argv);
+
+    return self;
+}
+
+- (void)applicationDidFinishLaunching
+{
+    gtk_main();
+}
+
+- (void)applicationWillTerminate
+{
+    gtk_main_quit();
+}
 @end

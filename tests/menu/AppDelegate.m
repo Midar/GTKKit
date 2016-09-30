@@ -22,55 +22,51 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
-  gtk_init(NULL,NULL);
+    self = [super init];
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(300,200);
 
-  // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
-  self.window.delegate = self;
+    // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
+    self.window.delegate = self;
 
-  self.window.title = @"Hello, World!";
+    self.window.title = @"Hello, World!";
 
-  self.menu = [GTKMenu new];
+    self.menu = [GTKMenu new];
 
-  self.fooMenu = [GTKMenuItem menuItemWithLabel: @"Foo"];
-  self.fooMenu.target = self;
-  self.fooMenu.action = @selector(fooMenuClicked:);
+    self.fooMenu = [GTKMenuItem menuItemWithLabel: @"Foo"];
+    self.fooMenu.target = self;
+    self.fooMenu.action = @selector(fooMenuClicked:);
 
-  self.barMenu = [GTKMenuItem menuItemWithLabel: @"Bar"];
-  self.barMenu.target = self;
-  self.barMenu.action = @selector(barMenuClicked:);
+    self.barMenu = [GTKMenuItem menuItemWithLabel: @"Bar"];
+    self.barMenu.target = self;
+    self.barMenu.action = @selector(barMenuClicked:);
 
-  self.bazMenu = [GTKMenuItem menuItemWithLabel: @"Baz"];
-  self.bazMenu.target = self;
-  self.bazMenu.action = @selector(bazMenuClicked:);
+    self.bazMenu = [GTKMenuItem menuItemWithLabel: @"Baz"];
+    self.bazMenu.target = self;
+    self.bazMenu.action = @selector(bazMenuClicked:);
 
-  [self.menu appendMenuItem: self.fooMenu];
-  [self.menu appendMenuItem: self.barMenu];
-  [self.menu appendMenuItem: self.bazMenu];
+    [self.menu appendMenuItem: self.fooMenu];
+    [self.menu appendMenuItem: self.barMenu];
+    [self.menu appendMenuItem: self.bazMenu];
 
-  self.button = [GTKButton new];
-  self.button.label = @"Click me!";
-  self.button.target = self;
-  self.button.action = @selector(buttonClicked:);
+    self.button = [GTKButton new];
+    self.button.label = @"Click me!";
+    self.button.target = self;
+    self.button.action = @selector(buttonClicked:);
 
-  [self.window addWidget: self.button];
+    [self.window addWidget: self.button];
 
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-  [self.window showAll];
+    [super applicationDidFinishLaunching];
 
-  gtk_main();
-}
+    [self.window showAll];
 
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    gtk_main();
 }
 
 // This demonstrates the use of a GTKWindowDelegate method. This makes the
@@ -78,26 +74,26 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 
 - (void)buttonClicked:(GTKButton *)sender
 {
-  [self.menu popup];
+    [self.menu popup];
 }
 
 - (void)fooMenuClicked:(GTKMenuItem *)sender
 {
-  printf("Foo Menu Item Clicked!\n");
+    printf("Foo Menu Item Clicked!\n");
 }
 
 - (void)barMenuClicked:(GTKMenuItem *)sender
 {
-  printf("Bar Menu Item Clicked!\n");
+    printf("Bar Menu Item Clicked!\n");
 }
 
 - (void)bazMenuClicked:(GTKMenuItem *)sender
 {
-  printf("Baz Menu Item Clicked!\n");
+    printf("Baz Menu Item Clicked!\n");
 }
 @end

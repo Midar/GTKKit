@@ -14,10 +14,14 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+#import <ObjFW/ObjFW.h>
 
-@interface AppDelegate : GTKApplicationDelegate <GTKWindowDelegate>
-@property GTKWindow *window;
-@property GTKScale *scale;
-- (void)scaleValueChanged:(GTKScale *)sender;
+#import <gtk/gtk.h>
+
+@interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
+{
+    int *_argc;
+    char ***_argv;
+}
+
 @end

@@ -16,7 +16,7 @@
 
 #import "GTKKit.h"
 
-@interface AppDelegate: OFObject <OFApplicationDelegate, GTKWindowDelegate>
+@interface AppDelegate: GTKApplicationDelegate <GTKWindowDelegate>
 @property GTKWindow *window;
 @property GTKCheckButton *button;
 - (void)buttonToggled:(id)sender;

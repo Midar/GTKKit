@@ -133,7 +133,7 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 				 value:(double)value;
 
 /*!
- * @brief The type of the constraint, ethere GTKLayoutConstraintTypeFixed or
+ * @brief The type of the constraint, either GTKLayoutConstraintTypeFixed or
  * GTKLayoutConstraintTypeFlexible.
  */
 @property GTKLayoutConstraintType type;
@@ -144,7 +144,7 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
  * The meaning of this value depends on the type of the constraint; for fixed
  * constraints, it represents an offset in pixels; for flexible constraints, it
  * is a percentage value used to calculate a pixel offset. Negative values are
- * valid; in the case of fixed constraint, they can be used to move part of a
+ * valid; they can be used to move part of a
  * subview outside the bounds of the parent view (clipped to its space). In the
  * case of flexible constraints, a zero value is interpreted as any value being
  * acceptable. If 0% is actually desired, 0 fixed is mathematically identical.
@@ -154,6 +154,9 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 											value:(double)value;
 @end
 
+/*!
+ * @brief A class representing the layout constraints of a view.
+ */
 @interface GTKLayoutConstraints: OFObject
 
 /*!

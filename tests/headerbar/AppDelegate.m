@@ -22,38 +22,34 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
-  gtk_init(NULL,NULL);
+    self = [super init];
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(600,400);
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(600,400);
 
-  // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
-  self.window.delegate = self;
+    // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
+    self.window.delegate = self;
 
-  self.window.title = @"Hello, World!";
+    self.window.title = @"Hello, World!";
 
-  self.header = [GTKHeaderBar new];
-  self.header.title = @"Hello, world!";
-  self.header.subtitle = @"This is a header bar.";
-  self.header.showWindowButtons = true;
-  self.header.windowButtonLayout = @"close,minimize,maximize:menu";
+    self.header = [GTKHeaderBar new];
+    self.header.title = @"Hello, world!";
+    self.header.subtitle = @"This is a header bar.";
+    self.header.showWindowButtons = true;
+    self.header.windowButtonLayout = @"close,minimize,maximize:menu";
 
-  self.window.titlebar = self.header;
+    self.window.titlebar = self.header;
 
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-  [self.window showAll];
+    [super applicationDidFinishLaunching];
 
-  gtk_main();
-}
+    [self.window showAll];
 
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    gtk_main();
 }
 
 // This demonstrates the use of a GTKWindowDelegate method. This makes the
@@ -61,16 +57,16 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 
 - (void)windowDidMinimize:(GTKWindow *)sender
 {
-  printf("Window was minimized.\n");
+    printf("Window was minimized.\n");
 }
 
 - (void)windowDidUnminimize:(GTKWindow *)sender
 {
-  printf("Window was unminimized.\n");
+    printf("Window was unminimized.\n");
 }
 @end

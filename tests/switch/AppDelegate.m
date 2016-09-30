@@ -22,49 +22,43 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
+    self = [super init];
 
-  gtk_init(NULL, NULL);
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(300,200);
+    self.window.title = @"Hello, world!";
+    self.window.delegate = self;
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
-  self.window.title = @"Hello, world!";
-  self.window.delegate = self;
+    self.gswitch = [GTKSwitch new];
+    self.gswitch.target = self;
+    self.gswitch.action = @selector(switchStateChanged:);
 
-  self.gswitch = [GTKSwitch new];
-  self.gswitch.target = self;
-  self.gswitch.action = @selector(switchStateChanged:);
+    [self.window addWidget: self.gswitch];
 
-  [self.window addWidget: self.gswitch];
-
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
+    [super applicationDidFinishLaunching];
 
-  [self.window showAll];
+    [self.window showAll];
 
-  gtk_main();
-}
-
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    gtk_main();
 }
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 
 - (void)switchStateChanged:(GTKSwitch*)sender
 {
-  self.exampleProperty = sender.active;
-  if (self.exampleProperty == true) {
-    printf("Switch is active.\n");
-  } else {
-    printf("Switch is inactive.\n");
-  }
+    self.exampleProperty = sender.active;
+    if (self.exampleProperty == true) {
+        printf("Switch is active.\n");
+    } else {
+        printf("Switch is inactive.\n");
+    }
 }
 @end

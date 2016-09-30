@@ -14,10 +14,8 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+ #import "GTKViewController.h"
 
-@interface AppDelegate : GTKApplicationDelegate <GTKWindowDelegate>
-@property GTKWindow *window;
-@property GTKScale *scale;
-- (void)scaleValueChanged:(GTKScale *)sender;
-@end
+ @implementation GTKViewController
+
+ @end

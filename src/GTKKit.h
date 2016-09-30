@@ -63,3 +63,12 @@
 #import "GTKStackSwitcher.h"
 #import "GTKOrientable.h"
 #import "GTKScrollable.h"
+
+// Headers for the new MVC framework
+#import "GTKApplicationDelegate.h"
+#import "GTKResponder.h"
+#import	"GTKEvent.h"
+#import	"GTKLayoutConstraints.h"
+#import	"GTKView.h"
+#import	"GTKControl.h"
+#import	"GTKViewController.h"

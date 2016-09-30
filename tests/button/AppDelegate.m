@@ -22,44 +22,38 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
-  gtk_init(NULL, NULL);
+    self = [super init];
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
-  self.window.title = @"Hello, world!";
-  self.window.delegate = self;
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(300,200);
+    self.window.title = @"Hello, world!";
+    self.window.delegate = self;
 
-  self.button = [GTKButton buttonWithLabel: @"Click me!"];
-  self.button.target = self;
-  self.button.action = @selector(buttonClicked:);
+    self.button = [GTKButton buttonWithLabel: @"Click me!"];
+    self.button.target = self;
+    self.button.action = @selector(buttonClicked:);
 
-  [self.window addWidget: self.button];
+    [self.window addWidget: self.button];
 
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
+    [self.window showAll];
 
-  [self.window showAll];
-
-  gtk_main();
+    // All customization should go above this line.
+    [super applicationDidFinishLaunching];
 }
 
 - (void)buttonClicked:(id)sender
 {
-  printf("Hello, world!\n");
-}
-
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    printf("Hello, world!\n");
 }
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 
 @end

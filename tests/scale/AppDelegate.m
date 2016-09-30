@@ -22,41 +22,36 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  self = [super init];
-  gtk_init(NULL,NULL);
+    self = [super init];
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(300,200);
 
-  // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
-  self.window.delegate = self;
+    // This makes the AppDelegate also act as the GTKWindowDelegate for the window.
+    self.window.delegate = self;
 
-  self.window.title = @"Hello, World!";
+    self.window.title = @"Hello, World!";
 
-  self.scale = [GTKScale new];
-  self.scale.target = self;
-  self.scale.action = @selector(scaleValueChanged:);
-  self.scale.minValue = 0;
-  self.scale.maxValue = 100;
-  self.scale.digits = 0;
-  self.scale.stepSize = 10;
-  self.scale.formatString = @"Value: %.2f";
+    self.scale = [GTKScale new];
+    self.scale.target = self;
+    self.scale.action = @selector(scaleValueChanged:);
+    self.scale.minValue = 0;
+    self.scale.maxValue = 100;
+    self.scale.digits = 0;
+    self.scale.stepSize = 10;
+    self.scale.formatString = @"Value: %.2f";
 
-  [self.window addWidget: self.scale];
+    [self.window addWidget: self.scale];
 
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-  [self.window showAll];
+    [super applicationDidFinishLaunching];
+    [self.window showAll];
 
-  gtk_main();
-}
-
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    gtk_main();
 }
 
 // This demonstrates the use of a GTKWindowDelegate method. This makes the
@@ -64,11 +59,11 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 
 - (void)scaleValueChanged:(GTKScale *)sender
 {
-  printf("New formatted scale value: %s\n", [sender.formattedValue UTF8String]);
+    printf("New formatted scale value: %s\n", [sender.formattedValue UTF8String]);
 }
 @end

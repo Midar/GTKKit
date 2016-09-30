@@ -22,48 +22,42 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-  gtk_init(NULL, NULL);
+    self = [super init];
 
-  self = [super init];
+    self.window = [GTKWindow new];
+    self.window.size = of_dimension(300,200);
+    self.window.title = @"Hello, world!";
+    self.window.delegate = self;
 
-  self.window = [GTKWindow new];
-  self.window.size = of_dimension(300,200);
-  self.window.title = @"Hello, world!";
-  self.window.delegate = self;
+    self.button = [GTKCheckButton buttonWithLabel: @"Click me!"];
+    self.button.target = self;
+    self.button.action = @selector(buttonToggled:);
 
-  self.button = [GTKCheckButton buttonWithLabel: @"Click me!"];
-  self.button.target = self;
-  self.button.action = @selector(buttonToggled:);
+    [self.window addWidget: self.button];
 
-  [self.window addWidget: self.button];
-
-  return self;
+    return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
+    [super applicationDidFinishLaunching];
 
-  [self.window showAll];
+    [self.window showAll];
 
-  gtk_main();
+    gtk_main();
 }
 
 - (void)buttonToggled:(id)sender
 {
-  if (self.button.active) {
-    printf("Button is checked.\n");
-  } else {
-    printf("Button is unchecked.\n");
-  }
-}
-
-- (void)applicationWillTerminate
-{
-  gtk_main_quit();
+    if (self.button.active) {
+        printf("Button is checked.\n");
+    } else {
+        printf("Button is unchecked.\n");
+    }
 }
 
 - (void)windowWillClose:(GTKWindow *)sender
 {
-  [OFApplication terminate];
+    [OFApplication terminate];
 }
 @end

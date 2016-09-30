@@ -116,15 +116,28 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
     }
 }
 
+- (GTKRect)frame
+{
+	GtkAllocation alloc;
+	gtk_widget_get_allocation(self.overlayWidget, &alloc);
+	return (GTKRect)alloc;
+}
 
 - (GTKRect)layoutSubview:(nonnull GTKView*)subview
 {
-	GTKRect rect;
-	rect.x = 0;
-	rect.y = 0;
-	rect.width = 0;
-	rect.height = 0;
-	return rect;
+	// We copy this so it doesn't change midway throgh for whatever reason.
+	// Probably excess of caution, but it doesn't hurt.
+	GTKRect frame = self.frame;
+
+	GTKRect subframe;
+
+
+	//FIXME: Actually do something.
+	subframe.x = 0;
+	subframe.y = 0;
+	subframe.width = 0;
+	subframe.height = 0;
+	return subframe;
 }
 
 - (void)layoutSubviews

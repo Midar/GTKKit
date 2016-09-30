@@ -36,9 +36,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget * _Nonnull overlay,
                                         GTKView   * _Nonnull view);
 
 /*!
- * @brief A view, in MVC terms.
- *
- * GTKView is a class representing "views" in the model-view-controller (MVC)
+ * @brief A class representing "views" in the model-view-controller (MVC)
  * paradigm. It is the parent class for all such views, and one of the most
  * important classes in GTKKit.
  *
@@ -102,6 +100,12 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget * _Nonnull overlay,
  * @brief The view controller that ultimately owns this view, if one exists.
  */
 @property (nullable, weak) GTKViewController *viewController;
+
+/*!
+ * @brief The frame of the view - its position and size, in the coordinate space
+ * of its superview.
+ */
+@property (readonly) GTKRect frame;
 
 /*!
  * @brief Given a subview, return a rectangle in this view's coordinate space which

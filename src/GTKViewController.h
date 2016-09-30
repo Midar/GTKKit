@@ -52,6 +52,11 @@ follows:
 
 #import "GTKResponder.h"
 
+/*!
+ * @brief A parent class for classes which implement
+ * "view controllers", controller objects which manage the content and behavior
+ * of a set of views.
+ */
 @interface GTKViewController: GTKResponder
 
 @end

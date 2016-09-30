@@ -14,12 +14,26 @@
  * the packaging of this file.
  */
 
-#import "Exceptions.h"
 #import "GTKCallBackInfo.h"
-#import "GTKApplicationDelegate.h"
-#import "GTKResponder.h"
-#import	"GTKEvent.h"
-#import	"GTKLayoutConstraints.h"
-#import	"GTKView.h"
-#import	"GTKControl.h"
-#import	"GTKViewController.h"
+
+GTKCallBackInfo *
+makeGTKCallbackInfo()
+{
+    GTKCallBackInfo *info = calloc(1, sizeof(GTKCallBackInfo));
+    info->mutex = calloc(1, sizeof(GMutex));
+    info->cond = calloc(1, sizeof(GCond));
+	g_mutex_init(info->mutex);
+	g_cond_init(info->cond);
+	info->flag = false;
+	return info;
+}
+
+void
+freeGTKCallbackInfo(GTKCallBackInfo *info)
+{
+	g_mutex_clear(info->mutex);
+	g_cond_clear(info->cond);
+	free(info->mutex);
+	free(info->cond);
+	free(info);
+}

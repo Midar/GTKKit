@@ -5,7 +5,8 @@ STATIC_LIB = ${GTKKIT_STATIC_LIB}
 LIB_MAJOR = 0
 LIB_MINOR = 0
 
-SRCS = GTKResponder.m			\
+SRCS = GTKCallBackInfo.m		\
+			 GTKResponder.m			\
 			 GTKEvent.m			\
 			 GTKLayoutConstraints.m			\
 			 GTKView.m			\

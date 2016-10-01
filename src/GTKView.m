@@ -47,12 +47,6 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
     view.overlayWidget = NULL;
 }
 
-static gboolean
-initCallback(GTKView self)
-{
-
-}
-
 @implementation GTKView
 - init
 {

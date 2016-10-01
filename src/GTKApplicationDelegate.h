@@ -19,5 +19,4 @@
 #import <gtk/gtk.h>
 
 @interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
-- (void)startGTKThread;
 @end

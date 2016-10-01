@@ -16,9 +16,6 @@
 
 #import "GTKApplicationDelegate.h"
 
-static int *argc;
-static char ***argv;
-
 static gboolean
 gtkkit_gtk_main_quit(gpointer userdata)
 {
@@ -30,7 +27,7 @@ gtkkit_gtk_main_quit(gpointer userdata)
 - init
 {
     self = [super init];
-    [self startGTKThread];
+    
     return self;
 }
 
@@ -42,16 +39,5 @@ gtkkit_gtk_main_quit(gpointer userdata)
 - (void)applicationWillTerminate
 {
     gdk_threads_add_idle(gtkkit_gtk_main_quit, NULL);
-}
-
-- (void)startGTKThread
-{
-    [[OFThread threadWithThreadBlock: ^id _Nullable (void){
-        [OFApplication.sharedApplication getArgumentCount: &argc
-                                        andArgumentValues: &argv];
-        gtk_init(argc, argv);
-        gtk_main();
-        return nil;
-    }] start];
 }
 @end

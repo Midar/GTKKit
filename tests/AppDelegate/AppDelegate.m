@@ -16,7 +16,7 @@
 
 #import "AppDelegate.h"
 
-OF_APPLICATION_DELEGATE(AppDelegate)
+GTK_APPLICATION_DELEGATE(AppDelegate)
 
 @implementation AppDelegate
 - init
@@ -34,6 +34,5 @@ OF_APPLICATION_DELEGATE(AppDelegate)
 {
     [super applicationDidFinishLaunching];
     // Put your custom post-launch startup code below this line.
-
 }
 @end

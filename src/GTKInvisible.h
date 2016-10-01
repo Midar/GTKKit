@@ -18,7 +18,7 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKCallBackInfo.h"
+#import "GTKCallbackInfo.h"
 
 GtkWidget *
 gtkkit_gtk_invisible_new();

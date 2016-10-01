@@ -19,7 +19,7 @@
 GtkWidget *
 gtkkit_gtk_invisible_new()
 {
-	GTKCallBackInfo *info = makeGTKCallbackInfo();
+	GTKCallbackInfo *info = makeGTKCallbackInfo();
 
 	// Lock the mutex. This prevents the callback from doing anything until
 	// we reach g_cond_wait() below.
@@ -51,7 +51,7 @@ gboolean
 gtkkit_callback_gtk_invisible_new(gpointer userdata)
 {
 	// Cast the argument to the appropriate type.
-    GTKCallBackInfo *info = (GTKCallBackInfo *)userdata;
+    GTKCallbackInfo *info = (GTKCallbackInfo *)userdata;
 
 	// Lock the mutex.
     g_mutex_lock(info->mutex);

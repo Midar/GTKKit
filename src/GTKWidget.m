@@ -19,7 +19,7 @@
 void
 gtkkit_gtk_widget_destroy(GtkWidget *widget)
 {
-	GTKCallBackInfo *info = makeGTKCallbackInfo();
+	GTKCallbackInfo *info = makeGTKCallbackInfo();
 
     info->data.widgetValue = widget;
 
@@ -47,7 +47,7 @@ gboolean
 gtkkit_callback_gtk_widget_destroy(gpointer userdata)
 {
 	// Cast the argument to the appropriate type.
-    GTKCallBackInfo *info = (GTKCallBackInfo *)userdata;
+    GTKCallbackInfo *info = (GTKCallbackInfo *)userdata;
 
 	// Lock the mutex.
     g_mutex_lock(info->mutex);

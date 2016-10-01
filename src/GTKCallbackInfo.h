@@ -23,7 +23,7 @@
  * @brief A union of data types which can be passed back and forth between
  * the main and GTK+ threads inside a GTKCallBackInfo.
  */
-typedef union GTKCallBackData {
+typedef union GTKCallbackData {
 	/*!
 	 * @brief An interger value.
 	 */
@@ -52,14 +52,14 @@ typedef union GTKCallBackData {
 	 * @brief A GTK+ widget value.
 	 */
 	GtkWidget  *widgetValue;
-} GTKCallBackData;
+} GTKCallbackData;
 
 /*!
  * @brief A structure used to mediate the relationship between the main thread
  * and the GTK+ thread. You create and free these structures with makeGTKCallbackInfo()
  * and freeGTKCallbackInfo().
  */
-typedef struct GTKCallBackInfo {
+typedef struct GTKCallbackInfo {
 	/*!
 	 * @brief The GTK+ widget for the callback.
 	 */
@@ -68,7 +68,7 @@ typedef struct GTKCallBackInfo {
 	 * @brief The GTKCallBackData union which manages the parameter and return
 	 * value of the callback.
 	 */
-	GTKCallBackData  data;
+	GTKCallbackData  data;
 	/*!
 	 * @brief The mutex used by the callback.
 	 */
@@ -81,7 +81,7 @@ typedef struct GTKCallBackInfo {
 	 * @brief The flag used by the callback.
 	 */
 	gboolean         flag;
-} GTKCallBackInfo;
+} GTKCallbackInfo;
 
 /*!
  * @brief Create a new GTKCallBackInfo.
@@ -91,7 +91,7 @@ typedef struct GTKCallBackInfo {
  *
  * @returns An allocated GTKCallBackInfo.
  */
-GTKCallBackInfo *
+GTKCallbackInfo *
 makeGTKCallbackInfo();
 
 /*!
@@ -103,4 +103,4 @@ makeGTKCallbackInfo();
  * @param info The GTKCallBackInfo to free.
  */
 void
-freeGTKCallbackInfo(GTKCallBackInfo *info);
+freeGTKCallbackInfo(GTKCallbackInfo *info);

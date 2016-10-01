@@ -16,10 +16,10 @@
 
 #import "GTKCallBackInfo.h"
 
-GTKCallBackInfo *
+GTKCallbackInfo *
 makeGTKCallbackInfo()
 {
-    GTKCallBackInfo *info = (GTKCallBackInfo *)calloc(1, sizeof(GTKCallBackInfo));
+    GTKCallbackInfo *info = (GTKCallbackInfo *)calloc(1, sizeof(GTKCallbackInfo));
     info->mutex = (GMutex *)calloc(1, sizeof(GMutex));
     info->cond = (GCond *)calloc(1, sizeof(GCond));
 	g_mutex_init(info->mutex);
@@ -29,7 +29,7 @@ makeGTKCallbackInfo()
 }
 
 void
-freeGTKCallbackInfo(GTKCallBackInfo *info)
+freeGTKCallbackInfo(GTKCallbackInfo *info)
 {
 	g_mutex_clear(info->mutex);
 	g_cond_clear(info->cond);

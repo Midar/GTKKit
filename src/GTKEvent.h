@@ -8,9 +8,7 @@ it is not likely that all of this object's properties will ever be used at once.
 
 #import <ObjFW/ObjFW.h>
 
-#ifndef OF_ENUM
-#define OF_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
-#endif
+#import "defines.h"
 
 typedef OF_ENUM(int, GTKEventType) {
     GTKEventTypeKeyDown,

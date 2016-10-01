@@ -50,6 +50,7 @@ follows:
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+#import "defines.h"
 #import "GTKResponder.h"
 
 /*!

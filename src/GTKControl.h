@@ -17,6 +17,7 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+#import "defines.h"
 #import "GTKEvent.h"
 #import "GTKView.h"
 

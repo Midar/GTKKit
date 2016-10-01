@@ -17,9 +17,7 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#ifndef OF_ENUM
-#define OF_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
-#endif
+#import "defines.h"
 
  /*
 
@@ -163,37 +161,37 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
  * @brief The horizontal constraint of the view. This constrains the width of
  * the view.
  */
-@property (nonnull, copy) GTKLayoutConstraint *horizontal;
+@property (nonnull) GTKLayoutConstraint *horizontal;
 
 /*!
  * @brief The vertical constraint of the view. This constrains the height of the
  * view.
  */
-@property (nonnull, copy) GTKLayoutConstraint *vertical;
+@property (nonnull) GTKLayoutConstraint *vertical;
 
 /*!
  * @brief The top constraint of this view. This constrains the upper edge of the
  * view relative to the top of its superview.
  */
-@property (nonnull, copy) GTKLayoutConstraint *top;
+@property (nonnull) GTKLayoutConstraint *top;
 
 /*!
  * @brief The right constraint of this view. This constrains the right edge of
  * the view relative to the right of its superview.
  */
-@property (nonnull, copy) GTKLayoutConstraint *right;
+@property (nonnull) GTKLayoutConstraint *right;
 
 /*!
  * @brief The bottom constraint of this view. This constrains the lower edge of the
  * view relative to the bottom of its superview.
  */
-@property (nonnull, copy) GTKLayoutConstraint *bottom;
+@property (nonnull) GTKLayoutConstraint *bottom;
 
 /*!
  * @brief The left constraint of this view. This constrains the left edge of the
  * view relative to the left of its superview.
  */
-@property (nonnull, copy) GTKLayoutConstraint *left;
+@property (nonnull) GTKLayoutConstraint *left;
 
 /*!
  * @brief Set the constraint's top, bottom, left and right to fixed, at the

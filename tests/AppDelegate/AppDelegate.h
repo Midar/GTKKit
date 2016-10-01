@@ -17,4 +17,5 @@
 #import "GTKKit.h"
 
 @interface AppDelegate : GTKApplicationDelegate
+@property (nullable) GTKView *testView;
 @end

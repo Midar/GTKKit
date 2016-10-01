@@ -18,5 +18,7 @@
 
 #import <gtk/gtk.h>
 
+#import "defines.h"
+
 @interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
 @end

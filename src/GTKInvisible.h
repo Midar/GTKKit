@@ -18,6 +18,7 @@
 
 #import <gtk/gtk.h>
 
+#import "defines.h"
 #import "GTKCallbackInfo.h"
 
 GtkWidget *

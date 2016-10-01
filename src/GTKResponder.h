@@ -17,11 +17,8 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+#import "defines.h"
 #import "GTKEvent.h"
-
-#ifndef OF_ENUM
-#define OF_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
-#endif
 
 typedef void (^ActionBlock) (_Nullable id sender);
 

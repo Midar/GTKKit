@@ -18,6 +18,8 @@
 
 #import <gtk/gtk.h>
 
+#import "defines.h"
+
 
 /*!
  * @brief A union of data types which can be passed back and forth between

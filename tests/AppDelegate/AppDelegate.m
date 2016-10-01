@@ -25,6 +25,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // Put your custom initialization below this line. At this point, the GTK+
     // main loop thread is up and running.
 
+    self.testView = [GTKView new];
 
     // It would be dangerous to modify anything below this line.
     return self;

@@ -14,21 +14,14 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
-#import "AppDelegate.h"
+#import <ObjFW/ObjFW.h>
 
-OF_APPLICATION_DELEGATE(AppDelegate)
+#import <gtk/gtk.h>
 
-@implementation AppDelegate
-- init
-{
-    self = [super init];
+#import "GTKCallBackInfo.h"
 
-    return self;
-}
+void
+gtkkit_gtk_widget_destroy();
 
-- (void)applicationDidFinishLaunching
-{
-    [super applicationDidFinishLaunching];
-}
-@end
+gboolean
+gtkkit_callback_gtk_widget_destroy();

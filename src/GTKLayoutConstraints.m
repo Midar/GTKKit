@@ -14,9 +14,6 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
-#import <gtk/gtk.h>
-
 #import "GTKLayoutConstraints.h"
 
 @implementation GTKLayoutConstraint

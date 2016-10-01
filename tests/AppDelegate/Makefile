@@ -1,4 +1,4 @@
-PROG_NOINST = window
+PROG_NOINST = AppDelegate
 SRCS = AppDelegate.m
 
 include ../../buildsys.mk

@@ -14,10 +14,10 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
-#import <gtk/gtk.h>
-
 #import "GTKView.h"
+#import "GTKWidget.h"
+#import "GTKOverlay.h"
+#import "GTKInvisible.h"
 
 gboolean
 gtkkit_get_child_position(GtkOverlay   *overlay,
@@ -47,6 +47,12 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
     view.overlayWidget = NULL;
 }
 
+static gboolean
+initCallback(GTKView self)
+{
+
+}
+
 @implementation GTKView
 - init
 {
@@ -68,12 +74,12 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	self.hidden = false;
 	self.alpha = 1.0;
 
-	self.overlayWidget = gtk_overlay_new();
+	self.overlayWidget = gtkkit_gtk_overlay_new();
     if (NULL == self.overlayWidget) {
         return nil;
     }
 
-	self.mainWidget = gtk_invisible_new();
+	self.mainWidget = gtkkit_gtk_invisible_new();
     if (NULL == self.mainWidget) {
         return nil;
     }
@@ -110,7 +116,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
 									_widget_destroyed_handler_id);
 
-	    gtk_widget_destroy(GTK_WIDGET(self.overlayWidget));
+	    gtkkit_gtk_widget_destroy(GTK_WIDGET(self.overlayWidget));
 
         self.overlayWidget = NULL;
     }

@@ -16,26 +16,42 @@
 
 #import "GTKApplicationDelegate.h"
 
+static int *argc;
+static char ***argv;
+
+static gboolean
+gtkkit_gtk_main_quit(gpointer userdata)
+{
+    gtk_main_quit();
+    return false;
+}
+
 @implementation GTKApplicationDelegate
 - init
 {
     self = [super init];
-
-    [OFApplication.sharedApplication getArgumentCount: &_argc
-                                    andArgumentValues: &_argv];
-
-    gtk_init(_argc, _argv);
-
+    [self startGTKThread];
     return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    gtk_main();
+    return;
 }
 
 - (void)applicationWillTerminate
 {
-    gtk_main_quit();
+    gdk_threads_add_idle(gtkkit_gtk_main_quit, NULL);
+}
+
+- (void)startGTKThread
+{
+    [[OFThread threadWithThreadBlock: ^id _Nullable (void){
+        [OFApplication.sharedApplication getArgumentCount: &argc
+                                        andArgumentValues: &argv];
+        gtk_init(argc, argv);
+        gtk_main();
+        return nil;
+    }] start];
 }
 @end

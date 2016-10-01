@@ -18,6 +18,10 @@
 
 #import <gtk/gtk.h>
 
-@interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
-- (void)startGTKThread;
-@end
+#import "GTKCallBackInfo.h"
+
+GtkWidget *
+gtkkit_gtk_overlay_new();
+
+gboolean
+gtkkit_callback_gtk_overlay_new();

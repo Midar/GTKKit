@@ -16,6 +16,11 @@
 
 #import "Exceptions.h"
 #import "GTKCallBackInfo.h"
+
+#import "GTKWidget.h"
+#import "GTKOverlay.h"
+#import "GTKInvisible.h"
+
 #import "GTKApplicationDelegate.h"
 #import "GTKResponder.h"
 #import	"GTKEvent.h"

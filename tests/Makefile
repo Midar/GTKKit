@@ -1,3 +1,3 @@
-SUBDIRS = window        
+SUBDIRS = AppDelegate        
 
 include ../buildsys.mk

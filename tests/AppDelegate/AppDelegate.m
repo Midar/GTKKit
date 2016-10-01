@@ -14,10 +14,26 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
+#import "AppDelegate.h"
 
-#import <gtk/gtk.h>
+OF_APPLICATION_DELEGATE(AppDelegate)
 
-@interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
-- (void)startGTKThread;
+@implementation AppDelegate
+- init
+{
+    self = [super init];
+    // Put your custom initialization below this line. At this point, the GTK+
+    // main loop thread is up and running.
+
+
+    // It would be dangerous to modify anything below this line.
+    return self;
+}
+
+- (void)applicationDidFinishLaunching
+{
+    [super applicationDidFinishLaunching];
+    // Put your custom post-launch startup code below this line.
+
+}
 @end

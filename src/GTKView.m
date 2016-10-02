@@ -15,11 +15,9 @@
  */
 
 #import "GTKView.h"
-#import "GTKWidget.h"
-#import "GTKOverlay.h"
-#import "GTKInvisible.h"
+#import "GTKCallBack.h"
 
-gboolean
+static gboolean
 gtkkit_get_child_position(GtkOverlay   *overlay,
 						  GtkWidget    *widget,
 						  GdkRectangle *allocation,
@@ -39,7 +37,7 @@ gtkkit_get_child_position(GtkOverlay   *overlay,
 	return true;
 }
 
-void
+static void
 gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
                                         GTKView   *view)
 {
@@ -51,52 +49,34 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - init
 {
 	self = [super init];
-	if (nil == self) {
-		return nil;
-	}
-
 	self.subviews = [OFMutableArray new];
-    if (nil == self.subviews) {
-        return nil;
-    }
-
 	self.constraints = [GTKLayoutConstraints new];
-    if (nil == self.constraints) {
-        return nil;
-    }
 
 	self.hidden = false;
 	self.alpha = 1.0;
 
-	self.overlayWidget = gtkkit_gtk_overlay_new();
-    if (NULL == self.overlayWidget) {
-        return nil;
-    }
+	GTKCallback *callback = [GTKCallback new];
+	callback.sender = self;
 
-	self.mainWidget = gtkkit_gtk_invisible_new();
-    if (NULL == self.mainWidget) {
-        return nil;
-    }
+	[callback waitForBlock: ^(GTKCallback *callback) {
+		callback.widgetValue = gtk_overlay_new();
+		g_object_ref_sink(G_OBJECT(callback.widgetValue));
 
-	g_object_ref_sink(G_OBJECT(self.overlayWidget));
-	g_object_set_data(G_OBJECT(self.overlayWidget),
-					  "_GTKKIT_WRAPPER_VIEW_",
-					  (__bridge void*)self);
+		_get_child_position_handler_id = g_signal_connect(G_OBJECT(callback.widgetValue),
+			"get-child-position", G_CALLBACK(gtkkit_get_child_position),
+			(__bridge void*)callback.sender);
 
-	_get_child_position_handler_id = g_signal_connect(G_OBJECT(self.overlayWidget),
-		"get-child-position", G_CALLBACK(gtkkit_get_child_position),
-		(__bridge void*)self);
-    if (0 == _get_child_position_handler_id) {
-        return nil;
-    }
+	    _widget_destroyed_handler_id = g_signal_connect(G_OBJECT(callback.widgetValue),
+	        "destroy", G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
+	        (__bridge void*)callback.sender);
+	}];
+	self.overlayWidget = callback.widgetValue;
 
-    _widget_destroyed_handler_id = g_signal_connect(G_OBJECT(self.overlayWidget),
-        "destroy", G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
-        (__bridge void*)self);
-
-    if (0 == _widget_destroyed_handler_id) {
-        return nil;
-    }
+	[callback waitForBlock: ^(GTKCallback *callback) {
+		callback.widgetValue = gtk_invisible_new();
+		g_object_ref_sink(G_OBJECT(callback.widgetValue));
+	}];
+	self.mainWidget = callback.widgetValue;
 
 	return self;
 }
@@ -104,14 +84,17 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)dealloc
 {
 	if (self.overlayWidget != NULL) {
-		g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
-									_get_child_position_handler_id);
+		GTKCallback *callback = [GTKCallback new];
+		callback.widget = self.overlayWidget;
+		[callback waitForBlock: ^(GTKCallback *callback){
+			g_signal_handler_disconnect(G_OBJECT(callback.widget),
+										_get_child_position_handler_id);
 
-		g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
-									_widget_destroyed_handler_id);
+			g_signal_handler_disconnect(G_OBJECT(callback.widget),
+										_widget_destroyed_handler_id);
 
-	    gtkkit_gtk_widget_destroy(GTK_WIDGET(self.overlayWidget));
-
+		    gtk_widget_destroy(GTK_WIDGET(callback.widget));
+		}];
         self.overlayWidget = NULL;
     }
 }

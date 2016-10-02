@@ -26,16 +26,6 @@
 
 typedef GdkRectangle GTKRect;
 
-gboolean
-gtkkit_get_child_position_handler(GtkOverlay     * _Nonnull overlay,
-                                  GtkWidget      * _Nonnull widget,
-                                  GdkRectangle   * _Nonnull allocation,
-                                  GTKView        * _Nonnull view);
-
-void
-gtkkit_overlay_widget_destroyed_handler(GtkWidget * _Nonnull overlay,
-                                        GTKView   * _Nonnull view);
-
 /*!
  * @brief A class representing "views" in the model-view-controller (MVC)
  * paradigm. It is the parent class for all such views, and one of the most

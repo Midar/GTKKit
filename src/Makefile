@@ -5,16 +5,13 @@ STATIC_LIB = ${GTKKIT_STATIC_LIB}
 LIB_MAJOR = 0
 LIB_MINOR = 0
 
-SRCS =	GTKWidget.m                	\
-				GTKOverlay.m               	\
-				GTKInvisible.m             	\
-				GTKCallBackInfo.m          	\
-				GTKResponder.m	            \
-				GTKEvent.m	                \
-				GTKLayoutConstraints.m			\
-				GTKView.m                  	\
-				GTKControl.m               	\
-				GTKViewController.m        	\
+SRCS =	GTKCallBack.m	          					\
+				GTKResponder.m	            			\
+				GTKEvent.m	                			\
+				GTKLayoutConstraints.m						\
+				GTKView.m                  				\
+				GTKControl.m               				\
+				GTKViewController.m        				\
 				GTKApplicationDelegate.m
 
 INCLUDES =	${SRCS:.m=.h}	\

@@ -15,6 +15,7 @@
  */
 
 #import "GTKApplicationDelegate.h"
+#import "GTKCallBack.h"
 
 static gboolean
 gtkkit_gtk_main_quit(gpointer userdata)
@@ -24,16 +25,8 @@ gtkkit_gtk_main_quit(gpointer userdata)
 }
 
 @implementation GTKApplicationDelegate
-- init
-{
-    self = [super init];
-    
-    return self;
-}
-
 - (void)applicationDidFinishLaunching
 {
-    return;
 }
 
 - (void)applicationWillTerminate

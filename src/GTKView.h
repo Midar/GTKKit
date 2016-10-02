@@ -42,11 +42,9 @@ typedef GdkRectangle GTKRect;
  * those settings as needed.
  */
 @interface GTKView: GTKResponder
-{
-    gulong _get_child_position_handler_id;
-    gulong _widget_destroyed_handler_id;
-    GtkWidget *_overlayWidget;
-}
+
+@property gulong childPositionHandlerID;
+@property gulong widgetDestroyedHandlerID;
 
 /*!
  * @brief The internal GtkOverlay used by the view.

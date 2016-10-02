@@ -59,13 +59,13 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
 
-		_get_child_position_handler_id = g_signal_connect(
+		self.childPositionHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"get-child-position",
 			G_CALLBACK(gtkkit_get_child_position),
 			(__bridge void*)self);
 
-	    _widget_destroyed_handler_id = g_signal_connect(
+	    self.widgetDestroyedHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "destroy",
 			G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
@@ -81,14 +81,12 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)dealloc
 {
 	if (self.overlayWidget != NULL) {
-		GTKCallback *callback = [GTKCallback new];
-		callback.widget = self.overlayWidget;
-		[callback waitForBlock: ^(GTKCallback *callback){
-			g_signal_handler_disconnect(G_OBJECT(callback.widget),
-										_get_child_position_handler_id);
+		[GTKCallback waitForBlock: ^(GTKCallback *callback){
+			g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
+										self.childPositionHandlerID);
 
-			g_signal_handler_disconnect(G_OBJECT(callback.widget),
-										_widget_destroyed_handler_id);
+			g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
+										self.widgetDestroyedHandlerID);
 
 		    gtk_widget_destroy(GTK_WIDGET(callback.widget));
 	        self.overlayWidget = NULL;

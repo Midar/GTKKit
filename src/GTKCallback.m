@@ -16,6 +16,13 @@
 
 #import "GTKCallback.h"
 
+@interface GTKCallback ()
+- (void)lock;
+- (void)unlock;
+- (void)wait;
+- (void)signal;
+@end
+
 static gboolean
 runBlockInGTKThreadCallback(gpointer userdata)
 {
@@ -27,13 +34,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
     [callback unlock];
     return false;
 }
-
-@interface GTKCallback ()
-- (void)lock;
-- (void)unlock;
-- (void)wait;
-- (void)signal;
-@end
 
 @implementation GTKCallback
 - init

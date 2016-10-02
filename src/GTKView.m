@@ -91,8 +91,8 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 										_widget_destroyed_handler_id);
 
 		    gtk_widget_destroy(GTK_WIDGET(callback.widget));
+	        self.overlayWidget = NULL;
 		}];
-        self.overlayWidget = NULL;
     }
 }
 
@@ -112,7 +112,6 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	//GTKRect frame = self.frame;
 
 	GTKRect subframe;
-
 
 	//FIXME: Actually do something.
 	subframe.x = 0;

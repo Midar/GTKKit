@@ -54,7 +54,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 - (void)setBlock:(GTKCallbackBlock)block
 {
-	_block = block;
+	_block = [block copy];
 }
 
 - (void)lock
@@ -69,6 +69,8 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 - (void)wait
 {
+	// Waiting on the flag is to guard against spurious wakeups, per the
+	// Glib documentation.
     while (self.flag == false) {
         g_cond_wait(self.cond, self.mutex);
     }

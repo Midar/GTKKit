@@ -28,6 +28,13 @@ runBlockInGTKThreadCallback(gpointer userdata)
     return false;
 }
 
+@interface GTKCallback ()
+- (void)lock;
+- (void)unlock;
+- (void)wait;
+- (void)signal;
+@end
+
 @implementation GTKCallback
 - init
 {

@@ -27,7 +27,6 @@ typedef void (*GTKCallbackFunction)(GTKCallback *callback);
 
 @interface GTKCallback: OFObject
 @property GtkWidget *widget;
-@property (weak) id sender;
 @property GMutex *mutex;
 @property GCond *cond;
 @property gboolean flag;
@@ -47,4 +46,5 @@ typedef void (*GTKCallbackFunction)(GTKCallback *callback);
 - (void)wait;
 - (void)signal;
 - (void)waitForBlock:(GTKCallbackBlock)block;
++ (void)waitForBlock:(GTKCallbackBlock)block;
 @end

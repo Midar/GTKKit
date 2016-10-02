@@ -14,7 +14,7 @@
  * the packaging of this file.
  */
 
-#import "GTKCallBack.h"
+#import "GTKCallback.h"
 
 static gboolean
 runBlockInGTKThreadCallback(gpointer userdata)
@@ -77,5 +77,12 @@ runBlockInGTKThreadCallback(gpointer userdata)
     g_idle_add(runBlockInGTKThreadCallback, (__bridge gpointer)(self));
     [self wait];
     [self unlock];
+	self.flag = false;
+}
+
++ (void)waitForBlock:(GTKCallbackBlock)block
+{
+    GTKCallback *callback = [self new];
+	[callback waitForBlock: block];
 }
 @end

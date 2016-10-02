@@ -15,22 +15,18 @@
  */
 
 #import "GTKApplicationDelegate.h"
-#import "GTKCallBack.h"
-
-static gboolean
-gtkkit_gtk_main_quit(gpointer userdata)
-{
-    gtk_main_quit();
-    return false;
-}
+#import "GTKCallback.h"
 
 @implementation GTKApplicationDelegate
 - (void)applicationDidFinishLaunching
 {
+
 }
 
 - (void)applicationWillTerminate
 {
-    gdk_threads_add_idle(gtkkit_gtk_main_quit, NULL);
+    [GTKCallback waitForBlock: ^(GTKCallback *callback){
+        gtk_main_quit();
+    }];
 }
 @end

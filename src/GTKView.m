@@ -15,7 +15,7 @@
  */
 
 #import "GTKView.h"
-#import "GTKCallBack.h"
+#import "GTKCallback.h"
 
 static gboolean
 gtkkit_get_child_position(GtkOverlay   *overlay,
@@ -55,28 +55,25 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	self.hidden = false;
 	self.alpha = 1.0;
 
-	GTKCallback *callback = [GTKCallback new];
-	callback.sender = self;
+	[GTKCallback waitForBlock: ^(GTKCallback *callback) {
+		self.overlayWidget = gtk_overlay_new();
+		g_object_ref_sink(G_OBJECT(self.overlayWidget));
 
-	[callback waitForBlock: ^(GTKCallback *callback) {
-		callback.widgetValue = gtk_overlay_new();
-		g_object_ref_sink(G_OBJECT(callback.widgetValue));
+		_get_child_position_handler_id = g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+			"get-child-position",
+			G_CALLBACK(gtkkit_get_child_position),
+			(__bridge void*)self);
 
-		_get_child_position_handler_id = g_signal_connect(G_OBJECT(callback.widgetValue),
-			"get-child-position", G_CALLBACK(gtkkit_get_child_position),
-			(__bridge void*)callback.sender);
+	    _widget_destroyed_handler_id = g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+	        "destroy",
+			G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
+	        (__bridge void*)self);
 
-	    _widget_destroyed_handler_id = g_signal_connect(G_OBJECT(callback.widgetValue),
-	        "destroy", G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
-	        (__bridge void*)callback.sender);
+		self.mainWidget = gtk_invisible_new();
+		g_object_ref_sink(G_OBJECT(self.mainWidget));
 	}];
-	self.overlayWidget = callback.widgetValue;
-
-	[callback waitForBlock: ^(GTKCallback *callback) {
-		callback.widgetValue = gtk_invisible_new();
-		g_object_ref_sink(G_OBJECT(callback.widgetValue));
-	}];
-	self.mainWidget = callback.widgetValue;
 
 	return self;
 }
@@ -101,8 +98,10 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (GTKRect)frame
 {
-	GtkAllocation alloc;
-	gtk_widget_get_allocation(self.overlayWidget, &alloc);
+	__block GtkAllocation alloc;
+	[GTKCallback waitForBlock: ^(GTKCallback *callback){
+		gtk_widget_get_allocation(self.overlayWidget, &alloc);
+	}];
 	return (GTKRect)alloc;
 }
 
@@ -110,7 +109,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 {
 	// We copy this so it doesn't change midway throgh for whatever reason.
 	// Probably excess of caution, but it doesn't hurt.
-	GTKRect frame = self.frame;
+	//GTKRect frame = self.frame;
 
 	GTKRect subframe;
 
@@ -125,11 +124,13 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)layoutSubviews
 {
+	//FIXME: Actually do something here.
 	return;
 }
 
 - (void)draw
 {
+	// The default implementation here does nothing.
 	return;
 }
 @end

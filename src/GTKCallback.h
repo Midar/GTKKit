@@ -23,26 +23,17 @@
 @class GTKCallback;
 
 typedef void (^GTKCallbackBlock)(GTKCallback *callback);
-typedef void (*GTKCallbackFunction)(GTKCallback *callback);
 
+/*!
+ * @brief A class representing callbacks into the GTK+ thread.
+ */
 @interface GTKCallback: OFObject
-@property GtkWidget *widget;
+{
+    GTKCallbackBlock _block;
+}
 @property GMutex *mutex;
 @property GCond *cond;
 @property gboolean flag;
-@property int  intValue;
-@property long longValue;
-@property unsigned int unsignedIntValue;
-@property unsigned long unsignedLongValue;
-@property float floatValue;
-@property double doubleValue;
-@property gpointer pointerValue;
-@property char *stringValue;
-@property GtkWidget *widgetValue;
-@property (copy) GTKCallbackBlock blockValue;
-@property (copy) GTKCallbackBlock privateBlockValue;
-@property GTKCallbackFunction functionValue;
-@property id objectValue;
-- (void)waitForBlock:(GTKCallbackBlock)block;
 + (void)waitForBlock:(GTKCallbackBlock)block;
+- (void)waitForBlock:(GTKCallbackBlock)block;
 @end

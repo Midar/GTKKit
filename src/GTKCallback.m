@@ -17,6 +17,7 @@
 #import "GTKCallback.h"
 
 @interface GTKCallback ()
+@property (copy) GTKCallbackBlock block;
 - (void)lock;
 - (void)unlock;
 - (void)wait;
@@ -28,7 +29,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
 {
 	GTKCallback *callback = (__bridge GTKCallback *)(userdata);
     [callback lock];
-    callback.privateBlockValue(callback);
+    callback.block(callback);
     callback.flag = true;
     [callback signal];
     [callback unlock];
@@ -44,6 +45,16 @@ runBlockInGTKThreadCallback(gpointer userdata)
     g_mutex_init(self.mutex);
     g_cond_init(self.cond);
     return self;
+}
+
+- (GTKCallbackBlock)block;
+{
+	return _block;
+}
+
+- (void)setBlock:(GTKCallbackBlock)block
+{
+	_block = block;
 }
 
 - (void)lock
@@ -80,7 +91,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
 {
     self.flag = false;
     [self lock];
-    self.privateBlockValue = block;
+    self.block = block;
     g_idle_add(runBlockInGTKThreadCallback, (__bridge gpointer)(self));
     [self wait];
     [self unlock];
@@ -89,7 +100,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 + (void)waitForBlock:(GTKCallbackBlock)block
 {
-    GTKCallback *callback = [self new];
-	[callback waitForBlock: block];
+    [[self new] waitForBlock: block];
 }
 @end

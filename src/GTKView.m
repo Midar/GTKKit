@@ -82,13 +82,15 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 {
 	if (self.overlayWidget != NULL) {
 		[GTKCallback waitForBlock: ^(GTKCallback *callback){
-			g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
-										self.childPositionHandlerID);
+			g_signal_handler_disconnect(
+				G_OBJECT(self.overlayWidget),
+				self.childPositionHandlerID);
 
-			g_signal_handler_disconnect(G_OBJECT(self.overlayWidget),
-										self.widgetDestroyedHandlerID);
+			g_signal_handler_disconnect(
+				G_OBJECT(self.overlayWidget),
+				self.widgetDestroyedHandlerID);
 
-		    gtk_widget_destroy(GTK_WIDGET(callback.widget));
+		    gtk_widget_destroy(GTK_WIDGET(self.overlayWidget));
 	        self.overlayWidget = NULL;
 		}];
     }

@@ -25,6 +25,8 @@
 - (void)unlock;
 - (void)wait;
 - (void)signal;
+- (void)async:(GTKCallbackBlock)block;
+- (void)sync:(GTKCallbackBlock)block;
 @end
 
 static gboolean

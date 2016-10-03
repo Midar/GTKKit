@@ -22,7 +22,7 @@
 
 @class GTKCallback;
 
-typedef void (^GTKCallbackBlock)(GTKCallback *callback);
+typedef void (^GTKCallbackBlock)();
 
 /*!
  * @brief A class representing callbacks into the GTK+ thread.

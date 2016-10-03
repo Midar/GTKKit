@@ -55,7 +55,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	self.hidden = false;
 	self.alpha = 1.0;
 
-	[GTKCallback sync: ^(GTKCallback *callback) {
+	[GTKCallback sync: ^{
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
 
@@ -81,7 +81,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)dealloc
 {
 	if (self.overlayWidget != NULL) {
-		[GTKCallback sync: ^(GTKCallback *callback){
+		[GTKCallback sync: ^{
 			g_signal_handler_disconnect(
 				G_OBJECT(self.overlayWidget),
 				self.childPositionHandlerID);
@@ -99,7 +99,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (GTKRect)frame
 {
 	__block GtkAllocation alloc;
-	[GTKCallback sync: ^(GTKCallback *callback){
+	[GTKCallback sync: ^{
 		gtk_widget_get_allocation(self.overlayWidget, &alloc);
 	}];
 	return (GTKRect)alloc;

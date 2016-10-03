@@ -5,17 +5,19 @@ STATIC_LIB = ${GTKKIT_STATIC_LIB}
 LIB_MAJOR = 0
 LIB_MINOR = 0
 
-SRCS =	GTKCallback.m	          					\
-				GTKResponder.m	            			\
-				GTKEvent.m	                			\
-				GTKLayoutConstraints.m						\
-				GTKView.m                  				\
-				GTKControl.m               				\
-				GTKViewController.m        				\
-				GTKApplicationDelegate.m
+SRCS =	GTKCallback.m                               \
+				GTKResponder.m                              \
+				GTKEvent.m                                  \
+				GTKLayoutConstraints.m                      \
+				GTKView.m                                   \
+				GTKControl.m                                \
+				GTKViewController.m                         \
+				GTKApplicationDelegate.m                    \
+				GTKInvalidLayoutConstraintsException.m
 
-INCLUDES =	${SRCS:.m=.h}	\
-						GTKKit.h
+INCLUDES =                                          \
+				${SRCS:.m=.h}	                              \
+				GTKKit.h
 
 include ../buildsys.mk
 

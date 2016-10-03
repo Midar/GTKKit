@@ -14,6 +14,11 @@
  * the packaging of this file.
  */
 
-#import "defines.h"
-
 #import "GTKInvalidLayoutConstraintsException.h"
+
+@implementation GTKInvalidLayoutConstraintsException
+- (OFString*)description
+{
+	return @"Invalid layout constraint exception.";
+}
+@end

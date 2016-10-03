@@ -14,6 +14,16 @@
  * the packaging of this file.
  */
 
-#import "defines.h"
+#import <ObjFW/ObjFW.h>
 
-#import "GTKInvalidLayoutConstraintsException.h"
+OF_ASSUME_NONNULL_BEGIN
+
+/*!
+ * @brief An exception representing the error of attempting to locate the
+ *	  wrapper object for a GtkWidget (or subclass) pointer that doesn't
+ *	  have one.
+ */
+@interface GTKInvalidLayoutConstraintsException: OFException
+@end
+
+OF_ASSUME_NONNULL_END

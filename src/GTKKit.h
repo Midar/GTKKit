@@ -17,7 +17,6 @@
 #import "defines.h"
 #import "Exceptions.h"
 #import "GTKCallback.h"
-
 #import "GTKApplicationDelegate.h"
 #import "GTKResponder.h"
 #import	"GTKEvent.h"

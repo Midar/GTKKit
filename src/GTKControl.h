@@ -21,6 +21,8 @@
 #import "GTKEvent.h"
 #import "GTKView.h"
 
+typedef void (^ActionBlock) (_Nullable id sender);
+
 /*!
  * @brief A class represnting GUI controls
  *
@@ -43,6 +45,13 @@
  * responder. If this is NULL, no action is attempted.
  */
 @property (nullable) SEL action;
+
+/*!
+ * @brief A block which, if it exists, will be executed after attempting to
+ * send the target its action message. This block takes a single argument,
+ * which will be the instance running the block.
+ */
+@property (nullable, copy) ActionBlock actionBlock;
 
 /*!
  * @brief The string value of the control.

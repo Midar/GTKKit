@@ -20,8 +20,6 @@
 #import "defines.h"
 #import "GTKEvent.h"
 
-typedef void (^ActionBlock) (_Nullable id sender);
-
 /*!
  * @brief An object which can respond to events.
  *
@@ -59,13 +57,6 @@ typedef void (^ActionBlock) (_Nullable id sender);
  * that implementation if they wish to become first responder.
  */
 @property (readonly) bool canBecomeFirstResponder;
-
-/*!
- * @brief A block which, if it exists, will be executed after attempting to
- * send the target its action message. This block takes a single argument,
- * which should be the instance running the block.
- */
-@property (nullable, copy) ActionBlock actionBlock;
 
 /*!
  * @brief Respond to a mouse button being pressed.

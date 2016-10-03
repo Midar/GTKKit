@@ -21,7 +21,7 @@
 #import "GTKEvent.h"
 #import "GTKView.h"
 
-typedef void (^ActionBlock) (_Nullable id sender);
+typedef void (^ActionBlock) (_Nonnull id sender);
 
 /*!
  * @brief A class represnting GUI controls

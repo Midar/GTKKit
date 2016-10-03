@@ -29,7 +29,7 @@ typedef void (^GTKCallbackBlock)();
  *
  * This class encapsulates the annoying GTK+ "idle callback" method of
  * inter-thread communication and hides it behind a simple block-based
- * API; given a block, this class's public methdod run that block inside
+ * API; given a block, this class's public methods run that block inside
  * the GTK+ thread, either synchronously or asynchronously, depending on
  * which method is used.  Note that the code in the block will be run as an
  * idle-time callback in the GTK+ thread, so it's probably a very bad idea

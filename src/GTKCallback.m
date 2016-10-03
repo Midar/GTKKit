@@ -16,8 +16,6 @@
 
 #import "GTKCallback.h"
 
-static bool _sharedCallbackInitRun = false;
-
 @interface GTKCallback ()
 @property (copy) GTKCallbackBlock block;
 @property GMutex *mutex;
@@ -92,16 +90,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	_flag = flag;
 }
 
-+ (instancetype)sharedCallback;
-{
-	__strong static GTKCallback *_sharedCallback;
-	if (_sharedCallbackInitRun == false) {
-		_sharedCallback = [self new];
-		_sharedCallbackInitRun = true;
-	}
-	return _sharedCallback;
-}
-
 - (void)lock
 {
     g_mutex_lock(self.mutex);
@@ -149,7 +137,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 + (void)sync:(GTKCallbackBlock)block
 {
-    [self.sharedCallback sync: block];
+    [[self new] sync: block];
 }
 
 - (void)async:(GTKCallbackBlock)block
@@ -162,6 +150,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 + (void)async:(GTKCallbackBlock)block
 {
-    [self.sharedCallback async: block];
+    [[self new] sync: block];
 }
 @end

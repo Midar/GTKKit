@@ -122,7 +122,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
     free(self.cond);
 }
 
-- (void)waitForBlock:(GTKCallbackBlock)block
+- (void)sync:(GTKCallbackBlock)block
 {
     self.flag = false;
     [self lock];
@@ -135,21 +135,21 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	self.flag = false;
 }
 
-+ (void)waitForBlock:(GTKCallbackBlock)block
++ (void)sync:(GTKCallbackBlock)block
 {
-    [[self new] waitForBlock: block];
+    [[self new] sync: block];
 }
 
-- (void)runBlock:(GTKCallbackBlock)block
+- (void)async:(GTKCallbackBlock)block
 {
 	[[OFThread threadWithThreadBlock: ^id _Nullable (){
-		[GTKCallback waitForBlock: block];
+		[GTKCallback sync: block];
 		return NULL;
 	}] start];
 }
 
-+ (void)runBlock:(GTKCallbackBlock)block
++ (void)async:(GTKCallbackBlock)block
 {
-    [[self new] runBlock: block];
+    [[self new] sync: block];
 }
 @end

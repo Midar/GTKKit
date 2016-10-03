@@ -24,7 +24,7 @@
 
 - (void)applicationWillTerminate
 {
-    [GTKCallback waitForBlock: ^(GTKCallback *callback){
+    [GTKCallback async: ^(GTKCallback *callback){
         gtk_main_quit();
     }];
 }

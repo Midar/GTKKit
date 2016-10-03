@@ -40,13 +40,14 @@ typedef void (^GTKCallbackBlock)(GTKCallback *callback);
     GCond *_cond;
     gboolean _flag;
 }
+
 /*!
- * @brief Create a GTKCallbackBlock instance, and have it run the given
- * block in the GTK+ thread synchronously.
+ * @brief Run the given block in the GTK+ thread synchronously.
  *
  * @param block The block to run
  */
 + (void)sync:(GTKCallbackBlock)block;
+
 /*!
  * @brief Run the given block in the GTK+ thread asynchronously.
  *

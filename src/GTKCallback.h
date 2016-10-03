@@ -39,7 +39,7 @@ typedef void (^GTKCallbackBlock)();
  * this class.
  *
  * As each instance of this class represents a single callback to the GTK+
- * thread, there isn't much point retaining the isnstances -- and thus, the
+ * thread, there isn't much point retaining the instances -- and thus, the
  * public interface wraps that in class methods that create temporary
  * instances for a single use, which are then discarded.
  */

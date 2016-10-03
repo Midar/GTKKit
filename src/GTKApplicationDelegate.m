@@ -20,7 +20,6 @@
 @implementation GTKApplicationDelegate
 - (void)applicationDidFinishLaunching
 {
-
 }
 
 - (void)applicationWillTerminate

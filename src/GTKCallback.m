@@ -127,7 +127,9 @@ runBlockInGTKThreadCallback(gpointer userdata)
     self.flag = false;
     [self lock];
     self.block = block;
-    g_idle_add(runBlockInGTKThreadCallback, (__bridge gpointer)(self));
+    g_idle_add(
+		runBlockInGTKThreadCallback,
+		(__bridge gpointer)(self));
     [self wait];
     [self unlock];
 	self.flag = false;
@@ -136,5 +138,18 @@ runBlockInGTKThreadCallback(gpointer userdata)
 + (void)waitForBlock:(GTKCallbackBlock)block
 {
     [[self new] waitForBlock: block];
+}
+
+- (void)runBlock:(GTKCallbackBlock)block
+{
+	[[OFThread threadWithThreadBlock: ^id _Nullable (){
+		[GTKCallback waitForBlock: block];
+		return NULL;
+	}] start];
+}
+
++ (void)runBlock:(GTKCallbackBlock)block
+{
+    [[self new] runBlock: block];
 }
 @end

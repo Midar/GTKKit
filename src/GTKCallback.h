@@ -31,7 +31,12 @@ typedef void (^GTKCallbackBlock)();
  * inter-thread communication and hides it behind a simple block-based
  * API; given a block, this class's public methdod run that block inside
  * the GTK+ thread, either synchronously or asynchronously, depending on
- * which method is used.
+ * which method is used.  Note that the code in the block will be run as an
+ * idle-time callback in the GTK+ thread, so it's probably a very bad idea
+ * to put any long-running function calls or endless loops in the block, or
+ * you risk bogging down the user interface. Instead, put your long-running
+ * code into an OFThread which itself calls into the GTK+ thread at need using
+ * this class.
  */
 @interface GTKCallback: OFObject
 {
@@ -44,12 +49,18 @@ typedef void (^GTKCallbackBlock)();
 /*!
  * @brief Run the given block in the GTK+ thread synchronously.
  *
+ * This means that this method will not return until the block you provide
+ * does.
+ *
  * @param block The block to run
  */
 + (void)sync:(GTKCallbackBlock)block;
 
 /*!
  * @brief Run the given block in the GTK+ thread asynchronously.
+ *
+ * This means that this method returns almost immediately, regardless of the
+ * code in the block you supply.
  *
  * @param block The block to run
  */

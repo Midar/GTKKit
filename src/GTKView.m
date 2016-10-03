@@ -63,13 +63,13 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 			G_OBJECT(self.overlayWidget),
 			"get-child-position",
 			G_CALLBACK(gtkkit_get_child_position),
-			(__bridge gpointer)self);
+			(__bridge gpointer)(self));
 
 	    self.widgetDestroyedHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "destroy",
 			G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
-	        (__bridge gpointer)self);
+	        (__bridge gpointer)(self));
 
 		self.mainWidget = gtk_invisible_new();
 		g_object_ref_sink(G_OBJECT(self.mainWidget));

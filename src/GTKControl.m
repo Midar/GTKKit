@@ -27,7 +27,7 @@
         //FIXME: Get the current first responder and send it the action message.
     } else {
         IMP imp = [self methodForSelector: self.action];
-        void (*func)(id, SEL) = (void *)imp;
+        void (*func)(id, SEL) = (void *)(imp);
         func(self, self.action);
     }
 }

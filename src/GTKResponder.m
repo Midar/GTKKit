@@ -136,7 +136,7 @@
 {
     if ([self respondsToSelector: selector]) {
         IMP imp = [self methodForSelector:selector];
-        void (*func)(id, SEL) = (void *)imp;
+        void (*func)(id, SEL) = (void *)(imp);
         func(self, selector);
     }
 }
@@ -157,7 +157,7 @@
 {
     if ([self respondsToSelector: action]) {
         IMP imp = [self methodForSelector:action];
-        void (*func)(id, SEL) = (void *)imp;
+        void (*func)(id, SEL) = (void *)(imp);
         func(self, action);
         return true;
     }

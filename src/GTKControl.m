@@ -32,35 +32,35 @@
     }
 }
 
-- (void)takeStringValueFrom:(_Nonnull id)target
+- (void)takeStringValueFrom:(nonnull id)target
 {
     if ([target respondsToSelector: @selector(stringValue)]) {
         self.stringValue = [target stringValue];
     }
 }
 
-- (void)takeIntValueFrom:(_Nonnull id)target
+- (void)takeIntValueFrom:(nonnull id)target
 {
     if ([target respondsToSelector: @selector(intValue)]) {
         self.intValue = [target intValue];
     }
 }
 
-- (void)takeDoubleValueFrom:(_Nonnull id)target
+- (void)takeDoubleValueFrom:(nonnull id)target
 {
     if ([target respondsToSelector: @selector(doubleValue)]) {
         self.doubleValue = [target doubleValue];
     }
 }
 
-- (void)takeFloatValueFrom:(_Nonnull id)target
+- (void)takeFloatValueFrom:(nonnull id)target
 {
     if ([target respondsToSelector: @selector(floatValue)]) {
         self.floatValue = [target floatValue];
     }
 }
 
-- (void)takeObjectValueFrom:(_Nonnull id)target
+- (void)takeObjectValueFrom:(nonnull id)target
 {
     if ([target respondsToSelector: @selector(objectValue)]) {
         self.objectValue = [target objectValue];

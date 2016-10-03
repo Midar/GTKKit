@@ -29,7 +29,7 @@ typedef void (^ActionBlock) (_Nonnull id sender);
  * GTKControl is the parent class of all the "control" views: views which
  * implement buttons, sliders, etc. Controls are distinguished from other
  * views by their implementation of the target-action pattern - when a control
- * is activated, it sends a message to another object with itself as an argyment,
+ * is activated, it sends a message to another object with itself as an argument,
  * which decouples behaviour from the class itself.
  */
 @interface GTKControl: GTKView

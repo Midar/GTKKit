@@ -18,6 +18,9 @@
 
 @interface GTKCallback ()
 @property (copy) GTKCallbackBlock block;
+@property GMutex *mutex;
+@property GCond *cond;
+@property gboolean flag;
 - (void)lock;
 - (void)unlock;
 - (void)wait;
@@ -55,6 +58,36 @@ runBlockInGTKThreadCallback(gpointer userdata)
 - (void)setBlock:(GTKCallbackBlock)block
 {
 	_block = [block copy];
+}
+
+- (GCond *)cond;
+{
+	return _cond;
+}
+
+- (void)setCond:(GCond *)cond
+{
+	_cond = cond;
+}
+
+- (GMutex *)mutex;
+{
+	return _mutex;
+}
+
+- (void)setMutex:(GMutex *)mutex
+{
+	_mutex = mutex;
+}
+
+- (gboolean)flag;
+{
+	return _flag;
+}
+
+- (void)setFlag:(gboolean)flag
+{
+	_flag = flag;
 }
 
 - (void)lock

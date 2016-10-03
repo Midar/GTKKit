@@ -1,3 +1,3 @@
-SUBDIRS = AppDelegate        
+SUBDIRS = Example        
 
 include ../buildsys.mk

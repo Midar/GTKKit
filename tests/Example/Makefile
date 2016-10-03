@@ -1,4 +1,4 @@
-PROG_NOINST = AppDelegate
+PROG_NOINST = Example
 SRCS = AppDelegate.m
 
 include ../../buildsys.mk

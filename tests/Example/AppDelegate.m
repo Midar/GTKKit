@@ -23,7 +23,9 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     self = [super init];
     // Put your custom initialization below this line. At this point, the GTK+
-    // main loop thread is up and running.
+    // main loop thread is up and running. If you need to send messages or call
+    // functions in that thread, surround that code with a [GTKCallback async: ^{}]
+    // or [GTKCallback sync: ^{}] block.
 
     self.testView = [GTKView new];
 
@@ -34,6 +36,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 - (void)applicationDidFinishLaunching
 {
     [super applicationDidFinishLaunching];
-    // Put your custom post-launch startup code below this line.
+    // Put your custom post-launch startup code below this line
 }
 @end

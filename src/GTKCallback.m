@@ -146,7 +146,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
 {
 	[[OFThread threadWithThreadBlock: ^id _Nullable (){
 		[GTKCallback sync: block];
-		return NULL;
+		return nil;
 	}] start];
 }
 

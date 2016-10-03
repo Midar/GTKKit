@@ -152,6 +152,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 + (void)async:(GTKCallbackBlock)block
 {
-    [[self new] sync: block];
+    [[self new] async: block];
 }
 @end

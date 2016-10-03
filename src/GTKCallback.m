@@ -32,7 +32,7 @@
 static gboolean
 runBlockInGTKThreadCallback(gpointer userdata)
 {
-	GTKCallback *callback = (__bridge GTKCallback *)(userdata);
+	GTKCallback *callback = (__bridge_transfer GTKCallback *)(userdata);
     [callback lock];
     callback.block(callback);
     callback.flag = true;
@@ -131,7 +131,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
     self.block = block;
     g_idle_add(
 		runBlockInGTKThreadCallback,
-		(__bridge gpointer)(self));
+		(__bridge_retained gpointer)(self));
     [self wait];
     [self unlock];
 	self.flag = false;

@@ -39,7 +39,12 @@ typedef void (^GTKCallbackBlock)(GTKCallback *callback);
     GMutex *_mutex;
     GCond *_cond;
     gboolean _flag;
+    GTKCallback *_sharedCallback;
 }
+/*!
+ * @brief The shared instance of this class.
+ */
++ (GTKCallback *)sharedCallback;
 /*!
  * @brief Create a GTKCallbackBlock instance, and have it run the given
  * block in the GTK+ thread synchronously.

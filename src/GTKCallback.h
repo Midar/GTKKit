@@ -29,9 +29,9 @@ typedef void (^GTKCallbackBlock)(GTKCallback *callback);
  *
  * This class encapsulates the annoying GTK+ "idle callback" method of
  * inter-thread communication and hides it behind a simple block-based
- * API; given a block, this class's methods execute that block in the
- * GTK+ thread synchronously - that is, it doesn't return until the block
- * does.
+ * API; given a block, this class's public methdod run that block inside
+ * the GTK+ thread, either synchronously or asynchronously, depending on
+ * which method is used.
  */
 @interface GTKCallback: OFObject
 {

@@ -21,7 +21,7 @@
 #import "GTKEvent.h"
 #import "GTKView.h"
 
-typedef void (^ActionBlock) (_Nonnull id sender);
+typedef void (^GTKControlActionBlock) (_Nonnull id sender);
 
 /*!
  * @brief A class represnting GUI controls
@@ -51,7 +51,7 @@ typedef void (^ActionBlock) (_Nonnull id sender);
  * send the target its action message. This block takes a single argument,
  * which will be the instance running the block.
  */
-@property (nullable, copy) ActionBlock actionBlock;
+@property (nullable, copy) GTKControlActionBlock actionBlock;
 
 /*!
  * @brief The string value of the control.

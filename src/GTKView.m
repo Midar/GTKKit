@@ -84,7 +84,6 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		self.mainWidget = gtk_frame_new(NULL);
 		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
 		gtk_widget_show(self.mainWidget);
-
 		gtk_widget_show(self.overlayWidget);
 	});
 
@@ -280,11 +279,6 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 				GTK_OVERLAY(self.overlayWidget),
 				view.overlayWidget,
 				(int)(index));
-			if (view.isHidden) {
-				gtk_widget_hide(view.overlayWidget);
-			} else {
-				gtk_widget_show(view.overlayWidget);
-			}
 		}
 	});
 	for (GTKView *view in self.subviews) {
@@ -300,11 +294,16 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)addSubview:(GTKView *)view
 {
-	GTKCallback(^{
-		gtk_overlay_add_overlay(
-			GTK_OVERLAY(self.overlayWidget),
-			view.overlayWidget);
-	});
+	if (![self.subviews containsObject: view]) {
+		[self.subviews addObject: view];
+		GTKCallback(^{
+			gtk_overlay_add_overlay(
+				GTK_OVERLAY(self.overlayWidget),
+				view.overlayWidget);
+		});
+		[self layoutSubviews];
+	}
+	printf("Subview added!\n");
 }
 
 - (void)removeFromSuperview

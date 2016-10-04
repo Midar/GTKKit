@@ -28,11 +28,9 @@
  * window and its view hierarchy.
  */
 @interface GTKWindowViewController: GTKViewController
-{
-    __block GtkWidget *_overlayWidget;
-}
 @property (nullable) GtkWidget *window;
 @property (nullable) GTKView *contentView;
 @property GTKRect frame;
 @property (getter=isHidden) bool hidden;
+- (void)addSubview:(nonnull GTKView *)subview;
 @end

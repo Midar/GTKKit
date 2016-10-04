@@ -25,14 +25,16 @@
 {
     self = [super init];
 
-    GTKCallback(^{
-        _overlayWidget = gtk_overlay_new();
-        g_object_ref_sink(G_OBJECT(_overlayWidget));
+    self.contentView = [GTKView new];
 
+    GTKCallback(^{
         self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(self.window));
         gtk_widget_set_size_request(self.window, 1, 1);
         gtk_window_set_default_size(GTK_WINDOW(self.window), 100, 100);
+
+        gtk_container_add(GTK_CONTAINER(self.window), self.contentView.overlayWidget);
+
     });
 
     self.hidden = true;
@@ -43,7 +45,6 @@
 - (void)dealloc
 {
     GTKCallback(^{
-        gtk_widget_destroy(_overlayWidget);
         gtk_widget_destroy(self.window);
     });
 }
@@ -61,6 +62,7 @@
 {
     GTKCallback(^{
         gtk_widget_set_visible(self.window, !hidden);
+        gtk_widget_show_all(self.window);
     });
 }
 
@@ -83,7 +85,13 @@
 - (void)setFrame:(GTKRect)frame
 {
     GTKCallback(^{
-
+        gtk_window_resize(GTK_WINDOW(self.window), frame.width, frame.height);
+        gtk_window_move(GTK_WINDOW(self.window), frame.x, frame.y);
     });
+}
+
+- (void)addSubview:(nonnull GTKView *)subview
+{
+    [self.contentView addSubview: subview];
 }
 @end

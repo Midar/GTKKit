@@ -24,3 +24,4 @@
 #import	"GTKView.h"
 #import	"GTKControl.h"
 #import	"GTKViewController.h"
+#import	"GTKWindowViewController.h"

@@ -14,6 +14,12 @@
  * the packaging of this file.
  */
 
+#import <ObjFW/ObjFW.h>
+
+#import <gtk/gtk.h>
+
+typedef GdkRectangle GTKRect;
+
 // Our version of NS_ENUM.
 #ifndef OF_ENUM
 #define OF_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
@@ -22,7 +28,7 @@
 // This macro sets the class used as the app delegate, and provides the
 // main() function.
 #define GTK_APPLICATION_DELEGATE(cls)                           \
-const of_thread_attr_t objfw_thread_attr;                       \
+const of_thread_attr_t gtkkit_objfw_thread_attr;                \
 static int *_argc;                                              \
 static char ***_argv;                                           \
                                                                 \
@@ -38,8 +44,8 @@ main(int argc, char *argv[])                                    \
    _argc = &argc;                                               \
    _argv = &argv;                                               \
    gtk_init(&argc, &argv);                                      \
-   of_thread_new(&objfw_thread, &gtkkit_application_main,       \
-                 nil, &objfw_thread_attr);                      \
-   gtk_thread = of_thread_current();                            \
+   of_thread_new(&gtkkit_objfw_thread, &gtkkit_application_main,\
+                 nil, &gtkkit_objfw_thread_attr);               \
+   gtkkit_gtk_thread = of_thread_current();                     \
    gtk_main();                                                  \
 }                                                               \

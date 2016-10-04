@@ -14,20 +14,25 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
 
+#import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "defines.h"
+#import "GTKViewController.h"
+#import "GTKView.h"
+#import "GTKCallback.h"
 
-extern of_thread_t gtkkit_objfw_thread;
-extern of_thread_t gtkkit_gtk_thread;
-extern const of_thread_attr_t gtkkit_objfw_thread_attr;
-
-typedef void (^GTKCallbackBlock)();
-
-void
-GTKCallback(GTKCallbackBlock block);
-
-void
-ObjFWCallback(GTKCallbackBlock block);
+/*!
+ * @brief A class representing a view controller that manages a toplevel
+ * window and its view hierarchy.
+ */
+@interface GTKWindowViewController: GTKViewController
+{
+    __block GtkWidget *_overlayWidget;
+}
+@property (nullable) GtkWidget *window;
+@property (nullable) GTKView *contentView;
+@property GTKRect frame;
+@property (getter=isHidden) bool hidden;
+@end

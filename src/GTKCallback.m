@@ -16,149 +16,34 @@
 
 #import "GTKCallback.h"
 
-of_thread_t gtk_thread;
-of_thread_t objfw_thread;
-const of_thread_attr_t objfw_thread_attr;
-
-@interface GTKCallback ()
-@property (copy) GTKCallbackBlock block;
-@property GMutex *mutex;
-@property GCond *cond;
-@property gboolean flag;
-- (void)lock;
-- (void)unlock;
-- (void)wait;
-- (void)signal;
-- (void)async:(GTKCallbackBlock)block;
-- (void)sync:(GTKCallbackBlock)block;
-@end
+of_thread_t gtkkit_gtk_thread;
+of_thread_t gtkkit_objfw_thread;
+const of_thread_attr_t gtkkit_objfw_thread_attr;
 
 static gboolean
-runBlockInGTKThreadCallback(gpointer userdata)
+runInGTKThreadCallback(gpointer userdata)
 {
-	GTKCallback *callback = (__bridge_transfer GTKCallback *)(userdata);
-    [callback lock];
-    callback.block();
-    callback.flag = true;
-    [callback signal];
-    [callback unlock];
+	GTKCallbackBlock block = (__bridge_transfer GTKCallbackBlock)(userdata);
+    block();
     return false;
 }
 
-@implementation GTKCallback
-- init
+void
+GTKCallback(GTKCallbackBlock block)
 {
-    self = [super init];
-    self.mutex = calloc(1, sizeof(GMutex));
-    self.cond = calloc(1, sizeof(GCond));
-    g_mutex_init(self.mutex);
-    g_cond_init(self.cond);
-    return self;
+	gpointer userdata = (__bridge_retained gpointer)(block);
+	g_main_context_invoke(NULL, runInGTKThreadCallback, userdata);
 }
 
-- (GTKCallbackBlock)block;
+void
+ObjFWCallback(GTKCallbackBlock block)
 {
-	return _block;
-}
+	OFTimer *timer = [OFTimer
+		timerWithTimeInterval: 0
+		repeats: false
+		block: ^ (OFTimer *timer) { block(); }];
 
-- (void)setBlock:(GTKCallbackBlock)block
-{
-	_block = [block copy];
-}
+	[[OFRunLoop mainRunLoop] addTimer: timer];
 
-- (GCond *)cond;
-{
-	return _cond;
+	[timer waitUntilDone];
 }
-
-- (void)setCond:(GCond *)cond
-{
-	_cond = cond;
-}
-
-- (GMutex *)mutex;
-{
-	return _mutex;
-}
-
-- (void)setMutex:(GMutex *)mutex
-{
-	_mutex = mutex;
-}
-
-- (gboolean)flag;
-{
-	return _flag;
-}
-
-- (void)setFlag:(gboolean)flag
-{
-	_flag = flag;
-}
-
-- (void)lock
-{
-    g_mutex_lock(self.mutex);
-}
-
-- (void)unlock
-{
-    g_mutex_unlock(self.mutex);
-}
-
-- (void)wait
-{
-	// Waiting on the flag is to guard against spurious wakeups, per the
-	// Glib documentation.
-    while (self.flag == false) {
-        g_cond_wait(self.cond, self.mutex);
-    }
-}
-
-- (void)signal
-{
-    g_cond_signal(self.cond);
-}
-
-- (void)dealloc
-{
-    g_cond_clear(self.cond);
-    g_mutex_clear(self.mutex);
-    free(self.mutex);
-    free(self.cond);
-}
-
-- (void)sync:(GTKCallbackBlock)block
-{
-	if (of_thread_is_current(gtk_thread)) {
-	    block();
-	} else {
-	    self.flag = false;
-	    [self lock];
-	    self.block = block;
-	    g_idle_add(
-			runBlockInGTKThreadCallback,
-			(__bridge_retained gpointer)(self));
-	    [self unlock];
-		self.flag = false;
-	}
-}
-
-+ (void)sync:(GTKCallbackBlock)block
-{
-    [[self new] sync: block];
-}
-
-- (void)async:(GTKCallbackBlock)block
-{
-	[[OFThread threadWithThreadBlock: ^id _Nullable (){
-		[GTKCallback sync: block];
-		return nil;
-	}] start];
-}
-
-+ (void)async:(GTKCallbackBlock)block
-{
-    [[self new] async: block];
-}
-@end

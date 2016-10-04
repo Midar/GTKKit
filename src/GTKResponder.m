@@ -15,6 +15,7 @@
  */
 
 #import "GTKResponder.h"
+#import "GTKCallback.h"
 
 @implementation GTKResponder
 
@@ -135,9 +136,11 @@
 - (void)doCommandBySelector:(SEL)selector
 {
     if ([self respondsToSelector: selector]) {
-        IMP imp = [self methodForSelector:selector];
-        void (*func)(id, SEL) = (void *)(imp);
-        func(self, selector);
+        ObjFWCallback(^{
+            IMP imp = [self methodForSelector:selector];
+            void (*func)(id, SEL) = (void *)(imp);
+            func(self, selector);
+        });
     }
 }
 
@@ -145,9 +148,11 @@
                 with:(nonnull id)object
 {
     if ([self respondsToSelector: action]) {
-        [self performSelector: action
-                   withObject: object
-                   afterDelay: 0.0];
+        ObjFWCallback(^{
+            [self performSelector: action
+                       withObject: object
+                       afterDelay: 0.0];
+        });
         return true;
     }
     return false;
@@ -156,9 +161,11 @@
 - (bool)tryToPerform:(SEL)action
 {
     if ([self respondsToSelector: action]) {
-        IMP imp = [self methodForSelector:action];
-        void (*func)(id, SEL) = (void *)(imp);
-        func(self, action);
+        ObjFWCallback(^{
+            IMP imp = [self methodForSelector:action];
+            void (*func)(id, SEL) = (void *)(imp);
+            func(self, action);
+        });
         return true;
     }
     return false;

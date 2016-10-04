@@ -60,7 +60,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	self.hidden = false;
 	self.alpha = 1.0;
 
-	[GTKCallback sync: ^{
+	GTKCallback(^{
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
 
@@ -86,7 +86,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		gtk_widget_show(self.mainWidget);
 
 		gtk_widget_show(self.overlayWidget);
-	}];
+	});
 
 	return self;
 }
@@ -94,7 +94,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)dealloc
 {
 	if (self.overlayWidget != NULL) {
-		[GTKCallback sync: ^{
+		GTKCallback(^{
 			g_signal_handler_disconnect(
 				G_OBJECT(self.overlayWidget),
 				self.childPositionHandlerID);
@@ -105,7 +105,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 		    gtk_widget_destroy(GTK_WIDGET(self.overlayWidget));
 	        self.overlayWidget = NULL;
-		}];
+		});
     }
 }
 
@@ -123,9 +123,9 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (GTKRect)frame
 {
 	__block GtkAllocation alloc;
-	[GTKCallback sync: ^{
+	GTKCallback(^{
 		gtk_widget_get_allocation(self.overlayWidget, &alloc);
-	}];
+	});
 	return (GTKRect)alloc;
 }
 
@@ -273,7 +273,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)layoutSubviews
 {
-	[GTKCallback sync: ^{
+	GTKCallback(^{
 		for (GTKView *view in self.subviews) {
 			size_t index = [self.subviews indexOfObject: view];
 			gtk_overlay_reorder_overlay(
@@ -286,7 +286,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 				gtk_widget_show(view.overlayWidget);
 			}
 		}
-	}];
+	});
 	for (GTKView *view in self.subviews) {
 		[view layoutSubviews];
 	}
@@ -300,11 +300,11 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)addSubview:(GTKView *)view
 {
-	[GTKCallback sync: ^{
+	GTKCallback(^{
 		gtk_overlay_add_overlay(
 			GTK_OVERLAY(self.overlayWidget),
 			view.overlayWidget);
-	}];
+	});
 }
 
 - (void)removeFromSuperview

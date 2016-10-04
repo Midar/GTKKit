@@ -29,14 +29,14 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     self.testView = [GTKView new];
 
-    [GTKCallback sync: ^{
+    GTKCallback(^{
         self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
         gtk_container_add(GTK_CONTAINER(self.window), self.testView.overlayWidget);
         gtk_widget_set_size_request(self.window, 100, 100);
         gtk_widget_show(self.testView.overlayWidget);
         gtk_widget_show(self.window);
-    }];
+    });
 
     self.subview = [GTKView new];
     self.subview.constraints.top.value = 20;

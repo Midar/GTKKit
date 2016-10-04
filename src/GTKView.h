@@ -24,8 +24,6 @@
 
 @class GTKView;
 
-typedef GdkRectangle GTKRect;
-
 /*!
  * @brief A class representing "views" in the model-view-controller (MVC)
  * paradigm. It is the parent class for all such views, and one of the most

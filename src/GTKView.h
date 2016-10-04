@@ -42,6 +42,9 @@ typedef GdkRectangle GTKRect;
  * those settings as needed.
  */
 @interface GTKView: GTKResponder
+{
+    bool _hidden;
+}
 
 @property gulong childPositionHandlerID;
 @property gulong widgetDestroyedHandlerID;
@@ -91,12 +94,6 @@ typedef GdkRectangle GTKRect;
 @property (nullable, weak) GTKViewController *viewController;
 
 /*!
- * @brief The frame of the view - its position and size, in the coordinate space
- * of its superview.
- */
-@property (readonly) GTKRect frame;
-
-/*!
  * @brief Given a subview, return a rectangle in this view's coordinate space which
  * represents the subview's position and size.
  *
@@ -122,4 +119,7 @@ typedef GdkRectangle GTKRect;
  */
 - (void)draw;
 
+- (void)addSubview:(nonnull GTKView *)view;
+
+- (void)removeFromSuperview;
 @end

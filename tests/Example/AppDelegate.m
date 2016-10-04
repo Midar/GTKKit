@@ -29,6 +29,27 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     self.testView = [GTKView new];
 
+    [GTKCallback sync: ^{
+        self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+        gtk_container_add(GTK_CONTAINER(self.window), self.testView.overlayWidget);
+        gtk_widget_show(self.testView.overlayWidget);
+        gtk_widget_show(self.window);
+    }];
+
+    self.subview = [GTKView new];
+    self.subview.constraints.top.value = 10;
+    self.subview.constraints.bottom.value = 10;
+    self.subview.constraints.left.value = 10;
+    self.subview.constraints.right.value = 10;
+    self.subview.constraints.horizontal.value = 0;
+    self.subview.constraints.vertical.value = 0;
+    self.subview.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
+    self.subview.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
+
+    [self.testView addSubview: self.subview];
+
+    //[self.testView addSubview: self.subview];
     // It would be dangerous to modify anything below this line.
     return self;
 }

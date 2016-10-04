@@ -37,11 +37,11 @@
 - (nullable instancetype)init
 {
 	if (self = [super init]) {
-	  self.type = GTKLayoutConstraintTypeFlexible;
+	  self.type = GTKLayoutConstraintTypeFixed;
 	  self.value = 0;
 	  return self;
 	} else {
-	  return NULL;
+	  return nil;
 	}
 }
 @end
@@ -59,7 +59,7 @@
 	  self.right = [GTKLayoutConstraint new];
 	  return self;
 	} else {
-	  return NULL;
+	  return nil;
 	}
 }
 

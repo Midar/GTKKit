@@ -18,4 +18,6 @@
 
 @interface AppDelegate : GTKApplicationDelegate
 @property (nullable) GTKView *testView;
+@property (nullable) GtkWidget *window;
+@property (nullable) GTKView *subview;
 @end

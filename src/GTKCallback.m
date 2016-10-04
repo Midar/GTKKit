@@ -16,6 +16,10 @@
 
 #import "GTKCallback.h"
 
+of_thread_t gtk_thread;
+of_thread_t objfw_thread;
+const of_thread_attr_t objfw_thread_attr;
+
 @interface GTKCallback ()
 @property (copy) GTKCallbackBlock block;
 @property GMutex *mutex;
@@ -126,15 +130,18 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 - (void)sync:(GTKCallbackBlock)block
 {
-    self.flag = false;
-    [self lock];
-    self.block = block;
-    g_idle_add(
-		runBlockInGTKThreadCallback,
-		(__bridge_retained gpointer)(self));
-    [self wait];
-    [self unlock];
-	self.flag = false;
+	if (of_thread_is_current(gtk_thread)) {
+	    block();
+	} else {
+	    self.flag = false;
+	    [self lock];
+	    self.block = block;
+	    g_idle_add(
+			runBlockInGTKThreadCallback,
+			(__bridge_retained gpointer)(self));
+	    [self unlock];
+		self.flag = false;
+	}
 }
 
 + (void)sync:(GTKCallbackBlock)block

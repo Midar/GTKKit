@@ -107,6 +107,12 @@ typedef GdkRectangle GTKRect;
 - (GTKRect)layoutSubview:(nonnull GTKView*)subview;
 
 /*!
+ * @brief The frame of the view - its position and size, in the coordinate space
+ * of its superview.
+ */
+@property (readonly) GTKRect frame;
+
+/*!
  * @brief Render each of this view's subviews within this view's area.
  */
 - (void)layoutSubviews;

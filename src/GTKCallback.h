@@ -22,6 +22,10 @@
 
 @class GTKCallback;
 
+extern  of_thread_t objfw_thread;
+extern  of_thread_t gtk_thread;
+extern const of_thread_attr_t objfw_thread_attr;
+
 typedef void (^GTKCallbackBlock)();
 
 /*!
@@ -42,6 +46,10 @@ typedef void (^GTKCallbackBlock)();
  * thread, there isn't much point retaining the instances -- and thus, the
  * public interface wraps that in class methods that create temporary
  * instances for a single use, which are then discarded.
+ *
+ * Note that it is safe to call the +sync: and +async: methods while already
+ * in a GTK+ callback, as it checks the thread it's running in before executing
+ * the supplied block.
  */
 @interface GTKCallback: OFObject
 {

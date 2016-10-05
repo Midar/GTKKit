@@ -93,4 +93,9 @@
 {
     [self.contentView addSubview: subview];
 }
+
+- (void)close
+{
+    self.hidden = true;
+}
 @end

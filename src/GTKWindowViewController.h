@@ -28,9 +28,38 @@
  * window and its view hierarchy.
  */
 @interface GTKWindowViewController: GTKViewController
+
+/*!
+ * @brief The GtkWindow widget this view controller manages.
+ */
 @property (nullable) GtkWidget *window;
+
+/*!
+ * @brief The GTKView that holds all this view controller's subviews.
+ */
 @property (nullable) GTKView *contentView;
+
+/*!
+ * @brief The position and size of this view controller's window.
+ */
 @property GTKRect frame;
+
+/*!
+ * @brief A boolean indicating whether this view controller's window should be
+ * visible to the user.
+ */
 @property (getter=isHidden) bool hidden;
+
+/*!
+ * @brief Adds the specified view to this view controller's content view as a
+ * subview.
+ *
+ * @pram subview The view to add
+ */
 - (void)addSubview:(nonnull GTKView *)subview;
+
+/*!
+ * @brief Hide the window from the user. This does not destroy the window.
+ */
+- (void)close;
 @end

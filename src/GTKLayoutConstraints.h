@@ -33,7 +33,7 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 @interface GTKLayoutConstraint: OFObject
 
 - initWithType:(GTKLayoutConstraintType)type
-				 value:(double)value;
+		 value:(double)value;
 
 /*!
  * @brief The type of the constraint, either GTKLayoutConstraintTypeFixed or

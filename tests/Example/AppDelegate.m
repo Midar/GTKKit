@@ -33,33 +33,27 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window.frame = frame;
 
     GTKView *testView = [GTKView new];
-    testView.constraints.top.value = 10;
-    testView.constraints.bottom.value = 10;
-    testView.constraints.left.value = 10;
-    testView.constraints.right.value = 10;
-    testView.constraints.horizontal.value = 0;
-    testView.constraints.vertical.value = 0;
-    testView.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
-    testView.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
+    [testView.constraints fixedToTop: 10
+                              bottom: 10
+                                left: 10
+                               right: 10];
+    [testView.constraints flexibleHorizontal: 0];
+    [testView.constraints flexibleVertical: 0];
 
     [self.window addSubview: testView];
 
     GTKView *subview = [GTKView new];
-    subview.constraints.top.value = 20;
-    subview.constraints.bottom.value = 0;
-    subview.constraints.left.value = 10;
-    subview.constraints.right.value = 10;
-    subview.constraints.horizontal.value = 0;
-    subview.constraints.vertical.value = 30;
-    subview.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
-    subview.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
-    subview.constraints.bottom.type = GTKLayoutConstraintTypeFlexible;
+    [subview.constraints fixedToTop: 10
+                               left: 10
+                              right: 10];
+    [subview.constraints flexibleToBottom: 50];
+    [subview.constraints flexibleHorizontal: 0];
+    [subview.constraints flexibleVertical: 0];
 
     [testView addSubview: subview];
 
     self.window.hidden = false;
 
-    //[self.testView addSubview: self.subview];
     // It would be dangerous to modify anything below this line.
     return self;
 }

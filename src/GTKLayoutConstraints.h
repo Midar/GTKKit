@@ -310,6 +310,48 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 			  right:(double)right;
 
 /*!
+* @brief Set the constraint's top fixed, at the given values.
+*
+* @param top The value of the top constraint
+*/
+- (void)fixedToTop:(double)top;
+
+/*!
+* @brief Set the constraint's bottom fixed, at the given values.
+*
+* @param bottom The value of the bottom constraint
+*/
+- (void)fixedToBottom:(double)bottom;
+
+/*!
+* @brief Set the constraint's left fixed, at the given values.
+*
+* @param left The value of the left constraint
+*/
+- (void)fixedToLeft:(double)left;
+
+/*!
+* @brief Set the constraint's right fixed, at the given values.
+*
+* @param right The value of the right constraint
+*/
+- (void)fixedToRight:(double)right;
+
+/*!
+* @brief Set the constraint's horizontal flexible, at the given values.
+*
+* @param horizontal The value of the right constraint
+*/
+- (void)fixedHorizontal:(double)horizontal;
+
+/*!
+* @brief Set the constraint's vertical flexible, at the given values.
+*
+* @param vertical The value of the right constraint
+*/
+- (void)flexibleVertical:(double)vertical;
+
+/*!
  * @brief Set the constraint's top, bottom, left and right to flexible, at the
  * given values.
  *
@@ -426,5 +468,49 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
  */
 - (void)flexibleToLeft:(double)left
 				 right:(double)right;
+
+/*!
+* @brief Set the constraint's top flexible, at the given values.
+*
+* @param top The value of the top constraint
+*/
+- (void)flexibleToTop:(double)top;
+
+/*!
+* @brief Set the constraint's bottom flexible, at the given values.
+*
+* @param bottom The value of the bottom constraint
+*/
+- (void)flexibleToBottom:(double)bottom;
+
+/*!
+* @brief Set the constraint's left flexible, at the given values.
+*
+* @param left The value of the left constraint
+*/
+- (void)flexibleToLeft:(double)left;
+
+/*!
+* @brief Set the constraint's right flexible, at the given values.
+*
+* @param right The value of the right constraint
+*/
+- (void)flexibleToRight:(double)right;
+
+/*!
+* @brief Set the constraint's horizontal flexible, at the given values.
+*
+* @param horizontal The value of the right constraint
+*/
+- (void)flexibleHorizontal:(double)horizontal;
+
+/*!
+* @brief Set the constraint's vertical flexible, at the given values.
+*
+* @param vertical The value of the right constraint
+*/
+- (void)flexibleVertical:(double)vertical;
+
+
 
 @end

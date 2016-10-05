@@ -191,6 +191,42 @@
 	self.right.value = right;
 }
 
+- (void)fixedToTop:(double)top
+{
+	self.top.type = GTKLayoutConstraintTypeFixed;
+	self.top.value = top;
+}
+
+- (void)fixedToBottom:(double)bottom
+{
+	self.bottom.type = GTKLayoutConstraintTypeFixed;
+	self.bottom.value = bottom;
+}
+
+- (void)fixedToLeft:(double)left
+{
+	self.left.type = GTKLayoutConstraintTypeFixed;
+	self.left.value = left;
+}
+
+- (void)fixedToRight:(double)right
+{
+	self.right.type = GTKLayoutConstraintTypeFixed;
+	self.right.value = right;
+}
+
+- (void)fixedHorizontal:(double)horizontal
+{
+	self.horizontal.type = GTKLayoutConstraintTypeFixed;
+	self.horizontal.value = horizontal;
+}
+
+- (void)fixedVertical:(double)vertical
+{
+	self.vertical.type = GTKLayoutConstraintTypeFixed;
+	self.vertical.value = vertical;
+}
+
 - (void)flexibleToTop:(double)top
 			   bottom:(double)bottom
 				 left:(double)left
@@ -317,5 +353,41 @@
 
 	self.left.value = left;
 	self.right.value = right;
+}
+
+- (void)flexibleToTop:(double)top
+{
+	self.top.type = GTKLayoutConstraintTypeFlexible;
+	self.top.value = top;
+}
+
+- (void)flexibleToBottom:(double)bottom
+{
+	self.bottom.type = GTKLayoutConstraintTypeFlexible;
+	self.bottom.value = bottom;
+}
+
+- (void)flexibleToLeft:(double)left
+{
+	self.left.type = GTKLayoutConstraintTypeFlexible;
+	self.left.value = left;
+}
+
+- (void)flexibleToRight:(double)right
+{
+	self.right.type = GTKLayoutConstraintTypeFlexible;
+	self.right.value = right;
+}
+
+- (void)flexibleHorizontal:(double)horizontal
+{
+	self.horizontal.type = GTKLayoutConstraintTypeFlexible;
+	self.horizontal.value = horizontal;
+}
+
+- (void)flexibleVertical:(double)vertical
+{
+	self.vertical.type = GTKLayoutConstraintTypeFlexible;
+	self.vertical.value = vertical;
 }
 @end

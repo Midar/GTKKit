@@ -160,7 +160,9 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	int horizontal = 0;
 	int vertical = 0;
 
-	// If we make it this far, we know the pixel values will be valid.
+	// FIXME: Validate the constraint values and types, throwing a
+	// GTKInvalidLayoutConstraints exception if they aren't.
+
 	if ((subview.constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
 		 subview.constraints.top.value != 0) {
 		top = ceil((double)(frame.height) / 100 * subview.constraints.top.value);

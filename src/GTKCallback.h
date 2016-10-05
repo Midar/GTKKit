@@ -20,10 +20,6 @@
 
 #import "defines.h"
 
-extern of_thread_t gtkkit_objfw_thread;
-extern of_thread_t gtkkit_gtk_thread;
-extern const of_thread_attr_t gtkkit_objfw_thread_attr;
-
 typedef void (^GTKCallbackBlock)();
 
 void

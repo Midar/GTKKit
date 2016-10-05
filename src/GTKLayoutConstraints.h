@@ -99,6 +99,18 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 @property (nonnull) GTKLayoutConstraint *left;
 
 /*!
+ * @brief A boolean value indicating whether or not the view should be centered
+ * in its superview on the horizontal axis.
+ */
+@property bool centerHorizontal;
+
+/*!
+ * @brief A boolean value indicating whether or not the view should be centered
+ * in its superview on the vertical axis.
+ */
+@property bool centerVertical;
+
+/*!
  * @brief Set the constraint's top, bottom, left and right to fixed, at the
  * given values.
  *

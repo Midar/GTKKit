@@ -146,7 +146,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (GTKRect)layoutSubview:(nonnull GTKView*)subview
 {
 	GTKRect frame = self.frame;
-
+	GTKLayoutConstraints *constraints = subview.constraints;
 	GTKRect subframe;
 
 	// Pixel values:
@@ -160,75 +160,75 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	// FIXME: Validate the constraint values and types, throwing a
 	// GTKInvalidLayoutConstraints exception if they aren't.
 
-	if ((subview.constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
-		 subview.constraints.top.value != 0) {
-		top = ceil((double)(frame.height) / 100 * subview.constraints.top.value);
+	if ((constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
+		 constraints.top.value != 0) {
+		top = ceil((double)(frame.height) / 100 * constraints.top.value);
 	} else {
-		top = subview.constraints.top.value;
+		top = constraints.top.value;
 	}
 
-	if ((subview.constraints.bottom.type == GTKLayoutConstraintTypeFlexible) &&
-	 	subview.constraints.bottom.value != 0) {
-		bottom = ceil((double)(frame.height) / 100 * subview.constraints.bottom.value);
+	if ((constraints.bottom.type == GTKLayoutConstraintTypeFlexible) &&
+	 	constraints.bottom.value != 0) {
+		bottom = ceil((double)(frame.height) / 100 * constraints.bottom.value);
 	} else {
-		bottom = subview.constraints.bottom.value;
+		bottom = constraints.bottom.value;
 	}
 
-	if ((subview.constraints.left.type == GTKLayoutConstraintTypeFlexible) &&
-	 	subview.constraints.left.value != 0) {
-		left = ceil((double)(frame.width) / 100 * subview.constraints.left.value);
+	if ((constraints.left.type == GTKLayoutConstraintTypeFlexible) &&
+	 	constraints.left.value != 0) {
+		left = ceil((double)(frame.width) / 100 * constraints.left.value);
 	} else {
-		left = subview.constraints.left.value;
+		left = constraints.left.value;
 	}
 
-	if ((subview.constraints.right.type == GTKLayoutConstraintTypeFlexible) &&
-		 subview.constraints.right.value != 0) {
-		right = ceil((double)(frame.width) / 100 * subview.constraints.right.value);
+	if ((constraints.right.type == GTKLayoutConstraintTypeFlexible) &&
+		 constraints.right.value != 0) {
+		right = ceil((double)(frame.width) / 100 * constraints.right.value);
 	} else {
-		right = subview.constraints.right.value;
+		right = constraints.right.value;
 	}
 
-	if ((subview.constraints.width.type == GTKLayoutConstraintTypeFlexible) &&
-	 	subview.constraints.width.value != 0) {
-		width = ceil((double)(frame.width) / 100 * subview.constraints.width.value);
+	if ((constraints.width.type == GTKLayoutConstraintTypeFlexible) &&
+	 	constraints.width.value != 0) {
+		width = ceil((double)(frame.width) / 100 * constraints.width.value);
 	} else {
-		width = subview.constraints.width.value;
+		width = constraints.width.value;
 	}
 
-	if ((subview.constraints.height.type == GTKLayoutConstraintTypeFlexible) &&
-		 subview.constraints.height.value != 0) {
-		height = ceil((double)(frame.height) / 100 * subview.constraints.height.value);
+	if ((constraints.height.type == GTKLayoutConstraintTypeFlexible) &&
+		 constraints.height.value != 0) {
+		height = ceil((double)(frame.height) / 100 * constraints.height.value);
 	} else {
-		height = subview.constraints.height.value;
+		height = constraints.height.value;
 	}
 
-	if ((subview.constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
-		(subview.constraints.top.value == 0)) {
+	if ((constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
+		(constraints.top.value == 0)) {
 		top = frame.height - height - bottom;
 	}
 
-	if ((subview.constraints.height.type == GTKLayoutConstraintTypeFlexible) &&
-		(subview.constraints.height.value == 0)) {
+	if ((constraints.height.type == GTKLayoutConstraintTypeFlexible) &&
+		(constraints.height.value == 0)) {
 		height = frame.height - top - bottom;
 	}
 
-	if ((subview.constraints.bottom.type == GTKLayoutConstraintTypeFlexible) &&
-		(subview.constraints.bottom.value == 0)) {
+	if ((constraints.bottom.type == GTKLayoutConstraintTypeFlexible) &&
+		(constraints.bottom.value == 0)) {
 		bottom = frame.height - top - height;
 	}
 
-	if ((subview.constraints.left.type == GTKLayoutConstraintTypeFlexible) &&
-		(subview.constraints.left.value == 0)) {
+	if ((constraints.left.type == GTKLayoutConstraintTypeFlexible) &&
+		(constraints.left.value == 0)) {
 		left = frame.width - width - right;
 	}
 
-	if ((subview.constraints.width.type == GTKLayoutConstraintTypeFlexible) &&
-		(subview.constraints.width.value == 0)) {
+	if ((constraints.width.type == GTKLayoutConstraintTypeFlexible) &&
+		(constraints.width.value == 0)) {
 		width = frame.width - left - right;
 	}
 
-	if ((subview.constraints.right.type == GTKLayoutConstraintTypeFlexible) &&
-		(subview.constraints.right.value == 0)) {
+	if ((constraints.right.type == GTKLayoutConstraintTypeFlexible) &&
+		(constraints.right.value == 0)) {
 		right = frame.width - left - width;
 	}
 
@@ -236,6 +236,14 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	subframe.y = top;
 	subframe.width = frame.width - left - right;
 	subframe.height = frame.height - top - bottom;
+
+	if (constraints.centerVertical) {
+		subframe.y = ((double)frame.height - subframe.height) / 2;
+	}
+
+	if (constraints.centerHorizontal) {
+		subframe.x = ((double)frame.width - subframe.width) / 2;
+	}
 
 	if (subframe.width < 0) {
 		subframe.width = 0;

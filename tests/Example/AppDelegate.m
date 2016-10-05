@@ -53,10 +53,10 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [testView addSubview: subview];
 
     GTKView *subview2 = [GTKView new];
-    [subview2.constraints fixedToBottom: 10
-                                  right: 10];
+    [subview2.constraints fixedToBottom: 10];
     [subview2.constraints flexibleToTop: 0
                                    left: 0];
+    subview2.constraints.centerHorizontal = true;
     [subview2.constraints fixedWidth: 50];
     [subview2.constraints fixedHeight:20];
 

@@ -62,7 +62,6 @@
 {
     GTKCallback(^{
         gtk_widget_set_visible(self.window, !hidden);
-        gtk_widget_show_all(self.window);
     });
 }
 

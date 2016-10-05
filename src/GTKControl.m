@@ -15,55 +15,68 @@
  */
 
 #import "GTKControl.h"
+#import "GTKCallback.h"
 
 @implementation GTKControl
 - (void)sendActionToTargetWithEvent:(nonnull GTKEvent*)event
 {
-    if (NULL == self.action) {
-        return;
-    }
+    ObjFWCallback(^{
+        if (NULL == self.action) {
+            return;
+        }
 
-    if (nil == self.target) {
-        //FIXME: Get the current first responder and send it the action message.
-    } else {
-        IMP imp = [self methodForSelector: self.action];
-        void (*func)(id, SEL) = (void *)(imp);
-        func(self, self.action);
-    }
+        if (nil == self.target) {
+            //FIXME: Get the current first responder and send it the action message.
+        } else {
+            IMP imp = [self methodForSelector: self.action];
+            void (*func)(id, SEL) = (void *)(imp);
+            func(self, self.action);
+        }
+    });
 }
 
 - (void)takeStringValueFrom:(nonnull id)target
 {
-    if ([target respondsToSelector: @selector(stringValue)]) {
-        self.stringValue = [target stringValue];
-    }
+    ObjFWCallback(^{
+        if ([target respondsToSelector: @selector(stringValue)]) {
+            self.stringValue = [target stringValue];
+        }
+    });
 }
 
 - (void)takeIntValueFrom:(nonnull id)target
 {
-    if ([target respondsToSelector: @selector(intValue)]) {
-        self.intValue = [target intValue];
-    }
+    ObjFWCallback(^{
+        if ([target respondsToSelector: @selector(intValue)]) {
+            self.intValue = [target intValue];
+        }
+    });
 }
 
 - (void)takeDoubleValueFrom:(nonnull id)target
 {
-    if ([target respondsToSelector: @selector(doubleValue)]) {
-        self.doubleValue = [target doubleValue];
-    }
+    ObjFWCallback(^{
+        if ([target respondsToSelector: @selector(doubleValue)]) {
+            self.doubleValue = [target doubleValue];
+        }
+    });
 }
 
 - (void)takeFloatValueFrom:(nonnull id)target
 {
-    if ([target respondsToSelector: @selector(floatValue)]) {
-        self.floatValue = [target floatValue];
-    }
+    ObjFWCallback(^{
+        if ([target respondsToSelector: @selector(floatValue)]) {
+            self.floatValue = [target floatValue];
+        }
+    });
 }
 
 - (void)takeObjectValueFrom:(nonnull id)target
 {
-    if ([target respondsToSelector: @selector(objectValue)]) {
-        self.objectValue = [target objectValue];
-    }
+    ObjFWCallback(^{
+        if ([target respondsToSelector: @selector(objectValue)]) {
+            self.objectValue = [target objectValue];
+        }
+    });
 }
 @end

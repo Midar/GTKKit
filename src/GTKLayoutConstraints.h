@@ -63,16 +63,16 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 @interface GTKLayoutConstraints: OFObject
 
 /*!
- * @brief The horizontal constraint of the view. This constrains the width of
+ * @brief The width constraint of the view. This constrains the width of
  * the view.
  */
-@property (nonnull) GTKLayoutConstraint *horizontal;
+@property (nonnull) GTKLayoutConstraint *width;
 
 /*!
- * @brief The vertical constraint of the view. This constrains the height of the
+ * @brief The height constraint of the view. This constrains the height of the
  * view.
  */
-@property (nonnull) GTKLayoutConstraint *vertical;
+@property (nonnull) GTKLayoutConstraint *height;
 
 /*!
  * @brief The top constraint of this view. This constrains the upper edge of the
@@ -247,14 +247,14 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 *
 * @param horizontal The value of the right constraint
 */
-- (void)fixedHorizontal:(double)horizontal;
+- (void)fixedWidth:(double)width;
 
 /*!
 * @brief Set the constraint's vertical flexible, at the given values.
 *
 * @param vertical The value of the right constraint
 */
-- (void)flexibleVertical:(double)vertical;
+- (void)flexibleHeight:(double)height;
 
 /*!
  * @brief Set the constraint's top, bottom, left and right to flexible, at the
@@ -407,14 +407,14 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 *
 * @param horizontal The value of the right constraint
 */
-- (void)flexibleHorizontal:(double)horizontal;
+- (void)flexibleWidth:(double)width;
 
 /*!
 * @brief Set the constraint's vertical flexible, at the given values.
 *
 * @param vertical The value of the right constraint
 */
-- (void)flexibleVertical:(double)vertical;
+- (void)flexibleHeight:(double)height;
 
 
 

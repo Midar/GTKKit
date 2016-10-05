@@ -51,8 +51,8 @@
 {
 	self = [super init];
 	if (self) {
-	  self.horizontal = [GTKLayoutConstraint new];
-	  self.vertical = [GTKLayoutConstraint new];
+	  self.width = [GTKLayoutConstraint new];
+	  self.height = [GTKLayoutConstraint new];
 	  self.top = [GTKLayoutConstraint new];
 	  self.bottom = [GTKLayoutConstraint new];
 	  self.left = [GTKLayoutConstraint new];
@@ -215,16 +215,16 @@
 	self.right.value = right;
 }
 
-- (void)fixedHorizontal:(double)horizontal
+- (void)fixedWidth:(double)width
 {
-	self.horizontal.type = GTKLayoutConstraintTypeFixed;
-	self.horizontal.value = horizontal;
+	self.width.type = GTKLayoutConstraintTypeFixed;
+	self.width.value = width;
 }
 
-- (void)fixedVertical:(double)vertical
+- (void)fixedHeight:(double)height
 {
-	self.vertical.type = GTKLayoutConstraintTypeFixed;
-	self.vertical.value = vertical;
+	self.height.type = GTKLayoutConstraintTypeFixed;
+	self.height.value = height;
 }
 
 - (void)flexibleToTop:(double)top
@@ -379,15 +379,15 @@
 	self.right.value = right;
 }
 
-- (void)flexibleHorizontal:(double)horizontal
+- (void)flexibleWidth:(double)width
 {
-	self.horizontal.type = GTKLayoutConstraintTypeFlexible;
-	self.horizontal.value = horizontal;
+	self.width.type = GTKLayoutConstraintTypeFlexible;
+	self.width.value = width;
 }
 
-- (void)flexibleVertical:(double)vertical
+- (void)flexibleHeight:(double)height
 {
-	self.vertical.type = GTKLayoutConstraintTypeFlexible;
-	self.vertical.value = vertical;
+	self.height.type = GTKLayoutConstraintTypeFlexible;
+	self.height.value = height;
 }
 @end

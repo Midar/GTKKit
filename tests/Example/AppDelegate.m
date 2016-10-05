@@ -37,8 +37,8 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
                               bottom: 10
                                 left: 10
                                right: 10];
-    [testView.constraints flexibleHorizontal: 0];
-    [testView.constraints flexibleVertical: 0];
+    [testView.constraints flexibleWidth: 0];
+    [testView.constraints flexibleHeight: 0];
 
     [self.window addSubview: testView];
 
@@ -47,8 +47,8 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
                                left: 10
                               right: 10];
     [subview.constraints flexibleToBottom: 50];
-    [subview.constraints flexibleHorizontal: 0];
-    [subview.constraints flexibleVertical: 0];
+    [testView.constraints flexibleWidth: 0];
+    [testView.constraints flexibleHeight: 0];
 
     [testView addSubview: subview];
 

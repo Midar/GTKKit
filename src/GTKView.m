@@ -247,7 +247,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	if (subframe.height < 0) {
 		subframe.height = 0;
 	}
-	
+
 	return subframe;
 }
 

@@ -61,6 +61,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 - (void)applicationDidFinishLaunching
 {
     [super applicationDidFinishLaunching];
-    // Put your custom post-launch startup code below this line
+    // Put your custom post-launch startup code below this line.
 }
 @end

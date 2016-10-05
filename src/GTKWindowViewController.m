@@ -99,11 +99,33 @@
 
 - (void)setTitleVisible:(bool)visible
 {
-    gtk_window_set_decorated(GTK_WINDOW(self.window), visible);
+    GTKCallback(^{
+        gtk_window_set_decorated(GTK_WINDOW(self.window), visible);
+    });
 }
 
 - (bool)titleVisible
 {
-    return gtk_window_get_decorated(GTK_WINDOW(self.window));
+    __block bool visible;
+    GTKCallback(^{
+        visible = gtk_window_get_decorated(GTK_WINDOW(self.window));
+    });
+    return visible;
+}
+
+- (void)setResizable:(bool)resizable
+{
+    GTKCallback(^{
+        gtk_window_set_resizable(GTK_WINDOW(self.window), resizable);
+    });
+}
+
+- (bool)isResizable
+{
+    __block bool resizable;
+    GTKCallback(^{
+        resizable = gtk_window_get_resizable(GTK_WINDOW(self.window));
+    });
+    return resizable;
 }
 @end

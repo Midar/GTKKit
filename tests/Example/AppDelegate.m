@@ -24,7 +24,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self = [super init];
     // Put your custom initialization below this line.
     self.window = [GTKWindowViewController new];
-
+    
     GTKRect frame = self.window.frame;
     frame.x = 50;
     frame.y = 200;

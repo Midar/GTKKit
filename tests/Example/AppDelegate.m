@@ -52,6 +52,16 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     [testView addSubview: subview];
 
+    GTKView *subview2 = [GTKView new];
+    [subview2.constraints fixedToBottom: 10
+                                  right: 10];
+    [subview2.constraints flexibleToTop: 0
+                                   left: 0];
+    [subview2.constraints fixedWidth: 50];
+    [subview2.constraints fixedHeight:20];
+
+    [testView addSubview: subview2];
+
     self.window.hidden = false;
 
     // It would be dangerous to modify anything below this line.

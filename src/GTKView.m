@@ -50,6 +50,10 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
     view.overlayWidget = NULL;
 }
 
+@interface GTKView ()
+- (GtkWidget *)createMainWidget;
+@end
+
 @implementation GTKView
 - init
 {
@@ -81,13 +85,18 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 			G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
 	        (__bridge gpointer)(self));
 
-		self.mainWidget = gtk_frame_new(NULL);
+		self.mainWidget = [self createMainWidget];
 		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
 		gtk_widget_show(self.mainWidget);
 		gtk_widget_show(self.overlayWidget);
 	});
 
 	return self;
+}
+
+- (GtkWidget *)createMainWidget
+{
+	return gtk_frame_new(NULL);
 }
 
 - (void)dealloc

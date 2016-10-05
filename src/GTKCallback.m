@@ -32,11 +32,7 @@ void
 GTKCallback(GTKCallbackBlock block)
 {
 	gpointer userdata = (__bridge_retained gpointer)(block);
-	if (of_thread_is_current(gtkkit_gtk_thread)) {
-		g_main_context_invoke(NULL, GTKCallbackDispatch, userdata);
-	} else {
-		block();
-	}
+	g_main_context_invoke(NULL, GTKCallbackDispatch, userdata);
 }
 
 void

@@ -54,7 +54,7 @@
  * @brief A bool value indicating whether or not the window
  * this view manages should have a visible titlebar.
  */
-@property bool titleVisibile;
+@property bool titleVisible;
 
 /*!
  * @brief A bool value indicating whether or not the window should be

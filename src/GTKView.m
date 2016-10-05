@@ -146,39 +146,6 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	int horizontal = 0;
 	int vertical = 0;
 
-	int horizontalDontCareCount = 0;
-	int verticalDontCareCount = 0;
-
-	if (subview.constraints.left.type == GTKLayoutConstraintTypeFixed &&
-		subview.constraints.left.value == 0) {
-		horizontalDontCareCount++;
-	}
-
-	if (subview.constraints.horizontal.type == GTKLayoutConstraintTypeFixed &&
-		subview.constraints.horizontal.value == 0) {
-		horizontalDontCareCount++;
-	}
-
-	if (subview.constraints.right.type == GTKLayoutConstraintTypeFixed &&
-		subview.constraints.right.value == 0) {
-		horizontalDontCareCount++;
-	}
-
-	if (subview.constraints.top.type == GTKLayoutConstraintTypeFixed &&
-		subview.constraints.top.value == 0) {
-		verticalDontCareCount++;
-	}
-
-	if (subview.constraints.vertical.type == GTKLayoutConstraintTypeFixed &&
-		subview.constraints.vertical.value == 0) {
-		verticalDontCareCount++;
-	}
-
-	if (subview.constraints.bottom.type == GTKLayoutConstraintTypeFixed &&
-		subview.constraints.bottom.value == 0) {
-		verticalDontCareCount++;
-	}
-
 	// If we make it this far, we know the pixel values will be valid.
 	if ((subview.constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
 		 subview.constraints.top.value != 0) {

@@ -111,8 +111,9 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 				G_OBJECT(self.overlayWidget),
 				self.widgetDestroyedHandlerID);
 
-		    gtk_widget_destroy(GTK_WIDGET(self.overlayWidget));
+		    gtk_widget_destroy(self.overlayWidget);
 	        self.overlayWidget = NULL;
+	        self.mainWidget = NULL;
 		});
     }
 }
@@ -147,18 +148,14 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	GTKRect frame = self.frame;
 
 	GTKRect subframe;
-	subframe.x = 0;
-	subframe.y = 0;
-	subframe.width = 0;
-	subframe.height = 0;
 
 	// Pixel values:
-	int top = 0;
-	int bottom = 0;
-	int left = 0;
-	int right = 0;
-	int horizontal = 0;
-	int vertical = 0;
+	int top;
+	int bottom;
+	int left;
+	int right;
+	int horizontal;
+	int vertical;
 
 	// FIXME: Validate the constraint values and types, throwing a
 	// GTKInvalidLayoutConstraints exception if they aren't.
@@ -278,6 +275,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		[self.subviews addObject: view];
 		[view removeFromSuperview];
 		view.superview = self;
+		view.nextResponder = self;
 		GTKCallback(^{
 			gtk_overlay_add_overlay(
 				GTK_OVERLAY(self.overlayWidget),
@@ -289,11 +287,12 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)removeFromSuperview
 {
-	[self.superview.subviews removeObject: self];
 	GTKCallback(^{
 		gtk_widget_unparent(self.overlayWidget);
 	});
+	[self.superview.subviews removeObject: self];
 	[self.superview layoutSubviews];
 	self.superview = nil;
+	self.nextResponder = nil;
 }
 @end

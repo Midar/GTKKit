@@ -24,7 +24,7 @@
 }
 
 - initWithType:(GTKLayoutConstraintType)type
-				 value:(double)value
+		 value:(double)value
 {
 	self = [super init];
 
@@ -80,8 +80,8 @@
 }
 
 - (void)fixedToTop:(double)top
-			 left:(double)left
-			right:(double)right
+			  left:(double)left
+			 right:(double)right
 {
 	self.top.type = GTKLayoutConstraintTypeFixed;
 	self.left.type = GTKLayoutConstraintTypeFixed;

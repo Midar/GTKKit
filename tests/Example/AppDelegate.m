@@ -25,6 +25,13 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // Put your custom initialization below this line.
     self.window = [GTKWindowViewController new];
 
+    GTKRect frame = self.window.frame;
+    frame.x = 50;
+    frame.y = 200;
+    frame.width = 300;
+    frame.height = 500;
+    self.window.frame = frame;
+
     GTKView *testView = [GTKView new];
     testView.constraints.top.value = 10;
     testView.constraints.bottom.value = 10;

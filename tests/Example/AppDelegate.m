@@ -25,30 +25,30 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // Put your custom initialization below this line.
     self.window = [GTKWindowViewController new];
 
-    self.testView = [GTKView new];
-    self.testView.constraints.top.value = 10;
-    self.testView.constraints.bottom.value = 10;
-    self.testView.constraints.left.value = 10;
-    self.testView.constraints.right.value = 10;
-    self.testView.constraints.horizontal.value = 0;
-    self.testView.constraints.vertical.value = 0;
-    self.testView.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
-    self.testView.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
+    GTKView *testView = [GTKView new];
+    testView.constraints.top.value = 10;
+    testView.constraints.bottom.value = 10;
+    testView.constraints.left.value = 10;
+    testView.constraints.right.value = 10;
+    testView.constraints.horizontal.value = 0;
+    testView.constraints.vertical.value = 0;
+    testView.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
+    testView.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
 
-    [self.window addSubview: self.testView];
+    [self.window addSubview: testView];
 
-    self.subview = [GTKView new];
-    self.subview.constraints.top.value = 20;
-    self.subview.constraints.bottom.value = 0;
-    self.subview.constraints.left.value = 10;
-    self.subview.constraints.right.value = 10;
-    self.subview.constraints.horizontal.value = 0;
-    self.subview.constraints.vertical.value = 30;
-    self.subview.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
-    self.subview.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
-    self.subview.constraints.bottom.type = GTKLayoutConstraintTypeFlexible;
+    GTKView *subview = [GTKView new];
+    subview.constraints.top.value = 20;
+    subview.constraints.bottom.value = 0;
+    subview.constraints.left.value = 10;
+    subview.constraints.right.value = 10;
+    subview.constraints.horizontal.value = 0;
+    subview.constraints.vertical.value = 30;
+    subview.constraints.horizontal.type = GTKLayoutConstraintTypeFlexible;
+    subview.constraints.vertical.type = GTKLayoutConstraintTypeFlexible;
+    subview.constraints.bottom.type = GTKLayoutConstraintTypeFlexible;
 
-    [self.testView addSubview: self.subview];
+    [testView addSubview: subview];
 
     self.window.hidden = false;
 

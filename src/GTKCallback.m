@@ -21,7 +21,7 @@ of_thread_t gtkkit_objfw_thread;
 const of_thread_attr_t gtkkit_objfw_thread_attr;
 
 static gboolean
-runInGTKThreadCallback(gpointer userdata)
+GTKCallbackDispatch(gpointer userdata)
 {
 	GTKCallbackBlock block = (__bridge_transfer GTKCallbackBlock)(userdata);
     block();
@@ -32,7 +32,7 @@ void
 GTKCallback(GTKCallbackBlock block)
 {
 	gpointer userdata = (__bridge_retained gpointer)(block);
-	g_main_context_invoke(NULL, runInGTKThreadCallback, userdata);
+	g_main_context_invoke(NULL, GTKCallbackDispatch, userdata);
 }
 
 void

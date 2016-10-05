@@ -182,42 +182,42 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	// If we make it this far, we know the pixel values will be valid.
 	if ((subview.constraints.top.type == GTKLayoutConstraintTypeFlexible) &&
 		 subview.constraints.top.value != 0) {
-		top = ceil(frame.height / 100 * subview.constraints.top.value);
+		top = ceil((double)(frame.height) / 100 * subview.constraints.top.value);
 	} else {
 		top = subview.constraints.top.value;
 	}
 
 	if ((subview.constraints.bottom.type == GTKLayoutConstraintTypeFlexible) &&
 	 	subview.constraints.bottom.value != 0) {
-		bottom = ceil(frame.height / 100 * subview.constraints.bottom.value);
+		bottom = ceil((double)(frame.height) / 100 * subview.constraints.bottom.value);
 	} else {
 		bottom = subview.constraints.bottom.value;
 	}
 
 	if ((subview.constraints.left.type == GTKLayoutConstraintTypeFlexible) &&
 	 	subview.constraints.left.value != 0) {
-		left = ceil(frame.width / 100 * subview.constraints.left.value);
+		left = ceil((double)(frame.width) / 100 * subview.constraints.left.value);
 	} else {
 		left = subview.constraints.left.value;
 	}
 
 	if ((subview.constraints.right.type == GTKLayoutConstraintTypeFlexible) &&
 		 subview.constraints.right.value != 0) {
-		right = ceil(frame.width / 100 * subview.constraints.right.value);
+		right = ceil((double)(frame.width) / 100 * subview.constraints.right.value);
 	} else {
 		right = subview.constraints.right.value;
 	}
 
 	if ((subview.constraints.horizontal.type == GTKLayoutConstraintTypeFlexible) &&
 	 	subview.constraints.horizontal.value != 0) {
-		horizontal = ceil(frame.width / 100 * subview.constraints.horizontal.value);
+		horizontal = ceil((double)(frame.width) / 100 * subview.constraints.horizontal.value);
 	} else {
 		horizontal = subview.constraints.horizontal.value;
 	}
 
 	if ((subview.constraints.vertical.type == GTKLayoutConstraintTypeFlexible) &&
 		 subview.constraints.vertical.value != 0) {
-		vertical = ceil(frame.height / 100 * subview.constraints.vertical.value);
+		vertical = ceil((double)(frame.height) / 100 * subview.constraints.vertical.value);
 	} else {
 		vertical = subview.constraints.vertical.value;
 	}

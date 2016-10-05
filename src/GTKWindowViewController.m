@@ -98,4 +98,14 @@
 {
     self.hidden = true;
 }
+
+- (void)setTitleVisible:(bool)visible
+{
+    gtk_window_set_decorated(GTK_WINDOW(self.window), visible);
+}
+
+- (bool)titleVisible
+{
+    return gtk_window_get_decorated(GTK_WINDOW(self.window));
+}
 @end

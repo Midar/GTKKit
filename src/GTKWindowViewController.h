@@ -51,6 +51,12 @@
 @property (getter=isHidden) bool hidden;
 
 /*!
+ * @brief A GTKWindowTitleVisibility value indicating whether or not the window
+ * this view manages should have a visible titlebar.
+ */
+@property bool titleVisibile;
+
+/*!
  * @brief Adds the specified view to this view controller's content view as a
  * subview.
  *

@@ -32,9 +32,7 @@
         g_object_ref_sink(G_OBJECT(self.window));
         gtk_widget_set_size_request(self.window, 1, 1);
         gtk_window_set_default_size(GTK_WINDOW(self.window), 100, 100);
-
         gtk_container_add(GTK_CONTAINER(self.window), self.contentView.overlayWidget);
-
     });
 
     self.hidden = true;

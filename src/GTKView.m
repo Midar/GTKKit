@@ -269,8 +269,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)draw
 {
-	// The default implementation here does nothing.
-	return;
+	// The default implementation of this method does nothing.
 }
 
 - (void)addSubview:(GTKView *)view

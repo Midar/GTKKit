@@ -18,4 +18,5 @@
 
 @interface AppDelegate : GTKApplicationDelegate
 @property (nullable) GTKWindowViewController *window;
+@property (nullable) GTKImage *image;
 @end

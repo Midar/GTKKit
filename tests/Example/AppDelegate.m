@@ -25,6 +25,9 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // Put your custom initialization below this line.
     self.window = [GTKWindowViewController new];
 
+    OFURL *url = [OFURL fileURLWithPath: @"/users/kylecardoza/Downloads/trump.jpeg"];
+    self.image = [GTKImage imageWithURL: url];
+
     GTKRect frame = self.window.frame;
     frame.x = 50;
     frame.y = 200;
@@ -42,7 +45,9 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     [self.window addSubview: testView];
 
-    GTKView *subview = [GTKView new];
+    GTKImageView *subview = [GTKImageView new];
+    subview.image = self.image;
+    subview.imageScaling = GTKImageScaleProportionatelyDown;
     [subview.constraints fixedToTop: 10
                                left: 10
                               right: 10];

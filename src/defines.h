@@ -28,9 +28,6 @@ typedef GdkRectangle GTKRect;
 // This macro sets the class used as the app delegate, and provides the
 // main() function.
 #define GTK_APPLICATION_DELEGATE(cls)                           \
-of_thread_t gtkkit_gtk_thread;                                  \
-of_thread_t gtkkit_objfw_thread;                                \
-const of_thread_attr_t gtkkit_objfw_thread_attr;                \
 static int *_argc;                                              \
 static char ***_argv;                                           \
                                                                 \

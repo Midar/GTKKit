@@ -14,17 +14,24 @@
  * the packaging of this file.
  */
 
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
+
 #import "defines.h"
-#import "Exceptions.h"
-#import "GTKCallback.h"
-#import "OFCallback.h"
-#import "GTKApplicationDelegate.h"
-#import "GTKResponder.h"
-#import	"GTKEvent.h"
-#import	"GTKLayoutConstraints.h"
-#import	"GTKView.h"
-#import	"GTKControl.h"
-#import	"GTKViewController.h"
-#import	"GTKWindowViewController.h"
-#import	"GTKImage.h"
-#import	"GTKImageView.h"
+#import "GTKView.h"
+#import "GTKImage.h"
+
+typedef OF_ENUM(int, GTKImageScaling) {
+    GTKImageScaleNone = 0,
+    GTKImageScaleAxesIndependently = 1,
+    GTKImageScaleProportionatelyDown = 2,
+    GTKImageScaleProportionatelyUpOrDown = 3
+};
+
+@interface GTKImageView: GTKView
+{
+    __weak __block GTKImage *_image;
+}
+@property (weak) GTKImage *image;
+@property GTKImageScaling imageScaling;
+@end

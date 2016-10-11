@@ -27,13 +27,13 @@
 
     self.contentView = [GTKView new];
 
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(self.window));
         gtk_widget_set_size_request(self.window, 1, 1);
         gtk_window_set_default_size(GTK_WINDOW(self.window), 100, 100);
         gtk_container_add(GTK_CONTAINER(self.window), self.contentView.overlayWidget);
-    });
+    }];
 
     self.hidden = true;
 
@@ -42,31 +42,31 @@
 
 - (void)dealloc
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_widget_destroy(self.window);
-    });
+    }];
 }
 
 - (bool)isHidden
 {
     __block bool hidden;
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         hidden = !gtk_widget_get_visible(self.window);
-    });
+    }];
     return hidden;
 }
 
 - (void)setHidden:(bool)hidden
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_widget_set_visible(self.window, !hidden);
-    });
+    }];
 }
 
 - (GTKRect)frame
 {
     __block GTKRect frame;
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_window_get_size(
             GTK_WINDOW(self.window),
             &frame.width,
@@ -75,21 +75,22 @@
             GTK_WINDOW(self.window),
             &frame.x,
             &frame.y);
-    });
+    }];
     return frame;
 }
 
 - (void)setFrame:(GTKRect)frame
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_window_resize(GTK_WINDOW(self.window), frame.width, frame.height);
         gtk_window_move(GTK_WINDOW(self.window), frame.x, frame.y);
-    });
+    }];
 }
 
 - (void)addSubview:(nonnull GTKView *)subview
 {
     [self.contentView addSubview: subview];
+    subview.viewController = self;
 }
 
 - (void)close
@@ -99,33 +100,33 @@
 
 - (void)setTitleVisible:(bool)visible
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_window_set_decorated(GTK_WINDOW(self.window), visible);
-    });
+    }];
 }
 
 - (bool)titleVisible
 {
     __block bool visible;
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         visible = gtk_window_get_decorated(GTK_WINDOW(self.window));
-    });
+    }];
     return visible;
 }
 
 - (void)setResizable:(bool)resizable
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_window_set_resizable(GTK_WINDOW(self.window), resizable);
-    });
+    }];
 }
 
 - (bool)isResizable
 {
     __block bool resizable;
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         resizable = gtk_window_get_resizable(GTK_WINDOW(self.window));
-    });
+    }];
     return resizable;
 }
 @end

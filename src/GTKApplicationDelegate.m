@@ -24,8 +24,8 @@
 
 - (void)applicationWillTerminate
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_main_quit();
-    });
+    }];
 }
 @end

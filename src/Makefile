@@ -7,6 +7,7 @@ LIB_MINOR = 0
 
 SRCS =	GTKCallback.m                               \
 				GTKResponder.m                              \
+				OFCallback.m                                \
 				GTKEvent.m                                  \
 				GTKLayoutConstraints.m                      \
 				GTKView.m                                   \
@@ -14,6 +15,8 @@ SRCS =	GTKCallback.m                               \
 				GTKViewController.m                         \
 				GTKWindowViewController.m                   \
 				GTKApplicationDelegate.m                    \
+				GTKImage.m                                  \
+				GTKImageView.m                              \
 				GTKInvalidLayoutConstraintsException.m
 
 INCLUDES =                                          \

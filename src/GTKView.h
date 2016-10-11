@@ -46,6 +46,7 @@
 
 @property gulong childPositionHandlerID;
 @property gulong widgetDestroyedHandlerID;
+@property gulong drawHandlerID;
 
 /*!
  * @brief The internal GtkOverlay used by the view.

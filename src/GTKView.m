@@ -20,10 +20,20 @@
 #import "Exceptions.h"
 
 static gboolean
-gtkkit_get_child_position(GtkOverlay   *overlay,
-						  GtkWidget    *widget,
-						  GdkRectangle *allocation,
-						  GTKView      *view)
+draw_handler(GtkWidget *widget,
+      		 void      *cr,
+      		 GTKView   *view)
+{
+	[view draw];
+	[view layoutSubviews];
+	return false;
+}
+
+static gboolean
+get_child_position_handler(GtkOverlay   *overlay,
+				   		   GtkWidget    *widget,
+				   		   GdkRectangle *allocation,
+				   		   GTKView      *view)
 {
 	GTKView *subview = (__bridge GTKView *)g_object_get_data(
 		G_OBJECT(widget), "_GTKKIT_OWNING_VIEW_");
@@ -43,15 +53,15 @@ gtkkit_get_child_position(GtkOverlay   *overlay,
 }
 
 static void
-gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
-                                        GTKView   *view)
+overlay_widget_destroyed_handler(GtkWidget *overlay,
+                                 GTKView   *view)
 {
 	g_object_unref(G_OBJECT(overlay));
     view.overlayWidget = NULL;
 }
 
 @interface GTKView ()
-- (GtkWidget *)createMainWidget;
+- (void)createMainWidget;
 @end
 
 @implementation GTKView
@@ -61,10 +71,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 	self.subviews = [OFMutableArray new];
 	self.constraints = [GTKLayoutConstraints new];
 
-	self.hidden = false;
-	self.alpha = 1.0;
-
-	GTKCallback(^{
+	[GTKCallback sync: ^{
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
 
@@ -76,33 +83,46 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		self.childPositionHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"get-child-position",
-			G_CALLBACK(gtkkit_get_child_position),
+			G_CALLBACK(get_child_position_handler),
 			(__bridge gpointer)(self));
+
+	    self.drawHandlerID = g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+	        "draw",
+			G_CALLBACK(draw_handler),
+	        (__bridge gpointer)(self));
 
 	    self.widgetDestroyedHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "destroy",
-			G_CALLBACK(gtkkit_overlay_widget_destroyed_handler),
+			G_CALLBACK(overlay_widget_destroyed_handler),
 	        (__bridge gpointer)(self));
 
-		self.mainWidget = [self createMainWidget];
+		[self createMainWidget];
+        g_object_ref_sink(G_OBJECT(self.mainWidget));
 		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
 		gtk_widget_show(self.mainWidget);
 		gtk_widget_show(self.overlayWidget);
-	});
+	}];
+
+	self.hidden = false;
+
+	self.alpha = 1.0;
 
 	return self;
 }
 
-- (GtkWidget *)createMainWidget
+- (void)createMainWidget
 {
-	return gtk_frame_new(NULL);
+    [GTKCallback sync: ^{
+        self.mainWidget = gtk_frame_new(NULL);
+    }];
 }
 
 - (void)dealloc
 {
 	if (self.overlayWidget != NULL) {
-		GTKCallback(^{
+		[GTKCallback sync: ^{
 			g_signal_handler_disconnect(
 				G_OBJECT(self.overlayWidget),
 				self.childPositionHandlerID);
@@ -111,35 +131,36 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 				G_OBJECT(self.overlayWidget),
 				self.widgetDestroyedHandlerID);
 
-		    gtk_widget_destroy(self.overlayWidget);
+		    gtk_widget_destroy(self.mainWidget);
+            gtk_widget_destroy(self.overlayWidget);
 	        self.overlayWidget = NULL;
 	        self.mainWidget = NULL;
-		});
+		}];
     }
 }
 
 - (bool)isHidden
 {
     __block bool hidden;
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         hidden = !gtk_widget_get_visible(self.overlayWidget);
-    });
+    }];
     return hidden;
 }
 
 - (void)setHidden:(bool)hidden
 {
-    GTKCallback(^{
+    [GTKCallback sync: ^{
         gtk_widget_set_visible(self.overlayWidget, !hidden);
-    });
+    }];
 }
 
 - (GTKRect)frame
 {
 	__block GtkAllocation alloc;
-	GTKCallback(^{
+	[GTKCallback sync: ^{
 		gtk_widget_get_allocation(self.overlayWidget, &alloc);
-	});
+	}];
 	return (GTKRect)alloc;
 }
 
@@ -258,7 +279,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)layoutSubviews
 {
-	GTKCallback(^{
+	[GTKCallback sync: ^{
 		for (GTKView *view in self.subviews) {
 			size_t index = [self.subviews indexOfObject: view];
 			gtk_overlay_reorder_overlay(
@@ -266,7 +287,7 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 				view.overlayWidget,
 				(int)(index));
 		}
-	});
+	}];
 	for (GTKView *view in self.subviews) {
 		[view layoutSubviews];
 	}
@@ -284,23 +305,39 @@ gtkkit_overlay_widget_destroyed_handler(GtkWidget *overlay,
 		[view removeFromSuperview];
 		view.superview = self;
 		view.nextResponder = self;
-		GTKCallback(^{
+		[GTKCallback sync: ^{
 			gtk_overlay_add_overlay(
 				GTK_OVERLAY(self.overlayWidget),
 				view.overlayWidget);
-		});
+		}];
 		[self layoutSubviews];
 	}
 }
 
 - (void)removeFromSuperview
 {
-	GTKCallback(^{
+	[GTKCallback sync: ^{
 		gtk_widget_unparent(self.overlayWidget);
-	});
+	}];
 	[self.superview.subviews removeObject: self];
 	[self.superview layoutSubviews];
 	self.superview = nil;
 	self.nextResponder = nil;
+}
+
+- (double)alpha
+{
+    __block double alpha;
+    [GTKCallback sync: ^{
+        alpha = gtk_widget_get_opacity(self.mainWidget);
+    }];
+    return alpha;
+}
+
+- (void)setAlpha:(double)alpha
+{
+    [GTKCallback sync: ^{
+        gtk_widget_set_opacity(self.mainWidget, alpha);
+    }];
 }
 @end

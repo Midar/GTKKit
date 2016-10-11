@@ -78,7 +78,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 		g_object_set_data(
 			G_OBJECT(self.overlayWidget),
 			"_GTKKIT_OWNING_VIEW_",
-		    (__bridge gpointer)self);
+		    (__bridge gpointer)(self));
 
 		self.childPositionHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),

@@ -115,7 +115,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)createMainWidget
 {
     [GTKCallback sync: ^{
-        self.mainWidget = gtk_frame_new(NULL);
+        self.mainWidget = gtk_drawing_area_new();
     }];
 }
 

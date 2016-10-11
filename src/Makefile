@@ -15,6 +15,7 @@ SRCS =	GTKCallback.m                               \
 				GTKViewController.m                         \
 				GTKWindowViewController.m                   \
 				GTKApplicationDelegate.m                    \
+				OFApplication+GTKApplication.m              \
 				GTKImage.m                                  \
 				GTKImageView.m                              \
 				GTKInvalidLayoutConstraintsException.m

@@ -17,9 +17,20 @@
 #import "GTKApplicationDelegate.h"
 #import "GTKCallback.h"
 
+static void
+get_toplevel_window(gpointer data, gpointer userdata)
+{
+    GtkWindow *window = (GtkWindow *)(data);
+
+    if (gtk_window_has_toplevel_focus(window)) {
+        userdata = (gpointer)(window);
+    }
+};
+
 @implementation GTKApplicationDelegate
 - (void)applicationDidFinishLaunching
 {
+    // The default implementation does nothing.
 }
 
 - (void)applicationWillTerminate
@@ -27,5 +38,27 @@
     [GTKCallback sync: ^{
         gtk_main_quit();
     }];
+}
+
+- (GTKViewController*)activeWindow
+{
+    GList *windows = gtk_window_list_toplevels();
+
+    gpointer window = NULL;
+
+    g_list_foreach(windows, (GFunc)get_toplevel_window, window);
+
+    if (NULL == window) {
+        return nil;
+    }
+
+    GTKViewController *viewController = \
+        (__bridge GTKViewController *)g_object_get_data(
+    		G_OBJECT(window),
+            "_GTKKIT_OWNING_VIEW_CONTROLLER_");
+
+    g_list_free(windows);
+
+    return viewController;
 }
 @end

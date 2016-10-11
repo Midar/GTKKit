@@ -14,18 +14,13 @@
  * the packaging of this file.
  */
 
-#import "defines.h"
-#import "Exceptions.h"
-#import "GTKCallback.h"
-#import "OFCallback.h"
+#import "OFApplication+GTKApplication.h"
 #import "GTKApplicationDelegate.h"
-#import	"OFApplication+GTKApplication.h"
-#import "GTKResponder.h"
-#import	"GTKEvent.h"
-#import	"GTKLayoutConstraints.h"
-#import	"GTKView.h"
-#import	"GTKControl.h"
-#import	"GTKViewController.h"
-#import	"GTKWindowViewController.h"
-#import	"GTKImage.h"
-#import	"GTKImageView.h"
+
+@implementation OFApplication (GTKApplication)
+- (GTKResponder *)firstResponder
+{
+    GTKApplicationDelegate *delegate = (GTKApplicationDelegate *)(self.delegate);
+    return delegate.activeWindow.firstResponder;
+}
+@end

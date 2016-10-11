@@ -19,6 +19,8 @@
 #import <gtk/gtk.h>
 
 #import "defines.h"
+#import "GTKViewController.h"
 
 @interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
+@property (nullable, readonly) GTKViewController *activeWindow;
 @end

@@ -76,4 +76,9 @@ follows:
  */
 @interface GTKViewController: GTKResponder
 
+/*!
+ * @brief The GTKResponder which gets event messages first for this view controller.
+ */
+@property (nullable) GTKResponder *firstResponder;
+
 @end

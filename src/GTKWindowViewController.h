@@ -30,6 +30,11 @@
 @interface GTKWindowViewController: GTKViewController
 
 /*!
+ * @brief Whether or not this view controller's window is the toplevel input focus.
+ */
+@property (readonly) bool hasToplevelFocus;
+
+/*!
  * @brief The GtkWindow widget this view controller manages.
  */
 @property (nullable) GtkWidget *window;

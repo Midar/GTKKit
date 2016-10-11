@@ -47,4 +47,5 @@ main(int argc, char *argv[])                                    \
                  nil, &gtkkit_objfw_thread_attr);               \
    gtkkit_gtk_thread = of_thread_current();                     \
    gtk_main();                                                  \
+   return 0;                                                    \
 }                                                               \

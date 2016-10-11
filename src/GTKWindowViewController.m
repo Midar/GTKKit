@@ -30,6 +30,10 @@
     [GTKCallback sync: ^{
         self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(self.window));
+        g_object_set_data(
+            G_OBJECT(self.window),
+            "_GTKKIT_OWNING_VIEW_CONTROLLER_",
+            (__bridge gpointer)(self));
         gtk_widget_set_size_request(self.window, 1, 1);
         gtk_window_set_default_size(GTK_WINDOW(self.window), 100, 100);
         gtk_container_add(GTK_CONTAINER(self.window), self.contentView.overlayWidget);
@@ -128,5 +132,10 @@
         resizable = gtk_window_get_resizable(GTK_WINDOW(self.window));
     }];
     return resizable;
+}
+
+- (bool)hasToplevelFocus
+{
+    return gtk_window_has_toplevel_focus(GTK_WINDOW(self.window));
 }
 @end

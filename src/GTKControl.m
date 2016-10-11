@@ -16,6 +16,7 @@
 
 #import "GTKControl.h"
 #import "OFCallback.h"
+#import "OFApplication+GTKApplication.h"
 
 @implementation GTKControl
 - (void)sendActionToTargetWithEvent:(nonnull GTKEvent*)event
@@ -26,9 +27,12 @@
         }
 
         if (nil == self.target) {
-            //FIXME: Get the current first responder and send it the action message.
+            GTKResponder *target = OFApplication.sharedApplication.firstResponder;
+            IMP imp = [target methodForSelector: self.action];
+            void (*func)(id, SEL) = (void *)(imp);
+            func(self, self.action);
         } else {
-            IMP imp = [self methodForSelector: self.action];
+            IMP imp = [self.target methodForSelector: self.action];
             void (*func)(id, SEL) = (void *)(imp);
             func(self, self.action);
         }

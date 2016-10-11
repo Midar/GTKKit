@@ -22,5 +22,5 @@
 #import "GTKViewController.h"
 
 @interface GTKApplicationDelegate: OFObject <OFApplicationDelegate>
-@property (nullable, readonly) GTKViewController *activeWindow;
+@property (nullable, readonly) GTKViewController *keyWindow;
 @end

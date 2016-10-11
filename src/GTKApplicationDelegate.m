@@ -40,7 +40,7 @@ get_toplevel_window(gpointer data, gpointer userdata)
     }];
 }
 
-- (GTKViewController*)activeWindow
+- (GTKViewController*)keyWindow
 {
     GList *windows = gtk_window_list_toplevels();
 

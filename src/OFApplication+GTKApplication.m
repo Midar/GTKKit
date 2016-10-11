@@ -21,6 +21,6 @@
 - (GTKResponder *)firstResponder
 {
     GTKApplicationDelegate *delegate = (GTKApplicationDelegate *)(self.delegate);
-    return delegate.activeWindow.firstResponder;
+    return delegate.keyWindow.firstResponder;
 }
 @end

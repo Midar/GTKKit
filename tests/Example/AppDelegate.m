@@ -25,9 +25,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // Put your custom initialization below this line.
     self.window = [GTKWindowViewController new];
 
-    OFURL *url = [OFURL fileURLWithPath: @"/users/kylecardoza/Downloads/trump.jpeg"];
-    self.image = [GTKImage imageWithURL: url];
-
     GTKRect frame = self.window.frame;
     frame.x = 50;
     frame.y = 200;

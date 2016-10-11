@@ -20,8 +20,8 @@
 #import "defines.h"
 
 typedef OF_ENUM(int, GTKLayoutConstraintType) {
-	GTKLayoutConstraintTypeFlexible,
-	GTKLayoutConstraintTypeFixed
+	GTKLayoutConstraintTypeFlexible = 0,
+	GTKLayoutConstraintTypeFixed = 1
 };
 
 /*!
@@ -427,7 +427,5 @@ typedef OF_ENUM(int, GTKLayoutConstraintType) {
 * @param vertical The value of the right constraint
 */
 - (void)flexibleHeight:(double)height;
-
-
 
 @end

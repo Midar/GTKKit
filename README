@@ -14,7 +14,7 @@ GTKResponder
   GTKView
     GTKControl
       GTKButton
-  GTKImageView
+    GTKImageView
   GTKViewController
     GTKWindowViewController
 GTKImage

@@ -196,4 +196,20 @@
             subtitle.UTF8String);
     }];
 }
+
+- (double)alpha
+{
+    __block double alpha;
+    [GTKCallback sync: ^{
+        alpha = gtk_widget_get_opacity(self.window);
+    }];
+    return alpha;
+}
+
+- (void)setAlpha:(double)alpha
+{
+    [GTKCallback sync: ^{
+        gtk_widget_set_opacity(self.window, alpha);
+    }];
+}
 @end

@@ -75,6 +75,11 @@
 @property bool titleVisible;
 
 /*!
+ * @brief The opacity level of the window managed by the view controller.
+ */
+@property double alpha;
+
+/*!
  * @brief A bool value indicating whether or not the window should be
  * resizable.
  */

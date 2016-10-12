@@ -28,6 +28,9 @@
  * window and its view hierarchy.
  */
 @interface GTKWindowViewController: GTKViewController
+{
+    __block GtkWidget *_headerBar;
+}
 
 /*!
  * @brief Whether or not this view controller's window is the toplevel input focus.
@@ -38,6 +41,16 @@
  * @brief The GtkWindow widget this view controller manages.
  */
 @property (nullable) GtkWidget *window;
+
+/*!
+ * @brief The title of the window this view controller manages.
+ */
+@property (nonnull) OFString *title;
+
+/*!
+ * @brief The subtitle of the window this view controller manages.
+ */
+@property (nonnull) OFString *subtitle;
 
 /*!
  * @brief The GTKView that holds all this view controller's subviews.

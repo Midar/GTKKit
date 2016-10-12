@@ -28,6 +28,9 @@
     self.contentView = [GTKView new];
 
     [GTKCallback sync: ^{
+        _headerBar = gtk_header_bar_new();
+        g_object_ref_sink(G_OBJECT(_headerBar));
+        gtk_widget_show(_headerBar);
         self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(self.window));
         g_object_set_data(
@@ -37,6 +40,7 @@
         gtk_widget_set_size_request(self.window, 1, 1);
         gtk_window_set_default_size(GTK_WINDOW(self.window), 100, 100);
         gtk_container_add(GTK_CONTAINER(self.window), self.contentView.overlayWidget);
+        gtk_window_set_titlebar(GTK_WINDOW(self.window), _headerBar);
     }];
 
     self.hidden = true;
@@ -137,5 +141,39 @@
 - (bool)hasToplevelFocus
 {
     return gtk_window_has_toplevel_focus(GTK_WINDOW(self.window));
+}
+
+- (OFString *)title
+{
+    __block OFString *title;
+    [GTKCallback sync: ^{
+        const char *str = gtk_header_bar_get_title(GTK_HEADER_BAR(_headerBar));
+        title = [OFString stringWithUTF8String: str];
+    }];
+    return title;
+}
+
+- (void)setTitle:(OFString *)title
+{
+    [GTKCallback sync: ^{
+        gtk_header_bar_set_title(GTK_HEADER_BAR(_headerBar), title.UTF8String);
+    }];
+}
+
+- (OFString *)subtitle
+{
+    __block OFString *subtitle;
+    [GTKCallback sync: ^{
+        const char *str = gtk_header_bar_get_subtitle(GTK_HEADER_BAR(_headerBar));
+        subtitle = [OFString stringWithUTF8String: str];
+    }];
+    return subtitle;
+}
+
+- (void)setSubtitle:(OFString *)subtitle
+{
+    [GTKCallback sync: ^{
+        gtk_header_bar_set_subtitle(GTK_HEADER_BAR(_headerBar), subtitle.UTF8String);
+    }];
 }
 @end

@@ -64,6 +64,8 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     [testView addSubview: subview2];
 
+    self.window.title = @"Example Window";
+    self.window.subtitle = @"Example Subtitle";
     self.window.hidden = false;
 
     // It would be dangerous to modify anything below this line.

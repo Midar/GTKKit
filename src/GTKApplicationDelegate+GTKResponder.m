@@ -19,11 +19,16 @@
 #import <gtk/gtk.h>
 
 #import "defines.h"
+#import "GTKApplicationDelegate.h"
 #import "GTKResponderProtocol.h"
 #import "OFCallback.h"
 
 
-@implementation OFApplication (GTKResponder)
+@implementation GTKApplicationDelegate (GTKResponder)
+- (GTKResponder *)firstResponder
+{
+    return self.keyWindow.firstResponder;
+}
 
 - (id<GTKResponderProtocol>)nextResponder
 {
@@ -139,7 +144,7 @@
 
 - (void)doCommandBySelector:(SEL)selector
 {
-    
+
 }
 
 - (bool)tryToPerform:(SEL)action

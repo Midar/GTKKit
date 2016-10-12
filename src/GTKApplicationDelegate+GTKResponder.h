@@ -19,7 +19,9 @@
 #import <gtk/gtk.h>
 
 #import "defines.h"
+#import "GTKApplicationDelegate.h"
 #import "GTKResponderProtocol.h"
 
-@interface OFApplication (GTKResponder) <GTKResponderProtocol>
+@interface GTKApplicationDelegate (GTKResponder) <GTKResponderProtocol>
+- (GTKResponder *)firstResponder;
 @end

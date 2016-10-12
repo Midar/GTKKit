@@ -15,8 +15,7 @@ SRCS =	GTKCallback.m                               \
 				GTKViewController.m                         \
 				GTKWindowViewController.m                   \
 				GTKApplicationDelegate.m                    \
-				OFApplication+GTKApplication.m              \
-				OFApplication+GTKResponder.m                \
+				GTKApplicationDelegate+GTKResponder.m       \
 				GTKImage.m                                  \
 				GTKImageView.m                              \
 				GTKButton.m                                 \

@@ -15,16 +15,17 @@
  */
 
 #import "GTKWindowViewController.h"
-#import "OFApplication+GTKResponder.h"
+#import "GTKApplicationDelegate+GTKResponder.h"
 
 @implementation GTKWindowViewController
 - init
 {
     self = [super init];
 
+    self.firstResponder = self;
     self.contentView = [GTKView new];
     self.contentView.nextResponder = self;
-    self.nextResponder = OFApplication.sharedApplication;
+    self.nextResponder = (GTKApplicationDelegate *)(OFApplication.sharedApplication.delegate);
 
     [GTKCallback sync: ^{
         _headerBar = gtk_header_bar_new();
@@ -211,5 +212,15 @@
     [GTKCallback sync: ^{
         gtk_widget_set_opacity(self.window, alpha);
     }];
+}
+
+- (bool)canBecomeFirstResponder
+{
+    return true;
+}
+
+- (bool)shouldBecomeFirstResponder
+{
+    return true;
 }
 @end

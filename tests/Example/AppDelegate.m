@@ -32,38 +32,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     frame.height = 500;
     self.window.frame = frame;
 
-    GTKView *testView = [GTKView new];
-    [testView.constraints fixedToTop: 10
-                              bottom: 10
-                                left: 10
-                               right: 10];
-    [testView.constraints flexibleWidth: 0];
-    [testView.constraints flexibleHeight: 0];
-
-    [self.window addSubview: testView];
-
-    GTKImageView *subview = [GTKImageView new];
-    subview.image = self.image;
-    subview.imageScaling = GTKImageScaleProportionatelyDown;
-    [subview.constraints fixedToTop: 10
-                               left: 10
-                              right: 10];
-    [subview.constraints flexibleToBottom: 50];
-    [subview.constraints flexibleWidth: 0];
-    [subview.constraints flexibleHeight: 0];
-
-    [testView addSubview: subview];
-
-    GTKView *subview2 = [GTKView new];
-    [subview2.constraints fixedToBottom: 10];
-    [subview2.constraints flexibleToTop: 0
-                                   left: 0];
-    subview2.constraints.centerHorizontal = true;
-    [subview2.constraints fixedWidth: 50];
-    [subview2.constraints fixedHeight:20];
-
-    [testView addSubview: subview2];
-
     self.window.title = @"Example Window";
     self.window.subtitle = @"Example Subtitle";
     self.window.hidden = false;

@@ -17,20 +17,34 @@
 #import "GTKWindowViewController.h"
 #import "GTKApplicationDelegate+GTKResponder.h"
 
+static void
+close_button_clicked_handler(GtkButton *button, gpointer userdata)
+{
+    GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
+
+    //FIXME: Make a window delegate protocol and apply it here.
+    window.hidden = true;
+}
+
 @implementation GTKWindowViewController
 - init
 {
     self = [super init];
 
+    [self willBecomeFirstResponder];
     self.firstResponder = self;
+    [self didBecomeFirstResponder];
+
     self.contentView = [GTKView new];
     self.contentView.nextResponder = self;
     self.nextResponder = (GTKApplicationDelegate *)(OFApplication.sharedApplication.delegate);
 
     [GTKCallback sync: ^{
+
         _headerBar = gtk_header_bar_new();
         g_object_ref_sink(G_OBJECT(_headerBar));
         gtk_widget_show(_headerBar);
+
         self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(self.window));
         g_object_set_data(
@@ -54,6 +68,22 @@
         gtk_window_set_titlebar(
             GTK_WINDOW(self.window),
             _headerBar);
+
+        _closeButton = gtk_button_new_from_icon_name(
+            "window-close",
+            GTK_ICON_SIZE_BUTTON);
+
+        gtk_widget_show(_closeButton);
+
+        gtk_header_bar_pack_end(
+            GTK_HEADER_BAR(_headerBar),
+            _closeButton);
+
+		closeButtonClickedHandlerID = g_signal_connect(
+			G_OBJECT(_closeButton),
+			"clicked",
+			G_CALLBACK(close_button_clicked_handler),
+			(__bridge gpointer)(self));
     }];
 
     self.hidden = true;

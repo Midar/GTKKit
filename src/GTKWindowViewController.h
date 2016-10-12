@@ -30,6 +30,8 @@
 @interface GTKWindowViewController: GTKViewController
 {
     __block GtkWidget *_headerBar;
+    __block GtkWidget *_closeButton;
+    __block gulong closeButtonClickedHandlerID;
 }
 
 /*!

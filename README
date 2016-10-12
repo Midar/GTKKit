@@ -1,9 +1,6 @@
-GTKKit is a wrapper library, written in and for Objective-C, which makes the
-GTK+ user interface toolkit available to the Objective-C programmer in a useful,
-simplified manner. It reduces the amount of code a programmer needs to write
-compared to plain C, while maintaining full compatibility with all existing C
-code. It is currently only partially usable, but is under continuous
-development.
+GTKKit is a multithreaded MVC GUI framework, which implements a UIKit-style API
+on top of the GTK+ cross-platform widget toolkit. It is under active development,
+and it currently in a barely usable, skeletal state.
 
 Requirements:
  - GTK+ 3
@@ -11,34 +8,17 @@ Requirements:
 
 At the moment, GTKKit is only tested on OS X and FreeBSD.
 
-Currently, GTKKit implements the following widget classes, to a greater or
-lesser extent:
+Currently, GTKKit implements the following class hierarchy:
 
-  GTKActionBar
-  GTKButton
-  GTKCheckButton
-  GTKComboBox
-  GTKEntry
-  GTKExpander
-  GTKFrame
-  GTKGrid
-  GTKHeaderBar
-  GTKImage
-  GTKLabel
-  GTKListBox
-  GTKMenu
-  GTKMenuItem
-  GTKOverlay
-  GTKPopover
-  GTKProgressBar
-  GTKRadioButton
-  GTKRevealer
-  GTKScale
-  GTKScrolledWindow
-  GTKSeparator
-  GTKStack
-  GTKStackSwitcher
-  GTKSwitch
-  GTKTextView
-  GTKToggleButton
-  GTKWindow
+GTKResponder
+  GTKView
+    GTKControl
+      GTKButton
+  GTKImageView
+  GTKViewController
+    GTKWindowViewController
+GTKImage
+GTKEvent
+GTKCallback
+GTKApplicationDelegate
+GTKLayoutConstraints

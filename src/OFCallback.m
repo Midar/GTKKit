@@ -15,40 +15,21 @@
  */
 
 #import "OFCallback.h"
+#import "GTKCallback.h"
 
-@interface OFCallback ()
-- (void)sync:(OFCallbackBlock)block;
-- (void)async:(OFCallbackBlock)block;
-@end
-
-@implementation OFCallback
-- (void)sync:(OFCallbackBlock)block
+void
+OFCallback(OFCallbackBlock block)
 {
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) { block(); }];
+	if (of_thread_is_current(gtkkit_objfw_thread)) {
+	    block();
+	} else {
+		OFTimer *timer = [OFTimer
+			timerWithTimeInterval: 0
+			repeats: false
+			block: ^ (OFTimer *timer) { block(); }];
 
-	[[OFRunLoop mainRunLoop] addTimer: timer];
+		[[OFRunLoop mainRunLoop] addTimer: timer];
 
-	[timer waitUntilDone];
+		[timer waitUntilDone];
+	}
 }
-
-+ (void)sync:(OFCallbackBlock)block
-{
-    [[self new] sync: block];
-}
-
-- (void)async:(OFCallbackBlock)block
-{
-	[[OFThread threadWithThreadBlock: ^id _Nullable (){
-		[OFCallback sync: block];
-		return nil;
-	}] start];
-}
-
-+ (void)async:(OFCallbackBlock)block
-{
-    [[self new] async: block];
-}
-@end

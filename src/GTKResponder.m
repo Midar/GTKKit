@@ -142,11 +142,11 @@
 - (void)doCommandBySelector:(SEL)selector
 {
     if ([self respondsToSelector: selector]) {
-        [OFCallback sync: ^{
+        OFCallback(^{
             IMP imp = [self methodForSelector:selector];
             void (*func)(id, SEL) = (void *)(imp);
             func(self, selector);
-        }];
+        });
     }
 }
 
@@ -154,11 +154,11 @@
                 with:(nonnull id)object
 {
     if ([self respondsToSelector: action]) {
-        [OFCallback sync: ^{
+        OFCallback(^{
             [self performSelector: action
                        withObject: object
                        afterDelay: 0.0];
-        }];
+        });
         return true;
     }
     return false;
@@ -167,11 +167,11 @@
 - (bool)tryToPerform:(SEL)action
 {
     if ([self respondsToSelector: action]) {
-        [OFCallback sync: ^{
+        OFCallback(^{
             IMP imp = [self methodForSelector:action];
             void (*func)(id, SEL) = (void *)(imp);
             func(self, action);
-        }];
+        });
         return true;
     }
     return false;

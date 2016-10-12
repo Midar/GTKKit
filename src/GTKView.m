@@ -30,6 +30,42 @@ draw_handler(GtkWidget *widget,
 }
 
 static gboolean
+press_event_handler(GtkWidget *widget,
+                    GdkEvent  *event,
+                    gpointer   userdata)
+{
+    GTKView *view = (__bridge GTKView *)(userdata);
+
+    GTKEvent *evt = [GTKEvent new];
+    evt.type = GTKEventTypeMouseDown;
+    evt.mouseButton = event->button.button;
+    evt.mouseX = event->button.x;
+    evt.mouseY = event->button.y;
+
+    [view mouseDown: evt];
+
+    return false;
+}
+
+static gboolean
+release_event_handler(GtkWidget *widget,
+                      GdkEvent  *event,
+                      gpointer   userdata)
+{
+    GTKView *view = (__bridge GTKView *)(userdata);
+
+    GTKEvent *evt = [GTKEvent new];
+    evt.type = GTKEventTypeMouseUp;
+    evt.mouseButton = event->button.button;
+    evt.mouseX = event->button.x;
+    evt.mouseY = event->button.y;
+
+    [view mouseUp: evt];
+
+    return false;
+}
+
+static gboolean
 get_child_position_handler(GtkOverlay   *overlay,
 				   		   GtkWidget    *widget,
 				   		   GdkRectangle *allocation,
@@ -103,6 +139,22 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
 		gtk_widget_show(self.mainWidget);
 		gtk_widget_show(self.overlayWidget);
+
+        GdkEventMask eventBoxMask = gtk_widget_get_events(self.mainWidget);
+        eventBoxMask = eventBoxMask | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK;
+        gtk_widget_set_events(self.mainWidget, eventBoxMask);
+
+        self.pressEventHandlerID = g_signal_connect(
+            G_OBJECT(self.mainWidget),
+            "button-press-event",
+            G_CALLBACK(press_event_handler),
+            (__bridge gpointer)(self));
+
+        self.releaseEventHandlerID = g_signal_connect(
+            G_OBJECT(self.mainWidget),
+            "button-release-event",
+            G_CALLBACK(release_event_handler),
+            (__bridge gpointer)(self));
 	}];
 
 	self.hidden = false;

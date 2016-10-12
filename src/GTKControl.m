@@ -22,7 +22,7 @@
 @implementation GTKControl
 - (void)sendActionToTarget
 {
-    [OFCallback sync: ^{
+    OFCallback(^{
         if (NULL == self.action) {
             return;
         }
@@ -40,51 +40,51 @@
             void (*func)(id, SEL, id) = (void *)(imp);
             func(self.target, self.action, self);
         }
-    }];
+    });
 }
 
 - (void)takeStringValueFrom:(nonnull id)target
 {
-    [OFCallback sync: ^{
+    OFCallback(^{
         if ([target respondsToSelector: @selector(stringValue)]) {
             self.stringValue = [target stringValue];
         }
-    }];
+    });
 }
 
 - (void)takeIntValueFrom:(nonnull id)target
 {
-    [OFCallback sync: ^{
+    OFCallback(^{
         if ([target respondsToSelector: @selector(intValue)]) {
             self.intValue = [target intValue];
         }
-    }];
+    });
 }
 
 - (void)takeDoubleValueFrom:(nonnull id)target
 {
-    [OFCallback sync: ^{
+    OFCallback(^{
         if ([target respondsToSelector: @selector(doubleValue)]) {
             self.doubleValue = [target doubleValue];
         }
-    }];
+    });
 }
 
 - (void)takeFloatValueFrom:(nonnull id)target
 {
-    [OFCallback sync: ^{
+    OFCallback(^{
         if ([target respondsToSelector: @selector(floatValue)]) {
             self.floatValue = [target floatValue];
         }
-    }];
+    });
 }
 
 - (void)takeObjectValueFrom:(nonnull id)target
 {
-    [OFCallback sync: ^{
+    OFCallback(^{
         if ([target respondsToSelector: @selector(objectValue)]) {
             self.objectValue = [target objectValue];
         }
-    }];
+    });
 }
 @end

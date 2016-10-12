@@ -46,6 +46,8 @@
 
 @property gulong childPositionHandlerID;
 @property gulong widgetDestroyedHandlerID;
+@property gulong pressEventHandlerID;
+@property gulong releaseEventHandlerID;
 @property gulong drawHandlerID;
 
 /*!

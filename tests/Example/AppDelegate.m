@@ -43,6 +43,9 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     button.stringValue = @"Click me!";
     button.target = self;
     button.action = @selector(clicked:);
+    button.actionBlock = ^{
+        printf("Action block run!\n");
+    };
 
     [self.window addSubview: button];
 
@@ -62,6 +65,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)clicked:(GTKButton *)sender
 {
-    printf("Clicked!\n");
+    printf("Target-Action Message Sent!\n");
 }
 @end

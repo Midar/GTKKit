@@ -20,30 +20,5 @@
 
 typedef void (^OFCallbackBlock)();
 
-@class OFCallback;
-
-/*!
- * @brief A class representing callbacks into the ObjFW thread.
- */
-@interface OFCallback: OFObject
-
-/*!
- * @brief Run the given block in the ObjFW thread synchronously.
- *
- * This means that this method will not return until the block you provide
- * does.
- *
- * @param block The block to run
- */
-+ (void)sync:(OFCallbackBlock)block;
-
-/*!
- * @brief Run the given block in the ObjFW thread asynchronously.
- *
- * This means that this method returns almost immediately, regardless of the
- * code in the block you supply.
- *
- * @param block The block to run
- */
-+ (void)async:(OFCallbackBlock)block;
-@end
+void
+OFCallback(OFCallbackBlock block);

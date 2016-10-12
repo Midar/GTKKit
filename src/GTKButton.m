@@ -16,17 +16,24 @@
 
 #import "GTKButton.h"
 #import "GTKCallback.h"
+#import "OFCallback.h"
 
 static void
 clicked_event_handler(GtkWidget *widget, gpointer userdata)
 {
+    printf("1\n");
     GTKButton *button = (__bridge GTKButton *)(userdata);
 
+    printf("2\n");
     GTKEvent *evt = [GTKEvent new];
+    printf("3\n");
     evt.type = GTKEventTypeMouseClicked;
+    printf("4\n");
     evt.mouseButton = 1;
+    printf("5\n");
 
    [button mouseClicked: evt];
+       printf("6\n");
 }
 
 @implementation GTKButton
@@ -43,11 +50,11 @@ clicked_event_handler(GtkWidget *widget, gpointer userdata)
         self.mainWidget = gtk_button_new();
         g_object_ref_sink(G_OBJECT(self.mainWidget));
 
-        self.childPositionHandlerID = g_signal_connect(
-            G_OBJECT(self.mainWidget),
-            "clicked",
-            G_CALLBACK(clicked_event_handler),
-            (__bridge gpointer)(self));
+        //self.childPositionHandlerID = g_signal_connect(
+        //    G_OBJECT(self.mainWidget),
+        //    "clicked",
+        //    G_CALLBACK(clicked_event_handler),
+        //    (__bridge gpointer)(self));
     }];
 }
 
@@ -81,6 +88,18 @@ clicked_event_handler(GtkWidget *widget, gpointer userdata)
 
 - (void)mouseClicked:(nonnull GTKEvent*)event
 {
-    [self sendActionToTarget];
+    OFCallback(^{
+        [self sendActionToTarget];
+    });
+}
+
+- (void)mouseUp:(nonnull GTKEvent*)event
+{
+    OFCallback(^{
+        [self sendActionToTarget];
+        if (NULL != self.actionBlock) {
+            self.actionBlock();
+        }
+    });
 }
 @end

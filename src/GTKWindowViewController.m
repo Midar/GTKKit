@@ -40,6 +40,7 @@
         gtk_widget_set_size_request(self.window, 1, 1);
         gtk_window_set_default_size(GTK_WINDOW(self.window), 100, 100);
         gtk_container_add(GTK_CONTAINER(self.window), self.contentView.overlayWidget);
+        gtk_header_bar_set_has_subtitle(GTK_HEADER_BAR(_headerBar), false);
         gtk_window_set_titlebar(GTK_WINDOW(self.window), _headerBar);
     }];
 

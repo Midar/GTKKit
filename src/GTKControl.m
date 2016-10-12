@@ -28,6 +28,9 @@
 
         if (nil == self.target) {
             GTKResponder *target = OFApplication.sharedApplication.firstResponder;
+            if (nil == target) {
+                return;
+            }
             IMP imp = [target methodForSelector: self.action];
             void (*func)(id, SEL, id) = (void *)(imp);
             func(target, self.action, self);

@@ -28,7 +28,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     GTKRect frame = self.window.frame;
     frame.x = 50;
     frame.y = 200;
-    frame.width = 400;
+    frame.width = 300;
     frame.height = 500;
     self.window.frame = frame;
 
@@ -39,7 +39,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [button.constraints fixedToBottom: 10];
     button.constraints.centerHorizontal = true;
     [button.constraints fixedWidth: 100];
-    [button.constraints fixedHeight: 40];
+    [button.constraints fixedHeight: 30];
     button.stringValue = @"Click me!";
     button.target = self;
     button.action = @selector(clicked:);

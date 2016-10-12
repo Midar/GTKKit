@@ -14,10 +14,14 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
 
-@interface AppDelegate : GTKApplicationDelegate <GTKWindowViewControllerDelegate>
-@property (nullable) GTKWindowViewController *window;
-@property (nullable) GTKImage *image;
-- (void)clicked:(nonnull GTKButton *)sender;
+#import "defines.h"
+
+@protocol GTKWindowViewControllerDelegate
+@optional
+- (BOOL)windowShouldClose;
+- (void)windowWillClose;
+- (void)windowDidClose;
 @end

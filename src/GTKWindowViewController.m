@@ -16,6 +16,7 @@
 
 #import "GTKWindowViewController.h"
 #import "GTKApplicationDelegate+GTKResponder.h"
+#import "GTKWindowViewControllerDelegate.h"
 
 static void
 close_button_clicked_handler(GtkButton *button, gpointer userdata)
@@ -23,7 +24,22 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
     GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
 
     //FIXME: Make a window delegate protocol and apply it here.
+
+    if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
+        if (![window.delegate windowShouldClose]) {
+            return;
+        }
+    }
+
+    if ([window.delegate respondsToSelector: @selector(windowWillClose)]) {
+        [window.delegate windowWillClose];
+    }
+
     window.hidden = true;
+
+    if ([window.delegate respondsToSelector: @selector(windowDidClose)]) {
+        [window.delegate windowDidClose];
+    }
 }
 
 @implementation GTKWindowViewController

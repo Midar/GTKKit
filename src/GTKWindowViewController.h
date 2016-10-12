@@ -22,6 +22,7 @@
 #import "GTKViewController.h"
 #import "GTKView.h"
 #import "GTKCallback.h"
+#import "GTKWindowViewControllerDelegate.h"
 
 /*!
  * @brief A class representing a view controller that manages a toplevel
@@ -33,6 +34,8 @@
     __block GtkWidget *_closeButton;
     __block gulong closeButtonClickedHandlerID;
 }
+
+@property (weak, nullable) OFObject<GTKWindowViewControllerDelegate> *delegate;
 
 /*!
  * @brief Whether or not this view controller's window is the toplevel input focus.

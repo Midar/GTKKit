@@ -24,6 +24,7 @@ SRCS =	GTKCallback.m                               \
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \
 				GTKResponderProtocol.h                      \
+				GTKWindowViewControllerDelegate.h           \
 				GTKKit.h
 
 include ../buildsys.mk

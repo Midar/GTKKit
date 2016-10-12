@@ -49,6 +49,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     [self.window addSubview: button];
 
+    self.window.delegate = self;
     self.window.title = @"Example Window";
     self.window.subtitle = @"Example Subtitle";
     self.window.hidden = false;
@@ -61,10 +62,18 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     [super applicationDidFinishLaunching];
     // Put your custom post-launch startup code below this line.
+
+    printf("Hello!\n");
 }
 
 - (void)clicked:(GTKButton *)sender
 {
     printf("Target-Action Message Sent!\n");
+}
+
+- (void)windowDidClose
+{
+    printf("Goodbye!\n");
+    [OFApplication terminate];
 }
 @end

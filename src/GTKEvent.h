@@ -22,7 +22,8 @@ typedef OF_ENUM(int, GTKEventType) {
     GTKEventTypeKeyDown,
     GTKEventTypeKeyUp,
     GTKEventTypeMouseDown,
-    GTKEventTypeMouseUp
+    GTKEventTypeMouseUp,
+    GTKEventTypeMouseClicked
 };
 
 typedef struct GTKEventKeyboardModifiers {

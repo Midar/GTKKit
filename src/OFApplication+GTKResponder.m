@@ -102,6 +102,11 @@
     // Do nothing.
 }
 
+- (void)mouseClicked:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
 - (void)scrollWheel:(nonnull GTKEvent*)event
 {
     // Do nothing.

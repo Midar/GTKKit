@@ -16,6 +16,7 @@
 
 #import "GTKControl.h"
 #import "OFCallback.h"
+#import "GTKCallback.h"
 #import "OFApplication+GTKApplication.h"
 
 @implementation GTKControl

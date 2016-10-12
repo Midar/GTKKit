@@ -22,7 +22,11 @@ clicked_event_handler(GtkWidget *widget, gpointer userdata)
 {
     GTKButton *button = (__bridge GTKButton *)(userdata);
 
-    [button sendActionToTarget];
+    GTKEvent *evt = [GTKEvent new];
+    evt.type = GTKEventTypeMouseClicked;
+    evt.mouseButton = 1;
+
+   [button mouseClicked: evt];
 }
 
 @implementation GTKButton
@@ -73,5 +77,10 @@ clicked_event_handler(GtkWidget *widget, gpointer userdata)
     [GTKCallback sync: ^{
         gtk_button_set_label(GTK_BUTTON(self.mainWidget), stringValue.UTF8String);
     }];
+}
+
+- (void)mouseClicked:(nonnull GTKEvent*)event
+{
+    [self sendActionToTarget];
 }
 @end

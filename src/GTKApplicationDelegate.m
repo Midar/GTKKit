@@ -35,9 +35,7 @@ get_toplevel_window(gpointer data, gpointer userdata)
 
 - (void)applicationWillTerminate
 {
-    [GTKCallback sync: ^{
-        gtk_main_quit();
-    }];
+    gtk_main_quit();
 }
 
 - (GTKViewController*)keyWindow

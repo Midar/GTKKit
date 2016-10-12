@@ -17,11 +17,7 @@
 #import "GTKWindowViewController.h"
 #import "OFApplication+GTKResponder.h"
 
-/*!
- * @brief A class representing a view controller that manages a toplevel
- * window and its view hierarchy.
- */
-@implementation GTKWindowViewController: GTKViewController
+@implementation GTKWindowViewController
 - init
 {
     self = [super init];

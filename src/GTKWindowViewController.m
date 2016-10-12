@@ -141,7 +141,11 @@
 
 - (bool)hasToplevelFocus
 {
-    return gtk_window_has_toplevel_focus(GTK_WINDOW(self.window));
+    __block bool hasToplevelFocus;
+    [GTKCallback sync: ^{
+        hasToplevelFocus = gtk_window_has_toplevel_focus(GTK_WINDOW(self.window));
+    }];
+    return hasToplevelFocus;
 }
 
 - (OFString *)title

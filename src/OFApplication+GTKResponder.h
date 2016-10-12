@@ -14,21 +14,12 @@
  * the packaging of this file.
  */
 
+#import <ObjFW/ObjFW.h>
+
+#import <gtk/gtk.h>
+
 #import "defines.h"
 #import "GTKResponderProtocol.h"
-#import "Exceptions.h"
-#import "GTKCallback.h"
-#import "OFCallback.h"
-#import "GTKApplicationDelegate.h"
-#import	"OFApplication+GTKApplication.h"
-#import	"OFApplication+GTKResponder.h"
-#import "GTKResponder.h"
-#import	"GTKEvent.h"
-#import	"GTKLayoutConstraints.h"
-#import	"GTKView.h"
-#import	"GTKControl.h"
-#import	"GTKViewController.h"
-#import	"GTKWindowViewController.h"
-#import	"GTKImage.h"
-#import	"GTKImageView.h"
-#import "GTKButton.h"
+
+@interface OFApplication (GTKResponder) <GTKResponderProtocol>
+@end

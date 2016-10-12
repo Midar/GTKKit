@@ -15,6 +15,7 @@
  */
 
 #import "GTKWindowViewController.h"
+#import "OFApplication+GTKResponder.h"
 
 /*!
  * @brief A class representing a view controller that manages a toplevel
@@ -26,6 +27,8 @@
     self = [super init];
 
     self.contentView = [GTKView new];
+    self.contentView.nextResponder = self;
+    self.nextResponder = OFApplication.sharedApplication;
 
     [GTKCallback sync: ^{
         _headerBar = gtk_header_bar_new();
@@ -173,7 +176,9 @@
 - (void)setTitle:(OFString *)title
 {
     [GTKCallback sync: ^{
-        gtk_header_bar_set_title(GTK_HEADER_BAR(_headerBar), title.UTF8String);
+        gtk_header_bar_set_title(
+            GTK_HEADER_BAR(_headerBar),
+            title.UTF8String);
     }];
 }
 
@@ -190,7 +195,9 @@
 - (void)setSubtitle:(OFString *)subtitle
 {
     [GTKCallback sync: ^{
-        gtk_header_bar_set_subtitle(GTK_HEADER_BAR(_headerBar), subtitle.UTF8String);
+        gtk_header_bar_set_subtitle(
+            GTK_HEADER_BAR(_headerBar),
+            subtitle.UTF8String);
     }];
 }
 @end

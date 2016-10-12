@@ -29,7 +29,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     frame.x = 50;
     frame.y = 200;
     frame.width = 300;
-    frame.height = 500;
+    frame.height = 400;
     self.window.frame = frame;
 
     GTKButton *button = [GTKButton new];

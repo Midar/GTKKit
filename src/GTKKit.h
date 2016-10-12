@@ -29,3 +29,4 @@
 #import	"GTKWindowViewController.h"
 #import	"GTKImage.h"
 #import	"GTKImageView.h"
+#import "GTKButton.h"

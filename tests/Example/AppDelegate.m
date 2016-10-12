@@ -28,9 +28,23 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     GTKRect frame = self.window.frame;
     frame.x = 50;
     frame.y = 200;
-    frame.width = 300;
+    frame.width = 400;
     frame.height = 500;
     self.window.frame = frame;
+
+    GTKButton *button = [GTKButton new];
+    [button.constraints flexibleToTop: 0
+                                 left: 0
+                                right: 0];
+    [button.constraints fixedToBottom: 10];
+    button.constraints.centerHorizontal = true;
+    [button.constraints fixedWidth: 100];
+    [button.constraints fixedHeight: 40];
+    button.stringValue = @"Click me!";
+    button.target = self;
+    button.action = @selector(clicked:);
+
+    [self.window addSubview: button];
 
     self.window.title = @"Example Window";
     self.window.subtitle = @"Example Subtitle";
@@ -44,5 +58,10 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     [super applicationDidFinishLaunching];
     // Put your custom post-launch startup code below this line.
+}
+
+- (void)clicked:(GTKButton *)sender
+{
+    printf("Clicked!\n");
 }
 @end

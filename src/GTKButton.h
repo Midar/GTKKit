@@ -14,10 +14,23 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
 
-@interface AppDelegate : GTKApplicationDelegate
-@property (nullable) GTKWindowViewController *window;
-@property (nullable) GTKImage *image;
-- (void)clicked:(nonnull GTKButton *)sender;
+#import "defines.h"
+#import "GTKControl.h"
+
+typedef OF_ENUM(int, GTKButtonType) {
+    GTKPushButton = 0,
+    GTKToggleButton = 1,
+    GTKCheckButton = 2,
+    GTKRadioButton = 3,
+    GTKSwitchButton = 4
+};
+
+@interface GTKButton: GTKControl
+{
+    __block GTKButtonType _buttonType;
+}
+@property GTKButtonType buttonType;
 @end

@@ -84,7 +84,7 @@ typedef void (^GTKControlActionBlock) (_Nonnull id sender);
  * This method is used by event methods in subclasses; for example, GTKButton's
  * -mouseUp: method override sends this on a single click.
  */
-- (void)sendActionToTargetWithEvent:(nonnull GTKEvent *)event;
+- (void)sendActionToTarget;
 
 /*!
  * @brief Set the string value of this control from that of another object. The

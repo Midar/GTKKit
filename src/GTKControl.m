@@ -19,7 +19,7 @@
 #import "OFApplication+GTKApplication.h"
 
 @implementation GTKControl
-- (void)sendActionToTargetWithEvent:(nonnull GTKEvent*)event
+- (void)sendActionToTarget
 {
     [OFCallback sync: ^{
         if (NULL == self.action) {
@@ -29,12 +29,12 @@
         if (nil == self.target) {
             GTKResponder *target = OFApplication.sharedApplication.firstResponder;
             IMP imp = [target methodForSelector: self.action];
-            void (*func)(id, SEL) = (void *)(imp);
-            func(self, self.action);
+            void (*func)(id, SEL, id) = (void *)(imp);
+            func(target, self.action, self);
         } else {
             IMP imp = [self.target methodForSelector: self.action];
-            void (*func)(id, SEL) = (void *)(imp);
-            func(self, self.action);
+            void (*func)(id, SEL, id) = (void *)(imp);
+            func(self.target, self.action, self);
         }
     }];
 }

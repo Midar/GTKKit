@@ -109,6 +109,12 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     }
 }
 
+static void
+menu_button_clicked_handler(GtkButton *button, gpointer userdata)
+{
+
+}
+
 @interface GTKWindowViewController ()
 - (void)updateHeaderbarSeparatorVisibility;
 @end
@@ -206,7 +212,7 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 
         gtk_button_set_relief(GTK_BUTTON(_maximizeButton), GTK_RELIEF_NONE);
 
-		_minimizeButtonClickedHandlerID = g_signal_connect(
+		_maximizeButtonClickedHandlerID = g_signal_connect(
 			G_OBJECT(_maximizeButton),
 			"clicked",
 			G_CALLBACK(maximize_button_clicked_handler),
@@ -217,10 +223,35 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
         gtk_header_bar_pack_end(
             GTK_HEADER_BAR(_headerBar),
             _headerBarRightSeparator);
+
+        _menuButton = gtk_button_new_from_icon_name(
+            "applications-system-symbolic",
+            GTK_ICON_SIZE_BUTTON);
+
+        gtk_widget_show(_menuButton);
+
+        gtk_header_bar_pack_start(
+            GTK_HEADER_BAR(_headerBar),
+            _menuButton);
+
+        gtk_button_set_relief(GTK_BUTTON(_menuButton), GTK_RELIEF_NONE);
+
+		_menuButtonClickedHandlerID = g_signal_connect(
+			G_OBJECT(_menuButton),
+			"clicked",
+			G_CALLBACK(menu_button_clicked_handler),
+			(__bridge gpointer)(self));
+
+        _headerBarLeftSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
+        gtk_widget_show(_headerBarLeftSeparator);
+        gtk_header_bar_pack_start(
+            GTK_HEADER_BAR(_headerBar),
+            _headerBarLeftSeparator);
     }];
 
     self.minimizeButtonHidden = true;
     self.maximizeButtonHidden = true;
+    self.menuButtonHidden = true;
     self.hidden = true;
 
     return self;
@@ -454,6 +485,23 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     [self updateHeaderbarSeparatorVisibility];
 }
 
+- (bool)isMenuButtonHidden
+{
+    __block bool hidden;
+    [GTKCallback sync: ^{
+        hidden = gtk_widget_get_visible(_menuButton);
+    }];
+    return hidden;
+}
+
+- (void)setMenuButtonHidden:(bool)hidden
+{
+    [GTKCallback sync: ^{
+        gtk_widget_set_visible(_menuButton, !hidden);
+    }];
+    [self updateHeaderbarSeparatorVisibility];
+}
+
 - (void)updateHeaderbarSeparatorVisibility
 {
     [GTKCallback sync: ^{
@@ -463,6 +511,11 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
             gtk_widget_set_visible(_headerBarRightSeparator, false);
         } else {
             gtk_widget_set_visible(_headerBarRightSeparator, true);
+        }
+        if (!gtk_widget_get_visible(_menuButton)) {
+            gtk_widget_set_visible(_headerBarLeftSeparator, false);
+        } else {
+            gtk_widget_set_visible(_headerBarLeftSeparator, true);
         }
     }];
 }

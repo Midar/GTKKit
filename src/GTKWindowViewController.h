@@ -33,12 +33,15 @@
     __block GtkWidget *_window;
     __block GtkWidget *_headerBar;
     __block GtkWidget *_headerBarRightSeparator;
+    __block GtkWidget *_headerBarLeftSeparator;
     __block GtkWidget *_closeButton;
     __block gulong     _closeButtonClickedHandlerID;
     __block GtkWidget *_minimizeButton;
     __block gulong     _minimizeButtonClickedHandlerID;
     __block GtkWidget *_maximizeButton;
     __block gulong     _maximizeButtonClickedHandlerID;
+    __block GtkWidget *_menuButton;
+    __block gulong     _menuButtonClickedHandlerID;
 }
 
 /*!
@@ -55,6 +58,11 @@
  * @brief Whether or not this view controller's window has a close button.
  */
 @property (getter=isMaximizeButtonHidden) bool maximizeButtonHidden;
+
+/*!
+ * @brief Whether or not this view controller's window has a menu button.
+ */
+@property (getter=isMenuButtonHidden) bool menuButtonHidden;
 
 @property (weak, nullable) OFObject<GTKWindowViewControllerDelegate> *delegate;
 

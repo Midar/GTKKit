@@ -212,11 +212,11 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 			G_CALLBACK(maximize_button_clicked_handler),
 			(__bridge gpointer)(self));
 
-        _headerBarSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
-        gtk_widget_show(_headerBarSeparator);
+        _headerBarRightSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
+        gtk_widget_show(_headerBarRightSeparator);
         gtk_header_bar_pack_end(
             GTK_HEADER_BAR(_headerBar),
-            _headerBarSeparator);
+            _headerBarRightSeparator);
     }];
 
     self.hidden = true;
@@ -458,9 +458,9 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
         if (!gtk_widget_get_visible(_minimizeButton) &&
             !gtk_widget_get_visible(_maximizeButton) &&
             !gtk_widget_get_visible(_closeButton)) {
-            gtk_widget_set_visible(_headerBarSeparator, false);
+            gtk_widget_set_visible(_headerBarRightSeparator, false);
         } else {
-            gtk_widget_set_visible(_headerBarSeparator, true);
+            gtk_widget_set_visible(_headerBarRightSeparator, true);
         }
     }];
 }

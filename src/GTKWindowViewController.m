@@ -126,7 +126,9 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
         gtk_window_set_titlebar(
             GTK_WINDOW(_window),
             _headerBar);
-
+        gtk_header_bar_set_decoration_layout(
+            GTK_HEADER_BAR(_headerBar),
+            ":");
         _closeButton = gtk_button_new_from_icon_name(
             "window-close",
             GTK_ICON_SIZE_BUTTON);
@@ -136,6 +138,8 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
         gtk_header_bar_pack_end(
             GTK_HEADER_BAR(_headerBar),
             _closeButton);
+
+        gtk_button_set_relief(GTK_BUTTON(_closeButton), GTK_RELIEF_NONE);
 
 		_closeButtonClickedHandlerID = g_signal_connect(
 			G_OBJECT(_closeButton),

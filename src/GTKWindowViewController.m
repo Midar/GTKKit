@@ -84,6 +84,10 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     }
 }
 
+@interface GTKWindowViewController ()
+- (void)updateHeaderbarSeparatorVisibility;
+@end
+
 @implementation GTKWindowViewController
 - init
 {
@@ -382,6 +386,7 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     [GTKCallback sync: ^{
         gtk_widget_set_visible(_closeButton, !hidden);
     }];
+    [self updateHeaderbarSeparatorVisibility];
 }
 
 - (bool)isMinimizeButtonHidden
@@ -398,6 +403,7 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     [GTKCallback sync: ^{
         gtk_widget_set_visible(_minimizeButton, !hidden);
     }];
+    [self updateHeaderbarSeparatorVisibility];
 }
 
 - (bool)isMaximizeButtonHidden
@@ -413,6 +419,20 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     [GTKCallback sync: ^{
         gtk_widget_set_visible(_maximizeButton, !hidden);
+    }];
+    [self updateHeaderbarSeparatorVisibility];
+}
+
+- (void)updateHeaderbarSeparatorVisibility
+{
+    [GTKCallback sync: ^{
+        if (!gtk_widget_get_visible(_minimizeButton) &&
+            !gtk_widget_get_visible(_maximizeButton) &&
+            !gtk_widget_get_visible(_closeButton)) {
+            gtk_widget_set_visible(_headerBarSeparator, false);
+        } else {
+            gtk_widget_set_visible(_headerBarSeparator, true);
+        }
     }];
 }
 @end

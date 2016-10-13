@@ -23,8 +23,6 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
 
-    //FIXME: Make a window delegate protocol and apply it here.
-
     if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
         if (![window.delegate windowShouldClose]) {
             return;
@@ -39,6 +37,50 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 
     if ([window.delegate respondsToSelector: @selector(windowDidClose)]) {
         [window.delegate windowDidClose];
+    }
+}
+
+static void
+minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
+{
+    GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
+
+    if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
+        if (![window.delegate windowShouldMinimize]) {
+            return;
+        }
+    }
+
+    if ([window.delegate respondsToSelector: @selector(windowWillMinimize)]) {
+        [window.delegate windowWillMinimize];
+    }
+
+    [window minimize];
+
+    if ([window.delegate respondsToSelector: @selector(windowDidMinimize)]) {
+        [window.delegate windowDidMinimize];
+    }
+}
+
+static void
+maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
+{
+    GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
+
+    if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
+        if (![window.delegate windowShouldMaximize]) {
+            return;
+        }
+    }
+
+    if ([window.delegate respondsToSelector: @selector(windowWillMaximize)]) {
+        [window.delegate windowWillMaximize];
+    }
+
+    [window maximize];
+
+    if ([window.delegate respondsToSelector: @selector(windowDidMaximize)]) {
+        [window.delegate windowDidMaximize];
     }
 }
 
@@ -99,6 +141,38 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 			G_OBJECT(_closeButton),
 			"clicked",
 			G_CALLBACK(close_button_clicked_handler),
+			(__bridge gpointer)(self));
+
+        _minimizeButton = gtk_button_new_from_icon_name(
+            "zoom-out",
+            GTK_ICON_SIZE_BUTTON);
+
+        gtk_widget_show(_minimizeButton);
+
+        gtk_header_bar_pack_end(
+            GTK_HEADER_BAR(_headerBar),
+            _minimizeButton);
+
+		_minimizeButtonClickedHandlerID = g_signal_connect(
+			G_OBJECT(_minimizeButton),
+			"clicked",
+			G_CALLBACK(minimize_button_clicked_handler),
+			(__bridge gpointer)(self));
+
+        _maximizeButton = gtk_button_new_from_icon_name(
+            "zoom-in",
+            GTK_ICON_SIZE_BUTTON);
+
+        gtk_widget_show(_maximizeButton);
+
+        gtk_header_bar_pack_end(
+            GTK_HEADER_BAR(_headerBar),
+            _maximizeButton);
+
+		_minimizeButtonClickedHandlerID = g_signal_connect(
+			G_OBJECT(_maximizeButton),
+			"clicked",
+			G_CALLBACK(maximize_button_clicked_handler),
 			(__bridge gpointer)(self));
     }];
 
@@ -268,5 +342,67 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)shouldBecomeFirstResponder
 {
     return true;
+}
+
+- (void)minimize
+{
+    [GTKCallback sync: ^{
+        gtk_window_iconify(GTK_WINDOW(_window));
+    }];
+}
+
+- (void)maximize
+{
+    [GTKCallback sync: ^{
+        gtk_window_maximize(GTK_WINDOW(_window));
+    }];
+}
+
+- (bool)isCloseButtonHidden
+{
+    __block bool hidden;
+    [GTKCallback sync: ^{
+        hidden = gtk_widget_get_visible(_closeButton);
+    }];
+    return hidden;
+}
+
+- (void)setCloseButtonHidden:(bool)hidden
+{
+    [GTKCallback sync: ^{
+        gtk_widget_set_visible(_closeButton, !hidden);
+    }];
+}
+
+- (bool)isMinimizeButtonHidden
+{
+    __block bool hidden;
+    [GTKCallback sync: ^{
+        hidden = gtk_widget_get_visible(_minimizeButton);
+    }];
+    return hidden;
+}
+
+- (void)setMinimizeButtonHidden:(bool)hidden
+{
+    [GTKCallback sync: ^{
+        gtk_widget_set_visible(_minimizeButton, !hidden);
+    }];
+}
+
+- (bool)isMaximizeButtonHidden
+{
+    __block bool hidden;
+    [GTKCallback sync: ^{
+        hidden = gtk_widget_get_visible(_maximizeButton);
+    }];
+    return hidden;
+}
+
+- (void)setMaximizeButtonHidden:(bool)hidden
+{
+    [GTKCallback sync: ^{
+        gtk_widget_set_visible(_maximizeButton, !hidden);
+    }];
 }
 @end

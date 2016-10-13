@@ -24,4 +24,10 @@
 - (BOOL)windowShouldClose;
 - (void)windowWillClose;
 - (void)windowDidClose;
+- (BOOL)windowShouldMinimize;
+- (void)windowWillMinimize;
+- (void)windowDidMinimize;
+- (BOOL)windowShouldMaximize;
+- (void)windowWillMaximize;
+- (void)windowDidMaximize;
 @end

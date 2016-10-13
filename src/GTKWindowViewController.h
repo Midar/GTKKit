@@ -36,7 +36,24 @@
     __block gulong     _closeButtonClickedHandlerID;
     __block GtkWidget *_minimizeButton;
     __block gulong     _minimizeButtonClickedHandlerID;
+    __block GtkWidget *_maximizeButton;
+    __block gulong     _maximizeButtonClickedHandlerID;
 }
+
+/*!
+ * @brief Whether or not this view controller's window has a close button.
+ */
+@property (getter=isCloseButtonHidden) bool closeButtonHidden;
+
+/*!
+ * @brief Whether or not this view controller's window has a close button.
+ */
+@property (getter=isMinimizeButtonHidden) bool minimizeButtonHidden;
+
+/*!
+ * @brief Whether or not this view controller's window has a close button.
+ */
+@property (getter=isMaximizeButtonHidden) bool maximizeButtonHidden;
 
 @property (weak, nullable) OFObject<GTKWindowViewControllerDelegate> *delegate;
 
@@ -100,4 +117,14 @@
  * @brief Hide the window from the user. This does not destroy the window.
  */
 - (void)close;
+
+/*!
+ * @brief Minimize the window.
+ */
+- (void)minimize;
+
+/*!
+ * @brief Maximize the window.
+ */
+- (void)maximize;
 @end

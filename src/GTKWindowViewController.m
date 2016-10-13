@@ -249,6 +249,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
             _headerBarLeftSeparator);
     }];
 
+    self.closeButtonHidden = false;
     self.minimizeButtonHidden = true;
     self.maximizeButtonHidden = true;
     self.menuButtonHidden = true;

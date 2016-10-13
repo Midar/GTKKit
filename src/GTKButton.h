@@ -28,10 +28,16 @@ typedef OF_ENUM(int, GTKButtonType) {
     GTKSwitchButton = 4
 };
 
+const bool GTKOnState = true;
+const bool GTKOffState = false;
+
 @interface GTKButton: GTKControl
 {
     __block GTKButtonType _buttonType;
-    __block gulong buttonClickedHandlerID;
+    __block gulong _buttonClickedHandlerID;
+    __block gulong _buttonToggledHandlerID;
+    __block GtkWidget *_hiddenRadioButton;
 }
 @property GTKButtonType buttonType;
+@property bool state;
 @end

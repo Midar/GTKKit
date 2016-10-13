@@ -44,7 +44,7 @@ clicked_event_handler(GtkWidget *widget, gpointer userdata)
         self.mainWidget = gtk_button_new();
         g_object_ref_sink(G_OBJECT(self.mainWidget));
 
-        self.childPositionHandlerID = g_signal_connect(
+        buttonClickedHandlerID = g_signal_connect(
             G_OBJECT(self.mainWidget),
             "clicked",
             G_CALLBACK(clicked_event_handler),

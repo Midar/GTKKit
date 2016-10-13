@@ -117,19 +117,19 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 			"_GTKKIT_OWNING_VIEW_",
 		    (__bridge gpointer)(self));
 
-		self.childPositionHandlerID = g_signal_connect(
+		_childPositionHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"get-child-position",
 			G_CALLBACK(get_child_position_handler),
 			(__bridge gpointer)(self));
 
-	    self.drawHandlerID = g_signal_connect(
+	    _drawHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "draw",
 			G_CALLBACK(draw_handler),
 	        (__bridge gpointer)(self));
 
-	    self.widgetDestroyedHandlerID = g_signal_connect(
+	    _widgetDestroyedHandlerID = g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "destroy",
 			G_CALLBACK(overlay_widget_destroyed_handler),
@@ -145,13 +145,13 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
         eventBoxMask = eventBoxMask | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK;
         gtk_widget_set_events(self.mainWidget, eventBoxMask);
 
-        self.pressEventHandlerID = g_signal_connect(
+        _pressEventHandlerID = g_signal_connect(
             G_OBJECT(self.mainWidget),
             "button-press-event",
             G_CALLBACK(press_event_handler),
             (__bridge gpointer)(self));
 
-        self.releaseEventHandlerID = g_signal_connect(
+        _releaseEventHandlerID = g_signal_connect(
             G_OBJECT(self.mainWidget),
             "button-release-event",
             G_CALLBACK(release_event_handler),
@@ -178,11 +178,11 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 		[GTKCallback sync: ^{
 			g_signal_handler_disconnect(
 				G_OBJECT(self.overlayWidget),
-				self.childPositionHandlerID);
+				_childPositionHandlerID);
 
 			g_signal_handler_disconnect(
 				G_OBJECT(self.overlayWidget),
-				self.widgetDestroyedHandlerID);
+				_widgetDestroyedHandlerID);
 
 		    gtk_widget_destroy(self.mainWidget);
             gtk_widget_destroy(self.overlayWidget);

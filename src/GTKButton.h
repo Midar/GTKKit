@@ -31,6 +31,7 @@ typedef OF_ENUM(int, GTKButtonType) {
 @interface GTKButton: GTKControl
 {
     __block GTKButtonType _buttonType;
+    __block gulong buttonClickedHandlerID;
 }
 @property GTKButtonType buttonType;
 @end

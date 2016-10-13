@@ -42,13 +42,12 @@
 @interface GTKView: GTKResponder
 {
     bool _hidden;
+    __block gulong _childPositionHandlerID;
+    __block gulong _widgetDestroyedHandlerID;
+    __block gulong _pressEventHandlerID;
+    __block gulong _releaseEventHandlerID;
+    __block gulong _drawHandlerID;
 }
-
-@property gulong childPositionHandlerID;
-@property gulong widgetDestroyedHandlerID;
-@property gulong pressEventHandlerID;
-@property gulong releaseEventHandlerID;
-@property gulong drawHandlerID;
 
 /*!
  * @brief The internal GtkOverlay used by the view.

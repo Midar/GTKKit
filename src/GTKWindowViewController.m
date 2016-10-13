@@ -219,6 +219,8 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
             _headerBarRightSeparator);
     }];
 
+    self.minimizeButtonHidden = true;
+    self.maximizeButtonHidden = true;
     self.hidden = true;
 
     return self;

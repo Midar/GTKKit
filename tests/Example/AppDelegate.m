@@ -53,9 +53,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window.title = @"Example Window";
     self.window.subtitle = @"Example Subtitle";
 
-    self.window.minimizeButtonHidden = true;
-    self.window.maximizeButtonHidden = true;
-
     self.window.hidden = false;
 
     // It would be dangerous to modify anything below this line.

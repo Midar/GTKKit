@@ -118,6 +118,8 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
         }
 
         gtk_widget_show(self.mainWidget);
+
+        gtk_button_set_always_show_image(GTK_BUTTON(self.mainWidget), true);
     }];
 }
 
@@ -185,5 +187,28 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
             break;
         }
     }];
+}
+
+- (GTKImage *)image
+{
+    return _image;
+}
+
+- (void)setImage:(GTKImage *)image
+{
+    _image = image;
+    if (self.buttonType != GTKSwitchButton) {
+        if (nil != _image) {
+            if (NULL != _imageWidget) {
+                gtk_widget_destroy(_imageWidget);
+            }
+            _imageWidget = gtk_image_new();
+            g_object_ref(G_OBJECT(_imageWidget));
+            gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);
+            gtk_image_set_from_pixbuf(GTK_IMAGE(_imageWidget), _image.pixbuf);
+        } else {
+            gtk_image_clear(GTK_IMAGE(_imageWidget));
+        }
+    }
 }
 @end

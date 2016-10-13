@@ -19,6 +19,7 @@
 
 #import "defines.h"
 #import "GTKControl.h"
+#import "GTKImage.h"
 
 typedef OF_ENUM(int, GTKButtonType) {
     GTKPushButton = 0,
@@ -37,7 +38,14 @@ const bool GTKOffState = false;
     __block gulong _buttonClickedHandlerID;
     __block gulong _buttonToggledHandlerID;
     __block GtkWidget *_hiddenRadioButton;
+    __block GtkWidget *_imageWidget;
+    __block GTKImage *_image;
 }
 @property GTKButtonType buttonType;
 @property bool state;
+
+/*!
+ * @brief An image owned by this button, to be displayed if there is no text set.
+ */
+@property (nullable) GTKImage *image;
 @end

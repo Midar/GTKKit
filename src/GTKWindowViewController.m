@@ -178,6 +178,12 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 			"clicked",
 			G_CALLBACK(maximize_button_clicked_handler),
 			(__bridge gpointer)(self));
+
+        _headerBarSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
+        gtk_widget_show(_headerBarSeparator);
+        gtk_header_bar_pack_end(
+            GTK_HEADER_BAR(_headerBar),
+            _headerBarSeparator);
     }];
 
     self.hidden = true;

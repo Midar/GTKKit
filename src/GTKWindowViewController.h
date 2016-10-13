@@ -32,6 +32,7 @@
 {
     __block GtkWidget *_window;
     __block GtkWidget *_headerBar;
+    __block GtkWidget *_headerBarSeparator;
     __block GtkWidget *_closeButton;
     __block gulong     _closeButtonClickedHandlerID;
     __block GtkWidget *_minimizeButton;

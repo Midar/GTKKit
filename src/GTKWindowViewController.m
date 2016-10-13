@@ -61,28 +61,28 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
         g_object_ref_sink(G_OBJECT(_headerBar));
         gtk_widget_show(_headerBar);
 
-        self.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-        g_object_ref_sink(G_OBJECT(self.window));
+        _window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+        g_object_ref_sink(G_OBJECT(_window));
         g_object_set_data(
-            G_OBJECT(self.window),
+            G_OBJECT(_window),
             "_GTKKIT_OWNING_VIEW_CONTROLLER_",
             (__bridge gpointer)(self));
         gtk_widget_set_size_request(
-            self.window,
+            _window,
             1,
             1);
         gtk_window_set_default_size(
-            GTK_WINDOW(self.window),
+            GTK_WINDOW(_window),
             100,
             100);
         gtk_container_add(
-            GTK_CONTAINER(self.window),
+            GTK_CONTAINER(_window),
             self.contentView.overlayWidget);
         gtk_header_bar_set_has_subtitle(
             GTK_HEADER_BAR(_headerBar),
             false);
         gtk_window_set_titlebar(
-            GTK_WINDOW(self.window),
+            GTK_WINDOW(_window),
             _headerBar);
 
         _closeButton = gtk_button_new_from_icon_name(
@@ -95,7 +95,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
             GTK_HEADER_BAR(_headerBar),
             _closeButton);
 
-		closeButtonClickedHandlerID = g_signal_connect(
+		_closeButtonClickedHandlerID = g_signal_connect(
 			G_OBJECT(_closeButton),
 			"clicked",
 			G_CALLBACK(close_button_clicked_handler),
@@ -110,7 +110,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (void)dealloc
 {
     [GTKCallback sync: ^{
-        gtk_widget_destroy(self.window);
+        gtk_widget_destroy(_window);
     }];
 }
 
@@ -118,7 +118,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     __block bool hidden;
     [GTKCallback sync: ^{
-        hidden = !gtk_widget_get_visible(self.window);
+        hidden = !gtk_widget_get_visible(_window);
     }];
     return hidden;
 }
@@ -126,7 +126,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (void)setHidden:(bool)hidden
 {
     [GTKCallback sync: ^{
-        gtk_widget_set_visible(self.window, !hidden);
+        gtk_widget_set_visible(_window, !hidden);
     }];
 }
 
@@ -135,11 +135,11 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
     __block GTKRect frame;
     [GTKCallback sync: ^{
         gtk_window_get_size(
-            GTK_WINDOW(self.window),
+            GTK_WINDOW(_window),
             &frame.width,
             &frame.height);
         gtk_window_get_position(
-            GTK_WINDOW(self.window),
+            GTK_WINDOW(_window),
             &frame.x,
             &frame.y);
     }];
@@ -149,8 +149,8 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (void)setFrame:(GTKRect)frame
 {
     [GTKCallback sync: ^{
-        gtk_window_resize(GTK_WINDOW(self.window), frame.width, frame.height);
-        gtk_window_move(GTK_WINDOW(self.window), frame.x, frame.y);
+        gtk_window_resize(GTK_WINDOW(_window), frame.width, frame.height);
+        gtk_window_move(GTK_WINDOW(_window), frame.x, frame.y);
     }];
 }
 
@@ -168,7 +168,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (void)setTitleVisible:(bool)visible
 {
     [GTKCallback sync: ^{
-        gtk_window_set_decorated(GTK_WINDOW(self.window), visible);
+        gtk_window_set_decorated(GTK_WINDOW(_window), visible);
     }];
 }
 
@@ -176,7 +176,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     __block bool visible;
     [GTKCallback sync: ^{
-        visible = gtk_window_get_decorated(GTK_WINDOW(self.window));
+        visible = gtk_window_get_decorated(GTK_WINDOW(_window));
     }];
     return visible;
 }
@@ -184,7 +184,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (void)setResizable:(bool)resizable
 {
     [GTKCallback sync: ^{
-        gtk_window_set_resizable(GTK_WINDOW(self.window), resizable);
+        gtk_window_set_resizable(GTK_WINDOW(_window), resizable);
     }];
 }
 
@@ -192,7 +192,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     __block bool resizable;
     [GTKCallback sync: ^{
-        resizable = gtk_window_get_resizable(GTK_WINDOW(self.window));
+        resizable = gtk_window_get_resizable(GTK_WINDOW(_window));
     }];
     return resizable;
 }
@@ -201,7 +201,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     __block bool hasToplevelFocus;
     [GTKCallback sync: ^{
-        hasToplevelFocus = gtk_window_has_toplevel_focus(GTK_WINDOW(self.window));
+        hasToplevelFocus = gtk_window_has_toplevel_focus(GTK_WINDOW(_window));
     }];
     return hasToplevelFocus;
 }
@@ -248,7 +248,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     __block double alpha;
     [GTKCallback sync: ^{
-        alpha = gtk_widget_get_opacity(self.window);
+        alpha = gtk_widget_get_opacity(_window);
     }];
     return alpha;
 }
@@ -256,7 +256,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (void)setAlpha:(double)alpha
 {
     [GTKCallback sync: ^{
-        gtk_widget_set_opacity(self.window, alpha);
+        gtk_widget_set_opacity(_window, alpha);
     }];
 }
 

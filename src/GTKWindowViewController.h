@@ -30,9 +30,12 @@
  */
 @interface GTKWindowViewController: GTKViewController
 {
+    __block GtkWidget *_window;
     __block GtkWidget *_headerBar;
     __block GtkWidget *_closeButton;
-    __block gulong closeButtonClickedHandlerID;
+    __block gulong     _closeButtonClickedHandlerID;
+    __block GtkWidget *_minimizeButton;
+    __block gulong     _minimizeButtonClickedHandlerID;
 }
 
 @property (weak, nullable) OFObject<GTKWindowViewControllerDelegate> *delegate;
@@ -41,11 +44,6 @@
  * @brief Whether or not this view controller's window is the toplevel input focus.
  */
 @property (readonly) bool hasToplevelFocus;
-
-/*!
- * @brief The GtkWindow widget this view controller manages.
- */
-@property (nullable) GtkWidget *window;
 
 /*!
  * @brief The title of the window this view controller manages.

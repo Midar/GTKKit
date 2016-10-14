@@ -393,4 +393,29 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
         gtk_widget_set_opacity(self.mainWidget, alpha);
     }];
 }
+
+- (GTKViewController *)viewController
+{
+    if (nil == _viewController) {
+        return self.superview.viewController;
+    } else {
+        return _viewController;
+    }
+}
+
+- (void)setViewController:(GTKViewController *)viewController
+{
+    _viewController = viewController;
+}
+
+- (void)becomeFirstResponder
+{
+    if (self.canBecomeFirstResponder &&
+        self.shouldBecomeFirstResponder &&
+        nil != self.viewController) {
+        [self willBecomeFirstResponder];
+        self.viewController.firstResponder = self;
+        [self didBecomeFirstResponder];
+    }
+}
 @end

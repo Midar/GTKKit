@@ -38,6 +38,11 @@
 @property (readonly) bool canBecomeFirstResponder;
 
 /*!
+ * @brief Tell the view to try to become first responder.
+ */
+- (void)becomeFirstResponder;
+
+/*!
  * @brief Respond to a mouse button being pressed.
  *
  * @param event A GTKEvent instance containing information about the event.

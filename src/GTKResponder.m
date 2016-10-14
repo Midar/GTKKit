@@ -30,6 +30,11 @@
     return self.nextResponder;
 }
 
+- (void)becomeFirstResponder
+{
+    // Default implementation does nothing.
+}
+
 - (bool)canBecomeFirstResponder
 {
     return false;

@@ -121,6 +121,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
     self.stringValue = stringValue;
     self.state = state;
+    
     if (nil != _image) {
         gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);
         gtk_image_set_from_pixbuf(GTK_IMAGE(_imageWidget), _image.pixbuf);
@@ -229,7 +230,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
     return true;
 }
 
-- (bool)sholdBecomeFirstResponder
+- (bool)shouldBecomeFirstResponder
 {
     return true;
 }

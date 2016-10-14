@@ -53,7 +53,8 @@
 /*!
  * @brief The internal cairo context for the widget, used for the default draw
  * method. This is not guaranteed to be valid except while the draw method is
- * run by the GTK+ draw signal handler.
+ * run by the GTK+ draw signal handler. This is primarily useful for doing
+ * custom drawing in your own GTKView subclasses.
  */
 @property (nullable) cairo_t *cairoContext;
 

@@ -118,8 +118,6 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
         }
 
         gtk_widget_show(self.mainWidget);
-
-        gtk_button_set_always_show_image(GTK_BUTTON(self.mainWidget), true);
     }];
 }
 
@@ -179,8 +177,14 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
             break;
         case GTKToggleButton:
         case GTKCheckButton:
-        case GTKRadioButton:
             gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.mainWidget), state);
+            break;
+        case GTKRadioButton:
+            if (state == GTKOnState) {
+                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.mainWidget), GTKOnState);
+            } else {
+                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_hiddenRadioButton), GTKOnState);
+            }
             break;
         case GTKSwitchButton:
             gtk_switch_set_active(GTK_SWITCH(self.mainWidget), state);

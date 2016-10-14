@@ -22,9 +22,10 @@
 
 static gboolean
 draw_handler(GtkWidget *widget,
-      		 void      *cr,
+      		 cairo_t   *cr,
       		 GTKView   *view)
 {
+    view.cairoContext = cr;
 	[view draw];
 	[view layoutSubviews];
 	return false;

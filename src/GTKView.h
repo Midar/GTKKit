@@ -51,6 +51,13 @@
 }
 
 /*!
+ * @brief The internal cairo context for the widget, used for the default draw
+ * method. This is not guaranteed to be valid except while the draw method is
+ * run by the GTK+ draw signal handler.
+ */
+@property (nullable) cairo_t *cairoContext;
+
+/*!
  * @brief The internal GtkOverlay used by the view.
  */
 @property (nullable) GtkWidget *overlayWidget;

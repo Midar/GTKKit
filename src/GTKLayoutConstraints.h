@@ -19,10 +19,20 @@
 
 #import "defines.h"
 
-typedef OF_ENUM(int, GTKLayoutConstraintType) {
-	GTKLayoutConstraintTypeFlexible = 0,
-	GTKLayoutConstraintTypeFixed = 1
-};
+/*!
+ * @brief The types of constraint it's possible to use.
+ */
+typedef enum GTKLayoutConstraintType {
+	/*!
+	 * @brief A flexible constraint, the value of which is a percentage of the
+	 * relevant axis of the superview.
+	 */
+	GTKLayoutConstraintTypeFlexible,
+	/*!
+	 * @brief A fixed constraint, the value of which is a fixed number of pixels.
+	 */
+	GTKLayoutConstraintTypeFixed
+} GTKLayoutConstraintType;
 
 /*!
  * @brief A class whose instances represent layout constraints.

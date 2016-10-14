@@ -20,13 +20,10 @@
 
 typedef GdkRectangle GTKRect;
 
-// Our version of NS_ENUM.
-#ifndef OF_ENUM
-#define OF_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
-#endif
-
-// This macro sets the class used as the app delegate, and provides the
-// main() function.
+/*!
+ * @brief This macro sets the class used as the app delegate, and provides the
+ * main() function.
+ */
 #define GTK_APPLICATION_DELEGATE(cls)                           \
 static int *_argc;                                              \
 static char ***_argv;                                           \

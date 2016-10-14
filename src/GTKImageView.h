@@ -1,4 +1,4 @@
-/*
+/*! @file GTKImageView.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -21,17 +21,52 @@
 #import "GTKView.h"
 #import "GTKImage.h"
 
-typedef OF_ENUM(int, GTKImageScaling) {
-    GTKImageScaleNone = 0,
-    GTKImageScaleAxesIndependently = 1,
-    GTKImageScaleProportionatelyDown = 2,
-    GTKImageScaleProportionatelyUpOrDown = 3
-};
+/*!
+ * @brief The kinds of scaling method a GTKImageView can use for its image.
+ */
+typedef enum GTKImageScaling {
 
+    /*!
+     * @brief No scaling. The image will be shown at its native size, regardless
+     * of the size of the GTKImageView.
+     */
+    GTKImageScaleNone,
+
+    /*!
+     * @brief Scale the image to fit the GTKImageView exactly, regardless of its
+     * native aspect ratio.
+     */
+    GTKImageScaleAxesIndependently,
+
+    /*!
+     * @brief If the native size of the image is larger than the GTKImageView,
+     * scale it down to fit, maintiaining the native aspect ratio of the image.
+     */
+    GTKImageScaleProportionatelyDown,
+
+    /*!
+     * @brief Scale the image to fit the GTKImageView, maintaining its native
+     * aspect ratio.
+     */
+    GTKImageScaleProportionatelyUpOrDown
+} GTKImageScaling;
+
+
+/*!
+ * @brief A class representing a view which displays an image to the user.
+ */
 @interface GTKImageView: GTKView
 {
     __weak __block GTKImage *_image;
 }
+
+/*!
+ * @brief The image the view displays to the user.
+ */
 @property (weak) GTKImage *image;
+
+/*!
+ * @brief The scaling method the view should use for the image it displays.
+ */
 @property GTKImageScaling imageScaling;
 @end

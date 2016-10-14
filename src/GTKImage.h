@@ -1,4 +1,4 @@
-/*
+/*! @file GTKImage.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -20,7 +20,9 @@
 #import "defines.h"
 
 
-
+/*!
+ * @brief A model class which represents image data.
+ */
 @interface GTKImage: OFObject
 {
     __block GdkPixbuf *_pixbuf;

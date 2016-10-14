@@ -1,4 +1,4 @@
-/*
+/*! @file GTKEvent.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -18,38 +18,94 @@
 
 #import "defines.h"
 
-typedef OF_ENUM(int, GTKEventType) {
+/*!
+ * @brief The types of event a GTKEvent can represent.
+ */
+typedef enum GTKEventType {
+    /*!
+     * @brief A key down event.
+     */
     GTKEventTypeKeyDown,
+    /*!
+     * @brief A key up event.
+     */
     GTKEventTypeKeyUp,
+    /*!
+     * @brief A mouse down event.
+     */
     GTKEventTypeMouseDown,
+    /*!
+     * @brief A mouse up event.
+     */
     GTKEventTypeMouseUp,
+    /*!
+     * @brief A mouse clicked event.
+     */
     GTKEventTypeMouseClicked
-};
+} GTKEventType;
 
+
+/*!
+ * @brief A structure representing the possible modifier keys that can be
+ * applied to an event.
+ */
 typedef struct GTKEventKeyboardModifiers {
+
+    /*!
+     * @brief Whether or not the control key is held down.
+     */
     bool control;
+
+        /*!
+         * @brief Whether or not the alt key is held down.
+         */
     bool alt;
+
+        /*!
+         * @brief Whether or not the shift key is held down.
+         */
     bool shift;
 } GTKEventKeyboardModifiers;
-
-@interface GTKEvent: OFObject
 
 /*!
  * @brief A class implementing objects which represent an event in the system.
  * It is a general data object, used to represent various kinds of event. As such,
  * it is not likely that all of this object's properties will ever be used at once.
  */
+@interface GTKEvent: OFObject
+
+/*!
+ * @brief The type of event this object represents.
+ */
 @property GTKEventType type;
 
+/*!
+ * @brief For a mouse event, the button that was pressed.
+ */
 @property unsigned int mouseButton;
+
+/*!
+ * @brief For a mouse event, the X coordinate of the pointer in the window's coordinate space.
+ */
 @property unsigned int mouseX;
+
+/*!
+ * @brief For a mouse event, the Y coordinate of the pointer in the window's coordinate space.
+ */
 @property unsigned int mouseY;
 
 @property double deltaX;
 @property double deltaY;
 @property double deltaZ;
 
+/*!
+ * @brief For a keyboard event, the character the key represents.
+ */
 @property char character;
+
+/*!
+ * @brief The modifier keys applied to the event.
+ */
 @property GTKEventKeyboardModifiers modifierKeys;
 
 @end

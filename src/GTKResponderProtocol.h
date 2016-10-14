@@ -1,4 +1,4 @@
-/*
+/*! @file GTKResponderProtocol.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -21,6 +21,9 @@
 #import "defines.h"
 #import "GTKEvent.h"
 
+/*!
+ * @brief The protocol responder objects use to communicate.
+ */
 @protocol GTKResponderProtocol
 /*!
  * @brief The next object in the responder chain, if any.

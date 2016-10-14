@@ -1,4 +1,4 @@
-/*
+/*! @file GTKWindowViewControllerDelegate.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -19,6 +19,10 @@
 
 #import "defines.h"
 
+/*!
+ * @brief A protocol composed of the optional methods GTKWindowViewController delegate
+ * classes can implement.
+ */
 @protocol GTKWindowViewControllerDelegate
 @optional
 - (BOOL)windowShouldClose;

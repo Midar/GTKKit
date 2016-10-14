@@ -53,8 +53,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window.title = @"Example Window";
     self.window.subtitle = @"Example Subtitle";
 
-    self.window.hidden = false;
-
     // It would be dangerous to modify anything below this line.
     return self;
 }
@@ -63,6 +61,8 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     [super applicationDidFinishLaunching];
     // Put your custom post-launch startup code below this line.
+
+    self.window.hidden = false;
 
     printf("Hello!\n");
 }

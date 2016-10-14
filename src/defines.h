@@ -18,6 +18,10 @@
 
 #import <gtk/gtk.h>
 
+/*!
+ * @brief A structure representing a rectangle, with x, y, width and height integer
+ * values.
+ */
 typedef GdkRectangle GTKRect;
 
 /*!

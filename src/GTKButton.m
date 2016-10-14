@@ -57,6 +57,8 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
             (__bridge gpointer)(self));
         gtk_widget_set_focus_on_click (self.mainWidget,
                                        false);
+
+        _imageWidget = gtk_image_new();
     }];
 }
 
@@ -69,7 +71,6 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 {
     _buttonType = buttonType;
 
-    GTKImage *image = self.image;
     OFString *stringValue = self.stringValue;
     bool state = self.state;
 
@@ -120,7 +121,12 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
     self.stringValue = stringValue;
     self.state = state;
-    self.image = image;
+    if (nil != _image) {
+        gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);
+        gtk_image_set_from_pixbuf(GTK_IMAGE(_imageWidget), _image.pixbuf);
+    } else {
+        gtk_image_clear(GTK_IMAGE(_imageWidget));
+    }
 }
 
 - (OFString *)stringValue

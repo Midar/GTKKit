@@ -55,6 +55,8 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
             "clicked",
             G_CALLBACK(clicked_event_handler),
             (__bridge gpointer)(self));
+        gtk_widget_set_focus_on_click (self.mainWidget,
+                                       false);
     }];
 }
 
@@ -108,6 +110,8 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
         }
 
         gtk_widget_show(self.mainWidget);
+        gtk_widget_set_focus_on_click (self.mainWidget,
+                                       false);
     }];
 }
 
@@ -204,5 +208,23 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
             gtk_image_clear(GTK_IMAGE(_imageWidget));
         }
     }
+}
+
+- (bool)canBecomeFirstResponder
+{
+    return true;
+}
+
+- (bool)sholdBecomeFirstResponder
+{
+    return true;
+}
+
+- (void)didBecomeFirstResponder
+{
+    [GTKCallback sync: ^{
+        gtk_widget_grab_focus(self.mainWidget);
+        gtk_widget_grab_default(self.mainWidget);
+    }];
 }
 @end

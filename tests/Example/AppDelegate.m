@@ -53,7 +53,10 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window.title = @"Example Window";
     self.window.subtitle = @"Example Subtitle";
 
+    [button becomeFirstResponder];
+
     // It would be dangerous to modify anything below this line.
+
     return self;
 }
 

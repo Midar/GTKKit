@@ -69,6 +69,10 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 {
     _buttonType = buttonType;
 
+    GTKImage *image = self.image;
+    OFString *stringValue = self.stringValue;
+    bool state = self.state;
+
     [GTKCallback sync: ^{
         gtk_widget_destroy(self.mainWidget);
         gtk_widget_destroy(_hiddenRadioButton);
@@ -113,6 +117,10 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
         gtk_widget_set_focus_on_click (self.mainWidget,
                                        false);
     }];
+
+    self.stringValue = stringValue;
+    self.state = state;
+    self.image = image;
 }
 
 - (OFString *)stringValue

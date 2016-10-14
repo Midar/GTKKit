@@ -165,7 +165,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
             GTK_HEADER_BAR(_headerBar),
             ":");
         _closeButton = gtk_button_new_from_icon_name(
-            "window-close",
+            "window-close-symbolic",
             GTK_ICON_SIZE_BUTTON);
 
         gtk_widget_show(_closeButton);
@@ -183,7 +183,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 			(__bridge gpointer)(self));
 
         _minimizeButton = gtk_button_new_from_icon_name(
-            "zoom-out",
+            "zoom-out-symbolic",
             GTK_ICON_SIZE_BUTTON);
 
         gtk_widget_show(_minimizeButton);
@@ -201,7 +201,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 			(__bridge gpointer)(self));
 
         _maximizeButton = gtk_button_new_from_icon_name(
-            "zoom-in",
+            "zoom-in-symbolic",
             GTK_ICON_SIZE_BUTTON);
 
         gtk_widget_show(_maximizeButton);
@@ -225,7 +225,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
             _headerBarRightSeparator);
 
         _menuButton = gtk_button_new_from_icon_name(
-            "applications-system-symbolic",
+            "open-menu-symbolic",
             GTK_ICON_SIZE_BUTTON);
 
         gtk_widget_show(_menuButton);

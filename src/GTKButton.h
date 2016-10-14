@@ -1,4 +1,5 @@
-/*
+/*! @file GTKButton.h
+ *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -21,17 +22,51 @@
 #import "GTKControl.h"
 #import "GTKImage.h"
 
-typedef OF_ENUM(int, GTKButtonType) {
-    GTKPushButton = 0,
-    GTKToggleButton = 1,
-    GTKCheckButton = 2,
-    GTKRadioButton = 3,
-    GTKSwitchButton = 4
-};
 
+/*!
+ * @brief The types buttons can implement.
+ */
+typedef enum GTKButtonType {
+    /*!
+     * @brief A standard push button. This is the default type.
+     */
+    GTKPushButton,
+
+    /*!
+     * @brief A toggle button.
+     */
+    GTKToggleButton,
+
+    /*!
+     * @brief A check button.
+     */
+    GTKCheckButton,
+
+    /*!
+     * @brief A radio button.
+     */
+    GTKRadioButton,
+
+    /*!
+     * @brief A button which resembles a switch.
+     */
+    GTKSwitchButton
+} GTKButtonType;
+
+/*!
+ * @brief The state of an active button. Equal to true.
+ */
 const bool GTKOnState = true;
+
+/*!
+ * @brief The state of an inactive button. Equal to false.
+ */
 const bool GTKOffState = false;
 
+
+/*!
+ * @brief A class implementing various types of GUI button.
+ */
 @interface GTKButton: GTKControl
 {
     __block GTKButtonType _buttonType;
@@ -41,7 +76,16 @@ const bool GTKOffState = false;
     __block GtkWidget *_imageWidget;
     __block GTKImage *_image;
 }
+
+/*!
+ * @brief The type of the button.
+ */
 @property GTKButtonType buttonType;
+
+/*!
+ * @brief The state of this button. If the mode is GTKPushButton (the default
+ * for new buttons), this will always be GTKOffState.
+ */
 @property bool state;
 
 /*!

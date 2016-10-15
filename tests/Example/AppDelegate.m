@@ -86,8 +86,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)sliderUpdated:(GTKSlider *)sender
 {
-    printf("BING\n");
-    printf("Value: %f\n", sender.doubleValue);
+    printf("Slider Value: %f\n", sender.doubleValue);
 }
 
 - (void)windowDidClose

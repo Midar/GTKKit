@@ -19,6 +19,7 @@ SRCS =	GTKCallback.m                               \
 				GTKImage.m                                  \
 				GTKImageView.m                              \
 				GTKButton.m                                 \
+				GTKSlider.m                                 \
 				GTKInvalidLayoutConstraintsException.m
 
 INCLUDES =                                          \

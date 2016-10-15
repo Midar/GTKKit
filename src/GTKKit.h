@@ -31,4 +31,5 @@
 #import	"GTKImage.h"
 #import	"GTKImageView.h"
 #import "GTKButton.h"
+#import "GTKSlider.h"
 #import "GTKWindowViewControllerDelegate.h"

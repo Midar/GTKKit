@@ -25,9 +25,16 @@ draw_handler(GtkWidget *widget,
       		 cairo_t   *cr,
       		 GTKView   *view)
 {
-    view.cairoContext = cr;
-	[view draw];
-	[view layoutSubviews];
+    OFTimer *timer = [OFTimer
+        timerWithTimeInterval: 0
+        repeats: false
+        block: ^ (OFTimer *timer) {
+            view.cairoContext = cr;
+        	[view draw];
+        	[view layoutSubviews];
+        }];
+
+    [[OFRunLoop mainRunLoop] addTimer: timer];
 	return false;
 }
 
@@ -38,13 +45,21 @@ press_event_handler(GtkWidget *widget,
 {
     GTKView *view = (__bridge GTKView *)(userdata);
 
-    GTKEvent *evt = [GTKEvent new];
-    evt.type = GTKEventTypeMouseDown;
-    evt.mouseButton = event->button.button;
-    evt.mouseX = event->button.x;
-    evt.mouseY = event->button.y;
+    OFTimer *timer = [OFTimer
+        timerWithTimeInterval: 0
+        repeats: false
+        block: ^ (OFTimer *timer) {
 
-    [view mouseDown: evt];
+            GTKEvent *evt = [GTKEvent new];
+            evt.type = GTKEventTypeMouseDown;
+            evt.mouseButton = event->button.button;
+            evt.mouseX = event->button.x;
+            evt.mouseY = event->button.y;
+
+            [view mouseDown: evt];
+        }];
+
+    [[OFRunLoop mainRunLoop] addTimer: timer];
 
     return false;
 }
@@ -56,13 +71,21 @@ release_event_handler(GtkWidget *widget,
 {
     GTKView *view = (__bridge GTKView *)(userdata);
 
-    GTKEvent *evt = [GTKEvent new];
-    evt.type = GTKEventTypeMouseUp;
-    evt.mouseButton = event->button.button;
-    evt.mouseX = event->button.x;
-    evt.mouseY = event->button.y;
+    OFTimer *timer = [OFTimer
+        timerWithTimeInterval: 0
+        repeats: false
+        block: ^ (OFTimer *timer) {
 
-    [view mouseUp: evt];
+        GTKEvent *evt = [GTKEvent new];
+            evt.type = GTKEventTypeMouseUp;
+            evt.mouseButton = event->button.button;
+            evt.mouseX = event->button.x;
+            evt.mouseY = event->button.y;
+
+            [view mouseUp: evt];
+        }];
+
+    [[OFRunLoop mainRunLoop] addTimer: timer];
 
     return false;
 }

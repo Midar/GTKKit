@@ -47,7 +47,19 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("Action block run!\n");
     };
 
+    GTKSlider *slider = [GTKSlider new];
+    [slider.constraints flexibleToTop: 0
+                                 left: 0
+                                right: 0];
+    [slider.constraints fixedToBottom: 100];
+    slider.constraints.centerHorizontal = true;
+    [slider.constraints fixedWidth: 250];
+    [slider.constraints fixedHeight: 50];
+    slider.target = self;
+    slider.action = @selector(sliderUpdated:);
+
     [self.window addSubview: button];
+    [self.window addSubview: slider];
 
     self.window.delegate = self;
     self.window.title = @"Example Window";
@@ -62,7 +74,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)applicationDidFinishLaunching
 {
-    [super applicationDidFinishLaunching];
     // Put your custom post-launch startup code below this line.
 
     self.window.hidden = false;
@@ -73,6 +84,12 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 - (void)clicked:(GTKButton *)sender
 {
     printf("Target-Action Message Sent!\n");
+}
+
+- (void)sliderUpdated:(GTKSlider *)sender
+{
+    printf("BING\n");
+    printf("Value: %f\n", sender.doubleValue);
 }
 
 - (void)windowDidClose

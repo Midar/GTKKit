@@ -48,12 +48,10 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     };
 
     GTKSlider *slider = [GTKSlider new];
-    [slider.constraints flexibleToTop: 0
-                                 left: 0
-                                right: 0];
-    [slider.constraints fixedToBottom: 100];
-    slider.constraints.centerHorizontal = true;
-    [slider.constraints fixedWidth: 250];
+    [slider.constraints flexibleToTop: 0];
+    [slider.constraints fixedToBottom: 40
+                                 left: 10
+                                right: 10];
     [slider.constraints fixedHeight: 50];
     slider.target = self;
     slider.action = @selector(sliderUpdated:);

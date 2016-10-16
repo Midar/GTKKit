@@ -40,23 +40,25 @@ get_toplevel_window(gpointer data, gpointer userdata)
 
 - (GTKViewController*)keyWindow
 {
-    GList *windows = gtk_window_list_toplevels();
+    __block GTKViewController *viewController;
+    [GTKCallback sync: ^{
+        GList *windows = gtk_window_list_toplevels();
 
-    gpointer window = NULL;
+        gpointer window = NULL;
 
-    g_list_foreach(windows, (GFunc)get_toplevel_window, window);
+        g_list_foreach(windows, (GFunc)(get_toplevel_window), window);
 
-    if (NULL == window) {
-        return nil;
-    }
+        if (NULL == window) {
+            viewController = nil;
+            return;
+        }
 
-    GTKViewController *viewController = \
-        (__bridge GTKViewController *)g_object_get_data(
-    		G_OBJECT(window),
-            "_GTKKIT_OWNING_VIEW_CONTROLLER_");
+        viewController = (__bridge GTKViewController *)(g_object_get_data(
+        		G_OBJECT(window),
+                "_GTKKIT_OWNING_VIEW_CONTROLLER_"));
 
-    g_list_free(windows);
-
+        g_list_free(windows);
+    }];
     return viewController;
 }
 @end

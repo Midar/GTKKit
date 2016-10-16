@@ -16,7 +16,6 @@
 
 #import "GTKView.h"
 #import "GTKCallback.h"
-#import "OFCallback.h"
 #import "GTKLayoutConstraints.h"
 #import "Exceptions.h"
 

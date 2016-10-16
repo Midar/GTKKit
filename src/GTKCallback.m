@@ -20,6 +20,23 @@ of_thread_t gtkkit_gtk_thread;
 of_thread_t gtkkit_objfw_thread;
 const of_thread_attr_t gtkkit_objfw_thread_attr;
 
+void
+ObjFWCallback(ObjFWCallbackBlock block)
+{
+	if (of_thread_is_current(gtkkit_objfw_thread)) {
+	    block();
+	} else {
+		OFTimer *timer = [OFTimer
+			timerWithTimeInterval: 0
+			repeats: false
+			block: ^ (OFTimer *timer) { block(); }];
+
+		[[OFRunLoop mainRunLoop] addTimer: timer];
+
+		[timer waitUntilDone];
+	}
+}
+
 @interface GTKCallback ()
 @property (copy) GTKCallbackBlock block;
 @property GMutex *mutex;

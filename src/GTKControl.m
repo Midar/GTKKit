@@ -15,14 +15,13 @@
  */
 
 #import "GTKControl.h"
-#import "OFCallback.h"
 #import "GTKCallback.h"
 #import "GTKApplicationDelegate+GTKResponder.h"
 
 @implementation GTKControl
 - (void)sendActionToTarget
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         if (NULL == self.action) {
             return;
         }
@@ -45,7 +44,7 @@
 
 - (void)takeStringValueFrom:(nonnull id)target
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         if ([target respondsToSelector: @selector(stringValue)]) {
             self.stringValue = [target stringValue];
         }
@@ -54,7 +53,7 @@
 
 - (void)takeIntValueFrom:(nonnull id)target
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         if ([target respondsToSelector: @selector(intValue)]) {
             self.intValue = [target intValue];
         }
@@ -63,7 +62,7 @@
 
 - (void)takeDoubleValueFrom:(nonnull id)target
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         if ([target respondsToSelector: @selector(doubleValue)]) {
             self.doubleValue = [target doubleValue];
         }
@@ -72,7 +71,7 @@
 
 - (void)takeFloatValueFrom:(nonnull id)target
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         if ([target respondsToSelector: @selector(floatValue)]) {
             self.floatValue = [target floatValue];
         }
@@ -81,7 +80,7 @@
 
 - (void)takeObjectValueFrom:(nonnull id)target
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         if ([target respondsToSelector: @selector(objectValue)]) {
             self.objectValue = [target objectValue];
         }

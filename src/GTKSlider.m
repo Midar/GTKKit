@@ -20,7 +20,6 @@
 
 #import "GTKSlider.h"
 #import "GTKCallback.h"
-#import "OFCallback.h"
 
 static void
 value_changed_handler(GtkScale *scale, gpointer userdata)
@@ -282,6 +281,32 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     _showValue = showValue;
     [GTKCallback sync: ^{
         gtk_scale_set_draw_value(GTK_SCALE(self.mainWidget), _showValue);
+    }];
+}
+
+- (GTKPositionType)valuePosition
+{
+    return _valuePosition;
+}
+
+- (void)setValuePosition:(GTKPositionType)valuePosition
+{
+    _valuePosition = valuePosition;
+    [GTKCallback sync: ^{
+        gtk_scale_set_value_pos(GTK_SCALE(self.mainWidget), (GtkPositionType)(_valuePosition));
+    }];
+}
+
+- (bool)highlightOrigin
+{
+    return _highlightOrigin;
+}
+
+- (void)setHighlightOrigin:(bool)highlightOrigin
+{
+    _highlightOrigin = highlightOrigin;
+    [GTKCallback sync: ^{
+        gtk_scale_set_has_origin(GTK_SCALE(self.mainWidget), _highlightOrigin);
     }];
 }
 @end

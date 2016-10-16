@@ -17,7 +17,6 @@
 #import "GTKWindowViewController.h"
 #import "GTKApplicationDelegate+GTKResponder.h"
 #import "GTKWindowViewControllerDelegate.h"
-#import "OFCallback.h"
 
 static void
 close_button_clicked_handler(GtkButton *button, gpointer userdata)
@@ -26,7 +25,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 
     if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
         __block bool shouldClose;
-        OFCallback(^{
+        ObjFWCallback(^{
             shouldClose = [window.delegate windowShouldClose];
         });
         if (!shouldClose) {
@@ -35,7 +34,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
     }
 
     if ([window.delegate respondsToSelector: @selector(windowWillClose)]) {
-        OFCallback(^{
+        ObjFWCallback(^{
             [window.delegate windowWillClose];
         });
     }
@@ -43,7 +42,7 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
     window.hidden = true;
 
     if ([window.delegate respondsToSelector: @selector(windowDidClose)]) {
-        OFCallback(^{
+        ObjFWCallback(^{
             [window.delegate windowDidClose];
         });
     }
@@ -56,7 +55,7 @@ minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
 
     if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
         __block bool shouldMinimize;
-        OFCallback(^{
+        ObjFWCallback(^{
             shouldMinimize = [window.delegate windowShouldMinimize];
         });
         if (!shouldMinimize) {
@@ -65,7 +64,7 @@ minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
     }
 
     if ([window.delegate respondsToSelector: @selector(windowWillMinimize)]) {
-        OFCallback(^{
+        ObjFWCallback(^{
             [window.delegate windowWillMinimize];
         });
     }
@@ -73,7 +72,7 @@ minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
     [window minimize];
 
     if ([window.delegate respondsToSelector: @selector(windowDidMinimize)]) {
-        OFCallback(^{
+        ObjFWCallback(^{
             [window.delegate windowDidMinimize];
         });
     }
@@ -86,7 +85,7 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 
     if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
         __block bool shouldMaximize;
-        OFCallback(^{
+        ObjFWCallback(^{
             shouldMaximize = [window.delegate windowShouldMaximize];
         });
         if (!shouldMaximize) {
@@ -95,7 +94,7 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     }
 
     if ([window.delegate respondsToSelector: @selector(windowWillMaximize)]) {
-        OFCallback(^{
+        ObjFWCallback(^{
             [window.delegate windowWillMaximize];
         });
     }
@@ -103,7 +102,7 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
     [window maximize];
 
     if ([window.delegate respondsToSelector: @selector(windowDidMaximize)]) {
-        OFCallback(^{
+        ObjFWCallback(^{
             [window.delegate windowDidMaximize];
         });
     }

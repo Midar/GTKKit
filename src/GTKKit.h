@@ -18,7 +18,6 @@
 #import "GTKResponderProtocol.h"
 #import "Exceptions.h"
 #import "GTKCallback.h"
-#import "OFCallback.h"
 #import "GTKApplicationDelegate.h"
 #import	"GTKApplicationDelegate+GTKResponder.h"
 #import "GTKResponder.h"

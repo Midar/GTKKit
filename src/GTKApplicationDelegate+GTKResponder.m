@@ -21,7 +21,7 @@
 #import "defines.h"
 #import "GTKApplicationDelegate.h"
 #import "GTKResponderProtocol.h"
-#import "OFCallback.h"
+#import "GTKCallback.h"
 
 
 @implementation GTKApplicationDelegate (GTKResponder)

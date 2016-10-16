@@ -16,7 +16,6 @@
 
 #import "GTKButton.h"
 #import "GTKCallback.h"
-#import "OFCallback.h"
 
 static void
 clicked_event_handler(GtkWidget *widget, gpointer userdata)
@@ -167,7 +166,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
 - (void)mouseClicked:(nonnull GTKEvent*)event
 {
-    OFCallback(^{
+    ObjFWCallback(^{
         [self sendActionToTarget];
         if (NULL != self.actionBlock) {
             self.actionBlock();

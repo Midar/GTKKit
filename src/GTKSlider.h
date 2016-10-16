@@ -26,6 +26,13 @@ typedef enum GTKSliderOrientation {
     GTKSliderOrientationVertical
 } GTKSliderOrientation;
 
+typedef enum GTKPositionType {
+    GTKPositionTypeTop = GTK_POS_TOP,
+    GTKPositionTypeBottom = GTK_POS_BOTTOM,
+    GTKPositionTypeLeft = GTK_POS_LEFT,
+    GTKPositionTypeRight = GTK_POS_RIGHT
+} GTKPositionType;
+
 @interface GTKSlider: GTKControl
 {
     __block GTKSliderOrientation _orientation;
@@ -39,6 +46,8 @@ typedef enum GTKSliderOrientation {
     __block double _increment;
     __block int _roundDigits;
     __block bool _showValue;
+    __block GTKPositionType _valuePosition;
+    __block bool _highlightOrigin;
 }
 @property GTKSliderOrientation orientation;
 @property double minValue;
@@ -50,4 +59,6 @@ typedef enum GTKSliderOrientation {
 @property double increment;
 @property int roundDigits;
 @property bool showValue;
+@property GTKPositionType valuePosition;
+@property bool highlightOrigin;
 @end

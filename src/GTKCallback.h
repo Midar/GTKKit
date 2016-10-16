@@ -22,6 +22,11 @@
 
 typedef void (^GTKCallbackBlock)();
 
+typedef void (^ObjFWCallbackBlock)();
+
+void
+ObjFWCallback(ObjFWCallbackBlock block);
+
 @class GTKCallback;
 
 extern  of_thread_t gtkkit_objfw_thread;

@@ -7,7 +7,6 @@ LIB_MINOR = 0
 
 SRCS =	GTKCallback.m                               \
 				GTKResponder.m                              \
-				OFCallback.m                                \
 				GTKEvent.m                                  \
 				GTKLayoutConstraints.m                      \
 				GTKView.m                                   \

@@ -53,7 +53,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     self.restrictToFillLevel = false;
     self.inverted = false;
     self.increment = 1.0;
-    self.roundDigits = 2;
+    self.roundDigits = 0;
     return self;
 }
 

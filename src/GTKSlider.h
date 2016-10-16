@@ -39,7 +39,6 @@ typedef enum GTKSliderOrientation {
     __block double _increment;
     __block int _roundDigits;
     __block bool _showValue;
-    __block bool _doubleValue;
 }
 @property GTKSliderOrientation orientation;
 @property double minValue;

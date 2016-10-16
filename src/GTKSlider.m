@@ -148,7 +148,11 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 
 - (double)doubleValue
 {
-    return gtk_range_get_value(GTK_RANGE(self.mainWidget));
+    __block double doubleValue;
+    [GTKCallback sync: ^{
+        doubleValue = gtk_range_get_value(GTK_RANGE(self.mainWidget));
+    }];
+    return doubleValue;
 }
 
 - (void)setDoubleValue:(double)doubleValue

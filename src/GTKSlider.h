@@ -48,6 +48,7 @@ typedef enum GTKPositionType {
     __block bool _showValue;
     __block GTKPositionType _valuePosition;
     __block bool _highlightOrigin;
+    __block unsigned int _numberOfTickMarks;
 }
 @property GTKSliderOrientation orientation;
 @property double minValue;
@@ -61,4 +62,5 @@ typedef enum GTKPositionType {
 @property bool showValue;
 @property GTKPositionType valuePosition;
 @property bool highlightOrigin;
+@property unsigned int numberOfTickMarks;
 @end

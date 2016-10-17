@@ -34,10 +34,13 @@ typedef enum GTKJustification {
     __block bool _selectable;
     __block gulong _entryActivatedHandlerID;
     __block gulong _insertAtCursorHandlerID;
+    __block gulong _textViewFocusOutHandlerID;
     __block GTKJustification _justify;
+    __block bool _multiline;
 }
 @property (getter=isEditable) bool editable;
 @property (getter=isContinuous) bool continuous;
 @property (getter=isSelectable) bool selectable;
 @property GTKJustification justify;
+@property (getter=isMultiline) bool multiline;
 @end

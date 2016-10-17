@@ -40,16 +40,25 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     button.constraints.centerHorizontal = true;
     [button.constraints fixedWidth: 100];
     [button.constraints fixedHeight: 30];
-    button.stringValue = @"Click me!";
+    button.stringValue = @"Toggle editable";
     button.target = self;
-    button.action = @selector(clicked:);
-    button.actionBlock = ^{
-        printf("Action block run!\n");
-    };
+    button.action = @selector(editableClicked:);
+
+    GTKButton *button2 = [GTKButton new];
+    [button2.constraints flexibleToTop: 0
+                                 left: 0
+                                right: 0];
+    [button2.constraints fixedToBottom: 50];
+    button2.constraints.centerHorizontal = true;
+    [button2.constraints fixedWidth: 100];
+    [button2.constraints fixedHeight: 30];
+    button2.stringValue = @"Toggle multiline";
+    button2.target = self;
+    button2.action = @selector(multilinedClicked:);
 
     GTKSlider *slider = [GTKSlider new];
     [slider.constraints flexibleToTop: 0];
-    [slider.constraints fixedToBottom: 40
+    [slider.constraints fixedToBottom: 70
                                  left: 10
                                 right: 10];
     [slider.constraints fixedHeight: 50];
@@ -68,6 +77,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.label.stringValue = @"Hello, World!";
 
     [self.window addSubview: button];
+    [self.window addSubview: button2];
     [self.window addSubview: slider];
     [self.window addSubview: self.label];
 
@@ -91,10 +101,16 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     printf("Hello!\n");
 }
 
-- (void)clicked:(GTKButton *)sender
+- (void)editableClicked:(GTKButton *)sender
 {
     printf("Target-Action Message Sent!\n");
     self.label.editable = !self.label.editable;
+}
+
+- (void)multilinedClicked:(GTKButton *)sender
+{
+    printf("Target-Action Message Sent!\n");
+    self.label.multiline = !self.label.multiline;
 }
 
 - (void)sliderUpdated:(GTKSlider *)sender

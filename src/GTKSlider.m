@@ -1,4 +1,4 @@
-/*! @file GTKButton.h
+/*! @file GTKSlider.m
  *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
@@ -45,7 +45,9 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     self = [super init];
     _min = 0.0;
     _max = 100.0;
-    gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
+    [GTKCallback sync: ^{
+        gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
+    }];
     self.showFillLevel = false;
     self.fillLevel = 0.0;
     self.doubleValue = 0.0;
@@ -60,14 +62,16 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 
 - (void)createMainWidget
 {
-    self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
-    _orientation = GTKSliderOrientationHorizontal;
-    _valueChangedHandlerID = g_signal_connect(
-        G_OBJECT(self.mainWidget),
-        "value-changed",
-        G_CALLBACK(value_changed_handler),
-        (__bridge gpointer)(self));
-    gtk_range_set_flippable(GTK_RANGE(self.mainWidget), true);
+    [GTKCallback sync: ^{
+        self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
+        _orientation = GTKSliderOrientationHorizontal;
+        _valueChangedHandlerID = g_signal_connect(
+            G_OBJECT(self.mainWidget),
+            "value-changed",
+            G_CALLBACK(value_changed_handler),
+            (__bridge gpointer)(self));
+        gtk_range_set_flippable(GTK_RANGE(self.mainWidget), true);
+    }];
 }
 
 - (GTKSliderOrientation)orientation

@@ -172,7 +172,7 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
 {
     _justify = justify;
     [GTKCallback sync: ^{
-        gtk_label_set_justify(GTK_LABEL(self.mainWidget), _justify);
+        gtk_label_set_justify(GTK_LABEL(self.mainWidget), (GtkJustification)(_justify));
     }];
 }
 @end

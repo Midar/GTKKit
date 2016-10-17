@@ -57,6 +57,8 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     self.inverted = false;
     self.increment = 1.0;
     self.roundDigits = 0;
+    self.highlightOrigin = false;
+    self.showValue = false;
     return self;
 }
 
@@ -90,6 +92,8 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     bool inverted = self.isInverted;
     double increment = self.increment;
     int roundDigits = self.roundDigits;
+    bool highlightOrigin = self.highlightOrigin;
+    bool showValue = self.showValue;
 
     [GTKCallback sync: ^{
         gtk_widget_destroy(self.mainWidget);
@@ -114,6 +118,8 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
         gtk_range_set_flippable(GTK_RANGE(self.mainWidget), true);
     }];
 
+    self.showValue = showValue;
+    self.highlightOrigin = highlightOrigin;
     self.roundDigits = roundDigits;
     self.increment = increment;
     self.inverted = inverted;

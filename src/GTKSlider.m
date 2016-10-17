@@ -39,10 +39,6 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 	[[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
-@interface GTKSlider ()
-- (double)positionForTickMark:(unsigned int)index;
-@end
-
 @implementation GTKSlider
 - init
 {
@@ -329,25 +325,20 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 {
     _numberOfTickMarks = numberOfTickMarks;
     int i = 0;
+    gtk_scale_clear_marks(GTK_SCALE(self.mainWidget));
+    if (_numberOfTickMarks == 0) {
+        return;
+    }
     while (i <= numberOfTickMarks) {
         [GTKCallback sync: ^{
+            double pos = i * ((_max - _min) / _numberOfTickMarks);
             gtk_scale_add_mark(
                 GTK_SCALE(self.mainWidget),
-                [self positionForTickMark: i],
+                pos,
                 GTK_POS_TOP,
                 NULL);
         }];
         i++;
     }
-}
-
-- (double)positionForTickMark:(unsigned int)index
-{
-    if (index == 0) {
-        return 0.0;
-    }
-    double step = (_max - _min) / _numberOfTickMarks;
-
-    return step * index;
 }
 @end

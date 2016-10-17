@@ -55,7 +55,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [slider.constraints fixedHeight: 50];
     slider.target = self;
     slider.action = @selector(sliderUpdated:);
-    slider.numberOfTickMarks = 10;
+    slider.numberOfTickMarks = 5;
 
     [self.window addSubview: button];
     [self.window addSubview: slider];
@@ -87,7 +87,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)sliderUpdated:(GTKSlider *)sender
 {
-    printf("Slider Value: %f\n", sender.doubleValue);
+    printf("Slider Value: %d\n", sender.intValue);
 }
 
 - (void)windowDidClose

@@ -64,7 +64,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
                                   right: 0];
     self.label.constraints.centerHorizontal = true;
     [self.label.constraints fixedWidth: 200];
-    [self.label.constraints fixedHeight: 50];
+    [self.label.constraints fixedHeight: 30];
     self.label.stringValue = @"Hello, World!";
 
     [self.window addSubview: button];

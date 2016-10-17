@@ -1,4 +1,5 @@
-/*
+/*! @file GTKTextField.h
+ *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,22 +15,18 @@
  * the packaging of this file.
  */
 
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
+
 #import "defines.h"
-#import "GTKResponderProtocol.h"
-#import "Exceptions.h"
-#import "GTKCallback.h"
-#import "GTKApplicationDelegate.h"
-#import	"GTKApplicationDelegate+GTKResponder.h"
-#import "GTKResponder.h"
-#import	"GTKEvent.h"
-#import	"GTKLayoutConstraints.h"
-#import	"GTKView.h"
-#import	"GTKControl.h"
-#import	"GTKViewController.h"
-#import	"GTKWindowViewController.h"
-#import	"GTKImage.h"
-#import	"GTKImageView.h"
-#import "GTKButton.h"
-#import "GTKSlider.h"
-#import "GTKTextField.h"
-#import "GTKWindowViewControllerDelegate.h"
+#import "GTKControl.h"
+
+@interface GTKTextField: GTKControl
+{
+    __block bool _editable;
+    __block gulong _entryActivatedHandlerID;
+    __block gulong _insertAtCursorHandlerID;
+}
+@property (getter=isEditable) bool editable;
+@property (getter=isContinuous) bool continuous;
+@end

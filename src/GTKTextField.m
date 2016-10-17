@@ -125,4 +125,44 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
         }
     }];
 }
+
+- (bool)isSelectable
+{
+    if (self.isEditable) {
+        return true;
+    } else {
+        __block bool selectable;
+        [GTKCallback sync: ^{
+            selectable = gtk_label_get_selectable(GTK_LABEL(self.mainWidget));
+        }];
+        return selectable;
+    }
+}
+
+- (void)setSelectable:(bool)selectable
+{
+    if (!self.isEditable) {
+        [GTKCallback sync: ^{
+            gtk_label_set_selectable(GTK_LABEL(self.mainWidget), selectable);
+        }];
+    }
+}
+
+- (bool)canBecomeFirstResponder
+{
+    return true;
+}
+
+- (bool)shouldBecomeFirstResponder
+{
+    return true;
+}
+
+- (void)didBecomeFirstResponder
+{
+    [GTKCallback sync: ^{
+        gtk_widget_grab_focus(self.mainWidget);
+        gtk_widget_grab_default(self.mainWidget);
+    }];
+}
 @end

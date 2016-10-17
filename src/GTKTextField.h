@@ -29,4 +29,5 @@
 }
 @property (getter=isEditable) bool editable;
 @property (getter=isContinuous) bool continuous;
+@property (getter=isSelectable) bool selectable;
 @end

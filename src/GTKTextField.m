@@ -75,8 +75,8 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
     if (_editable == editable) {
         return;
     }
-    _editable = editable;
     OFString *stringValue = self.stringValue;
+    _editable = editable;
     [GTKCallback sync: ^{
         gtk_widget_destroy(self.mainWidget);
         if (_editable == true) {
@@ -94,6 +94,7 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
         } else {
             self.mainWidget = gtk_label_new(NULL);
         }
+        gtk_widget_show(self.mainWidget);
         gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
     }];
     self.stringValue = stringValue;

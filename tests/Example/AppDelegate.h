@@ -19,6 +19,7 @@
 @interface AppDelegate : GTKApplicationDelegate <GTKWindowViewControllerDelegate>
 @property (nullable) GTKWindowViewController *window;
 @property (nullable) GTKImage *image;
+@property (nullable) GTKTextField *label;
 - (void)clicked:(nonnull GTKButton *)sender;
 - (void)sliderUpdated:(nonnull GTKSlider *)sender;
 @end

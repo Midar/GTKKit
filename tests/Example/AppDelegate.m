@@ -57,8 +57,19 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     slider.action = @selector(sliderUpdated:);
     slider.numberOfTickMarks = 5;
 
+    self.label = [GTKTextField new];
+    [self.label.constraints fixedToTop: 10];
+    [self.label.constraints flexibleToBottom: 0
+                                   left: 0
+                                  right: 0];
+    self.label.constraints.centerHorizontal = true;
+    [self.label.constraints fixedWidth: 200];
+    [self.label.constraints fixedHeight: 50];
+    self.label.stringValue = @"Hello, World!";
+
     [self.window addSubview: button];
     [self.window addSubview: slider];
+    [self.window addSubview: self.label];
 
     self.window.delegate = self;
     self.window.title = @"Example Window";
@@ -83,6 +94,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 - (void)clicked:(GTKButton *)sender
 {
     printf("Target-Action Message Sent!\n");
+    self.label.editable = !self.label.editable;
 }
 
 - (void)sliderUpdated:(GTKSlider *)sender

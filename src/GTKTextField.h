@@ -21,13 +21,23 @@
 #import "defines.h"
 #import "GTKControl.h"
 
+typedef enum GTKJustification {
+    GTKJustificationLeft = GTK_JUSTIFY_LEFT,
+    GTKJustificationCenter = GTK_JUSTIFY_CENTER,
+    GTKJustificationRight = GTK_JUSTIFY_RIGHT,
+    GTKJustificationFill = GTK_JUSTIFY_FILL
+} GTKJustification;
+
 @interface GTKTextField: GTKControl
 {
     __block bool _editable;
+    __block bool _selectable;
     __block gulong _entryActivatedHandlerID;
     __block gulong _insertAtCursorHandlerID;
+    __block GTKJustification _justify;
 }
 @property (getter=isEditable) bool editable;
 @property (getter=isContinuous) bool continuous;
 @property (getter=isSelectable) bool selectable;
+@property GTKJustification justify;
 @end

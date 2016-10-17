@@ -76,6 +76,8 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
         return;
     }
     OFString *stringValue = self.stringValue;
+    GTKJustification justify = self.justify;
+    bool selectable = self.selectable;
     _editable = editable;
     [GTKCallback sync: ^{
         gtk_widget_destroy(self.mainWidget);
@@ -97,6 +99,8 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
         gtk_widget_show(self.mainWidget);
         gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
     }];
+    self.selectable = selectable;
+    self.justify = justify;
     self.stringValue = stringValue;
 }
 
@@ -128,19 +132,12 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
 
 - (bool)isSelectable
 {
-    if (self.isEditable) {
-        return true;
-    } else {
-        __block bool selectable;
-        [GTKCallback sync: ^{
-            selectable = gtk_label_get_selectable(GTK_LABEL(self.mainWidget));
-        }];
-        return selectable;
-    }
+    return _selectable;
 }
 
 - (void)setSelectable:(bool)selectable
 {
+    _selectable = selectable;
     if (!self.isEditable) {
         [GTKCallback sync: ^{
             gtk_label_set_selectable(GTK_LABEL(self.mainWidget), selectable);
@@ -163,6 +160,19 @@ entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
     [GTKCallback sync: ^{
         gtk_widget_grab_focus(self.mainWidget);
         gtk_widget_grab_default(self.mainWidget);
+    }];
+}
+
+- (GTKJustification)justify
+{
+    return _justify;
+}
+
+- (void)setJustify:(GTKJustification)justify
+{
+    _justify = justify;
+    [GTKCallback sync: ^{
+        gtk_label_set_justify(GTK_LABEL(self.mainWidget), _justify);
     }];
 }
 @end

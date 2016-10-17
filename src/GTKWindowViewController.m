@@ -23,29 +23,36 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
 
-    if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
-        __block bool shouldClose;
-        ObjFWCallback(^{
-            shouldClose = [window.delegate windowShouldClose];
-        });
-        if (!shouldClose) {
-            return;
-        }
-    }
+    OFTimer *timer = [OFTimer
+        timerWithTimeInterval: 0
+        repeats: false
+        block: ^ (OFTimer *timer) {
+            if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
+                __block bool shouldClose;
+                ObjFWCallback(^{
+                    shouldClose = [window.delegate windowShouldClose];
+                });
+                if (!shouldClose) {
+                    return;
+                }
+            }
 
-    if ([window.delegate respondsToSelector: @selector(windowWillClose)]) {
-        ObjFWCallback(^{
-            [window.delegate windowWillClose];
-        });
-    }
+            if ([window.delegate respondsToSelector: @selector(windowWillClose)]) {
+                ObjFWCallback(^{
+                    [window.delegate windowWillClose];
+                });
+            }
 
-    window.hidden = true;
+            window.hidden = true;
 
-    if ([window.delegate respondsToSelector: @selector(windowDidClose)]) {
-        ObjFWCallback(^{
-            [window.delegate windowDidClose];
-        });
-    }
+            if ([window.delegate respondsToSelector: @selector(windowDidClose)]) {
+                ObjFWCallback(^{
+                    [window.delegate windowDidClose];
+                });
+            }
+        }];
+
+    [[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
 static void
@@ -53,29 +60,37 @@ minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
 
-    if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
-        __block bool shouldMinimize;
-        ObjFWCallback(^{
-            shouldMinimize = [window.delegate windowShouldMinimize];
-        });
-        if (!shouldMinimize) {
-            return;
-        }
-    }
+    OFTimer *timer = [OFTimer
+        timerWithTimeInterval: 0
+        repeats: false
+        block: ^ (OFTimer *timer) {
 
-    if ([window.delegate respondsToSelector: @selector(windowWillMinimize)]) {
-        ObjFWCallback(^{
-            [window.delegate windowWillMinimize];
-        });
-    }
+            if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
+                __block bool shouldMinimize;
+                ObjFWCallback(^{
+                    shouldMinimize = [window.delegate windowShouldMinimize];
+                });
+                if (!shouldMinimize) {
+                    return;
+                }
+            }
 
-    [window minimize];
+            if ([window.delegate respondsToSelector: @selector(windowWillMinimize)]) {
+                ObjFWCallback(^{
+                    [window.delegate windowWillMinimize];
+                });
+            }
 
-    if ([window.delegate respondsToSelector: @selector(windowDidMinimize)]) {
-        ObjFWCallback(^{
-            [window.delegate windowDidMinimize];
-        });
-    }
+            [window minimize];
+
+            if ([window.delegate respondsToSelector: @selector(windowDidMinimize)]) {
+                ObjFWCallback(^{
+                    [window.delegate windowDidMinimize];
+                });
+            }
+        }];
+
+    [[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
 static void
@@ -83,29 +98,37 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
 
-    if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
-        __block bool shouldMaximize;
-        ObjFWCallback(^{
-            shouldMaximize = [window.delegate windowShouldMaximize];
-        });
-        if (!shouldMaximize) {
-            return;
-        }
-    }
+    OFTimer *timer = [OFTimer
+        timerWithTimeInterval: 0
+        repeats: false
+        block: ^ (OFTimer *timer) {
 
-    if ([window.delegate respondsToSelector: @selector(windowWillMaximize)]) {
-        ObjFWCallback(^{
-            [window.delegate windowWillMaximize];
-        });
-    }
+            if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
+                __block bool shouldMaximize;
+                ObjFWCallback(^{
+                    shouldMaximize = [window.delegate windowShouldMaximize];
+                });
+                if (!shouldMaximize) {
+                    return;
+                }
+            }
 
-    [window maximize];
+            if ([window.delegate respondsToSelector: @selector(windowWillMaximize)]) {
+                ObjFWCallback(^{
+                    [window.delegate windowWillMaximize];
+                });
+            }
 
-    if ([window.delegate respondsToSelector: @selector(windowDidMaximize)]) {
-        ObjFWCallback(^{
-            [window.delegate windowDidMaximize];
-        });
-    }
+            [window maximize];
+
+            if ([window.delegate respondsToSelector: @selector(windowDidMaximize)]) {
+                ObjFWCallback(^{
+                    [window.delegate windowDidMaximize];
+                });
+            }
+        }];
+
+    [[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
 static void

@@ -169,14 +169,4 @@ typedef enum GTKTransitionType {
  * @brief Removes this view from its superview.
  */
 - (void)removeFromSuperview;
-
-/*!
- * @brief Hides the view using the chosen animation and with the chosen duration.
- */
-- (void)hide;
-
-/*!
- * @brief Shows the view using the chosen animation and with the chosen duration.
- */
-- (void)reveal;
 @end

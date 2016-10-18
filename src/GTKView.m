@@ -194,12 +194,11 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
             (__bridge gpointer)(self));
 	}];
 
+    self.transition = GTKTransitionTypeNone;
+    self.transitionDuration = 0;
 	self.hidden = false;
 
 	self.alpha = 1.0;
-
-    self.transition = GTKTransitionTypeNone;
-    self.transitionDuration = 0;
 
 	return self;
 }
@@ -237,7 +236,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 {
     __block bool hidden;
     [GTKCallback sync: ^{
-        hidden = !gtk_widget_get_visible(self.revealerWidget);
+        hidden = !gtk_revealer_get_child_revealed(GTK_REVEALER(self.revealerWidget));
     }];
     return hidden;
 }
@@ -245,7 +244,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)setHidden:(bool)hidden
 {
     [GTKCallback sync: ^{
-        gtk_widget_set_visible(self.revealerWidget, !hidden);
+        gtk_revealer_set_reveal_child(GTK_REVEALER(self.revealerWidget), !hidden);
     }];
 }
 
@@ -482,19 +481,5 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 {
     _transitionDuration = duration;
     gtk_revealer_set_transition_duration(GTK_REVEALER(self.revealerWidget), duration);
-}
-
-- (void)hide
-{
-    [GTKCallback sync: ^{
-        gtk_revealer_set_reveal_child(GTK_REVEALER(self.revealerWidget), false);
-    }];
-}
-
-- (void)reveal
-{
-    [GTKCallback sync: ^{
-        gtk_revealer_set_reveal_child(GTK_REVEALER(self.revealerWidget), true);
-    }];
 }
 @end

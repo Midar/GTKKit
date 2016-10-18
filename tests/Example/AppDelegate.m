@@ -56,18 +56,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     button2.target = self;
     button2.action = @selector(multilinedClicked:);
 
-    GTKButton *button3 = [GTKButton new];
-    [button3.constraints flexibleToTop: 0
-                                 left: 0
-                                right: 0];
-    [button3.constraints fixedToBottom: 150];
-    button3.constraints.centerHorizontal = true;
-    [button3.constraints fixedWidth: 100];
-    [button3.constraints fixedHeight: 30];
-    button3.target = self;
-    button3.action = @selector(hideTextFieldClicked:);
-    button3.stringValue = @"Hide Text Field";
-
     GTKSlider *slider = [GTKSlider new];
     [slider.constraints flexibleToTop: 0];
     [slider.constraints fixedToBottom: 80
@@ -92,7 +80,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     [self.window addSubview: button];
     [self.window addSubview: button2];
-    [self.window addSubview: button3];
     [self.window addSubview: slider];
     [self.window addSubview: self.label];
 
@@ -111,7 +98,11 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     // Put your custom post-launch startup code below this line.
 
+    [self.window.contentView hide];
+    self.window.contentView.transition = GTKTransitionTypeCrossFade;
+    self.window.contentView.transitionDuration = 1500;
     self.window.hidden = false;
+    [self.window.contentView reveal];
 
     printf("Hello!\n");
 }
@@ -126,11 +117,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     printf("Target-Action Message Sent!\n");
     self.label.multiline = !self.label.multiline;
-}
-
-- (void)hideTextFieldClicked:(GTKButton *)sender
-{
-    [self.label hide];
 }
 
 - (void)sliderUpdated:(GTKSlider *)sender

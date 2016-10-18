@@ -96,11 +96,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     // Put your custom post-launch startup code below this line.
 
-    self.window.contentView.hidden = true;
-    self.window.contentView.transition = GTKTransitionTypeCrossFade;
-    self.window.contentView.transitionDuration = 1500;
     self.window.hidden = false;
-    self.window.contentView.hidden = false;
 
     printf("Hello!\n");
 }

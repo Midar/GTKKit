@@ -22,15 +22,6 @@
 #import "GTKLayoutConstraints.h"
 #import "GTKViewController.h"
 
-typedef enum GTKTransitionType {
-    GTKTransitionTypeNone = GTK_REVEALER_TRANSITION_TYPE_NONE,
-    GTKTransitionTypeCrossFade = GTK_REVEALER_TRANSITION_TYPE_CROSSFADE,
-    //GTKTransitionTypeSlideRight = GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT,
-    //GTKTransitionTypeSlideLeft = GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT,
-    //GTKTransitionTypeSlideUp = GTK_REVEALER_TRANSITION_TYPE_SLIDE_UP,
-    //GTKTransitionTypeSlideDown = GTK_REVEALER_TRANSITION_TYPE_SLIDE_DOWN
-} GTKTransitionType;
-
 @class GTKView;
 
 /*!
@@ -57,8 +48,6 @@ typedef enum GTKTransitionType {
     __block gulong _pressEventHandlerID;
     __block gulong _releaseEventHandlerID;
     __block gulong _drawHandlerID;
-    __block GTKTransitionType _transition;
-    __block unsigned int _transitionDuration;
 }
 
 /*!
@@ -73,11 +62,6 @@ typedef enum GTKTransitionType {
  * @brief The internal GtkOverlay used by the view.
  */
 @property (nullable) GtkWidget *overlayWidget;
-
-/*!
- * @brief The internal GtkRevealer used by the view.
- */
-@property (nullable) GtkWidget *revealerWidget;
 
 /*!
  * @brief The GtkWidget sub-instance used as the "main" widget in the overlay.
@@ -136,16 +120,6 @@ typedef enum GTKTransitionType {
  * of its superview.
  */
 @property (readonly) GTKRect frame;
-
-/*!
- * @brief The animation type used for animated transitions for this view.
- */
-@property GTKTransitionType transition;
-
-/*!
- * @brief The duration, in milliseconts, of the animated transitions for this view.
- */
-@property unsigned int transitionDuration;
 
 /*!
  * @brief Render each of this view's subviews within this view's area.

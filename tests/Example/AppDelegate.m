@@ -48,7 +48,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [button2.constraints flexibleToTop: 0
                                  left: 0
                                 right: 0];
-    [button2.constraints fixedToBottom: 50];
+    [button2.constraints fixedToBottom: 55];
     button2.constraints.centerHorizontal = true;
     [button2.constraints fixedWidth: 100];
     [button2.constraints fixedHeight: 30];
@@ -58,7 +58,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     GTKSlider *slider = [GTKSlider new];
     [slider.constraints flexibleToTop: 0];
-    [slider.constraints fixedToBottom: 70
+    [slider.constraints fixedToBottom: 80
                                  left: 10
                                 right: 10];
     [slider.constraints fixedHeight: 50];

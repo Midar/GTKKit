@@ -152,7 +152,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
             100);
         gtk_container_add(
             GTK_CONTAINER(_window),
-            self.contentView.overlayWidget);
+            self.contentView.revealerWidget);
         gtk_header_bar_set_has_subtitle(
             GTK_HEADER_BAR(_headerBar),
             false);

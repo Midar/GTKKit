@@ -333,9 +333,9 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     if (_numberOfTickMarks == 0) {
         return;
     }
-    while (i <= numberOfTickMarks) {
+    while (i <= numberOfTickMarks - 1) {
         [GTKCallback sync: ^{
-            double pos = i * ((_max - _min) / _numberOfTickMarks);
+            double pos = i * ((_max - _min) / (_numberOfTickMarks - 1));
             gtk_scale_add_mark(
                 GTK_SCALE(self.mainWidget),
                 pos,

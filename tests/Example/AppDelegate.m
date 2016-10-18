@@ -64,7 +64,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [slider.constraints fixedHeight: 50];
     slider.target = self;
     slider.action = @selector(sliderUpdated:);
-    slider.numberOfTickMarks = 5;
+    slider.numberOfTickMarks = 11;
 
     self.label = [GTKTextField new];
     [self.label.constraints fixedToTop: 10];

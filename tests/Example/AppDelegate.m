@@ -75,8 +75,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [self.label.constraints fixedWidth: 200];
     [self.label.constraints fixedHeight: 30];
     self.label.stringValue = @"Hello, World!";
-    self.label.transition = GTKTransitionTypeCrossFade;
-    self.label.transitionDuration = 2000;
 
     [self.window addSubview: button];
     [self.window addSubview: button2];

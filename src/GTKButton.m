@@ -149,12 +149,14 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
 - (OFString *)stringValue
 {
-    __block OFString *stringValue;
+    __block const char *str;
     [GTKCallback sync: ^{
-        const char *str = gtk_button_get_label(GTK_BUTTON(self.mainWidget));
-        stringValue = [OFString stringWithUTF8String: str];
+        str = gtk_button_get_label(GTK_BUTTON(self.mainWidget));
     }];
-    return stringValue;
+    if (NULL == str) {
+        str = "";
+    }
+    return [OFString stringWithUTF8String: str];
 }
 
 - (void)setStringValue:(OFString *)stringValue

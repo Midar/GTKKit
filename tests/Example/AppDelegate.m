@@ -64,6 +64,9 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     [slider.constraints fixedHeight: 50];
     slider.target = self;
     slider.action = @selector(sliderUpdated:);
+    slider.minValue = 0.0;
+    slider.maxValue = 1.0;
+    slider.doubleValue = 1.0;
     slider.numberOfTickMarks = 11;
 
     self.label = [GTKTextField new];
@@ -115,7 +118,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)sliderUpdated:(GTKSlider *)sender
 {
-    printf("Slider Value: %d\n", sender.intValue);
+    self.label.alpha = sender.doubleValue;
 }
 
 - (void)windowDidClose

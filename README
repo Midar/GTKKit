@@ -12,9 +12,15 @@ Currently, GTKKit implements the following class hierarchy:
 
 GTKResponder
   GTKView
+    GTKBox
     GTKControl
       GTKButton
+      GTKPupUpButton
+      GTKSlider
+      GTKTextField
     GTKImageView
+    GTKLevelIndicator
+    GTKProgressIndicator
   GTKViewController
     GTKWindowViewController
 GTKImage

@@ -84,12 +84,13 @@ const bool GTKOffState = false;
 
 /*!
  * @brief The state of this button. If the mode is GTKPushButton (the default
- * for new buttons), this will always be GTKOffState.
+ * for new buttons) or GTKSwitchButton, this will always be GTKOffState.
  */
 @property bool state;
 
 /*!
  * @brief An image owned by this button, to be displayed if there is no text set.
+ * This has no effect for a GTKSwitchButton.
  */
 @property (nullable) GTKImage *image;
 @end

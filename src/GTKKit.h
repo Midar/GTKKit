@@ -35,4 +35,5 @@
 #import "GTKLevelIndicator.h"
 #import "GTKProgressIndicator.h"
 #import "GTKPopUpButton.h"
+#import "GTKBox.h"
 #import "GTKWindowViewControllerDelegate.h"

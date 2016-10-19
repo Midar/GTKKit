@@ -23,6 +23,7 @@ SRCS =	GTKCallback.m                               \
 				GTKLevelIndicator.m                         \
 				GTKProgressIndicator.m                      \
 				GTKPopUpButton.m                            \
+				GTKBox.m                                    \
 				GTKInvalidLayoutConstraintsException.m
 
 INCLUDES =                                          \

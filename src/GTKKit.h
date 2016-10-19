@@ -32,4 +32,7 @@
 #import "GTKButton.h"
 #import "GTKSlider.h"
 #import "GTKTextField.h"
+#import "GTKLevelIndicator.h"
+#import "GTKProgressIndicator.h"
+#import "GTKPopUpButton.h"
 #import "GTKWindowViewControllerDelegate.h"

@@ -19,6 +19,13 @@
 #import "GTKApplicationDelegate+GTKResponder.h"
 
 @implementation GTKControl
+- init
+{
+    self = [super init];
+    self.tag = -1;
+    return self;
+}
+
 - (void)sendActionToTarget
 {
     ObjFWCallback(^{

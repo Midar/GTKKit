@@ -79,6 +79,11 @@ typedef void (^GTKControlActionBlock) ();
 @property (nullable) id objectValue;
 
 /*!
+ * @brief The tag of the control.
+ */
+@property int tag;
+
+/*!
  * @brief Attempt to have the target perform the action.
  *
  * This method is used by event methods in subclasses; for example, GTKButton's

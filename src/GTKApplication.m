@@ -91,6 +91,11 @@ get_toplevel_window(gpointer data, gpointer userdata)
     }
 }
 
++ (void)startup
+{
+    [self.sharedApplication startup];
+}
+
 - (void)run
 {
     gtk_main();

@@ -42,7 +42,7 @@ main(int argc, char *argv[])                                                   \
     [GTKApplication sharedApplication];                                        \
     GTKApplication.sharedApplication.argc = &argc;                             \
     GTKApplication.sharedApplication.argv = &argv;                             \
-    [GTKApplication.sharedApplication startup];                                \
+    [GTKApplication startup];                                                  \
     of_thread_new(                                                             \
         &gtkkit_objfw_thread,                                                  \
         &gtkkit_application_main,                                              \

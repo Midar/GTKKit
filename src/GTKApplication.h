@@ -1,4 +1,4 @@
-/*! @file GTKBox.h
+/*! @file GTKApplication.h
  *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
@@ -30,6 +30,7 @@
 @property char * _Nonnull * _Nonnull * _Nonnull argv;
 + (nonnull instancetype)sharedApplication;
 - (void)startup;
++ (void)startup;
 - (void)terminate;
 + (void)terminate;
 - (void)run;

@@ -102,6 +102,9 @@ get_child_position_handler(GtkOverlay   *overlay,
 		return false;
 	}
 
+    GtkRequisition min, req;
+    gtk_widget_get_preferred_size (widget, &min, &req);
+
 	GTKRect frame = [view layoutSubview: subview];
 
 	allocation->x = frame.x;

@@ -215,7 +215,9 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 {
     [GTKCallback sync: ^{
         gtk_widget_grab_focus(self.mainWidget);
-        gtk_widget_grab_default(self.mainWidget);
+        if (gtk_widget_get_can_default(self.mainWidget)) {
+            gtk_widget_grab_default(self.mainWidget);
+        }
     }];
 }
 

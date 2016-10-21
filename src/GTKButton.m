@@ -258,7 +258,9 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 {
     [GTKCallback sync: ^{
         gtk_widget_grab_focus(self.mainWidget);
-        gtk_widget_grab_default(self.mainWidget);
+        if (gtk_widget_get_can_default(self.mainWidget)) {
+            gtk_widget_grab_default(self.mainWidget);
+        }
     }];
 }
 @end

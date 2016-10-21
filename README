@@ -11,6 +11,7 @@ At the moment, GTKKit is only tested on OS X and FreeBSD.
 Currently, GTKKit implements the following class hierarchy:
 
 GTKResponder
+  GTKApplication
   GTKView
     GTKBox
     GTKControl
@@ -26,5 +27,4 @@ GTKResponder
 GTKImage
 GTKEvent
 GTKCallback
-GTKApplicationDelegate
 GTKLayoutConstraints

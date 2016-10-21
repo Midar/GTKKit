@@ -32,4 +32,6 @@
 - (void)startup;
 - (void)terminate;
 + (void)terminate;
+- (void)run;
++ (void)run;
 @end

@@ -104,6 +104,11 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     printf("Hello!\n");
 }
 
+- (void)applicationWillTerminate
+{
+    printf("Goodbye!\n");
+}
+
 - (void)editableClicked:(GTKButton *)sender
 {
     printf("Target-Action Message Sent!\n");
@@ -123,7 +128,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowDidClose
 {
-    printf("Goodbye!\n");
-    [OFApplication terminate];
+    [GTKApplication terminate];
 }
 @end

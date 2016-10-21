@@ -69,6 +69,11 @@ get_toplevel_window(gpointer data, gpointer userdata)
 
 - (void)terminate
 {
+    if ([self.delegate respondsToSelector: @selector(applicationShouldTerminate)]) {
+        if (![self.delegate applicationShouldTerminate]) {
+            return;
+        }
+    }
     [OFApplication terminate];
 }
 
@@ -79,6 +84,20 @@ get_toplevel_window(gpointer data, gpointer userdata)
 
 - (void)startup
 {
-    
+    gtkkit_gtk_thread = of_thread_current();
+    gtk_init(self.argc, self.argv);
+    if ([self.delegate respondsToSelector: @selector(applicationWillFinishLaunching)]) {
+        [self.delegate applicationWillFinishLaunching];
+    }
+}
+
+- (void)run
+{
+    gtk_main();
+}
+
++ (void)run
+{
+    [self.sharedApplication run];
 }
 @end

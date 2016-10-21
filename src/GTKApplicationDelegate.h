@@ -23,6 +23,6 @@
 
 @protocol GTKApplicationDelegate <OFObject, OFApplicationDelegate>
 @optional
+- (bool)applicationShouldTerminate;
 - (void)applicationWillFinishLaunching;
-- (void)applicationDidFinishLaunching;
 @end

@@ -28,29 +28,28 @@ typedef GdkRectangle GTKRect;
  * @brief This macro sets the class used as the app delegate, and provides the
  * main() function.
  */
-#define GTK_APPLICATION_DELEGATE(cls)                           \
-static int *_argc;                                              \
-static char ***_argv;                                           \
-                                                                \
-void                                                            \
-gtkkit_application_main(id param)                               \
-{                                                               \
-   of_application_main(_argc, _argv, [cls class]);              \
-}                                                               \
-                                                                \
-int                                                             \
-main(int argc, char *argv[])                                    \
-{                                                               \
-   _argc = &argc;                                               \
-   _argv = &argv;                                               \
-   gtk_init(&argc, &argv);                                      \
-   of_thread_new(&gtkkit_objfw_thread, &gtkkit_application_main,\
-                 nil, &gtkkit_objfw_thread_attr);               \
-   gtkkit_gtk_thread = of_thread_current();                     \
-   [GTKApplication sharedApplication];                          \
-   GTKApplication.sharedApplication.argc = &argc;               \
-   GTKApplication.sharedApplication.argv = &argv;               \
-   [GTKApplication.sharedApplication startup];                  \
-   gtk_main();                                                  \
-   return 0;                                                    \
-}                                                               \
+#define GTK_APPLICATION_DELEGATE(cls)                                          \
+                                                                               \
+void                                                                           \
+gtkkit_application_main(GTKApplication *app)                                   \
+{                                                                              \
+   of_application_main(app.argc, app.argv, [cls class]);                       \
+}                                                                              \
+                                                                               \
+int                                                                            \
+main(int argc, char *argv[])                                                   \
+{                                                                              \
+    [GTKApplication sharedApplication];                                        \
+    GTKApplication.sharedApplication.argc = &argc;                             \
+    GTKApplication.sharedApplication.argv = &argv;                             \
+    [GTKApplication.sharedApplication startup];                                \
+    of_thread_new(                                                             \
+        &gtkkit_objfw_thread,                                                  \
+        &gtkkit_application_main,                                              \
+        GTKApplication.sharedApplication,                                      \
+        &gtkkit_objfw_thread_attr);                                            \
+	GTKApplication.sharedApplication.delegate =                                \
+		(id<GTKApplicationDelegate>)(OFApplication.sharedApplication.delegate);\
+    [GTKApplication run];                                                      \
+    return 0;                                                                  \
+}                                                                              \

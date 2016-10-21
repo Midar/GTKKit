@@ -34,6 +34,12 @@ get_toplevel_window(gpointer data, gpointer userdata)
     }
 };
 
+static void
+gtkkit_application_main(GTKApplication *app)
+{
+    of_application_main(app.argc, app.argv, [app.delegateClass class]);
+}
+
 @implementation GTKApplication
 - (GTKViewController*)keyWindow
 {
@@ -84,8 +90,15 @@ get_toplevel_window(gpointer data, gpointer userdata)
 
 - (void)startup
 {
+    of_thread_new(
+        &gtkkit_objfw_thread,
+        &gtkkit_application_main,
+        self,
+        &gtkkit_objfw_thread_attr);
     gtkkit_gtk_thread = of_thread_current();
     gtk_init(self.argc, self.argv);
+	self.delegate =
+		(id<GTKApplicationDelegate>)(OFApplication.sharedApplication.delegate);
     if ([self.delegate respondsToSelector: @selector(applicationWillFinishLaunching)]) {
         [self.delegate applicationWillFinishLaunching];
     }

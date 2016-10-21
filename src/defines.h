@@ -29,27 +29,14 @@ typedef GdkRectangle GTKRect;
  * main() function.
  */
 #define GTK_APPLICATION_DELEGATE(cls)                                          \
-                                                                               \
-void                                                                           \
-gtkkit_application_main(GTKApplication *app)                                   \
-{                                                                              \
-   of_application_main(app.argc, app.argv, [cls class]);                       \
-}                                                                              \
-                                                                               \
 int                                                                            \
 main(int argc, char *argv[])                                                   \
 {                                                                              \
     [GTKApplication sharedApplication];                                        \
+	GTKApplication.sharedApplication.delegateClass = [cls class];              \
     GTKApplication.sharedApplication.argc = &argc;                             \
     GTKApplication.sharedApplication.argv = &argv;                             \
     [GTKApplication startup];                                                  \
-    of_thread_new(                                                             \
-        &gtkkit_objfw_thread,                                                  \
-        &gtkkit_application_main,                                              \
-        GTKApplication.sharedApplication,                                      \
-        &gtkkit_objfw_thread_attr);                                            \
-	GTKApplication.sharedApplication.delegate =                                \
-		(id<GTKApplicationDelegate>)(OFApplication.sharedApplication.delegate);\
     [GTKApplication run];                                                      \
     return 0;                                                                  \
 }                                                                              \

@@ -28,6 +28,7 @@
 @property (nonnull) GTKResponder *firstResponder;
 @property int * _Nonnull argc;
 @property char * _Nonnull * _Nonnull * _Nonnull argv;
+@property (nonnull) Class delegateClass;
 + (nonnull instancetype)sharedApplication;
 - (void)startup;
 + (void)startup;

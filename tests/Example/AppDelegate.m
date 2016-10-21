@@ -111,13 +111,11 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)editableClicked:(GTKButton *)sender
 {
-    printf("Target-Action Message Sent!\n");
     self.label.editable = !self.label.editable;
 }
 
 - (void)multilinedClicked:(GTKButton *)sender
 {
-    printf("Target-Action Message Sent!\n");
     self.label.multiline = !self.label.multiline;
 }
 

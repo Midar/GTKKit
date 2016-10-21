@@ -16,7 +16,7 @@
 
 #import "GTKControl.h"
 #import "GTKCallback.h"
-#import "GTKApplicationDelegate+GTKResponder.h"
+#import "GTKApplication.h"
 
 @implementation GTKControl
 - init
@@ -34,7 +34,7 @@
         }
 
         if (nil == self.target) {
-            GTKResponder *target = [(GTKApplicationDelegate *)(OFApplication.sharedApplication.delegate) firstResponder];
+            GTKResponder *target = GTKApplication.sharedApplication.firstResponder;
             if (nil == target) {
                 return;
             }

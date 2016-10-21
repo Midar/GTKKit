@@ -18,6 +18,10 @@
 #import "GTKPopUpButton.h"
 #import "GTKCallback.h"
 
+@interface GTKPopUpButton ()
+- (void)selectedItemChanged:(nonnull GTKEvent *)event;
+@end
+
 static void
 changed_handler(GtkComboBox *widget, gpointer userdata)
 {
@@ -29,14 +33,13 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
             GTKEvent *evt = [GTKEvent new];
             evt.type = GTKEventTypeMouseClicked;
             evt.mouseButton = 1;
-            [button mouseClicked: evt];
+            [button selectedItemChanged: evt];
         }];
 
     [[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
 @implementation GTKPopUpButton
-
 - (void)createMainWidget
 {
     self.mainWidget = gtk_combo_box_text_new();
@@ -68,7 +71,7 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
     }];
 }
 
-- (void)mouseClicked:(nonnull GTKEvent*)event
+- (void)selectedItemChanged:(nonnull GTKEvent*)event
 {
     ObjFWCallback(^{
         [self sendActionToTarget];

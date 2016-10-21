@@ -47,6 +47,10 @@ main(int argc, char *argv[])                                    \
    of_thread_new(&gtkkit_objfw_thread, &gtkkit_application_main,\
                  nil, &gtkkit_objfw_thread_attr);               \
    gtkkit_gtk_thread = of_thread_current();                     \
+   [GTKApplication sharedApplication];                          \
+   GTKApplication.sharedApplication.argc = &argc;               \
+   GTKApplication.sharedApplication.argv = &argv;               \
+   [GTKApplication.sharedApplication startup];                  \
    gtk_main();                                                  \
    return 0;                                                    \
 }                                                               \

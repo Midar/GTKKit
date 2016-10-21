@@ -15,11 +15,10 @@
  */
 
 #import "defines.h"
-#import "GTKResponderProtocol.h"
 #import "Exceptions.h"
 #import "GTKCallback.h"
+#import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"
-#import	"GTKApplicationDelegate+GTKResponder.h"
 #import "GTKResponder.h"
 #import	"GTKEvent.h"
 #import	"GTKLayoutConstraints.h"

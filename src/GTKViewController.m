@@ -15,7 +15,16 @@
  */
 
  #import "GTKViewController.h"
+ #import "GTKApplication.h"
+ #import "GTKWindowViewControllerDelegate.h"
 
  @implementation GTKViewController
-
+- init
+{
+    self = [super init];
+    self.contentView = [GTKView new];
+    self.contentView.nextResponder = self;
+    self.nextResponder = GTKApplication.sharedApplication;
+    return self;
+}
  @end

@@ -15,7 +15,7 @@
  */
 
 #import "GTKWindowViewController.h"
-#import "GTKApplicationDelegate+GTKResponder.h"
+#import "GTKApplicationDelegate.h"
 #import "GTKWindowViewControllerDelegate.h"
 
 static void
@@ -122,13 +122,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     self = [super init];
 
-    [self willBecomeFirstResponder];
     self.firstResponder = self;
-    [self didBecomeFirstResponder];
-
-    self.contentView = [GTKView new];
-    self.contentView.nextResponder = self;
-    self.nextResponder = (GTKApplicationDelegate *)(OFApplication.sharedApplication.delegate);
 
     [GTKCallback sync: ^{
 

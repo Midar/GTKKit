@@ -1,4 +1,5 @@
-/*! @file GTKApplicationDelegate+GTKResponder.h
+/*! @file GTKBox.h
+ *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,13 +16,20 @@
  */
 
 #import <ObjFW/ObjFW.h>
-
 #import <gtk/gtk.h>
 
 #import "defines.h"
+#import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
-#import "GTKResponderProtocol.h"
 
-@interface GTKApplicationDelegate (GTKResponder) <GTKResponderProtocol>
-- (GTKResponder *)firstResponder;
+@interface GTKApplication: GTKResponder
+@property (nullable) id<GTKApplicationDelegate> delegate;
+@property (nullable, readonly) GTKViewController *keyWindow;
+@property (nonnull) GTKResponder *firstResponder;
+@property int * _Nonnull argc;
+@property char * _Nonnull * _Nonnull * _Nonnull argv;
++ (nonnull instancetype)sharedApplication;
+- (void)startup;
+- (void)terminate;
++ (void)terminate;
 @end

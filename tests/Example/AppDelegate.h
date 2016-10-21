@@ -16,7 +16,7 @@
 
 #import "GTKKit.h"
 
-@interface AppDelegate : GTKApplicationDelegate <GTKWindowViewControllerDelegate>
+@interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowViewControllerDelegate>
 @property (nullable) GTKWindowViewController *window;
 @property (nullable) GTKImage *image;
 @property (nullable) GTKTextField *label;

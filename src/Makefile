@@ -13,8 +13,7 @@ SRCS =	GTKCallback.m                               \
 				GTKControl.m                                \
 				GTKViewController.m                         \
 				GTKWindowViewController.m                   \
-				GTKApplicationDelegate.m                    \
-				GTKApplicationDelegate+GTKResponder.m       \
+				GTKApplication.m                            \
 				GTKImage.m                                  \
 				GTKImageView.m                              \
 				GTKButton.m                                 \
@@ -28,7 +27,7 @@ SRCS =	GTKCallback.m                               \
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \
-				GTKResponderProtocol.h                      \
+				GTKApplicationDelegate.h                    \
 				GTKWindowViewControllerDelegate.h           \
 				GTKKit.h
 

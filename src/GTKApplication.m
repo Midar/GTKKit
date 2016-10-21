@@ -1,4 +1,5 @@
-/*
+/*! @file GTKBox.h
+ *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,8 +15,14 @@
  * the packaging of this file.
  */
 
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
+
+#import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"
 #import "GTKCallback.h"
+
+static GTKApplication *_sharedApplication;
 
 static void
 get_toplevel_window(gpointer data, gpointer userdata)
@@ -27,17 +34,7 @@ get_toplevel_window(gpointer data, gpointer userdata)
     }
 };
 
-@implementation GTKApplicationDelegate
-- (void)applicationDidFinishLaunching
-{
-    // The default implementation does nothing.
-}
-
-- (void)applicationWillTerminate
-{
-    gtk_main_quit();
-}
-
+@implementation GTKApplication
 - (GTKViewController*)keyWindow
 {
     __block GTKViewController *viewController;
@@ -60,5 +57,28 @@ get_toplevel_window(gpointer data, gpointer userdata)
         g_list_free(windows);
     }];
     return viewController;
+}
+
++ (instancetype)sharedApplication
+{
+    if (nil == _sharedApplication) {
+        _sharedApplication = [self new];
+    }
+    return _sharedApplication;
+}
+
+- (void)terminate
+{
+    [OFApplication terminate];
+}
+
++ (void)terminate
+{
+    [self.sharedApplication terminate];
+}
+
+- (void)startup
+{
+    
 }
 @end

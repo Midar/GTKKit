@@ -64,6 +64,9 @@
  */
 @property (getter=isMenuButtonHidden) bool menuButtonHidden;
 
+/*!
+ * @brief The delegate of this window.
+ */
 @property (weak, nullable) OFObject<GTKWindowViewControllerDelegate> *delegate;
 
 /*!
@@ -80,11 +83,6 @@
  * @brief The subtitle of the window this view controller manages.
  */
 @property (nonnull) OFString *subtitle;
-
-/*!
- * @brief The GTKView that holds all this view controller's subviews.
- */
-@property (nullable) GTKView *contentView;
 
 /*!
  * @brief The position and size of this view controller's window.

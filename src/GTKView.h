@@ -22,6 +22,8 @@
 #import "GTKLayoutConstraints.h"
 #import "GTKViewController.h"
 
+@class GTKViewController;
+
 @class GTKView;
 
 /*!

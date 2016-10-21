@@ -68,6 +68,9 @@ follows:
 
 #import "defines.h"
 #import "GTKResponder.h"
+#import "GTKView.h"
+
+@class GTKView;
 
 /*!
  * @brief A parent class for classes which implement
@@ -75,6 +78,11 @@ follows:
  * of a set of views.
  */
 @interface GTKViewController: GTKResponder
+
+/*!
+ * @brief The GTKView that holds all this view controller's subviews.
+ */
+@property (nullable) GTKView *contentView;
 
 /*!
  * @brief The GTKResponder which gets event messages first for this view controller.

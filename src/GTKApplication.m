@@ -90,11 +90,6 @@ gtkkit_application_main(GTKApplication *app)
 
 - (void)startup
 {
-    of_thread_new(
-        &gtkkit_objfw_thread,
-        &gtkkit_application_main,
-        self,
-        &gtkkit_objfw_thread_attr);
     gtkkit_gtk_thread = of_thread_current();
     gtk_init(self.argc, self.argv);
 	self.delegate =
@@ -102,6 +97,11 @@ gtkkit_application_main(GTKApplication *app)
     if ([self.delegate respondsToSelector: @selector(applicationWillFinishLaunching)]) {
         [self.delegate applicationWillFinishLaunching];
     }
+    of_thread_new(
+        &gtkkit_objfw_thread,
+        &gtkkit_application_main,
+        self,
+        &gtkkit_objfw_thread_attr);
 }
 
 + (void)startup

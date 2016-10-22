@@ -22,8 +22,6 @@
 #import "GTKApplicationDelegate.h"
 #import "GTKCallback.h"
 
-static GTKApplication *_sharedApplication;
-
 static void
 get_toplevel_window(gpointer data, gpointer userdata)
 {
@@ -67,10 +65,11 @@ gtkkit_application_main(GTKApplication *app)
 
 + (instancetype)sharedApplication
 {
-    if (nil == _sharedApplication) {
-        _sharedApplication = [self new];
+    static GTKApplication *sharedApplication;
+    if (nil == sharedApplication) {
+        sharedApplication = [self new];
     }
-    return _sharedApplication;
+    return sharedApplication;
 }
 
 - (void)terminate

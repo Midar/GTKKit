@@ -79,6 +79,7 @@ gtkkit_application_main(GTKApplication *app)
             return;
         }
     }
+    [self stop];
     [OFApplication terminate];
 }
 
@@ -115,10 +116,16 @@ gtkkit_application_main(GTKApplication *app)
     [self.sharedApplication run];
 }
 
+- (void)stop
+{
+    gtk_main_quit();
+}
 
++ (void)stop
+{
+    [self.sharedApplication stop];
+}
 
-// Override the default behavior, to try forwarding to the next responder in
-// the chain.
 - (id)forwardingTargetForSelector:(SEL)selector
 {
     return [super forwardingTargetForSelector: selector];

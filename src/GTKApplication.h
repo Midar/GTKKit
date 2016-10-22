@@ -36,4 +36,6 @@
 + (void)terminate;
 - (void)run;
 + (void)run;
+- (void)stop;
++ (void)stop;
 @end

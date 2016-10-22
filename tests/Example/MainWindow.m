@@ -28,6 +28,13 @@
     frame.height = 400;
     self.frame = frame;
 
+    self.box = [GTKBox new];
+    [self.box.constraints flexibleToTop: 0];
+    [self.box.constraints fixedToBottom: 10
+                                   left: 10
+                                  right: 10];
+    [self.box.constraints fixedHeight: 150];
+
     self.toggleEditableButton = [GTKButton new];
     [self.toggleEditableButton.constraints flexibleToTop: 0
                                  left: 0
@@ -49,8 +56,8 @@
     self.toggleMultilineButton.stringValue = @"Toggle multiline";
 
     self.slider = [GTKSlider new];
-    [self.slider.constraints flexibleToTop: 0];
-    [self.slider.constraints fixedToBottom: 80
+    [self.slider.constraints flexibleToBottom: 0];
+    [self.slider.constraints fixedToTop: 10
                                  left: 10
                                 right: 10];
     [self.slider.constraints fixedHeight: 50];
@@ -69,9 +76,10 @@
     [self.label.constraints fixedHeight: 30];
     self.label.stringValue = @"Hello, World!";
 
-    [self addSubview: self.toggleEditableButton];
-    [self addSubview: self.toggleMultilineButton];
-    [self addSubview: self.slider];
+    [self addSubview: self.box];
+    [self.box addSubview: self.toggleEditableButton];
+    [self.box addSubview: self.toggleMultilineButton];
+    [self.box addSubview: self.slider];
     [self addSubview: self.label];
 
     self.title = @"Example Window";

@@ -21,4 +21,5 @@
 @property (nonnull) GTKSlider *slider;
 @property (nonnull) GTKButton *toggleEditableButton;
 @property (nonnull) GTKButton *toggleMultilineButton;
+@property (nonnull) GTKBox *box;
 @end

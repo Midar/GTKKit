@@ -27,8 +27,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window = [MainWindow new];
     self.window.delegate = self;
 
-    self.window.slider.target = self;
-
     __weak typeof(self) weakSelf = self;
     self.window.slider.actionBlock = ^{
         weakSelf.window.label.alpha = weakSelf.window.slider.doubleValue;

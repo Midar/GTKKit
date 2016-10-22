@@ -113,14 +113,6 @@
 @property (getter=isResizable) bool resizable;
 
 /*!
- * @brief Adds the specified view to this view controller's content view as a
- * subview.
- *
- * @pram subview The view to add
- */
-- (void)addSubview:(nonnull GTKView *)subview;
-
-/*!
  * @brief Hide the window from the user. This does not destroy the window.
  */
 - (void)close;

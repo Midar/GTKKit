@@ -89,4 +89,13 @@ follows:
  */
 @property (nullable) GTKResponder *firstResponder;
 
+/*!
+ * @brief Adds the specified view to this view controller's content view as a
+ * subview.
+ *
+ * @pram subview The view to add
+ */
+- (void)addSubview:(nonnull GTKView *)subview;
+
+- (void)addViewController:(nonnull GTKViewController *)viewController;
 @end

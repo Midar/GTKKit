@@ -297,12 +297,6 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
     }];
 }
 
-- (void)addSubview:(nonnull GTKView *)subview
-{
-    [self.contentView addSubview: subview];
-    subview.viewController = self;
-}
-
 - (void)close
 {
     self.hidden = true;

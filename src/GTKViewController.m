@@ -27,4 +27,16 @@
     self.nextResponder = GTKApplication.sharedApplication;
     return self;
 }
+
+- (void)addViewController:(nonnull GTKViewController *)viewController
+{
+    [self addSubview: viewController.contentView];
+    viewController.nextResponder = self.contentView;
+}
+
+- (void)addSubview:(nonnull GTKView *)subview
+{
+    [self.contentView addSubview: subview];
+    subview.viewController = self;
+}
  @end

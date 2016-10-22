@@ -21,6 +21,11 @@
 #import "defines.h"
 #import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
+#import "GTKCallback.h"
+
+extern _Nonnull of_thread_t      gtkkit_objfw_thread;
+extern _Nonnull of_thread_t      gtkkit_gtk_thread;
+extern const    of_thread_attr_t gtkkit_objfw_thread_attr;
 
 @class GTKApplication;
 

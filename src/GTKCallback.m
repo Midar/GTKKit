@@ -15,10 +15,7 @@
  */
 
 #import "GTKCallback.h"
-
-of_thread_t gtkkit_gtk_thread;
-of_thread_t gtkkit_objfw_thread;
-const of_thread_attr_t gtkkit_objfw_thread_attr;
+#import "GTKApplication.h"
 
 void
 ObjFWCallback(ObjFWCallbackBlock block)

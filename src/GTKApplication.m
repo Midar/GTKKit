@@ -20,9 +20,12 @@
 
 #import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"
-#import "GTKCallback.h"
 
 GTKApplication * _Nonnull GTKApp = nil;
+
+of_thread_t gtkkit_gtk_thread;
+of_thread_t gtkkit_objfw_thread;
+const of_thread_attr_t gtkkit_objfw_thread_attr;
 
 static void
 get_toplevel_window(gpointer data, gpointer userdata)

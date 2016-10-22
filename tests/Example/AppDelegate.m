@@ -67,6 +67,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowDidClose
 {
-    [GTKApplication terminate];
+    [GTKApp terminate];
 }
 @end

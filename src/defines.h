@@ -32,11 +32,11 @@ typedef GdkRectangle GTKRect;
 int                                                                            \
 main(int argc, char *argv[])                                                   \
 {                                                                              \
-    [GTKApplication sharedApplication];                                        \
-	GTKApplication.sharedApplication.delegateClass = [cls class];              \
-    GTKApplication.sharedApplication.argc = &argc;                             \
-    GTKApplication.sharedApplication.argv = &argv;                             \
-    [GTKApplication startup];                                                  \
-    [GTKApplication run];                                                      \
+    GTKApp = [GTKApplication sharedApplication];                               \
+	GTKApp.delegateClass = [cls class];                                        \
+    GTKApp.argc = &argc;                                                       \
+    GTKApp.argv = &argv;                                                       \
+    [GTKApp startup];                                                          \
+    [GTKApp run];                                                              \
     return 0;                                                                  \
 }                                                                              \

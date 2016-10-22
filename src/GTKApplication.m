@@ -22,6 +22,8 @@
 #import "GTKApplicationDelegate.h"
 #import "GTKCallback.h"
 
+GTKApplication * _Nonnull GTKApp = nil;
+
 static void
 get_toplevel_window(gpointer data, gpointer userdata)
 {
@@ -83,11 +85,6 @@ gtkkit_application_main(GTKApplication *app)
     [OFApplication terminate];
 }
 
-+ (void)terminate
-{
-    [self.sharedApplication terminate];
-}
-
 - (void)startup
 {
     gtkkit_gtk_thread = of_thread_current();
@@ -101,29 +98,14 @@ gtkkit_application_main(GTKApplication *app)
 		(id<GTKApplicationDelegate>)(OFApplication.sharedApplication.delegate);
 }
 
-+ (void)startup
-{
-    [self.sharedApplication startup];
-}
-
 - (void)run
 {
     gtk_main();
 }
 
-+ (void)run
-{
-    [self.sharedApplication run];
-}
-
 - (void)stop
 {
     gtk_main_quit();
-}
-
-+ (void)stop
-{
-    [self.sharedApplication stop];
 }
 
 - (id)forwardingTargetForSelector:(SEL)selector

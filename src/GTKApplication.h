@@ -22,6 +22,10 @@
 #import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
 
+@class GTKApplication;
+
+extern GTKApplication * _Nonnull GTKApp;
+
 @interface GTKApplication: GTKResponder
 @property (nullable) id<GTKApplicationDelegate> delegate;
 @property (nullable, readonly) GTKViewController *keyWindow;
@@ -31,11 +35,7 @@
 @property (nonnull) Class delegateClass;
 + (nonnull instancetype)sharedApplication;
 - (void)startup;
-+ (void)startup;
 - (void)terminate;
-+ (void)terminate;
 - (void)run;
-+ (void)run;
 - (void)stop;
-+ (void)stop;
 @end

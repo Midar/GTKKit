@@ -48,8 +48,7 @@ typedef void (^GTKControlActionBlock) ();
 
 /*!
  * @brief A block which, if it exists, will be executed after attempting to
- * send the target its action message. This block takes a single argument,
- * which will be the instance running the block.
+ * send the target its action message.
  */
 @property (nullable, copy) GTKControlActionBlock actionBlock;
 

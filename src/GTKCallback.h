@@ -58,11 +58,12 @@ extern const of_thread_attr_t gtkkit_objfw_thread_attr;
  */
 @interface GTKCallback: OFObject
 {
-    GTKCallbackBlock _block;
     GMutex *_mutex;
     GCond *_cond;
     gboolean _flag;
 }
+
+@property (copy) GTKCallbackBlock block;
 
 /*!
  * @brief Run the given block in the GTK+ thread synchronously.

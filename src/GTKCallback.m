@@ -38,7 +38,6 @@ ObjFWCallback(ObjFWCallbackBlock block)
 }
 
 @interface GTKCallback ()
-@property (copy) GTKCallbackBlock block;
 @property GMutex *mutex;
 @property GCond *cond;
 @property gboolean flag;
@@ -71,16 +70,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
     g_mutex_init(self.mutex);
     g_cond_init(self.cond);
     return self;
-}
-
-- (GTKCallbackBlock)block;
-{
-	return _block;
-}
-
-- (void)setBlock:(GTKCallbackBlock)block
-{
-	_block = [block copy];
 }
 
 - (GCond *)cond;

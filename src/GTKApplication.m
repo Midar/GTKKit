@@ -30,7 +30,7 @@ get_toplevel_window(gpointer data, gpointer userdata)
     if (gtk_window_has_toplevel_focus(window)) {
         userdata = (gpointer)(window);
     }
-};
+}
 
 static void
 gtkkit_application_main(GTKApplication *app)

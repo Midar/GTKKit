@@ -34,7 +34,7 @@
         }
 
         if (nil == self.target) {
-            GTKResponder *target = GTKApplication.sharedApplication.firstResponder;
+            GTKResponder *target = GTKApp.firstResponder;
             if (nil == target) {
                 return;
             }

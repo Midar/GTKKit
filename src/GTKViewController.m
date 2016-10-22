@@ -24,7 +24,7 @@
     self = [super init];
     self.contentView = [GTKView new];
     self.contentView.nextResponder = self;
-    self.nextResponder = GTKApplication.sharedApplication;
+    self.nextResponder = GTKApp;
     return self;
 }
 

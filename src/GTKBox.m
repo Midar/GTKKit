@@ -26,6 +26,18 @@
     }];
 }
 
++ (instancetype)boxWithLabel:(OFString *)label;
+{
+    return [[self alloc] initWithLabel: label];
+}
+
+- (instancetype)initWithLabel:(OFString *)label;
+{
+    self = [self init];
+    self.label = label;
+    return self;
+}
+
 - (OFString *)label
 {
     return _label;

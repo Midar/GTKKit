@@ -26,4 +26,6 @@
     __block OFString *_label;
 }
 @property OFString *label;
++ (instancetype)boxWithLabel:(OFString *)label;
+- (instancetype)initWithLabel:(OFString *)label;
 @end

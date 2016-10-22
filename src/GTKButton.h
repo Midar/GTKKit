@@ -56,12 +56,12 @@ typedef enum GTKButtonType {
 /*!
  * @brief The state of an active button. Equal to true.
  */
-const bool GTKOnState = true;
+extern const bool GTKOnState;
 
 /*!
  * @brief The state of an inactive button. Equal to false.
  */
-const bool GTKOffState = false;
+extern const bool GTKOffState;
 
 
 /*!

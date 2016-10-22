@@ -1,5 +1,5 @@
 PROG_NOINST = Example
-SRCS = AppDelegate.m
+SRCS = MainWindow.m AppDelegate.m
 
 include ../../buildsys.mk
 

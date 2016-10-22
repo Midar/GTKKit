@@ -15,10 +15,10 @@
  */
 
 #import "GTKKit.h"
-#import "MainWindow.h"
 
-@interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowViewControllerDelegate>
-@property (nullable) MainWindow *window;
-- (void)toggleEditableButtonClicked:(nonnull GTKButton *)sender;
-- (void)toggleMultilineButtonClicked:(nonnull GTKButton *)sender;
+@interface MainWindow: GTKWindowViewController
+@property (nonnull) GTKTextField *label;
+@property (nonnull) GTKSlider *slider;
+@property (nonnull) GTKButton *toggleEditableButton;
+@property (nonnull) GTKButton *toggleMultilineButton;
 @end

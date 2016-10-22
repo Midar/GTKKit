@@ -17,6 +17,9 @@
 #import "GTKButton.h"
 #import "GTKCallback.h"
 
+const bool GTKOnState = true;
+const bool GTKOffState = false;
+
 static void
 clicked_event_handler(GtkWidget *widget, gpointer userdata)
 {

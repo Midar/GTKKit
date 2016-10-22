@@ -98,9 +98,6 @@ gtkkit_application_main(GTKApplication *app)
         &gtkkit_objfw_thread_attr);
 	self.delegate =
 		(id<GTKApplicationDelegate>)(OFApplication.sharedApplication.delegate);
-    if ([self.delegate respondsToSelector: @selector(applicationWillFinishLaunching)]) {
-        [self.delegate applicationWillFinishLaunching];
-    }
 }
 
 + (void)startup

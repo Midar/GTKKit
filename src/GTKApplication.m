@@ -117,4 +117,118 @@ gtkkit_application_main(GTKApplication *app)
 {
     [self.sharedApplication run];
 }
+
+
+
+// Override the default behavior, to try forwarding to the next responder in
+// the chain.
+- (id)forwardingTargetForSelector:(SEL)selector
+{
+    return [super forwardingTargetForSelector: selector];
+}
+
+- (void)becomeFirstResponder
+{
+    // Default implementation does nothing.
+}
+
+- (bool)canBecomeFirstResponder
+{
+    return false;
+}
+
+- (void)willBecomeMapped
+{
+    // Do nothing.
+}
+
+- (void)didBecomeMapped
+{
+    // Do nothing.
+}
+
+- (void)willBecomeUnmapped
+{
+    // Do nothing.
+}
+
+- (void)didBecomeUnmapped
+{
+    // Do nothing.
+}
+
+- (bool)shouldBecomeFirstResponder
+{
+    return false;
+}
+
+- (void)willBecomeFirstResponder
+{
+    // Do nothing.
+}
+
+- (void)didBecomeFirstResponder
+{
+    // Do nothing.
+}
+
+- (bool)shouldResignFirstResponder
+{
+    return true;
+}
+
+- (void)willResignFirstResopnder
+{
+    // Do nothing.
+}
+
+- (void)didResignFirstResponder
+{
+    // Do nothing.
+}
+
+- (void)mouseDown:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)mouseUp:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)mouseClicked:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)scrollWheel:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)mouseEntered:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)mouseLeft:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)keyDown:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)keyUp:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
+- (void)modifierKeysChanged:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
 @end

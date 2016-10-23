@@ -1,6 +1,6 @@
-GTKKit is a multithreaded MVC GUI framework, which implements a UIKit-style API
-on top of the GTK+ cross-platform widget toolkit. It is under active development,
-and it currently in a barely usable, skeletal state.
+GTKKit is a multithreaded MVC GUI framework, which implements a UIKit-style
+Objective-C API on top of the GTK+ cross-platform widget toolkit. It is under
+active development, and it currently in a barely usable, skeletal state.
 
 Requirements:
  - GTK+ 3
@@ -26,5 +26,5 @@ GTKResponder
     GTKWindowViewController
 GTKImage
 GTKEvent
-GTKCallback
+GTKDispatchQueue
 GTKLayoutConstraints

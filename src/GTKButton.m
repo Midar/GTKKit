@@ -15,7 +15,7 @@
  */
 
 #import "GTKButton.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 const bool GTKOnState = true;
 const bool GTKOffState = false;
@@ -66,7 +66,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
 - (void)createMainWidget
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_button_new();
         g_object_ref_sink(G_OBJECT(self.mainWidget));
 
@@ -94,7 +94,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
     OFString *stringValue = self.stringValue;
     bool state = self.state;
 
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
         gtk_widget_destroy(_hiddenRadioButton);
 
@@ -153,7 +153,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 - (OFString *)stringValue
 {
     __block const char *str;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         str = gtk_button_get_label(GTK_BUTTON(self.mainWidget));
     }];
     if (NULL == str) {
@@ -164,25 +164,25 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
 - (void)setStringValue:(OFString *)stringValue
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_button_set_label(GTK_BUTTON(self.mainWidget), stringValue.UTF8String);
     }];
 }
 
 - (void)mouseClicked:(nonnull GTKEvent*)event
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         [self sendActionToTarget];
         if (NULL != self.actionBlock) {
             self.actionBlock();
         }
-    });
+    }];
 }
 
 - (bool)state
 {
     __block bool state;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         switch (_buttonType) {
         case GTKPushButton:
             state = false;
@@ -202,7 +202,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
 - (void)setState:(bool)state
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         switch (_buttonType) {
         case GTKPushButton:
             break;
@@ -259,7 +259,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
 - (void)didBecomeFirstResponder
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_grab_focus(self.mainWidget);
         if (gtk_widget_get_can_default(self.mainWidget)) {
             gtk_widget_grab_default(self.mainWidget);

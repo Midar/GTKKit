@@ -16,7 +16,7 @@
  */
 
 #import "GTKTextField.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 static void
 entry_activated_handler(GtkEntry *entry, gpointer userdata)
@@ -80,7 +80,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 - (void)createMainWidget
 {
     _editable = false;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_label_new(NULL);
     }];
 }
@@ -110,7 +110,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
     GTKJustification justify = self.justify;
     bool selectable = self.selectable;
     _editable = editable;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
         if (_editable == true) {
             if (_multiline == true) {
@@ -148,7 +148,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 {
     __block OFString *stringValue;
     __block const char *str;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         if (_editable == true) {
             if (_multiline == true) {
                 GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(self.mainWidget)));
@@ -172,7 +172,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 
 - (void)setStringValue:(OFString *)stringValue
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         if (_editable == true) {
             if (_multiline == true) {
                 GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(self.mainWidget)));
@@ -195,7 +195,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 {
     _selectable = selectable;
     if (!self.isEditable) {
-        [GTKCallback sync: ^{
+        [GTKApp.dispatch.gtk sync: ^{
             gtk_label_set_selectable(GTK_LABEL(self.mainWidget), selectable);
         }];
     }
@@ -213,7 +213,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 
 - (void)didBecomeFirstResponder
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_grab_focus(self.mainWidget);
         if (gtk_widget_get_can_default(self.mainWidget)) {
             gtk_widget_grab_default(self.mainWidget);
@@ -230,7 +230,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
 {
     _justify = justify;
     if (!self.isEditable) {
-        [GTKCallback sync: ^{
+        [GTKApp.dispatch.gtk sync: ^{
             gtk_label_set_justify(GTK_LABEL(self.mainWidget), (GtkJustification)(_justify));
         }];
     }
@@ -250,7 +250,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
     GTKJustification justify = self.justify;
     bool selectable = self.selectable;
     _multiline = multiline;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
         if (self.isEditable) {
             if (_multiline == true) {

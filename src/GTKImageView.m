@@ -15,7 +15,7 @@
  */
 
 #import "GTKImageView.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 @implementation GTKImageView
 - init
@@ -27,7 +27,7 @@
 
 - (void)createMainWidget
 {
-	[GTKCallback sync: ^{
+	[GTKApp.dispatch.gtk sync: ^{
 		self.mainWidget = gtk_image_new();
 	}];
 }
@@ -65,7 +65,7 @@
 	}
 
 	if (NULL != newPixbuf) {
-		[GTKCallback sync: ^{
+		[GTKApp.dispatch.gtk sync: ^{
 			GdkPixbuf *oldPixbuf = gtk_image_get_pixbuf(GTK_IMAGE(self.mainWidget));
 			gtk_image_set_from_pixbuf(GTK_IMAGE(self.mainWidget), newPixbuf);
 			g_object_unref(G_OBJECT(oldPixbuf));

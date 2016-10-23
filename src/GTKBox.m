@@ -16,12 +16,12 @@
  */
 
 #import "GTKBox.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 @implementation GTKBox
 - (void)createMainWidget
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_frame_new(NULL);
     }];
 }
@@ -46,7 +46,7 @@
 - (void)setLabel:(OFString *)label
 {
     _label = label;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_frame_set_label(GTK_FRAME(self.mainWidget), label.UTF8String);
     }];
 }

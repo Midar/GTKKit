@@ -15,7 +15,7 @@
  */
 
 #import "GTKView.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 #import "GTKLayoutConstraints.h"
 #import "Exceptions.h"
 
@@ -134,7 +134,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 	self.subviews = [OFMutableArray new];
 	self.constraints = [GTKLayoutConstraints new];
 
-	[GTKCallback sync: ^{
+	[GTKApp.dispatch.gtk sync: ^{
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
         gtk_container_set_border_width(GTK_CONTAINER(self.overlayWidget), 0);
@@ -194,7 +194,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)createMainWidget
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_drawing_area_new();
     }];
 }
@@ -202,7 +202,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (void)dealloc
 {
 	if (self.overlayWidget != NULL) {
-		[GTKCallback sync: ^{
+		[GTKApp.dispatch.gtk sync: ^{
 			g_signal_handler_disconnect(
 				G_OBJECT(self.overlayWidget),
 				_childPositionHandlerID);
@@ -222,7 +222,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (bool)isHidden
 {
     __block bool hidden;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hidden = !gtk_widget_get_visible(self.overlayWidget);
     }];
     return hidden;
@@ -230,7 +230,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)setHidden:(bool)hidden
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_visible(self.overlayWidget, !hidden);
     }];
 }
@@ -238,7 +238,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (GTKRect)frame
 {
 	__block GtkAllocation alloc;
-	[GTKCallback sync: ^{
+	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_get_allocation(self.overlayWidget, &alloc);
 	}];
 	return (GTKRect)alloc;
@@ -359,7 +359,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)layoutSubviews
 {
-	[GTKCallback sync: ^{
+	[GTKApp.dispatch.gtk sync: ^{
 		for (GTKView *view in self.subviews) {
 			size_t index = [self.subviews indexOfObject: view];
 			gtk_overlay_reorder_overlay(
@@ -385,7 +385,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 		[view removeFromSuperview];
 		view.superview = self;
 		view.nextResponder = self;
-		[GTKCallback sync: ^{
+		[GTKApp.dispatch.gtk sync: ^{
 			gtk_overlay_add_overlay(
 				GTK_OVERLAY(self.overlayWidget),
 				view.overlayWidget);
@@ -396,7 +396,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)removeFromSuperview
 {
-	[GTKCallback sync: ^{
+	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_unparent(self.overlayWidget);
 	}];
 	[self.superview.subviews removeObject: self];
@@ -408,7 +408,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (double)alpha
 {
     __block double alpha;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         alpha = gtk_widget_get_opacity(self.mainWidget);
     }];
     return alpha;
@@ -416,7 +416,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 - (void)setAlpha:(double)alpha
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_opacity(self.mainWidget, alpha);
     }];
 }

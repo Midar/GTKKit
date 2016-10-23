@@ -15,7 +15,6 @@
  */
 
 #import "GTKControl.h"
-#import "GTKCallback.h"
 #import "GTKApplication.h"
 
 @implementation GTKControl
@@ -28,7 +27,7 @@
 
 - (void)sendActionToTarget
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         if (NULL == self.action) {
             return;
         }
@@ -46,51 +45,51 @@
             void (*func)(id, SEL, id) = (void *)(imp);
             func(self.target, self.action, self);
         }
-    });
+    }];
 }
 
 - (void)takeStringValueFrom:(nonnull id)target
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         if ([target respondsToSelector: @selector(stringValue)]) {
             self.stringValue = [target stringValue];
         }
-    });
+    }];
 }
 
 - (void)takeIntValueFrom:(nonnull id)target
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         if ([target respondsToSelector: @selector(intValue)]) {
             self.intValue = [target intValue];
         }
-    });
+    }];
 }
 
 - (void)takeDoubleValueFrom:(nonnull id)target
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         if ([target respondsToSelector: @selector(doubleValue)]) {
             self.doubleValue = [target doubleValue];
         }
-    });
+    }];
 }
 
 - (void)takeFloatValueFrom:(nonnull id)target
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         if ([target respondsToSelector: @selector(floatValue)]) {
             self.floatValue = [target floatValue];
         }
-    });
+    }];
 }
 
 - (void)takeObjectValueFrom:(nonnull id)target
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         if ([target respondsToSelector: @selector(objectValue)]) {
             self.objectValue = [target objectValue];
         }
-    });
+    }];
 }
 @end

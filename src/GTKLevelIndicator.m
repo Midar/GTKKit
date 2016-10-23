@@ -16,7 +16,7 @@
  */
 
 #import "GTKLevelIndicator.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 @implementation GTKLevelIndicator
 - init
@@ -29,7 +29,7 @@
 
 - (void)createMainWidget
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_level_bar_new();
     }];
 }
@@ -42,7 +42,7 @@
 - (void)setMinValue:(double)minValue
 {
     _minValue = minValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_level_bar_set_min_value(GTK_LEVEL_BAR(self.mainWidget), _minValue);
     }];
 }
@@ -55,7 +55,7 @@
 - (void)setMaxValue:(double)maxValue
 {
     _maxValue = maxValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_level_bar_set_max_value(GTK_LEVEL_BAR(self.mainWidget), _maxValue);
     }];
 }
@@ -68,7 +68,7 @@
 - (void)setMode:(GTKLevelMode)mode
 {
     _mode = mode;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_level_bar_set_mode(GTK_LEVEL_BAR(self.mainWidget), (GtkLevelBarMode)(mode));
     }];
 }
@@ -76,7 +76,7 @@
 - (double)doubleValue
 {
     __block double doubleValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         doubleValue = gtk_level_bar_get_value(GTK_LEVEL_BAR(self.mainWidget));
     }];
     return doubleValue;
@@ -84,7 +84,7 @@
 
 - (void)setDoubleValue:(double)doubleValue
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_level_bar_set_value(GTK_LEVEL_BAR(self.mainWidget), doubleValue);
     }];
 }
@@ -117,7 +117,7 @@
 - (void)setInverted:(bool)inverted
 {
     _inverted = inverted;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_level_bar_set_inverted(GTK_LEVEL_BAR(self.mainWidget), inverted);
     }];
 }
@@ -130,7 +130,7 @@
 - (void)setOrientation:(GTKOrientation)orientation
 {
     _orientation = orientation;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_orientable_set_orientation(
             GTK_ORIENTABLE(self.mainWidget),
             (GtkOrientation)(orientation));

@@ -16,7 +16,7 @@
  */
 
 #import "GTKPopUpButton.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 @interface GTKPopUpButton ()
 - (void)selectedItemChanged:(nonnull GTKEvent *)event;
@@ -53,7 +53,7 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
 - (void)insertItemWithTitle:(OFString *)string
                          at:(int)index
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_text_insert(
             GTK_COMBO_BOX_TEXT(self.mainWidget),
             index,
@@ -64,7 +64,7 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
 
 - (void)removeItemAt:(int)index
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_text_remove(
             GTK_COMBO_BOX_TEXT(self.mainWidget),
             index);
@@ -73,18 +73,18 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
 
 - (void)selectedItemChanged:(nonnull GTKEvent*)event
 {
-    ObjFWCallback(^{
+    [GTKApp.dispatch.main sync: ^{
         [self sendActionToTarget];
         if (NULL != self.actionBlock) {
             self.actionBlock();
         }
-    });
+    }];
 }
 
 - (int)indexOfSelectedItem
 {
     __block int activeIndex;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         activeIndex = gtk_combo_box_get_active(GTK_COMBO_BOX(self.mainWidget));
     }];
     return activeIndex;
@@ -94,7 +94,7 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
 {
     __block OFString *title;
     __block char *str;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         str = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(self.mainWidget));
         if (NULL == str) {
             str = "";
@@ -106,14 +106,14 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
 
 - (void)selectItemAt:(int)activeIndex
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_set_active(GTK_COMBO_BOX(self.mainWidget), activeIndex);
     }];
 }
 
 - (void)removeAllItems
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(self.mainWidget));
     }];
 }

@@ -17,6 +17,7 @@
 #import "GTKWindowViewController.h"
 #import "GTKApplicationDelegate.h"
 #import "GTKWindowViewControllerDelegate.h"
+#import "GTKApplication.h"
 
 static void
 close_button_clicked_handler(GtkButton *button, gpointer userdata)
@@ -124,7 +125,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
     self.firstResponder = self;
 
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
 
         _headerBar = gtk_header_bar_new();
         g_object_ref_sink(G_OBJECT(_headerBar));
@@ -252,7 +253,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)dealloc
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(_window);
     }];
 }
@@ -260,7 +261,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)isHidden
 {
     __block bool hidden;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hidden = !gtk_widget_get_visible(_window);
     }];
     return hidden;
@@ -268,7 +269,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setHidden:(bool)hidden
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_visible(_window, !hidden);
     }];
 }
@@ -276,7 +277,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (GTKRect)frame
 {
     __block GTKRect frame;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_window_get_size(
             GTK_WINDOW(_window),
             &frame.width,
@@ -291,7 +292,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setFrame:(GTKRect)frame
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_window_resize(GTK_WINDOW(_window), frame.width, frame.height);
         gtk_window_move(GTK_WINDOW(_window), frame.x, frame.y);
     }];
@@ -304,7 +305,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setTitleVisible:(bool)visible
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_window_set_decorated(GTK_WINDOW(_window), visible);
     }];
 }
@@ -312,7 +313,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)titleVisible
 {
     __block bool visible;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         visible = gtk_window_get_decorated(GTK_WINDOW(_window));
     }];
     return visible;
@@ -320,7 +321,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setResizable:(bool)resizable
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_window_set_resizable(GTK_WINDOW(_window), resizable);
     }];
 }
@@ -328,7 +329,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)isResizable
 {
     __block bool resizable;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         resizable = gtk_window_get_resizable(GTK_WINDOW(_window));
     }];
     return resizable;
@@ -337,7 +338,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)hasToplevelFocus
 {
     __block bool hasToplevelFocus;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hasToplevelFocus = gtk_window_has_toplevel_focus(GTK_WINDOW(_window));
     }];
     return hasToplevelFocus;
@@ -346,7 +347,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (OFString *)title
 {
     __block OFString *title;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         const char *str = gtk_header_bar_get_title(GTK_HEADER_BAR(_headerBar));
         title = [OFString stringWithUTF8String: str];
     }];
@@ -355,7 +356,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setTitle:(OFString *)title
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_header_bar_set_title(
             GTK_HEADER_BAR(_headerBar),
             title.UTF8String);
@@ -365,7 +366,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (OFString *)subtitle
 {
     __block OFString *subtitle;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         const char *str = gtk_header_bar_get_subtitle(GTK_HEADER_BAR(_headerBar));
         subtitle = [OFString stringWithUTF8String: str];
     }];
@@ -374,7 +375,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setSubtitle:(OFString *)subtitle
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_header_bar_set_subtitle(
             GTK_HEADER_BAR(_headerBar),
             subtitle.UTF8String);
@@ -384,7 +385,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (double)alpha
 {
     __block double alpha;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         alpha = gtk_widget_get_opacity(_window);
     }];
     return alpha;
@@ -392,7 +393,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setAlpha:(double)alpha
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_opacity(_window, alpha);
     }];
 }
@@ -409,14 +410,14 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)minimize
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_window_iconify(GTK_WINDOW(_window));
     }];
 }
 
 - (void)maximize
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_window_maximize(GTK_WINDOW(_window));
     }];
 }
@@ -424,7 +425,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)isCloseButtonHidden
 {
     __block bool hidden;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hidden = gtk_widget_get_visible(_closeButton);
     }];
     return hidden;
@@ -432,7 +433,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setCloseButtonHidden:(bool)hidden
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_visible(_closeButton, !hidden);
     }];
     [self updateHeaderbarSeparatorVisibility];
@@ -441,7 +442,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)isMinimizeButtonHidden
 {
     __block bool hidden;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hidden = gtk_widget_get_visible(_minimizeButton);
     }];
     return hidden;
@@ -449,7 +450,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setMinimizeButtonHidden:(bool)hidden
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_visible(_minimizeButton, !hidden);
     }];
     [self updateHeaderbarSeparatorVisibility];
@@ -458,7 +459,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)isMaximizeButtonHidden
 {
     __block bool hidden;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hidden = gtk_widget_get_visible(_maximizeButton);
     }];
     return hidden;
@@ -466,7 +467,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setMaximizeButtonHidden:(bool)hidden
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_visible(_maximizeButton, !hidden);
     }];
     [self updateHeaderbarSeparatorVisibility];
@@ -475,7 +476,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 - (bool)isMenuButtonHidden
 {
     __block bool hidden;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         hidden = gtk_widget_get_visible(_menuButton);
     }];
     return hidden;
@@ -483,7 +484,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)setMenuButtonHidden:(bool)hidden
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_visible(_menuButton, !hidden);
     }];
     [self updateHeaderbarSeparatorVisibility];
@@ -491,7 +492,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
 
 - (void)updateHeaderbarSeparatorVisibility
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         if (!gtk_widget_get_visible(_minimizeButton) &&
             !gtk_widget_get_visible(_maximizeButton) &&
             !gtk_widget_get_visible(_closeButton)) {

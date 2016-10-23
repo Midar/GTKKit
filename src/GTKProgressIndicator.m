@@ -16,7 +16,7 @@
  */
 
 #import "GTKProgressIndicator.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 @implementation GTKProgressIndicator
 - init
@@ -30,7 +30,7 @@
 
 - (void)createMainWidget
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_progress_bar_new();
         gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.mainWidget), PANGO_ELLIPSIZE_END);
         gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(self.mainWidget), 0.1);
@@ -45,7 +45,7 @@
 - (void)setShowLabel:(bool)showLabel
 {
     _showLabel = showLabel;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(self.mainWidget), _showLabel);
     }];
 }
@@ -58,7 +58,7 @@
 - (void)setInverted:(bool)inverted
 {
     _inverted = inverted;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(self.mainWidget), _inverted);
     }];
 }
@@ -71,7 +71,7 @@
 - (void)setStringValue:(OFString *)stringValue
 {
     _stringValue = stringValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.mainWidget), _stringValue.UTF8String);
     }];
 }
@@ -84,7 +84,7 @@
 - (void)setDoubleValue:(double)doubleValue
 {
     _doubleValue = doubleValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(self.mainWidget), _doubleValue);
     }];
 }
@@ -117,7 +117,7 @@
 - (void)setOrientation:(GTKOrientation)orientation
 {
     _orientation = orientation;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_orientable_set_orientation(
             GTK_ORIENTABLE(self.mainWidget),
             (GtkOrientation)(orientation));

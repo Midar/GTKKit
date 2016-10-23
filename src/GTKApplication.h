@@ -21,7 +21,9 @@
 #import "defines.h"
 #import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
-#import "GTKCallback.h"
+#import "GTKMainDispatchQueue.h"
+#import "GTKBackgroundDispatchQueue.h"
+#import "GTKGUIDispatchQueue.h"
 
 extern _Nonnull of_thread_t      gtkkit_objfw_thread;
 extern _Nonnull of_thread_t      gtkkit_gtk_thread;
@@ -31,7 +33,14 @@ extern const    of_thread_attr_t gtkkit_objfw_thread_attr;
 
 extern GTKApplication * _Nonnull GTKApp;
 
+@interface GTKStandardDispatchQueues: OFObject
+@property (nonnull) GTKMainDispatchQueue *main;
+@property (nonnull) GTKBackgroundDispatchQueue *background;
+@property (nonnull) GTKGUIDispatchQueue *gtk;
+@end
+
 @interface GTKApplication: GTKResponder
+@property (nonnull) GTKStandardDispatchQueues *dispatch;
 @property (nullable) id<GTKApplicationDelegate> delegate;
 @property (nullable, readonly) GTKViewController *keyWindow;
 @property (nonnull) GTKResponder *firstResponder;

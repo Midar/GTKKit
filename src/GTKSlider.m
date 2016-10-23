@@ -19,7 +19,7 @@
 #import <gtk/gtk.h>
 
 #import "GTKSlider.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 static void
 value_changed_handler(GtkScale *scale, gpointer userdata)
@@ -45,7 +45,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     self = [super init];
     _min = 0.0;
     _max = 100.0;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
     }];
     self.showFillLevel = false;
@@ -62,7 +62,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 
 - (void)createMainWidget
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
         _orientation = GTKSliderOrientationHorizontal;
         _valueChangedHandlerID = g_signal_connect(
@@ -95,7 +95,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     bool highlightOrigin = self.highlightOrigin;
     bool showValue = self.showValue;
 
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
         _orientation = orientation;
 
@@ -137,7 +137,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setMinValue:(double)min
 {
     _min = min;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
     }];
 }
@@ -150,7 +150,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setMaxValue:(double)max
 {
     _max = max;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
     }];
 }
@@ -158,7 +158,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (double)doubleValue
 {
     __block double doubleValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         doubleValue = gtk_range_get_value(GTK_RANGE(self.mainWidget));
     }];
     return doubleValue;
@@ -166,7 +166,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 
 - (void)setDoubleValue:(double)doubleValue
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_value(GTK_RANGE(self.mainWidget), doubleValue);
     }];
 }
@@ -174,7 +174,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (int)intValue
 {
     __block double doubleValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         doubleValue = gtk_range_get_value(GTK_RANGE(self.mainWidget));
     }];
     return (int)(ceil(doubleValue));
@@ -182,7 +182,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 
 - (void)setIntValue:(int)intValue
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_value(GTK_RANGE(self.mainWidget), (double)(intValue));
     }];
 }
@@ -190,7 +190,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (float)floatValue
 {
     __block double doubleValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         doubleValue = gtk_range_get_value(GTK_RANGE(self.mainWidget));
     }];
     return (float)(doubleValue);
@@ -198,7 +198,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 
 - (void)setFloatValue:(float)floatValue
 {
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_value(GTK_RANGE(self.mainWidget), (double)(floatValue));
     }];
 }
@@ -211,7 +211,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setRestrictToFillLevel:(bool)restrictToFillLevel
 {
     _restrict = restrictToFillLevel;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_restrict_to_fill_level(GTK_RANGE(self.mainWidget), _restrict);
     }];
 }
@@ -224,7 +224,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setFillLevel:(double)fillLevel
 {
     _fillLevel = fillLevel;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_fill_level(GTK_RANGE(self.mainWidget), _fillLevel);
     }];
 }
@@ -237,7 +237,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setShowFillLevel:(bool)showFillLevel
 {
     _showFillLevel = showFillLevel;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_show_fill_level(GTK_RANGE(self.mainWidget), _showFillLevel);
     }];
 }
@@ -250,7 +250,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setInverted:(bool)inverted
 {
     _inverted = inverted;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_inverted(GTK_RANGE(self.mainWidget), _inverted);
     }];
 }
@@ -263,7 +263,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setIncrement:(double)increment
 {
     _increment = increment;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_range_set_increments(GTK_RANGE(self.mainWidget), _increment, _increment);
     }];
 }
@@ -276,7 +276,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setRoundDigits:(int)roundDigits
 {
     _roundDigits = roundDigits;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_scale_set_digits(GTK_SCALE(self.mainWidget), _roundDigits);
     }];
 }
@@ -289,7 +289,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setShowValue:(bool)showValue
 {
     _showValue = showValue;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_scale_set_draw_value(GTK_SCALE(self.mainWidget), _showValue);
     }];
 }
@@ -302,7 +302,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setValuePosition:(GTKPositionType)valuePosition
 {
     _valuePosition = valuePosition;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_scale_set_value_pos(GTK_SCALE(self.mainWidget), (GtkPositionType)(_valuePosition));
     }];
 }
@@ -315,7 +315,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 - (void)setHighlightOrigin:(bool)highlightOrigin
 {
     _highlightOrigin = highlightOrigin;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         gtk_scale_set_has_origin(GTK_SCALE(self.mainWidget), _highlightOrigin);
     }];
 }
@@ -334,7 +334,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
         return;
     }
     if (_numberOfTickMarks == 1) {
-        [GTKCallback sync: ^{
+        [GTKApp.dispatch.gtk sync: ^{
             double pos = (_max - _min) / 2;
             gtk_scale_add_mark(
                 GTK_SCALE(self.mainWidget),
@@ -345,7 +345,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
         return;
     }
     while (i <= numberOfTickMarks - 1) {
-        [GTKCallback sync: ^{
+        [GTKApp.dispatch.gtk sync: ^{
             double pos = i * ((_max - _min) / (_numberOfTickMarks - 1));
             gtk_scale_add_mark(
                 GTK_SCALE(self.mainWidget),

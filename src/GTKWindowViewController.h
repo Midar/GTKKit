@@ -21,7 +21,6 @@
 #import "defines.h"
 #import "GTKViewController.h"
 #import "GTKView.h"
-#import "GTKCallback.h"
 #import "GTKWindowViewControllerDelegate.h"
 
 /*!

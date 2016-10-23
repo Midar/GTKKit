@@ -1,4 +1,5 @@
-/*
+/*! @file GTKDispatchQueue.m
+ *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,28 +15,31 @@
  * the packaging of this file.
  */
 
-#import "defines.h"
-#import "Exceptions.h"
 #import "GTKDispatchQueue.h"
-#import "GTKMainDispatchQueue.h"
 #import "GTKBackgroundDispatchQueue.h"
-#import "GTKGUIDispatchQueue.h"
-#import "GTKApplication.h"
-#import "GTKApplicationDelegate.h"
-#import "GTKResponder.h"
-#import	"GTKEvent.h"
-#import	"GTKLayoutConstraints.h"
-#import	"GTKView.h"
-#import	"GTKControl.h"
-#import	"GTKViewController.h"
-#import	"GTKWindowViewController.h"
-#import	"GTKImage.h"
-#import	"GTKImageView.h"
-#import "GTKButton.h"
-#import "GTKSlider.h"
-#import "GTKTextField.h"
-#import "GTKLevelIndicator.h"
-#import "GTKProgressIndicator.h"
-#import "GTKPopUpButton.h"
-#import "GTKBox.h"
-#import "GTKWindowViewControllerDelegate.h"
+
+@implementation GTKDispatchQueue
+- init
+{
+    self = [super init];
+    self.label = @"";
+    return self;
+}
+
+- (void)sync:(DispatchWorkItem)block
+{
+
+}
+
+- (void)async:(DispatchWorkItem)block
+{
+
+}
+
++ (nonnull GTKBackgroundDispatchQueue *)backgroundQueueWithLabel:(nonnull OFString *)label
+{
+	GTKBackgroundDispatchQueue *queue = [GTKBackgroundDispatchQueue new];
+	queue.label = label;
+	return queue;
+}
+@end

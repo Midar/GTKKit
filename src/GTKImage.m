@@ -15,7 +15,7 @@
  */
 
 #import "GTKImage.h"
-#import "GTKCallback.h"
+#import "GTKApplication.h"
 
 @interface GTKImage ()
 - initWithPixbuf:(GdkPixbuf *)pixbuf;
@@ -43,7 +43,7 @@
 
     __block GError *err = NULL;
 
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         _pixbuf = gdk_pixbuf_new_from_file(
             url.path.UTF8String,
             &err);
@@ -96,7 +96,7 @@
         }
     }
 
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         newPixbuf = gdk_pixbuf_scale_simple(
             self.pixbuf,
             targetWidth,

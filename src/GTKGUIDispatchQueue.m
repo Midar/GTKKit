@@ -1,4 +1,5 @@
-/*
+/*! @file GTKGUIDispatchQueue.m
+ *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,25 +15,8 @@
  * the packaging of this file.
  */
 
-#import "GTKCallback.h"
+#import "GTKGUIDispatchQueue.h"
 #import "GTKApplication.h"
-
-void
-ObjFWCallback(ObjFWCallbackBlock block)
-{
-	if (of_thread_is_current(gtkkit_objfw_thread)) {
-	    block();
-	} else {
-		OFTimer *timer = [OFTimer
-			timerWithTimeInterval: 0
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
-
-		[[OFRunLoop mainRunLoop] addTimer: timer];
-
-		[timer waitUntilDone];
-	}
-}
 
 @interface GTKCallback ()
 @property GMutex *mutex;
@@ -42,8 +26,8 @@ ObjFWCallback(ObjFWCallbackBlock block)
 - (void)unlock;
 - (void)wait;
 - (void)signal;
-- (void)async:(GTKCallbackBlock)block;
-- (void)sync:(GTKCallbackBlock)block;
+- (void)async:(DispatchWorkItem)block;
+- (void)sync:(DispatchWorkItem)block;
 @end
 
 static gboolean
@@ -67,36 +51,6 @@ runBlockInGTKThreadCallback(gpointer userdata)
     g_mutex_init(self.mutex);
     g_cond_init(self.cond);
     return self;
-}
-
-- (GCond *)cond;
-{
-	return _cond;
-}
-
-- (void)setCond:(GCond *)cond
-{
-	_cond = cond;
-}
-
-- (GMutex *)mutex;
-{
-	return _mutex;
-}
-
-- (void)setMutex:(GMutex *)mutex
-{
-	_mutex = mutex;
-}
-
-- (gboolean)flag;
-{
-	return _flag;
-}
-
-- (void)setFlag:(gboolean)flag
-{
-	_flag = flag;
 }
 
 - (void)lock
@@ -131,7 +85,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
     free(self.cond);
 }
 
-- (void)sync:(GTKCallbackBlock)block
+- (void)sync:(DispatchWorkItem)block
 {
 	if (of_thread_is_current(gtkkit_gtk_thread)) {
 	    block();
@@ -148,21 +102,30 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	}
 }
 
-+ (void)sync:(GTKCallbackBlock)block
-{
-    [[self new] sync: block];
-}
-
-- (void)async:(GTKCallbackBlock)block
+- (void)async:(DispatchWorkItem)block
 {
 	[[OFThread threadWithThreadBlock: ^id _Nullable (){
-		[GTKCallback sync: block];
+		[[GTKCallback new] sync: block];
 		return nil;
 	}] start];
 }
+@end
 
-+ (void)async:(GTKCallbackBlock)block
+@implementation GTKGUIDispatchQueue
+- init
 {
-    [[self new] async: block];
+	self = [super init];
+	self.label = @"GTK+ Dispatch Queue";
+	return self;
+}
+
+- (void)sync:(_Nonnull DispatchWorkItem)block
+{
+    [[GTKCallback new] sync: block];
+}
+
+- (void)async:(_Nonnull DispatchWorkItem)block
+{
+    [[GTKCallback new] async: block];
 }
 @end

@@ -43,11 +43,29 @@ gtkkit_application_main(GTKApplication *app)
     of_application_main(app.argc, app.argv, [app.delegateClass class]);
 }
 
+@implementation GTKStandardDispatchQueues
+- init
+{
+    self = [super init];
+    self.main = [GTKMainDispatchQueue new];
+    self.background = [GTKBackgroundDispatchQueue new];
+    self.gtk = [GTKGUIDispatchQueue new];
+    return self;
+}
+@end
+
 @implementation GTKApplication
+- init
+{
+    self = [super init];
+    self.dispatch = [GTKStandardDispatchQueues new];
+    return self;
+}
+
 - (GTKViewController*)keyWindow
 {
     __block GTKViewController *viewController;
-    [GTKCallback sync: ^{
+    [GTKApp.dispatch.gtk sync: ^{
         GList *windows = gtk_window_list_toplevels();
 
         gpointer window = NULL;

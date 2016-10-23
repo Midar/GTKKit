@@ -1,4 +1,4 @@
-/*! @file GTKBox.h
+/*! @file GTKApplication.m
  *
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>

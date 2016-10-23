@@ -26,17 +26,12 @@ static void
 changed_handler(GtkComboBox *widget, gpointer userdata)
 {
     GTKPopUpButton *button = (__bridge GTKPopUpButton *)(userdata);
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) {
-            GTKEvent *evt = [GTKEvent new];
-            evt.type = GTKEventTypeMouseClicked;
-            evt.mouseButton = 1;
-            [button selectedItemChanged: evt];
-        }];
-
-    [[OFRunLoop mainRunLoop] addTimer: timer];
+    [GTKApp.dispatch.main async: ^ {
+        GTKEvent *evt = [GTKEvent new];
+        evt.type = GTKEventTypeMouseClicked;
+        evt.mouseButton = 1;
+        [button selectedItemChanged: evt];
+    }];
 }
 
 @implementation GTKPopUpButton

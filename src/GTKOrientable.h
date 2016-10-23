@@ -15,11 +15,31 @@
  * the packaging of this file.
  */
 
+
+/*!
+ * @brief The orientations available to orientable views.
+ */
 typedef enum GTKOrientation {
+
+    /*!
+     * @brief Horizontal orientation.
+     */
     GTKOrientationHorizontal = GTK_ORIENTATION_HORIZONTAL,
+
+    /*!
+     * @brief Vertical orientation.
+     */
     GTKOrientationVertical = GTK_ORIENTATION_VERTICAL
 } GTKOrientation;
 
+
+/*!
+ * @brief A protocol for views which can be oriented.
+ */
 @protocol GTKOrientable
+
+/*!
+ * @brief The orientation of the view.
+ */
 @property GTKOrientation orientation;
 @end

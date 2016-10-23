@@ -21,15 +21,45 @@
 #import "defines.h"
 #import "GTKControl.h"
 
+
+/*!
+ * @brief A button with an associated menu of items, any of which can be
+ * selected.
+ */
 @interface GTKPopUpButton: GTKControl
 {
     __block gulong _valueChangedHandlerID;
 }
+
+/*!
+ * @brief The index of the selected item.
+ */
 - (int)indexOfSelectedItem;
+
+/*!
+ * @brief Select the item at the specified index.
+ */
 - (void)selectItemAt:(int)index;
+
+/*!
+ * @brief The title of the selected item.
+ */
 - (OFString *)titleOfSelectedItem;
+
+/*!
+ * @brief Add an item to the button's menu, with the specified label, at the
+ * specified index.
+ */
 - (void)insertItemWithTitle:(OFString *)string
                          at:(int)index;
+
+/*!
+ * @brief Removes the item at the specified index.
+ */
 - (void)removeItemAt:(int)index;
+
+/*!
+ * @brief Remove all the items in the menu.
+ */
 - (void)removeAllItems;
 @end

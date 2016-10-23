@@ -22,6 +22,11 @@
 #import "GTKView.h"
 #import "GTKOrientable.h"
 
+
+/*!
+ * @brief A class representing a view that displays the progress of a task as
+ * a bar that fills or pulses back and forth.
+ */
 @interface GTKProgressIndicator: GTKView <GTKOrientable>
 {
     __block bool _showLabel;
@@ -30,10 +35,36 @@
     __block bool _inverted;
     __block GTKOrientation _orientation;
 }
+
+/*!
+ * @brief Whether or not to display the string value associated with the progress
+ * indicator as a label on the progress indicator.
+ */
 @property bool showLabel;
+
+/*!
+ * @brief Whether or not the progress indicator is inverted.
+ */
 @property bool inverted;
+
+/*!
+ * @brief The string associated with the progress indicator, which may be used
+ * as a label.
+ */
 @property OFString *stringValue;
+
+/*!
+ * @brief The value displayed by the progress indicator.
+ */
 @property double doubleValue;
+
+/*!
+ * @brief The value displayed by the progress indicator.
+ */
 @property int intValue;
+
+/*!
+ * @brief The value displayed by the progress indicator.
+ */
 @property float floatValue;
 @end

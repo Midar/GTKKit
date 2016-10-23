@@ -64,7 +64,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
 {
     [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
-        _orientation = GTKSliderOrientationHorizontal;
+        _orientation = GTKOrientationHorizontal;
         _valueChangedHandlerID = g_signal_connect(
             G_OBJECT(self.mainWidget),
             "value-changed",
@@ -74,12 +74,12 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
     }];
 }
 
-- (GTKSliderOrientation)orientation
+- (GTKOrientation)orientation
 {
     return _orientation;
 }
 
-- (void)setOrientation:(GTKSliderOrientation)orientation
+- (void)setOrientation:(GTKOrientation)orientation
 {
     if (orientation == _orientation) {
         return;
@@ -99,7 +99,7 @@ value_changed_handler(GtkScale *scale, gpointer userdata)
         gtk_widget_destroy(self.mainWidget);
         _orientation = orientation;
 
-        if (_orientation == GTKSliderOrientationHorizontal) {
+        if (_orientation == GTKOrientationHorizontal) {
             self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
         } else {
             self.mainWidget = gtk_scale_new(GTK_ORIENTATION_VERTICAL, NULL);

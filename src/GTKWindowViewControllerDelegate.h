@@ -25,13 +25,52 @@
  */
 @protocol GTKWindowViewControllerDelegate
 @optional
+
+/*!
+ * @brief Ask the delegete whether or not the window should allow itself to be
+ * closed.
+ */
 - (BOOL)windowShouldClose;
+
+/*!
+ * @brief Inform the delegate that the window will be closed.
+ */
 - (void)windowWillClose;
+
+/*!
+ * @brief Inform the delegate that the window has been closed.
+ */
 - (void)windowDidClose;
+
+/*!
+ * @brief Ask the delegate whether or not the window should allow itself to be
+ * minimized.
+ */
 - (BOOL)windowShouldMinimize;
+
+/*!
+ * @brief Inform the delegate that the window will be minimized.
+ */
 - (void)windowWillMinimize;
+
+/*!
+ * @brief Inform the delegate that the window has been minimized.
+ */
 - (void)windowDidMinimize;
+
+/*!
+ * @brief Ask the delegate whether or not the window should allow itself to be
+ * maximized.
+ */
 - (BOOL)windowShouldMaximize;
+
+/*!
+ * @brief Inform the delegate that the window will be maximized.
+ */
 - (void)windowWillMaximize;
+
+/*!
+ * @brief Inform the delegate that the window has been maximized.
+ */
 - (void)windowDidMaximize;
 @end

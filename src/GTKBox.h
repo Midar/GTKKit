@@ -21,11 +21,24 @@
 #import "defines.h"
 #import "GTKView.h"
 
+
+/*!
+ * @brief A class representing a view that draws a border around itself, and has
+ * an optional label string.
+ */
 @interface GTKBox: GTKView
 {
     __block OFString *_label;
 }
+
+/*!
+ * @brief A string used as a label for this view.
+ */
 @property OFString *label;
+
+/*!
+ * @brief create and return a new GTKBox with the chosen label set.
+ */
 + (instancetype)boxWithLabel:(OFString *)label;
 - (instancetype)initWithLabel:(OFString *)label;
 @end

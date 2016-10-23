@@ -20,11 +20,7 @@
 
 #import "defines.h"
 #import "GTKControl.h"
-
-typedef enum GTKSliderOrientation {
-    GTKSliderOrientationHorizontal,
-    GTKSliderOrientationVertical
-} GTKSliderOrientation;
+#import "GTKOrientable.h"
 
 typedef enum GTKPositionType {
     GTKPositionTypeTop = GTK_POS_TOP,
@@ -33,9 +29,13 @@ typedef enum GTKPositionType {
     GTKPositionTypeRight = GTK_POS_RIGHT
 } GTKPositionType;
 
-@interface GTKSlider: GTKControl
+/*!
+ * @brief A class representing a control that sets a numeric value in a given
+ * range.
+ */
+@interface GTKSlider: GTKControl <GTKOrientable>
 {
-    __block GTKSliderOrientation _orientation;
+    __block GTKOrientation _orientation;
     __block double _min;
     __block double _max;
     __block gulong _valueChangedHandlerID;
@@ -50,17 +50,65 @@ typedef enum GTKPositionType {
     __block bool _highlightOrigin;
     __block unsigned int _numberOfTickMarks;
 }
-@property GTKSliderOrientation orientation;
+
+/*!
+ * @brief The minimum value the slider can represent.
+ */
 @property double minValue;
+
+/*!
+ * @brief The maximum value the slider can represent.
+ */
 @property double maxValue;
+
+/*!
+ * @brief Whether or not the index of the slider is restricted to its fill level.
+ */
 @property bool restrictToFillLevel;
+
+/*!
+ * @brief The fill level of the slider.
+ */
 @property double fillLevel;
+
+/*!
+ * @brief Whether or not the fill level is shown graphically in the slider.
+ */
 @property bool showFillLevel;
+
+/*!
+ * @brief Whether or not the slider is inverted.
+ */
 @property (getter=isInverted) bool inverted;
+
+/*!
+ * @brief The increment moving the slider with the arrow keys moves the slider.
+ */
 @property double increment;
+
+/*!
+ * @brief The number of significant digits to display of the value.
+ */
 @property int roundDigits;
+
+/*!
+ * @brief Whether or not to display the current value of the slider.
+ */
 @property bool showValue;
+
+/*!
+ * @brief The position of the value when it is displayed.
+ */
 @property GTKPositionType valuePosition;
+
+/*!
+ * @brief Whether or not to highlight the origin of the slider.
+ */
 @property bool highlightOrigin;
+
+/*!
+ * @brief The number of tick marks on the slider, distributed evenly across its
+ * width.
+ */
 @property unsigned int numberOfTickMarks;
 @end

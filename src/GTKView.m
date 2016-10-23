@@ -17,23 +17,17 @@
 #import "GTKView.h"
 #import "GTKApplication.h"
 #import "GTKLayoutConstraints.h"
-#import "Exceptions.h"
 
 static gboolean
 draw_handler(GtkWidget *widget,
       		 cairo_t   *cr,
       		 GTKView   *view)
 {
-    OFTimer *timer = [OFTimer
-        timerWithTimeInterval: 0
-        repeats: false
-        block: ^ (OFTimer *timer) {
-            view.cairoContext = cr;
-        	[view draw];
-        	[view layoutSubviews];
-        }];
-
-    [[OFRunLoop mainRunLoop] addTimer: timer];
+    [GTKApp.dispatch.main async: ^ {
+        view.cairoContext = cr;
+    	[view draw];
+    	[view layoutSubviews];
+    }];
 	return false;
 }
 
@@ -43,23 +37,15 @@ press_event_handler(GtkWidget *widget,
                     gpointer   userdata)
 {
     GTKView *view = (__bridge GTKView *)(userdata);
+    [GTKApp.dispatch.main async: ^ {
+        GTKEvent *evt = [GTKEvent new];
+        evt.type = GTKEventTypeMouseDown;
+        evt.mouseButton = event->button.button;
+        evt.mouseX = event->button.x;
+        evt.mouseY = event->button.y;
 
-    OFTimer *timer = [OFTimer
-        timerWithTimeInterval: 0
-        repeats: false
-        block: ^ (OFTimer *timer) {
-
-            GTKEvent *evt = [GTKEvent new];
-            evt.type = GTKEventTypeMouseDown;
-            evt.mouseButton = event->button.button;
-            evt.mouseX = event->button.x;
-            evt.mouseY = event->button.y;
-
-            [view mouseDown: evt];
-        }];
-
-    [[OFRunLoop mainRunLoop] addTimer: timer];
-
+        [view mouseDown: evt];
+    }];
     return false;
 }
 
@@ -69,12 +55,7 @@ release_event_handler(GtkWidget *widget,
                       gpointer   userdata)
 {
     GTKView *view = (__bridge GTKView *)(userdata);
-
-    OFTimer *timer = [OFTimer
-        timerWithTimeInterval: 0
-        repeats: false
-        block: ^ (OFTimer *timer) {
-
+    [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
             evt.type = GTKEventTypeMouseUp;
             evt.mouseButton = event->button.button;
@@ -82,10 +63,7 @@ release_event_handler(GtkWidget *widget,
             evt.mouseY = event->button.y;
 
             [view mouseUp: evt];
-        }];
-
-    [[OFRunLoop mainRunLoop] addTimer: timer];
-
+    }];
     return false;
 }
 

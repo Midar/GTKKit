@@ -248,6 +248,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
     if (multiline == _multiline) {
         return;
     }
+    double alpha = self.alpha;
     OFString *stringValue = self.stringValue;
     GTKJustification justify = self.justify;
     bool selectable = self.selectable;
@@ -285,5 +286,6 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer use
     self.selectable = selectable;
     self.justify = justify;
     self.stringValue = stringValue;
+    self.alpha = alpha;
 }
 @end

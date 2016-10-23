@@ -15,7 +15,6 @@
  * the packaging of this file.
  */
 
-
 /*!
  * @brief The orientations available to orientable views.
  */

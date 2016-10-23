@@ -16,8 +16,6 @@
 
 #import <ObjFW/ObjFW.h>
 
-#import "defines.h"
-
 /*!
  * @brief The types of event a GTKEvent can represent.
  */

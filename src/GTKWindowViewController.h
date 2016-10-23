@@ -18,7 +18,6 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
 #import "GTKViewController.h"
 #import "GTKView.h"
 #import "GTKWindowViewControllerDelegate.h"

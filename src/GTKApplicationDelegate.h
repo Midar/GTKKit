@@ -18,7 +18,6 @@
 
 #import <gtk/gtk.h>
 
-#import "defines.h"
 #import "GTKViewController.h"
 
 @protocol GTKApplicationDelegate <OFObject, OFApplicationDelegate>

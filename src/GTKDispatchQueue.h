@@ -17,8 +17,6 @@
 
 #import <ObjFW/ObjFW.h>
 
-#import "defines.h"
-
 /*!
  * @brief A block of code to be run as a work item by a GTKDispatchQueue. Takes
  * no parameters, returns no value.

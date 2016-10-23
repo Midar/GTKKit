@@ -17,10 +17,15 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
 #import "GTKResponder.h"
 #import "GTKLayoutConstraints.h"
 #import "GTKViewController.h"
+
+/*!
+ * @brief A structure representing a rectangle, with x, y, width and height integer
+ * values.
+ */
+typedef GdkRectangle GTKRect;
 
 @class GTKViewController;
 

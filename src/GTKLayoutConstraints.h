@@ -17,8 +17,6 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
-
 /*!
  * @brief The types of constraint it's possible to use.
  */

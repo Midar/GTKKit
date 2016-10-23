@@ -18,10 +18,27 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
 #import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
 #import "GTKDispatchQueue.h"
+
+/*!
+ * @brief This macro sets the class used as the app delegate, and provides the
+ * main() function.
+ */
+#define GTK_APPLICATION_DELEGATE(cls)                                          \
+int                                                                            \
+main(int argc, char *argv[])                                                   \
+{                                                                              \
+    GTKApp = [GTKApplication sharedApplication];                               \
+	GTKApp.delegateClass = [cls class];                                        \
+    GTKApp.argc = &argc;                                                       \
+    GTKApp.argv = &argv;                                                       \
+    [GTKApp startup];                                                          \
+    [GTKApp run];                                                              \
+    return 0;                                                                  \
+}                                                                              \
+
 
 extern _Nonnull of_thread_t      gtkkit_objfw_thread;
 extern _Nonnull of_thread_t      gtkkit_gtk_thread;

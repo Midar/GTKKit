@@ -17,8 +17,6 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
-
 /*!
  * @brief A protocol composed of the optional methods GTKWindowViewController delegate
  * classes can implement.

@@ -14,8 +14,6 @@
  * the packaging of this file.
  */
 
-#import "defines.h"
-#import "Exceptions.h"
 #import "GTKDispatchQueue.h"
 #import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"

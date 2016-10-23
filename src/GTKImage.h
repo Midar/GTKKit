@@ -17,9 +17,6 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
-
-
 /*!
  * @brief A model class which represents image data.
  */

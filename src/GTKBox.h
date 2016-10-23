@@ -18,7 +18,6 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "defines.h"
 #import "GTKView.h"
 
 

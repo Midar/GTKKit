@@ -25,18 +25,12 @@ static void
 value_changed_handler(GtkScale *scale, gpointer userdata)
 {
     GTKSlider *slider = (__bridge GTKSlider *)(userdata);
-
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) {
-            [slider sendActionToTarget];
-            if (NULL != slider.actionBlock) {
-                slider.actionBlock();
-            }
+    [GTKApp.dispatch.main async: ^ {
+        [slider sendActionToTarget];
+        if (NULL != slider.actionBlock) {
+            slider.actionBlock();
+        }
     }];
-
-	[[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
 @implementation GTKSlider

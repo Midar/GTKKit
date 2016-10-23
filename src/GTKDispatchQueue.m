@@ -20,6 +20,8 @@
 
 @interface GTKBackgroundDispatchQueue: GTKDispatchQueue
 @property (nonnull) OFThread *thread;
+- initWithLabel:(OFString *)label
+	   priority:(float)priority;
 @end
 
 @interface GTKMainDispatchQueue: GTKDispatchQueue
@@ -65,9 +67,10 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 + background
 {
-    static GTKBackgroundDispatchQueue *backgroundQueue;
+    static GTKDispatchQueue *backgroundQueue;
     if (backgroundQueue == nil) {
-        backgroundQueue = [GTKBackgroundDispatchQueue new];
+        backgroundQueue = [GTKBackgroundDispatchQueue queueWithLabel: @"Default Background Queue"
+														    priority: 0.5];
     }
     return backgroundQueue;
 }
@@ -111,9 +114,19 @@ runBlockInGTKThreadCallback(gpointer userdata)
 }
 
 + (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
+									priority:(float)priority
 {
-	GTKBackgroundDispatchQueue *queue = [GTKBackgroundDispatchQueue new];
-	queue.label = label;
+	GTKBackgroundDispatchQueue *queue = \
+		[[GTKBackgroundDispatchQueue alloc] initWithLabel: label
+												 priority: priority];
+	return queue;
+}
+
++ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
+{
+	GTKBackgroundDispatchQueue *queue = \
+		[[GTKBackgroundDispatchQueue alloc] initWithLabel: label
+												 priority: 0.5];
 	return queue;
 }
 @end
@@ -124,6 +137,17 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	self = [super init];
 	self.label = @"Background Queue";
 	self.thread = [OFThread new];
+	[self.thread start];
+	return self;
+}
+
+- initWithLabel:(OFString *)label
+	   priority:(float)priority
+{
+	self = [super init];
+	self.label = label;
+	self.thread = [OFThread new];
+	self.thread.priority = priority;
 	[self.thread start];
 	return self;
 }

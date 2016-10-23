@@ -50,6 +50,12 @@ typedef void (^DispatchWorkItem)();
 /*!
  * @brief Create and return a new dispatch queue with its own thread.
  */
++ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
+                                    priority:(float)priority;
+
+/*!
+ * @brief Create and return a new dispatch queue with its own thread.
+ */
 + (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label;
 
 /*!

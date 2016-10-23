@@ -29,4 +29,8 @@ typedef void (^DispatchWorkItem)();
 + (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label;
 - (void)sync:(_Nonnull DispatchWorkItem)block;
 - (void)async:(_Nonnull DispatchWorkItem)block;
+- (void)asyncAfter:(unsigned int)seconds
+           execute:(_Nonnull DispatchWorkItem)block;
+- (void)asyncRepeatAfter:(unsigned int)seconds
+                 execute:(_Nonnull DispatchWorkItem)block;
 @end

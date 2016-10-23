@@ -98,6 +98,18 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 }
 
+- (void)asyncAfter:(unsigned int)seconds
+           execute:(_Nonnull DispatchWorkItem)block
+{
+
+}
+
+- (void)asyncRepeatAfter:(unsigned int)seconds
+                 execute:(_Nonnull DispatchWorkItem)block
+{
+
+}
+
 + (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
 {
 	GTKBackgroundDispatchQueue *queue = [GTKBackgroundDispatchQueue new];
@@ -131,6 +143,26 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	OFTimer *timer = [OFTimer
 			timerWithTimeInterval: 0
 			repeats: false
+			block: ^ (OFTimer *timer) { block(); }];
+	[self.thread.runLoop addTimer: timer];
+}
+
+- (void)asyncAfter:(unsigned int)seconds
+           execute:(_Nonnull DispatchWorkItem)block
+{
+	OFTimer *timer = [OFTimer
+			timerWithTimeInterval: seconds
+			repeats: false
+			block: ^ (OFTimer *timer) { block(); }];
+	[self.thread.runLoop addTimer: timer];
+}
+
+- (void)asyncRepeatAfter:(unsigned int)seconds
+                 execute:(_Nonnull DispatchWorkItem)block
+{
+	OFTimer *timer = [OFTimer
+			timerWithTimeInterval: seconds
+			repeats: true
 			block: ^ (OFTimer *timer) { block(); }];
 	[self.thread.runLoop addTimer: timer];
 }
@@ -169,6 +201,26 @@ runBlockInGTKThreadCallback(gpointer userdata)
 			block: ^ (OFTimer *timer) { block(); }];
 		[[OFRunLoop mainRunLoop] addTimer: timer];
 	}
+}
+
+- (void)asyncAfter:(unsigned int)seconds
+           execute:(_Nonnull DispatchWorkItem)block
+{
+	OFTimer *timer = [OFTimer
+			timerWithTimeInterval: seconds
+			repeats: false
+			block: ^ (OFTimer *timer) { block(); }];
+	[[OFRunLoop mainRunLoop] addTimer: timer];
+}
+
+- (void)asyncRepeatAfter:(unsigned int)seconds
+                 execute:(_Nonnull DispatchWorkItem)block
+{
+	OFTimer *timer = [OFTimer
+			timerWithTimeInterval: seconds
+			repeats: true
+			block: ^ (OFTimer *timer) { block(); }];
+	[[OFRunLoop mainRunLoop] addTimer: timer];
 }
 @end
 
@@ -257,5 +309,27 @@ runBlockInGTKThreadCallback(gpointer userdata)
 - (void)async:(_Nonnull DispatchWorkItem)block
 {
     [[GTKCallback new] async: block];
+}
+
+- (void)asyncAfter:(unsigned int)seconds
+           execute:(_Nonnull DispatchWorkItem)block
+{
+	[[OFThread threadWithThreadBlock: ^id _Nullable (){
+        sleep(seconds);
+		[[GTKCallback new] sync: block];
+		return nil;
+	}] start];
+}
+
+- (void)asyncRepeatAfter:(unsigned int)seconds
+                 execute:(_Nonnull DispatchWorkItem)block
+{
+	[[OFThread threadWithThreadBlock: ^id _Nullable (){
+        while (true) {
+            sleep(seconds);
+    		[[GTKCallback new] sync: block];
+        }
+		return nil;
+	}] start];
 }
 @end

@@ -24,35 +24,25 @@ static void
 clicked_event_handler(GtkWidget *widget, gpointer userdata)
 {
     GTKButton *button = (__bridge GTKButton *)(userdata);
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) {
-            GTKEvent *evt = [GTKEvent new];
-            evt.type = GTKEventTypeMouseClicked;
-            evt.mouseButton = 1;
-            [button mouseClicked: evt];
-        }];
-
-    [[OFRunLoop mainRunLoop] addTimer: timer];
+    [GTKApp.dispatch.main async: ^ {
+        GTKEvent *evt = [GTKEvent new];
+        evt.type = GTKEventTypeMouseClicked;
+        evt.mouseButton = 1;
+        [button mouseClicked: evt];
+    }];
 }
 
 static gboolean
 switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 {
     GTKButton *button = (__bridge GTKButton *)(userdata);
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) {
-            GTKEvent *evt = [GTKEvent new];
-            evt.type = GTKEventTypeMouseClicked;
-            evt.mouseButton = 1;
-            [button mouseClicked: evt];
-            gtk_switch_set_state(widget, state);
-        }];
-
-    [[OFRunLoop mainRunLoop] addTimer: timer];
+    [GTKApp.dispatch.main async: ^ {
+        GTKEvent *evt = [GTKEvent new];
+        evt.type = GTKEventTypeMouseClicked;
+        evt.mouseButton = 1;
+        [button mouseClicked: evt];
+        gtk_switch_set_state(widget, state);
+    }];
     return true;
 }
 

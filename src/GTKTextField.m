@@ -22,37 +22,25 @@ static void
 entry_activated_handler(GtkEntry *entry, gpointer userdata)
 {
     GTKTextField *field = (__bridge GTKTextField *)(userdata);
-
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) {
-            [field sendActionToTarget];
-            if (NULL != field.actionBlock) {
-                field.actionBlock();
-            }
+    [GTKApp.dispatch.main async: ^ {
+        [field sendActionToTarget];
+        if (NULL != field.actionBlock) {
+            field.actionBlock();
+        }
     }];
-
-	[[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
 static void
 entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
 {
     GTKTextField *field = (__bridge GTKTextField *)(userdata);
-
     if (field.isContinuous) {
-    	OFTimer *timer = [OFTimer
-    		timerWithTimeInterval: 0
-    		repeats: false
-    		block: ^ (OFTimer *timer) {
-                [field sendActionToTarget];
-                if (NULL != field.actionBlock) {
-                    field.actionBlock();
-                }
+        [GTKApp.dispatch.main async: ^ {
+            [field sendActionToTarget];
+            if (NULL != field.actionBlock) {
+                field.actionBlock();
+            }
         }];
-
-    	[[OFRunLoop mainRunLoop] addTimer: timer];
     }
 }
 
@@ -60,19 +48,12 @@ static gboolean
 text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer userdata)
 {
     GTKTextField *field = (__bridge GTKTextField *)(userdata);
-
-	OFTimer *timer = [OFTimer
-		timerWithTimeInterval: 0
-		repeats: false
-		block: ^ (OFTimer *timer) {
-            [field sendActionToTarget];
-            if (NULL != field.actionBlock) {
-                field.actionBlock();
-            }
+    [GTKApp.dispatch.main async: ^ {
+        [field sendActionToTarget];
+        if (NULL != field.actionBlock) {
+            field.actionBlock();
+        }
     }];
-
-	[[OFRunLoop mainRunLoop] addTimer: timer];
-
     return false;
 }
 

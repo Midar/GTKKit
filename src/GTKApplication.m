@@ -47,9 +47,9 @@ gtkkit_application_main(GTKApplication *app)
 - init
 {
     self = [super init];
-    self.main = [GTKMainDispatchQueue new];
-    self.background = [GTKBackgroundDispatchQueue new];
-    self.gtk = [GTKGUIDispatchQueue new];
+    self.main = GTKDispatchQueue.main;
+    self.background = GTKDispatchQueue.background;
+    self.gtk = GTKDispatchQueue.gtk;
     return self;
 }
 @end

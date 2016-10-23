@@ -21,9 +21,7 @@
 #import "defines.h"
 #import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
-#import "GTKMainDispatchQueue.h"
-#import "GTKBackgroundDispatchQueue.h"
-#import "GTKGUIDispatchQueue.h"
+#import "GTKDispatchQueue.h"
 
 extern _Nonnull of_thread_t      gtkkit_objfw_thread;
 extern _Nonnull of_thread_t      gtkkit_gtk_thread;
@@ -34,9 +32,9 @@ extern const    of_thread_attr_t gtkkit_objfw_thread_attr;
 extern GTKApplication * _Nonnull GTKApp;
 
 @interface GTKStandardDispatchQueues: OFObject
-@property (nonnull) GTKMainDispatchQueue *main;
-@property (nonnull) GTKBackgroundDispatchQueue *background;
-@property (nonnull) GTKGUIDispatchQueue *gtk;
+@property (nonnull) GTKDispatchQueue *main;
+@property (nonnull) GTKDispatchQueue *background;
+@property (nonnull) GTKDispatchQueue *gtk;
 @end
 
 @interface GTKApplication: GTKResponder

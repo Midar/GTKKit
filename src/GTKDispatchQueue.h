@@ -20,10 +20,19 @@
 #import "defines.h"
 @class GTKBackgroundDispatchQueue;
 
+typedef enum GTKDispatchQueueType {
+    GTKDispatchQueueTypeMain,
+    GTKDispatchQueueTypeGUI,
+    GTKDispatchQueueTypeBackground
+} GTKDispatchQueueType;
+
 typedef void (^DispatchWorkItem)();
 
 @interface GTKDispatchQueue: OFObject
 @property (nonnull, copy) OFString *label;
++ (nonnull instancetype)main;
++ (nonnull instancetype)background;
++ (nonnull instancetype)gtk;
 + (nonnull GTKBackgroundDispatchQueue *)backgroundQueueWithLabel:(nonnull OFString *)label;
 - (void)sync:(_Nonnull DispatchWorkItem)block;
 - (void)async:(_Nonnull DispatchWorkItem)block;

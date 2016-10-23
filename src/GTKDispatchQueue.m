@@ -16,9 +16,38 @@
  */
 
 #import "GTKDispatchQueue.h"
+#import "GTKMainDispatchQueue.h"
 #import "GTKBackgroundDispatchQueue.h"
+#import "GTKGUIDispatchQueue.h"
 
 @implementation GTKDispatchQueue
++ main
+{
+    static GTKMainDispatchQueue *mainQueue;
+    if (mainQueue == nil) {
+        mainQueue = [GTKMainDispatchQueue new];
+    }
+    return mainQueue;
+}
+
++ background
+{
+    static GTKBackgroundDispatchQueue *backgroundQueue;
+    if (backgroundQueue == nil) {
+        backgroundQueue = [GTKBackgroundDispatchQueue new];
+    }
+    return backgroundQueue;
+}
+
++ gtk
+{
+    static GTKGUIDispatchQueue *gtkQueue;
+    if (gtkQueue == nil) {
+        gtkQueue = [GTKGUIDispatchQueue new];
+    }
+    return gtkQueue;
+}
+
 - init
 {
     self = [super init];

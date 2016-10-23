@@ -72,7 +72,6 @@ maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
 {
     GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
 
-
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
             if (![window.delegate windowShouldMaximize]) {

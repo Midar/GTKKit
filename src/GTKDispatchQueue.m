@@ -18,6 +18,41 @@
 #import "GTKDispatchQueue.h"
 #import "GTKApplication.h"
 
+@interface GTKBackgroundDispatchQueue: GTKDispatchQueue
+@property (nonnull) OFThread *thread;
+@end
+
+@interface GTKMainDispatchQueue: GTKDispatchQueue
+@end
+
+@interface GTKGUIDispatchQueue: GTKDispatchQueue
+@end
+
+@interface GTKCallback: OFObject
+@property (copy) DispatchWorkItem block;
+@property GMutex *mutex;
+@property GCond *cond;
+@property gboolean flag;
+- (void)lock;
+- (void)unlock;
+- (void)wait;
+- (void)signal;
+- (void)async:(DispatchWorkItem)block;
+- (void)sync:(DispatchWorkItem)block;
+@end
+
+static gboolean
+runBlockInGTKThreadCallback(gpointer userdata)
+{
+	GTKCallback *callback = (__bridge_transfer GTKCallback *)(userdata);
+    [callback lock];
+    callback.block();
+    callback.flag = true;
+    [callback signal];
+    [callback unlock];
+    return false;
+}
+
 @implementation GTKDispatchQueue
 + main
 {
@@ -136,31 +171,6 @@
 	}
 }
 @end
-
-@interface GTKCallback: OFObject
-@property (copy) DispatchWorkItem block;
-@property GMutex *mutex;
-@property GCond *cond;
-@property gboolean flag;
-- (void)lock;
-- (void)unlock;
-- (void)wait;
-- (void)signal;
-- (void)async:(DispatchWorkItem)block;
-- (void)sync:(DispatchWorkItem)block;
-@end
-
-static gboolean
-runBlockInGTKThreadCallback(gpointer userdata)
-{
-	GTKCallback *callback = (__bridge_transfer GTKCallback *)(userdata);
-    [callback lock];
-    callback.block();
-    callback.flag = true;
-    [callback signal];
-    [callback unlock];
-    return false;
-}
 
 @implementation GTKCallback
 - init

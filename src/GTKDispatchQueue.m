@@ -63,7 +63,7 @@
 
 }
 
-+ (nonnull GTKBackgroundDispatchQueue *)backgroundQueueWithLabel:(nonnull OFString *)label
++ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
 {
 	GTKBackgroundDispatchQueue *queue = [GTKBackgroundDispatchQueue new];
 	queue.label = label;

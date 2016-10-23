@@ -18,13 +18,6 @@
 #import <ObjFW/ObjFW.h>
 
 #import "defines.h"
-@class GTKBackgroundDispatchQueue;
-
-typedef enum GTKDispatchQueueType {
-    GTKDispatchQueueTypeMain,
-    GTKDispatchQueueTypeGUI,
-    GTKDispatchQueueTypeBackground
-} GTKDispatchQueueType;
 
 typedef void (^DispatchWorkItem)();
 
@@ -33,7 +26,7 @@ typedef void (^DispatchWorkItem)();
 + (nonnull instancetype)main;
 + (nonnull instancetype)background;
 + (nonnull instancetype)gtk;
-+ (nonnull GTKBackgroundDispatchQueue *)backgroundQueueWithLabel:(nonnull OFString *)label;
++ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label;
 - (void)sync:(_Nonnull DispatchWorkItem)block;
 - (void)async:(_Nonnull DispatchWorkItem)block;
 @end

@@ -37,3 +37,13 @@ typedef void (^DispatchWorkItem)();
 - (void)sync:(_Nonnull DispatchWorkItem)block;
 - (void)async:(_Nonnull DispatchWorkItem)block;
 @end
+
+@interface GTKBackgroundDispatchQueue: GTKDispatchQueue
+@property (nonnull) OFThread *thread;
+@end
+
+@interface GTKMainDispatchQueue: GTKDispatchQueue
+@end
+
+@interface GTKGUIDispatchQueue: GTKDispatchQueue
+@end

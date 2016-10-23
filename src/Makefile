@@ -7,9 +7,6 @@ LIB_MINOR = 0
 
 SRCS =	GTKResponder.m                              \
 				GTKDispatchQueue.m                          \
-				GTKMainDispatchQueue.m                      \
-				GTKBackgroundDispatchQueue.m                \
-				GTKGUIDispatchQueue.m                       \
 				GTKEvent.m                                  \
 				GTKLayoutConstraints.m                      \
 				GTKView.m                                   \

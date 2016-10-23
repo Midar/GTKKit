@@ -35,6 +35,7 @@ extern GTKApplication * _Nonnull GTKApp;
 @property (nonnull) GTKDispatchQueue *main;
 @property (nonnull) GTKDispatchQueue *background;
 @property (nonnull) GTKDispatchQueue *gtk;
++ (nonnull GTKStandardDispatchQueues *)sharedQueues;
 @end
 
 @interface GTKApplication: GTKResponder

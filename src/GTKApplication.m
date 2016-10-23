@@ -52,13 +52,22 @@ gtkkit_application_main(GTKApplication *app)
     self.gtk = GTKDispatchQueue.gtk;
     return self;
 }
+
++ (instancetype)sharedQueues
+{
+    static GTKStandardDispatchQueues *sharedQueues;
+    if (sharedQueues == nil) {
+        sharedQueues = [self new];
+    }
+    return sharedQueues;
+}
 @end
 
 @implementation GTKApplication
 - init
 {
     self = [super init];
-    self.dispatch = [GTKStandardDispatchQueues new];
+    self.dispatch = GTKStandardDispatchQueues.sharedQueues;
     return self;
 }
 

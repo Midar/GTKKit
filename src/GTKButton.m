@@ -91,6 +91,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 {
     _buttonType = buttonType;
 
+    double alpha = self.alpha;
     OFString *stringValue = self.stringValue;
     bool state = self.state;
 
@@ -141,6 +142,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
 
     self.stringValue = stringValue;
     self.state = state;
+    self.alpha = alpha;
 
     if (nil != _image) {
         gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);

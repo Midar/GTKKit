@@ -5,6 +5,7 @@ active development, and it currently in a barely usable, skeletal state.
 Requirements:
  - GTK+ 3
  - ObjFW (https://webkeks.org/objfw/)
+ - Doxygen (optional, for generating API documentation)
 
 At the moment, GTKKit is only tested on OS X and FreeBSD.
 

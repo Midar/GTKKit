@@ -27,7 +27,10 @@ typedef void (^DispatchWorkItem)();
 
 /*!
  * @brief A class representing objects which dispatch work items (blocks) to
- * a pool of threads managed by the system.
+ * a pool of threads managed by the system. GTKDispatchQueue is the public
+ * interface to a class cluster implementing specific types of dispatch
+ * queues; the public interfaces it defines are the only ones needed to use
+ * any type of queue, and your code need not be aware of any specific subclass.
  *
  * GTKDispatchQueue represents the public interface to multithreaded programming
  * in GTKKit. It allows you to run code in multiple threads, synchronously or

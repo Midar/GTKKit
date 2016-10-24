@@ -136,7 +136,7 @@ runBlockInGTKThreadCallback(gpointer userdata)
 {
 	self = [super init];
 	self.label = @"Background Queue";
-	self.thread = [OFThread new];
+	self.thread = [OFThread thread];
 	[self.thread start];
 	return self;
 }
@@ -154,21 +154,33 @@ runBlockInGTKThreadCallback(gpointer userdata)
 
 - (void)sync:(DispatchWorkItem)block
 {
-	OFTimer *timer = [OFTimer
-			timerWithTimeInterval: 0
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
-	[self.thread.runLoop addTimer: timer];
-	[timer waitUntilDone];
+	if (OFThread.currentThread == self.thread) {
+		block();
+	} else {
+		OFTimer *timer = [OFTimer
+				timerWithTimeInterval: 0
+				repeats: false
+				block: ^ (OFTimer *timer) { block(); }];
+		[self.thread.runLoop addTimer: timer];
+		[timer waitUntilDone];
+	}
 }
 
 - (void)async:(DispatchWorkItem)block
 {
-	OFTimer *timer = [OFTimer
+	if (OFThread.currentThread == self.thread) {
+		OFThread *thread = [OFThread threadWithThreadBlock: ^id _Nullable {
+			[self async: block];
+			return nil;
+	 	}];
+		[thread start];
+	} else {
+		OFTimer *timer = [OFTimer
 			timerWithTimeInterval: 0
 			repeats: false
 			block: ^ (OFTimer *timer) { block(); }];
-	[self.thread.runLoop addTimer: timer];
+		[self.thread.runLoop addTimer: timer];
+	}
 }
 
 - (void)asyncAfter:(unsigned int)seconds

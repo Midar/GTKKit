@@ -76,11 +76,11 @@
     [self.label.constraints fixedHeight: 30];
     self.label.stringValue = @"Hello, World!";
 
-    [self addSubview: self.box];
+    [self addView: self.box];
     [self.box addSubview: self.toggleEditableButton];
     [self.box addSubview: self.toggleMultilineButton];
     [self.box addSubview: self.slider];
-    [self addSubview: self.label];
+    [self addView: self.label];
 
     self.title = @"Example Window";
     self.subtitle = @"Example Subtitle";

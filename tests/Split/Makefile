@@ -1,4 +1,4 @@
-PROG_NOINST = Example
+PROG_NOINST = Split
 SRCS = MainWindow.m AppDelegate.m
 
 include ../../buildsys.mk

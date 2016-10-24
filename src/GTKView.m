@@ -363,6 +363,7 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 		[view removeFromSuperview];
 		view.superview = self;
 		view.nextResponder = self;
+        view.viewController = self.viewController;
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_overlay_add_overlay(
 				GTK_OVERLAY(self.overlayWidget),

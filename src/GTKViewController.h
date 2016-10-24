@@ -45,7 +45,7 @@
  *
  * @pram subview The view to add
  */
-- (void)addSubview:(nonnull GTKView *)subview;
+- (void)addView:(nonnull GTKView *)subview;
 
 - (void)addViewController:(nonnull GTKViewController *)viewController;
 @end

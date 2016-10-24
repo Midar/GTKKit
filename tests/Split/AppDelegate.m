@@ -14,28 +14,32 @@
  * the packaging of this file.
  */
 
- #import "GTKViewController.h"
- #import "GTKApplication.h"
- #import "GTKWindowViewControllerDelegate.h"
+#import "AppDelegate.h"
 
- @implementation GTKViewController
+GTK_APPLICATION_DELEGATE(AppDelegate)
+
+@implementation AppDelegate
 - init
 {
     self = [super init];
-    self.contentView = [GTKView new];
-    self.contentView.nextResponder = self;
-    self.nextResponder = GTKApp;
+    // Put your custom initialization below this line.
+
+    self.window = [MainWindow new];
+    self.window.delegate = self;
+
+    // It would be dangerous to modify anything below this line.
+
     return self;
 }
 
-- (void)addViewController:(nonnull GTKViewController *)viewController
+- (void)applicationDidFinishLaunching
 {
-    [self addView: viewController.contentView];
-    viewController.nextResponder = self.contentView;
+    // Put your custom post-launch startup code below this line.
+    self.window.hidden = false;
 }
 
-- (void)addView:(nonnull GTKView *)subview
+- (void)windowDidClose
 {
-    [self.contentView addSubview: subview];
+    [GTKApp terminate];
 }
- @end
+@end

@@ -24,6 +24,7 @@
 #import	"GTKControl.h"
 #import	"GTKViewController.h"
 #import	"GTKWindowViewController.h"
+#import	"GTKSplitViewController.h"
 #import	"GTKImage.h"
 #import	"GTKImageView.h"
 #import "GTKButton.h"

@@ -37,12 +37,14 @@ changed_handler(GtkComboBox *widget, gpointer userdata)
 @implementation GTKPopUpButton
 - (void)createMainWidget
 {
-    self.mainWidget = gtk_combo_box_text_new();
-    _valueChangedHandlerID = g_signal_connect(
-        G_OBJECT(self.mainWidget),
-        "changed",
-        G_CALLBACK(changed_handler),
-        (__bridge gpointer)(self));
+    [GTKApp.dispatch.gtk sync: ^ {
+        self.mainWidget = gtk_combo_box_text_new();
+        _valueChangedHandlerID = g_signal_connect(
+            G_OBJECT(self.mainWidget),
+            "changed",
+            G_CALLBACK(changed_handler),
+            (__bridge gpointer)(self));
+    }];
 }
 
 - (void)insertItemWithTitle:(OFString *)string

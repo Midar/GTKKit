@@ -20,7 +20,32 @@
 
 #import "GTKViewController.h"
 
+/*!
+ * @brief This macro sets the class used as the app delegate, and provides the
+ * main() function.
+ */
+#define GTK_APPLICATION_DELEGATE(cls)                                          \
+int                                                                            \
+main(int argc, char *argv[])                                                   \
+{                                                                              \
+    GTKApp = [GTKApplication sharedApplication];                               \
+	GTKApp.delegateClass = [cls class];                                        \
+    GTKApp.argc = &argc;                                                       \
+    GTKApp.argv = &argv;                                                       \
+    [GTKApp startup];                                                          \
+    [GTKApp run];                                                              \
+    return 0;                                                                  \
+}
+
+/*!
+ * @brief The protocol adopted by classes which are used as GTKApplication delegates.
+ */
 @protocol GTKApplicationDelegate <OFObject, OFApplicationDelegate>
 @optional
+
+/*!
+ * @brief Ask the application delegate whether or not the application should allow
+ * itself to be terminated.
+ */
 - (bool)applicationShouldTerminate;
 @end

@@ -17,10 +17,18 @@
 #import "GTKSplitViewController.h"
 #import "GTKApplication.h"
 
+@interface GTKSplitViewController ()
+@property bool dividerInitialized;
+@end
+
 bool
 draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
 {
-    vc.dividerPosition = vc.dividerPosition;
+    int pos = gtk_paned_get_position(GTK_PANED(vc.contentView.mainWidget));
+    if (pos == 0 && !vc.dividerInitialized) {
+        vc.dividerPosition = vc.dividerPosition;
+        vc.dividerInitialized = true;
+    }
     return false;
 }
 
@@ -28,6 +36,7 @@ draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
 - init
 {
     self = [super init];
+    self.dividerInitialized = false;
     _topLeftView = [GTKView new];
     _bottomRightView = [GTKView new];
 

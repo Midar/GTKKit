@@ -149,9 +149,7 @@ draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
 
 - (void)setDividerPosition:(double)position
 {
-    if (position > 1.0) {
-        position = 1.0;
-    }
+    position = CLAMP(position, 0.0, 1.0);
     _handlePosition = position;
     double width = (double)(self.contentView.frame.width);
     double height = (double)(self.contentView.frame.height);

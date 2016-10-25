@@ -21,14 +21,10 @@
 @property bool dividerInitialized;
 @end
 
-static gboolean
-draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
+static void
+realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
 {
-    if (!vc.dividerInitialized) {
-        vc.dividerPosition = vc.dividerPosition;
-        vc.dividerInitialized = true;
-    }
-    return false;
+    vc.dividerPosition = vc.dividerPosition;
 }
 
 @implementation GTKSplitViewController
@@ -46,8 +42,8 @@ draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
 
         g_signal_connect(
 			G_OBJECT(self.contentView.overlayWidget),
-			"draw",
-			G_CALLBACK(draw_handler),
+			"realize",
+			G_CALLBACK(realize_handler),
 			(__bridge gpointer)(self));
 
         gtk_container_add(

@@ -23,9 +23,8 @@
 @end
 
 static void
-changed_handler(GtkComboBox *widget, gpointer userdata)
+changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 {
-    GTKPopUpButton *button = (__bridge GTKPopUpButton *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
         evt.type = GTKEventTypeMouseClicked;

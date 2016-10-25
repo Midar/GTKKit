@@ -28,10 +28,8 @@ of_thread_t gtkkit_objfw_thread;
 const of_thread_attr_t gtkkit_objfw_thread_attr;
 
 static void
-get_toplevel_window(gpointer data, gpointer userdata)
+get_toplevel_window(GtkWindow *window, gpointer userdata)
 {
-    GtkWindow *window = (GtkWindow *)(data);
-
     if (gtk_window_has_toplevel_focus(window)) {
         userdata = (gpointer)(window);
     }

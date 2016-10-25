@@ -22,9 +22,8 @@
 #import "GTKApplication.h"
 
 static void
-value_changed_handler(GtkScale *scale, gpointer userdata)
+value_changed_handler(GtkScale *scale, GTKSlider *slider)
 {
-    GTKSlider *slider = (__bridge GTKSlider *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         [slider sendActionToTarget];
         if (NULL != slider.actionBlock) {

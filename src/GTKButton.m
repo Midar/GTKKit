@@ -21,9 +21,8 @@ const bool GTKOnState = true;
 const bool GTKOffState = false;
 
 static void
-clicked_event_handler(GtkWidget *widget, gpointer userdata)
+clicked_event_handler(GtkWidget *widget, GTKButton *button)
 {
-    GTKButton *button = (__bridge GTKButton *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
         evt.type = GTKEventTypeMouseClicked;
@@ -33,9 +32,8 @@ clicked_event_handler(GtkWidget *widget, gpointer userdata)
 }
 
 static gboolean
-switch_activated_handler(GtkSwitch *widget, gboolean state, gpointer userdata)
+switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 {
-    GTKButton *button = (__bridge GTKButton *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
         evt.type = GTKEventTypeMouseClicked;

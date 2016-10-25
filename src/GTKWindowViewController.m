@@ -20,10 +20,8 @@
 #import "GTKApplication.h"
 
 static void
-close_button_clicked_handler(GtkButton *button, gpointer userdata)
+close_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 {
-    GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
-
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
             if (![window.delegate windowShouldClose]) {
@@ -44,10 +42,8 @@ close_button_clicked_handler(GtkButton *button, gpointer userdata)
 }
 
 static void
-minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
+minimize_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 {
-    GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
-
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
             if (![window.delegate windowShouldMinimize]) {
@@ -68,10 +64,8 @@ minimize_button_clicked_handler(GtkButton *button, gpointer userdata)
 }
 
 static void
-maximize_button_clicked_handler(GtkButton *button, gpointer userdata)
+maximize_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 {
-    GTKWindowViewController *window = (__bridge GTKWindowViewController *)(userdata);
-
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
             if (![window.delegate windowShouldMaximize]) {

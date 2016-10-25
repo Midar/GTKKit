@@ -34,9 +34,8 @@ draw_handler(GtkWidget *widget,
 static gboolean
 press_event_handler(GtkWidget *widget,
                     GdkEvent  *event,
-                    gpointer   userdata)
+                    GTKView   *view)
 {
-    GTKView *view = (__bridge GTKView *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
         evt.type = GTKEventTypeMouseDown;
@@ -52,9 +51,8 @@ press_event_handler(GtkWidget *widget,
 static gboolean
 release_event_handler(GtkWidget *widget,
                       GdkEvent  *event,
-                      gpointer   userdata)
+                      GTKView   *view)
 {
-    GTKView *view = (__bridge GTKView *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
             evt.type = GTKEventTypeMouseUp;

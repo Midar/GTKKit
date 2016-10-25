@@ -19,9 +19,8 @@
 #import "GTKApplication.h"
 
 static void
-entry_activated_handler(GtkEntry *entry, gpointer userdata)
+entry_activated_handler(GtkEntry *entry, GTKTextField *field)
 {
-    GTKTextField *field = (__bridge GTKTextField *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         [field sendActionToTarget];
         if (NULL != field.actionBlock) {
@@ -31,9 +30,8 @@ entry_activated_handler(GtkEntry *entry, gpointer userdata)
 }
 
 static void
-entry_insert_at_cursor_handler(GtkEntry *entry, gpointer userdata)
+entry_insert_at_cursor_handler(GtkEntry *entry, GTKTextField *field)
 {
-    GTKTextField *field = (__bridge GTKTextField *)(userdata);
     if (field.isContinuous) {
         [GTKApp.dispatch.main async: ^ {
             [field sendActionToTarget];

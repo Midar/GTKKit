@@ -31,7 +31,7 @@ static void
 get_toplevel_window(GtkWindow *window, gpointer *userdata)
 {
     if (gtk_window_has_toplevel_focus(window)) {
-        userdata = (gpointer)(window);
+        *userdata = (gpointer)(window);
     }
 }
 

@@ -65,18 +65,21 @@ release_event_handler(GtkWidget *widget,
     return false;
 }
 
+GTKView *
+gtk_widget_get_owning_view(GtkWidget *widget)
+{
+    return (__bridge GTKView *)g_object_get_data(
+        G_OBJECT(widget),
+        "_GTKKIT_OWNING_VIEW_");
+}
+
 static gboolean
 get_child_position_handler(GtkOverlay   *overlay,
 				   		   GtkWidget    *widget,
 				   		   GdkRectangle *allocation,
 				   		   GTKView      *view)
 {
-	GTKView *subview = (__bridge GTKView *)g_object_get_data(
-		G_OBJECT(widget), "_GTKKIT_OWNING_VIEW_");
-	if (nil == subview) {
-		printf("Error: Subview is nil!\n");
-		return false;
-	}
+	GTKView *subview = gtk_widget_get_owning_view(widget);
 
     GtkRequisition min, req;
     gtk_widget_get_preferred_size (widget, &min, &req);
@@ -85,8 +88,8 @@ get_child_position_handler(GtkOverlay   *overlay,
 
 	allocation->x = frame.x;
 	allocation->y = frame.y;
-	allocation->width = frame.width;
-	allocation->height = frame.height;
+	allocation->width = MAX(frame.width, min.width);
+	allocation->height = MAX(frame.height, min.height);
 
 	return true;
 }
@@ -214,9 +217,13 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 - (GTKRect)frame
 {
 	__block GtkAllocation alloc;
+    __block GtkRequisition min, req;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_get_allocation(self.overlayWidget, &alloc);
+        gtk_widget_get_preferred_size (self.mainWidget, &min, &req);
 	}];
+    alloc.width = MAX(alloc.width, req.width);
+    alloc.height = MAX(alloc.height, req.height);
 	return (GTKRect)alloc;
 }
 

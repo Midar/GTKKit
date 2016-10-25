@@ -31,6 +31,9 @@ typedef GdkRectangle GTKRect;
 
 @class GTKView;
 
+GTKView * _Nullable
+gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
+
 /*!
  * @brief A class representing "views" in the model-view-controller (MVC)
  * paradigm. It is the parent class for all such views, and one of the most

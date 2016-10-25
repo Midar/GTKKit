@@ -43,9 +43,8 @@ entry_insert_at_cursor_handler(GtkEntry *entry, GTKTextField *field)
 }
 
 static gboolean
-text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, gpointer userdata)
+text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField *field)
 {
-    GTKTextField *field = (__bridge GTKTextField *)(userdata);
     [GTKApp.dispatch.main async: ^ {
         [field sendActionToTarget];
         if (NULL != field.actionBlock) {

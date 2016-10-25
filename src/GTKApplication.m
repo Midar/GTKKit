@@ -28,7 +28,7 @@ of_thread_t gtkkit_objfw_thread;
 const of_thread_attr_t gtkkit_objfw_thread_attr;
 
 static void
-get_toplevel_window(GtkWindow *window, gpointer userdata)
+get_toplevel_window(GtkWindow *window, gpointer *userdata)
 {
     if (gtk_window_has_toplevel_focus(window)) {
         userdata = (gpointer)(window);
@@ -77,7 +77,7 @@ gtkkit_application_main(GTKApplication *app)
 
         gpointer window = NULL;
 
-        g_list_foreach(windows, (GFunc)(get_toplevel_window), window);
+        g_list_foreach(windows, (GFunc)(get_toplevel_window), &window);
 
         if (NULL == window) {
             viewController = nil;

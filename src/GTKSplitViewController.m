@@ -81,6 +81,7 @@
 
     _topLeftView.nextResponder = self.contentView;
     _bottomRightView.nextResponder = self.contentView;
+    self.dividerPosition = 0.5;
     return self;
 }
 
@@ -117,5 +118,21 @@
             GTK_ORIENTABLE(self.contentView.mainWidget),
             (GtkOrientation)(orientation));
     }];
+}
+
+- (double)dividerPosition
+{
+    return _handlePosition;
+}
+
+- (void)setDividerPosition:(double)position
+{
+    if (position > 1.0) {
+        position = 1.0;
+    }
+    _handlePosition = position;
+    double width = (double)(self.contentView.frame.width);
+    double pos = width * position;
+    gtk_paned_set_position(GTK_PANED(self.contentView.mainWidget), (int)(pos));
 }
 @end

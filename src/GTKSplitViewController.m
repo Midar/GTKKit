@@ -21,7 +21,7 @@
 @property bool dividerInitialized;
 @end
 
-bool
+static gboolean
 draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
 {
     if (!vc.dividerInitialized) {

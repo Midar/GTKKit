@@ -24,8 +24,7 @@
 bool
 draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
 {
-    int pos = gtk_paned_get_position(GTK_PANED(vc.contentView.mainWidget));
-    if (pos == 0 && !vc.dividerInitialized) {
+    if (!vc.dividerInitialized) {
         vc.dividerPosition = vc.dividerPosition;
         vc.dividerInitialized = true;
     }
@@ -140,6 +139,7 @@ draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
             GTK_ORIENTABLE(self.contentView.mainWidget),
             (GtkOrientation)(orientation));
     }];
+    self.dividerPosition = self.dividerPosition;
 }
 
 - (double)dividerPosition
@@ -154,7 +154,13 @@ draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
     }
     _handlePosition = position;
     double width = (double)(self.contentView.frame.width);
-    double pos = width * position;
+    double height = (double)(self.contentView.frame.height);
+    double pos;
+    if (self.orientation == GTKOrientationHorizontal) {
+        pos = width * position;
+    } else {
+        pos = height * position;
+    }
     gtk_paned_set_position(GTK_PANED(self.contentView.mainWidget), (int)(pos));
 }
 @end

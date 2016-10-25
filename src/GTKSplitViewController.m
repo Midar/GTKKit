@@ -17,6 +17,13 @@
 #import "GTKSplitViewController.h"
 #import "GTKApplication.h"
 
+bool
+draw_handler(GtkWidget *widget, cairo_t *cr, GTKSplitViewController *vc)
+{
+    vc.dividerPosition = vc.dividerPosition;
+    return false;
+}
+
 @implementation GTKSplitViewController
 - init
 {
@@ -28,6 +35,12 @@
         gtk_widget_destroy(self.contentView.mainWidget);
         self.contentView.mainWidget = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
         gtk_paned_set_wide_handle(GTK_PANED(self.contentView.mainWidget), true);
+
+        g_signal_connect(
+			G_OBJECT(self.contentView.overlayWidget),
+			"draw",
+			G_CALLBACK(draw_handler),
+			(__bridge gpointer)(self));
 
         gtk_container_add(
             GTK_CONTAINER(self.contentView.overlayWidget),

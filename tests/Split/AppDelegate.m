@@ -27,6 +27,8 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window = [MainWindow new];
     self.window.delegate = self;
 
+    self.window.split.dividerPosition = 0.3;
+
     // It would be dangerous to modify anything below this line.
 
     return self;
@@ -36,8 +38,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 {
     // Put your custom post-launch startup code below this line.
     self.window.hidden = false;
-
-    self.window.split.dividerPosition = 0.3;
 }
 
 - (void)windowDidClose

@@ -24,12 +24,12 @@
  */
 @interface GTKSplitViewController: GTKViewController <GTKOrientable>
 {
-    GTKOrientation _orientation;
-    GTKView *_topLeftView;
-    GTKView *_bottomRightView;
-    GtkWidget *_topLeftFrame;
-    GtkWidget *_bottomRightFrame;
-    double _handlePosition;
+    __block GTKOrientation _orientation;
+    __block GTKView *_topLeftView;
+    __block GTKView *_bottomRightView;
+    __block GtkWidget *_topLeftFrame;
+    __block GtkWidget *_bottomRightFrame;
+    __block double _handlePosition;
 }
 
 /*!
@@ -58,7 +58,7 @@
 
 /*!
  * @brief The position of the divider between the two view hierarchies, with 0.0
- * being the left/top, and 1.0 being the bottom/right. 
+ * being the left/top, and 1.0 being the bottom/right.
  */
 @property double dividerPosition;
 @end

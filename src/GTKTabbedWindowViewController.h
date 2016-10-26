@@ -22,8 +22,8 @@
 
 @interface GTKTabbedWindowViewController: GTKWindowViewController
 {
-    GtkWidget *_stack;
-    GtkWidget *_switcher;
+    __block GtkWidget *_stack;
+    __block GtkWidget *_switcher;
 }
 @property (nonnull) OFMutableDictionary *views;
 @property (nullable, readonly) OFString *titleOfSelectedTab;

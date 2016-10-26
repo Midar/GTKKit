@@ -23,8 +23,8 @@
  */
 @interface GTKTabbedViewController: GTKViewController
 {
-    GtkWidget *_stack;
-    GtkWidget *_switcher;
+    __block GtkWidget *_stack;
+    __block GtkWidget *_switcher;
 }
 
 /*!

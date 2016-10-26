@@ -1,4 +1,4 @@
-/*
+/*! @file GTKPopOverViewController.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,13 +14,22 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+#import "GTKViewController.h"
+#import "enums.h"
 
-@interface MainWindow: GTKWindowViewController
-@property (nonnull) GTKTextField *label;
-@property (nonnull) GTKTextField *menuLabel;
-@property (nonnull) GTKSlider *slider;
-@property (nonnull) GTKButton *toggleEditableButton;
-@property (nonnull) GTKButton *toggleMultilineButton;
-@property (nonnull) GTKBox *box;
+@interface GTKPopOverViewController: GTKViewController
+{
+    __block GtkWidget *_popOver;
+    __block __weak GTKView *_relativeView;
+    __block GtkWidget *_relativeWidget;
+    __block GTKPositionType _preferredPosition;
+    __block int _width;
+    __block int _height;
+}
+@property (getter=isHidden) bool hidden;
+@property (weak) GTKView *relativeView;
+@property GtkWidget *relativeWidget;
+@property GTKPositionType preferredPosition;
+@property int width;
+@property int height;
 @end

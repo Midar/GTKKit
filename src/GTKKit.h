@@ -14,6 +14,7 @@
  * the packaging of this file.
  */
 
+#import "enums.h"
 #import "GTKDispatchQueue.h"
 #import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"
@@ -27,6 +28,7 @@
 #import	"GTKSplitViewController.h"
 #import	"GTKTabbedViewController.h"
 #import	"GTKTabbedWindowViewController.h"
+#import	"GTKPopOverViewController.h"
 #import	"GTKImage.h"
 #import	"GTKImageView.h"
 #import "GTKButton.h"

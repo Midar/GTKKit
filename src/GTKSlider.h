@@ -20,13 +20,7 @@
 
 #import "GTKControl.h"
 #import "GTKOrientable.h"
-
-typedef enum GTKPositionType {
-    GTKPositionTypeTop = GTK_POS_TOP,
-    GTKPositionTypeBottom = GTK_POS_BOTTOM,
-    GTKPositionTypeLeft = GTK_POS_LEFT,
-    GTKPositionTypeRight = GTK_POS_RIGHT
-} GTKPositionType;
+#import "enums.h"
 
 /*!
  * @brief A class representing a control that sets a numeric value in a given

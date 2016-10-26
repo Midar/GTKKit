@@ -90,9 +90,9 @@ maximize_button_clicked_handler(GtkButton *button, GTKWindowViewController *wind
 }
 
 static void
-menu_button_clicked_handler(GtkButton *button, gpointer userdata)
+menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 {
-
+    window.menuButtonPopOver.hidden = false;
 }
 
 @interface GTKWindowViewController ()
@@ -229,6 +229,9 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
     self.maximizeButtonHidden = true;
     self.menuButtonHidden = true;
     self.hidden = true;
+
+    self.menuButtonPopOver = [GTKPopOverViewController new];
+    self.menuButtonPopOver.relativeWidget = _menuButton;
 
     return self;
 }

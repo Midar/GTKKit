@@ -16,6 +16,7 @@ SRCS =	GTKResponder.m                              \
 				GTKSplitViewController.m                    \
 				GTKTabbedViewController.m                   \
 				GTKTabbedWindowViewController.m             \
+				GTKPopOverViewController.m                  \
 				GTKApplication.m                            \
 				GTKImage.m                                  \
 				GTKImageView.m                              \

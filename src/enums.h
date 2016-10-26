@@ -1,4 +1,4 @@
-/*
+/* enums.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,13 +14,12 @@
  * the packaging of this file.
  */
 
-#import "GTKKit.h"
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
 
-@interface MainWindow: GTKWindowViewController
-@property (nonnull) GTKTextField *label;
-@property (nonnull) GTKTextField *menuLabel;
-@property (nonnull) GTKSlider *slider;
-@property (nonnull) GTKButton *toggleEditableButton;
-@property (nonnull) GTKButton *toggleMultilineButton;
-@property (nonnull) GTKBox *box;
-@end
+typedef enum GTKPositionType {
+    GTKPositionTypeTop = GTK_POS_TOP,
+    GTKPositionTypeBottom = GTK_POS_BOTTOM,
+    GTKPositionTypeLeft = GTK_POS_LEFT,
+    GTKPositionTypeRight = GTK_POS_RIGHT
+} GTKPositionType;

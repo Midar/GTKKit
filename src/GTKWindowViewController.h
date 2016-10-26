@@ -21,6 +21,7 @@
 #import "GTKViewController.h"
 #import "GTKView.h"
 #import "GTKWindowViewControllerDelegate.h"
+#import "GTKPopOverViewController.h"
 
 /*!
  * @brief A class representing a view controller that manages a toplevel
@@ -116,6 +117,8 @@
  * treated as invalid.
  */
 @property bool destroyWhenClosed;
+
+@property (nonnull) GTKPopOverViewController *menuButtonPopOver;
 
 /*!
  * @brief Hide the window from the user. This does not destroy the window.

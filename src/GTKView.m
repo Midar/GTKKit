@@ -98,8 +98,7 @@ static void
 overlay_widget_destroyed_handler(GtkWidget *overlay,
                                  GTKView   *view)
 {
-	g_object_unref(G_OBJECT(overlay));
-    view.overlayWidget = NULL;
+
 }
 
 @interface GTKView ()
@@ -176,26 +175,6 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
     [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_drawing_area_new();
     }];
-}
-
-- (void)dealloc
-{
-	if (self.overlayWidget != NULL) {
-		[GTKApp.dispatch.gtk sync: ^{
-			g_signal_handler_disconnect(
-				G_OBJECT(self.overlayWidget),
-				_childPositionHandlerID);
-
-			g_signal_handler_disconnect(
-				G_OBJECT(self.overlayWidget),
-				_widgetDestroyedHandlerID);
-
-		    gtk_widget_destroy(self.mainWidget);
-            gtk_widget_destroy(self.overlayWidget);
-	        self.overlayWidget = NULL;
-	        self.mainWidget = NULL;
-		}];
-    }
 }
 
 - (bool)isHidden

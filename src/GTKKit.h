@@ -26,6 +26,7 @@
 #import	"GTKWindowViewController.h"
 #import	"GTKSplitViewController.h"
 #import	"GTKTabbedViewController.h"
+#import	"GTKTabbedWindowViewController.h"
 #import	"GTKImage.h"
 #import	"GTKImageView.h"
 #import "GTKButton.h"

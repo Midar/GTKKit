@@ -23,6 +23,7 @@
 
     self.menuButtonHidden = false;
     self.menuButtonPopOver.width = 150;
+    self.menuButtonPopOver.height = 75;
     self.menuLabel = [GTKTextField new];
     [self.menuLabel.constraints fixedToTop: 10];
     [self.menuLabel.constraints flexibleToBottom: 0

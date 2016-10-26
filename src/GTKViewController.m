@@ -28,6 +28,13 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_widget_destroy(self.contentView.overlayWidget);
+    }];
+}
+
 - (void)addViewController:(nonnull GTKViewController *)viewController
 {
     [self addView: viewController.contentView];

@@ -499,4 +499,37 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
         gtk_widget_destroy(_window);
     }];
 }
+
+- (void)addViewToHeaderBarStart:(nonnull GTKView *)view
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_header_bar_pack_start(
+            GTK_HEADER_BAR(_headerBar),
+            view.overlayWidget);
+    }];
+}
+
+- (void)addViewToHeaderBarEnd:(nonnull GTKView *)view
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_header_bar_pack_end(
+            GTK_HEADER_BAR(_headerBar),
+            view.overlayWidget);
+    }];
+}
+
+- (nullable GTKView *)titleView
+{
+    return _titleView;
+}
+
+- (void)setTitleView:(nullable GTKView *)view
+{
+    _titleView = view;
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_header_bar_set_custom_title(
+            GTK_HEADER_BAR(_headerBar),
+            view.overlayWidget);
+    }];
+}
 @end

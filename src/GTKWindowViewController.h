@@ -41,6 +41,7 @@
     __block gulong     _maximizeButtonClickedHandlerID;
     __block GtkWidget *_menuButton;
     __block gulong     _menuButtonClickedHandlerID;
+    __block GTKView   *_titleView;
 }
 
 /*!
@@ -125,6 +126,11 @@
 @property (nonnull) GTKPopOverViewController *menuButtonPopOver;
 
 /*!
+ * @brief An optional GTKView which can replace the default title and subtitle.
+ */
+@property (nullable) GTKView *titleView;
+
+/*!
  * @brief Hide the window from the user. This does not destroy the window.
  */
 - (void)close;
@@ -144,4 +150,16 @@
  * @brief Maximize the window.
  */
 - (void)maximize;
+
+/*!
+ * @brief Adds a GTKView to the header bar, after the left separator (which is
+ * only shown if any of the system-provided buttons on the left are shown).
+ */
+- (void)addViewToHeaderBarStart:(nonnull GTKView *)view;
+
+/*!
+ * @brief Adds a GTKView to the header bar, before the right separator (which is
+ * only shown if any of the system-provided buttons on the right are shown).
+ */
+- (void)addViewToHeaderBarEnd:(nonnull GTKView *)view;
 @end

@@ -105,4 +105,9 @@
 {
     return self.views.count;
 }
+
+- (void)setTitleView:(nullable GTKView *)view
+{
+    // Do nothing.
+}
 @end

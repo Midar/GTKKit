@@ -14,6 +14,7 @@ SRCS =	GTKResponder.m                              \
 				GTKViewController.m                         \
 				GTKWindowViewController.m                   \
 				GTKSplitViewController.m                    \
+				GTKTabbedViewController.m                   \
 				GTKApplication.m                            \
 				GTKImage.m                                  \
 				GTKImageView.m                              \

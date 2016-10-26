@@ -33,7 +33,11 @@ close_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
             [window.delegate windowWillClose];
         }
 
-        window.hidden = true;
+        if (window.destroyWhenClosed) {
+            [window destroy];
+        } else {
+            window.hidden = true;
+        }
 
         if ([window.delegate respondsToSelector: @selector(windowDidClose)]) {
             [window.delegate windowDidClose];
@@ -101,6 +105,7 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
     self = [super init];
 
     self.firstResponder = self;
+    self.destroyWhenClosed = false;
 
     [GTKApp.dispatch.gtk sync: ^{
 
@@ -482,6 +487,13 @@ menu_button_clicked_handler(GtkButton *button, gpointer userdata)
         } else {
             gtk_widget_set_visible(_headerBarLeftSeparator, true);
         }
+    }];
+}
+
+- (void)destroy
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_widget_destroy(_window);
     }];
 }
 @end

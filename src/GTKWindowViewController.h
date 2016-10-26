@@ -111,9 +111,22 @@
 @property (getter=isResizable) bool resizable;
 
 /*!
+ * @brief A bool value indicating whether or not the window should be
+ * resizable. Once a window is destroyed, all references to it should be
+ * treated as invalid.
+ */
+@property bool destroyWhenClosed;
+
+/*!
  * @brief Hide the window from the user. This does not destroy the window.
  */
 - (void)close;
+
+/*!
+ * @brief Destroys the window. Once a window is destroyed, all references to it
+ * should be treated as invalid.
+ */
+- (void)destroy;
 
 /*!
  * @brief Minimize the window.

@@ -26,6 +26,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     self.window = [MainWindow new];
     self.window.delegate = self;
+    self.window.destroyWhenClosed = true;
 
     // It would be dangerous to modify anything below this line.
 

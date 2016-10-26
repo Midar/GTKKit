@@ -20,7 +20,7 @@
 
 #import "GTKControl.h"
 #import "GTKImage.h"
-
+#import "GTKPopOverViewController.h"
 
 /*!
  * @brief The types buttons can implement.
@@ -74,6 +74,7 @@ extern const bool GTKOffState;
     __block GtkWidget *_hiddenRadioButton;
     __block GtkWidget *_imageWidget;
     __block GTKImage *_image;
+    __block __weak GTKPopOverViewController *_popOver;
 }
 
 /*!
@@ -92,4 +93,11 @@ extern const bool GTKOffState;
  * This has no effect for a GTKSwitchButton.
  */
 @property (nullable) GTKImage *image;
+
+/*!
+ * @brief A GTKPopOverViewController associated with this button. If this is set,
+ * the pop-over will be shown when the button is clicked, in addition to whatever
+ * the target-action method and actionBlock might do.
+ */
+@property (weak, nullable) GTKPopOverViewController *popOver;
 @end

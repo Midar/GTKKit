@@ -166,6 +166,9 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         if (NULL != self.actionBlock) {
             self.actionBlock();
         }
+        if (NULL != self.popOver) {
+            self.popOver.hidden = false;
+        }
     }];
 }
 
@@ -255,5 +258,16 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
             gtk_widget_grab_default(self.mainWidget);
         }
     }];
+}
+
+- (GTKPopOverViewController *)popOver
+{
+    return _popOver;
+}
+
+- (void)setPopOver:(GTKPopOverViewController *)popOver;
+{
+    _popOver = popOver;
+    popOver.relativeView = self;
 }
 @end

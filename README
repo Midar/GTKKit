@@ -25,6 +25,7 @@ GTKResponder
     GTKProgressIndicator
   GTKViewController
     GTKPopOverViewController
+    GTKSplitViewController
     GTKTabbedViewController
     GTKWindowViewController
       GTKTabbedWindowViewController

@@ -81,6 +81,7 @@
                 tab.overlayWidget);
         }];
     }
+    [self.views removeObjectForKey: title];
 }
 
 - (nullable GTKView *)tabViewTitled:(nonnull OFString *)title

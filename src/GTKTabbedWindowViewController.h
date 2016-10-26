@@ -20,16 +20,47 @@
 
 #import "GTKWindowViewController.h"
 
+/*!
+ * @brief A class which represents a window view controller that manages a set
+ * of view hierarchies, displaying one at a time, switching between them with
+ * a selector control in the header bar.
+ */
 @interface GTKTabbedWindowViewController: GTKWindowViewController
 {
     __block GtkWidget *_stack;
     __block GtkWidget *_switcher;
 }
+
 @property (nonnull) OFMutableDictionary *views;
+
+/*!
+ * @brief The title of the selected tab.
+ */
 @property (nullable, readonly) OFString *titleOfSelectedTab;
+
+/*!
+ * @brief The number of tabs in this window.
+ */
 @property (readonly) int tabCount;
+
+/*!
+ * @brief Add a tab with the given title.
+ */
 - (void)addTabTitled:(nonnull OFString *)title;
+
+/*!
+ * @brief Remove a tab with the given title.
+ */
 - (void)removeTabTitled:(nonnull OFString *)title;
+
+/*!
+ * @brief The GTKView shown when the tab with the given title is visible.
+ */
 - (nullable GTKView *)tabViewTitled:(nonnull OFString *)title;
+
+/*!
+ * @brief Add a given GTKView as a subview of the view shown when the tab with
+ * the given name is visible.
+ */
 - (void)addView:(nonnull GTKView *)view toTabTitled:(nonnull OFString *)title;
 @end

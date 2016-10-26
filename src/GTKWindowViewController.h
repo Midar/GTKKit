@@ -118,6 +118,10 @@
  */
 @property bool destroyWhenClosed;
 
+/*!
+ * @brief The GTKPopOverViewController which manages the popover that is shown
+ * when the menu button in the window's header bar is clicked.
+ */
 @property (nonnull) GTKPopOverViewController *menuButtonPopOver;
 
 /*!

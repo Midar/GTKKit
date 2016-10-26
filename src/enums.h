@@ -1,4 +1,4 @@
-/* enums.h
+/*! @file enums.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -17,9 +17,28 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+/*!
+ * @brief An enumeration of positions.
+ */
 typedef enum GTKPositionType {
+    
+    /*!
+     * @brief The top position.
+     */
     GTKPositionTypeTop = GTK_POS_TOP,
+
+    /*!
+     * @brief The bottom position.
+     */
     GTKPositionTypeBottom = GTK_POS_BOTTOM,
+
+    /*!
+     * @brief The left position.
+     */
     GTKPositionTypeLeft = GTK_POS_LEFT,
+
+    /*!
+     * @brief The right position.
+     */
     GTKPositionTypeRight = GTK_POS_RIGHT
 } GTKPositionType;

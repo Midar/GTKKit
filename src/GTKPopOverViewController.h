@@ -17,6 +17,10 @@
 #import "GTKViewController.h"
 #import "enums.h"
 
+/*!
+ * @brief A class representing a view controller that presents a view hierarchy
+ * as a pop-up attached to another view.
+ */
 @interface GTKPopOverViewController: GTKViewController
 {
     __block GtkWidget *_popOver;
@@ -26,10 +30,31 @@
     __block int _width;
     __block int _height;
 }
+/*!
+ * @brief Whether or not this pop-up is hidden.
+ */
 @property (getter=isHidden) bool hidden;
+
+/*!
+ * @brief The view relative to which this pop-up should be shown.
+ */
 @property (weak) GTKView *relativeView;
+
 @property GtkWidget *relativeWidget;
+
+/*!
+ * @brief The pop-up's preferred position relative to its relativeView. Depending
+ * on the available screen-space, this may be ignored.
+ */
 @property GTKPositionType preferredPosition;
+
+/*!
+ * @brief The width of the pop-over.
+ */
 @property int width;
+
+/*!
+ * @brief The hieght of the pop-over.
+ */
 @property int height;
 @end

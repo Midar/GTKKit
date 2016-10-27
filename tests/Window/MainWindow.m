@@ -27,13 +27,13 @@
     self.menuLabel = [GTKTextField new];
     [self.menuLabel.constraints fixedToTop: 10];
     [self.menuLabel.constraints flexibleToBottom: 0
-                                   left: 0
-                                  right: 0];
+                                            left: 0
+                                           right: 0];
     self.menuLabel.constraints.centerHorizontal = true;
     [self.menuLabel.constraints fixedWidth: 100];
     [self.menuLabel.constraints fixedHeight: 30];
     self.menuLabel.stringValue = @"Hi there!";
-    [self.menuButtonPopOver.contentView addSubview: self.menuLabel];
+    [self.menuButtonPopOver addView: self.menuLabel];
 
     GTKRect frame = self.frame;
     frame.x = 50;

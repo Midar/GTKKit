@@ -131,7 +131,8 @@
 @property (nullable) GTKView *titleView;
 
 /*!
- * @brief Hide the window from the user. This does not destroy the window.
+ * @brief Hide the window from the user. This does not destroy the window unless
+ * the window's destroyWhenClosed property is true.
  */
 - (void)close;
 

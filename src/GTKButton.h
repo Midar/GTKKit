@@ -18,6 +18,7 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+#import "enums.h"
 #import "GTKControl.h"
 #import "GTKImage.h"
 #import "GTKPopOverViewController.h"
@@ -51,16 +52,6 @@ typedef enum GTKButtonType {
      */
     GTKSwitchButton
 } GTKButtonType;
-
-/*!
- * @brief The state of an active button. Equal to true.
- */
-extern const bool GTKOnState;
-
-/*!
- * @brief The state of an inactive button. Equal to false.
- */
-extern const bool GTKOffState;
 
 
 /*!

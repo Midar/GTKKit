@@ -39,3 +39,4 @@
 #import "GTKPopUpButton.h"
 #import "GTKBox.h"
 #import "GTKWindowViewControllerDelegate.h"
+#import "GTKSegmentedControl.h"

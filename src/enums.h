@@ -18,10 +18,20 @@
 #import <gtk/gtk.h>
 
 /*!
+ * @brief The state of an active button. Equal to true.
+ */
+extern const bool GTKOnState;
+
+/*!
+ * @brief The state of an inactive button. Equal to false.
+ */
+extern const bool GTKOffState;
+
+/*!
  * @brief An enumeration of positions.
  */
 typedef enum GTKPositionType {
-    
+
     /*!
      * @brief The top position.
      */

@@ -26,7 +26,8 @@ SRCS =	GTKResponder.m                              \
 				GTKLevelIndicator.m                         \
 				GTKProgressIndicator.m                      \
 				GTKPopUpButton.m                            \
-				GTKBox.m
+				GTKBox.m                                    \
+				GTKSegmentedControl.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \

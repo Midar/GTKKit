@@ -1,6 +1,7 @@
 SUBDIRS = Window \
   				Split \
 					Tabbed \
-					TabbedWindow
+					TabbedWindow \
+					SegmentedControl
 
 include ../buildsys.mk

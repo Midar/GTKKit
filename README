@@ -18,6 +18,7 @@ GTKResponder
     GTKControl
       GTKButton
       GTKPupUpButton
+      GTKSegmentedControl
       GTKSlider
       GTKTextField
     GTKImageView

@@ -20,20 +20,13 @@
 
 #import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"
+#import "GTKWindowViewController.h"
 
 GTKApplication * _Nonnull GTKApp = nil;
 
 of_thread_t gtkkit_gtk_thread;
 of_thread_t gtkkit_objfw_thread;
 const of_thread_attr_t gtkkit_objfw_thread_attr;
-
-static void
-get_toplevel_window(GtkWindow *window, gpointer *userdata)
-{
-    if (gtk_window_has_toplevel_focus(window)) {
-        *userdata = (gpointer)(window);
-    }
-}
 
 static void
 gtkkit_application_main(GTKApplication *app)
@@ -71,26 +64,12 @@ gtkkit_application_main(GTKApplication *app)
 
 - (GTKViewController*)keyWindow
 {
-    __block GTKViewController *viewController;
-    [GTKApp.dispatch.gtk sync: ^{
-        GList *windows = gtk_window_list_toplevels();
-
-        gpointer window = NULL;
-
-        g_list_foreach(windows, (GFunc)(get_toplevel_window), &window);
-
-        if (NULL == window) {
-            viewController = nil;
-            return;
+    for (GTKWindowViewController *window in self.windows) {
+        if (window.hasToplevelFocus) {
+            return window;
         }
-
-        viewController = (__bridge GTKViewController *)(g_object_get_data(
-        		G_OBJECT(window),
-                "_GTKKIT_OWNING_VIEW_CONTROLLER_"));
-
-        g_list_free(windows);
-    }];
-    return viewController;
+    }
+    return nil;
 }
 
 + (instancetype)sharedApplication

@@ -74,6 +74,11 @@ extern GTKApplication * _Nonnull GTKApp;
 @property (nonnull) Class delegateClass;
 
 /*!
+ * @brief An array which contains all the active GTKWindowViewController instances.
+ */
+@property (nonnull) OFMutableArray *windows;
+
+/*!
  * @brief The shared instance of GTKApplication.
  */
 + (nonnull instancetype)sharedApplication;

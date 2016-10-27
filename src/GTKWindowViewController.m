@@ -233,6 +233,8 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
     self.menuButtonPopOver = [GTKPopOverViewController new];
     self.menuButtonPopOver.relativeWidget = _menuButton;
 
+    [GTKApp.windows addObject: self];
+
     return self;
 }
 
@@ -498,6 +500,7 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(_window);
     }];
+    [GTKApp.windows removeObject: self];
 }
 
 - (void)addViewToHeaderBarStart:(nonnull GTKView *)view

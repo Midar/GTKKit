@@ -47,7 +47,6 @@
  */
 - (void)addView:(nonnull GTKView *)subview;
 
-
 /*!
  * @brief Adds the contentView of the specified view controller to the contentView
  * of this view controller as a subview, maintaining the responder chain as needed.

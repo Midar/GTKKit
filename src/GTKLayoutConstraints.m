@@ -27,22 +27,17 @@
 		 value:(double)value
 {
 	self = [super init];
-
 	self.type = type;
 	self.value = value;
-
 	return self;
 }
 
 - (nullable instancetype)init
 {
-	if (self = [super init]) {
-	  self.type = GTKLayoutConstraintTypeFixed;
-	  self.value = 0;
-	  return self;
-	} else {
-	  return nil;
-	}
+	self = [super init];
+	self.type = GTKLayoutConstraintTypeFixed;
+	self.value = 0;
+	return self;
 }
 @end
 
@@ -50,17 +45,15 @@
 - init
 {
 	self = [super init];
-	if (self) {
-	  self.width = [GTKLayoutConstraint new];
-	  self.height = [GTKLayoutConstraint new];
-	  self.top = [GTKLayoutConstraint new];
-	  self.bottom = [GTKLayoutConstraint new];
-	  self.left = [GTKLayoutConstraint new];
-	  self.right = [GTKLayoutConstraint new];
-	  return self;
-	} else {
-	  return nil;
-	}
+  	self.width = [GTKLayoutConstraint new];
+  	self.height = [GTKLayoutConstraint new];
+  	self.top = [GTKLayoutConstraint new];
+  	self.bottom = [GTKLayoutConstraint new];
+  	self.left = [GTKLayoutConstraint new];
+  	self.right = [GTKLayoutConstraint new];
+	self.centerHorizontal = false;
+	self.centerVertical = false;
+  	return self;
 }
 
 - (void)fixedToTop:(double)top

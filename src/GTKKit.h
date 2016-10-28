@@ -40,3 +40,4 @@
 #import "GTKBox.h"
 #import "GTKWindowViewControllerDelegate.h"
 #import "GTKSegmentedControl.h"
+#import "GTKLinearViewController.h"

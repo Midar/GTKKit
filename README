@@ -22,7 +22,7 @@ GTKResponder
     GTKBox
     GTKControl
       GTKButton
-      GTKPupUpButton
+      GTKPopUpButton
       GTKSegmentedControl
       GTKSlider
       GTKTextField

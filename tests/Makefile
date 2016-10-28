@@ -2,6 +2,7 @@ SUBDIRS = Window \
   				Split \
 					Tabbed \
 					TabbedWindow \
-					SegmentedControl
+					SegmentedControl \
+					ProgressIndicator
 
 include ../buildsys.mk

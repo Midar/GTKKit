@@ -25,6 +25,23 @@
     self.showLabel = false;
     self.stringValue = @"";
     self.doubleValue = 0.0;
+    self.animate = false;
+    __weak GTKProgressIndicator *weakSelf = self;
+    [GTKApp.dispatch.background asyncRepeatAfter: 0
+                                         execute: ^{
+            if (nil == weakSelf) {
+                return;
+            }
+            if (weakSelf.animate) {
+                [GTKApp.dispatch.gtk async: ^{
+                    gtk_progress_bar_pulse(GTK_PROGRESS_BAR(weakSelf.mainWidget));
+                }];
+            }
+            struct timespec tim, tim2;
+            tim.tv_sec  = 0;
+            tim.tv_nsec = 80000000;
+            nanosleep(&tim , &tim2);
+    }];
     return self;
 }
 

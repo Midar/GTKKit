@@ -24,9 +24,21 @@
 
 #define GTK_SEGMENTED_CONTROL_MAX_SEGMENTS 32SegmentedControlMode;
 
+/*!
+ * @brief The tracking modes available to segmented controls.
+ */
 typedef enum GTKSegmentSwitchTracking {
+    /*!
+     * @brief Select one segment at a time.
+     */
     GTKSegmentSwitchTrackingSelectOne,
+    /*!
+     * @brief Select any or all of the segments at once.
+     */
     GTKSegmentSwitchTrackingSelectAny,
+    /*!
+     * @brief Make the control act like a row of momentary pushbuttons.
+     */
     GTKSegmentSwitchTrackingMomentary
 } GTKSegmentSwitchTracking;
 

@@ -28,7 +28,8 @@ SRCS =	GTKResponder.m                              \
 				GTKPopUpButton.m                            \
 				GTKBox.m                                    \
 				GTKSegmentedControl.m                       \
-				GTKLinearViewController.m
+				GTKLinearViewController.m                   \
+				GTKSeparator.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \

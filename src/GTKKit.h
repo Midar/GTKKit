@@ -41,3 +41,4 @@
 #import "GTKWindowViewControllerDelegate.h"
 #import "GTKSegmentedControl.h"
 #import "GTKLinearViewController.h"
+#import "GTKSeparator.h"

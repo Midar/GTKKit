@@ -29,7 +29,9 @@ GTKResponder
     GTKImageView
     GTKLevelIndicator
     GTKProgressIndicator
+    GTKSeparator
   GTKViewController
+    GTKLinearViewController
     GTKPopOverViewController
     GTKSplitViewController
     GTKTabbedViewController

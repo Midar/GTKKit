@@ -17,9 +17,8 @@
 #import "GTKViewController.h"
 
 /*!
- * @brief A class representing a view controller that displays two view hierarchies
- * either side-by-side or one over the other, and allows the user to move the
- * boundary between them.
+ * @brief A class representing a view controller that displays any number of
+ * view hierarchies one at a time, switching between them using a selector control.
  */
 @interface GTKTabbedViewController: GTKViewController
 {
@@ -27,13 +26,38 @@
     __block GtkWidget *_switcher;
 }
 
-/*!
- * @brief The top view managed by this view controller. This is the same object
- * as the left view.
- */
 @property (nonnull) OFMutableDictionary *views;
+
+/*!
+ * @brief Adds a tab to the view controller witht the specified title.
+ *
+ * @param title The title of the tab which should be added to the view controller.
+ */
 - (void)addTabTitled:(nonnull OFString *)title;
+
+/*!
+ * @brief Removes the tab with the specified title.
+ *
+ * @param title The title of the tab which should be removed from the view controller.
+ */
 - (void)removeTabTitled:(nonnull OFString *)title;
+
+/*!
+ * @brief Gets the view which is the root of the view hierarchy shown in the
+ * tab with the specified title.
+ *
+ * @param title The title of the tab which should be added to the view controller.
+ *
+ * @returns The view at the root of the specified tab's view hierarchy.
+ */
 - (nullable GTKView *)tabViewTitled:(nonnull OFString *)title;
+
+/*!
+ * @brief Adds a given view to the view hierarchy of the tab with the speicfied
+ * title.
+ *
+ * @param view The GTKView that should be added to the specified tab's view hierarchy.
+ * @param title The title of the tab to which the speicifed view should be added.
+ */
 - (void)addView:(nonnull GTKView *)view toTabTitled:(nonnull OFString *)title;
 @end

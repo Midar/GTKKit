@@ -2,6 +2,11 @@ GTKKit is a multithreaded MVC GUI framework, which implements a UIKit-style
 Objective-C API on top of the GTK+ cross-platform widget toolkit. It is under
 active development, and it currently in a barely usable, skeletal state.
 
+GTKKit is inspired by UIKit, but is not a clone of it, nor is it intended to be
+compatible with it. It is intended to give experienced Cocoa/iOS developers a
+comfortable, familiar environment to develop cross-platform applications, and
+to introduce concepts from the Cocoa/iOS world to developers for other platforms.
+
 Requirements:
  - GTK+ 3
  - ObjFW (https://webkeks.org/objfw/)

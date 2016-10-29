@@ -55,7 +55,7 @@
                                 right: 0];
     [self.toggleEditableButton.constraints fixedToBottom: 10];
     self.toggleEditableButton.constraints.centerHorizontal = true;
-    [self.toggleEditableButton.constraints fixedWidth: 100];
+    [self.toggleEditableButton.constraints fixedWidth: 150];
     [self.toggleEditableButton.constraints fixedHeight: 30];
     self.toggleEditableButton.stringValue = @"Toggle editable";
 
@@ -65,9 +65,9 @@
                                 right: 0];
     [self.toggleMultilineButton.constraints fixedToBottom: 55];
     self.toggleMultilineButton.constraints.centerHorizontal = true;
-    [self.toggleMultilineButton.constraints fixedWidth: 100];
+    [self.toggleMultilineButton.constraints fixedWidth: 150];
     [self.toggleMultilineButton.constraints fixedHeight: 30];
-    self.toggleMultilineButton.stringValue = @"Toggle multiline";
+    self.toggleEditableButton.stringValue = @"Toggle multiline";
 
     self.slider = [GTKSlider new];
     [self.slider.constraints flexibleToBottom: 0];

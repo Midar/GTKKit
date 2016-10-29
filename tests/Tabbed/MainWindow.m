@@ -52,7 +52,7 @@
     label3.stringValue = @"Tab Three";
     [self.tabs addView: label3 toTabTitled: @"Tab Three"];
 
-    self.title = @"Tabbed View Controller Example";
+    self.title = @"Tabbed View Controller";
 
     return self;
 }

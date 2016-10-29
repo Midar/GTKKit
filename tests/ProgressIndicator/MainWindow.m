@@ -52,7 +52,7 @@
         weakSelf.progress.animate = !weakSelf.progress.animate;
     };
 
-    self.title = @"Segmented Controls";
+    self.title = @"Progress Indicator";
 
     return self;
 }

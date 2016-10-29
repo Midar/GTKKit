@@ -100,6 +100,13 @@ typedef enum GTKButtonType {
  */
 @property (weak, nullable) GTKPopOverViewController *popOver;
 
+/*!
+ * @brief The name of the stock icon used as the button's image.
+ */
 @property (nullable) OFString *iconName;
+
+/*!
+ * @brief The size of the stock icon used as the button's image.
+ */
 @property GTKIconSize iconSize;
 @end

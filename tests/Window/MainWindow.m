@@ -67,7 +67,7 @@
     self.toggleMultilineButton.constraints.centerHorizontal = true;
     [self.toggleMultilineButton.constraints fixedWidth: 150];
     [self.toggleMultilineButton.constraints fixedHeight: 30];
-    self.toggleEditableButton.stringValue = @"Toggle multiline";
+    self.toggleMultilineButton.stringValue = @"Toggle multiline";
 
     self.slider = [GTKSlider new];
     [self.slider.constraints flexibleToBottom: 0];

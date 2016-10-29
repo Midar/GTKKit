@@ -23,6 +23,13 @@
 #import "GTKImage.h"
 #import "GTKPopOverViewController.h"
 
+typedef enum GTKIconSize {
+    GTKIconSizeSmall = GTK_ICON_SIZE_SMALL_TOOLBAR,
+    GTKIconSizeMedium = GTK_ICON_SIZE_LARGE_TOOLBAR,
+    GTKIconSizeLarge = GTK_ICON_SIZE_DND,
+    GTKIconSizeXLarge = GTK_ICON_SIZE_DIALOG
+} GTKIconSize;
+
 /*!
  * @brief The types buttons can implement.
  */
@@ -66,6 +73,7 @@ typedef enum GTKButtonType {
     __block GtkWidget *_imageWidget;
     __block GTKImage *_image;
     __block __weak GTKPopOverViewController *_popOver;
+    __block OFString *_iconName;
 }
 
 /*!
@@ -91,4 +99,7 @@ typedef enum GTKButtonType {
  * the target-action method and actionBlock might do.
  */
 @property (weak, nullable) GTKPopOverViewController *popOver;
+
+@property (nullable) OFString *iconName;
+@property GTKIconSize iconSize;
 @end

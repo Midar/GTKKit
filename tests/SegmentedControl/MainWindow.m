@@ -31,6 +31,7 @@
     self.segment1 = [GTKSegmentedControl new];
     self.segment1.segments = 3;
     self.segment1.trackingMode = GTKSegmentSwitchTrackingMomentary;
+    [self.segment1 setIconName: @"document-new-symbolic" forSegment: 0];
 
     self.segment2 = [GTKSegmentedControl new];
     self.segment2.segments = 2;

@@ -71,6 +71,13 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     self.selectable = false;
     self.justify = GTKJustificationCenter;
     self.continuous = false;
+    [GTKApp.dispatch.gtk sync: ^{
+        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
+        g_object_ref(G_OBJECT(_scrollWindow));
+        gtk_widget_show(_scrollWindow);
+        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
+        gtk_style_context_add_class(context, "gtkkit-textview");
+    }];
     return self;
 }
 
@@ -91,14 +98,41 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     _editable = editable;
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
+        gtk_widget_destroy(_scrollWindow);
+        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
+        g_object_ref(G_OBJECT(_scrollWindow));
+        gtk_widget_show(_scrollWindow);
+        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
+        gtk_style_context_add_class(context, "gtkkit-textview");
         if (_editable == true) {
             if (_multiline == true) {
                 self.mainWidget = gtk_text_view_new();
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_TOP,
+                    8);
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_BOTTOM,
+                    8);
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_LEFT,
+                    8);
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_RIGHT,
+                    8);
                 _textViewFocusOutHandlerID = g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "focus-out-event",
                     G_CALLBACK(text_view_focus_out_handler),
                     (__bridge gpointer)(self));
+                gtk_container_add(
+                    GTK_CONTAINER(_scrollWindow),
+                    self.mainWidget);
+                gtk_widget_show(self.mainWidget);
+                gtk_container_add(GTK_CONTAINER(self.overlayWidget), _scrollWindow);
             } else {
                 self.mainWidget = gtk_entry_new();
                 _entryActivatedHandlerID = g_signal_connect(
@@ -111,12 +145,14 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
                     "insert-at-cursor",
                     G_CALLBACK(entry_insert_at_cursor_handler),
                     (__bridge gpointer)(self));
+                gtk_widget_show(self.mainWidget);
+                gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
             }
         } else {
             self.mainWidget = gtk_label_new(NULL);
+            gtk_widget_show(self.mainWidget);
+            gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
         }
-        gtk_widget_show(self.mainWidget);
-        gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
     }];
     self.selectable = selectable;
     self.justify = justify;
@@ -233,14 +269,41 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     _multiline = multiline;
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
-        if (self.isEditable) {
+        gtk_widget_destroy(_scrollWindow);
+        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
+        g_object_ref(G_OBJECT(_scrollWindow));
+        gtk_widget_show(_scrollWindow);
+        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
+        gtk_style_context_add_class(context, "gtkkit-textview");
+        if (_editable == true) {
             if (_multiline == true) {
                 self.mainWidget = gtk_text_view_new();
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_TOP,
+                    8);
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_BOTTOM,
+                    8);
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_LEFT,
+                    8);
+                gtk_text_view_set_border_window_size(
+                    GTK_TEXT_VIEW(self.mainWidget),
+                    GTK_TEXT_WINDOW_RIGHT,
+                    8);
                 _textViewFocusOutHandlerID = g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "focus-out-event",
                     G_CALLBACK(text_view_focus_out_handler),
                     (__bridge gpointer)(self));
+                gtk_container_add(
+                    GTK_CONTAINER(_scrollWindow),
+                    self.mainWidget);
+                gtk_widget_show(self.mainWidget);
+                gtk_container_add(GTK_CONTAINER(self.overlayWidget), _scrollWindow);
             } else {
                 self.mainWidget = gtk_entry_new();
                 _entryActivatedHandlerID = g_signal_connect(
@@ -253,13 +316,14 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
                     "insert-at-cursor",
                     G_CALLBACK(entry_insert_at_cursor_handler),
                     (__bridge gpointer)(self));
+                gtk_widget_show(self.mainWidget);
+                gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
             }
         } else {
             self.mainWidget = gtk_label_new(NULL);
-            gtk_label_set_line_wrap(GTK_LABEL(self.mainWidget), _multiline);
+            gtk_widget_show(self.mainWidget);
+            gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
         }
-        gtk_widget_show(self.mainWidget);
-        gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
     }];
     self.selectable = selectable;
     self.justify = justify;

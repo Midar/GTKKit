@@ -60,6 +60,7 @@ typedef enum GTKJustification {
     __block gulong _textViewFocusOutHandlerID;
     __block GTKJustification _justify;
     __block bool _multiline;
+    __block GtkWidget *_scrollWindow;
 }
 
 /*!

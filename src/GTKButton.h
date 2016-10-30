@@ -23,10 +23,29 @@
 #import "GTKImage.h"
 #import "GTKPopOverViewController.h"
 
+/*!
+ * @brief An enumeration of the supported sizes for stock icons.
+ */
 typedef enum GTKIconSize {
+
+    /*!
+     * @brief A small icon.
+     */
     GTKIconSizeSmall = GTK_ICON_SIZE_SMALL_TOOLBAR,
+
+    /*!
+     * @brief A medium icon.
+     */
     GTKIconSizeMedium = GTK_ICON_SIZE_LARGE_TOOLBAR,
+
+    /*!
+     * @brief A large icon.
+     */
     GTKIconSizeLarge = GTK_ICON_SIZE_DND,
+
+    /*!
+     * @brief An extra-large icon.
+     */
     GTKIconSizeXLarge = GTK_ICON_SIZE_DIALOG
 } GTKIconSize;
 

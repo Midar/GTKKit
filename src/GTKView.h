@@ -53,11 +53,6 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 {
     bool _hidden;
     __weak __block GTKViewController *_viewController;
-    __block gulong _childPositionHandlerID;
-    __block gulong _widgetDestroyedHandlerID;
-    __block gulong _pressEventHandlerID;
-    __block gulong _releaseEventHandlerID;
-    __block gulong _drawHandlerID;
 }
 
 /*!

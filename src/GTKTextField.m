@@ -123,7 +123,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
                     GTK_TEXT_VIEW(self.mainWidget),
                     GTK_TEXT_WINDOW_RIGHT,
                     8);
-                _textViewFocusOutHandlerID = g_signal_connect(
+                g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "focus-out-event",
                     G_CALLBACK(text_view_focus_out_handler),
@@ -135,12 +135,12 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
                 gtk_container_add(GTK_CONTAINER(self.overlayWidget), _scrollWindow);
             } else {
                 self.mainWidget = gtk_entry_new();
-                _entryActivatedHandlerID = g_signal_connect(
+                g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "activate",
                     G_CALLBACK(entry_activated_handler),
                     (__bridge gpointer)(self));
-                _insertAtCursorHandlerID = g_signal_connect(
+                g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "insert-at-cursor",
                     G_CALLBACK(entry_insert_at_cursor_handler),
@@ -294,7 +294,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
                     GTK_TEXT_VIEW(self.mainWidget),
                     GTK_TEXT_WINDOW_RIGHT,
                     8);
-                _textViewFocusOutHandlerID = g_signal_connect(
+                g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "focus-out-event",
                     G_CALLBACK(text_view_focus_out_handler),
@@ -306,12 +306,12 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
                 gtk_container_add(GTK_CONTAINER(self.overlayWidget), _scrollWindow);
             } else {
                 self.mainWidget = gtk_entry_new();
-                _entryActivatedHandlerID = g_signal_connect(
+                g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "activate",
                     G_CALLBACK(entry_activated_handler),
                     (__bridge gpointer)(self));
-                _insertAtCursorHandlerID = g_signal_connect(
+                g_signal_connect(
                     G_OBJECT(self.mainWidget),
                     "insert-at-cursor",
                     G_CALLBACK(entry_insert_at_cursor_handler),

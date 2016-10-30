@@ -55,9 +55,6 @@ typedef enum GTKJustification {
 {
     __block bool _editable;
     __block bool _selectable;
-    __block gulong _entryActivatedHandlerID;
-    __block gulong _insertAtCursorHandlerID;
-    __block gulong _textViewFocusOutHandlerID;
     __block GTKJustification _justify;
     __block bool _multiline;
     __block GtkWidget *_scrollWindow;

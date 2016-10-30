@@ -26,9 +26,6 @@
  * selected.
  */
 @interface GTKPopUpButton: GTKControl
-{
-    __block gulong _valueChangedHandlerID;
-}
 
 /*!
  * @brief The index of the selected item.

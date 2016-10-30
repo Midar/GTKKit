@@ -58,7 +58,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
     [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
         _orientation = GTKOrientationHorizontal;
-        _valueChangedHandlerID = g_signal_connect(
+        g_signal_connect(
             G_OBJECT(self.mainWidget),
             "value-changed",
             G_CALLBACK(value_changed_handler),
@@ -100,7 +100,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 
         gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
 
-        _valueChangedHandlerID = g_signal_connect(
+        g_signal_connect(
             G_OBJECT(self.mainWidget),
             "value-changed",
             G_CALLBACK(value_changed_handler),

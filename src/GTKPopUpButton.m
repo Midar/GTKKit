@@ -38,7 +38,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 {
     [GTKApp.dispatch.gtk sync: ^ {
         self.mainWidget = gtk_combo_box_text_new();
-        _valueChangedHandlerID = g_signal_connect(
+        g_signal_connect(
             G_OBJECT(self.mainWidget),
             "changed",
             G_CALLBACK(changed_handler),

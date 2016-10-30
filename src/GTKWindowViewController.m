@@ -151,7 +151,7 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 
         gtk_button_set_relief(GTK_BUTTON(_closeButton), GTK_RELIEF_NONE);
 
-		_closeButtonClickedHandlerID = g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(_closeButton),
 			"clicked",
 			G_CALLBACK(close_button_clicked_handler),
@@ -169,7 +169,7 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 
         gtk_button_set_relief(GTK_BUTTON(_minimizeButton), GTK_RELIEF_NONE);
 
-		_minimizeButtonClickedHandlerID = g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(_minimizeButton),
 			"clicked",
 			G_CALLBACK(minimize_button_clicked_handler),
@@ -187,7 +187,7 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 
         gtk_button_set_relief(GTK_BUTTON(_maximizeButton), GTK_RELIEF_NONE);
 
-		_maximizeButtonClickedHandlerID = g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(_maximizeButton),
 			"clicked",
 			G_CALLBACK(maximize_button_clicked_handler),
@@ -211,7 +211,7 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 
         gtk_button_set_relief(GTK_BUTTON(_menuButton), GTK_RELIEF_NONE);
 
-		_menuButtonClickedHandlerID = g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(_menuButton),
 			"clicked",
 			G_CALLBACK(menu_button_clicked_handler),

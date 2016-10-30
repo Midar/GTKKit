@@ -158,43 +158,43 @@ unmap_event_handler(GtkWidget *overlay,
 			"_GTKKIT_OWNING_VIEW_",
 		    (__bridge gpointer)(self));
 
-		_childPositionHandlerID = g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"get-child-position",
 			G_CALLBACK(get_child_position_handler),
 			(__bridge gpointer)(self));
 
-	    _drawHandlerID = g_signal_connect(
+	    g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "draw",
 			G_CALLBACK(draw_handler),
 	        (__bridge gpointer)(self));
 
-	    _widgetDestroyedHandlerID = g_signal_connect(
+	    g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 	        "destroy",
 			G_CALLBACK(overlay_widget_destroyed_handler),
 	        (__bridge gpointer)(self));
 
-		 g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"map",
 			G_CALLBACK(map_handler),
 			(__bridge gpointer)(self));
 
-		 g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"map-event",
 			G_CALLBACK(map_event_handler),
 			(__bridge gpointer)(self));
 
-		 g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"unmap",
 			G_CALLBACK(unmap_handler),
 			(__bridge gpointer)(self));
 
-		 g_signal_connect(
+		g_signal_connect(
 			G_OBJECT(self.overlayWidget),
 			"unmap-event",
 			G_CALLBACK(unmap_event_handler),
@@ -210,13 +210,13 @@ unmap_event_handler(GtkWidget *overlay,
         eventBoxMask = eventBoxMask | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK;
         gtk_widget_set_events(self.mainWidget, eventBoxMask);
 
-        _pressEventHandlerID = g_signal_connect(
+        g_signal_connect(
             G_OBJECT(self.mainWidget),
             "button-press-event",
             G_CALLBACK(press_event_handler),
             (__bridge gpointer)(self));
 
-        _releaseEventHandlerID = g_signal_connect(
+        g_signal_connect(
             G_OBJECT(self.mainWidget),
             "button-release-event",
             G_CALLBACK(release_event_handler),

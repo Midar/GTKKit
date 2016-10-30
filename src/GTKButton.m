@@ -59,7 +59,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         self.mainWidget = gtk_button_new();
         g_object_ref_sink(G_OBJECT(self.mainWidget));
 
-        _buttonClickedHandlerID = g_signal_connect(
+        g_signal_connect(
             G_OBJECT(self.mainWidget),
             "clicked",
             G_CALLBACK(clicked_event_handler),
@@ -105,7 +105,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
             break;
         case GTKSwitchButton:
             self.mainWidget = gtk_switch_new();
-            _buttonClickedHandlerID = g_signal_connect(
+            g_signal_connect(
                 G_OBJECT(self.mainWidget),
                 "state-set",
                 G_CALLBACK(switch_activated_handler),
@@ -117,7 +117,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
 
         if (_buttonType != GTKSwitchButton) {
-            _buttonClickedHandlerID = g_signal_connect(
+            g_signal_connect(
                 G_OBJECT(self.mainWidget),
                 "clicked",
                 G_CALLBACK(clicked_event_handler),

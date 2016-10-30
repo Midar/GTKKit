@@ -31,7 +31,6 @@
     __block GTKOrientation _orientation;
     __block double _min;
     __block double _max;
-    __block gulong _valueChangedHandlerID;
     __block bool _restrict;
     __block double _fillLevel;
     __block bool _showFillLevel;

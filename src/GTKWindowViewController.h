@@ -34,13 +34,9 @@
     __block GtkWidget *_headerBarRightSeparator;
     __block GtkWidget *_headerBarLeftSeparator;
     __block GtkWidget *_closeButton;
-    __block gulong     _closeButtonClickedHandlerID;
     __block GtkWidget *_minimizeButton;
-    __block gulong     _minimizeButtonClickedHandlerID;
     __block GtkWidget *_maximizeButton;
-    __block gulong     _maximizeButtonClickedHandlerID;
     __block GtkWidget *_menuButton;
-    __block gulong     _menuButtonClickedHandlerID;
     __block GTKView   *_titleView;
 }
 

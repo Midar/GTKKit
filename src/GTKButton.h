@@ -86,8 +86,6 @@ typedef enum GTKButtonType {
 @interface GTKButton: GTKControl
 {
     __block GTKButtonType _buttonType;
-    __block gulong _buttonClickedHandlerID;
-    __block gulong _buttonToggledHandlerID;
     __block GtkWidget *_hiddenRadioButton;
     __block GtkWidget *_imageWidget;
     __block GTKImage *_image;

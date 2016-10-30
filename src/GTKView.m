@@ -101,6 +101,42 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 
 }
 
+static void
+map_handler(GtkWidget *overlay,
+            GTKView   *view)
+{
+    [GTKApp.dispatch.main async: ^{
+        [view willBecomeMapped];
+    }];
+}
+
+static void
+map_event_handler(GtkWidget *overlay,
+                  GTKView   *view)
+{
+    [GTKApp.dispatch.main async: ^{
+        [view didBecomeMapped];
+    }];
+}
+
+static void
+unmap_handler(GtkWidget *overlay,
+              GTKView   *view)
+{
+    [GTKApp.dispatch.main async: ^{
+        [view willBecomeUnmapped];
+    }];
+}
+
+static void
+unmap_event_handler(GtkWidget *overlay,
+                    GTKView   *view)
+{
+    [GTKApp.dispatch.main async: ^{
+        [view didBecomeUnmapped];
+    }];
+}
+
 @interface GTKView ()
 - (void)createMainWidget;
 @end
@@ -139,6 +175,30 @@ overlay_widget_destroyed_handler(GtkWidget *overlay,
 	        "destroy",
 			G_CALLBACK(overlay_widget_destroyed_handler),
 	        (__bridge gpointer)(self));
+
+		 g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+			"map",
+			G_CALLBACK(map_handler),
+			(__bridge gpointer)(self));
+
+		 g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+			"map-event",
+			G_CALLBACK(map_event_handler),
+			(__bridge gpointer)(self));
+
+		 g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+			"unmap",
+			G_CALLBACK(unmap_handler),
+			(__bridge gpointer)(self));
+
+		 g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+			"unmap-event",
+			G_CALLBACK(unmap_event_handler),
+			(__bridge gpointer)(self));
 
 		[self createMainWidget];
         g_object_ref_sink(G_OBJECT(self.mainWidget));

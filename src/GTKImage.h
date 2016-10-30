@@ -103,7 +103,7 @@ typedef enum GTKIconSize {
  * @brief Create an image from a stock icon in the default theme, at the specified
  * pixel size.
  */
-+ imageWithStockIconName:(OFString *)name size:(int)size;
++ imageWithIconName:(OFString *)name size:(int)size;
 
 /*!
  * @brief Save the image represented by this GTKImage to a file with the

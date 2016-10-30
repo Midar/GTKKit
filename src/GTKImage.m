@@ -114,7 +114,7 @@
     if (result != 0) {
         return;
     }
-    
+
     const char* path = url.path.UTF8String;
     char *fileType;
     // The lengths of these arrays should be the maximum of the possible number
@@ -152,14 +152,14 @@
         NULL);
 }
 
-+ imageWithStockIconName:(OFString *)name size:(int)size
++ imageWithIconName:(OFString *)name size:(int)size
 {
     GtkIconTheme *theme = gtk_icon_theme_get_default();
     GdkPixbuf *pixbuf = gtk_icon_theme_load_icon (
         theme,
         name.UTF8String,
         size,
-        GTK_ICON_LOOKUP_FORCE_SYMBOLIC,
+        GTK_ICON_LOOKUP_FORCE_SYMBOLIC | GTK_ICON_LOOKUP_DIR_LTR,
         NULL);
     return [[self alloc] initWithPixbuf: pixbuf];
 }

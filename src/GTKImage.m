@@ -109,6 +109,12 @@
 
 - (void)writeImageToURL:(OFURL *)url format:(GTKImageFormat)format
 {
+
+    of_comparison_result_t result = [url.scheme caseInsensitiveCompare: @"file"];
+    if (result != 0) {
+        return;
+    }
+    
     const char* path = url.path.UTF8String;
     char *fileType;
     // The lengths of these arrays should be the maximum of the possible number

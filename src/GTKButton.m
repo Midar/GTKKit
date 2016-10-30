@@ -49,7 +49,6 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 {
     self = [super init];
     _buttonType = GTKPushButton;
-    self.iconSize = GTKIconSizeSmall;
     return self;
 }
 
@@ -270,32 +269,5 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 {
     _popOver = popOver;
     popOver.relativeView = self;
-}
-
-- (OFString *)iconName
-{
-    return _iconName;
-}
-
-- (void)setIconName:(OFString *)iconName
-{
-    if (_iconName == iconName) {
-        return;
-    }
-    _iconName = iconName;
-    [GTKApp.dispatch.gtk sync: ^{
-        if (NULL != _imageWidget) {
-            gtk_widget_destroy(_imageWidget);
-        }
-        if (_iconName == nil) {
-            gtk_widget_destroy(_imageWidget);
-            return;
-        }
-        _imageWidget = gtk_image_new_from_icon_name(
-            _iconName.UTF8String,
-            (GtkIconSize)(self.iconSize));
-        g_object_ref(G_OBJECT(_imageWidget));
-        gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);
-    }];
 }
 @end

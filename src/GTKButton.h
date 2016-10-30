@@ -24,32 +24,6 @@
 #import "GTKPopOverViewController.h"
 
 /*!
- * @brief An enumeration of the supported sizes for stock icons.
- */
-typedef enum GTKIconSize {
-
-    /*!
-     * @brief A small icon.
-     */
-    GTKIconSizeSmall = GTK_ICON_SIZE_SMALL_TOOLBAR,
-
-    /*!
-     * @brief A medium icon.
-     */
-    GTKIconSizeMedium = GTK_ICON_SIZE_LARGE_TOOLBAR,
-
-    /*!
-     * @brief A large icon.
-     */
-    GTKIconSizeLarge = GTK_ICON_SIZE_DND,
-
-    /*!
-     * @brief An extra-large icon.
-     */
-    GTKIconSizeXLarge = GTK_ICON_SIZE_DIALOG
-} GTKIconSize;
-
-/*!
  * @brief The types buttons can implement.
  */
 typedef enum GTKButtonType {
@@ -90,7 +64,6 @@ typedef enum GTKButtonType {
     __block GtkWidget *_imageWidget;
     __block GTKImage *_image;
     __block __weak GTKPopOverViewController *_popOver;
-    __block OFString *_iconName;
 }
 
 /*!
@@ -116,14 +89,4 @@ typedef enum GTKButtonType {
  * the target-action method and actionBlock might do.
  */
 @property (weak, nullable) GTKPopOverViewController *popOver;
-
-/*!
- * @brief The name of the stock icon used as the button's image.
- */
-@property (nullable) OFString *iconName;
-
-/*!
- * @brief The size of the stock icon used as the button's image.
- */
-@property GTKIconSize iconSize;
 @end

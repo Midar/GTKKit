@@ -150,41 +150,6 @@ button_press_event_handler(GtkWidget *widget,
         [OFNull null],
         nil
     ];
-    _iconNameForSegment = [OFMutableArray arrayWithObjects:
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        [OFNull null],
-        nil
-    ];
 
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
@@ -491,27 +456,6 @@ button_press_event_handler(GtkWidget *widget,
         self.momentary = true;
         self.selectAny = true;
         break;
-    }
-}
-
-- (void)setIconName:(OFString *)name forSegment:(int)segment
-{
-    if (segment >= 32) {
-        segment = 31;
-    }
-    if (nil == name) {
-        [_iconNameForSegment replaceObjectAtIndex: segment
-   		                           withObject: [OFNull null]];
-    } else {
-        [_iconNameForSegment replaceObjectAtIndex: segment
-       		                          withObject: name];
-
-        GtkWidget *img = gtk_image_new_from_icon_name(
-            name.UTF8String,
-            GTK_ICON_SIZE_SMALL_TOOLBAR);
-        gtk_button_set_image(
-            GTK_BUTTON(_buttons[segment]),
-            img);
     }
 }
 @end

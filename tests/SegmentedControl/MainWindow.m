@@ -31,22 +31,30 @@
     self.segment1 = [GTKSegmentedControl new];
     self.segment1.segments = 3;
     self.segment1.trackingMode = GTKSegmentSwitchTrackingMomentary;
-    [self.segment1 setIconName: @"document-new-symbolic" forSegment: 0];
-    [self.segment1 setIconName: @"document-open-symbolic" forSegment: 1];
-    [self.segment1 setIconName: @"document-save-symbolic" forSegment: 2];
+    [self.segment1 setImage: [GTKImage imageWithStockIconName: @"document-new" size: GTKIconSizeSmall]
+                 forSegment: 0];
+    [self.segment1 setImage: [GTKImage imageWithStockIconName: @"document-open" size: GTKIconSizeSmall]
+                 forSegment: 1];
+    [self.segment1 setImage: [GTKImage imageWithStockIconName: @"document-save" size: GTKIconSizeSmall]
+                 forSegment: 2];
 
     self.segment2 = [GTKSegmentedControl new];
     self.segment2.segments = 2;
     self.segment2.trackingMode = GTKSegmentSwitchTrackingSelectAny;
-    [self.segment2 setIconName: @"format-text-bold-symbolic" forSegment: 0];
-    [self.segment2 setIconName: @"format-text-italic-symbolic" forSegment: 1];
+    [self.segment2 setImage: [GTKImage imageWithStockIconName: @"format-text-bold" size: GTKIconSizeSmall]
+                 forSegment: 0];
+    [self.segment2 setImage: [GTKImage imageWithStockIconName: @"format-text-italic" size: GTKIconSizeSmall]
+                 forSegment: 1];
 
     self.segment3 = [GTKSegmentedControl new];
     self.segment3.segments = 3;
     self.segment3.trackingMode = GTKSegmentSwitchTrackingSelectOne;
-    [self.segment3 setIconName: @"zoom-in-symbolic" forSegment: 0];
-    [self.segment3 setIconName: @"zoom-original-symbolic" forSegment: 1];
-    [self.segment3 setIconName: @"zoom-out-symbolic" forSegment: 2];
+    [self.segment3 setImage: [GTKImage imageWithStockIconName: @"zoom-in" size: GTKIconSizeSmall]
+                 forSegment: 0];
+    [self.segment3 setImage: [GTKImage imageWithStockIconName: @"zoom-original" size: GTKIconSizeSmall]
+                 forSegment: 1];
+    [self.segment3 setImage: [GTKImage imageWithStockIconName: @"zoom-out" size: GTKIconSizeSmall]
+                 forSegment: 2];
 
     [self addViewToHeaderBarStart: self.segment1];
     [self addViewToHeaderBarStart: self.segment2];

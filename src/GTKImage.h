@@ -18,6 +18,63 @@
 #import <gtk/gtk.h>
 
 /*!
+ * @brief An enumeration of the image file formats supported by GTKImage
+ */
+typedef enum GTKImageFormat {
+
+    /*!
+     * @brief JPEG format.
+     */
+    GTKImageFormatJPEG,
+
+    /*!
+     * @brief PNG format.
+     */
+    GTKImageFormatPNG,
+
+    /*!
+     * @brief TIFF format.
+     */
+    GTKImageFormatTIFF,
+
+    /*!
+     * @brief ICO format.
+     */
+    GTKImageFormatICO,
+
+    /*!
+     * @brief BMP format.
+     */
+    GTKImageFormatBMP
+} GTKImageFormat;
+
+/*!
+ * @brief An enumeration of the supported sizes for stock icons.
+ */
+typedef enum GTKIconSize {
+
+    /*!
+     * @brief A small icon.
+     */
+    GTKIconSizeSmall = 16,
+
+    /*!
+     * @brief A medium icon.
+     */
+    GTKIconSizeMedium = 24,
+
+    /*!
+     * @brief A large icon.
+     */
+    GTKIconSizeLarge = 36,
+
+    /*!
+     * @brief An extra-large icon.
+     */
+    GTKIconSizeXLarge = 48
+} GTKIconSize;
+
+/*!
  * @brief A model class which represents image data.
  */
 @interface GTKImage: OFObject
@@ -41,6 +98,20 @@
  * @brief Create an image from a local (file://) URL.
  */
 + imageWithURL:(OFURL *)url;
+
+/*!
+ * @brief Create an image from a stock icon in the default theme, at the specified
+ * pixel size.
+ */
++ imageWithStockIconName:(OFString *)name size:(int)size;
+
+/*!
+ * @brief Save the image represented by this GTKImage to a file with the
+ * specified format.
+ */
+- (void)writeImageToURL:(OFURL *)url format:(GTKImageFormat)format;
+
+// Private methods.
 - (GdkPixbuf *)pixbuf;
 - (GdkPixbuf *)pixbufScaledToWidth:(int)width
                             height:(int)height

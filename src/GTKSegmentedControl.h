@@ -58,7 +58,6 @@ typedef enum GTKSegmentSwitchTracking {
     OFMutableArray *_labelForSegment;
     OFMutableArray *_imageForSegment;
     OFMutableArray *_popOverForSegment;
-    OFMutableArray *_iconNameForSegment;
     bool _momentary;
     GTKSegmentSwitchTracking _trackingMode;
 }
@@ -150,12 +149,4 @@ typedef enum GTKSegmentSwitchTracking {
  * @param segment The segment to which the state should be applied.
  */
 - (void)setState:(bool)state forSegment:(int)segment;
-
-/*!
- * @brief Sets the specified icon name as the icon for the specified segment.
- *
- * @param name The GTKPopOverViewController to attach to the segment.
- * @param segment The segment to which the pop-over should be attached.
- */
-- (void)setIconName:(OFString *)name forSegment:(int)segment;
 @end

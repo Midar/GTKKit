@@ -106,4 +106,55 @@
 
     return newPixbuf;
 }
+
+- (void)writeImageToURL:(OFURL *)url format:(GTKImageFormat)format
+{
+    const char* path = url.path.UTF8String;
+    char *fileType;
+    // The lengths of these arrays should be the maximum of the possible number
+    // of values as used in the switch below, plus a NULL at the end to terminate.
+    // All spaces should be initialized with NULL.
+    char *optionKeys[1] = {
+        NULL
+    };
+    char *optionValues[1] = {
+        NULL
+    };
+    switch (format) {
+    case GTKImageFormatJPEG:
+        fileType = "jpeg";
+        break;
+    case GTKImageFormatPNG:
+        fileType = "png";
+        break;
+    case GTKImageFormatTIFF:
+        fileType = "tiff";
+        break;
+    case GTKImageFormatICO:
+        fileType = "ico";
+        break;
+    case GTKImageFormatBMP:
+        fileType = "bmp";
+        break;
+    }
+    gdk_pixbuf_savev(
+        _pixbuf,
+        path,
+        fileType,
+        optionKeys,
+        optionValues,
+        NULL);
+}
+
++ imageWithStockIconName:(OFString *)name size:(int)size
+{
+    GtkIconTheme *theme = gtk_icon_theme_get_default();
+    GdkPixbuf *pixbuf = gtk_icon_theme_load_icon (
+        theme,
+        name.UTF8String,
+        size,
+        GTK_ICON_LOOKUP_FORCE_SYMBOLIC,
+        NULL);
+    return [[self alloc] initWithPixbuf: pixbuf];
+}
 @end

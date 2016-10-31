@@ -30,7 +30,6 @@
 {
     GtkWidget *_scrollWindow;
     OFMutableArray *_views;
-    OFMutableArray *_headers;
 }
 @property (nullable, weak) id<GTKListViewDelegate> delegate;
 @property (nullable, weak) id<GTKListViewDataSource> dataSource;

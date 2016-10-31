@@ -40,6 +40,8 @@
         gtk_container_add(
             GTK_CONTAINER(self.contentView.overlayWidget),
             _scrollWindow);
+
+        _views = [OFMutableArray arrayWithCapacity: self.dataSource.numberOfRows];
     }];
     return self;
 }
@@ -54,16 +56,17 @@
                 GTK_CONTAINER(self.contentView.mainWidget),
                 GTK_WIDGET(iter->data));
         }
+        g_list_free(children);
+
+        for (GTKView *view in _views) {
+            [_views removeObject: view];
+        }
+        
         if (self.delegate == nil || self.dataSource == nil) {
             return;
         }
-        g_list_free(children);
-        int i = 0;
 
-        _views = [OFMutableArray arrayWithCapacity: self.dataSource.numberOfRows];
-        _headers = [OFMutableArray arrayWithCapacity: self.dataSource.numberOfRows];
-
-        while (i < self.dataSource.numberOfRows) {
+        for (int i = 0; i < self.dataSource.numberOfRows; i++) {
             GTKView *view = [self.dataSource viewForRow: i];
             [_views addObject: view];
             gtk_list_box_insert (
@@ -79,7 +82,6 @@
                     -1,
                     [self.delegate heightForRow: i]);
             }
-            i++;
         }
     }];
 }

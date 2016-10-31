@@ -146,25 +146,27 @@ gesture_drag_begin_handler(GtkGestureDrag *gesture, gdouble start_x, gdouble sta
 static void
 gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
 {
-    GTKEvent *event = [GTKEvent new];
+    [GTKApp.dispatch.main async: ^{
+        GTKEvent *event = [GTKEvent new];
 
-    event.type = GTKEventTypeMouseDragged;
-    event.mouseButton = 1;
+        event.type = GTKEventTypeMouseDragged;
+        event.mouseButton = 1;
 
-    double x, y;
+        double x, y;
 
-    gtk_gesture_drag_get_start_point(gesture, &x, &y);
-    event.originX = x;
-    event.originY = y;
+        gtk_gesture_drag_get_start_point(gesture, &x, &y);
+        event.originX = x;
+        event.originY = y;
 
-    gtk_gesture_drag_get_offset(gesture, &x, &y);
-    event.deltaX = x;
-    event.deltaY = y;
+        gtk_gesture_drag_get_offset(gesture, &x, &y);
+        event.deltaX = x;
+        event.deltaY = y;
 
-    event.mouseX = event.originX + event.deltaX;
-    event.mouseY = event.originY + event.deltaY;
+        event.mouseX = event.originX + event.deltaX;
+        event.mouseY = event.originY + event.deltaY;
 
-    [view mouseDragged: event];
+        [view mouseDragged: event];
+    }];
 }
 
 static void

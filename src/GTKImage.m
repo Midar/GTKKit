@@ -152,6 +152,12 @@
         NULL);
 }
 
+- (void)writeImageToFile:(OFString *)path format:(GTKImageFormat)format
+{
+    OFURL *url = [OFURL fileURLWithPath: path];
+    [self writeImageToURL: url format: format];
+}
+
 + imageWithIconName:(OFString *)name size:(int)size
 {
     GtkIconTheme *theme = gtk_icon_theme_get_default();

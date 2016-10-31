@@ -111,6 +111,12 @@ typedef enum GTKIconSize {
  */
 - (void)writeImageToURL:(OFURL *)url format:(GTKImageFormat)format;
 
+/*!
+ * @brief Save the image represented by this GTKImage to a file with the
+ * specified format.
+ */
+- (void)writeImageToFile:(OFString *)url format:(GTKImageFormat)format;
+
 // Private methods.
 - (GdkPixbuf *)pixbuf;
 - (GdkPixbuf *)pixbufScaledToWidth:(int)width

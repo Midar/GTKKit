@@ -93,20 +93,38 @@ typedef struct GTKEventKeyboardModifiers {
 @property unsigned int mouseButton;
 
 /*!
- * @brief For a mouse event, the X coordinate of the pointer in the window's coordinate space.
+ * @brief For a mouse event, the X coordinate of the pointer in the view's coordinate space.
  */
 @property unsigned int mouseX;
 
 /*!
- * @brief For a mouse event, the Y coordinate of the pointer in the window's coordinate space.
+ * @brief For a mouse event, the Y coordinate of the pointer in the view's coordinate space.
  */
 @property unsigned int mouseY;
 
+/*!
+ * @brief For a mouse drag event, X coordinate of the origin of the movement in the view's coordinate space.
+ */
 @property int originX;
+
+/*!
+ * @brief For a mouse drag event, Y coordinate of the origin of the movement in the view's coordinate space.
+ */
 @property int originY;
 
+/*!
+ * @brief For a movement event, the change in position on the X axis.
+ */
 @property double deltaX;
+
+/*!
+ * @brief For a movement event, the change in position on the Y axis.
+ */
 @property double deltaY;
+
+/*!
+ * @brief For a movement event, the change in position on the Z axis.
+ */
 @property double deltaZ;
 
 /*!

@@ -194,6 +194,15 @@ button_press_event_handler(GtkWidget *widget,
     return self;
 }
 
+- (void)dealloc
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        for (int i = 0; i < 32; i++) {
+            g_object_unref(G_OBJECT(_buttons[i]));
+        }
+    }];
+}
+
 - (void)update
 {
     [GTKApp.dispatch.gtk sync: ^{

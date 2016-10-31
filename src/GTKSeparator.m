@@ -22,15 +22,14 @@
 {
     self = [super init];
     _orientation = GTKOrientationHorizontal;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.mainWidget);
-        self.mainWidget = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-        gtk_container_add(
-            GTK_CONTAINER(self.overlayWidget),
-            self.mainWidget);
-        gtk_widget_show(self.mainWidget);
-    }];
     return self;
+}
+
+- (void)createMainWidget
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        self.mainWidget = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+    }];
 }
 
 - (GTKOrientation)orientation

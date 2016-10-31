@@ -25,8 +25,10 @@
 
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.contentView.mainWidget);
+        g_object_unref(G_OBJECT(self.contentView.mainWidget));
 
         self.contentView.mainWidget = gtk_frame_new(NULL);
+        g_object_ref_sink(G_OBJECT(self.contentView.mainWidget));
         gtk_container_add(
             GTK_CONTAINER(self.contentView.overlayWidget),
             self.contentView.mainWidget);

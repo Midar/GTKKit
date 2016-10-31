@@ -110,7 +110,7 @@
 
 - (void)mouseDragged:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(mouseClicked:)
+    [self.nextResponder tryToPerform: @selector(dragged:)
                                 with: event];
 }
 

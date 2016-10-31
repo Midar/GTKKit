@@ -52,11 +52,17 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     return self;
 }
 
+- (void)dealloc
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        g_object_unref(G_OBJECT(_hiddenRadioButton));
+    }];
+}
+
 - (void)createMainWidget
 {
     [GTKApp.dispatch.gtk sync: ^{
         self.mainWidget = gtk_button_new();
-        g_object_ref_sink(G_OBJECT(self.mainWidget));
 
         g_signal_connect(
             G_OBJECT(self.mainWidget),
@@ -85,7 +91,9 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
+        g_object_unref(G_OBJECT(self.mainWidget));
         gtk_widget_destroy(_hiddenRadioButton);
+        g_object_unref(G_OBJECT(_hiddenRadioButton));
 
         switch (_buttonType) {
         case GTKPushButton:
@@ -100,6 +108,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         case GTKRadioButton:
             _hiddenRadioButton = gtk_radio_button_new(NULL);
             self.mainWidget = gtk_radio_button_new_from_widget(GTK_RADIO_BUTTON(_hiddenRadioButton));
+            g_object_ref_sink(G_OBJECT(_hiddenRadioButton));
             gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.mainWidget), GTKOffState);
             break;
         case GTKSwitchButton:

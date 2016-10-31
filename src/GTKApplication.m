@@ -210,6 +210,11 @@ gtkkit_application_main(GTKApplication *app)
     // Do nothing.
 }
 
+- (void)mouseDragged:(nonnull GTKEvent*)event
+{
+    // Do nothing.
+}
+
 - (void)keyDown:(nonnull GTKEvent*)event
 {
     // Do nothing.

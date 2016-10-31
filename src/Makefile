@@ -29,12 +29,15 @@ SRCS =	GTKResponder.m                              \
 				GTKBox.m                                    \
 				GTKSegmentedControl.m                       \
 				GTKLinearViewController.m                   \
-				GTKSeparator.m
+				GTKSeparator.m                              \
+				GTKListViewController.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \
 				GTKApplicationDelegate.h                    \
 				GTKWindowViewControllerDelegate.h           \
+				GTKListViewDataSource.h                     \
+				GTKListViewDelegate.h                       \
 				GTKKit.h
 
 include ../buildsys.mk

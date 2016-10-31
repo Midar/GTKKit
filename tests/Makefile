@@ -3,6 +3,7 @@ SUBDIRS = Window \
 					Tabbed \
 					TabbedWindow \
 					SegmentedControl \
-					ProgressIndicator
+					ProgressIndicator \
+					ListViewController
 
 include ../buildsys.mk

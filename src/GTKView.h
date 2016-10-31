@@ -148,4 +148,6 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  * @brief Removes this view from its superview.
  */
 - (void)removeFromSuperview;
+
+- (void)reconnectSignals;
 @end

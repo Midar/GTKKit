@@ -83,6 +83,13 @@
 - (void)mouseClicked:(nonnull GTKEvent*)event;
 
 /*!
+ * @brief Respond to a mouse drag event.
+ *
+ * @param event A GTKEvent instance containing information about the event.
+ */
+- (void)mouseDragged:(nonnull GTKEvent*)event;
+
+/*!
  * @brief Respond to the scroll wheel being moved.
  *
  * @param event A GTKEvent instance containing information about the event.

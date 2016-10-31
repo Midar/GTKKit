@@ -95,6 +95,42 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
     window.menuButtonPopOver.hidden = false;
 }
 
+static void
+gesture_drag_begin_handler(GtkGestureDrag *gesture, gdouble start_x, gdouble start_y, GTKView *view)
+{
+
+}
+
+static void
+gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+{
+    GTKEvent *event = [GTKEvent new];
+
+    event.type = GTKEventTypeMouseDragged;
+    event.mouseButton = 1;
+
+    double x, y;
+
+    gtk_gesture_drag_get_start_point(gesture, &x, &y);
+    event.originX = x;
+    event.originY = y;
+
+    gtk_gesture_drag_get_offset(gesture, &x, &y);
+    event.deltaX = x;
+    event.deltaY = y;
+
+    event.mouseX = event.originX + event.deltaX;
+    event.mouseY = event.originY + event.deltaY;
+
+    [view mouseDragged: event];
+}
+
+static void
+gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+{
+
+}
+
 @interface GTKWindowViewController ()
 - (void)updateHeaderbarSeparatorVisibility;
 @end
@@ -222,6 +258,26 @@ menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
         gtk_header_bar_pack_start(
             GTK_HEADER_BAR(_headerBar),
             _headerBarLeftSeparator);
+
+        GtkGesture *gesture = gtk_gesture_drag_new(_window);
+
+        g_signal_connect(
+            gesture,
+            "drag-begin",
+            G_CALLBACK(gesture_drag_begin_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-update",
+            G_CALLBACK(gesture_drag_update_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-end",
+            G_CALLBACK(gesture_drag_end_handler),
+            (__bridge gpointer)(self));
     }];
 
     self.closeButtonHidden = false;

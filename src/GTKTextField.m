@@ -158,6 +158,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     self.justify = justify;
     self.stringValue = stringValue;
     self.alpha = alpha;
+    [self reconnectSignals];
 }
 
 - (OFString *)stringValue
@@ -329,5 +330,6 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     self.justify = justify;
     self.stringValue = stringValue;
     self.alpha = alpha;
+    [self reconnectSignals];
 }
 @end

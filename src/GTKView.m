@@ -137,6 +137,42 @@ unmap_event_handler(GtkWidget *overlay,
     }];
 }
 
+static void
+gesture_drag_begin_handler(GtkGestureDrag *gesture, gdouble start_x, gdouble start_y, GTKView *view)
+{
+
+}
+
+static void
+gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+{
+    GTKEvent *event = [GTKEvent new];
+
+    event.type = GTKEventTypeMouseDragged;
+    event.mouseButton = 1;
+
+    double x, y;
+
+    gtk_gesture_drag_get_start_point(gesture, &x, &y);
+    event.originX = x;
+    event.originY = y;
+
+    gtk_gesture_drag_get_offset(gesture, &x, &y);
+    event.deltaX = x;
+    event.deltaY = y;
+
+    event.mouseX = event.originX + event.deltaX;
+    event.mouseY = event.originY + event.deltaY;
+
+    [view mouseDragged: event];
+}
+
+static void
+gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+{
+
+}
+
 @interface GTKView ()
 - (void)createMainWidget;
 @end
@@ -221,6 +257,47 @@ unmap_event_handler(GtkWidget *overlay,
             "button-release-event",
             G_CALLBACK(release_event_handler),
             (__bridge gpointer)(self));
+
+        GtkGesture *gesture = gtk_gesture_drag_new(self.overlayWidget);
+
+        g_signal_connect(
+            gesture,
+            "drag-begin",
+            G_CALLBACK(gesture_drag_begin_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-update",
+            G_CALLBACK(gesture_drag_update_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-end",
+            G_CALLBACK(gesture_drag_end_handler),
+            (__bridge gpointer)(self));
+
+        gesture = gtk_gesture_drag_new(self.mainWidget);
+
+        g_signal_connect(
+            gesture,
+            "drag-begin",
+            G_CALLBACK(gesture_drag_begin_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-update",
+            G_CALLBACK(gesture_drag_update_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-end",
+            G_CALLBACK(gesture_drag_end_handler),
+            (__bridge gpointer)(self));
+
 	}];
 
 	self.hidden = false;
@@ -228,6 +305,31 @@ unmap_event_handler(GtkWidget *overlay,
 	self.alpha = 1.0;
 
 	return self;
+}
+
+- (void)reconnectSignals
+{
+    GtkGesture *gesture = gtk_gesture_drag_new(self.mainWidget);
+
+    [GTKApp.dispatch.gtk sync: ^{
+        g_signal_connect(
+            gesture,
+            "drag-begin",
+            G_CALLBACK(gesture_drag_begin_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-update",
+            G_CALLBACK(gesture_drag_update_handler),
+            (__bridge gpointer)(self));
+
+        g_signal_connect(
+            gesture,
+            "drag-end",
+            G_CALLBACK(gesture_drag_end_handler),
+            (__bridge gpointer)(self));
+    }];
 }
 
 - (void)createMainWidget
@@ -468,4 +570,13 @@ unmap_event_handler(GtkWidget *overlay,
         [self didBecomeFirstResponder];
     }
 }
+
+/*
+- (void)mouseDragged:(nonnull GTKEvent*)event
+{
+    printf("Origin: %d,%d\n", event.originX, event.originY);
+    printf("Delta: %f,%f\n", event.deltaX, event.deltaY);
+    printf("Result: %d,%d\n", event.mouseX, event.mouseY);
+}
+*/
 @end

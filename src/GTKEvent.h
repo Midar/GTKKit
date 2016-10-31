@@ -20,26 +20,36 @@
  * @brief The types of event a GTKEvent can represent.
  */
 typedef enum GTKEventType {
+
     /*!
      * @brief A key down event.
      */
     GTKEventTypeKeyDown,
+
     /*!
      * @brief A key up event.
      */
     GTKEventTypeKeyUp,
+
     /*!
      * @brief A mouse down event.
      */
     GTKEventTypeMouseDown,
+
     /*!
      * @brief A mouse up event.
      */
     GTKEventTypeMouseUp,
+
     /*!
      * @brief A mouse clicked event.
      */
-    GTKEventTypeMouseClicked
+
+    GTKEventTypeMouseClicked,
+    /*!
+     * @brief A mouse drag event.
+     */
+    GTKEventTypeMouseDragged
 } GTKEventType;
 
 
@@ -91,6 +101,9 @@ typedef struct GTKEventKeyboardModifiers {
  * @brief For a mouse event, the Y coordinate of the pointer in the window's coordinate space.
  */
 @property unsigned int mouseY;
+
+@property int originX;
+@property int originY;
 
 @property double deltaX;
 @property double deltaY;

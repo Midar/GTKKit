@@ -108,6 +108,12 @@
                                 with: event];
 }
 
+- (void)mouseDragged:(nonnull GTKEvent*)event
+{
+    [self.nextResponder tryToPerform: @selector(mouseClicked:)
+                                with: event];
+}
+
 - (void)scrollWheel:(nonnull GTKEvent*)event
 {
     [self.nextResponder tryToPerform: @selector(scrollWheel:)

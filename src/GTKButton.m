@@ -138,6 +138,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     } else {
         gtk_image_clear(GTK_IMAGE(_imageWidget));
     }
+    [self reconnectSignals];
 }
 
 - (OFString *)stringValue

@@ -32,7 +32,9 @@ SRCS =	GTKResponder.m                              \
 				GTKSeparator.m                              \
 				GTKListViewController.m                     \
 				GTKOffscreenRenderingViewController.m       \
-				GTKInfoBar.m
+				GTKInfoBar.m                                \
+				GTKStatusbar.m                              \
+				GTKActionBar.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \

@@ -47,3 +47,5 @@
 #import "GTKListViewDelegate.h"
 #import "GTKOffscreenRenderingViewController.h"
 #import "GTKInfoBar.h"
+#import "GTKStatusbar.h"
+#import "GTKActionBar.h"

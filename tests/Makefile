@@ -5,6 +5,7 @@ SUBDIRS = Window \
 					SegmentedControl \
 					ProgressIndicator \
 					ListViewController \
-					InfoBar
+					InfoBar \
+					ActionBar
 
 include ../buildsys.mk

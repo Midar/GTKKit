@@ -19,6 +19,7 @@ Currently, GTKKit implements the following class hierarchy:
 GTKResponder
   GTKApplication
   GTKView
+    GTKActionBar
     GTKBox
     GTKControl
       GTKButton
@@ -31,6 +32,7 @@ GTKResponder
     GTKLevelIndicator
     GTKProgressIndicator
     GTKSeparator
+    GTKStatusbar
   GTKViewController
     GTKLinearViewController
     GTKListViewController

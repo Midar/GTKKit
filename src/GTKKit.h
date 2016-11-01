@@ -46,3 +46,4 @@
 #import "GTKListViewDataSource.h"
 #import "GTKListViewDelegate.h"
 #import "GTKOffscreenRenderingViewController.h"
+#import "GTKInfoBar.h"

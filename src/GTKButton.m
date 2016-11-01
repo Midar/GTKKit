@@ -27,6 +27,7 @@ clicked_event_handler(GtkWidget *widget, GTKButton *button)
         GTKEvent *evt = [GTKEvent new];
         evt.type = GTKEventTypeMouseClicked;
         evt.mouseButton = 1;
+        evt.clicks = 1;
         [button mouseClicked: evt];
     }];
 }
@@ -38,6 +39,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         GTKEvent *evt = [GTKEvent new];
         evt.type = GTKEventTypeMouseClicked;
         evt.mouseButton = 1;
+        evt.clicks = 1;
         [button mouseClicked: evt];
         gtk_switch_set_state(widget, state);
     }];

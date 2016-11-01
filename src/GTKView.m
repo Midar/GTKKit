@@ -43,7 +43,16 @@ press_event_handler(GtkWidget *widget,
         evt.mouseX = event->button.x;
         evt.mouseY = event->button.y;
 
+        if (event->type == GDK_BUTTON_PRESS) {
+            evt.clicks = 1;
+        } else if (event->type == GDK_2BUTTON_PRESS) {
+            evt.clicks = 2;
+        } else if (event->type == GDK_3BUTTON_PRESS) {
+            evt.clicks = 3;
+        }
+
         [view mouseDown: evt];
+
     }];
     return false;
 }
@@ -150,7 +159,6 @@ gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble o
         GTKEvent *event = [GTKEvent new];
 
         event.type = GTKEventTypeMouseDragged;
-        event.mouseButton = 1;
 
         double x, y;
 

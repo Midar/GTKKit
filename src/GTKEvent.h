@@ -93,6 +93,11 @@ typedef struct GTKEventKeyboardModifiers {
 @property unsigned int mouseButton;
 
 /*!
+ * @brief For a mouse event, the number of clicks this event represents; 1, 2, or 3.
+ */
+@property unsigned int clicks;
+
+/*!
  * @brief For a mouse event, the X coordinate of the pointer in the view's coordinate space.
  */
 @property unsigned int mouseX;

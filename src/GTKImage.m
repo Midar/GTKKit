@@ -160,7 +160,8 @@
 
 + imageWithIconName:(OFString *)name size:(int)size
 {
-    GtkIconTheme *theme = gtk_icon_theme_get_default();
+    GdkScreen *screen = gdk_screen_get_default();
+    GtkIconTheme *theme = gtk_icon_theme_get_for_screen(screen);
     GdkPixbuf *pixbuf = gtk_icon_theme_load_icon (
         theme,
         name.UTF8String,

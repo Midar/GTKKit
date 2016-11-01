@@ -45,3 +45,4 @@
 #import "GTKListViewController.h"
 #import "GTKListViewDataSource.h"
 #import "GTKListViewDelegate.h"
+#import "GTKOffscreenRenderingViewController.h"

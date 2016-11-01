@@ -105,6 +105,8 @@ typedef enum GTKIconSize {
  */
 + imageWithIconName:(OFString *)name size:(int)size;
 
++ imageWithPixbuf:(GdkPixbuf *)pixbuf;
+
 /*!
  * @brief Save the image represented by this GTKImage to a file with the
  * specified format.

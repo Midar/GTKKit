@@ -34,7 +34,7 @@
     self.popup.constraints.centerVertical = true;
     [self.popup.constraints fixedToRight: 10];
     [self.popup.constraints fixedWidth: 200];
-    [self.popup.constraints fixedHeight: 40];
+    [self.popup.constraints fixedHeight: 30];
     [self.popup insertItemWithTitle: @"Item One" at: 0];
     [self.popup insertItemWithTitle: @"Item Two" at: 1];
     [self.popup insertItemWithTitle: @"Item Three" at: 2];
@@ -46,7 +46,7 @@
     self.combo.constraints.centerVertical = true;
     [self.combo.constraints fixedToLeft: 10];
     [self.combo.constraints fixedWidth: 200];
-    [self.combo.constraints fixedHeight: 40];
+    [self.combo.constraints fixedHeight: 30];
     [self.combo insertItemWithTitle: @"Item One" at: 0];
     [self.combo insertItemWithTitle: @"Item Two" at: 1];
     [self.combo insertItemWithTitle: @"Item Three" at: 2];

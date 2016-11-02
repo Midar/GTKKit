@@ -56,11 +56,11 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)popupClicked:(GTKPopUpButton *)sender
 {
-    printf("BING\n");
+    printf("Pop-up button activated!\n");
 }
 
 - (void)comboClicked:(GTKPopUpButton *)sender
 {
-    printf("BING\n");
+    printf("Combo box activated!\n");
 }
 @end

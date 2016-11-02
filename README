@@ -25,6 +25,7 @@ GTKResponder
       GTKButton
       GTKInfoBar
       GTKPopUpButton
+        GTKComboBox
       GTKSegmentedControl
       GTKSlider
       GTKTextField

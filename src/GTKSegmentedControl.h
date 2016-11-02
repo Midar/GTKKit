@@ -22,8 +22,6 @@
 #import "GTKImage.h"
 #import "GTKPopOverViewController.h"
 
-#define GTK_SEGMENTED_CONTROL_MAX_SEGMENTS 32SegmentedControlMode;
-
 /*!
  * @brief The tracking modes available to segmented controls.
  */

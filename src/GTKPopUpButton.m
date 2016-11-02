@@ -34,15 +34,22 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 }
 
 @implementation GTKPopUpButton
-- (void)createMainWidget
+- init
 {
-    [GTKApp.dispatch.gtk sync: ^ {
-        self.mainWidget = gtk_combo_box_text_new();
+    self = [super init];
+    [GTKApp.dispatch.gtk sync: ^{
         g_signal_connect(
             G_OBJECT(self.mainWidget),
             "changed",
             G_CALLBACK(changed_handler),
             (__bridge gpointer)(self));
+    }];
+    return self;
+}
+- (void)createMainWidget
+{
+    [GTKApp.dispatch.gtk sync: ^ {
+        self.mainWidget = gtk_combo_box_text_new();
     }];
 }
 

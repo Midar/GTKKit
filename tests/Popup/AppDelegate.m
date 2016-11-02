@@ -27,6 +27,12 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     self.window = [MainWindow new];
     self.window.delegate = self;
 
+    self.window.popup.target = self;
+    self.window.popup.action = @selector(popupClicked:);
+
+    self.window.combo.target = self;
+    self.window.combo.action = @selector(comboClicked:);
+
     // It would be dangerous to modify anything below this line.
 
     return self;
@@ -46,5 +52,15 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 - (void)windowDidClose
 {
     [GTKApp terminate];
+}
+
+- (void)popupClicked:(GTKPopUpButton *)sender
+{
+    printf("BING\n");
+}
+
+- (void)comboClicked:(GTKPopUpButton *)sender
+{
+    printf("BING\n");
 }
 @end

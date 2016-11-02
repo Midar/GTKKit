@@ -49,3 +49,4 @@
 #import "GTKInfoBar.h"
 #import "GTKStatusbar.h"
 #import "GTKActionBar.h"
+#import "GTKComboBox.h"

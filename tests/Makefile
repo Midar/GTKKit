@@ -6,6 +6,7 @@ SUBDIRS = Window \
 					ProgressIndicator \
 					ListViewController \
 					InfoBar \
-					ActionBar
+					ActionBar \
+					Popup
 
 include ../buildsys.mk

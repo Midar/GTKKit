@@ -45,8 +45,10 @@
 - init
 {
 	self = [super init];
-  	self.width = [GTKLayoutConstraint new];
-  	self.height = [GTKLayoutConstraint new];
+  	self.width = [GTKLayoutConstraint layoutConstraintWithType: GTKLayoutConstraintTypeFlexible
+														 value: 0];
+  	self.height = [GTKLayoutConstraint layoutConstraintWithType: GTKLayoutConstraintTypeFlexible
+														 value: 0];
   	self.top = [GTKLayoutConstraint new];
   	self.bottom = [GTKLayoutConstraint new];
   	self.left = [GTKLayoutConstraint new];

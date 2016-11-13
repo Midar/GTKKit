@@ -18,6 +18,8 @@
 #import "GTKApplication.h"
 #import "GTKLayoutConstraints.h"
 
+static bool drawingLayerID = true;
+
 static gboolean
 draw_handler(GtkWidget *widget,
       		 cairo_t   *cr,
@@ -95,15 +97,15 @@ get_child_position_handler(GtkOverlay   *overlay,
 
 	GTKRect frame = [view layoutSubview: subview];
 
-    GTKView *layer = (__bridge GTKView*)(g_object_get_data(
+    bool *layerid = (bool*)(g_object_get_data(
         G_OBJECT(widget),
-        "_GTKKIT_LAYER_ID_"));
+        "_GTKKIT_DRAWING_LAYER_ID_"));
 
-    if (layer != NULL) {
-    	allocation->x = view.frame.x;
-    	allocation->y = view.frame.y;
-    	allocation->width = view.frame.width;
-    	allocation->height = view.frame.height;
+    if (layerid != NULL) {
+    	allocation->x = 0;
+    	allocation->y = 0;
+    	allocation->width = 100;
+    	allocation->height = 100;
     } else {
     	allocation->x = frame.x;
     	allocation->y = frame.y;
@@ -321,10 +323,10 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
             (__bridge gpointer)(self));
 
         self.drawingArea = gtk_drawing_area_new();
-        gtk_widget_show(self.drawingArea);
 		gtk_overlay_add_overlay(
 			GTK_OVERLAY(self.overlayWidget),
 			self.drawingArea);
+        gtk_widget_show(self.drawingArea);
 
 	    g_signal_connect(
 			G_OBJECT(self.drawingArea),
@@ -334,8 +336,8 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
 		g_object_set_data(
 			G_OBJECT(self.drawingArea),
-			"_GTKKIT_DRAWING_LAYER_",
-		    (__bridge gpointer)(self));
+			"_GTKKIT_DRAWING_LAYER_ID_",
+		    (gpointer)(drawingLayerID));
 
 	}];
 

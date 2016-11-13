@@ -95,10 +95,21 @@ get_child_position_handler(GtkOverlay   *overlay,
 
 	GTKRect frame = [view layoutSubview: subview];
 
-	allocation->x = frame.x;
-	allocation->y = frame.y;
-	allocation->width = MAX(frame.width, min.width);
-	allocation->height = MAX(frame.height, min.height);
+    GTKView *layer = (__bridge GTKView*)(g_object_get_data(
+        G_OBJECT(widget),
+        "_GTKKIT_LAYER_ID_"));
+
+    if (layer != NULL) {
+    	allocation->x = view.frame.x;
+    	allocation->y = view.frame.y;
+    	allocation->width = view.frame.width;
+    	allocation->height = view.frame.height;
+    } else {
+    	allocation->x = frame.x;
+    	allocation->y = frame.y;
+    	allocation->width = MAX(frame.width, min.width);
+    	allocation->height = MAX(frame.height, min.height);
+    }
 
 	return true;
 }
@@ -191,7 +202,14 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 - init
 {
 	self = [super init];
-	self.subviews = [OFMutableArray new];
+
+	self.backgroundLayerSubviews = [OFMutableArray new];
+	self.defaultLayerSubviews = [OFMutableArray new];
+	self.foregroundLayerSubviews = [OFMutableArray new];
+	self.notificationLayerSubviews = [OFMutableArray new];
+
+    self.layer = GTKViewLayerDefault;
+
 	self.constraints = [GTKLayoutConstraints new];
 
 	[GTKApp.dispatch.gtk sync: ^{
@@ -209,12 +227,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 			"get-child-position",
 			G_CALLBACK(get_child_position_handler),
 			(__bridge gpointer)(self));
-
-	    g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-	        "draw",
-			G_CALLBACK(draw_handler),
-	        (__bridge gpointer)(self));
 
 	    g_signal_connect(
 			G_OBJECT(self.overlayWidget),
@@ -307,6 +319,23 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
             "drag-end",
             G_CALLBACK(gesture_drag_end_handler),
             (__bridge gpointer)(self));
+
+        self.drawingArea = gtk_drawing_area_new();
+        gtk_widget_show(self.drawingArea);
+		gtk_overlay_add_overlay(
+			GTK_OVERLAY(self.overlayWidget),
+			self.drawingArea);
+
+	    g_signal_connect(
+			G_OBJECT(self.drawingArea),
+	        "draw",
+			G_CALLBACK(draw_handler),
+	        (__bridge gpointer)(self));
+
+		g_object_set_data(
+			G_OBJECT(self.drawingArea),
+			"_GTKKIT_DRAWING_LAYER_",
+		    (__bridge gpointer)(self));
 
 	}];
 
@@ -502,15 +531,80 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 - (void)layoutSubviews
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		for (GTKView *view in self.subviews) {
-			size_t index = [self.subviews indexOfObject: view];
-			gtk_overlay_reorder_overlay(
-				GTK_OVERLAY(self.overlayWidget),
-				view.overlayWidget,
-				(int)(index));
-		}
+        OFMutableArray *subviews = [OFMutableArray new];
+
+        [subviews addObjectsFromArray: self.backgroundLayerSubviews];
+        [subviews addObjectsFromArray: self.defaultLayerSubviews];
+        [subviews addObjectsFromArray: self.foregroundLayerSubviews];
+        [subviews addObjectsFromArray: self.notificationLayerSubviews];
+
+        [self.backgroundLayerSubviews removeAllObjects];
+        [self.defaultLayerSubviews removeAllObjects];
+        [self.foregroundLayerSubviews removeAllObjects];
+        [self.notificationLayerSubviews removeAllObjects];
+
+        gtk_overlay_reorder_overlay(
+            GTK_OVERLAY(self.overlayWidget),
+            self.drawingArea,
+            0);
+
+        for (GTKView *view in subviews) {
+            switch (view.layer) {
+            case GTKViewLayerDrawingArea:
+                break;
+            case GTKViewLayerBackground:
+                [self.backgroundLayerSubviews addObject: view];
+                break;
+            case GTKViewLayerDefault:
+                [self.defaultLayerSubviews addObject: view];
+                break;
+            case GTKViewLayerForeground:
+                [self.foregroundLayerSubviews addObject: view];
+                break;
+            case GTKViewLayerNotification:
+                [self.notificationLayerSubviews addObject: view];
+                break;
+            }
+        }
+
+        for (GTKView *view in self.backgroundLayerSubviews) {
+            gtk_overlay_reorder_overlay(
+                GTK_OVERLAY(self.overlayWidget),
+                view.overlayWidget,
+                -1);
+        }
+
+        for (GTKView *view in self.defaultLayerSubviews) {
+            gtk_overlay_reorder_overlay(
+                GTK_OVERLAY(self.overlayWidget),
+                view.overlayWidget,
+                -1);
+        }
+
+        for (GTKView *view in self.foregroundLayerSubviews) {
+            gtk_overlay_reorder_overlay(
+                GTK_OVERLAY(self.overlayWidget),
+                view.overlayWidget,
+                -1);
+        }
+
+        for (GTKView *view in self.notificationLayerSubviews) {
+            gtk_overlay_reorder_overlay(
+                GTK_OVERLAY(self.overlayWidget),
+                view.overlayWidget,
+                -1);
+        }
 	}];
-	for (GTKView *view in self.subviews) {
+	for (GTKView *view in self.backgroundLayerSubviews) {
+		[view layoutSubviews];
+	}
+	for (GTKView *view in self.defaultLayerSubviews) {
+		[view layoutSubviews];
+	}
+	for (GTKView *view in self.foregroundLayerSubviews) {
+		[view layoutSubviews];
+	}
+	for (GTKView *view in self.notificationLayerSubviews) {
 		[view layoutSubviews];
 	}
 }
@@ -522,19 +616,43 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
 - (void)addSubview:(GTKView *)view
 {
-	if (![self.subviews containsObject: view]) {
-		[self.subviews addObject: view];
-		[view removeFromSuperview];
-		view.superview = self;
-		view.nextResponder = self;
-        view.viewController = self.viewController;
-		[GTKApp.dispatch.gtk sync: ^{
-			gtk_overlay_add_overlay(
-				GTK_OVERLAY(self.overlayWidget),
-				view.overlayWidget);
-		}];
-		[self layoutSubviews];
-	}
+    switch (view.layer) {
+    case GTKViewLayerDrawingArea:
+        break;
+    case GTKViewLayerBackground:
+    	if (![self.backgroundLayerSubviews containsObject: view]) {
+    		[self.backgroundLayerSubviews addObject: view];
+    	}
+        break;
+    case GTKViewLayerDefault:
+    	if (![self.defaultLayerSubviews containsObject: view]) {
+    		[self.defaultLayerSubviews addObject: view];
+    	}
+        break;
+    case GTKViewLayerForeground:
+    	if (![self.foregroundLayerSubviews containsObject: view]) {
+    		[self.foregroundLayerSubviews addObject: view];
+    	}
+        break;
+    case GTKViewLayerNotification:
+    	if (![self.notificationLayerSubviews containsObject: view]) {
+    		[self.notificationLayerSubviews addObject: view];
+    	}
+        break;
+    }
+
+    [view removeFromSuperview];
+    view.superview = self;
+    view.nextResponder = self;
+    view.viewController = self.viewController;
+
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_overlay_add_overlay(
+            GTK_OVERLAY(self.overlayWidget),
+            view.overlayWidget);
+    }];
+
+    [self layoutSubviews];
 }
 
 - (void)removeFromSuperview
@@ -542,7 +660,10 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_unparent(self.overlayWidget);
 	}];
-	[self.superview.subviews removeObject: self];
+	[self.superview.backgroundLayerSubviews removeObject: self];
+	[self.superview.defaultLayerSubviews removeObject: self];
+	[self.superview.foregroundLayerSubviews removeObject: self];
+	[self.superview.notificationLayerSubviews removeObject: self];
 	[self.superview layoutSubviews];
 	self.superview = nil;
 	self.nextResponder = nil;

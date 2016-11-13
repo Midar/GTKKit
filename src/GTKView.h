@@ -22,6 +22,29 @@
 #import "GTKViewController.h"
 
 /*!
+ * @brief An enumeration of the layers in which a view can render its subviews.
+ */
+typedef enum GTKViewLayer {
+  GTKViewLayerDrawingArea = -2,
+  /*!
+   * @brief The background layer.
+   */
+  GTKViewLayerBackground = -1,
+  /*!
+   * @brief The default layer.
+   */
+  GTKViewLayerDefault = 0,
+  /*!
+   * @brief The foreground layer.
+   */
+  GTKViewLayerForeground = 1,
+  /*!
+   * @brief The notification layer.
+   */
+  GTKViewLayerNotification = 2
+} GTKViewLayer;
+
+/*!
  * @brief A structure representing a rectangle, with x, y, width and height integer
  * values.
  */
@@ -70,10 +93,18 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 
 /*!
  * @brief The GtkWidget sub-instance used as the "main" widget in the overlay.
- *
- * In the default implementation of GTKView, this is a GtkInvisible.
  */
 @property (nullable) GtkWidget *mainWidget;
+
+/*!
+ * @brief The GtkWidget used for custom drawing in this view.
+ */
+@property (nullable) GtkWidget *drawingArea;
+
+/*!
+ * @brief The layer in which the superview will render this view.
+ */
+@property GTKViewLayer layer;
 
 /*!
  * @brief The superview of this view, if one exists.
@@ -81,9 +112,24 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 @property (nullable, weak) GTKView* superview;
 
 /*!
- * @brief A mutable array of the subviews of this view.
+ * @brief A mutable array of the background layer subviews of this view.
  */
-@property (nonnull) OFMutableArray<__kindof GTKView *> *subviews;
+@property (nonnull) OFMutableArray<__kindof GTKView *> *backgroundLayerSubviews;
+
+/*!
+ * @brief A mutable array of the default layer subviews of this view.
+ */
+@property (nonnull) OFMutableArray<__kindof GTKView *> *defaultLayerSubviews;
+
+/*!
+ * @brief A mutable array of the foreground layer subviews of this view.
+ */
+@property (nonnull) OFMutableArray<__kindof GTKView *> *foregroundLayerSubviews;
+
+/*!
+ * @brief A mutable array of the notification layer subviews of this view.
+ */
+@property (nonnull) OFMutableArray<__kindof GTKView *> *notificationLayerSubviews;
 
 /*!
  * @brief The constraints used in laying out this view.

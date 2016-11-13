@@ -29,6 +29,7 @@
     self.frame = frame;
 
     self.info = [GTKInfoBar new];
+    self.info.layer = GTKViewLayerNotification;
     self.info.stringValue = @"Example info bar";
     [self.info addButtonWithLabel: @"Yes" response: GTKResponseTypeYes];
     [self.info addButtonWithLabel: @"No" response: GTKResponseTypeNo];

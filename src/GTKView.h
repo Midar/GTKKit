@@ -25,7 +25,6 @@
  * @brief An enumeration of the layers in which a view can render its subviews.
  */
 typedef enum GTKViewLayer {
-  GTKViewLayerDrawingArea = -2,
   /*!
    * @brief The background layer.
    */

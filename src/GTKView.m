@@ -532,8 +532,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
         for (GTKView *view in subviews) {
             switch (view.layer) {
-            case GTKViewLayerDrawingArea:
-                break;
             case GTKViewLayerBackground:
                 [self.backgroundLayerSubviews addObject: view];
                 break;
@@ -599,8 +597,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 - (void)addSubview:(GTKView *)view
 {
     switch (view.layer) {
-    case GTKViewLayerDrawingArea:
-        break;
     case GTKViewLayerBackground:
     	if (![self.backgroundLayerSubviews containsObject: view]) {
     		[self.backgroundLayerSubviews addObject: view];

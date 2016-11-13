@@ -44,6 +44,8 @@ typedef enum GTKViewLayer {
   GTKViewLayerNotification = 2
 } GTKViewLayer;
 
+typedef void (^GTKViewDrawingBlock) (cairo_t * _Nullable cr);
+
 /*!
  * @brief A structure representing a rectangle, with x, y, width and height integer
  * values.
@@ -93,13 +95,10 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 
 /*!
  * @brief The GtkWidget sub-instance used as the "main" widget in the overlay.
+ * In the default GTKView implementation, this is a GtkDrawingArea, but virtually
+ * every GTKView subclass overrides this with its own widget type.
  */
 @property (nullable) GtkWidget *mainWidget;
-
-/*!
- * @brief The GtkWidget used for custom drawing in this view.
- */
-@property (nullable) GtkWidget *drawingArea;
 
 /*!
  * @brief The layer in which the superview will render this view.
@@ -173,6 +172,12 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 @property (readonly) GTKRect frame;
 
 /*!
+ * @brief A block, taking a single cairo_t argument, which can handle custom
+ * drawing for a GTKView instance.
+ */
+@property _Nullable GTKViewDrawingBlock drawingBlock;
+
+/*!
  * @brief Render each of this view's subviews within this view's area.
  */
 - (void)layoutSubviews;
@@ -181,7 +186,8 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  * @brief This method handles any custom drawing the view requires.
  *
  * The default implementation of this method does nothing; subclasses can override
- * it as needed.
+ * it as needed. Cairo drawing is permissible in this method, with the cairo
+ * context available as self.cairoContext.
  */
 - (void)draw;
 

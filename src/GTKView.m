@@ -18,8 +18,6 @@
 #import "GTKApplication.h"
 #import "GTKLayoutConstraints.h"
 
-static bool drawingLayerID = true;
-
 static gboolean
 draw_handler(GtkWidget *widget,
       		 cairo_t   *cr,
@@ -27,6 +25,9 @@ draw_handler(GtkWidget *widget,
 {
     view.cairoContext = cr;
     [view draw];
+    if (NULL != view.drawingBlock) {
+        view.drawingBlock(cr);
+    }
     [GTKApp.dispatch.main async: ^ {
     	[view layoutSubviews];
     }];
@@ -97,21 +98,10 @@ get_child_position_handler(GtkOverlay   *overlay,
 
 	GTKRect frame = [view layoutSubview: subview];
 
-    bool *layerid = (bool*)(g_object_get_data(
-        G_OBJECT(widget),
-        "_GTKKIT_DRAWING_LAYER_ID_"));
-
-    if (layerid != NULL) {
-    	allocation->x = 0;
-    	allocation->y = 0;
-    	allocation->width = 100;
-    	allocation->height = 100;
-    } else {
-    	allocation->x = frame.x;
-    	allocation->y = frame.y;
-    	allocation->width = MAX(frame.width, min.width);
-    	allocation->height = MAX(frame.height, min.height);
-    }
+	allocation->x = frame.x;
+	allocation->y = frame.y;
+	allocation->width = MAX(frame.width, min.width);
+	allocation->height = MAX(frame.height, min.height);
 
 	return true;
 }
@@ -322,22 +312,11 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
             G_CALLBACK(gesture_drag_end_handler),
             (__bridge gpointer)(self));
 
-        self.drawingArea = gtk_drawing_area_new();
-		gtk_overlay_add_overlay(
-			GTK_OVERLAY(self.overlayWidget),
-			self.drawingArea);
-        gtk_widget_show(self.drawingArea);
-
 	    g_signal_connect(
-			G_OBJECT(self.drawingArea),
+			G_OBJECT(self.mainWidget),
 	        "draw",
 			G_CALLBACK(draw_handler),
 	        (__bridge gpointer)(self));
-
-		g_object_set_data(
-			G_OBJECT(self.drawingArea),
-			"_GTKKIT_DRAWING_LAYER_ID_",
-		    (gpointer)(drawingLayerID));
 
 	}];
 
@@ -378,6 +357,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
             "drag-end",
             G_CALLBACK(gesture_drag_end_handler),
             (__bridge gpointer)(self));
+
+	    g_signal_connect(
+			G_OBJECT(self.mainWidget),
+	        "draw",
+			G_CALLBACK(draw_handler),
+	        (__bridge gpointer)(self));
     }];
 }
 
@@ -544,11 +529,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
         [self.defaultLayerSubviews removeAllObjects];
         [self.foregroundLayerSubviews removeAllObjects];
         [self.notificationLayerSubviews removeAllObjects];
-
-        gtk_overlay_reorder_overlay(
-            GTK_OVERLAY(self.overlayWidget),
-            self.drawingArea,
-            0);
 
         for (GTKView *view in subviews) {
             switch (view.layer) {

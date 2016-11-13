@@ -23,9 +23,9 @@ draw_handler(GtkWidget *widget,
       		 cairo_t   *cr,
       		 GTKView   *view)
 {
+    view.cairoContext = cr;
+    [view draw];
     [GTKApp.dispatch.main async: ^ {
-        view.cairoContext = cr;
-    	[view draw];
     	[view layoutSubviews];
     }];
 	return false;

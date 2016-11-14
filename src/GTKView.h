@@ -43,6 +43,10 @@ typedef enum GTKViewLayer {
   GTKViewLayerNotification
 } GTKViewLayer;
 
+/*!
+ * @brief A block that takes a single cairo_t pointer argument, used to customize
+ * the drawing of a given GTKView instance.
+ */
 typedef void (^GTKViewDrawingBlock) (cairo_t * _Nullable cr);
 
 /*!

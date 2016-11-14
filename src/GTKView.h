@@ -28,19 +28,19 @@ typedef enum GTKViewLayer {
   /*!
    * @brief The background layer.
    */
-  GTKViewLayerBackground = -1,
+  GTKViewLayerBackground,
   /*!
    * @brief The default layer.
    */
-  GTKViewLayerDefault = 0,
+  GTKViewLayerDefault,
   /*!
    * @brief The foreground layer.
    */
-  GTKViewLayerForeground = 1,
+  GTKViewLayerForeground,
   /*!
    * @brief The notification layer.
    */
-  GTKViewLayerNotification = 2
+  GTKViewLayerNotification
 } GTKViewLayer;
 
 typedef void (^GTKViewDrawingBlock) (cairo_t * _Nullable cr);

@@ -64,12 +64,12 @@ release_event_handler(GtkWidget *widget,
 {
     [GTKApp.dispatch.main async: ^ {
         GTKEvent *evt = [GTKEvent new];
-            evt.type = GTKEventTypeMouseUp;
-            evt.mouseButton = event->button.button;
-            evt.mouseX = event->button.x;
-            evt.mouseY = event->button.y;
+        evt.type = GTKEventTypeMouseUp;
+        evt.mouseButton = event->button.button;
+        evt.mouseX = event->button.x;
+        evt.mouseY = event->button.y;
 
-            [view mouseUp: evt];
+        [view mouseUp: evt];
     }];
     return false;
 }

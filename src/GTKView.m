@@ -28,9 +28,6 @@ draw_handler(GtkWidget *widget,
     if (NULL != view.drawingBlock) {
         view.drawingBlock(cr);
     }
-    [GTKApp.dispatch.main async: ^ {
-    	[view layoutSubviews];
-    }];
 	return false;
 }
 

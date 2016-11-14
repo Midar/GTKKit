@@ -150,13 +150,19 @@ unmap_event_handler(GtkWidget *overlay,
 }
 
 static void
-gesture_drag_begin_handler(GtkGestureDrag *gesture, gdouble start_x, gdouble start_y, GTKView *view)
+gesture_drag_begin_handler(GtkGestureDrag *gesture,
+                           gdouble start_x,
+                           gdouble start_y,
+                           GTKView *view)
 {
 
 }
 
 static void
-gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+gesture_drag_update_handler(GtkGestureDrag *gesture,
+                            gdouble offset_x,
+                            gdouble offset_y,
+                            GTKView *view)
 {
     [GTKApp.dispatch.main async: ^{
         GTKEvent *event = [GTKEvent new];
@@ -181,7 +187,10 @@ gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble o
 }
 
 static void
-gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+gesture_drag_end_handler(GtkGestureDrag *gesture,
+                         gdouble offset_x,
+                         gdouble offset_y,
+                         GTKView *view)
 {
 
 }

@@ -279,42 +279,42 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
             G_CALLBACK(release_event_handler),
             (__bridge gpointer)(self));
 
-        GtkGesture *gesture = gtk_gesture_drag_new(self.overlayWidget);
+        _overlayDragGesture = gtk_gesture_drag_new(self.overlayWidget);
 
         g_signal_connect(
-            gesture,
+            _overlayDragGesture,
             "drag-begin",
             G_CALLBACK(gesture_drag_begin_handler),
             (__bridge gpointer)(self));
 
         g_signal_connect(
-            gesture,
+            _overlayDragGesture,
             "drag-update",
             G_CALLBACK(gesture_drag_update_handler),
             (__bridge gpointer)(self));
 
         g_signal_connect(
-            gesture,
+            _overlayDragGesture,
             "drag-end",
             G_CALLBACK(gesture_drag_end_handler),
             (__bridge gpointer)(self));
 
-        gesture = gtk_gesture_drag_new(self.mainWidget);
+        _mainWidgetDragGesture = gtk_gesture_drag_new(self.mainWidget);
 
         g_signal_connect(
-            gesture,
+            _mainWidgetDragGesture,
             "drag-begin",
             G_CALLBACK(gesture_drag_begin_handler),
             (__bridge gpointer)(self));
 
         g_signal_connect(
-            gesture,
+            _mainWidgetDragGesture,
             "drag-update",
             G_CALLBACK(gesture_drag_update_handler),
             (__bridge gpointer)(self));
 
         g_signal_connect(
-            gesture,
+            _mainWidgetDragGesture,
             "drag-end",
             G_CALLBACK(gesture_drag_end_handler),
             (__bridge gpointer)(self));
@@ -339,6 +339,8 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
     [GTKApp.dispatch.gtk sync: ^{
         g_object_unref(G_OBJECT(self.mainWidget));
         g_object_unref(G_OBJECT(self.overlayWidget));
+        g_object_unref(G_OBJECT(_mainWidgetDragGesture));
+        g_object_unref(G_OBJECT(_overlayDragGesture));
     }];
 }
 

@@ -81,6 +81,8 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 {
     bool _hidden;
     __weak __block GTKViewController *_viewController;
+    __block GtkGesture *_overlayDragGesture;
+    __block GtkGesture *_mainWidgetDragGesture;
 }
 
 /*!

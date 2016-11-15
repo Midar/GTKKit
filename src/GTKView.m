@@ -346,23 +346,21 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 
 - (void)reconnectSignals
 {
-    GtkGesture *gesture = gtk_gesture_drag_new(self.mainWidget);
-
     [GTKApp.dispatch.gtk sync: ^{
         g_signal_connect(
-            gesture,
+            _mainWidgetDragGesture,
             "drag-begin",
             G_CALLBACK(gesture_drag_begin_handler),
             (__bridge gpointer)(self));
 
         g_signal_connect(
-            gesture,
+            _mainWidgetDragGesture,
             "drag-update",
             G_CALLBACK(gesture_drag_update_handler),
             (__bridge gpointer)(self));
 
         g_signal_connect(
-            gesture,
+            _mainWidgetDragGesture,
             "drag-end",
             G_CALLBACK(gesture_drag_end_handler),
             (__bridge gpointer)(self));

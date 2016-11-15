@@ -14,6 +14,7 @@
  * the packaging of this file.
  */
 
+#import "GTKPositionType.h"
 #import "GTKDispatchQueue.h"
 #import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"

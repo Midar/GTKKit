@@ -43,6 +43,7 @@ INCLUDES =                                          \
 				GTKWindowViewControllerDelegate.h           \
 				GTKListViewDataSource.h                     \
 				GTKListViewDelegate.h                       \
+				GTKPositionType.h                           \
 				GTKKit.h
 
 include ../buildsys.mk

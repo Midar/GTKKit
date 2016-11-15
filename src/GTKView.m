@@ -262,9 +262,10 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 		gtk_widget_show(self.mainWidget);
 		gtk_widget_show(self.overlayWidget);
 
-        GdkEventMask eventBoxMask = gtk_widget_get_events(self.mainWidget);
-        eventBoxMask = eventBoxMask | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK;
-        gtk_widget_set_events(self.mainWidget, eventBoxMask);
+        gtk_widget_add_events(
+            self.mainWidget,
+            GDK_BUTTON_PRESS_MASK |
+            GDK_BUTTON_RELEASE_MASK);
 
         g_signal_connect(
             G_OBJECT(self.mainWidget),

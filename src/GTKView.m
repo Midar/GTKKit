@@ -337,10 +337,10 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 - (void)dealloc
 {
     [GTKApp.dispatch.gtk sync: ^{
-        g_object_unref(G_OBJECT(self.mainWidget));
-        g_object_unref(G_OBJECT(self.overlayWidget));
         g_object_unref(G_OBJECT(_mainWidgetDragGesture));
         g_object_unref(G_OBJECT(_overlayDragGesture));
+        g_object_unref(G_OBJECT(self.mainWidget));
+        g_object_unref(G_OBJECT(self.overlayWidget));
     }];
 }
 

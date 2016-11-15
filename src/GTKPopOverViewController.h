@@ -15,7 +15,7 @@
  */
 
 #import "GTKViewController.h"
-#import "enums.h"
+#import "GTKPositionType.h"
 
 /*!
  * @brief A class representing a view controller that presents a view hierarchy

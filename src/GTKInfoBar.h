@@ -18,7 +18,6 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "enums.h"
 #import "GTKControl.h"
 
 typedef enum GTKMessageType {
@@ -29,6 +28,65 @@ typedef enum GTKMessageType {
     GTKMessageTypeOther = GTK_MESSAGE_OTHER
 } GTKMessageType;
 
+/*!
+ * @brief An enumeratin of built-in response types for dialogs in GTKKit.
+ */
+typedef enum GTKResponseType {
+    /*!
+     * @brief No response.
+     */
+     GTKResponseTypeNone = GTK_RESPONSE_NONE,
+
+     /*!
+      * @brief Generic "rejected" response.
+      */
+     GTKResponseTypeReject = GTK_RESPONSE_REJECT,
+
+    /*!
+     * @brief Generic "accepted" response.
+     */
+     GTKResponseTypeAccept = GTK_RESPONSE_ACCEPT,
+
+    /*!
+     * @brief "Deleted" response used if the dialog was deleted.
+     */
+     GTKResponseTypeDelete = GTK_RESPONSE_DELETE_EVENT,
+
+    /*!
+     * @brief "OK" response
+     */
+    GTKResponseTypeOK = GTK_RESPONSE_OK,
+
+    /*!
+     * @brief "Cancel" response
+     */
+    GTKResponseTypeCancel = GTK_RESPONSE_CANCEL,
+
+    /*!
+     * @brief "Close" response returned if the dialog was closed.
+     */
+    GTKResponseTypeClose = GTK_RESPONSE_CLOSE,
+
+    /*!
+     * @brief "Yes" response.
+     */
+    GTKResponseTypeYes = GTK_RESPONSE_YES,
+
+    /*!
+     * @brief "No" response.
+     */
+    GTKResponseTypeNo = GTK_RESPONSE_NO,
+
+    /*!
+     * @brief "Apply" response.
+     */
+    GTKResponseTypeApply = GTK_RESPONSE_APPLY,
+
+    /*!
+     * @brief "Help" response.
+     */
+    GTKResponseTypeHelp = GTK_RESPONSE_HELP
+} GTKResponseType;
 
 /*!
  * @brief A class representing a view that implements a horizontal bar used to

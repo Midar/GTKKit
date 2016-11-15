@@ -20,7 +20,7 @@
 
 #import "GTKControl.h"
 #import "GTKOrientable.h"
-#import "enums.h"
+#import "GTKPositionType.h"
 
 /*!
  * @brief A class representing a control that sets a numeric value in a given

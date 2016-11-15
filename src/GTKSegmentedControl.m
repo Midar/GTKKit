@@ -15,9 +15,9 @@
  * the packaging of this file.
  */
 
-#import "enums.h"
 #import "GTKSegmentedControl.h"
 #import "GTKApplication.h"
+#import "GTKButton.h"
 
 @interface GTKSegmentedControl ()
 - (void)update;

@@ -18,10 +18,19 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "enums.h"
 #import "GTKControl.h"
 #import "GTKImage.h"
 #import "GTKPopOverViewController.h"
+
+/*!
+ * @brief The state of an active button. Equal to true.
+ */
+extern const bool GTKOnState;
+
+/*!
+ * @brief The state of an inactive button. Equal to false.
+ */
+extern const bool GTKOffState;
 
 /*!
  * @brief The types buttons can implement.

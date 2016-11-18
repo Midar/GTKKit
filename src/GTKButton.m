@@ -70,6 +70,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         self.buttonType = GTKSwitchButton;
     }
     self.state = [decoder decodeBoolForKey: @"state"];
+    self.stringValue = [decoder decodeStringForKey: @"stringValue"];
     return self;
 }
 
@@ -95,6 +96,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         break;
     }
     [encoder encodeBool: self.state forKey: @"state"];
+    [encoder encodeString: self.stringValue forKey: @"stringValue"];
 }
 
 - (void)dealloc

@@ -35,7 +35,14 @@ SRCS =	GTKResponder.m                              \
 				GTKInfoBar.m                                \
 				GTKStatusbar.m                              \
 				GTKActionBar.m                              \
-				GTKComboBox.m
+				GTKComboBox.m                               \
+				GTKCoder.m                                  \
+				GTKKeyedArchiver.m                          \
+				GTKKeyedUnarchiver.m                        \
+				OFArray+GTKCoding.m                         \
+				OFString+GTKCoding.m                        \
+				OFNumber+GTKCoding.m                        \
+				OFDictionary+GTKCoding.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \
@@ -44,6 +51,7 @@ INCLUDES =                                          \
 				GTKListViewDataSource.h                     \
 				GTKListViewDelegate.h                       \
 				GTKPositionType.h                           \
+				GTKCoding.h                                 \
 				GTKKit.h
 
 include ../buildsys.mk

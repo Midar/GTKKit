@@ -7,6 +7,7 @@ SUBDIRS = Window \
 					ListViewController \
 					InfoBar \
 					ActionBar \
-					Popup
+					Popup \
+					Coder
 
 include ../buildsys.mk

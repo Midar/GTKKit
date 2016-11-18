@@ -39,6 +39,25 @@
 	self.value = 0;
 	return self;
 }
+
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [self init];
+	self.type = [[decoder decodeStringForKey: @"type"] isEqual: @"fixed"] ?
+		GTKLayoutConstraintTypeFixed : GTKLayoutConstraintTypeFlexible;
+	self.value = [decoder decodeDoubleForKey: @"value"];
+	return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+	if (self.type == GTKLayoutConstraintTypeFixed) {
+		[encoder encodeString: @"fixed" forKey: @"type"];
+	} else {
+		[encoder encodeString: @"flexible" forKey: @"type"];
+	}
+	[encoder encodeDouble: self.value forKey: @"value"];
+}
 @end
 
 @implementation GTKLayoutConstraints
@@ -56,6 +75,46 @@
 	self.centerHorizontal = false;
 	self.centerVertical = false;
   	return self;
+}
+
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [self init];
+	self.top = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
+									 forKey: @"top"];
+ 	self.bottom = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
+ 									    forKey: @"bottom"];
+	self.left = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
+									  forKey: @"left"];
+	self.right = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
+									   forKey: @"right"];
+	self.width = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
+									   forKey: @"width"];
+   	self.height = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
+   									 	forKey: @"height"];
+	self.centerHorizontal = [decoder decodeBoolForKey: @"centerHorizontal"];
+	self.centerVertical = [decoder decodeBoolForKey: @"centerVertical"];
+	return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+	[encoder encodeObject: self.top
+				   forKey: @"top"];
+   	[encoder encodeObject: self.bottom
+   				   forKey: @"bottom"];
+   	[encoder encodeObject: self.left
+   				   forKey: @"left"];
+	[encoder encodeObject: self.right
+				   forKey: @"right"];
+   	[encoder encodeObject: self.width
+   				   forKey: @"width"];
+   	[encoder encodeObject: self.height
+   				   forKey: @"height"];
+   	[encoder encodeBool: self.centerHorizontal
+   				   forKey: @"centerHorizontal"];
+   	[encoder encodeBool: self.centerVertical
+   				   forKey: @"centerVertical"];
 }
 
 - (void)fixedToTop:(double)top

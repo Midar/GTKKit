@@ -17,6 +17,9 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+#import "GTKCoding.h"
+#import "GTKCoder.h"
+
 /*!
  * @brief The types of constraint it's possible to use.
  */
@@ -38,7 +41,7 @@ typedef enum GTKLayoutConstraintType {
  * The properties of these objects are used in calculating the position and size
  * of views in view hierarchies.
  */
-@interface GTKLayoutConstraint: OFObject
+@interface GTKLayoutConstraint: OFObject <GTKCoding>
 
 - initWithType:(GTKLayoutConstraintType)type
 		 value:(double)value;
@@ -68,7 +71,7 @@ typedef enum GTKLayoutConstraintType {
 /*!
  * @brief A class representing the layout constraints of a view.
  */
-@interface GTKLayoutConstraints: OFObject
+@interface GTKLayoutConstraints: OFObject <GTKCoding>
 
 /*!
  * @brief The width constraint of the view. This constrains the width of

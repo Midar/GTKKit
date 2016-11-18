@@ -17,6 +17,7 @@
 
 #import "GTKInfoBar.h"
 #import "GTKApplication.h"
+#import "OFArray+GTKCoding.h"
 
 @interface GTKInfoBar ()
 - (void)userResponded;
@@ -42,6 +43,8 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
             G_CALLBACK(response_handler),
             (__bridge gpointer)(self));
     }];
+    _buttonLabels = [OFMutableArray new];
+    _buttonResponses = [OFMutableArray new];
     self.stringValue = @"";
     self.response = GTKResponseTypeNone;
     self.messageType = GTKMessageTypeInfo;
@@ -68,6 +71,55 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
     }];
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+    _buttonLabels = [decoder decodeObjectForKey: @"buttonLabels"];
+    _buttonResponses = [decoder decodeObjectForKey: @"buttonResponses"];
+
+    for (int i = 0; i < _buttonLabels.count; i++) {
+        OFString *responseString = [_buttonResponses objectAtIndex: i];
+        GTKResponseType response;
+        if ([responseString isEqual: @"none"]) {
+            response = GTKResponseTypeNone;
+        } else if ([responseString isEqual: @"reject"]) {
+            response = GTKResponseTypeReject;
+        } else if ([responseString isEqual: @"accept"]) {
+            response = GTKResponseTypeAccept;
+        } else if ([responseString isEqual: @"delete"]) {
+            response = GTKResponseTypeDelete;
+        } else if ([responseString isEqual: @"ok"]) {
+            response = GTKResponseTypeOK;
+        } else if ([responseString isEqual: @"cancel"]) {
+            response = GTKResponseTypeCancel;
+        } else if ([responseString isEqual: @"close"]) {
+            response = GTKResponseTypeClose;
+        } else if ([responseString isEqual: @"yes"]) {
+            response = GTKResponseTypeYes;
+        } else if ([responseString isEqual: @"no"]) {
+            response = GTKResponseTypeNo;
+        } else if ([responseString isEqual: @"apply"]) {
+            response = GTKResponseTypeApply;
+        } else if ([responseString isEqual: @"help"]) {
+            response = GTKResponseTypeHelp;
+        } else {
+            response = GTKResponseTypeNone;
+        }
+        [self addButtonWithLabel: [_buttonLabels objectAtIndex: i]
+                        response: response];
+        self.stringValue = [decoder decodeStringForKey: @"stringValue"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+    [encoder encodeObject: _buttonLabels forKey: @"buttonLabels"];
+    [encoder encodeObject: _buttonResponses forKey: @"buttonResponses"];
+    [encoder encodeString: self.stringValue forKey: @"stringValue"];
+}
+
 - (void)dealloc
 {
     [GTKApp.dispatch.gtk sync: ^{
@@ -92,6 +144,44 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 
 - (void)addButtonWithLabel:(OFString *)label response:(GTKResponseType)response
 {
+    [_buttonLabels addObject: label];
+    OFString *responseString;
+    switch (response) {
+    case GTKResponseTypeNone:
+        responseString = @"none";
+        break;
+    case GTKResponseTypeReject:
+        responseString = @"reject";
+        break;
+    case GTKResponseTypeAccept:
+        responseString = @"accept";
+        break;
+    case GTKResponseTypeDelete:
+        responseString = @"delete";
+        break;
+    case GTKResponseTypeOK:
+        responseString = @"ok";
+        break;
+    case GTKResponseTypeCancel:
+        responseString = @"cancel";
+        break;
+    case GTKResponseTypeClose:
+        responseString = @"close";
+        break;
+    case GTKResponseTypeYes:
+        responseString = @"yes";
+        break;
+    case GTKResponseTypeNo:
+        responseString = @"no";
+        break;
+    case GTKResponseTypeApply:
+        responseString = @"apply";
+        break;
+    case GTKResponseTypeHelp:
+        responseString = @"help";
+        break;
+    }
+    [_buttonResponses addObject: responseString];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_info_bar_add_button(
             GTK_INFO_BAR(self.mainWidget),

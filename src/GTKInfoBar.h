@@ -98,6 +98,8 @@ typedef enum GTKResponseType {
     __block GTKMessageType _messageType;
     __block OFString *_label;
     __block GtkWidget *_labelWidget;
+    __block OFMutableArray *_buttonLabels;
+    __block OFMutableArray *_buttonResponses;
 }
 @property GTKMessageType messageType;
 @property GTKResponseType response;

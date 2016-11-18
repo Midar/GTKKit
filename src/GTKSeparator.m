@@ -25,6 +25,24 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+
+    self.orientation = [[decoder decodeStringForKey: @"orientation"] isEqual: @"horizontal"] ?
+        GTKOrientationHorizontal : GTKOrientationVertical;
+
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+
+    [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
+                   forKey: @"orientation"];
+}
+
 - (void)createMainWidget
 {
     [GTKApp.dispatch.gtk sync: ^{

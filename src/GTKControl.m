@@ -25,6 +25,19 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+    self.tag = [decoder decodeIntForKey: @"tag"];
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+    [encoder encodeInt: self.tag forKey: @"tag"];
+}
+
 - (void)sendActionToTarget
 {
     [GTKApp.dispatch.main sync: ^{

@@ -54,6 +54,8 @@
     self.inverted = [decoder decodeBoolForKey: @"inverted"];
     self.stringValue = [decoder decodeStringForKey: @"stringValue"];
     self.doubleValue = [decoder decodeDoubleForKey: @"doubleValue"];
+    self.orientation = [[decoder decodeStringForKey: @"orientation"] isEqual: @"horizontal"] ?
+        GTKOrientationHorizontal : GTKOrientationVertical;
 
     return self;
 }
@@ -67,6 +69,8 @@
     [encoder encodeBool: self.inverted forKey: @"inverted"];
     [encoder encodeString: self.stringValue forKey: @"stringValue"];
     [encoder encodeDouble: self.doubleValue forKey: @"doubleValue"];
+    [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
+                   forKey: @"orientation"];
 }
 
 - (void)createMainWidget

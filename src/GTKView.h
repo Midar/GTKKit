@@ -77,7 +77,7 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  * set to default states during default initialization, but subclasses override
  * those settings as needed.
  */
-@interface GTKView: GTKResponder
+@interface GTKView: GTKResponder <GTKCoding>
 {
     bool _hidden;
     __weak __block GTKViewController *_viewController;

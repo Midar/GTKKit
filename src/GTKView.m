@@ -17,6 +17,7 @@
 #import "GTKView.h"
 #import "GTKApplication.h"
 #import "GTKLayoutConstraints.h"
+#import "OFArray+GTKCoding.h"
 
 static gboolean
 draw_handler(GtkWidget *widget,
@@ -332,6 +333,88 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 	self.alpha = 1.0;
 
 	return self;
+}
+
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [self init];
+
+    OFString *layer = [decoder decodeStringForKey: @"layer"];
+    if ([layer isEqual: @"background"]) {
+        self.layer = GTKViewLayerBackground;
+    } else if ([layer isEqual: @"default"]) {
+        self.layer = GTKViewLayerDefault;
+    } else if ([layer isEqual: @"foreground"]) {
+        self.layer = GTKViewLayerForeground;
+    } else if ([layer isEqual: @"notification"]) {
+        self.layer = GTKViewLayerNotification;
+    }
+
+    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
+                                                forKey: @"backgroundLayerSubviews"]) {
+        [self addSubview: view];
+    }
+
+    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
+                                                forKey: @"defaultLayerSubviews"]) {
+        [self addSubview: view];
+    }
+
+    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
+                                                forKey: @"foregroundLayerSubviews"]) {
+        [self addSubview: view];
+    }
+
+    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
+                                                forKey: @"notificationLayerSubviews"]) {
+        [self addSubview: view];
+    }
+
+    self.constraints = [decoder decodeObjectOfClass: GTKLayoutConstraints.class
+                                             forKey: @"constraints"];
+
+    self.hidden = [decoder decodeBoolForKey: @"hidden"];
+
+    self.alpha = [decoder decodeDoubleForKey: @"alpha"];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    switch (self.layer) {
+    case GTKViewLayerBackground:
+        [encoder encodeString: @"background" forKey: @"layer"];
+        break;
+    case GTKViewLayerDefault:
+        [encoder encodeString: @"default" forKey: @"layer"];
+        break;
+    case GTKViewLayerForeground:
+        [encoder encodeString: @"foreground" forKey: @"layer"];
+        break;
+    case GTKViewLayerNotification:
+        [encoder encodeString: @"notification" forKey: @"layer"];
+        break;
+    }
+
+    [encoder encodeObject: self.backgroundLayerSubviews
+                   forKey: @"backgroundLayerSubviews"];
+
+    [encoder encodeObject: self.defaultLayerSubviews
+                   forKey: @"defaultLayerSubviews"];
+
+    [encoder encodeObject: self.foregroundLayerSubviews
+                   forKey: @"foregroundLayerSubviews"];
+
+    [encoder encodeObject: self.notificationLayerSubviews
+                   forKey: @"notificationLayerSubviews"];
+
+    [encoder encodeObject: self.constraints
+                   forKey: @"constraints"];
+
+    [encoder encodeBool: self.isHidden forKey: @"hidden"];
+
+    [encoder encodeDouble: self.alpha forKey: @"alpha"];
 }
 
 - (void)dealloc

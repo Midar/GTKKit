@@ -27,6 +27,29 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+    self.mode = [[decoder decodeStringForKey: @"mode"] isEqual: @"continuous"] ?
+        GTKLevelModeContinuous : GTKLevelModeDiscrete;
+    self.minValue = [decoder decodeDoubleForKey: @"minValue"];
+    self.maxValue = [decoder decodeDoubleForKey: @"maxValue"];
+    self.doubleValue = [decoder decodeDoubleForKey: @"doubleValue"];
+    self.inverted = [decoder decodeBoolForKey: @"inverted"];
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+    [encoder encodeString: self.mode == GTKLevelModeContinuous ? @"continuous" : @"discrete"
+                   forKey: @"mode"];
+    [encoder encodeDouble: self.minValue forKey: @"minValue"];
+    [encoder encodeDouble: self.maxValue forKey: @"maxValue"];
+    [encoder encodeDouble: self.doubleValue forKey: @"doubleValue"];
+    [encoder encodeBool: self.isInverted forKey: @"inverted"];
+}
+
 - (void)createMainWidget
 {
     [GTKApp.dispatch.gtk sync: ^{

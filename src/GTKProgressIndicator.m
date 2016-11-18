@@ -45,6 +45,30 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+
+    self.animate = [decoder decodeBoolForKey: @"animate"];
+    self.showLabel = [decoder decodeBoolForKey: @"showLabel"];
+    self.inverted = [decoder decodeBoolForKey: @"inverted"];
+    self.stringValue = [decoder decodeStringForKey: @"stringValue"];
+    self.doubleValue = [decoder decodeDoubleForKey: @"doubleValue"];
+
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+
+    [encoder encodeBool: self.animate forKey: @"animate"];
+    [encoder encodeBool: self.showLabel forKey: @"showLabel"];
+    [encoder encodeBool: self.inverted forKey: @"inverted"];
+    [encoder encodeString: self.stringValue forKey: @"stringValue"];
+    [encoder encodeDouble: self.doubleValue forKey: @"doubleValue"];
+}
+
 - (void)createMainWidget
 {
     [GTKApp.dispatch.gtk sync: ^{

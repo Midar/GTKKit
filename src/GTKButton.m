@@ -54,6 +54,49 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     return self;
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+    OFString *type = [decoder decodeStringForKey: @"buttonType"];
+    if ([type isEqual: @"push"]) {
+        self.buttonType = GTKPushButton;
+    } else if ([type isEqual: @"toggle"]) {
+        self.buttonType = GTKToggleButton;
+    } else if ([type isEqual: @"check"]) {
+        self.buttonType = GTKCheckButton;
+    } else if ([type isEqual: @"radio"]) {
+        self.buttonType = GTKRadioButton;
+    } else if ([type isEqual: @"switch"]) {
+        self.buttonType = GTKSwitchButton;
+    }
+    self.state = [decoder decodeBoolForKey: @"state"];
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+
+    switch (self.buttonType) {
+    case GTKPushButton:
+        [encoder encodeString: @"push" forKey: @"buttonType"];
+        break;
+    case GTKToggleButton:
+        [encoder encodeString: @"toggle" forKey: @"buttonType"];
+        break;
+    case GTKCheckButton:
+        [encoder encodeString: @"check" forKey: @"buttonType"];
+        break;
+    case GTKRadioButton:
+        [encoder encodeString: @"radio" forKey: @"buttonType"];
+        break;
+    case GTKSwitchButton:
+        [encoder encodeString: @"switch" forKey: @"buttonType"];
+        break;
+    }
+    [encoder encodeBool: self.state forKey: @"state"];
+}
+
 - (void)dealloc
 {
     [GTKApp.dispatch.gtk sync: ^{

@@ -38,6 +38,19 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+    self.label = [decoder decodeStringForKey: @"label"];
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+    [encoder encodeString: self.label forKey: @"label"];
+}
+
 - (OFString *)label
 {
     return _label;

@@ -51,11 +51,8 @@
 
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
-	if (self.type == GTKLayoutConstraintTypeFixed) {
-		[encoder encodeString: @"fixed" forKey: @"type"];
-	} else {
-		[encoder encodeString: @"flexible" forKey: @"type"];
-	}
+	[encoder encodeString: self.type == GTKLayoutConstraintTypeFixed ? @"fixed" : @"flexible"
+				   forKey: @"type"];
 	[encoder encodeDouble: self.value forKey: @"value"];
 }
 @end

@@ -64,7 +64,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("String test 2: Passed\n");
     }
     if (test.doubleValue == 0.123456789) {
-        printf("Double test 2: Passed\n");
+        printf("Double test: Passed\n");
     }
     if (test.floatValue == 1.2345f) {
         printf("Float test: Passed\n");

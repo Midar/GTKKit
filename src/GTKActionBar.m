@@ -17,18 +17,46 @@
 
 #import "GTKActionBar.h"
 #import "GTKApplication.h"
+#import "OFArray+GTKCoding.h"
 
 @implementation GTKActionBar
 - init
 {
     self = [super init];
-    _actionSubviews = [OFMutableArray new];
+    _actionSubviewsStart = [OFMutableArray new];
+    _actionSubviewsEnd = [OFMutableArray new];
     [self.constraints flexibleToTop: 0];
     [self.constraints fixedToBottom: 0
                                left: 0
                               right: 0];
     [self.constraints fixedHeight: 48];
     return self;
+}
+
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+
+    self.centerView = [decoder decodeObjectForKey: @"centerView"];
+
+    for (GTKView *view in [decoder decodeObjectForKey: @"actionSubviewsStart"]) {
+        [self addSubviewStart: view];
+    }
+
+    for (GTKView *view in [decoder decodeObjectForKey: @"actionSubviewsEnd"]) {
+        [self addSubviewEnd: view];
+    }
+
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+
+    [encoder encodeObject: self.centerView forKey: @"centerView"];
+    [encoder encodeObject: _actionSubviewsStart forKey: @"actionSubviewsStart"];
+    [encoder encodeObject: _actionSubviewsEnd forKey: @"actionSubviewsEnd"];
 }
 
 - (void)createMainWidget
@@ -49,9 +77,8 @@
         [GTKApp.dispatch.gtk sync: ^{
             gtk_widget_unparent(self.centerView.overlayWidget);
         }];
-        [_actionSubviews removeObject: self.centerView];
+        //self.centerView = nil;
     }
-    [_actionSubviews addObject: view];
     _centerView = view;
     [GTKApp.dispatch.gtk sync: ^{
         gtk_action_bar_set_center_widget(
@@ -62,7 +89,7 @@
 
 - (void)addSubviewStart:(GTKView *)view
 {
-    [_actionSubviews addObject: view];
+    [_actionSubviewsStart addObject: view];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_action_bar_pack_start(
             GTK_ACTION_BAR(self.mainWidget),
@@ -72,7 +99,7 @@
 
 - (void)addSubviewEnd:(GTKView *)view
 {
-    [_actionSubviews addObject: view];
+    [_actionSubviewsEnd addObject: view];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_action_bar_pack_end(
             GTK_ACTION_BAR(self.mainWidget),

@@ -46,6 +46,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
     }];
     return self;
 }
+
 - (void)createMainWidget
 {
     [GTKApp.dispatch.gtk sync: ^ {

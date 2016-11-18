@@ -19,6 +19,7 @@
 #import "GTKCoder.h"
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
+#import "OFArray+GTKCoding.h"
 
 @implementation OFDictionary (GTKCoding)
 - (instancetype)initWithCoder:(GTKCoder *)decoder

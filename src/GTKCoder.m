@@ -18,6 +18,10 @@
  #import "GTKCoder.h"
  #import "GTKKeyedArchiver.h"
  #import "GTKKeyedUnarchiver.h"
+ #import "OFNumber+GTKCoding.h"
+ #import "OFString+GTKCoding.h"
+ #import "OFArray+GTKCoding.h"
+ #import "OFDictionary+GTKCoding.h"
 
 @implementation GTKCoder
 - init
@@ -172,7 +176,7 @@
 
 - (OFString *)decodeStringForKey:(OFString *)key
 {
-    OFXMLElement *element = [self elementForName: key];;
+    OFXMLElement *element = [self elementForName: key];
     return element.stringValue;
 }
 

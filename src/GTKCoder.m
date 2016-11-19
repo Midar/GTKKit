@@ -23,6 +23,13 @@
  #import "OFArray+GTKCoding.h"
  #import "OFDictionary+GTKCoding.h"
 
+ @implementation GTKCoderKeyedCodingNotAllowedException
+ - (OFString *)description
+ {
+     return @"Error: Keyed coding not allowed.";
+ }
+ @end
+
 @implementation GTKCoder
 - init
 {
@@ -39,12 +46,18 @@
 
 - (bool)containsValueForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     return nil != [self elementsForName: key];
 }
 
 - (void)setClass:(Class)class
           forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
 
     OFXMLElement *classNames = [self elementForName: @"GTKKit.classNames"];
@@ -55,6 +68,9 @@
 
 - (Class)classForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFXMLElement *classNames = [self elementForName: @"GTKKit.classNames"];
     OFString *className = [[classNames attributeForName: key] stringValue];
     Class class = objc_getClass(className.UTF8String);
@@ -64,6 +80,9 @@
 - (void)encodeBool:(bool)value
             forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFArray *elements = [self elementsForName: key];
     for (OFXMLElement *element in elements) {
         [self removeChild: element];
@@ -78,6 +97,9 @@
 - (void)encodeDouble:(double)value
               forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFArray *elements = [self elementsForName: key];
     for (OFXMLElement *element in elements) {
         [self removeChild: element];
@@ -92,6 +114,9 @@
 - (void)encodeFloat:(float)value
              forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFArray *elements = [self elementsForName: key];
     for (OFXMLElement *element in elements) {
         [self removeChild: element];
@@ -106,6 +131,9 @@
 - (void)encodeInt:(int)value
            forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFArray *elements = [self elementsForName: key];
     for (OFXMLElement *element in elements) {
         [self removeChild: element];
@@ -120,6 +148,9 @@
 - (void)encodeString:(OFString *)value
               forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFArray *elements = [self elementsForName: key];
     for (OFXMLElement *element in elements) {
         [self removeChild: element];
@@ -133,6 +164,9 @@
 - (void)encodeObject:(OFObject<GTKCoding> *)object
               forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFArray *elements = [self elementsForName: key];
     for (OFXMLElement *element in elements) {
         [self removeChild: element];
@@ -148,6 +182,9 @@
 
 - (bool)decodeBoolForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFXMLElement *element = [self elementForName: key];
     OFString *string = [[OFString alloc] initWithSerialization: element];
     return [string isEqual: @"true"];
@@ -155,6 +192,9 @@
 
 - (double)decodeDoubleForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFXMLElement *element = [self elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.doubleValue;
@@ -162,6 +202,9 @@
 
 - (float)decodeFloatForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFXMLElement *element = [self elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.floatValue;
@@ -169,6 +212,9 @@
 
 - (int)decodeIntForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFXMLElement *element = [self elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.intValue;
@@ -176,12 +222,18 @@
 
 - (OFString *)decodeStringForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     OFXMLElement *element = [self elementForName: key];
     return element.stringValue;
 }
 
 - (id)decodeObjectForKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     Class class = [self classForKey: key];
     id object = [self decodeObjectOfClass: class forKey: key];
     return object;
@@ -190,6 +242,9 @@
 - (id)decodeObjectOfClass:(Class)class
                    forKey:(OFString *)key
 {
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
     GTKKeyedUnarchiver *coder = (GTKKeyedUnarchiver *)([self elementForName: key]);
     id object = [[class alloc] initWithCoder: coder];
     return object;

@@ -20,6 +20,9 @@
 
 #import "GTKCoding.h"
 
+@interface GTKCoderKeyedCodingNotAllowedException: OFException
+@end
+
 /*!
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.

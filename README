@@ -16,6 +16,9 @@ At the moment, GTKKit is only tested on OS X and FreeBSD.
 
 Currently, GTKKit implements the following class hierarchy:
 
+GTKCoder
+  GTKKeyedArchiver
+  GTKKeyedUnarchiver
 GTKResponder
   GTKApplication
   GTKView

@@ -125,6 +125,14 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("OFDictionary test: Passed\n");
     }
 
+    OFNull *null = [OFNull null];
+    GTKCoder *nullCoder = [GTKKeyedArchiver archiveRootObject: null];
+    OFNull *nullTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFNull.class
+                                                        withCoder: nullCoder];
+    if ([null isEqual: nullTest]) {
+        printf("OFNull test: Passed\n");
+    }
+
     [GTKApp terminate];
 }
 

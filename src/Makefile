@@ -39,6 +39,7 @@ SRCS =	GTKResponder.m                              \
 				GTKCoder.m                                  \
 				GTKKeyedArchiver.m                          \
 				GTKKeyedUnarchiver.m                        \
+				OFNull+GTKCoding.m                          \
 				OFArray+GTKCoding.m                         \
 				OFString+GTKCoding.m                        \
 				OFNumber+GTKCoding.m                        \

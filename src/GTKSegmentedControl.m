@@ -18,6 +18,7 @@
 #import "GTKSegmentedControl.h"
 #import "GTKApplication.h"
 #import "GTKButton.h"
+#import "OFArray+GTKCoding.h"
 
 @interface GTKSegmentedControl ()
 - (void)update;
@@ -192,6 +193,49 @@ button_press_event_handler(GtkWidget *widget,
     self.segments = 1;
     self.trackingMode = GTKSegmentSwitchTrackingMomentary;
     return self;
+}
+
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+
+    OFString *trackingMode = [decoder decodeStringForKey: @"trackingMode"];
+    if ([trackingMode isEqual: @"momentary"]) {
+        self.trackingMode = GTKSegmentSwitchTrackingMomentary;
+    } else if ([trackingMode isEqual: @"selectAny"]) {
+        self.trackingMode = GTKSegmentSwitchTrackingSelectAny;
+    } else if ([trackingMode isEqual: @"selectOne"]) {
+        self.trackingMode = GTKSegmentSwitchTrackingSelectOne;
+    }
+
+    self.segments = [decoder decodeIntForKey: @"segments"];
+
+    OFMutableArray *labels =  [decoder decodeObjectForKey: @"labelForSegment"];
+    for (int i = 0; i < 32; i++) {
+        [self setLabel: [labels objectAtIndex: i] forSegment: i];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+
+    switch (self.trackingMode) {
+    case GTKSegmentSwitchTrackingMomentary:
+        [encoder encodeString: @"momentary" forKey: @"trackingMode"];
+        break;
+    case GTKSegmentSwitchTrackingSelectAny:
+        [encoder encodeString: @"selectAny" forKey: @"trackingMode"];
+        break;
+    case GTKSegmentSwitchTrackingSelectOne:
+        [encoder encodeString: @"selectOne" forKey: @"trackingMode"];
+        break;
+    }
+
+    [encoder encodeInt: self.segments forKey: @"segments"];
+
+    [encoder encodeObject: _labelForSegment forKey: @"labelForSegment"];
 }
 
 - (void)dealloc

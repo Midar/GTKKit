@@ -17,6 +17,7 @@
 
 #import "GTKPopUpButton.h"
 #import "GTKApplication.h"
+#import "OFArray+GTKCoding.h"
 
 @interface GTKPopUpButton ()
 - (void)selectedItemChanged:(nonnull GTKEvent *)event;
@@ -37,6 +38,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 - init
 {
     self = [super init];
+    _items = [OFMutableArray new];
     [GTKApp.dispatch.gtk sync: ^{
         g_signal_connect(
             G_OBJECT(self.mainWidget),
@@ -45,6 +47,21 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
             (__bridge gpointer)(self));
     }];
     return self;
+}
+
+- (instancetype)initWithCoder:(GTKCoder *)decoder
+{
+	self = [super initWithCoder: decoder];
+    for (OFString *title in [decoder decodeObjectForKey: @"popUpItems"]) {
+        [self insertItemWithTitle: title at: -1];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKCoder *)encoder
+{
+    [super encodeWithCoder: encoder];
+    [encoder encodeObject: _items forKey: @"popUpItems"];
 }
 
 - (void)createMainWidget
@@ -57,6 +74,11 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 - (void)insertItemWithTitle:(OFString *)string
                          at:(int)index
 {
+    if (index < 0) {
+        [_items addObject: string];
+    } else {
+        [_items insertObject: string atIndex: index];
+    }
     [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_text_insert(
             GTK_COMBO_BOX_TEXT(self.mainWidget),
@@ -68,6 +90,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 
 - (void)removeItemAt:(int)index
 {
+    [_items removeObjectAtIndex: index];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_text_remove(
             GTK_COMBO_BOX_TEXT(self.mainWidget),
@@ -117,6 +140,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 
 - (void)removeAllItems
 {
+    [_items removeAllObjects];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_combo_box_text_remove_all(GTK_COMBO_BOX_TEXT(self.mainWidget));
     }];

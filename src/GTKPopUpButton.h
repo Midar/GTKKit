@@ -26,6 +26,9 @@
  * selected.
  */
 @interface GTKPopUpButton: GTKControl
+{
+    __block OFMutableArray *_items;
+}
 
 /*!
  * @brief The index of the selected item.

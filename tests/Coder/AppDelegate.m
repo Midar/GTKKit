@@ -141,6 +141,14 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("OFURL test: Passed\n");
     }
 
+    OFDate *date = [OFDate date];
+    GTKCoder *dateCoder = [GTKKeyedArchiver archiveRootObject: date];
+    OFDate *dateTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFDate.class
+                                                        withCoder: dateCoder];
+    if (date.hour == dateTest.hour) {
+        printf("OFDate test: Passed\n");
+    }
+
     [GTKApp terminate];
 }
 

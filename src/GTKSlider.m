@@ -56,16 +56,16 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.minValue = [decoder decodeDoubleForKey: @"minValue"];
-    self.maxValue = [decoder decodeDoubleForKey: @"maxValue"];
-    self.restrictToFillLevel = [decoder decodeBoolForKey: @"restrictToFillLevel"];
-    self.fillLevel = [decoder decodeDoubleForKey: @"fillLevel"];
-    self.showFillLevel = [decoder decodeBoolForKey: @"showFillLevel"];
-    self.inverted = [decoder decodeBoolForKey: @"inverted"];
-    self.increment = [decoder decodeDoubleForKey: @"increment"];
-    self.roundDigits = [decoder decodeIntForKey: @"roundDigits"];
-    self.showValue = [decoder decodeBoolForKey: @"showValue"];
-    OFString *valuePosition = [decoder decodeStringForKey: @"valuePosition"];
+    self.minValue = [decoder decodeDoubleForKey: @"GTKKit.coding.slider.minValue"];
+    self.maxValue = [decoder decodeDoubleForKey: @"GTKKit.coding.slider.maxValue"];
+    self.restrictToFillLevel = [decoder decodeBoolForKey: @"GTKKit.coding.slider.restrictToFillLevel"];
+    self.fillLevel = [decoder decodeDoubleForKey: @"GTKKit.coding.slider.fillLevel"];
+    self.showFillLevel = [decoder decodeBoolForKey: @"GTKKit.coding.slider.showFillLevel"];
+    self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.slider.inverted"];
+    self.increment = [decoder decodeDoubleForKey: @"GTKKit.coding.slider.increment"];
+    self.roundDigits = [decoder decodeIntForKey: @"GTKKit.coding.slider.roundDigits"];
+    self.showValue = [decoder decodeBoolForKey: @"GTKKit.coding.slider.showValue"];
+    OFString *valuePosition = [decoder decodeStringForKey: @"GTKKit.coding.slider.valuePosition"];
     if ([valuePosition isEqual: @"top"]) {
         self.valuePosition = GTKPositionTypeTop;
     } else if ([valuePosition isEqual: @"bottom"]) {
@@ -75,9 +75,9 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
     } else if ([valuePosition isEqual: @"right"]) {
         self.valuePosition = GTKPositionTypeRight;
     }
-    self.highlightOrigin = [decoder decodeBoolForKey: @"highlightOrigin"];
-    self.numberOfTickMarks = [decoder decodeIntForKey: @"numberOfTickMarks"];
-    self.orientation = [[decoder decodeStringForKey: @"orientation"] isEqual: @"horizontal"] ?
+    self.highlightOrigin = [decoder decodeBoolForKey: @"GTKKit.coding.slider.highlightOrigin"];
+    self.numberOfTickMarks = [decoder decodeIntForKey: @"GTKKit.coding.slider.numberOfTickMarks"];
+    self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.slider.orientation"] isEqual: @"horizontal"] ?
         GTKOrientationHorizontal : GTKOrientationVertical;
     return self;
 }
@@ -85,15 +85,15 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeDouble: self.minValue forKey: @"minValue"];
-    [encoder encodeDouble: self.maxValue forKey: @"maxValue"];
-    [encoder encodeBool: self.restrictToFillLevel forKey: @"restrictToFillLevel"];
-    [encoder encodeDouble: self.fillLevel forKey: @"fillLevel"];
-    [encoder encodeBool: self.showFillLevel forKey: @"showFillLevel"];
-    [encoder encodeBool: self.isInverted forKey: @"inverted"];
-    [encoder encodeDouble: self.increment forKey: @"increment"];
-    [encoder encodeInt: self.roundDigits forKey: @"roundDigits"];
-    [encoder encodeBool: self.showValue forKey: @"showValue"];
+    [encoder encodeDouble: self.minValue forKey: @"GTKKit.coding.slider.minValue"];
+    [encoder encodeDouble: self.maxValue forKey: @"GTKKit.coding.slider.maxValue"];
+    [encoder encodeBool: self.restrictToFillLevel forKey: @"GTKKit.coding.slider.restrictToFillLevel"];
+    [encoder encodeDouble: self.fillLevel forKey: @"GTKKit.coding.slider.fillLevel"];
+    [encoder encodeBool: self.showFillLevel forKey: @"GTKKit.coding.slider.showFillLevel"];
+    [encoder encodeBool: self.isInverted forKey: @"GTKKit.coding.slider.inverted"];
+    [encoder encodeDouble: self.increment forKey: @"GTKKit.coding.slider.increment"];
+    [encoder encodeInt: self.roundDigits forKey: @"GTKKit.coding.slider.roundDigits"];
+    [encoder encodeBool: self.showValue forKey: @"GTKKit.coding.slider.showValue"];
     switch (self.valuePosition) {
     case GTKPositionTypeTop:
         [encoder encodeString: @"top" forKey: @"valuePosition"];
@@ -108,10 +108,10 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
         [encoder encodeString: @"right" forKey: @"valuePosition"];
         break;
     }
-    [encoder encodeBool: self.highlightOrigin forKey: @"highlightOrigin"];
-    [encoder encodeInt: self.numberOfTickMarks forKey: @"numberOfTickMarks"];
+    [encoder encodeBool: self.highlightOrigin forKey: @"GTKKit.coding.slider.highlightOrigin"];
+    [encoder encodeInt: self.numberOfTickMarks forKey: @"GTKKit.coding.slider.numberOfTickMarks"];
     [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-                   forKey: @"orientation"];
+                   forKey: @"GTKKit.coding.slider.orientation"];
 }
 
 - (void)createMainWidget

@@ -52,7 +52,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    for (OFString *title in [decoder decodeObjectForKey: @"popUpItems"]) {
+    for (OFString *title in [decoder decodeObjectForKey: @"GTKKit.coding.popUpButton.popUpItems"]) {
         [self insertItemWithTitle: title at: -1];
     }
     return self;
@@ -61,7 +61,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeObject: _items forKey: @"popUpItems"];
+    [encoder encodeObject: _items forKey: @"GTKKit.coding.popUpButton.popUpItems"];
 }
 
 - (void)createMainWidget

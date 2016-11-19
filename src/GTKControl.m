@@ -28,14 +28,14 @@
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.tag = [decoder decodeIntForKey: @"tag"];
+    self.tag = [decoder decodeIntForKey: @"GTKKit.coding.control.tag"];
     return self;
 }
 
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeInt: self.tag forKey: @"tag"];
+    [encoder encodeInt: self.tag forKey: @"GTKKit.coding.control.tag"];
 }
 
 - (void)sendActionToTarget

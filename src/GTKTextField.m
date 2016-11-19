@@ -84,10 +84,10 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.editable = [decoder decodeBoolForKey: @"editable"];
-    self.continuous = [decoder decodeBoolForKey: @"continuous"];
-    self.selectable = [decoder decodeBoolForKey: @"selectable"];
-    OFString *justify = [decoder decodeStringForKey: @"justify"];
+    self.editable = [decoder decodeBoolForKey: @"GTKKit.coding.textField.editable"];
+    self.continuous = [decoder decodeBoolForKey: @"GTKKit.coding.textField.continuous"];
+    self.selectable = [decoder decodeBoolForKey: @"GTKKit.coding.textField.selectable"];
+    OFString *justify = [decoder decodeStringForKey: @"GTKKit.coding.textField.justify"];
     if ([justify isEqual: @"left"]) {
         self.justify = GTKJustificationLeft;
     } else if ([justify isEqual: @"center"]) {
@@ -97,33 +97,33 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     } else if ([justify isEqual: @"fill"]) {
         self.justify = GTKJustificationFill;
     }
-    self.multiline = [decoder decodeBoolForKey: @"multiline"];
-    self.stringValue = [decoder decodeStringForKey: @"stringValue"];
+    self.multiline = [decoder decodeBoolForKey: @"GTKKit.coding.textField.multiline"];
+    self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.textField.stringValue"];
     return self;
 }
 
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeBool: self.isEditable forKey: @"editable"];
-    [encoder encodeBool: self.isContinuous forKey: @"continuous"];
-    [encoder encodeBool: self.isSelectable forKey: @"selectable"];
+    [encoder encodeBool: self.isEditable forKey: @"GTKKit.coding.textField.editable"];
+    [encoder encodeBool: self.isContinuous forKey: @"GTKKit.coding.textField.continuous"];
+    [encoder encodeBool: self.isSelectable forKey: @"GTKKit.coding.textField.selectable"];
     switch (self.justify) {
     case GTKJustificationLeft:
-        [encoder encodeString: @"left" forKey: @"justify"];
+        [encoder encodeString: @"left" forKey: @"GTKKit.coding.textField.justify"];
         break;
     case GTKJustificationCenter:
-        [encoder encodeString: @"center" forKey: @"justify"];
+        [encoder encodeString: @"center" forKey: @"GTKKit.coding.textField.justify"];
         break;
     case GTKJustificationRight:
-        [encoder encodeString: @"right" forKey: @"justify"];
+        [encoder encodeString: @"right" forKey: @"GTKKit.coding.textField.justify"];
         break;
     case GTKJustificationFill:
-        [encoder encodeString: @"fill" forKey: @"justify"];
+        [encoder encodeString: @"fill" forKey: @"GTKKit.coding.textField.justify"];
         break;
     }
-    [encoder encodeBool: self.isMultiline forKey: @"multiline"];
-    [encoder encodeString: self.stringValue forKey: @"stringValue"];
+    [encoder encodeBool: self.isMultiline forKey: @"GTKKit.coding.textField.multiline"];
+    [encoder encodeString: self.stringValue forKey: @"GTKKit.coding.textField.stringValue"];
 }
 
 - (bool)isEditable

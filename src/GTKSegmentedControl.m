@@ -199,7 +199,7 @@ button_press_event_handler(GtkWidget *widget,
 {
 	self = [super initWithCoder: decoder];
 
-    OFString *trackingMode = [decoder decodeStringForKey: @"trackingMode"];
+    OFString *trackingMode = [decoder decodeStringForKey: @"GTKKit.coding.segmentedControl.trackingMode"];
     if ([trackingMode isEqual: @"momentary"]) {
         self.trackingMode = GTKSegmentSwitchTrackingMomentary;
     } else if ([trackingMode isEqual: @"selectAny"]) {
@@ -208,9 +208,9 @@ button_press_event_handler(GtkWidget *widget,
         self.trackingMode = GTKSegmentSwitchTrackingSelectOne;
     }
 
-    self.segments = [decoder decodeIntForKey: @"segments"];
+    self.segments = [decoder decodeIntForKey: @"GTKKit.coding.segmentedControl.segments"];
 
-    OFMutableArray *labels =  [decoder decodeObjectForKey: @"labelForSegment"];
+    OFMutableArray *labels =  [decoder decodeObjectForKey: @"GTKKit.coding.segmentedControl.labelForSegment"];
     for (int i = 0; i < 32; i++) {
         [self setLabel: [labels objectAtIndex: i] forSegment: i];
     }
@@ -223,19 +223,19 @@ button_press_event_handler(GtkWidget *widget,
 
     switch (self.trackingMode) {
     case GTKSegmentSwitchTrackingMomentary:
-        [encoder encodeString: @"momentary" forKey: @"trackingMode"];
+        [encoder encodeString: @"momentary" forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
         break;
     case GTKSegmentSwitchTrackingSelectAny:
-        [encoder encodeString: @"selectAny" forKey: @"trackingMode"];
+        [encoder encodeString: @"selectAny" forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
         break;
     case GTKSegmentSwitchTrackingSelectOne:
-        [encoder encodeString: @"selectOne" forKey: @"trackingMode"];
+        [encoder encodeString: @"selectOne" forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
         break;
     }
 
-    [encoder encodeInt: self.segments forKey: @"segments"];
+    [encoder encodeInt: self.segments forKey: @"GTKKit.coding.segmentedControl.segments"];
 
-    [encoder encodeObject: _labelForSegment forKey: @"labelForSegment"];
+    [encoder encodeObject: _labelForSegment forKey: @"GTKKit.coding.segmentedControl.labelForSegment"];
 }
 
 - (void)dealloc

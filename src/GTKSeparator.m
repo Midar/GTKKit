@@ -29,7 +29,7 @@
 {
 	self = [super initWithCoder: decoder];
 
-    self.orientation = [[decoder decodeStringForKey: @"orientation"] isEqual: @"horizontal"] ?
+    self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.separator.orientation"] isEqual: @"horizontal"] ?
         GTKOrientationHorizontal : GTKOrientationVertical;
 
     return self;
@@ -40,7 +40,7 @@
     [super encodeWithCoder: encoder];
 
     [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-                   forKey: @"orientation"];
+                   forKey: @"GTKKit.coding.separator.orientation"];
 }
 
 - (void)createMainWidget

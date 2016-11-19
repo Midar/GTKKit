@@ -57,7 +57,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    OFString *type = [decoder decodeStringForKey: @"buttonType"];
+    OFString *type = [decoder decodeStringForKey: @"GTKKit.coding.button.buttonType"];
     if ([type isEqual: @"push"]) {
         self.buttonType = GTKPushButton;
     } else if ([type isEqual: @"toggle"]) {
@@ -69,8 +69,8 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     } else if ([type isEqual: @"switch"]) {
         self.buttonType = GTKSwitchButton;
     }
-    self.state = [decoder decodeBoolForKey: @"state"];
-    self.stringValue = [decoder decodeStringForKey: @"stringValue"];
+    self.state = [decoder decodeBoolForKey: @"GTKKit.coding.button.state"];
+    self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.button.stringValue"];
     return self;
 }
 
@@ -80,23 +80,23 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 
     switch (self.buttonType) {
     case GTKPushButton:
-        [encoder encodeString: @"push" forKey: @"buttonType"];
+        [encoder encodeString: @"push" forKey: @"GTKKit.coding.button.buttonType"];
         break;
     case GTKToggleButton:
-        [encoder encodeString: @"toggle" forKey: @"buttonType"];
+        [encoder encodeString: @"toggle" forKey: @"GTKKit.coding.button.buttonType"];
         break;
     case GTKCheckButton:
-        [encoder encodeString: @"check" forKey: @"buttonType"];
+        [encoder encodeString: @"check" forKey: @"GTKKit.coding.button.buttonType"];
         break;
     case GTKRadioButton:
-        [encoder encodeString: @"radio" forKey: @"buttonType"];
+        [encoder encodeString: @"radio" forKey: @"GTKKit.coding.button.buttonType"];
         break;
     case GTKSwitchButton:
-        [encoder encodeString: @"switch" forKey: @"buttonType"];
+        [encoder encodeString: @"switch" forKey: @"GTKKit.coding.button.buttonType"];
         break;
     }
-    [encoder encodeBool: self.state forKey: @"state"];
-    [encoder encodeString: self.stringValue forKey: @"stringValue"];
+    [encoder encodeBool: self.state forKey: @"GTKKit.coding.button.state"];
+    [encoder encodeString: self.stringValue forKey: @"GTKKit.coding.button.stringValue"];
 }
 
 - (void)dealloc

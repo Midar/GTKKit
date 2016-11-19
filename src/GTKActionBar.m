@@ -37,13 +37,13 @@
 {
 	self = [super initWithCoder: decoder];
 
-    self.centerView = [decoder decodeObjectForKey: @"centerView"];
+    self.centerView = [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.centerView"];
 
-    for (GTKView *view in [decoder decodeObjectForKey: @"actionSubviewsStart"]) {
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.actionSubviewsStart"]) {
         [self addSubviewStart: view];
     }
 
-    for (GTKView *view in [decoder decodeObjectForKey: @"actionSubviewsEnd"]) {
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.actionSubviewsEnd"]) {
         [self addSubviewEnd: view];
     }
 
@@ -54,9 +54,9 @@
 {
     [super encodeWithCoder: encoder];
 
-    [encoder encodeObject: self.centerView forKey: @"centerView"];
-    [encoder encodeObject: _actionSubviewsStart forKey: @"actionSubviewsStart"];
-    [encoder encodeObject: _actionSubviewsEnd forKey: @"actionSubviewsEnd"];
+    [encoder encodeObject: self.centerView forKey: @"GTKKit.coding.actionBar.centerView"];
+    [encoder encodeObject: _actionSubviewsStart forKey: @"GTKKit.coding.actionBar.actionSubviewsStart"];
+    [encoder encodeObject: _actionSubviewsEnd forKey: @"GTKKit.coding.actionBar.actionSubviewsEnd"];
 }
 
 - (void)createMainWidget

@@ -41,14 +41,14 @@
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.label = [decoder decodeStringForKey: @"label"];
+    self.label = [decoder decodeStringForKey: @"GTKKit.coding.box.label"];
     return self;
 }
 
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeString: self.label forKey: @"label"];
+    [encoder encodeString: self.label forKey: @"GTKKit.coding.box.label"];
 }
 
 - (OFString *)label

@@ -339,7 +339,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 {
 	self = [self init];
 
-    OFString *layer = [decoder decodeStringForKey: @"layer"];
+    OFString *layer = [decoder decodeStringForKey: @"GTKKit.coding.view.layer"];
     if ([layer isEqual: @"background"]) {
         self.layer = GTKViewLayerBackground;
     } else if ([layer isEqual: @"default"]) {
@@ -351,31 +351,31 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
     }
 
     for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"backgroundLayerSubviews"]) {
+                                                forKey: @"GTKKit.coding.view.backgroundLayerSubviews"]) {
         [self addSubview: view];
     }
 
     for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"defaultLayerSubviews"]) {
+                                                forKey: @"GTKKit.coding.view.defaultLayerSubviews"]) {
         [self addSubview: view];
     }
 
     for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"foregroundLayerSubviews"]) {
+                                                forKey: @"GTKKit.coding.view.foregroundLayerSubviews"]) {
         [self addSubview: view];
     }
 
     for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"notificationLayerSubviews"]) {
+                                                forKey: @"GTKKit.coding.view.notificationLayerSubviews"]) {
         [self addSubview: view];
     }
 
     self.constraints = [decoder decodeObjectOfClass: GTKLayoutConstraints.class
-                                             forKey: @"constraints"];
+                                             forKey: @"GTKKit.coding.view.constraints"];
 
-    self.hidden = [decoder decodeBoolForKey: @"hidden"];
+    self.hidden = [decoder decodeBoolForKey: @"GTKKit.coding.view.hidden"];
 
-    self.alpha = [decoder decodeDoubleForKey: @"alpha"];
+    self.alpha = [decoder decodeDoubleForKey: @"GTKKit.coding.view.alpha"];
 
     return self;
 }
@@ -384,37 +384,37 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 {
     switch (self.layer) {
     case GTKViewLayerBackground:
-        [encoder encodeString: @"background" forKey: @"layer"];
+        [encoder encodeString: @"background" forKey: @"GTKKit.coding.view.layer"];
         break;
     case GTKViewLayerDefault:
-        [encoder encodeString: @"default" forKey: @"layer"];
+        [encoder encodeString: @"default" forKey: @"GTKKit.coding.view.layer"];
         break;
     case GTKViewLayerForeground:
-        [encoder encodeString: @"foreground" forKey: @"layer"];
+        [encoder encodeString: @"foreground" forKey: @"GTKKit.coding.view.layer"];
         break;
     case GTKViewLayerNotification:
-        [encoder encodeString: @"notification" forKey: @"layer"];
+        [encoder encodeString: @"notification" forKey: @"GTKKit.coding.view.layer"];
         break;
     }
 
     [encoder encodeObject: self.backgroundLayerSubviews
-                   forKey: @"backgroundLayerSubviews"];
+                   forKey: @"GTKKit.coding.view.backgroundLayerSubviews"];
 
     [encoder encodeObject: self.defaultLayerSubviews
-                   forKey: @"defaultLayerSubviews"];
+                   forKey: @"GTKKit.coding.view.defaultLayerSubviews"];
 
     [encoder encodeObject: self.foregroundLayerSubviews
-                   forKey: @"foregroundLayerSubviews"];
+                   forKey: @"GTKKit.coding.view.foregroundLayerSubviews"];
 
     [encoder encodeObject: self.notificationLayerSubviews
-                   forKey: @"notificationLayerSubviews"];
+                   forKey: @"GTKKit.coding.view.notificationLayerSubviews"];
 
     [encoder encodeObject: self.constraints
-                   forKey: @"constraints"];
+                   forKey: @"GTKKit.coding.view.constraints"];
 
-    [encoder encodeBool: self.isHidden forKey: @"hidden"];
+    [encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.view.hidden"];
 
-    [encoder encodeDouble: self.alpha forKey: @"alpha"];
+    [encoder encodeDouble: self.alpha forKey: @"GTKKit.coding.view.alpha"];
 }
 
 - (void)dealloc

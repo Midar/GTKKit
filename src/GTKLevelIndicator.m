@@ -30,13 +30,13 @@
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.mode = [[decoder decodeStringForKey: @"mode"] isEqual: @"continuous"] ?
+    self.mode = [[decoder decodeStringForKey: @"GTKKit.coding.levelIndicator.mode"] isEqual: @"continuous"] ?
         GTKLevelModeContinuous : GTKLevelModeDiscrete;
-    self.minValue = [decoder decodeDoubleForKey: @"minValue"];
-    self.maxValue = [decoder decodeDoubleForKey: @"maxValue"];
-    self.doubleValue = [decoder decodeDoubleForKey: @"doubleValue"];
-    self.inverted = [decoder decodeBoolForKey: @"inverted"];
-    self.orientation = [[decoder decodeStringForKey: @"orientation"] isEqual: @"horizontal"] ?
+    self.minValue = [decoder decodeDoubleForKey: @"GTKKit.coding.levelIndicator.minValue"];
+    self.maxValue = [decoder decodeDoubleForKey: @"GTKKit.coding.levelIndicator.maxValue"];
+    self.doubleValue = [decoder decodeDoubleForKey: @"GTKKit.coding.levelIndicator.doubleValue"];
+    self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.levelIndicator.inverted"];
+    self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.levelIndicator.orientation"] isEqual: @"horizontal"] ?
         GTKOrientationHorizontal : GTKOrientationVertical;
     return self;
 }
@@ -45,13 +45,13 @@
 {
     [super encodeWithCoder: encoder];
     [encoder encodeString: self.mode == GTKLevelModeContinuous ? @"continuous" : @"discrete"
-                   forKey: @"mode"];
-    [encoder encodeDouble: self.minValue forKey: @"minValue"];
-    [encoder encodeDouble: self.maxValue forKey: @"maxValue"];
-    [encoder encodeDouble: self.doubleValue forKey: @"doubleValue"];
-    [encoder encodeBool: self.isInverted forKey: @"inverted"];
+                   forKey: @"GTKKit.coding.levelIndicator.mode"];
+    [encoder encodeDouble: self.minValue forKey: @"GTKKit.coding.levelIndicator.minValue"];
+    [encoder encodeDouble: self.maxValue forKey: @"GTKKit.coding.levelIndicator.maxValue"];
+    [encoder encodeDouble: self.doubleValue forKey: @"GTKKit.coding.levelIndicator.doubleValue"];
+    [encoder encodeBool: self.isInverted forKey: @"GTKKit.coding.levelIndicator.inverted"];
     [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-                   forKey: @"orientation"];
+                   forKey: @"GTKKit.coding.levelIndicator.orientation"];
 }
 
 - (void)createMainWidget

@@ -34,7 +34,7 @@
 - init
 {
     self = [self initWithName: self.className];
-    OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.classNames"];
+    OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.coding.classNames"];
     [self addChild: classNames];
     return self;
 }
@@ -60,7 +60,7 @@
     }
     OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
 
-    OFXMLElement *classNames = [self elementForName: @"GTKKit.classNames"];
+    OFXMLElement *classNames = [self elementForName: @"GTKKit.coding.classNames"];
     [classNames removeAttributeForName: key];
     [classNames addAttributeWithName: key
                          stringValue: className];
@@ -71,7 +71,7 @@
     if (!self.allowsKeyedCoding) {
         @throw [GTKCoderKeyedCodingNotAllowedException exception];
     }
-    OFXMLElement *classNames = [self elementForName: @"GTKKit.classNames"];
+    OFXMLElement *classNames = [self elementForName: @"GTKKit.coding.classNames"];
     OFString *className = [[classNames attributeForName: key] stringValue];
     Class class = objc_getClass(className.UTF8String);
     return class;

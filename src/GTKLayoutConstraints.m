@@ -43,17 +43,17 @@
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [self init];
-	self.type = [[decoder decodeStringForKey: @"type"] isEqual: @"fixed"] ?
+	self.type = [[decoder decodeStringForKey: @"GTKKit.coding.layoutConstraint.type"] isEqual: @"fixed"] ?
 		GTKLayoutConstraintTypeFixed : GTKLayoutConstraintTypeFlexible;
-	self.value = [decoder decodeDoubleForKey: @"value"];
+	self.value = [decoder decodeDoubleForKey: @"GTKKit.coding.layoutConstraint.value"];
 	return self;
 }
 
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
 	[encoder encodeString: self.type == GTKLayoutConstraintTypeFixed ? @"fixed" : @"flexible"
-				   forKey: @"type"];
-	[encoder encodeDouble: self.value forKey: @"value"];
+				   forKey: @"GTKKit.coding.layoutConstraint.type"];
+	[encoder encodeDouble: self.value forKey: @"GTKKit.coding.layoutConstraint.value"];
 }
 @end
 

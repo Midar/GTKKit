@@ -74,8 +74,8 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [super initWithCoder: decoder];
-    _buttonLabels = [decoder decodeObjectForKey: @"buttonLabels"];
-    _buttonResponses = [decoder decodeObjectForKey: @"buttonResponses"];
+    _buttonLabels = [decoder decodeObjectForKey: @"GTKKit.coding.infoBar.buttonLabels"];
+    _buttonResponses = [decoder decodeObjectForKey: @"GTKKit.coding.infoBar.buttonResponses"];
 
     for (int i = 0; i < _buttonLabels.count; i++) {
         OFString *responseString = [_buttonResponses objectAtIndex: i];
@@ -107,7 +107,7 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
         }
         [self addButtonWithLabel: [_buttonLabels objectAtIndex: i]
                         response: response];
-        self.stringValue = [decoder decodeStringForKey: @"stringValue"];
+        self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.infoBar.stringValue"];
     }
     return self;
 }
@@ -115,9 +115,9 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
     [super encodeWithCoder: encoder];
-    [encoder encodeObject: _buttonLabels forKey: @"buttonLabels"];
-    [encoder encodeObject: _buttonResponses forKey: @"buttonResponses"];
-    [encoder encodeString: self.stringValue forKey: @"stringValue"];
+    [encoder encodeObject: _buttonLabels forKey: @"GTKKit.coding.infoBar.buttonLabels"];
+    [encoder encodeObject: _buttonResponses forKey: @"GTKKit.coding.infoBar.buttonResponses"];
+    [encoder encodeString: self.stringValue forKey: @"GTKKit.coding.infoBar.stringValue"];
 }
 
 - (void)dealloc

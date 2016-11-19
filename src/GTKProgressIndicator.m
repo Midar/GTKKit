@@ -49,12 +49,12 @@
 {
 	self = [super initWithCoder: decoder];
 
-    self.animate = [decoder decodeBoolForKey: @"animate"];
-    self.showLabel = [decoder decodeBoolForKey: @"showLabel"];
-    self.inverted = [decoder decodeBoolForKey: @"inverted"];
-    self.stringValue = [decoder decodeStringForKey: @"stringValue"];
-    self.doubleValue = [decoder decodeDoubleForKey: @"doubleValue"];
-    self.orientation = [[decoder decodeStringForKey: @"orientation"] isEqual: @"horizontal"] ?
+    self.animate = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.animate"];
+    self.showLabel = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.showLabel"];
+    self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.inverted"];
+    self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.stringValue"];
+    self.doubleValue = [decoder decodeDoubleForKey: @"GTKKit.coding.progressIndicator.doubleValue"];
+    self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.orientation"] isEqual: @"horizontal"] ?
         GTKOrientationHorizontal : GTKOrientationVertical;
 
     return self;
@@ -64,13 +64,13 @@
 {
     [super encodeWithCoder: encoder];
 
-    [encoder encodeBool: self.animate forKey: @"animate"];
-    [encoder encodeBool: self.showLabel forKey: @"showLabel"];
-    [encoder encodeBool: self.inverted forKey: @"inverted"];
-    [encoder encodeString: self.stringValue forKey: @"stringValue"];
-    [encoder encodeDouble: self.doubleValue forKey: @"doubleValue"];
+    [encoder encodeBool: self.animate forKey: @"GTKKit.coding.progressIndicator.animate"];
+    [encoder encodeBool: self.showLabel forKey: @"GTKKit.coding.progressIndicator.showLabel"];
+    [encoder encodeBool: self.inverted forKey: @"GTKKit.coding.progressIndicator.inverted"];
+    [encoder encodeString: self.stringValue forKey: @"GTKKit.coding.progressIndicator.stringValue"];
+    [encoder encodeDouble: self.doubleValue forKey: @"GTKKit.coding.progressIndicator.doubleValue"];
     [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-                   forKey: @"orientation"];
+                   forKey: @"GTKKit.coding.progressIndicator.orientation"];
 }
 
 - (void)createMainWidget

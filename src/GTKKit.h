@@ -55,6 +55,7 @@
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
 #import "OFNull+GTKCoding.h"
+#import "OFURL+GTKCoding.h"
 #import "OFArray+GTKCoding.h"
 #import "OFString+GTKCoding.h"
 #import "OFNumber+GTKCoding.h"

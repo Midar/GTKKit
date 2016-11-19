@@ -133,6 +133,14 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("OFNull test: Passed\n");
     }
 
+    OFURL *URL = [OFURL fileURLWithPath: @"/usr/local/bin/ls"];
+    GTKCoder *URLCoder = [GTKKeyedArchiver archiveRootObject: URL];
+    OFURL *URLTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFURL.class
+                                                      withCoder: URLCoder];
+    if ([URL.path isEqual: URLTest.path]) {
+        printf("OFURL test: Passed\n");
+    }
+
     [GTKApp terminate];
 }
 

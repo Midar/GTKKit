@@ -149,6 +149,15 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("OFDate test: Passed\n");
     }
 
+    OFList *list = [OFList list];
+    [list appendObject: @"abcdef987654321"];
+    GTKCoder *listCoder = [GTKKeyedArchiver archiveRootObject: list];
+    OFList *listTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFList.class
+                                                        withCoder: listCoder];
+    if ([listTest.firstObject isEqual: @"abcdef987654321"]) {
+        printf("OFList test: Passed\n");
+    }
+
     [GTKApp terminate];
 }
 

@@ -58,6 +58,7 @@
 #import "OFURL+GTKCoding.h"
 #import "OFDate+GTKCoding.h"
 #import "OFArray+GTKCoding.h"
+#import "OFList+GTKCoding.h"
 #import "OFString+GTKCoding.h"
 #import "OFNumber+GTKCoding.h"
 #import "OFDictionary+GTKCoding.h"

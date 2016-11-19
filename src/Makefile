@@ -43,6 +43,7 @@ SRCS =	GTKResponder.m                              \
 				OFURL+GTKCoding.m                           \
 				OFDate+GTKCoding.m                          \
 				OFArray+GTKCoding.m                         \
+				OFList+GTKCoding.m                          \
 				OFString+GTKCoding.m                        \
 				OFNumber+GTKCoding.m                        \
 				OFDictionary+GTKCoding.m

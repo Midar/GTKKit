@@ -19,6 +19,7 @@
 #import <gtk/gtk.h>
 
 #import "GTKCoding.h"
+#import "OFString+GTKCoding.h"
 
 @interface GTKCoderKeyedCodingNotAllowedException: OFException
 @end
@@ -86,6 +87,12 @@
               forKey:(OFString *)key;
 
 /*!
+ * @brief Encode the supplied selector for the supplied key.
+ */
+- (void)encodeSelector:(SEL)selector
+               forKey:(OFString *)key;
+
+/*!
  * @brief Decode the bool value for the supplied key.
  */
 - (bool)decodeBoolForKey:(OFString *)key;
@@ -120,4 +127,9 @@
 */
 - (id)decodeObjectOfClass:(Class)class
                    forKey:(OFString *)key;
+
+/*!
+ * @brief Decode the selector for the supplied key.
+ */
+- (SEL)decodeSelectorforKey:(OFString *)key;
 @end

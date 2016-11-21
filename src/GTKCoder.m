@@ -180,6 +180,15 @@
     [self addChild: coder];
 }
 
+- (void)encodeSelector:(SEL)selector
+                forKey:(OFString *)key
+{
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
+    [self encodeString: OFStringFromSelector(selector) forKey: key];
+}
+
 - (bool)decodeBoolForKey:(OFString *)key
 {
     if (!self.allowsKeyedCoding) {
@@ -248,5 +257,14 @@
     GTKKeyedUnarchiver *coder = (GTKKeyedUnarchiver *)([self elementForName: key]);
     id object = [[class alloc] initWithCoder: coder];
     return object;
+}
+
+- (SEL)decodeSelectorforKey:(OFString *)key
+{
+    if (!self.allowsKeyedCoding) {
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];
+    }
+    OFString *selector = [self decodeStringForKey: key];
+    return OFSelectorFromString(selector);
 }
 @end

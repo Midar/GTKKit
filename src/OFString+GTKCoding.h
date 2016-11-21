@@ -20,5 +20,16 @@
 
 #import "GTKCoding.h"
 
+/*!
+ * @brief Returns a new OFString containing the name of the selector.
+ */
+OFString* OFStringFromSelector(SEL selector);
+
+/*!
+ * @brief Returns a selector for the specified name; if there is no such selector,
+ * one is registered for that name.
+ */
+SEL OFSelectorFromString(OFString *selector);
+
 @interface OFString (GTKCoding) <GTKCoding>
 @end

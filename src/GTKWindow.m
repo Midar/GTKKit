@@ -14,13 +14,13 @@
  * the packaging of this file.
  */
 
-#import "GTKWindowViewController.h"
+#import "GTKWindow.h"
 #import "GTKApplicationDelegate.h"
-#import "GTKWindowViewControllerDelegate.h"
+#import "GTKWindowDelegate.h"
 #import "GTKApplication.h"
 
 static void
-close_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
+close_button_clicked_handler(GtkButton *button, GTKWindow *window)
 {
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
@@ -46,7 +46,7 @@ close_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
 }
 
 static void
-minimize_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
+minimize_button_clicked_handler(GtkButton *button, GTKWindow *window)
 {
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
@@ -68,7 +68,7 @@ minimize_button_clicked_handler(GtkButton *button, GTKWindowViewController *wind
 }
 
 static void
-maximize_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
+maximize_button_clicked_handler(GtkButton *button, GTKWindow *window)
 {
     [GTKApp.dispatch.main async: ^{
         if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
@@ -90,7 +90,7 @@ maximize_button_clicked_handler(GtkButton *button, GTKWindowViewController *wind
 }
 
 static void
-menu_button_clicked_handler(GtkButton *button, GTKWindowViewController *window)
+menu_button_clicked_handler(GtkButton *button, GTKWindow *window)
 {
     window.menuButtonPopOver.hidden = false;
 }
@@ -131,14 +131,18 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
 }
 
-@interface GTKWindowViewController ()
+@interface GTKWindow ()
 - (void)updateHeaderbarSeparatorVisibility;
 @end
 
-@implementation GTKWindowViewController
+@implementation GTKWindow
 - init
 {
     self = [super init];
+
+    self.contentView = [GTKView new];
+    self.contentView.nextResponder = self;
+    self.nextResponder = GTKApp;
 
     self.firstResponder = self;
     self.destroyWhenClosed = false;
@@ -151,10 +155,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
         _window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(_window));
-        g_object_set_data(
-            G_OBJECT(_window),
-            "_GTKKIT_OWNING_VIEW_CONTROLLER_",
-            (__bridge gpointer)(self));
         gtk_widget_set_size_request(
             _window,
             1,
@@ -286,7 +286,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     self.menuButtonHidden = true;
     self.hidden = true;
 
-    self.menuButtonPopOver = [GTKPopOverViewController new];
+    self.menuButtonPopOver = [GTKPopover new];
     self.menuButtonPopOver.relativeWidget = _menuButton;
 
     [GTKApp.windows addObject: self];
@@ -590,5 +590,10 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
             GTK_HEADER_BAR(_headerBar),
             view.overlayWidget);
     }];
+}
+
+- (void)addView:(nonnull GTKView *)subview
+{
+    [self.contentView addSubview: subview];
 }
 @end

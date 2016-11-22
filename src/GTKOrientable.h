@@ -15,6 +15,9 @@
  * the packaging of this file.
  */
 
+#import <ObjFW/ObjFW.h>
+#import <gtk/gtk.h>
+
 /*!
  * @brief The orientations available to orientable views.
  */

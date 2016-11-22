@@ -16,7 +16,7 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKWindowViewController
+@interface MainWindow: GTKWindow
 @property (nonnull) GTKTextField *label;
 @property (nonnull) GTKTextField *menuLabel;
 @property (nonnull) GTKSlider *slider;

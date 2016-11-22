@@ -14,15 +14,15 @@
  * the packaging of this file.
  */
 
-#import "GTKViewController.h"
 #import "GTKOrientable.h"
+#import "GTKView.h"
 
 /*!
  * @brief A class representing a view controller that displays two view hierarchies
  * either side-by-side or one over the other, and allows the user to move the
  * boundary between them.
  */
-@interface GTKSplitViewController: GTKViewController <GTKOrientable>
+@interface GTKSplitView: GTKView <GTKOrientable>
 {
     __block GTKOrientation _orientation;
     __block GTKView *_topLeftView;

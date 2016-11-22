@@ -4,7 +4,7 @@ SUBDIRS = Window \
 					TabbedWindow \
 					SegmentedControl \
 					ProgressIndicator \
-					ListViewController \
+					List \
 					InfoBar \
 					ActionBar \
 					Popup \

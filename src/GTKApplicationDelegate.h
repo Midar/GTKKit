@@ -18,8 +18,6 @@
 
 #import <gtk/gtk.h>
 
-#import "GTKViewController.h"
-
 /*!
  * @brief This macro sets the class used as the app delegate, and provides the
  * main() function.

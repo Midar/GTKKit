@@ -21,6 +21,7 @@ GTKCoder
   GTKKeyedUnarchiver
 GTKResponder
   GTKApplication
+  GTKPopover
   GTKView
     GTKActionBar
     GTKBox
@@ -34,19 +35,17 @@ GTKResponder
       GTKTextField
     GTKImageView
     GTKLevelIndicator
+    GTKListView
     GTKProgressIndicator
     GTKSeparator
+    GTKSplitView
     GTKStatusbar
-  GTKViewController
-    GTKLinearViewController
-    GTKListViewController
-    GTKOffscreenRenderingViewController
-    GTKPopOverViewController
-    GTKSplitViewController
-    GTKTabbedViewController
-    GTKWindowViewController
-      GTKTabbedWindowViewController
+    GTKTabbedView
+  GTKWindow
+    GTKTabbedWindow
+  GTKOffscreenRenderingWindow
 GTKImage
 GTKEvent
 GTKDispatchQueue
+GTKLayoutConstraint
 GTKLayoutConstraints

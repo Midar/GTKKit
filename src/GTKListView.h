@@ -1,4 +1,4 @@
-/*! @file GTKOffscreenRenderingViewController.h
+/*! @file GTKListViewController.h
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,20 +14,25 @@
  * the packaging of this file.
  */
 
-
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "GTKViewController.h"
-#import "GTKImage.h"
+#import "GTKView.h"
+#import "GTKView.h"
+#import "GTKListViewDelegate.h"
+#import "GTKListViewDataSource.h"
 
 /*!
- * @brief A class representing a view controller that renders its view hierarchy
- * off-screen, allowing GTKImage instances to be generated from a view hierarchy.
+ * @brief A class representing a view that manages a vertical list
+ * of views.
  */
-@interface GTKOffscreenRenderingViewController: GTKViewController
+@interface GTKListView: GTKView
 {
-    __block GtkWidget *_offscreenWindow;
+    GtkWidget *_scrollWindow;
+    OFMutableArray *_views;
 }
-@property (readonly) GTKImage *image;
+@property (nullable, weak) id<GTKListViewDelegate> delegate;
+@property (nullable, weak) id<GTKListViewDataSource> dataSource;
+
+- (void)reloadData;
 @end

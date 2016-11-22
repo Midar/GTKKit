@@ -18,14 +18,14 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "GTKWindowViewController.h"
+#import "GTKWindow.h"
 
 /*!
  * @brief A class which represents a window view controller that manages a set
  * of view hierarchies, displaying one at a time, switching between them with
  * a selector control in the header bar.
  */
-@interface GTKTabbedWindowViewController: GTKWindowViewController
+@interface GTKTabbedWindow: GTKWindow
 {
     __block GtkWidget *_stack;
     __block GtkWidget *_switcher;

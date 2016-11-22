@@ -1,4 +1,4 @@
-/*! @file GTKTabbedViewController.m
+/*! @file GTKTabbedWindowViewController.m
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,48 +14,37 @@
  * the packaging of this file.
  */
 
-#import "GTKTabbedViewController.h"
+#import "GTKTabbedWindow.h"
 #import "GTKApplication.h"
 
-@implementation GTKTabbedViewController
+@implementation GTKTabbedWindow
 - init
 {
     self = [super init];
     self.views = [OFMutableDictionary new];
 
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.contentView.mainWidget);
-        g_object_unref(G_OBJECT(self.contentView.mainWidget));
-
-        self.contentView.mainWidget = gtk_frame_new(NULL);
-        g_object_ref_sink(G_OBJECT(self.contentView.mainWidget));
-        gtk_container_add(
-            GTK_CONTAINER(self.contentView.overlayWidget),
-            self.contentView.mainWidget);
-        gtk_widget_show(self.contentView.mainWidget);
 
         _stack = gtk_stack_new();
-        g_object_ref_sink(G_OBJECT(_stack));
+        g_object_ref(G_OBJECT(_stack));
+
+        gtk_widget_destroy(self.contentView.mainWidget);
         gtk_container_add(
-            GTK_CONTAINER(self.contentView.mainWidget),
+            GTK_CONTAINER(self.contentView.overlayWidget),
             _stack);
-        gtk_stack_set_homogeneous(GTK_STACK(_stack), true);
         gtk_widget_show(_stack);
 
         _switcher = gtk_stack_switcher_new();
-        g_object_ref_sink(G_OBJECT(_switcher));
-        gtk_frame_set_label_widget(
-            GTK_FRAME(self.contentView.mainWidget),
-            _switcher);
-        gtk_frame_set_label_align(
-            GTK_FRAME(self.contentView.mainWidget),
-            0.5, 0.5);
+        g_object_ref(G_OBJECT(_switcher));
         gtk_stack_switcher_set_stack(
             GTK_STACK_SWITCHER(_switcher),
             GTK_STACK(_stack));
+
+        gtk_header_bar_set_custom_title(
+            GTK_HEADER_BAR(_headerBar),
+            _switcher);
         gtk_widget_show(_switcher);
     }];
-
     return self;
 }
 
@@ -95,5 +84,30 @@
 {
     GTKView *view = [self tabViewTitled: title];
     [view addSubview: subview];
+}
+
+- (nullable OFString *)titleOfSelectedTab
+{
+    __block const char *str;
+    __block OFString *title;
+        gtk_stack_get_visible_child_name(GTK_STACK(_stack));
+    [GTKApp.dispatch.gtk sync: ^{
+        str = gtk_stack_get_visible_child_name(GTK_STACK(_stack));
+        if (str == NULL) {
+            str = "";
+        }
+        title = [OFString stringWithUTF8String: str];
+    }];
+    return title;
+}
+
+- (int)tabCount
+{
+    return self.views.count;
+}
+
+- (void)setTitleView:(nullable GTKView *)view
+{
+    // Do nothing.
 }
 @end

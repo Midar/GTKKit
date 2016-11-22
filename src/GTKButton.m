@@ -317,12 +317,12 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     }];
 }
 
-- (GTKPopOverViewController *)popOver
+- (GTKPopover *)popOver
 {
     return _popOver;
 }
 
-- (void)setPopOver:(GTKPopOverViewController *)popOver;
+- (void)setPopOver:(GTKPopover *)popOver;
 {
     _popOver = popOver;
     popOver.relativeView = self;

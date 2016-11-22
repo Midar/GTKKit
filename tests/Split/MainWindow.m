@@ -28,14 +28,15 @@
     frame.height = 400;
     self.frame = frame;
 
-    self.split = [GTKSplitViewController new];
-    [self.split.contentView.constraints fixedToTop: 0
-                                            bottom: 0
-                                              left: 0
-                                             right: 0];
-    [self.split.contentView.constraints flexibleWidth: 0];
-    [self.split.contentView.constraints flexibleHeight: 0];
-    [self addViewController: self.split];
+    self.split = [GTKSplitView new];
+    [self.split.constraints fixedToTop: 0
+                                bottom: 0
+                                  left: 0
+                                 right: 0];
+    [self.split.constraints flexibleWidth: 0];
+    [self.split.constraints flexibleHeight: 0];
+
+    [self addView: self.split];
 
     self.leftLabel = [GTKTextField new];
     self.leftLabel.stringValue = @"Left Pane";

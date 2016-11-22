@@ -21,7 +21,7 @@
  * @brief A protocol composed of the optional methods GTKWindowViewController delegate
  * classes can implement.
  */
-@protocol GTKWindowViewControllerDelegate
+@protocol GTKWindowDelegate
 @optional
 
 /*!

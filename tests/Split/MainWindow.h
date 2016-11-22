@@ -16,8 +16,8 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKWindowViewController
-@property (nonnull) GTKSplitViewController *split;
+@interface MainWindow: GTKWindow
+@property (nonnull) GTKSplitView *split;
 @property (nonnull) GTKTextField *leftLabel;
 @property (nonnull) GTKTextField *rightLabel;
 @end

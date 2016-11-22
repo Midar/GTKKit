@@ -18,16 +18,15 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-#import "GTKViewController.h"
 #import "GTKView.h"
-#import "GTKWindowViewControllerDelegate.h"
-#import "GTKPopOverViewController.h"
+#import "GTKWindowDelegate.h"
+#import "GTKPopover.h"
 
 /*!
  * @brief A class representing a view controller that manages a toplevel
  * window and its view hierarchy.
  */
-@interface GTKWindowViewController: GTKViewController
+@interface GTKWindow: GTKResponder
 {
     __block GtkWidget *_window;
     __block GtkWidget *_headerBar;
@@ -39,6 +38,16 @@
     __block GtkWidget *_menuButton;
     __block GTKView   *_titleView;
 }
+
+/*!
+ * @brief The GTKView that holds all this view controller's subviews.
+ */
+@property (nullable) GTKView *contentView;
+
+/*!
+ * @brief The GTKResponder which gets event messages first for this view controller.
+ */
+@property (nullable) GTKResponder *firstResponder;
 
 /*!
  * @brief Whether or not this view controller's window has a close button.
@@ -63,7 +72,7 @@
 /*!
  * @brief The delegate of this window.
  */
-@property (weak, nullable) OFObject<GTKWindowViewControllerDelegate> *delegate;
+@property (weak, nullable) OFObject<GTKWindowDelegate> *delegate;
 
 /*!
  * @brief Whether or not this view controller's window is the toplevel input focus.
@@ -119,7 +128,7 @@
  * @brief The GTKPopOverViewController which manages the popover that is shown
  * when the menu button in the window's header bar is clicked.
  */
-@property (nonnull) GTKPopOverViewController *menuButtonPopOver;
+@property (nonnull) GTKPopover *menuButtonPopOver;
 
 /*!
  * @brief An optional GTKView which can replace the default title and subtitle.
@@ -159,4 +168,12 @@
  * only shown if any of the system-provided buttons on the right are shown).
  */
 - (void)addViewToHeaderBarEnd:(nonnull GTKView *)view;
+
+/*!
+ * @brief Adds the specified view to this view controller's content view as a
+ * subview.
+ *
+ * @pram subview The view to add
+ */
+- (void)addView:(nonnull GTKView *)subview;
 @end

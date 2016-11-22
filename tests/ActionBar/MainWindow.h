@@ -16,6 +16,6 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKWindowViewController
+@interface MainWindow: GTKWindow
 @property (nonnull) GTKActionBar *actions;
 @end

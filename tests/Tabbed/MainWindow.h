@@ -16,6 +16,6 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKWindowViewController
-@property (nonnull) GTKTabbedViewController *tabs;
+@interface MainWindow: GTKWindow
+@property (nonnull) GTKTabbedView *tabs;
 @end

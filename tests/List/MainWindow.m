@@ -1,4 +1,4 @@
-/*! @file GTKListViewController.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,25 +14,30 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
-#import <gtk/gtk.h>
+#import "MainWindow.h"
 
-#import "GTKViewController.h"
-#import "GTKView.h"
-#import "GTKListViewDelegate.h"
-#import "GTKListViewDataSource.h"
-
-/*!
- * @brief A class representing a view controller that manages a vertical list
- * of views.
- */
-@interface GTKListViewController: GTKViewController
+@implementation MainWindow
+- init
 {
-    GtkWidget *_scrollWindow;
-    OFMutableArray *_views;
-}
-@property (nullable, weak) id<GTKListViewDelegate> delegate;
-@property (nullable, weak) id<GTKListViewDataSource> dataSource;
+    self = [super init];
 
-- (void)reloadData;
+    GTKRect frame = self.frame;
+    frame.x = 50;
+    frame.y = 200;
+    frame.width = 500;
+    frame.height = 200;
+    self.frame = frame;
+
+    self.list = [GTKListView new];
+    [self.list.constraints fixedToTop: 5
+                               bottom: 5
+                                 left: 5
+                                right: 5];
+
+    [self addView: self.list];
+
+    self.title = @"List View Controller";
+
+    return self;
+}
 @end

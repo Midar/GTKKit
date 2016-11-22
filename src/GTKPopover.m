@@ -14,15 +14,16 @@
  * the packaging of this file.
  */
 
-#import "GTKPopOverViewController.h"
+#import "GTKPopover.h"
 #import "GTKApplication.h"
 
-@implementation GTKPopOverViewController
+@implementation GTKPopover
 - init
 {
     _width = 100;
     _height = 100;
     self = [super init];
+    self.contentView = [GTKView new];
     [GTKApp.dispatch.gtk sync: ^{
         _popOver = gtk_popover_new(NULL);
         gtk_widget_set_size_request(_popOver, _width, _height);

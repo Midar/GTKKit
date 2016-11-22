@@ -28,14 +28,16 @@
     frame.height = 400;
     self.frame = frame;
 
-    self.tabs = [GTKTabbedViewController new];
-    [self.tabs.contentView.constraints fixedToTop: 5
+    self.tabs = [GTKTabbedView new];
+    [self.tabs.constraints fixedToTop: 5
                                             bottom: 5
                                               left: 5
                                              right: 5];
-    [self.tabs.contentView.constraints flexibleWidth: 0];
-    [self.tabs.contentView.constraints flexibleHeight: 0];
-    [self addViewController: self.tabs];
+    [self.tabs.constraints flexibleWidth: 0];
+    [self.tabs.constraints flexibleHeight: 0];
+
+    [self addView: self.tabs];
+
     [self.tabs addTabTitled: @"Tab One"];
     [self.tabs addTabTitled: @"Tab Two"];
     [self.tabs addTabTitled: @"Tab Three"];

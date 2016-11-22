@@ -16,7 +16,7 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKWindowViewController
+@interface MainWindow: GTKWindow
 @property (nonnull) GTKPopUpButton *popup;
 @property (nonnull) GTKComboBox *combo;
 @end

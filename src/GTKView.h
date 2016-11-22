@@ -19,7 +19,6 @@
 
 #import "GTKResponder.h"
 #import "GTKLayoutConstraints.h"
-#import "GTKViewController.h"
 
 /*!
  * @brief An enumeration of the layers in which a view can render its subviews.
@@ -55,8 +54,6 @@ typedef void (^GTKViewDrawingBlock) (cairo_t * _Nullable cr);
  */
 typedef GdkRectangle GTKRect;
 
-@class GTKViewController;
-
 @class GTKView;
 
 GTKView * _Nullable
@@ -80,7 +77,6 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 @interface GTKView: GTKResponder <GTKCoding>
 {
     bool _hidden;
-    __weak __block GTKViewController *_viewController;
     __block GtkGesture *_overlayDragGesture;
     __block GtkGesture *_mainWidgetDragGesture;
 }
@@ -151,11 +147,6 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  * only affects the view itself, not any of its subviews.
  */
 @property double alpha;
-
-/*!
- * @brief The view controller that ultimately owns this view, if one exists.
- */
-@property (nullable, weak) GTKViewController *viewController;
 
 /*!
  * @brief The frame of the view - its position and size, in the coordinate space

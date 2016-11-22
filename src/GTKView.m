@@ -712,7 +712,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
     [view removeFromSuperview];
     view.superview = self;
     view.nextResponder = self;
-    view.viewController = self.viewController;
 
     [GTKApp.dispatch.gtk sync: ^{
         gtk_overlay_add_overlay(
@@ -753,37 +752,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
     }];
 }
 
-- (GTKViewController *)viewController
-{
-    if (nil == _viewController) {
-        return self.superview.viewController;
-    } else {
-        return _viewController;
-    }
-}
-
-- (void)setViewController:(GTKViewController *)viewController
-{
-    _viewController = viewController;
-}
-
 - (void)becomeFirstResponder
 {
     if (self.canBecomeFirstResponder &&
-        self.shouldBecomeFirstResponder &&
-        nil != self.viewController) {
+        self.shouldBecomeFirstResponder) {
         [self willBecomeFirstResponder];
-        self.viewController.firstResponder = self;
         [self didBecomeFirstResponder];
     }
 }
-
-/*
-- (void)mouseDragged:(nonnull GTKEvent*)event
-{
-    printf("Origin: %d,%d\n", event.originX, event.originY);
-    printf("Delta: %f,%f\n", event.deltaX, event.deltaY);
-    printf("Result: %d,%d\n", event.mouseX, event.mouseY);
-}
-*/
 @end

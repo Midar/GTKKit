@@ -33,7 +33,7 @@
     [self.menuLabel.constraints fixedWidth: 100];
     [self.menuLabel.constraints fixedHeight: 30];
     self.menuLabel.stringValue = @"Hi there!";
-    [self.menuButtonPopOver addView: self.menuLabel];
+    [self.menuButtonPopOver.contentView addSubview: self.menuLabel];
 
     GTKRect frame = self.frame;
     frame.x = 50;
@@ -90,11 +90,11 @@
     [self.label.constraints fixedHeight: 30];
     self.label.stringValue = @"Hello, World!";
 
-    [self addView: self.box];
     [self.box addSubview: self.toggleEditableButton];
     [self.box addSubview: self.toggleMultilineButton];
     [self.box addSubview: self.slider];
-    [self addView: self.label];
+    [self.contentView addSubview: self.box];
+    [self.contentView addSubview: self.label];
 
     self.title = @"Example Window";
     self.subtitle = @"Example Subtitle";

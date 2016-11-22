@@ -14,31 +14,30 @@
  * the packaging of this file.
  */
 
-#import "GTKListViewController.h"
+#import "GTKListView.h"
 #import "GTKApplication.h"
-
 #import "GTKTextField.h"
 
-@implementation GTKListViewController
+@implementation GTKListView
 - init {
     self = [super init];
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.contentView.mainWidget);
+        gtk_widget_destroy(self.mainWidget);
 
         _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
         g_object_ref_sink(G_OBJECT(_scrollWindow));
         gtk_widget_show(_scrollWindow);
 
-        self.contentView.mainWidget = gtk_list_box_new();
-        g_object_ref_sink(G_OBJECT(self.contentView.mainWidget));
-        gtk_widget_show(self.contentView.mainWidget);
+        self.mainWidget = gtk_list_box_new();
+        g_object_ref_sink(G_OBJECT(self.mainWidget));
+        gtk_widget_show(self.mainWidget);
 
         gtk_container_add(
             GTK_CONTAINER(_scrollWindow),
-            self.contentView.mainWidget);
+            self.mainWidget);
 
         gtk_container_add(
-            GTK_CONTAINER(self.contentView.overlayWidget),
+            GTK_CONTAINER(self.overlayWidget),
             _scrollWindow);
 
         _views = [OFMutableArray arrayWithCapacity: self.dataSource.numberOfRows];
@@ -50,10 +49,10 @@
 {
     [GTKApp.dispatch.gtk sync: ^{
         GList *children, *iter;
-        children = gtk_container_get_children(GTK_CONTAINER(self.contentView.mainWidget));
+        children = gtk_container_get_children(GTK_CONTAINER(self.mainWidget));
         for(iter = children; iter != NULL; iter = g_list_next(iter)) {
             gtk_container_remove(
-                GTK_CONTAINER(self.contentView.mainWidget),
+                GTK_CONTAINER(self.mainWidget),
                 GTK_WIDGET(iter->data));
         }
         g_list_free(children);
@@ -61,7 +60,7 @@
         for (GTKView *view in _views) {
             [_views removeObject: view];
         }
-        
+
         if (self.delegate == nil || self.dataSource == nil) {
             return;
         }
@@ -70,12 +69,12 @@
             GTKView *view = [self.dataSource viewForRow: i];
             [_views addObject: view];
             gtk_list_box_insert (
-                GTK_LIST_BOX(self.contentView.mainWidget),
+                GTK_LIST_BOX(self.mainWidget),
                 view.overlayWidget,
                 i);
             if ([self.delegate respondsToSelector: @selector(heightForRow:)]) {
                 GtkListBoxRow *row = gtk_list_box_get_row_at_index(
-                    GTK_LIST_BOX(self.contentView.mainWidget),
+                    GTK_LIST_BOX(self.mainWidget),
                     i);
                 gtk_widget_set_size_request(
                     GTK_WIDGET(row),

@@ -20,7 +20,7 @@
 
 #import "GTKControl.h"
 #import "GTKImage.h"
-#import "GTKPopOverViewController.h"
+#import "GTKPopover.h"
 
 /*!
  * @brief The state of an active button. Equal to true.
@@ -72,7 +72,7 @@ typedef enum GTKButtonType {
     __block GtkWidget *_hiddenRadioButton;
     __block GtkWidget *_imageWidget;
     __block GTKImage *_image;
-    __block __weak GTKPopOverViewController *_popOver;
+    __block __weak GTKPopover *_popOver;
 }
 
 /*!
@@ -97,5 +97,5 @@ typedef enum GTKButtonType {
  * the pop-over will be shown when the button is clicked, in addition to whatever
  * the target-action method and actionBlock might do.
  */
-@property (weak, nullable) GTKPopOverViewController *popOver;
+@property (weak, nullable) GTKPopover *popOver;
 @end

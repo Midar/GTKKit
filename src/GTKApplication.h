@@ -21,6 +21,7 @@
 #import "GTKResponder.h"
 #import "GTKApplicationDelegate.h"
 #import "GTKDispatchQueue.h"
+#import "GTKWindow.h"
 
 extern _Nonnull of_thread_t      gtkkit_objfw_thread;
 extern _Nonnull of_thread_t      gtkkit_gtk_thread;
@@ -63,7 +64,7 @@ extern GTKApplication * _Nonnull GTKApp;
  * @brief The view controller representing the current key window, if there is
  * one.
  */
-@property (nullable, readonly) GTKViewController *keyWindow;
+@property (nullable, readonly) GTKWindow *keyWindow;
 
 /*!
  * @brief The object which is the current first responder.

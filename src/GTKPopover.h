@@ -14,14 +14,15 @@
  * the packaging of this file.
  */
 
-#import "GTKViewController.h"
+#import "GTKResponder.h"
 #import "GTKPositionType.h"
+#import "GTKView.h"
 
 /*!
  * @brief A class representing a view controller that presents a view hierarchy
  * as a pop-up attached to another view.
  */
-@interface GTKPopOverViewController: GTKViewController
+@interface GTKPopover: GTKResponder
 {
     __block GtkWidget *_popOver;
     __block __weak GTKView *_relativeView;
@@ -30,6 +31,12 @@
     __block int _width;
     __block int _height;
 }
+
+/*!
+ * @brief The GTKView that holds all this popover's subviews.
+ */
+@property (nullable) GTKView *contentView;
+
 /*!
  * @brief Whether or not this pop-up is hidden.
  */
@@ -38,9 +45,9 @@
 /*!
  * @brief The view relative to which this pop-up should be shown.
  */
-@property (weak) GTKView *relativeView;
+@property (weak, nullable) GTKView *relativeView;
 
-@property GtkWidget *relativeWidget;
+@property (nullable) GtkWidget *relativeWidget;
 
 /*!
  * @brief The pop-up's preferred position relative to its relativeView. Depending

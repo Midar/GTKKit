@@ -11,12 +11,11 @@ SRCS =	GTKResponder.m                              \
 				GTKLayoutConstraints.m                      \
 				GTKView.m                                   \
 				GTKControl.m                                \
-				GTKViewController.m                         \
-				GTKWindowViewController.m                   \
-				GTKSplitViewController.m                    \
-				GTKTabbedViewController.m                   \
-				GTKTabbedWindowViewController.m             \
-				GTKPopOverViewController.m                  \
+				GTKWindow.m                                 \
+				GTKSplitView.m                              \
+				GTKTabbedView.m                             \
+				GTKTabbedWindow.m                           \
+				GTKPopover.m                                \
 				GTKApplication.m                            \
 				GTKImage.m                                  \
 				GTKImageView.m                              \
@@ -28,10 +27,9 @@ SRCS =	GTKResponder.m                              \
 				GTKPopUpButton.m                            \
 				GTKBox.m                                    \
 				GTKSegmentedControl.m                       \
-				GTKLinearViewController.m                   \
 				GTKSeparator.m                              \
-				GTKListViewController.m                     \
-				GTKOffscreenRenderingViewController.m       \
+				GTKListView.m                               \
+				GTKOffscreenRenderingWindow.m               \
 				GTKInfoBar.m                                \
 				GTKStatusbar.m                              \
 				GTKActionBar.m                              \
@@ -51,7 +49,7 @@ SRCS =	GTKResponder.m                              \
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \
 				GTKApplicationDelegate.h                    \
-				GTKWindowViewControllerDelegate.h           \
+				GTKWindowDelegate.h                         \
 				GTKListViewDataSource.h                     \
 				GTKListViewDelegate.h                       \
 				GTKPositionType.h                           \

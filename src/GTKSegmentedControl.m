@@ -261,7 +261,7 @@ button_press_event_handler(GtkWidget *widget,
             [self setLabel: label forSegment: i];
             GTKImage *image = [self imageForSegment: i];
             [self setImage: image forSegment: i];
-            GTKPopOverViewController *popOver = [self popOverForSegment: i];
+            GTKPopover *popOver = [self popOverForSegment: i];
             [self setPopOver: popOver forSegment: i];
             i++;
         }
@@ -290,7 +290,7 @@ button_press_event_handler(GtkWidget *widget,
         if (NULL != self.actionBlock) {
             self.actionBlock();
         }
-        GTKPopOverViewController *popOver = [self popOverForSegment: self.selectedSegment];
+        GTKPopover *popOver = [self popOverForSegment: self.selectedSegment];
         if (NULL != popOver) {
             popOver.hidden = false;
         }
@@ -380,7 +380,7 @@ button_press_event_handler(GtkWidget *widget,
     }
 }
 
-- (void)setPopOver:(GTKPopOverViewController *)popOver forSegment:(int)segment
+- (void)setPopOver:(GTKPopover *)popOver forSegment:(int)segment
 {
     if (segment >= 32) {
         segment = 31;
@@ -396,16 +396,16 @@ button_press_event_handler(GtkWidget *widget,
     }
 }
 
-- (GTKPopOverViewController *)popOverForSegment:(int)segment
+- (GTKPopover *)popOverForSegment:(int)segment
 {
     if (segment >= 32) {
         segment = 31;
     }
-    GTKPopOverViewController *popOver = [_popOverForSegment objectAtIndex: segment];
+    GTKPopover *popOver = [_popOverForSegment objectAtIndex: segment];
     if ((id)(popOver) == [OFNull null]) {
         return nil;
     } else {
-        return (GTKPopOverViewController *)(popOver);
+        return (GTKPopover *)(popOver);
     }
 }
 

@@ -16,5 +16,5 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKTabbedWindowViewController
+@interface MainWindow: GTKTabbedWindow
 @end

@@ -14,20 +14,20 @@
  * the packaging of this file.
  */
 
-#import "GTKSplitViewController.h"
+#import "GTKSplitView.h"
 #import "GTKApplication.h"
 
-@interface GTKSplitViewController ()
+@interface GTKSplitView ()
 @property bool dividerInitialized;
 @end
 
 static void
-realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
+realize_handler(GtkWidget *widget, GTKSplitView *view)
 {
-    vc.dividerPosition = vc.dividerPosition;
+    view.dividerPosition = view.dividerPosition;
 }
 
-@implementation GTKSplitViewController
+@implementation GTKSplitView
 - init
 {
     self = [super init];
@@ -36,21 +36,21 @@ realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
     _bottomRightView = [GTKView new];
 
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.contentView.mainWidget);
-        self.contentView.mainWidget = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
-        gtk_paned_set_wide_handle(GTK_PANED(self.contentView.mainWidget), true);
+        gtk_widget_destroy(self.mainWidget);
+        self.mainWidget = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
+        gtk_paned_set_wide_handle(GTK_PANED(self.mainWidget), true);
 
         g_signal_connect(
-			G_OBJECT(self.contentView.overlayWidget),
+			G_OBJECT(self.overlayWidget),
 			"realize",
 			G_CALLBACK(realize_handler),
 			(__bridge gpointer)(self));
 
         gtk_container_add(
-            GTK_CONTAINER(self.contentView.overlayWidget),
-            self.contentView.mainWidget);
+            GTK_CONTAINER(self.overlayWidget),
+            self.mainWidget);
 
-        gtk_widget_show(self.contentView.mainWidget);
+        gtk_widget_show(self.mainWidget);
 
         _topLeftFrame = gtk_frame_new(NULL);
         _bottomRightFrame = gtk_frame_new(NULL);
@@ -63,23 +63,23 @@ realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
             GTK_SHADOW_IN);
 
         gtk_paned_add1(
-            GTK_PANED(self.contentView.mainWidget),
+            GTK_PANED(self.mainWidget),
             _topLeftFrame);
         gtk_widget_show(_topLeftFrame);
 
         gtk_paned_add2(
-            GTK_PANED(self.contentView.mainWidget),
+            GTK_PANED(self.mainWidget),
             _bottomRightFrame);
         gtk_widget_show(_bottomRightFrame);
 
         gtk_container_child_set(
-            GTK_CONTAINER(self.contentView.mainWidget),
+            GTK_CONTAINER(self.mainWidget),
             _topLeftFrame,
             "shrink", true,
             "resize", true,
             NULL);
         gtk_container_child_set(
-            GTK_CONTAINER(self.contentView.mainWidget),
+            GTK_CONTAINER(self.mainWidget),
             _bottomRightFrame,
             "shrink", true,
             "resize", true,
@@ -96,8 +96,8 @@ realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
         gtk_widget_show(_bottomRightView.overlayWidget);
     }];
 
-    _topLeftView.nextResponder = self.contentView;
-    _bottomRightView.nextResponder = self.contentView;
+    _topLeftView.nextResponder = self;
+    _bottomRightView.nextResponder = self;
     self.dividerPosition = 0.5;
     return self;
 }
@@ -132,7 +132,7 @@ realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
     _orientation = orientation;
     [GTKApp.dispatch.gtk sync: ^{
         gtk_orientable_set_orientation(
-            GTK_ORIENTABLE(self.contentView.mainWidget),
+            GTK_ORIENTABLE(self.mainWidget),
             (GtkOrientation)(orientation));
     }];
     self.dividerPosition = self.dividerPosition;
@@ -147,14 +147,14 @@ realize_handler(GtkWidget *widget, GTKSplitViewController *vc)
 {
     position = CLAMP(position, 0.0, 1.0);
     _handlePosition = position;
-    double width = (double)(self.contentView.frame.width);
-    double height = (double)(self.contentView.frame.height);
+    double width = (double)(self.frame.width);
+    double height = (double)(self.frame.height);
     double pos;
     if (self.orientation == GTKOrientationHorizontal) {
         pos = width * position;
     } else {
         pos = height * position;
     }
-    gtk_paned_set_position(GTK_PANED(self.contentView.mainWidget), (int)(pos));
+    gtk_paned_set_position(GTK_PANED(self.mainWidget), (int)(pos));
 }
 @end

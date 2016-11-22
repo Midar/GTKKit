@@ -17,7 +17,7 @@
 #import "GTKKit.h"
 #import "MainWindow.h"
 
-@interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowViewControllerDelegate>
+@interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowDelegate>
 @property (nullable) MainWindow *window;
 - (void)popupClicked:(nonnull GTKPopUpButton *)sender;
 - (void)comboClicked:(nonnull GTKPopUpButton *)sender;

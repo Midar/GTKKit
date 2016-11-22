@@ -14,13 +14,14 @@
  * the packaging of this file.
  */
 
-#import "GTKOffscreenRenderingViewController.h"
+#import "GTKOffscreenRenderingWindow.h"
 #import "GTKApplication.h"
 
-@implementation GTKOffscreenRenderingViewController
+@implementation GTKOffscreenRenderingWindow
 - init
 {
     self = [super init];
+    self.contentView = [GTKView new];
     [GTKApp.dispatch.gtk sync: ^{
         _offscreenWindow = gtk_offscreen_window_new();
         g_object_ref_sink(G_OBJECT(_offscreenWindow));
@@ -44,5 +45,31 @@
     GdkPixbuf *pixbuf = gtk_offscreen_window_get_pixbuf(
         GTK_OFFSCREEN_WINDOW(_offscreenWindow));
     return [GTKImage imageWithPixbuf: pixbuf];
+}
+
+- (void)addView:(nonnull GTKView *)subview
+{
+    [self.contentView addSubview: subview];
+}
+
+- (GTKRect)frame
+{
+    __block GTKRect frame;
+    frame.x = 0;
+    frame.y = 0;
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_widget_get_size_request(
+            _offscreenWindow,
+            &frame.width,
+            &frame.height);
+    }];
+    return frame;
+}
+
+- (void)setFrame:(GTKRect)frame
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_widget_set_size_request(_offscreenWindow, frame.width, frame.height);
+    }];
 }
 @end

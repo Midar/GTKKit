@@ -20,7 +20,7 @@
 
 #import "GTKControl.h"
 #import "GTKImage.h"
-#import "GTKPopOverViewController.h"
+#import "GTKPopover.h"
 
 /*!
  * @brief The tracking modes available to segmented controls.
@@ -118,7 +118,7 @@ typedef enum GTKSegmentSwitchTracking {
  * @param popOver The GTKPopOverViewController to attach to the segment.
  * @param segment The segment to which the pop-over should be attached.
  */
-- (void)setPopOver:(GTKPopOverViewController *)popOver forSegment:(int)segment;
+- (void)setPopOver:(GTKPopover *)popOver forSegment:(int)segment;
 
 /*!
  * @brief Gets the GTKPopOverViewController for the specified segment, if one exists.
@@ -127,7 +127,7 @@ typedef enum GTKSegmentSwitchTracking {
  *
  * @returns The GTKPopOverViewController attached to the segment, or nil if there is no pop-over.
  */
-- (GTKPopOverViewController *)popOverForSegment:(int)segment;
+- (GTKPopover *)popOverForSegment:(int)segment;
 
 /*!
  * @brief The state of the specified statement, i.e. if it is pressed or not. This

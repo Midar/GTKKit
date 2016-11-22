@@ -14,30 +14,9 @@
  * the packaging of this file.
  */
 
+#import "GTKKit.h"
 #import "MainWindow.h"
 
-@implementation MainWindow
-- init
-{
-    self = [super init];
-
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
-
-    self.list = [GTKListViewController new];
-    [self.list.contentView.constraints fixedToTop: 5
-                                           bottom: 5
-                                             left: 5
-                                            right: 5];
-
-    [self addViewController: self.list];
-
-    self.title = @"List View Controller";
-
-    return self;
-}
+@interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowDelegate, GTKListViewDelegate, GTKListViewDataSource>
+@property (nullable) MainWindow *window;
 @end

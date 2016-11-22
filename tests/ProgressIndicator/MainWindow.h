@@ -16,7 +16,7 @@
 
 #import "GTKKit.h"
 
-@interface MainWindow: GTKWindowViewController
+@interface MainWindow: GTKWindow
 @property (nonnull) GTKButton *button;
 @property (nonnull) GTKProgressIndicator *progress;
 @end

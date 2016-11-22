@@ -14,13 +14,13 @@
  * the packaging of this file.
  */
 
-#import "GTKViewController.h"
+#import "GTKView.h"
 
 /*!
- * @brief A class representing a view controller that displays any number of
- * view hierarchies one at a time, switching between them using a selector control.
+ * @brief A class representing a view that displays any number of subview
+ * hierarchies one at a time, switching between them using a selector control.
  */
-@interface GTKTabbedViewController: GTKViewController
+@interface GTKTabbedView: GTKView
 {
     __block GtkWidget *_stack;
     __block GtkWidget *_switcher;

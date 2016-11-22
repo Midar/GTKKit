@@ -20,7 +20,7 @@
 
 #import "GTKApplication.h"
 #import "GTKApplicationDelegate.h"
-#import "GTKWindowViewController.h"
+#import "GTKWindow.h"
 
 GTKApplication * _Nonnull GTKApp = nil;
 
@@ -62,9 +62,9 @@ gtkkit_application_main(GTKApplication *app)
     return self;
 }
 
-- (GTKViewController*)keyWindow
+- (GTKWindow *)keyWindow
 {
-    for (GTKWindowViewController *window in self.windows) {
+    for (GTKWindow *window in self.windows) {
         if (window.hasToplevelFocus) {
             return window;
         }

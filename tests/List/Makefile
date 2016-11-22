@@ -1,4 +1,4 @@
-PROG_NOINST = ListViewController
+PROG_NOINST = List
 SRCS = MainWindow.m AppDelegate.m
 
 include ../../buildsys.mk

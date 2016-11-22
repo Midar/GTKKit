@@ -44,7 +44,9 @@ SRCS =	GTKResponder.m                              \
 				OFList+GTKCoding.m                          \
 				OFString+GTKCoding.m                        \
 				OFNumber+GTKCoding.m                        \
-				OFDictionary+GTKCoding.m
+				OFDictionary+GTKCoding.m                    \
+				GTKOutletConnection.m                       \
+				GTKActionConnection.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \

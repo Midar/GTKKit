@@ -61,3 +61,5 @@
 #import "OFString+GTKCoding.h"
 #import "OFNumber+GTKCoding.h"
 #import "OFDictionary+GTKCoding.h"
+#import "GTKOutletConnection.h"
+#import "GTKActionConnection.h"

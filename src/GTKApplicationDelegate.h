@@ -27,7 +27,7 @@ int                                                                            \
 main(int argc, char *argv[])                                                   \
 {                                                                              \
     GTKApp = [GTKApplication sharedApplication];                               \
-	GTKApp.delegateClass = [cls class];                                        \
+    GTKApp.delegateClass = [cls class];                                        \
     GTKApp.argc = &argc;                                                       \
     GTKApp.argv = &argv;                                                       \
     [GTKApp startup];                                                          \

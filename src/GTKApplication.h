@@ -44,6 +44,10 @@ extern GTKApplication * _Nonnull GTKApp;
  * up, tearing down, and managing the overall flow of the application.
  */
 @interface GTKApplication: GTKResponder
+{
+  int * _Nonnull _argc;
+  char * _Nonnull * _Nonnull * _Nonnull _argv;
+}
 
 /*!
  * @brief An object which exposes the three standard GTKDispatchQueue instances

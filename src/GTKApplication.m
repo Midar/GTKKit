@@ -81,6 +81,30 @@ gtkkit_application_main(GTKApplication *app)
     return sharedApplication;
 }
 
+- (int * _Nonnull)argc
+{
+    return _argc;
+}
+
+- (void)setArgc:(int * _Nonnull)argc
+{
+    if (_argc == NULL) {
+        _argc = argc;
+    }
+}
+
+- (char * _Nonnull * _Nonnull * _Nonnull)argv
+{
+    return _argv;
+}
+
+- (void)setArgv:(char * _Nonnull * _Nonnull * _Nonnull)argv
+{
+    if (_argv == NULL) {
+        _argv = argv;
+    }
+}
+
 - (void)terminate
 {
     if ([self.delegate respondsToSelector: @selector(applicationShouldTerminate)]) {

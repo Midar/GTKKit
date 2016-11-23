@@ -37,6 +37,9 @@ SRCS =	GTKResponder.m                              \
 				GTKCoder.m                                  \
 				GTKKeyedArchiver.m                          \
 				GTKKeyedUnarchiver.m                        \
+				GTKOutletConnection.m                       \
+				GTKActionConnection.m                       \
+				GTKLinearView.m                             \
 				OFNull+GTKCoding.m                          \
 				OFURL+GTKCoding.m                           \
 				OFDate+GTKCoding.m                          \
@@ -44,9 +47,7 @@ SRCS =	GTKResponder.m                              \
 				OFList+GTKCoding.m                          \
 				OFString+GTKCoding.m                        \
 				OFNumber+GTKCoding.m                        \
-				OFDictionary+GTKCoding.m                    \
-				GTKOutletConnection.m                       \
-				GTKActionConnection.m
+				OFDictionary+GTKCoding.m
 
 INCLUDES =                                          \
 				${SRCS:.m=.h}	                              \

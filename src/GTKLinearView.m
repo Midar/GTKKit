@@ -87,6 +87,61 @@
     [self layoutSubviews];
 }
 
+- (void)draw
+{
+    [super draw];
+
+    for (GTKView *view in self.backgroundLayerSubviews) {
+        __block GTKRect frame = [self layoutSubview: view];
+        [GTKApp.dispatch.gtk sync: ^{
+            gtk_widget_set_size_request(
+                view.overlayWidget,
+                frame.width, frame.height);
+        }];
+    }
+
+    for (GTKView *view in self.defaultLayerSubviews) {
+        __block GTKRect frame = [self layoutSubview: view];
+        [GTKApp.dispatch.gtk sync: ^{
+            gtk_widget_set_size_request(
+                view.overlayWidget,
+                frame.width, frame.height);
+        }];
+    }
+
+    for (GTKView *view in self.foregroundLayerSubviews) {
+        __block GTKRect frame = [self layoutSubview: view];
+        [GTKApp.dispatch.gtk sync: ^{
+            gtk_widget_set_size_request(
+                view.overlayWidget,
+                frame.width, frame.height);
+        }];
+    }
+
+    for (GTKView *view in self.notificationLayerSubviews) {
+        __block GTKRect frame = [self layoutSubview: view];
+        [GTKApp.dispatch.gtk sync: ^{
+            gtk_widget_set_size_request(
+                view.overlayWidget,
+                frame.width, frame.height);
+        }];
+    }
+}
+
+
+- (GTKRect)layoutSubview:(nonnull GTKView*)subview
+{
+    GTKRect frame = [super layoutSubview: subview];
+    frame.x = 0;
+    frame.y = 0;
+    if (self.orientation == GTKOrientationVertical) {
+        frame.width = self.frame.width;
+    } else {
+        frame.height = self.frame.height;
+    }
+    return frame;
+}
+
 - (GTKOrientation)orientation
 {
     return _orientation;

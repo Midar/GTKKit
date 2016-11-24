@@ -211,6 +211,8 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 
 	self.constraints = [GTKLayoutConstraints new];
 
+    _connections = [OFMutableArray new];
+
 	[GTKApp.dispatch.gtk sync: ^{
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
@@ -350,28 +352,25 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
         self.layer = GTKViewLayerNotification;
     }
 
-    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"GTKKit.coding.view.backgroundLayerSubviews"]) {
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.view.backgroundLayerSubviews"]) {
         [self addSubview: view];
     }
 
-    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"GTKKit.coding.view.defaultLayerSubviews"]) {
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.view.defaultLayerSubviews"]) {
         [self addSubview: view];
     }
 
-    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"GTKKit.coding.view.foregroundLayerSubviews"]) {
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.view.foregroundLayerSubviews"]) {
         [self addSubview: view];
     }
 
-    for (GTKView *view in [decoder decodeObjectOfClass: OFMutableArray.class
-                                                forKey: @"GTKKit.coding.view.notificationLayerSubviews"]) {
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.view.notificationLayerSubviews"]) {
         [self addSubview: view];
     }
 
-    self.constraints = [decoder decodeObjectOfClass: GTKLayoutConstraints.class
-                                             forKey: @"GTKKit.coding.view.constraints"];
+    self.constraints = [decoder decodeObjectForKey: @"GTKKit.coding.view.constraints"];
+
+    _connections = [decoder decodeObjectForKey: @"GTKKit.coding.view.constraints"];
 
     self.hidden = [decoder decodeBoolForKey: @"GTKKit.coding.view.hidden"];
 
@@ -411,6 +410,9 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 
     [encoder encodeObject: self.constraints
                    forKey: @"GTKKit.coding.view.constraints"];
+
+    [encoder encodeObject: _connections
+                   forKey: @"GTKKit.coding.view.connections"];
 
     [encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.view.hidden"];
 

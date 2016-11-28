@@ -71,30 +71,6 @@
     return self;
 }
 
-- initWithSerialization:(OFXMLElement *)element
-{
-    self = [self init];
-    self.data = element.copy;
-    return self;
-}
-
-- (OFXMLElement *)XMLElementBySerializing
-{
-    return self.data.copy;
-}
-
-- (GTKCoder *)copy
-{
-    GTKCoder *copy = [self.class new];
-    copy.data = self.data.copy;
-    return copy;
-}
-
-- (OFString *)XMLString
-{
-    return self.data.XMLString;
-}
-
 - (bool)allowsKeyedCoding
 {
     return false;
@@ -296,6 +272,34 @@
 
     OFString *selector = [self decodeStringForKey: key];
     return OFSelectorFromString(selector);
+}
+@end
+
+@implementation GTKCoder (OFCopying)
+- (GTKCoder *)copy
+{
+    GTKCoder *copy = [self.class new];
+    copy.data = self.data.copy;
+    return copy;
+}
+@end
+
+@implementation GTKCoder (OFSerialization)
+- initWithSerialization:(OFXMLElement *)element
+{
+    self = [self init];
+    self.data = element.copy;
+    return self;
+}
+
+- (OFXMLElement *)XMLElementBySerializing
+{
+    return self.data.copy;
+}
+
+- (OFString *)XMLString
+{
+    return self.data.XMLString;
 }
 @end
 

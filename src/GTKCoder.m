@@ -25,12 +25,12 @@
 
 #define KEYED_CODING_EXCEPTION_CHECK                                           \
     if (!self.allowsKeyedCoding) {                                             \
-         @throw [GTKCoderKeyedCodingNotAllowedException exception];            \
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];             \
     }                                                                          \
 
 #define INVALID_KEY_EXCEPTION_CHECK                                            \
     if (![key isKindOfClass: OFString.class]) {                                \
-         @throw [GTKCoderInvalidKeyException exception];                       \
+        @throw [GTKCoderInvalidKeyException exception];                        \
     }                                                                          \
 
 #define REMOVE_OLD_VALUE_FOR_KEY                                               \

@@ -24,11 +24,22 @@
 @interface GTKCoderKeyedCodingNotAllowedException: OFException
 @end
 
+@interface GTKCoderInvalidKeyException: OFException
+@end
+
+@interface GTKCodingKeyReference: OFObject <GTKCoding>
+@property OFString *key;
+@end
+
 /*!
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
 @interface GTKCoder: OFXMLElement
+{
+    OFMutableDictionary *_objects;
+}
+
 /*!
  * @brief A boolean value dependent on whether or not the coder allows keyed
  * encoding and decoding.

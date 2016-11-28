@@ -21,5 +21,6 @@
 @property double doubleValue;
 @property float floatValue;
 @property int intValue;
+@property OFObject *objectValue;
 @property CodedClass *codedClassValue;
 @end

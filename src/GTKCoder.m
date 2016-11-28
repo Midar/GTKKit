@@ -49,7 +49,7 @@
 @implementation GTKCoderInvalidKeyException
 - (OFString *)description
 {
-return @"Error: Invalid key.";
+    return @"Error: Invalid key.";
 }
 @end
 

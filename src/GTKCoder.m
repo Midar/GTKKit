@@ -192,6 +192,7 @@
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
+    [self setClass: OFString.class forKey: key];
     OFXMLElement *element = [OFXMLElement elementWithName: key];
     element.stringValue = value;
     [self.data addChild: element];
@@ -203,6 +204,11 @@
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
+
+    if ([object isKindOfClass: OFString.class]) {
+        [self encodeString: (OFString *)(object) forKey: key];
+        return;
+    }
 
     [self setClass: object.class forKey: key];
     GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
@@ -275,6 +281,10 @@
     INVALID_KEY_EXCEPTION_CHECK
 
     Class class = [self classForKey: key];
+
+    if (class == OFString.class) {
+        return [self decodeStringForKey: key];
+    }
 
     return [self decodeObjectOfClass: class forKey: key];
 }

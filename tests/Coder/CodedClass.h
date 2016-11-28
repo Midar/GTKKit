@@ -21,6 +21,6 @@
 @property double doubleValue;
 @property float floatValue;
 @property int intValue;
-@property OFObject *objectValue;
+@property OFObject<GTKCoding> *objectValue;
 @property CodedClass *codedClassValue;
 @end

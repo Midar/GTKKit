@@ -79,7 +79,6 @@ return @"Error: Invalid key.";
 - init
 {
     self = [self initWithName: self.className];
-    _objects = [OFMutableDictionary new];
     OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.coding.classNames"];
     [self addChild: classNames];
     return self;
@@ -194,17 +193,6 @@ return @"Error: Invalid key.";
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
-    if ([_objects containsObjectIdenticalTo: object]) {
-        GTKCodingKeyReference *ref = [GTKCodingKeyReference new];
-        for (OFString *_key in _objects.allKeys) {
-            if ([_objects objectForKey: _key] == object) {
-                ref.key = _key;
-                break;
-            }
-        }
-        object = ref;
-    }
-
     [self setClass: object.class forKey: key];
     GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
     [object encodeWithCoder: coder];
@@ -276,20 +264,8 @@ return @"Error: Invalid key.";
     INVALID_KEY_EXCEPTION_CHECK
 
     Class class = [self classForKey: key];
-    id object = [self decodeObjectOfClass: class forKey: key];
 
-    if ([object isKindOfClass: GTKCodingKeyReference.class]) {
-        GTKCodingKeyReference *ref = object;
-        id _object = [_objects objectForKey: ref.key];
-        if (_object == nil) {
-            object = [self decodeObjectForKey: ref.key];
-            [_objects setObject: object forKey: ref.key];
-        } else {
-            object = [_objects objectForKey: ref.key];
-        }
-    }
-
-    return object;
+    return [self decodeObjectOfClass: class forKey: key];
 }
 
 - (SEL)decodeSelectorforKey:(OFString *)key

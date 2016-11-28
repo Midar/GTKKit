@@ -55,11 +55,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     data.codedClassValue.floatValue = 5.4321f;
     data.codedClassValue.intValue = 2;
 
-    OFMutableArray *obj = [OFMutableArray new];
-
-    data.objectValue = obj;
-    data.codedClassValue.objectValue = obj;
-
     GTKCoder *coder = [GTKKeyedArchiver archiveRootObject: data];
 
     CodedClass *test = [GTKKeyedUnarchiver unarchiveObjectOfClass: CodedClass.class
@@ -88,9 +83,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     }
     if (test.codedClassValue.intValue == 2) {
         printf("CodedClass property int test: Passed\n");
-    }
-    if (test.objectValue == test.codedClassValue.objectValue) {
-        printf("Duplicate object test: Passed\n");
     }
 
     CodedClass *data2 = [CodedClass new];

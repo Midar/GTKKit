@@ -36,9 +36,6 @@
  * memory and other storage.
  */
 @interface GTKCoder: OFXMLElement
-{
-    OFMutableDictionary *_objects;
-}
 
 /*!
  * @brief A boolean value dependent on whether or not the coder allows keyed

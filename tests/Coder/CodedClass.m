@@ -25,7 +25,6 @@
     self.doubleValue = [decoder decodeDoubleForKey: @"double"];
     self.floatValue = [decoder decodeFloatForKey: @"float"];
     self.intValue = [decoder decodeIntForKey: @"int"];
-    self.codedClassValue = [decoder decodeObjectForKey: @"objectValue"];
     self.codedClassValue = [decoder decodeObjectForKey: @"codedClass"];
 
     return self;
@@ -37,7 +36,6 @@
     [encoder encodeDouble: self.doubleValue forKey: @"double"];
     [encoder encodeFloat: self.floatValue forKey: @"float"];
     [encoder encodeInt: self.intValue forKey: @"int"];
-    [encoder encodeObject: self.objectValue forKey: @"objectValue"];
     [encoder encodeObject: self.codedClassValue forKey: @"codedClass"];
 }
 @end

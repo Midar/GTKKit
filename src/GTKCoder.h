@@ -134,12 +134,6 @@
 - (id)decodeObjectForKey:(OFString *)key;
 
 /*!
-* @brief Decode the object for the supplied key.
-*/
-- (id)decodeObjectOfClass:(Class)class
-                   forKey:(OFString *)key;
-
-/*!
  * @brief Decode the selector for the supplied key.
  */
 - (SEL)decodeSelectorforKey:(OFString *)key;

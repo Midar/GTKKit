@@ -77,18 +77,12 @@
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
 	self = [self init];
-	self.top = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
-									 forKey: @"top"];
- 	self.bottom = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
- 									    forKey: @"bottom"];
-	self.left = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
-									  forKey: @"left"];
-	self.right = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
-									   forKey: @"right"];
-	self.width = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
-									   forKey: @"width"];
-   	self.height = [decoder decodeObjectOfClass: GTKLayoutConstraint.class
-   									 	forKey: @"height"];
+	self.top = [decoder decodeObjectForKey: @"top"];
+ 	self.bottom = [decoder decodeObjectForKey: @"bottom"];
+	self.left = [decoder decodeObjectForKey: @"left"];
+	self.right = [decoder decodeObjectForKey: @"right"];
+	self.width = [decoder decodeObjectForKey: @"width"];
+   	self.height = [decoder decodeObjectForKey: @"height"];
 	self.centerHorizontal = [decoder decodeBoolForKey: @"centerHorizontal"];
 	self.centerVertical = [decoder decodeBoolForKey: @"centerVertical"];
 	return self;

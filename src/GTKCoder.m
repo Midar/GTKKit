@@ -67,6 +67,14 @@ return @"Error: Invalid key.";
 }
 @end
 
+@interface GTKCoder (Private)
+/*!
+* @brief Decode the object for the supplied key.
+*/
+- (id)decodeObjectOfClass:(Class)class
+                   forKey:(OFString *)key;
+@end
+
 @implementation GTKCoder
 - init
 {
@@ -284,6 +292,17 @@ return @"Error: Invalid key.";
     return object;
 }
 
+- (SEL)decodeSelectorforKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFString *selector = [self decodeStringForKey: key];
+    return OFSelectorFromString(selector);
+}
+@end
+
+@implementation GTKCoder (Private)
 - (id)decodeObjectOfClass:(Class)class
                    forKey:(OFString *)key
 {
@@ -293,14 +312,5 @@ return @"Error: Invalid key.";
     GTKKeyedUnarchiver *coder = (GTKKeyedUnarchiver *)([self elementForName: key]);
     id object = [[class alloc] initWithCoder: coder];
     return object;
-}
-
-- (SEL)decodeSelectorforKey:(OFString *)key
-{
-    KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFString *selector = [self decodeStringForKey: key];
-    return OFSelectorFromString(selector);
 }
 @end

@@ -31,23 +31,29 @@
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
-@interface GTKCoder: OFObject <OFSerialization, OFCopying>
-
+@interface GTKCoder: OFObject
 /*!
  * @brief The OFXMLElement which is used by the coder to store its data.
  */
 @property OFXMLElement *data;
+@end
 
+@interface GTKCoder (OFCopying) <OFCopying>
+@end
+
+@interface GTKCoder (OFSerialization) <OFSerialization>
+/*!
+ * @brief An OFString containing an XML representation of this coder.
+ */
+- (OFString *)XMLString;
+@end
+
+@interface GTKCoder (KeyedCoding)
 /*!
  * @brief A boolean value dependent on whether or not the coder allows keyed
  * encoding and decoding.
  */
 @property (readonly) bool allowsKeyedCoding;
-
-/*!
- * @brief An OFString containing an XML representation of this coder.
- */
-- (OFString *)XMLString;
 
 /*!
  * @brief Returns true if the coder has a value for the supplied key.

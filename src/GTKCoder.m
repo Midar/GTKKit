@@ -85,6 +85,25 @@ return @"Error: Invalid key.";
     return self;
 }
 
+- initWithSerialization:(OFXMLElement *)element
+{
+    self = [self init];
+    self.data = element.copy;
+
+
+    return self;
+}
+
+- (OFXMLElement *)XMLElementBySerializing
+{
+    return self.data.copy;
+}
+
+- (OFString *)XMLString
+{
+    return self.data.XMLString;
+}
+
 - (bool)allowsKeyedCoding
 {
     return false;
@@ -198,7 +217,7 @@ return @"Error: Invalid key.";
     GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
     [object encodeWithCoder: coder];
     coder.data.name = key;
-    [self.data addChild: coder.data];
+    [self.data addChild: coder.XMLElementBySerializing];
 }
 
 - (void)encodeSelector:(SEL)selector
@@ -285,9 +304,8 @@ return @"Error: Invalid key.";
 {
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
-
-    GTKKeyedUnarchiver *coder = [GTKKeyedUnarchiver new];
-    coder.data = [self.data elementForName: key];
+    OFXMLElement *xml = [self.data elementForName: key];
+    GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
     id object = [[class alloc] initWithCoder: coder];
     return object;
 }

@@ -57,7 +57,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     GTKCoder *coder = [GTKKeyedArchiver archiveRootObject: data];
 
-    GTKCoder *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.data.XMLString];
+    GTKCoder *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.XMLString];
 
     CodedClass *test = [GTKKeyedUnarchiver unarchiveObjectOfClass: CodedClass.class
                                                         withCoder: decoder];

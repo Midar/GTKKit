@@ -35,7 +35,7 @@
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
-@interface GTKCoder: OFObject
+@interface GTKCoder: OFObject <OFSerialization>
 
 @property OFXMLElement *data;
 
@@ -44,6 +44,8 @@
  * encoding and decoding.
  */
 @property (readonly) bool allowsKeyedCoding;
+
+- (OFString *)XMLString;
 
 /*!
  * @brief Returns true if the coder has a value for the supplied key.

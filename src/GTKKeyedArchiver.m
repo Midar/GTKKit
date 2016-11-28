@@ -45,7 +45,7 @@
         return;
     }
 
-    OFString *string = self.XMLString;
+    OFString *string = self.data.XMLString;
 
     [string writeToFile: url.path];
 }

@@ -57,8 +57,10 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     GTKCoder *coder = [GTKKeyedArchiver archiveRootObject: data];
 
+    GTKCoder *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.data.XMLString];
+
     CodedClass *test = [GTKKeyedUnarchiver unarchiveObjectOfClass: CodedClass.class
-                                                        withCoder: coder];
+                                                        withCoder: decoder];
 
     if ([test.stringValue isEqual: @"abcdefghij1234567890"]) {
         printf("String test 2: Passed\n");

@@ -32,7 +32,7 @@ SEL OFSelectorFromString(OFString *selector)
 @implementation OFString (GTKCoding)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
-    OFString *value = [[decoder attributeForName: @"GTKKit.GTKCoding.string"] stringValue];
+    OFString *value = [[decoder.data attributeForName: @"GTKKit.GTKCoding.string"] stringValue];
 
     self = [self initWithString: value];
 
@@ -41,7 +41,7 @@ SEL OFSelectorFromString(OFString *selector)
 
 - (void)encodeWithCoder:(GTKCoder *)encoder
 {
-    [encoder addAttributeWithName: @"GTKKit.GTKCoding.string"
-                      stringValue: self];
+    [encoder.data addAttributeWithName: @"GTKKit.GTKCoding.string"
+                           stringValue: self];
 }
 @end

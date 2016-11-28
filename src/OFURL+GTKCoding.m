@@ -21,7 +21,7 @@
 @implementation OFURL (GTKCoding)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
-    OFXMLElement *element = [decoder elementForName: @"GTKKit.coding.URL"];
+    OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.URL"];
     OFURL *url = element.stringValue.objectByDeserializing;
     self = url;
     return self;
@@ -31,6 +31,6 @@
 {
     OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.URL"];
     element.stringValue = self.stringBySerializing;
-    [encoder addChild: element];
+    [encoder.data addChild: element];
 }
 @end

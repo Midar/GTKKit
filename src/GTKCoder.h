@@ -35,7 +35,9 @@
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
-@interface GTKCoder: OFXMLElement
+@interface GTKCoder: OFObject
+
+@property OFXMLElement *data;
 
 /*!
  * @brief A boolean value dependent on whether or not the coder allows keyed

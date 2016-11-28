@@ -21,7 +21,7 @@
 @implementation OFNumber (GTKCoding)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
-    OFXMLElement *element = [decoder elementForName: @"GTKKit.coding.number"];
+    OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.number"];
     OFNumber *number = element.stringValue.objectByDeserializing;
     self = number;
     return self;
@@ -31,6 +31,6 @@
 {
     OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.number"];
     element.stringValue = self.stringBySerializing;
-    [encoder addChild: element];
+    [encoder.data addChild: element];
 }
 @end

@@ -31,7 +31,8 @@
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
     self = [self init];
-    GTKCoder *coder = (GTKCoder *)[decoder elementForName: @"GTKKit.coding.list"];
+    GTKCoder *coder = [GTKKeyedUnarchiver new];
+    coder.data = [decoder.data elementForName: @"GTKKit.coding.list"];
     OFArray *array = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class
                                                       withCoder: coder];
     for (id object in array) {
@@ -44,7 +45,7 @@
 {
     OFArray *array = self.objectEnumerator.allObjects;
     GTKCoder *coder = [GTKKeyedArchiver archiveRootObject: array];
-    coder.name = @"GTKKit.coding.list";
-    [encoder addChild: coder];
+    coder.data.name = @"GTKKit.coding.list";
+    [encoder.data addChild: coder.data];
 }
 @end

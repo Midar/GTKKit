@@ -27,8 +27,11 @@
     GTKCoder *keyCoder, *valueCoder;
     OFArray *keys, *values;
 
-    keyCoder = (GTKCoder *)[decoder elementForName: @"GTKKit.coding.dictionary.keys"];
-    valueCoder = (GTKCoder *)[decoder elementForName: @"GTKKit.coding.dictionary.values"];
+    keyCoder = [GTKKeyedUnarchiver new];
+    keyCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.keys"];
+
+    valueCoder = [GTKKeyedUnarchiver new];
+    valueCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.values"];
 
     keys = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: keyCoder];
     values = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: valueCoder];
@@ -42,9 +45,9 @@
     GTKCoder *keys, *values;
     keys = [GTKKeyedArchiver archiveRootObject: self.allKeys];
     values = [GTKKeyedArchiver archiveRootObject: self.allObjects];
-    keys.name = @"GTKKit.coding.dictionary.keys";
-    values.name = @"GTKKit.coding.dictionary.values";
-    [encoder addChild: keys];
-    [encoder addChild: values];
+    keys.data.name = @"GTKKit.coding.dictionary.keys";
+    values.data.name = @"GTKKit.coding.dictionary.values";
+    [encoder.data addChild: keys.data];
+    [encoder.data addChild: values.data];
 }
 @end

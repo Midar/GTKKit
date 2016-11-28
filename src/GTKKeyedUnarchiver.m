@@ -29,7 +29,15 @@
 {
     OFString *string = [OFString stringWithContentsOfURL: url];
 
-    return [[self alloc] initWithXMLString: string];
+    return [self keyedUnarchiverWithXMLString: string];
+}
+
++ (instancetype)keyedUnarchiverWithXMLString:(OFString *)string
+{
+    GTKKeyedUnarchiver *coder = [self new];
+    OFXMLElement *data = [OFXMLElement elementWithXMLString: string];
+    coder.data = data;
+    return coder;
 }
 
 + (id)unarchiveObjectOfClass:(Class)class

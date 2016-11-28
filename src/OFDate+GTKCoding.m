@@ -28,7 +28,7 @@
 @implementation OFDate (GTKCoding)
 - (instancetype)initWithCoder:(GTKCoder *)decoder
 {
-    OFXMLElement *element = [decoder elementForName: @"GTKKit.coding.date"];
+    OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.date"];
     OFDate *date = element.stringValue.objectByDeserializing;
     self = date;
     return self;
@@ -38,6 +38,6 @@
 {
     OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.date"];
     element.stringValue = self.stringBySerializing;
-    [encoder addChild: element];
+    [encoder.data addChild: element];
 }
 @end

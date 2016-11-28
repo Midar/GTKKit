@@ -34,9 +34,9 @@
     }                                                                          \
 
 #define REMOVE_OLD_VALUE_FOR_KEY                                               \
-    OFArray *elements = [self elementsForName: key];                           \
+    OFArray *elements = [self.data elementsForName: key];                      \
     for (OFXMLElement *element in elements) {                                  \
-        [self removeChild: element];                                           \
+        [self.data removeChild: element];                                      \
     }                                                                          \
 
 @implementation GTKCoderKeyedCodingNotAllowedException
@@ -78,9 +78,10 @@ return @"Error: Invalid key.";
 @implementation GTKCoder
 - init
 {
-    self = [self initWithName: self.className];
+    self = [super init];
+    self.data = [OFXMLElement elementWithName: self.className];
     OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.coding.classNames"];
-    [self addChild: classNames];
+    [self.data addChild: classNames];
     return self;
 }
 
@@ -94,7 +95,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    return nil != [self elementsForName: key];
+    return nil != [self.data elementsForName: key];
 }
 
 - (void)setClass:(Class)class
@@ -105,7 +106,7 @@ return @"Error: Invalid key.";
 
     OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
 
-    OFXMLElement *classNames = [self elementForName: @"GTKKit.coding.classNames"];
+    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
     [classNames removeAttributeForName: key];
     [classNames addAttributeWithName: key
                          stringValue: className];
@@ -116,7 +117,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    OFXMLElement *classNames = [self elementForName: @"GTKKit.coding.classNames"];
+    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
     OFString *className = [[classNames attributeForName: key] stringValue];
     Class class = objc_getClass(className.UTF8String);
     return class;
@@ -132,7 +133,7 @@ return @"Error: Invalid key.";
     OFString *string = value ? @"true" : @"false";
     OFXMLElement *element = string.XMLElementBySerializing;
     element.name = key;
-    [self addChild: element];
+    [self.data addChild: element];
 }
 
 - (void)encodeDouble:(double)value
@@ -145,7 +146,7 @@ return @"Error: Invalid key.";
     OFNumber *number = [OFNumber numberWithDouble: value];
     OFXMLElement *element = [OFXMLElement elementWithName: key];
     element.stringValue = number.stringBySerializing;
-    [self addChild: element];
+    [self.data addChild: element];
 }
 
 - (void)encodeFloat:(float)value
@@ -158,7 +159,7 @@ return @"Error: Invalid key.";
     OFNumber *number = [OFNumber numberWithFloat: value];
     OFXMLElement *element = [OFXMLElement elementWithName: key];
     element.stringValue = number.stringBySerializing;
-    [self addChild: element];
+    [self.data addChild: element];
 }
 
 - (void)encodeInt:(int)value
@@ -171,7 +172,7 @@ return @"Error: Invalid key.";
     OFNumber *number = [OFNumber numberWithInt: value];
     OFXMLElement *element = [OFXMLElement elementWithName: key];
     element.stringValue = number.stringBySerializing;
-    [self addChild: element];
+    [self.data addChild: element];
 }
 
 - (void)encodeString:(OFString *)value
@@ -183,7 +184,7 @@ return @"Error: Invalid key.";
 
     OFXMLElement *element = [OFXMLElement elementWithName: key];
     element.stringValue = value;
-    [self addChild: element];
+    [self.data addChild: element];
 }
 
 - (void)encodeObject:(OFObject<GTKCoding> *)object
@@ -196,8 +197,8 @@ return @"Error: Invalid key.";
     [self setClass: object.class forKey: key];
     GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
     [object encodeWithCoder: coder];
-    coder.name = key;
-    [self addChild: coder];
+    coder.data.name = key;
+    [self.data addChild: coder.data];
 }
 
 - (void)encodeSelector:(SEL)selector
@@ -214,7 +215,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    OFXMLElement *element = [self elementForName: key];
+    OFXMLElement *element = [self.data elementForName: key];
     OFString *string = [[OFString alloc] initWithSerialization: element];
     return [string isEqual: @"true"];
 }
@@ -224,7 +225,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    OFXMLElement *element = [self elementForName: key];
+    OFXMLElement *element = [self.data elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.doubleValue;
 }
@@ -234,7 +235,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    OFXMLElement *element = [self elementForName: key];
+    OFXMLElement *element = [self.data elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.floatValue;
 }
@@ -244,7 +245,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    OFXMLElement *element = [self elementForName: key];
+    OFXMLElement *element = [self.data elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.intValue;
 }
@@ -254,7 +255,7 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    OFXMLElement *element = [self elementForName: key];
+    OFXMLElement *element = [self.data elementForName: key];
     return element.stringValue;
 }
 
@@ -285,7 +286,8 @@ return @"Error: Invalid key.";
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    GTKKeyedUnarchiver *coder = (GTKKeyedUnarchiver *)([self elementForName: key]);
+    GTKKeyedUnarchiver *coder = [GTKKeyedUnarchiver new];
+    coder.data = [self.data elementForName: key];
     id object = [[class alloc] initWithCoder: coder];
     return object;
 }

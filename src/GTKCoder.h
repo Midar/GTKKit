@@ -31,7 +31,7 @@
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
-@interface GTKCoder: OFObject <OFSerialization>
+@interface GTKCoder: OFObject <OFSerialization, OFCopying>
 
 /*!
  * @brief The OFXMLElement which is used by the coder to store its data.

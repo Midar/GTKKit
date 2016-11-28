@@ -83,6 +83,13 @@
     return self.data.copy;
 }
 
+- (GTKCoder *)copy
+{
+    GTKCoder *copy = [self.class new];
+    copy.data = self.data.copy;
+    return copy;
+}
+
 - (OFString *)XMLString
 {
     return self.data.XMLString;

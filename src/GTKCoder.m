@@ -75,8 +75,6 @@
 {
     self = [self init];
     self.data = element.copy;
-
-
     return self;
 }
 

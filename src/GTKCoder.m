@@ -53,20 +53,6 @@ return @"Error: Invalid key.";
 }
 @end
 
-@implementation GTKCodingKeyReference
-- (instancetype)initWithCoder:(GTKCoder *)decoder
-{
-    self = [self init];
-    self.key = [decoder decodeStringForKey: @"GTKKit.coding.keyReference.key"];
-    return self;
-}
-
-- (void)encodeWithCoder:(GTKCoder *)encoder
-{
-    [encoder encodeString: self.key forKey: @"GTKKit.coding.keyReference.key"];
-}
-@end
-
 @interface GTKCoder (Private)
 /*!
 * @brief Decode the object for the supplied key.

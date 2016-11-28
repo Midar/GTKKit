@@ -27,16 +27,15 @@
 @interface GTKCoderInvalidKeyException: OFException
 @end
 
-@interface GTKCodingKeyReference: OFObject <GTKCoding>
-@property OFString *key;
-@end
-
 /*!
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
 @interface GTKCoder: OFObject <OFSerialization>
 
+/*!
+ * @brief The OFXMLElement which is used by the coder to store its data.
+ */
 @property OFXMLElement *data;
 
 /*!
@@ -45,6 +44,9 @@
  */
 @property (readonly) bool allowsKeyedCoding;
 
+/*!
+ * @brief An OFString containing an XML representation of this coder.
+ */
 - (OFString *)XMLString;
 
 /*!

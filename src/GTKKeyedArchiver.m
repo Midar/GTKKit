@@ -65,7 +65,7 @@
 {
     INVALID_KEY_EXCEPTION_CHECK
 
-    return nil != [self.data elementsForName: key];
+    return [[self.data elementsForName: key] count] > 0;
 }
 
 - (void)setClass:(Class)class

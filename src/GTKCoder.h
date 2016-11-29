@@ -31,12 +31,6 @@
         @throw [GTKCoderInvalidKeyException exception];                        \
     }                                                                          \
 
-#define REMOVE_OLD_VALUE_FOR_KEY                                               \
-    OFArray *elements = [self.data elementsForName: key];                      \
-    for (OFXMLElement *element in elements) {                                  \
-        [self.data removeChild: element];                                      \
-    }          
-
 @interface GTKCoderKeyedCodingNotAllowedException: OFException
 @end
 

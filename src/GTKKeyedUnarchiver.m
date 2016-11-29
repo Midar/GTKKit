@@ -49,7 +49,7 @@
 }
 
 + (id)unarchiveObjectOfClass:(Class)class
-                   withCoder:(GTKCoder *)coder
+                   withCoder:(GTKKeyedUnarchiver *)coder
 {
     id object = [[class alloc] initWithCoder: coder];
     return object;
@@ -70,7 +70,6 @@
 
 - (bool)containsValueForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     return nil != [self.data elementsForName: key];
@@ -78,7 +77,6 @@
 
 - (Class)classForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
@@ -89,7 +87,6 @@
 
 - (bool)decodeBoolForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *element = [self.data elementForName: key];
@@ -99,7 +96,6 @@
 
 - (double)decodeDoubleForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *element = [self.data elementForName: key];
@@ -109,7 +105,6 @@
 
 - (float)decodeFloatForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *element = [self.data elementForName: key];
@@ -119,7 +114,6 @@
 
 - (int)decodeIntForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *element = [self.data elementForName: key];
@@ -129,7 +123,6 @@
 
 - (OFString *)decodeStringForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *element = [self.data elementForName: key];
@@ -138,7 +131,6 @@
 
 - (id)decodeObjectForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     Class class = [self classForKey: key];
@@ -152,7 +144,6 @@
 
 - (SEL)decodeSelectorforKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFString *selector = [self decodeStringForKey: key];
@@ -164,8 +155,6 @@
 - (id)decodeObjectOfClass:(Class)class
                    forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
     OFXMLElement *xml = [self.data elementForName: key];
     GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
     id object = [[class alloc] initWithCoder: coder];

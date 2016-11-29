@@ -17,6 +17,12 @@
 
 #import "GTKKeyedArchiver.h"
 
+#define REMOVE_OLD_VALUE_FOR_KEY                                               \
+    OFArray *elements = [self.data elementsForName: key];                      \
+    for (OFXMLElement *element in elements) {                                  \
+        [self.data removeChild: element];                                      \
+    }                                                                          \
+
 @implementation GTKKeyedArchiver
 + (instancetype)archiveRootObject:(id<GTKCoding>)object
 {
@@ -57,7 +63,6 @@
 
 - (bool)containsValueForKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     return nil != [self.data elementsForName: key];
@@ -66,7 +71,6 @@
 - (void)setClass:(Class)class
           forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
@@ -80,7 +84,6 @@
 - (void)encodeBool:(bool)value
             forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
@@ -93,7 +96,6 @@
 - (void)encodeDouble:(double)value
               forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
@@ -106,7 +108,6 @@
 - (void)encodeFloat:(float)value
              forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
@@ -119,7 +120,6 @@
 - (void)encodeInt:(int)value
            forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
@@ -132,7 +132,6 @@
 - (void)encodeString:(OFString *)value
               forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
@@ -145,7 +144,6 @@
 - (void)encodeObject:(OFObject<GTKCoding> *)object
               forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
     REMOVE_OLD_VALUE_FOR_KEY
 
@@ -164,7 +162,6 @@
 - (void)encodeSelector:(SEL)selector
                 forKey:(OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
     [self encodeString: OFStringFromSelector(selector) forKey: key];

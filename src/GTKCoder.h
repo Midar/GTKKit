@@ -70,16 +70,6 @@
  */
 - (bool)containsValueForKey:(OFString *)key;
 
-/*!
- * @brief Returns the class specified for the given key.
- */
-- (Class)classForKey:(OFString *)key;
-
-/*!
- * @brief Sets the class specified for the given key.
- */
-- (void)setClass:(Class)class forKey:(OFString *)key;
-
  /*!
   * @brief Encode the supplied bool value for the supplied key.
   */

@@ -60,18 +60,6 @@
     return false;
 }
 
-- (void)setClass:(Class)class
-          forKey:(OFString *)key
-{
-    KEYED_CODING_EXCEPTION_CHECK
-}
-
-- (Class)classForKey:(OFString *)key
-{
-    KEYED_CODING_EXCEPTION_CHECK
-    return nil;
-}
-
 - (void)encodeBool:(bool)value
             forKey:(OFString *)key
 {

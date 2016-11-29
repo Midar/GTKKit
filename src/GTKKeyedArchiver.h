@@ -29,4 +29,5 @@
 + (void)archiveRootObject:(id<GTKCoding>)object
                     toURL:(OFURL *)url;
 - (void)writeToURL:(OFURL *)url;
+- (void)setClass:(Class)class forKey:(OFString *)key;
 @end

@@ -57,8 +57,6 @@
 - (bool)containsValueForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
     return false;
 }
 

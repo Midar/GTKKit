@@ -46,7 +46,9 @@
     [self.data addChild: classNames];
     return self;
 }
+@end
 
+@implementation GTKCoder (KeyedCoding)
 - (bool)allowsKeyedCoding
 {
     return false;

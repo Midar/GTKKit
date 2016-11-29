@@ -31,5 +31,4 @@
                    withCoder:(GTKCoder *)coder;
 + (id)unarchiveObjectOfClass:(Class)class
                      withURL:(OFURL *)url;
-- (Class)classForKey:(OFString *)key;
 @end

@@ -23,6 +23,10 @@
         [self.data removeChild: element];                                      \
     }                                                                          \
 
+@interface GTKKeyedArchiver (Private)
+- (void)setClass:(Class)class forKey:(OFString *)key;
+@end
+
 @implementation GTKKeyedArchiver
 + (instancetype)archiveRootObject:(id<GTKCoding>)object
 {
@@ -59,26 +63,6 @@
 - (bool)allowsKeyedCoding
 {
     return true;
-}
-
-- (bool)containsValueForKey:(OFString *)key
-{
-    INVALID_KEY_EXCEPTION_CHECK
-
-    return [[self.data elementsForName: key] count] > 0;
-}
-
-- (void)setClass:(Class)class
-          forKey:(OFString *)key
-{
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
-
-    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
-    [classNames removeAttributeForName: key];
-    [classNames addAttributeWithName: key
-                         stringValue: className];
 }
 
 - (void)encodeBool:(bool)value
@@ -165,5 +149,20 @@
     INVALID_KEY_EXCEPTION_CHECK
 
     [self encodeString: OFStringFromSelector(selector) forKey: key];
+}
+@end
+
+@implementation GTKKeyedArchiver (Private)
+- (void)setClass:(Class)class
+          forKey:(OFString *)key
+{
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
+
+    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
+    [classNames removeAttributeForName: key];
+    [classNames addAttributeWithName: key
+                         stringValue: className];
 }
 @end

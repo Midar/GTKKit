@@ -20,6 +20,10 @@
 
 #import "GTKKeyedUnarchiver.h"
 
+@interface GTKKeyedUnarchiver (Private)
+- (Class)classForKey:(OFString *)key;
+@end
+
 /*!
  * @brief A class representing keyed archiver objects which have the ability to
  * write themselves to files.
@@ -65,16 +69,6 @@
     INVALID_KEY_EXCEPTION_CHECK
 
     return [[self.data elementsForName: key] count] > 0;
-}
-
-- (Class)classForKey:(OFString *)key
-{
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
-    OFString *className = [[classNames attributeForName: key] stringValue];
-    Class class = objc_getClass(className.UTF8String);
-    return class;
 }
 
 - (bool)decodeBoolForKey:(OFString *)key
@@ -142,5 +136,17 @@
 
     OFString *selector = [self decodeStringForKey: key];
     return OFSelectorFromString(selector);
+}
+@end
+
+@implementation GTKKeyedUnarchiver (Private)
+- (Class)classForKey:(OFString *)key
+{
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
+    OFString *className = [[classNames attributeForName: key] stringValue];
+    Class class = objc_getClass(className.UTF8String);
+    return class;
 }
 @end

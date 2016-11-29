@@ -17,6 +17,8 @@
 
 #import "GTKLevelIndicator.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKLevelIndicator
 - init
@@ -27,7 +29,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     self.mode = [[decoder decodeStringForKey: @"GTKKit.coding.levelIndicator.mode"] isEqual: @"continuous"] ?
@@ -41,7 +43,7 @@
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeString: self.mode == GTKLevelModeContinuous ? @"continuous" : @"discrete"

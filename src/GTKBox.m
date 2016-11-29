@@ -17,6 +17,8 @@
 
 #import "GTKBox.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKBox
 - (void)createMainWidget
@@ -38,14 +40,14 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     self.label = [decoder decodeStringForKey: @"GTKKit.coding.box.label"];
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeString: self.label forKey: @"GTKKit.coding.box.label"];

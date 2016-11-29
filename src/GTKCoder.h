@@ -21,6 +21,22 @@
 #import "GTKCoding.h"
 #import "OFString+GTKCoding.h"
 
+#define KEYED_CODING_EXCEPTION_CHECK                                           \
+    if (!self.allowsKeyedCoding) {                                             \
+        @throw [GTKCoderKeyedCodingNotAllowedException exception];             \
+    }                                                                          \
+
+#define INVALID_KEY_EXCEPTION_CHECK                                            \
+    if (![key isKindOfClass: OFString.class]) {                                \
+        @throw [GTKCoderInvalidKeyException exception];                        \
+    }                                                                          \
+
+#define REMOVE_OLD_VALUE_FOR_KEY                                               \
+    OFArray *elements = [self.data elementsForName: key];                      \
+    for (OFXMLElement *element in elements) {                                  \
+        [self.data removeChild: element];                                      \
+    }          
+
 @interface GTKCoderKeyedCodingNotAllowedException: OFException
 @end
 

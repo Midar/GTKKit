@@ -16,6 +16,8 @@
 
 #import "GTKSeparator.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKSeparator
 - init
@@ -25,7 +27,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
@@ -35,7 +37,7 @@
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
 

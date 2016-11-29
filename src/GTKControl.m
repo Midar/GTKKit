@@ -16,6 +16,8 @@
 
 #import "GTKControl.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKControl
 - init
@@ -25,14 +27,14 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     self.tag = [decoder decodeIntForKey: @"GTKKit.coding.control.tag"];
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeInt: self.tag forKey: @"GTKKit.coding.control.tag"];

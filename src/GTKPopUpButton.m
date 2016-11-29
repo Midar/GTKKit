@@ -18,6 +18,8 @@
 #import "GTKPopUpButton.h"
 #import "GTKApplication.h"
 #import "OFArray+GTKCoding.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @interface GTKPopUpButton ()
 - (void)selectedItemChanged:(nonnull GTKEvent *)event;
@@ -49,7 +51,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     for (OFString *title in [decoder decodeObjectForKey: @"GTKKit.coding.popUpButton.popUpItems"]) {
@@ -58,7 +60,7 @@ changed_handler(GtkComboBox *widget, GTKPopUpButton *button)
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeObject: _items forKey: @"GTKKit.coding.popUpButton.popUpItems"];

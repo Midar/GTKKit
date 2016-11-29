@@ -21,23 +21,7 @@
 #import "OFNumber+GTKCoding.h"
 #import "OFString+GTKCoding.h"
 #import "OFArray+GTKCoding.h"
-#import "OFDictionary+GTKCoding.h"
-
-#define KEYED_CODING_EXCEPTION_CHECK                                           \
-    if (!self.allowsKeyedCoding) {                                             \
-        @throw [GTKCoderKeyedCodingNotAllowedException exception];             \
-    }                                                                          \
-
-#define INVALID_KEY_EXCEPTION_CHECK                                            \
-    if (![key isKindOfClass: OFString.class]) {                                \
-        @throw [GTKCoderInvalidKeyException exception];                        \
-    }                                                                          \
-
-#define REMOVE_OLD_VALUE_FOR_KEY                                               \
-    OFArray *elements = [self.data elementsForName: key];                      \
-    for (OFXMLElement *element in elements) {                                  \
-        [self.data removeChild: element];                                      \
-    }                                                                          \
+#import "OFDictionary+GTKCoding.h"                                                                \
 
 @implementation GTKCoderKeyedCodingNotAllowedException
 - (OFString *)description
@@ -53,19 +37,11 @@
 }
 @end
 
-@interface GTKCoder (Private)
-/*!
-* @brief Decode the object for the supplied key.
-*/
-- (id)decodeObjectOfClass:(Class)class
-                   forKey:(OFString *)key;
-@end
-
 @implementation GTKCoder
 - init
 {
     self = [super init];
-    self.data = [OFXMLElement elementWithName: self.className];
+    self.data = [OFXMLElement elementWithName: @"GTKKit.coding.coder"];
     OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.coding.classNames"];
     [self.data addChild: classNames];
     return self;
@@ -81,197 +57,103 @@
     KEYED_CODING_EXCEPTION_CHECK
     INVALID_KEY_EXCEPTION_CHECK
 
-    return nil != [self.data elementsForName: key];
+    return false;
 }
 
 - (void)setClass:(Class)class
           forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
-
-    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
-    [classNames removeAttributeForName: key];
-    [classNames addAttributeWithName: key
-                         stringValue: className];
 }
 
 - (Class)classForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
-    OFString *className = [[classNames attributeForName: key] stringValue];
-    Class class = objc_getClass(className.UTF8String);
-    return class;
+    return nil;
 }
 
 - (void)encodeBool:(bool)value
             forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    REMOVE_OLD_VALUE_FOR_KEY
-
-    OFString *string = value ? @"true" : @"false";
-    OFXMLElement *element = string.XMLElementBySerializing;
-    element.name = key;
-    [self.data addChild: element];
 }
 
 - (void)encodeDouble:(double)value
               forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    REMOVE_OLD_VALUE_FOR_KEY
-
-    OFNumber *number = [OFNumber numberWithDouble: value];
-    OFXMLElement *element = [OFXMLElement elementWithName: key];
-    element.stringValue = number.stringBySerializing;
-    [self.data addChild: element];
 }
 
 - (void)encodeFloat:(float)value
              forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    REMOVE_OLD_VALUE_FOR_KEY
-
-    OFNumber *number = [OFNumber numberWithFloat: value];
-    OFXMLElement *element = [OFXMLElement elementWithName: key];
-    element.stringValue = number.stringBySerializing;
-    [self.data addChild: element];
 }
 
 - (void)encodeInt:(int)value
            forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    REMOVE_OLD_VALUE_FOR_KEY
-
-    OFNumber *number = [OFNumber numberWithInt: value];
-    OFXMLElement *element = [OFXMLElement elementWithName: key];
-    element.stringValue = number.stringBySerializing;
-    [self.data addChild: element];
 }
 
 - (void)encodeString:(OFString *)value
               forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    REMOVE_OLD_VALUE_FOR_KEY
-
-    [self setClass: OFString.class forKey: key];
-    OFXMLElement *element = [OFXMLElement elementWithName: key];
-    element.stringValue = value;
-    [self.data addChild: element];
 }
 
 - (void)encodeObject:(OFObject<GTKCoding> *)object
               forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    REMOVE_OLD_VALUE_FOR_KEY
-
-    if ([object isKindOfClass: OFString.class]) {
-        [self encodeString: (OFString *)(object) forKey: key];
-        return;
-    }
-
-    [self setClass: object.class forKey: key];
-    GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
-    [object encodeWithCoder: coder];
-    coder.data.name = key;
-    [self.data addChild: coder.XMLElementBySerializing];
 }
 
 - (void)encodeSelector:(SEL)selector
                 forKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    [self encodeString: OFStringFromSelector(selector) forKey: key];
 }
 
 - (bool)decodeBoolForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *element = [self.data elementForName: key];
-    OFString *string = [[OFString alloc] initWithSerialization: element];
-    return [string isEqual: @"true"];
+    return false;
 }
 
 - (double)decodeDoubleForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *element = [self.data elementForName: key];
-    OFNumber *number = element.stringValue.objectByDeserializing;
-    return number.doubleValue;
+    return 0.0;
 }
 
 - (float)decodeFloatForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *element = [self.data elementForName: key];
-    OFNumber *number = element.stringValue.objectByDeserializing;
-    return number.floatValue;
+    return 0.0f;
 }
 
 - (int)decodeIntForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *element = [self.data elementForName: key];
-    OFNumber *number = element.stringValue.objectByDeserializing;
-    return number.intValue;
+    return 0;
 }
 
 - (OFString *)decodeStringForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFXMLElement *element = [self.data elementForName: key];
-    return element.stringValue;
+    return nil;
 }
 
 - (id)decodeObjectForKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    Class class = [self classForKey: key];
-
-    if (class == OFString.class) {
-        return [self decodeStringForKey: key];
-    }
-
-    return [self decodeObjectOfClass: class forKey: key];
+    return nil;
 }
 
 - (SEL)decodeSelectorforKey:(OFString *)key
 {
     KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-
-    OFString *selector = [self decodeStringForKey: key];
-    return OFSelectorFromString(selector);
+    return NULL;
 }
 @end
 
@@ -300,18 +182,5 @@
 - (OFString *)XMLString
 {
     return self.data.XMLString;
-}
-@end
-
-@implementation GTKCoder (Private)
-- (id)decodeObjectOfClass:(Class)class
-                   forKey:(OFString *)key
-{
-    KEYED_CODING_EXCEPTION_CHECK
-    INVALID_KEY_EXCEPTION_CHECK
-    OFXMLElement *xml = [self.data elementForName: key];
-    GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
-    id object = [[class alloc] initWithCoder: coder];
-    return object;
 }
 @end

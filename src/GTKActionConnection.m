@@ -17,9 +17,11 @@
 
 #import "GTKActionConnection.h"
 #import "GTKCoder.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKActionConnection
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super init];
 	self.objectKeyPath = [decoder decodeStringForKey: @"GTKKit.coding.actionConnection.objectKeyPath"];
@@ -28,7 +30,7 @@
   	return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
 	[encoder encodeString: self.objectKeyPath forKey: @"GTKKit.coding.actionConnection.objectKeyPath"];
 	[encoder encodeString: self.targetKeyPath forKey: @"GTKKit.coding.actionConnection.targetKeyPath"];

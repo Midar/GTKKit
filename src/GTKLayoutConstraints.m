@@ -15,6 +15,8 @@
  */
 
 #import "GTKLayoutConstraints.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKLayoutConstraint
 + (nullable instancetype)layoutConstraintWithType:(GTKLayoutConstraintType)type
@@ -40,7 +42,7 @@
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 	self.type = [[decoder decodeStringForKey: @"GTKKit.coding.layoutConstraint.type"] isEqual: @"fixed"] ?
@@ -49,7 +51,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
 	[encoder encodeString: self.type == GTKLayoutConstraintTypeFixed ? @"fixed" : @"flexible"
 				   forKey: @"GTKKit.coding.layoutConstraint.type"];
@@ -74,7 +76,7 @@
   	return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 	self.top = [decoder decodeObjectForKey: @"top"];
@@ -88,7 +90,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
 	[encoder encodeObject: self.top
 				   forKey: @"top"];

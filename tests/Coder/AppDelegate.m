@@ -96,10 +96,12 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     OFMutableArray *array = [OFMutableArray new];
     [array addObject: data2];
 
-    GTKCoder *arrayCoder = [GTKKeyedArchiver archiveRootObject: array];
+    GTKKeyedArchiver *arrayCoder = [GTKKeyedArchiver archiveRootObject: array];
+
+    GTKKeyedUnarchiver *arrayDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: arrayCoder.XMLString];
 
     OFArray *arrayTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class
-                                                          withCoder: arrayCoder];
+                                                          withCoder: arrayDecoder];
 
     CodedClass *dataTest = [arrayTest objectAtIndex: 0];
 
@@ -111,51 +113,76 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     }
 
     OFNumber *number = [OFNumber numberWithDouble: 2.345];
-    GTKCoder *numberCoder = [GTKKeyedArchiver archiveRootObject: number];
+
+    GTKKeyedArchiver *numberCoder = [GTKKeyedArchiver archiveRootObject: number];
+
+    GTKKeyedUnarchiver *numberDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: numberCoder.XMLString];
+
     OFNumber *numberTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFNumber.class
-                                                            withCoder: numberCoder];
+                                                            withCoder: numberDecoder];
     if (numberTest.doubleValue == 2.345) {
         printf("OFNumber test: Passed\n");
     }
 
     OFDictionary *dict = [OFDictionary dictionaryWithObject: @"TestObject" forKey: @"TestKey"];
-    GTKCoder *dictCoder = [GTKKeyedArchiver archiveRootObject: dict];
+
+    GTKKeyedArchiver *dictCoder = [GTKKeyedArchiver archiveRootObject: dict];
+
+    GTKKeyedUnarchiver *dictDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: dictCoder.XMLString];
+
     OFDictionary *dictTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFDictionary.class
-                                                              withCoder: dictCoder];
+                                                              withCoder: dictDecoder];
 
     if ([[dictTest objectForKey: @"TestKey"] isEqual: @"TestObject"]) {
         printf("OFDictionary test: Passed\n");
     }
 
     OFNull *null = [OFNull null];
-    GTKCoder *nullCoder = [GTKKeyedArchiver archiveRootObject: null];
+
+    GTKKeyedArchiver *nullCoder = [GTKKeyedArchiver archiveRootObject: null];
+
+    GTKKeyedUnarchiver *nullDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: nullCoder.XMLString];
+
     OFNull *nullTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFNull.class
-                                                        withCoder: nullCoder];
+                                                        withCoder: nullDecoder];
     if ([null isEqual: nullTest]) {
         printf("OFNull test: Passed\n");
     }
 
     OFURL *URL = [OFURL fileURLWithPath: @"/usr/local/bin/ls"];
-    GTKCoder *URLCoder = [GTKKeyedArchiver archiveRootObject: URL];
+
+    GTKKeyedArchiver *URLCoder = [GTKKeyedArchiver archiveRootObject: URL];
+
+    GTKKeyedUnarchiver *URLDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: URLCoder.XMLString];
+
     OFURL *URLTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFURL.class
-                                                      withCoder: URLCoder];
+                                                      withCoder: URLDecoder];
     if ([URL.path isEqual: URLTest.path]) {
         printf("OFURL test: Passed\n");
     }
 
     OFDate *date = [OFDate date];
-    GTKCoder *dateCoder = [GTKKeyedArchiver archiveRootObject: date];
+
+    GTKKeyedArchiver *dateCoder = [GTKKeyedArchiver archiveRootObject: date];
+
+    GTKKeyedUnarchiver *dateDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: dateCoder.XMLString];
+
     OFDate *dateTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFDate.class
-                                                        withCoder: dateCoder];
+                                                        withCoder: dateDecoder];
     if (date.hour == dateTest.hour) {
         printf("OFDate test: Passed\n");
     }
 
     OFList *list = [OFList list];
     [list appendObject: @"abcdef987654321"];
-    GTKCoder *listCoder = [GTKKeyedArchiver archiveRootObject: list];
+
+    GTKKeyedArchiver *listCoder = [GTKKeyedArchiver archiveRootObject: list];
+
+    GTKKeyedUnarchiver *listDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: listCoder.XMLString];
+
     OFList *listTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFList.class
-                                                        withCoder: listCoder];
+                                                        withCoder: listDecoder];
+                                                        
     if ([listTest.firstObject isEqual: @"abcdef987654321"]) {
         printf("OFList test: Passed\n");
     }

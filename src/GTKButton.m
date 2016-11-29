@@ -16,6 +16,8 @@
 
 #import "GTKButton.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 const bool GTKOnState = true;
 const bool GTKOffState = false;
@@ -54,7 +56,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     OFString *type = [decoder decodeStringForKey: @"GTKKit.coding.button.buttonType"];
@@ -74,7 +76,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
 

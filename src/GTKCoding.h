@@ -18,13 +18,14 @@
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
-@class GTKCoder;
+@class GTKKeyedArchiver;
+@class GTKKeyedUnarchiver;
 
 /*!
  * @brief A protocol for objects which serialize and deserialize themselves using
  * GTKCoder objects.
  */
 @protocol GTKCoding <OFObject>
-- (instancetype)initWithCoder:(GTKCoder *)decoder;
-- (void)encodeWithCoder:(GTKCoder *)encoder;
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder;
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder;
 @end

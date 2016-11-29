@@ -21,14 +21,14 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation OFNull (GTKCoding)
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
     self = [self.class null];
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    
+
 }
 @end

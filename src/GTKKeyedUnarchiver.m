@@ -20,6 +20,14 @@
 
 #import "GTKKeyedUnarchiver.h"
 
+@interface GTKKeyedUnarchiver (Private)
+/*!
+* @brief Decode the object for the supplied key.
+*/
+- (id)decodeObjectOfClass:(Class)class
+                   forKey:(OFString *)key;
+@end
+
 /*!
  * @brief A class representing keyed archiver objects which have the ability to
  * write themselves to files.
@@ -58,5 +66,109 @@
 - (bool)allowsKeyedCoding
 {
     return true;
+}
+
+- (bool)containsValueForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    return nil != [self.data elementsForName: key];
+}
+
+- (Class)classForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
+    OFString *className = [[classNames attributeForName: key] stringValue];
+    Class class = objc_getClass(className.UTF8String);
+    return class;
+}
+
+- (bool)decodeBoolForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *element = [self.data elementForName: key];
+    OFString *string = [[OFString alloc] initWithSerialization: element];
+    return [string isEqual: @"true"];
+}
+
+- (double)decodeDoubleForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *element = [self.data elementForName: key];
+    OFNumber *number = element.stringValue.objectByDeserializing;
+    return number.doubleValue;
+}
+
+- (float)decodeFloatForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *element = [self.data elementForName: key];
+    OFNumber *number = element.stringValue.objectByDeserializing;
+    return number.floatValue;
+}
+
+- (int)decodeIntForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *element = [self.data elementForName: key];
+    OFNumber *number = element.stringValue.objectByDeserializing;
+    return number.intValue;
+}
+
+- (OFString *)decodeStringForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFXMLElement *element = [self.data elementForName: key];
+    return element.stringValue;
+}
+
+- (id)decodeObjectForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    Class class = [self classForKey: key];
+
+    if (class == OFString.class) {
+        return [self decodeStringForKey: key];
+    }
+
+    return [self decodeObjectOfClass: class forKey: key];
+}
+
+- (SEL)decodeSelectorforKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFString *selector = [self decodeStringForKey: key];
+    return OFSelectorFromString(selector);
+}
+@end
+
+@implementation GTKKeyedUnarchiver (Private)
+- (id)decodeObjectOfClass:(Class)class
+                   forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    OFXMLElement *xml = [self.data elementForName: key];
+    GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
+    id object = [[class alloc] initWithCoder: coder];
+    return object;
 }
 @end

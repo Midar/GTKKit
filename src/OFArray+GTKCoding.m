@@ -20,13 +20,15 @@
 
 #import "OFArray+GTKCoding.h"
 #import "GTKCoder.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 /*!
  * @brief An abstract parent class for classes which transfer data between
  * memory and other storage.
  */
 @implementation OFArray (GTKCoding)
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
     OFMutableArray *array = [OFMutableArray new];
 
@@ -47,7 +49,7 @@
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     unsigned long i;
 

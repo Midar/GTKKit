@@ -28,7 +28,7 @@
  * memory and other storage.
  */
 @implementation OFList (GTKCoding)
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
     self = [self init];
     GTKCoder *coder = [GTKKeyedUnarchiver new];
@@ -41,7 +41,7 @@
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     OFArray *array = self.objectEnumerator.allObjects;
     GTKCoder *coder = [GTKKeyedArchiver archiveRootObject: array];

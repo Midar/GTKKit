@@ -54,4 +54,119 @@
 {
     return true;
 }
+
+- (bool)containsValueForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    return nil != [self.data elementsForName: key];
+}
+
+- (void)setClass:(Class)class
+          forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    OFString *className = [OFString stringWithUTF8String: class_getName(class.class)];
+
+    OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
+    [classNames removeAttributeForName: key];
+    [classNames addAttributeWithName: key
+                         stringValue: className];
+}
+
+- (void)encodeBool:(bool)value
+            forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    REMOVE_OLD_VALUE_FOR_KEY
+
+    OFString *string = value ? @"true" : @"false";
+    OFXMLElement *element = string.XMLElementBySerializing;
+    element.name = key;
+    [self.data addChild: element];
+}
+
+- (void)encodeDouble:(double)value
+              forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    REMOVE_OLD_VALUE_FOR_KEY
+
+    OFNumber *number = [OFNumber numberWithDouble: value];
+    OFXMLElement *element = [OFXMLElement elementWithName: key];
+    element.stringValue = number.stringBySerializing;
+    [self.data addChild: element];
+}
+
+- (void)encodeFloat:(float)value
+             forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    REMOVE_OLD_VALUE_FOR_KEY
+
+    OFNumber *number = [OFNumber numberWithFloat: value];
+    OFXMLElement *element = [OFXMLElement elementWithName: key];
+    element.stringValue = number.stringBySerializing;
+    [self.data addChild: element];
+}
+
+- (void)encodeInt:(int)value
+           forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    REMOVE_OLD_VALUE_FOR_KEY
+
+    OFNumber *number = [OFNumber numberWithInt: value];
+    OFXMLElement *element = [OFXMLElement elementWithName: key];
+    element.stringValue = number.stringBySerializing;
+    [self.data addChild: element];
+}
+
+- (void)encodeString:(OFString *)value
+              forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    REMOVE_OLD_VALUE_FOR_KEY
+
+    [self setClass: OFString.class forKey: key];
+    OFXMLElement *element = [OFXMLElement elementWithName: key];
+    element.stringValue = value;
+    [self.data addChild: element];
+}
+
+- (void)encodeObject:(OFObject<GTKCoding> *)object
+              forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+    REMOVE_OLD_VALUE_FOR_KEY
+
+    if ([object isKindOfClass: OFString.class]) {
+        [self encodeString: (OFString *)(object) forKey: key];
+        return;
+    }
+
+    [self setClass: object.class forKey: key];
+    GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
+    [object encodeWithCoder: coder];
+    coder.data.name = key;
+    [self.data addChild: coder.XMLElementBySerializing];
+}
+
+- (void)encodeSelector:(SEL)selector
+                forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    INVALID_KEY_EXCEPTION_CHECK
+
+    [self encodeString: OFStringFromSelector(selector) forKey: key];
+}
 @end

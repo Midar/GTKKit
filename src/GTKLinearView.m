@@ -18,6 +18,8 @@
 #import "GTKLinearView.h"
 #import "GTKApplication.h"
 #import "OFArray+GTKCoding.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKLinearView
 - init
@@ -34,7 +36,7 @@
     }];
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.linearView.orientation"] isEqual: @"horizontal"] ?
@@ -42,7 +44,7 @@
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"

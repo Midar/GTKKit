@@ -17,6 +17,8 @@
 
 #import "GTKTextField.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 static void
 entry_activated_handler(GtkEntry *entry, GTKTextField *field)
@@ -81,7 +83,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     self.editable = [decoder decodeBoolForKey: @"GTKKit.coding.textField.editable"];
@@ -102,7 +104,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeBool: self.isEditable forKey: @"GTKKit.coding.textField.editable"];

@@ -18,6 +18,8 @@
 #import "GTKApplication.h"
 #import "GTKLayoutConstraints.h"
 #import "OFArray+GTKCoding.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 static gboolean
 draw_handler(GtkWidget *widget,
@@ -337,7 +339,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 
@@ -379,7 +381,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     switch (self.layer) {
     case GTKViewLayerBackground:

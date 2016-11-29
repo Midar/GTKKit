@@ -17,6 +17,8 @@
 
 #import "OFString+GTKCoding.h"
 #import "GTKCoder.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 OFString* OFStringFromSelector(SEL selector)
 {
@@ -30,7 +32,7 @@ SEL OFSelectorFromString(OFString *selector)
 }
 
 @implementation OFString (GTKCoding)
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
     OFString *value = [[decoder.data attributeForName: @"GTKKit.GTKCoding.string"] stringValue];
 
@@ -39,7 +41,7 @@ SEL OFSelectorFromString(OFString *selector)
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [encoder.data addAttributeWithName: @"GTKKit.GTKCoding.string"
                            stringValue: self];

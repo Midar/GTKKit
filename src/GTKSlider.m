@@ -20,6 +20,8 @@
 
 #import "GTKSlider.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 static void
 value_changed_handler(GtkScale *scale, GTKSlider *slider)
@@ -53,7 +55,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     self.minValue = [decoder decodeDoubleForKey: @"GTKKit.coding.slider.minValue"];
@@ -82,7 +84,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeDouble: self.minValue forKey: @"GTKKit.coding.slider.minValue"];

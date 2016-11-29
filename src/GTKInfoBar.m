@@ -18,6 +18,8 @@
 #import "GTKInfoBar.h"
 #import "GTKApplication.h"
 #import "OFArray+GTKCoding.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @interface GTKInfoBar ()
 - (void)userResponded;
@@ -71,7 +73,7 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
     }];
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
     _buttonLabels = [decoder decodeObjectForKey: @"GTKKit.coding.infoBar.buttonLabels"];
@@ -112,7 +114,7 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
     [encoder encodeObject: _buttonLabels forKey: @"GTKKit.coding.infoBar.buttonLabels"];

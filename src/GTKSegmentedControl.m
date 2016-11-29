@@ -19,6 +19,8 @@
 #import "GTKApplication.h"
 #import "GTKButton.h"
 #import "OFArray+GTKCoding.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @interface GTKSegmentedControl ()
 - (void)update;
@@ -195,7 +197,7 @@ button_press_event_handler(GtkWidget *widget,
     return self;
 }
 
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
@@ -217,7 +219,7 @@ button_press_event_handler(GtkWidget *widget,
     return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
     [super encodeWithCoder: encoder];
 

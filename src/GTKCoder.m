@@ -21,7 +21,7 @@
 #import "OFNumber+GTKCoding.h"
 #import "OFString+GTKCoding.h"
 #import "OFArray+GTKCoding.h"
-#import "OFDictionary+GTKCoding.h"                                                                \
+#import "OFDictionary+GTKCoding.h"
 
 @implementation GTKCoderKeyedCodingNotAllowedException
 - (OFString *)description

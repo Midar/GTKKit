@@ -20,14 +20,6 @@
 
 #import "GTKKeyedUnarchiver.h"
 
-@interface GTKKeyedUnarchiver (Private)
-/*!
-* @brief Decode the object for the supplied key.
-*/
-- (id)decodeObjectOfClass:(Class)class
-                   forKey:(OFString *)key;
-@end
-
 /*!
  * @brief A class representing keyed archiver objects which have the ability to
  * write themselves to files.
@@ -139,7 +131,9 @@
         return [self decodeStringForKey: key];
     }
 
-    return [self decodeObjectOfClass: class forKey: key];
+    OFXMLElement *xml = [self.data elementForName: key];
+    GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
+    return [[class alloc] initWithCoder: coder];
 }
 
 - (SEL)decodeSelectorforKey:(OFString *)key
@@ -148,16 +142,5 @@
 
     OFString *selector = [self decodeStringForKey: key];
     return OFSelectorFromString(selector);
-}
-@end
-
-@implementation GTKKeyedUnarchiver (Private)
-- (id)decodeObjectOfClass:(Class)class
-                   forKey:(OFString *)key
-{
-    OFXMLElement *xml = [self.data elementForName: key];
-    GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
-    id object = [[class alloc] initWithCoder: coder];
-    return object;
 }
 @end

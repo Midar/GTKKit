@@ -81,6 +81,7 @@ typedef enum GTKButtonType {
     __block GtkWidget *_switchButton;
     __block GTKImage *_image;
     __block __weak GTKPopover *_popOver;
+    __block OFString *_stringValue;
 }
 
 /*!

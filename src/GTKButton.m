@@ -286,16 +286,12 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 
 - (OFString *)stringValue
 {
-    __block OFString *stringValue;
-    [GTKApp.dispatch.gtk sync: ^{
-        const char *str = gtk_button_get_label(GTK_BUTTON(_pushButton));
-        stringValue = [OFString stringWithUTF8String: str];
-    }];
-    return stringValue;
+    return _stringValue;
 }
 
 - (void)setStringValue:(OFString *)stringValue
 {
+    _stringValue = stringValue.copy;
     [GTKApp.dispatch.gtk sync: ^{
         const char *str = NULL;
         if (![stringValue isEqual: @""]) {
@@ -370,7 +366,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 
 - (void)didBecomeFirstResponder
 {
-    
+
 }
 
 - (GTKPopover *)popOver

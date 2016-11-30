@@ -36,24 +36,11 @@ realize_handler(GtkWidget *widget, GTKSplitView *view)
     _bottomRightView = [GTKView new];
 
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.mainWidget);
-        self.mainWidget = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
-        gtk_paned_set_wide_handle(GTK_PANED(self.mainWidget), true);
-
-        g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"realize",
-			G_CALLBACK(realize_handler),
-			(__bridge gpointer)(self));
-
-        gtk_container_add(
-            GTK_CONTAINER(self.overlayWidget),
-            self.mainWidget);
-
-        gtk_widget_show(self.mainWidget);
 
         _topLeftFrame = gtk_frame_new(NULL);
+        g_object_ref_sink(_topLeftFrame);
         _bottomRightFrame = gtk_frame_new(NULL);
+        g_object_ref_sink(_bottomRightFrame);
 
         gtk_frame_set_shadow_type(
             GTK_FRAME(_topLeftFrame),
@@ -100,6 +87,26 @@ realize_handler(GtkWidget *widget, GTKSplitView *view)
     _bottomRightView.nextResponder = self;
     self.dividerPosition = 0.5;
     return self;
+}
+
+- (void)createMainWidget
+{
+    [GTKApp.dispatch.gtk sync: ^{
+        self.mainWidget = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
+        gtk_paned_set_wide_handle(GTK_PANED(self.mainWidget), true);
+
+        g_signal_connect(
+			G_OBJECT(self.overlayWidget),
+			"realize",
+			G_CALLBACK(realize_handler),
+			(__bridge gpointer)(self));
+    }];
+}
+
+- (void)dealloc
+{
+    g_object_unref(_topLeftFrame);
+    g_object_unref(_bottomRightFrame);
 }
 
 - (GTKView *)topView

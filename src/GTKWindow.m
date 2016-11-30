@@ -148,11 +148,6 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     self.destroyWhenClosed = false;
 
     [GTKApp.dispatch.gtk sync: ^{
-
-        _headerBar = gtk_header_bar_new();
-        g_object_ref_sink(G_OBJECT(_headerBar));
-        gtk_widget_show(_headerBar);
-
         _window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
         g_object_ref_sink(G_OBJECT(_window));
         gtk_widget_set_size_request(
@@ -166,6 +161,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
         gtk_container_add(
             GTK_CONTAINER(_window),
             self.contentView.overlayWidget);
+
+
+        _headerBar = gtk_header_bar_new();
+        g_object_ref_sink(G_OBJECT(_headerBar));
+        gtk_widget_show(_headerBar);
+
         gtk_header_bar_set_has_subtitle(
             GTK_HEADER_BAR(_headerBar),
             false);
@@ -175,10 +176,11 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
         gtk_header_bar_set_decoration_layout(
             GTK_HEADER_BAR(_headerBar),
             ":");
+
         _closeButton = gtk_button_new_from_icon_name(
             "window-close-symbolic",
             GTK_ICON_SIZE_BUTTON);
-
+        g_object_ref_sink(_closeButton);
         gtk_widget_show(_closeButton);
 
         gtk_header_bar_pack_end(
@@ -196,7 +198,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
         _minimizeButton = gtk_button_new_from_icon_name(
             "zoom-out-symbolic",
             GTK_ICON_SIZE_BUTTON);
-
+        g_object_ref_sink(_minimizeButton);
         gtk_widget_show(_minimizeButton);
 
         gtk_header_bar_pack_end(
@@ -214,6 +216,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
         _maximizeButton = gtk_button_new_from_icon_name(
             "zoom-in-symbolic",
             GTK_ICON_SIZE_BUTTON);
+        g_object_ref_sink(_maximizeButton);
 
         gtk_widget_show(_maximizeButton);
 
@@ -230,6 +233,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 			(__bridge gpointer)(self));
 
         _headerBarRightSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
+        g_object_ref_sink(_headerBarRightSeparator);
         gtk_widget_show(_headerBarRightSeparator);
         gtk_header_bar_pack_end(
             GTK_HEADER_BAR(_headerBar),
@@ -238,6 +242,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
         _menuButton = gtk_button_new_from_icon_name(
             "open-menu-symbolic",
             GTK_ICON_SIZE_BUTTON);
+        g_object_ref_sink(_menuButton);
 
         gtk_widget_show(_menuButton);
 
@@ -254,6 +259,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 			(__bridge gpointer)(self));
 
         _headerBarLeftSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
+        g_object_ref_sink(_headerBarLeftSeparator);
         gtk_widget_show(_headerBarLeftSeparator);
         gtk_header_bar_pack_start(
             GTK_HEADER_BAR(_headerBar),
@@ -296,9 +302,14 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
 - (void)dealloc
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(_window);
-    }];
+    g_object_unref(_headerBar);
+    g_object_unref(_closeButton);
+    g_object_unref(_minimizeButton);
+    g_object_unref(_maximizeButton);
+    g_object_unref(_headerBarRightSeparator);
+    g_object_unref(_menuButton);
+    g_object_unref(_headerBarLeftSeparator);
+    g_object_unref(_window);
 }
 
 - (bool)isHidden

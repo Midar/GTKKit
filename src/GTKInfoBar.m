@@ -124,9 +124,7 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 
 - (void)dealloc
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        g_object_unref(G_OBJECT(_labelWidget));
-    }];
+    g_object_unref(_labelWidget);
 }
 
 - (OFString *)stringValue

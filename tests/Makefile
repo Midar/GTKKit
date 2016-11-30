@@ -1,7 +1,5 @@
 SUBDIRS = Window \
   				Split \
-					Tabbed \
-					TabbedWindow \
 					SegmentedControl \
 					ProgressIndicator \
 					List \

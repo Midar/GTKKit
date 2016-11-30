@@ -40,6 +40,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    g_object_unref(_offscreenWindow);
+}
+
 - (GTKImage *)image
 {
     GdkPixbuf *pixbuf = gtk_offscreen_window_get_pixbuf(

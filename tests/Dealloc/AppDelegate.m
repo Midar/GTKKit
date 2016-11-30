@@ -27,13 +27,8 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // This just creates and deallocates endless GTKView instances. Ideally,
     // this should just use one GTKView's worth of memory. If there's a leak,
     // then the memory usage of this test program will spiral up out of control.
-    while (true) {
-        GTKButton *testView = [GTKButton new];
-        testView.buttonType = GTKPushButton;
-        testView.buttonType = GTKToggleButton;
-        testView.buttonType = GTKCheckButton;
-        testView.buttonType = GTKRadioButton;
-        testView.buttonType = GTKSwitchButton;
+    for (int i = 0; i < 1000; i++) {
+        GTKOffscreenRenderingWindow *testWindow = [GTKOffscreenRenderingWindow new];
     }
 
     // It would be dangerous to modify anything below this line.
@@ -43,7 +38,5 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 - (void)applicationDidFinishLaunching
 {
     // Put your custom post-launch startup code below this line.
-    sleep(1);
-    [GTKApp terminate];
 }
 @end

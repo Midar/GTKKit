@@ -25,8 +25,6 @@
 #import	"GTKControl.h"
 #import	"GTKWindow.h"
 #import	"GTKSplitView.h"
-#import	"GTKTabbedView.h"
-#import	"GTKTabbedWindow.h"
 #import	"GTKPopover.h"
 #import	"GTKImage.h"
 #import	"GTKImageView.h"

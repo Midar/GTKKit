@@ -58,6 +58,9 @@ typedef enum GTKJustification {
     __block GTKJustification _justify;
     __block bool _multiline;
     __block GtkWidget *_scrollWindow;
+    __block GtkWidget *_labelWidget;
+    __block GtkWidget *_entryWidget;
+    __block GtkWidget *_textViewWidget;
 }
 
 /*!

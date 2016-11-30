@@ -61,7 +61,68 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 {
     _editable = false;
     [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_label_new(NULL);
+        self.mainWidget = gtk_grid_new();
+        gtk_orientable_set_orientation(
+            GTK_ORIENTABLE(self.mainWidget),
+            GTK_ORIENTATION_VERTICAL);
+
+        _labelWidget = gtk_label_new(NULL);
+        g_object_ref_sink(_labelWidget);
+        gtk_widget_hide(_labelWidget);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _labelWidget);
+        gtk_widget_set_hexpand(_labelWidget, true);
+        gtk_widget_set_vexpand(_labelWidget, true);
+
+
+        _entryWidget = gtk_entry_new();
+        g_object_ref_sink(_entryWidget);
+        gtk_widget_hide(_entryWidget);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _entryWidget);
+        gtk_widget_set_hexpand(_entryWidget, true);
+        gtk_widget_set_vexpand(_entryWidget, true);
+
+        g_signal_connect(
+            G_OBJECT(_entryWidget),
+            "activate",
+            G_CALLBACK(entry_activated_handler),
+            (__bridge gpointer)(self));
+        g_signal_connect(
+            G_OBJECT(_entryWidget),
+            "insert-at-cursor",
+            G_CALLBACK(entry_insert_at_cursor_handler),
+            (__bridge gpointer)(self));
+
+        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
+        g_object_ref_sink(_scrollWindow);
+        gtk_widget_hide(_scrollWindow);
+        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
+        gtk_style_context_add_class(context, "gtkkit-textview");
+        gtk_widget_set_hexpand(_scrollWindow, true);
+        gtk_widget_set_vexpand(_scrollWindow, true);
+
+        _textViewWidget = gtk_text_view_new();
+        g_object_ref_sink(_textViewWidget);
+        gtk_widget_show(_textViewWidget);
+        gtk_widget_set_hexpand(_textViewWidget, true);
+        gtk_widget_set_vexpand(_textViewWidget, true);
+
+        gtk_container_add(
+            GTK_CONTAINER(_scrollWindow),
+            _textViewWidget);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _scrollWindow);
+
+        g_signal_connect(
+            G_OBJECT(_textViewWidget),
+            "focus-out-event",
+            G_CALLBACK(text_view_focus_out_handler),
+            (__bridge gpointer)(self));
+
     }];
 }
 
@@ -73,14 +134,15 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     self.selectable = false;
     self.justify = GTKJustificationCenter;
     self.continuous = false;
-    [GTKApp.dispatch.gtk sync: ^{
-        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
-        g_object_ref(G_OBJECT(_scrollWindow));
-        gtk_widget_show(_scrollWindow);
-        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
-        gtk_style_context_add_class(context, "gtkkit-textview");
-    }];
     return self;
+}
+
+- (void)dealloc
+{
+    g_object_unref(_textViewWidget);
+    g_object_unref(_scrollWindow);
+    g_object_unref(_entryWidget);
+    g_object_unref(_labelWidget);
 }
 
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
@@ -135,77 +197,25 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 
 - (void)setEditable:(bool)editable
 {
-    if (_editable == editable) {
-        return;
-    }
-    double alpha = self.alpha;
-    OFString *stringValue = self.stringValue;
-    GTKJustification justify = self.justify;
-    bool selectable = self.selectable;
     _editable = editable;
+    self.stringValue = self.stringValue;
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.mainWidget);
-        gtk_widget_destroy(_scrollWindow);
-        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
-        g_object_ref(G_OBJECT(_scrollWindow));
-        gtk_widget_show(_scrollWindow);
-        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
-        gtk_style_context_add_class(context, "gtkkit-textview");
-        if (_editable == true) {
-            if (_multiline == true) {
-                self.mainWidget = gtk_text_view_new();
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_TOP,
-                    8);
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_BOTTOM,
-                    8);
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_LEFT,
-                    8);
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_RIGHT,
-                    8);
-                g_signal_connect(
-                    G_OBJECT(self.mainWidget),
-                    "focus-out-event",
-                    G_CALLBACK(text_view_focus_out_handler),
-                    (__bridge gpointer)(self));
-                gtk_container_add(
-                    GTK_CONTAINER(_scrollWindow),
-                    self.mainWidget);
-                gtk_widget_show(self.mainWidget);
-                gtk_container_add(GTK_CONTAINER(self.overlayWidget), _scrollWindow);
+        if (editable) {
+            if (self.isMultiline) {
+                gtk_widget_hide(_labelWidget);
+                gtk_widget_hide(_entryWidget);
+                gtk_widget_show(_scrollWindow);
             } else {
-                self.mainWidget = gtk_entry_new();
-                g_signal_connect(
-                    G_OBJECT(self.mainWidget),
-                    "activate",
-                    G_CALLBACK(entry_activated_handler),
-                    (__bridge gpointer)(self));
-                g_signal_connect(
-                    G_OBJECT(self.mainWidget),
-                    "insert-at-cursor",
-                    G_CALLBACK(entry_insert_at_cursor_handler),
-                    (__bridge gpointer)(self));
-                gtk_widget_show(self.mainWidget);
-                gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
+                gtk_widget_hide(_labelWidget);
+                gtk_widget_show(_entryWidget);
+                gtk_widget_hide(_scrollWindow);
             }
         } else {
-            self.mainWidget = gtk_label_new(NULL);
-            gtk_widget_show(self.mainWidget);
-            gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
+            gtk_widget_show(_labelWidget);
+            gtk_widget_hide(_entryWidget);
+            gtk_widget_hide(_scrollWindow);
         }
     }];
-    self.selectable = selectable;
-    self.justify = justify;
-    self.stringValue = stringValue;
-    self.alpha = alpha;
-    [self reconnectSignals];
 }
 
 - (OFString *)stringValue
@@ -213,22 +223,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
     __block OFString *stringValue;
     __block const char *str;
     [GTKApp.dispatch.gtk sync: ^{
-        if (_editable == true) {
-            if (_multiline == true) {
-                GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(self.mainWidget)));
-                GtkTextIter start;
-                GtkTextIter end;
-                gtk_text_buffer_get_iter_at_offset(buf, &start, 0);
-                gtk_text_buffer_get_iter_at_offset(buf, &end, -1);
-                str = gtk_text_buffer_get_text(buf, &start, &end, true);
-                stringValue = [OFString stringWithUTF8String: str];
-                free((void *)(str));
-            } else {
-                str = gtk_entry_get_text(GTK_ENTRY(self.mainWidget));
-            }
-        } else {
-            str = gtk_label_get_label(GTK_LABEL(self.mainWidget));
-        }
+        str = gtk_entry_get_text(GTK_ENTRY(_entryWidget));
         stringValue = [OFString stringWithUTF8String: str];
     }];
     return stringValue;
@@ -237,16 +232,10 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 - (void)setStringValue:(OFString *)stringValue
 {
     [GTKApp.dispatch.gtk sync: ^{
-        if (_editable == true) {
-            if (_multiline == true) {
-                GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(self.mainWidget)));
-                gtk_text_buffer_set_text(buf, stringValue.UTF8String, stringValue.length);
-            } else {
-                gtk_entry_set_text(GTK_ENTRY(self.mainWidget), stringValue.UTF8String);
-            }
-        } else {
-            gtk_label_set_markup(GTK_LABEL(self.mainWidget), stringValue.UTF8String);
-        }
+        GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(_textViewWidget)));
+        gtk_text_buffer_set_text(buf, stringValue.UTF8String, stringValue.length);
+        gtk_entry_set_text(GTK_ENTRY(_entryWidget), stringValue.UTF8String);
+        gtk_label_set_markup(GTK_LABEL(_labelWidget), stringValue.UTF8String);
     }];
 }
 
@@ -258,11 +247,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 - (void)setSelectable:(bool)selectable
 {
     _selectable = selectable;
-    if (!self.isEditable) {
-        [GTKApp.dispatch.gtk sync: ^{
-            gtk_label_set_selectable(GTK_LABEL(self.mainWidget), selectable);
-        }];
-    }
+    gtk_label_set_selectable(GTK_LABEL(_labelWidget), selectable);
 }
 
 - (bool)canBecomeFirstResponder
@@ -277,12 +262,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 
 - (void)didBecomeFirstResponder
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_grab_focus(self.mainWidget);
-        if (gtk_widget_get_can_default(self.mainWidget)) {
-            gtk_widget_grab_default(self.mainWidget);
-        }
-    }];
+
 }
 
 - (GTKJustification)justify
@@ -293,11 +273,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 - (void)setJustify:(GTKJustification)justify
 {
     _justify = justify;
-    if (!self.isEditable) {
-        [GTKApp.dispatch.gtk sync: ^{
-            gtk_label_set_justify(GTK_LABEL(self.mainWidget), (GtkJustification)(_justify));
-        }];
-    }
+    gtk_label_set_justify(GTK_LABEL(_labelWidget), (GtkJustification)(_justify));
 }
 
 - (bool)isMultiline
@@ -307,76 +283,24 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 
 - (void)setMultiline:(bool)multiline
 {
-    if (multiline == _multiline) {
-        return;
-    }
-    double alpha = self.alpha;
-    OFString *stringValue = self.stringValue;
-    GTKJustification justify = self.justify;
-    bool selectable = self.selectable;
     _multiline = multiline;
+    self.stringValue = self.stringValue;
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.mainWidget);
-        gtk_widget_destroy(_scrollWindow);
-        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
-        g_object_ref(G_OBJECT(_scrollWindow));
-        gtk_widget_show(_scrollWindow);
-        GtkStyleContext *context = gtk_widget_get_style_context(_scrollWindow);
-        gtk_style_context_add_class(context, "gtkkit-textview");
-        if (_editable == true) {
-            if (_multiline == true) {
-                self.mainWidget = gtk_text_view_new();
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_TOP,
-                    8);
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_BOTTOM,
-                    8);
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_LEFT,
-                    8);
-                gtk_text_view_set_border_window_size(
-                    GTK_TEXT_VIEW(self.mainWidget),
-                    GTK_TEXT_WINDOW_RIGHT,
-                    8);
-                g_signal_connect(
-                    G_OBJECT(self.mainWidget),
-                    "focus-out-event",
-                    G_CALLBACK(text_view_focus_out_handler),
-                    (__bridge gpointer)(self));
-                gtk_container_add(
-                    GTK_CONTAINER(_scrollWindow),
-                    self.mainWidget);
-                gtk_widget_show(self.mainWidget);
-                gtk_container_add(GTK_CONTAINER(self.overlayWidget), _scrollWindow);
+        if (self.isEditable) {
+            if (multiline) {
+                gtk_widget_hide(_labelWidget);
+                gtk_widget_hide(_entryWidget);
+                gtk_widget_show(_scrollWindow);
             } else {
-                self.mainWidget = gtk_entry_new();
-                g_signal_connect(
-                    G_OBJECT(self.mainWidget),
-                    "activate",
-                    G_CALLBACK(entry_activated_handler),
-                    (__bridge gpointer)(self));
-                g_signal_connect(
-                    G_OBJECT(self.mainWidget),
-                    "insert-at-cursor",
-                    G_CALLBACK(entry_insert_at_cursor_handler),
-                    (__bridge gpointer)(self));
-                gtk_widget_show(self.mainWidget);
-                gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
+                gtk_widget_hide(_labelWidget);
+                gtk_widget_show(_entryWidget);
+                gtk_widget_hide(_scrollWindow);
             }
         } else {
-            self.mainWidget = gtk_label_new(NULL);
-            gtk_widget_show(self.mainWidget);
-            gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
+            gtk_widget_show(_labelWidget);
+            gtk_widget_hide(_entryWidget);
+            gtk_widget_hide(_scrollWindow);
         }
     }];
-    self.selectable = selectable;
-    self.justify = justify;
-    self.stringValue = stringValue;
-    self.alpha = alpha;
-    [self reconnectSignals];
 }
 @end

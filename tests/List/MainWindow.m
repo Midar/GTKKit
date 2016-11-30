@@ -36,7 +36,7 @@
 
     [self addView: self.list];
 
-    self.title = @"List View Controller";
+    self.title = @"List View";
 
     return self;
 }

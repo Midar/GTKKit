@@ -54,7 +54,7 @@
     [self.rightLabel.constraints fixedHeight: 30];
     [self.split.rightView addSubview: self.rightLabel];
 
-    self.title = @"Spit View Controller";
+    self.title = @"Spit View";
     self.subtitle = @"Example Subtitle";
 
     return self;

@@ -28,7 +28,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
     // this should just use one GTKView's worth of memory. If there's a leak,
     // then the memory usage of this test program will spiral up out of control.
     for (int i = 0; i < 1000; i++) {
-        GTKOffscreenRenderingWindow *testWindow = [GTKOffscreenRenderingWindow new];
+        GTKSegmentedControl *testWindow = [GTKSegmentedControl new];
     }
 
     // It would be dangerous to modify anything below this line.

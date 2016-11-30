@@ -16,36 +16,44 @@ At the moment, GTKKit is only tested on OS X and FreeBSD.
 
 Currently, GTKKit implements the following class hierarchy:
 
-GTKCoder
-  GTKKeyedArchiver
-  GTKKeyedUnarchiver
-GTKResponder
-  GTKApplication
-  GTKPopover
-  GTKView
-    GTKActionBar
-    GTKBox
-    GTKControl
-      GTKButton
-      GTKInfoBar
-      GTKPopUpButton
-        GTKComboBox
-      GTKSegmentedControl
-      GTKSlider
-      GTKTextField
-    GTKImageView
-    GTKLevelIndicator
-    GTKListView
-    GTKProgressIndicator
-    GTKSeparator
-    GTKSplitView
-    GTKStatusbar
-    GTKTabbedView
-  GTKWindow
-    GTKTabbedWindow
-  GTKOffscreenRenderingWindow
-GTKImage
-GTKEvent
-GTKDispatchQueue
-GTKLayoutConstraint
-GTKLayoutConstraints
+OFObject [part of ObjFW]
+  GTKCoder
+    GTKKeyedArchiver
+    GTKKeyedUnarchiver
+  GTKResponder
+    GTKApplication
+    GTKPopover
+    GTKView
+      GTKActionBar
+      GTKBox
+      GTKControl
+        GTKButton
+        GTKInfoBar
+        GTKPopUpButton
+          GTKComboBox
+        GTKSegmentedControl
+        GTKSlider
+        GTKTextField
+      GTKImageView
+      GTKLevelIndicator
+      GTKListView
+      GTKProgressIndicator
+      GTKSeparator
+      GTKSplitView
+      GTKStatusbar
+    GTKWindow
+    GTKOffscreenRenderingWindow
+  GTKImage
+  GTKEvent
+  GTKDispatchQueue
+  GTKLayoutConstraint
+  GTKLayoutConstraints
+
+To be rewritten:
+
+  GTKTabbedView
+  GTKTabbedWindow
+
+New classes to be written:
+
+  GTKTab

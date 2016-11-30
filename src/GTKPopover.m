@@ -26,6 +26,7 @@
     self.contentView = [GTKView new];
     [GTKApp.dispatch.gtk sync: ^{
         _popOver = gtk_popover_new(NULL);
+        g_object_ref_sink(_popOver);
         gtk_widget_set_size_request(_popOver, _width, _height);
         gtk_popover_set_constrain_to(
             GTK_POPOVER(_popOver),
@@ -39,6 +40,11 @@
     }];
     self.preferredPosition = GTKPositionTypeBottom;
     return self;
+}
+
+- (void)dealloc
+{
+    g_object_unref(_popOver);
 }
 
 - (bool)isHidden

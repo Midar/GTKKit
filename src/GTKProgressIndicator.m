@@ -27,23 +27,6 @@
     self.showLabel = false;
     self.stringValue = @"";
     self.doubleValue = 0.0;
-    self.animate = false;
-    __weak GTKProgressIndicator *weakSelf = self;
-    [GTKApp.dispatch.background asyncRepeatAfter: 0
-                                         execute: ^{
-            if (nil == weakSelf) {
-                return;
-            }
-            if (weakSelf.animate) {
-                [GTKApp.dispatch.gtk async: ^{
-                    gtk_progress_bar_pulse(GTK_PROGRESS_BAR(weakSelf.mainWidget));
-                }];
-            }
-            struct timespec tim, tim2;
-            tim.tv_sec  = 0;
-            tim.tv_nsec = 80000000;
-            nanosleep(&tim , &tim2);
-    }];
     return self;
 }
 
@@ -51,7 +34,6 @@
 {
 	self = [super initWithCoder: decoder];
 
-    self.animate = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.animate"];
     self.showLabel = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.showLabel"];
     self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.inverted"];
     self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.stringValue"];
@@ -66,7 +48,6 @@
 {
     [super encodeWithCoder: encoder];
 
-    [encoder encodeBool: self.animate forKey: @"GTKKit.coding.progressIndicator.animate"];
     [encoder encodeBool: self.showLabel forKey: @"GTKKit.coding.progressIndicator.showLabel"];
     [encoder encodeBool: self.inverted forKey: @"GTKKit.coding.progressIndicator.inverted"];
     [encoder encodeString: self.stringValue forKey: @"GTKKit.coding.progressIndicator.stringValue"];

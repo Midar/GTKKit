@@ -49,7 +49,7 @@
     __weak MainWindow *weakSelf = self;
     [self addView: self.button];
     self.button.actionBlock = ^{
-        weakSelf.progress.animate = !weakSelf.progress.animate;
+        weakSelf.progress.doubleValue = weakSelf.progress.doubleValue + 0.1;
     };
 
     self.title = @"Progress Indicator";

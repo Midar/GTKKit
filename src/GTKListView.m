@@ -21,16 +21,18 @@
 @implementation GTKListView
 - init {
     self = [super init];
+    _views = [OFMutableArray arrayWithCapacity: self.dataSource.numberOfRows];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_destroy(self.mainWidget);
-
-        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
-        g_object_ref_sink(G_OBJECT(_scrollWindow));
-        gtk_widget_show(_scrollWindow);
+        g_object_unref(self.mainWidget);
 
         self.mainWidget = gtk_list_box_new();
         g_object_ref_sink(G_OBJECT(self.mainWidget));
         gtk_widget_show(self.mainWidget);
+
+        _scrollWindow = gtk_scrolled_window_new(NULL, NULL);
+        g_object_ref_sink(G_OBJECT(_scrollWindow));
+        gtk_widget_show(_scrollWindow);
 
         gtk_container_add(
             GTK_CONTAINER(_scrollWindow),
@@ -40,9 +42,13 @@
             GTK_CONTAINER(self.overlayWidget),
             _scrollWindow);
 
-        _views = [OFMutableArray arrayWithCapacity: self.dataSource.numberOfRows];
     }];
     return self;
+}
+
+- (void)dealloc
+{
+    g_object_unref(_scrollWindow);
 }
 
 - (void)reloadData

@@ -52,7 +52,8 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 - init
 {
     self = [super init];
-    _buttonType = GTKPushButton;
+    self.buttonType = GTKPushButton;
+    self.stringValue = @"";
     return self;
 }
 
@@ -103,25 +104,149 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 
 - (void)dealloc
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        g_object_unref(G_OBJECT(_hiddenRadioButton));
-    }];
+    g_object_unref(_hiddenRadioButton);
+    g_object_unref(_pushButton);
+    g_object_unref(_toggleButton);
+    g_object_unref(_checkButton);
+    g_object_unref(_radioButton);
+    g_object_unref(_switchButton);
+    g_object_unref(_pushButtonImage);
+    g_object_unref(_toggleButtonImage);
+    g_object_unref(_checkButtonImage);
+    g_object_unref(_radioButtonImage);
 }
 
 - (void)createMainWidget
 {
     [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_button_new();
+        self.mainWidget = gtk_grid_new();
+        gtk_orientable_set_orientation(
+            GTK_ORIENTABLE(self.mainWidget),
+            GTK_ORIENTATION_VERTICAL);
 
+        _pushButtonImage = gtk_image_new_from_icon_name("edit-delete", GTK_ICON_SIZE_MENU);
+        gtk_image_clear(GTK_IMAGE(_pushButtonImage));
+        g_object_ref_sink(_pushButtonImage);
+
+        _toggleButtonImage = gtk_image_new_from_icon_name("edit-delete", GTK_ICON_SIZE_MENU);
+        gtk_image_clear(GTK_IMAGE(_toggleButtonImage));
+        g_object_ref_sink(_toggleButtonImage);
+
+        _checkButtonImage = gtk_image_new_from_icon_name("edit-delete", GTK_ICON_SIZE_MENU);
+        gtk_image_clear(GTK_IMAGE(_checkButtonImage));
+        g_object_ref_sink(_checkButtonImage);
+
+        _radioButtonImage = gtk_image_new_from_icon_name("edit-delete", GTK_ICON_SIZE_MENU);
+        gtk_image_clear(GTK_IMAGE(_radioButtonImage));
+        g_object_ref_sink(_radioButtonImage);
+
+        _pushButton = gtk_button_new();
+        g_object_ref_sink(_pushButton);
         g_signal_connect(
-            G_OBJECT(self.mainWidget),
+            G_OBJECT(_pushButton),
             "clicked",
             G_CALLBACK(clicked_event_handler),
             (__bridge gpointer)(self));
-        gtk_widget_set_focus_on_click (self.mainWidget,
-                                       false);
+        gtk_widget_set_focus_on_click (
+            _pushButton,
+            false);
+        gtk_widget_show(_pushButton);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _pushButton);
+        gtk_widget_set_hexpand(_pushButton, true);
+        gtk_widget_set_vexpand(_pushButton, true);
+        gtk_button_set_image(
+            GTK_BUTTON(_pushButton),
+            _pushButtonImage);
 
-        _imageWidget = gtk_image_new();
+        _toggleButton = gtk_toggle_button_new();
+        g_object_ref_sink(_toggleButton);
+        g_signal_connect(
+            G_OBJECT(_toggleButton),
+            "clicked",
+            G_CALLBACK(clicked_event_handler),
+            (__bridge gpointer)(self));
+        gtk_widget_set_focus_on_click (
+            _toggleButton,
+            false);
+        gtk_widget_hide(_toggleButton);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _toggleButton);
+        gtk_widget_set_hexpand(_toggleButton, true);
+        gtk_widget_set_vexpand(_toggleButton, true);
+        gtk_button_set_image(
+            GTK_BUTTON(_toggleButton),
+            _toggleButtonImage);
+
+        _checkButton = gtk_check_button_new();
+        g_object_ref_sink(_checkButton);
+        g_signal_connect(
+            G_OBJECT(_checkButton),
+            "clicked",
+            G_CALLBACK(clicked_event_handler),
+            (__bridge gpointer)(self));
+        gtk_widget_set_focus_on_click (
+            _checkButton,
+            false);
+        gtk_widget_hide(_checkButton);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _checkButton);
+        gtk_widget_set_hexpand(_checkButton, true);
+        gtk_widget_set_vexpand(_checkButton, true);
+        gtk_button_set_image(
+            GTK_BUTTON(_checkButton),
+            _checkButtonImage);
+
+        _hiddenRadioButton = gtk_radio_button_new(NULL);
+        g_object_ref_sink(_hiddenRadioButton);
+        g_signal_connect(
+            G_OBJECT(_hiddenRadioButton),
+            "clicked",
+            G_CALLBACK(clicked_event_handler),
+            (__bridge gpointer)(self));
+        gtk_widget_set_focus_on_click (
+            _hiddenRadioButton,
+            false);
+
+        _radioButton = gtk_radio_button_new_from_widget(GTK_RADIO_BUTTON(_hiddenRadioButton));
+        g_object_ref_sink(_radioButton);
+        g_signal_connect(
+            G_OBJECT(_radioButton),
+            "clicked",
+            G_CALLBACK(clicked_event_handler),
+            (__bridge gpointer)(self));
+        gtk_widget_set_focus_on_click (
+            _radioButton,
+            false);
+        gtk_widget_hide(_radioButton);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _radioButton);
+        gtk_widget_set_hexpand(_radioButton, true);
+        gtk_widget_set_vexpand(_radioButton, true);
+        gtk_button_set_image(
+            GTK_BUTTON(_radioButton),
+            _radioButtonImage);
+
+        _switchButton = gtk_switch_new();
+        g_object_ref_sink(_switchButton);
+        g_signal_connect(
+            G_OBJECT(_switchButton),
+            "state-set",
+            G_CALLBACK(switch_activated_handler),
+            (__bridge gpointer)(self));
+        gtk_widget_set_focus_on_click (
+            _switchButton,
+            false);
+        gtk_widget_hide(_switchButton);
+        gtk_container_add(
+            GTK_CONTAINER(self.mainWidget),
+            _switchButton);
+        gtk_widget_set_hexpand(_switchButton, true);
+        gtk_widget_set_vexpand(_switchButton, true);
     }];
 }
 
@@ -133,88 +258,53 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 - (void)setButtonType:(GTKButtonType)buttonType
 {
     _buttonType = buttonType;
-
-    double alpha = self.alpha;
-    OFString *stringValue = self.stringValue;
-    bool state = self.state;
-
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_destroy(self.mainWidget);
-        g_object_unref(G_OBJECT(self.mainWidget));
-        gtk_widget_destroy(_hiddenRadioButton);
-        g_object_unref(G_OBJECT(_hiddenRadioButton));
-
-        switch (_buttonType) {
+        gtk_widget_hide(_pushButton);
+        gtk_widget_hide(_toggleButton);
+        gtk_widget_hide(_checkButton);
+        gtk_widget_hide(_radioButton);
+        gtk_widget_hide(_switchButton);
+        switch (buttonType) {
         case GTKPushButton:
-            self.mainWidget = gtk_button_new();
+            gtk_widget_show(_pushButton);
             break;
         case GTKToggleButton:
-            self.mainWidget = gtk_toggle_button_new();
+            gtk_widget_show(_toggleButton);
             break;
         case GTKCheckButton:
-            self.mainWidget = gtk_check_button_new();
+            gtk_widget_show(_checkButton);
             break;
         case GTKRadioButton:
-            _hiddenRadioButton = gtk_radio_button_new(NULL);
-            self.mainWidget = gtk_radio_button_new_from_widget(GTK_RADIO_BUTTON(_hiddenRadioButton));
-            g_object_ref_sink(G_OBJECT(_hiddenRadioButton));
-            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.mainWidget), GTKOffState);
+            gtk_widget_show(_radioButton);
             break;
         case GTKSwitchButton:
-            self.mainWidget = gtk_switch_new();
-            g_signal_connect(
-                G_OBJECT(self.mainWidget),
-                "state-set",
-                G_CALLBACK(switch_activated_handler),
-                (__bridge gpointer)(self));
+            gtk_widget_show(_switchButton);
             break;
         }
-
-        g_object_ref_sink(G_OBJECT(self.mainWidget));
-		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
-
-        if (_buttonType != GTKSwitchButton) {
-            g_signal_connect(
-                G_OBJECT(self.mainWidget),
-                "clicked",
-                G_CALLBACK(clicked_event_handler),
-                (__bridge gpointer)(self));
-        }
-
-        gtk_widget_show(self.mainWidget);
-        gtk_widget_set_focus_on_click (self.mainWidget,
-                                       false);
     }];
-
-    self.stringValue = stringValue;
-    self.state = state;
-    self.alpha = alpha;
-
-    if (nil != _image) {
-        gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);
-        gtk_image_set_from_pixbuf(GTK_IMAGE(_imageWidget), _image.pixbuf);
-    } else {
-        gtk_image_clear(GTK_IMAGE(_imageWidget));
-    }
-    [self reconnectSignals];
 }
 
 - (OFString *)stringValue
 {
-    __block const char *str;
+    __block OFString *stringValue;
     [GTKApp.dispatch.gtk sync: ^{
-        str = gtk_button_get_label(GTK_BUTTON(self.mainWidget));
+        const char *str = gtk_button_get_label(GTK_BUTTON(_pushButton));
+        stringValue = [OFString stringWithUTF8String: str];
     }];
-    if (NULL == str) {
-        str = "";
-    }
-    return [OFString stringWithUTF8String: str];
+    return stringValue;
 }
 
 - (void)setStringValue:(OFString *)stringValue
 {
     [GTKApp.dispatch.gtk sync: ^{
-        gtk_button_set_label(GTK_BUTTON(self.mainWidget), stringValue.UTF8String);
+        const char *str = NULL;
+        if (![stringValue isEqual: @""]) {
+            str = stringValue.UTF8String;
+        }
+        gtk_button_set_label(GTK_BUTTON(_pushButton), str);
+        gtk_button_set_label(GTK_BUTTON(_toggleButton), str);
+        gtk_button_set_label(GTK_BUTTON(_checkButton), str);
+        gtk_button_set_label(GTK_BUTTON(_radioButton), str);
     }];
 }
 
@@ -235,19 +325,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 {
     __block bool state;
     [GTKApp.dispatch.gtk sync: ^{
-        switch (_buttonType) {
-        case GTKPushButton:
-            state = false;
-            break;
-        case GTKToggleButton:
-        case GTKCheckButton:
-        case GTKRadioButton:
-            state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(self.mainWidget));
-            break;
-        case GTKSwitchButton:
-            state = gtk_switch_get_active(GTK_SWITCH(self.mainWidget));
-            break;
-        }
+        state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(_toggleButton));
     }];
     return state;
 }
@@ -255,24 +333,11 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 - (void)setState:(bool)state
 {
     [GTKApp.dispatch.gtk sync: ^{
-        switch (_buttonType) {
-        case GTKPushButton:
-            break;
-        case GTKToggleButton:
-        case GTKCheckButton:
-            gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.mainWidget), state);
-            break;
-        case GTKRadioButton:
-            if (state == GTKOnState) {
-                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(self.mainWidget), GTKOnState);
-            } else {
-                gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_hiddenRadioButton), GTKOnState);
-            }
-            break;
-        case GTKSwitchButton:
-            gtk_switch_set_active(GTK_SWITCH(self.mainWidget), state);
-            break;
-        }
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_toggleButton), state);
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_checkButton), state);
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_hiddenRadioButton), !state);
+        gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_radioButton), state);
+        gtk_switch_set_active(GTK_SWITCH(_switchButton), state);
     }];
 }
 
@@ -284,19 +349,13 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 - (void)setImage:(GTKImage *)image
 {
     _image = image;
-    if (self.buttonType != GTKSwitchButton) {
-        if (nil != _image) {
-            if (NULL != _imageWidget) {
-                gtk_widget_destroy(_imageWidget);
-            }
-            _imageWidget = gtk_image_new();
-            g_object_ref(G_OBJECT(_imageWidget));
-            gtk_button_set_image(GTK_BUTTON(self.mainWidget), _imageWidget);
-            gtk_image_set_from_pixbuf(GTK_IMAGE(_imageWidget), _image.pixbuf);
-        } else {
-            gtk_image_clear(GTK_IMAGE(_imageWidget));
-        }
-    }
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_image_set_from_pixbuf(
+            GTK_IMAGE(_pushButtonImage),
+            [image pixbufScaledToWidth: self.frame.width
+                                height: self.frame.height
+                     maintainingAspect: true]);
+    }];
 }
 
 - (bool)canBecomeFirstResponder
@@ -311,12 +370,7 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
 
 - (void)didBecomeFirstResponder
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_grab_focus(self.mainWidget);
-        if (gtk_widget_get_can_default(self.mainWidget)) {
-            gtk_widget_grab_default(self.mainWidget);
-        }
-    }];
+    
 }
 
 - (GTKPopover *)popOver

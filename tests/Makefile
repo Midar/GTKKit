@@ -8,6 +8,7 @@ SUBDIRS = Window \
 					InfoBar \
 					ActionBar \
 					Popup \
-					Coder
+					Coder \
+					Dealloc
 
 include ../buildsys.mk

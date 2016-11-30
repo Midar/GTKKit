@@ -76,8 +76,6 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  */
 @interface GTKView: GTKResponder <GTKCoding>
 {
-    __block GtkGesture *_overlayDragGesture;
-    __block GtkGesture *_mainWidgetDragGesture;
     __block OFMutableArray *_connections;
 }
 

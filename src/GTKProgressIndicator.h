@@ -34,10 +34,7 @@
     __block double _doubleValue;
     __block bool _inverted;
     __block GTKOrientation _orientation;
-    DispatchWorkItem _animateBlock;
 }
-
-@property bool animate;
 
 /*!
  * @brief Whether or not to display the string value associated with the progress

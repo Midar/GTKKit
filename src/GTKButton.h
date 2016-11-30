@@ -69,8 +69,16 @@ typedef enum GTKButtonType {
 @interface GTKButton: GTKControl
 {
     __block GTKButtonType _buttonType;
+    __block GtkWidget *_pushButton;
+    __block GtkWidget *_pushButtonImage;
+    __block GtkWidget *_toggleButton;
+    __block GtkWidget *_toggleButtonImage;
+    __block GtkWidget *_checkButton;
+    __block GtkWidget *_checkButtonImage;
+    __block GtkWidget *_radioButton;
+    __block GtkWidget *_radioButtonImage;
     __block GtkWidget *_hiddenRadioButton;
-    __block GtkWidget *_imageWidget;
+    __block GtkWidget *_switchButton;
     __block GTKImage *_image;
     __block __weak GTKPopover *_popOver;
 }

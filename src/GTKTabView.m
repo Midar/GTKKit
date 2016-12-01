@@ -94,6 +94,7 @@
             tab.label.UTF8String,
             tab.label.UTF8String);
     }];
+    tab.tabView = self;
 }
 
 - (void)removeTab:(GTKTab *)tab
@@ -104,6 +105,7 @@
             tab.contentView.overlayWidget);
     }];
     [_tabs removeObjectIdenticalTo: tab];
+    tab.tabView = nil;
 }
 
 - (void)renameTab:(nonnull GTKTab *)tab
@@ -146,6 +148,7 @@
             "position", index,
             NULL);
     }];
+    tab.tabView = self;
 }
 
 - (nullable GTKTab *)tabAtIndex:(int)index

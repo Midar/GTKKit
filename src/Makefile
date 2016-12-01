@@ -39,6 +39,7 @@ SRCS =	GTKResponder.m                              \
 				GTKActionConnection.m                       \
 				GTKLinearView.m                             \
 				GTKTab.m                                    \
+				GTKTabView.m                                \
 				OFNull+GTKCoding.m                          \
 				OFURL+GTKCoding.m                           \
 				OFDate+GTKCoding.m                          \

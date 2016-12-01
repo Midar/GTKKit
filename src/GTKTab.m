@@ -18,6 +18,7 @@
 #import "GTKTab.h"
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
+#import "GTKTabView.h"
 
 @implementation GTKTab
 - init
@@ -40,5 +41,19 @@
 {
     [encoder encodeInt: self.tag forKey: @"GTKKit.coding.tab.tag"];
     [encoder encodeObject: self.contentView forKey: @"GTKKit.coding.tab.contentView"];
+}
+
+- (OFString *)label
+{
+    return _label.copy;
+}
+
+- (void)setLabel:(OFString *)label
+{
+    _label = label.copy;
+    if (self.tabView != nil) {
+        [self.tabView renameTab: self
+                       toString: label];
+    }
 }
 @end

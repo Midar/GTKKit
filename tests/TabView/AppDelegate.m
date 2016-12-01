@@ -1,5 +1,4 @@
-/*! @file GTKTab.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,26 +14,37 @@
  * the packaging of this file.
  */
 
-#import <ObjFW/ObjFW.h>
-#import <gtk/gtk.h>
+#import "AppDelegate.h"
 
-#import "GTKView.h"
-#import "GTKCoding.h"
+GTK_APPLICATION_DELEGATE(AppDelegate)
 
-@class GTKTabView;
-
-/*!
- * @brief A class representing a tab in a tab view. It wraps around a GTKView,
- * which will be used as the view when the tab is shown. It is also used in
- * tabbed windows.
- */
-@interface GTKTab: OFObject <GTKCoding>
+@implementation AppDelegate
+- init
 {
-    __block OFString *_label;
+    self = [super init];
+    // Put your custom initialization below this line.
+
+    self.window = [MainWindow new];
+    self.window.delegate = self;
+
+    // It would be dangerous to modify anything below this line.
+
+    return self;
 }
-@property int tag;
-@property (readonly) bool selected;
-@property (nullable, copy) OFString *label;
-@property (nonnull) GTKView *contentView;
-@property (weak, nullable) GTKTabView *tabView;
+
+- (void)applicationDidFinishLaunching
+{
+    // Put your custom post-launch startup code below this line.
+    self.window.hidden = false;
+}
+
+- (void)applicationWillTerminate
+{
+
+}
+
+- (void)windowDidClose
+{
+    [GTKApp terminate];
+}
 @end

@@ -6,6 +6,7 @@ SUBDIRS = Window \
 					InfoBar \
 					ActionBar \
 					Popup \
-					Coder
+					Coder \
+					TabView
 
 include ../buildsys.mk

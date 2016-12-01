@@ -41,6 +41,7 @@ OFObject [part of ObjFW]
       GTKSeparator
       GTKSplitView
       GTKStatusbar
+        GTKTabView
     GTKWindow
     GTKOffscreenRenderingWindow
   GTKImage
@@ -52,7 +53,6 @@ OFObject [part of ObjFW]
 
 To be rewritten:
 
-  GTKTabbedView
-  GTKTabbedWindow
+  GTKTabWindow
 
 New classes to be written:

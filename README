@@ -41,7 +41,7 @@ OFObject [part of ObjFW]
       GTKSeparator
       GTKSplitView
       GTKStatusbar
-        GTKTabView
+      GTKTabView
     GTKWindow
     GTKOffscreenRenderingWindow
   GTKImage

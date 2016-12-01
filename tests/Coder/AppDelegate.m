@@ -187,7 +187,7 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
         printf("OFList test: Passed\n");
     }
 
-    GTKView *view = [GTKView new];
+    GTKView *view = [GTKBox new];
 
     view.layer = GTKViewLayerNotification;
 

@@ -807,4 +807,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
         [self didBecomeFirstResponder];
     }
 }
+
+- (id)copy
+{
+    GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
+    [coder encodeObject: self forKey: @"GTKKit.copying.GTKView"];
+    GTKKeyedUnarchiver *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.XMLString];
+    return [decoder decodeObjectForKey: @"GTKKit.copying.GTKView"];
+}
 @end

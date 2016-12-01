@@ -32,9 +32,29 @@
 {
     __block OFString *_label;
 }
+
+/*!
+ * @brief An integer tag that can be set on the tab.
+ */
 @property int tag;
+
+/*!
+ * @brief Whether or not the tab is selected.
+ */
 @property (readonly) bool selected;
+
+/*!
+ * @brief The label of the tab.
+ */
 @property (nullable, copy) OFString *label;
+
+/*!
+ * @brief The GTKView that holds the tab's content.
+ */
 @property (nonnull) GTKView *contentView;
-@property (weak, nullable) GTKTabView *tabView;
+
+/*!
+ * @brief The parent tab, if one exists.
+ */
+@property (nullable, weak) GTKTabView *tabView;
 @end

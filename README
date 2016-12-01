@@ -48,6 +48,7 @@ OFObject [part of ObjFW]
   GTKDispatchQueue
   GTKLayoutConstraint
   GTKLayoutConstraints
+  GTKTab
 
 To be rewritten:
 
@@ -55,5 +56,3 @@ To be rewritten:
   GTKTabbedWindow
 
 New classes to be written:
-
-  GTKTab

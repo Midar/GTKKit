@@ -54,6 +54,7 @@
 #import "GTKOutletConnection.h"
 #import "GTKActionConnection.h"
 #import "GTKLinearView.h"
+#import "GTKTab.h"
 #import "OFNull+GTKCoding.h"
 #import "OFURL+GTKCoding.h"
 #import "OFDate+GTKCoding.h"

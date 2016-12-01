@@ -182,9 +182,24 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
     OFList *listTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFList.class
                                                         withCoder: listDecoder];
-                                                        
+
     if ([listTest.firstObject isEqual: @"abcdef987654321"]) {
         printf("OFList test: Passed\n");
+    }
+
+    GTKView *view = [GTKView new];
+
+    view.layer = GTKViewLayerNotification;
+
+    GTKKeyedArchiver *viewCoder = [GTKKeyedArchiver archiveRootObject: view];
+
+    GTKKeyedUnarchiver *viewDecoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: viewCoder.XMLString];
+
+    GTKView *viewTest = [GTKKeyedUnarchiver unarchiveObjectOfClass: GTKView.class
+                                                         withCoder: viewDecoder];
+
+    if (viewTest.layer == GTKViewLayerNotification) {
+        printf("GTKView test: Passed\n");
     }
 
     [GTKApp terminate];

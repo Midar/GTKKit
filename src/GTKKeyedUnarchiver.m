@@ -76,7 +76,7 @@
     INVALID_KEY_EXCEPTION_CHECK
 
     OFXMLElement *element = [self.data elementForName: key];
-    OFString *string = [[OFString alloc] initWithSerialization: element];
+    OFString *string = element.stringValue;
     return [string isEqual: @"true"];
 }
 

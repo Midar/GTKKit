@@ -72,8 +72,8 @@
     REMOVE_OLD_VALUE_FOR_KEY
 
     OFString *string = value ? @"true" : @"false";
-    OFXMLElement *element = string.XMLElementBySerializing;
-    element.name = key;
+    OFXMLElement *element = [OFXMLElement elementWithName: key];
+    element.stringValue = string;
     [self.data addChild: element];
 }
 

@@ -23,10 +23,6 @@
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
 
-/*!
- * @brief An abstract parent class for classes which transfer data between
- * memory and other storage.
- */
 @implementation OFDate (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {

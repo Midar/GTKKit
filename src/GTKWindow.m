@@ -328,7 +328,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.window.headerBarEndViews"]) {
         [self addViewToHeaderBarEnd: view];
     }
-    //FIXME: Do the menu button popover.
+    self.menuButtonPopOver = [decoder decodeObjectForKey: @"GTKKit.coding.window.menuButtonPopOver"];
     return self;
 }
 
@@ -350,7 +350,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     [encoder encodeObject: self.titleView forKey: @"GTKKit.coding.window.titleView"];
     [encoder encodeObject: _headerBarStartViews forKey: @"GTKKit.coding.window.headerBarStartViews"];
     [encoder encodeObject: _headerBarEndViews forKey: @"GTKKit.coding.window.headerBarStartViews"];
-    //FIXME: Do the menu button popover.
+    [encoder encodeObject: self.menuButtonPopOver forKey: @"GTKKit.coding.window.menuButtonPopOver"];
 }
 
 - (void)dealloc

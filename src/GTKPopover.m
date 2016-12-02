@@ -16,6 +16,8 @@
 
 #import "GTKPopover.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
 
 @implementation GTKPopover
 - init
@@ -45,6 +47,48 @@
 - (void)dealloc
 {
     g_object_unref(_popOver);
+}
+
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+{
+	self = [self init];
+    self.contentView = [decoder decodeObjectForKey: @"GTKKit.coding.popover.contentView"];
+    self.hidden = [decoder decodeBoolForKey: @"GTKKit.coding.popover.hidden"];
+    self.width = [decoder decodeIntForKey: @"GTKKit.coding.popover.width"];
+    self.height = [decoder decodeIntForKey: @"GTKKit.coding.popover.height"];
+    OFString *preferredPosition = [decoder decodeStringForKey: @"GTKKit.coding.popover.preferredPosition"];
+    if ([preferredPosition isEqual: @"top"]) {
+        self.preferredPosition = GTKPositionTypeTop;
+    } else if ([preferredPosition isEqual: @"bottom"]) {
+        self.preferredPosition = GTKPositionTypeBottom;
+    } else if ([preferredPosition isEqual: @"left"]) {
+        self.preferredPosition = GTKPositionTypeLeft;
+    } else {
+        self.preferredPosition = GTKPositionTypeRight;
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+{
+    [encoder encodeObject: self.contentView forKey: @"GTKKit.coding.popover.contentView"];
+    [encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.popover.hidden"];
+    [encoder encodeInt: self.width forKey: @"GTKKit.coding.popover.width"];
+    [encoder encodeInt: self.height forKey: @"GTKKit.coding.popover.height"];
+    switch (self.preferredPosition) {
+    case GTKPositionTypeTop:
+        [encoder encodeString: @"top" forKey: @"GTKKit.coding.popover.preferredPosition"];
+        break;
+    case GTKPositionTypeBottom:
+        [encoder encodeString: @"bottom" forKey: @"GTKKit.coding.popover.preferredPosition"];
+        break;
+    case GTKPositionTypeLeft:
+        [encoder encodeString: @"left" forKey: @"GTKKit.coding.popover.preferredPosition"];
+        break;
+    case GTKPositionTypeRight:
+        [encoder encodeString: @"right" forKey: @"GTKKit.coding.popover.preferredPosition"];
+        break;
+    }
 }
 
 - (bool)isHidden
@@ -136,5 +180,13 @@
     [GTKApp.dispatch.gtk sync: ^{
         gtk_widget_set_size_request(_popOver, _width, _height);
     }];
+}
+
+- (id)copy
+{
+    GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
+    [coder encodeObject: self forKey: @"GTKKit.copying.GTKPopover"];
+    GTKKeyedUnarchiver *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.XMLString];
+    return [decoder decodeObjectForKey: @"GTKKit.copying.GTKPopover"];
 }
 @end

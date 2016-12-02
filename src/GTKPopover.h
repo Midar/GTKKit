@@ -17,12 +17,13 @@
 #import "GTKResponder.h"
 #import "GTKPositionType.h"
 #import "GTKView.h"
+#import "GTKCoding.h"
 
 /*!
  * @brief A class representing a view controller that presents a view hierarchy
  * as a pop-up attached to another view.
  */
-@interface GTKPopover: GTKResponder
+@interface GTKPopover: GTKResponder <GTKCoding, OFCopying>
 {
     __block GtkWidget *_popOver;
     __block __weak GTKView *_relativeView;

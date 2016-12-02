@@ -51,9 +51,7 @@
 - (void)setLabel:(OFString *)label
 {
     _label = label.copy;
-    if (self.tabView != nil) {
-        [self.tabView renameTab: self
-                       toString: label];
-    }
+    [self.tabView renameTab: self
+                   toString: label];
 }
 @end

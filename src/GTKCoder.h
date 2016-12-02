@@ -21,6 +21,8 @@
 #import "GTKCoding.h"
 #import "OFString+GTKCoding.h"
 
+typedef GdkRectangle GTKRect;
+
 #define KEYED_CODING_EXCEPTION_CHECK                                           \
     if (!self.allowsKeyedCoding) {                                             \
         @throw [GTKCoderKeyedCodingNotAllowedException exception];             \
@@ -95,6 +97,12 @@
            forKey:(OFString *)key;
 
 /*!
+* @brief Encode the supplied GTKRect struct for the supplied key.
+*/
+- (void)encodeRect:(GTKRect)value
+            forKey:(OFString *)key;
+
+/*!
  * @brief Encode the supplied int value for the supplied key.
  */
 - (void)encodeString:(OFString *)value
@@ -131,6 +139,11 @@
 * @brief Decode the int value for the supplied key.
 */
 - (int)decodeIntForKey:(OFString *)key;
+
+/*!
+* @brief Decode the GTKRect value for the supplied key.
+*/
+- (GTKRect)decodeRectForKey:(OFString *)key;
 
 /*!
 * @brief Decode the int value for the supplied key.

@@ -84,6 +84,12 @@
     KEYED_CODING_EXCEPTION_CHECK
 }
 
+- (void)encodeRect:(GTKRect)value
+            forKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+}
+
 - (void)encodeString:(OFString *)value
               forKey:(OFString *)key
 {
@@ -124,6 +130,17 @@
 {
     KEYED_CODING_EXCEPTION_CHECK
     return 0;
+}
+
+- (GTKRect)decodeRectForKey:(OFString *)key
+{
+    KEYED_CODING_EXCEPTION_CHECK
+    GTKRect rect;
+    rect.x = 0;
+    rect.y = 0;
+    rect.width = 0;
+    rect.height = 0;
+    return rect;
 }
 
 - (OFString *)decodeStringForKey:(OFString *)key

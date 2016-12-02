@@ -19,6 +19,7 @@
 #import <gtk/gtk.h>
 
 #import "GTKKeyedUnarchiver.h"
+#import "OFArray+GTKCoding.h"
 
 @interface GTKKeyedUnarchiver (Private)
 - (Class)classForKey:(OFString *)key;
@@ -105,6 +106,24 @@
     OFXMLElement *element = [self.data elementForName: key];
     OFNumber *number = element.stringValue.objectByDeserializing;
     return number.intValue;
+}
+
+- (GTKRect)decodeRectForKey:(OFString *)key
+{
+    INVALID_KEY_EXCEPTION_CHECK
+    
+    GTKRect rect;
+
+    OFXMLElement *xml = [self.data elementForName: key];
+    GTKKeyedUnarchiver *coder = [[GTKKeyedUnarchiver alloc] initWithSerialization: xml];
+    OFArray<OFNumber *> *array = [[OFArray alloc] initWithCoder: coder];
+
+    rect.x = array[0].intValue;
+    rect.y = array[1].intValue;
+    rect.width = array[2].intValue;
+    rect.height = array[3].intValue;
+
+    return rect;
 }
 
 - (OFString *)decodeStringForKey:(OFString *)key

@@ -16,6 +16,7 @@
  */
 
 #import "GTKKeyedArchiver.h"
+#import "OFArray+GTKCoding.h"
 
 #define REMOVE_OLD_VALUE_FOR_KEY                                               \
     OFArray *elements = [self.data elementsForName: key];                      \
@@ -111,6 +112,21 @@
     OFXMLElement *element = [OFXMLElement elementWithName: key];
     element.stringValue = number.stringBySerializing;
     [self.data addChild: element];
+}
+
+- (void)encodeRect:(GTKRect)value
+            forKey:(OFString *)key
+{
+    OFNumber *x = [OFNumber numberWithInt: value.x];
+    OFNumber *y = [OFNumber numberWithInt: value.y];
+    OFNumber *width = [OFNumber numberWithInt: value.width];
+    OFNumber *height = [OFNumber numberWithInt: value.height];
+    OFArray *rect = @[x, y, width, height];
+
+    GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
+    [rect encodeWithCoder: coder];
+    coder.data.name = key;
+    [self.data addChild: coder.XMLElementBySerializing];
 }
 
 - (void)encodeString:(OFString *)value

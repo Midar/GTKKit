@@ -18,6 +18,9 @@
 #import "GTKApplicationDelegate.h"
 #import "GTKWindowDelegate.h"
 #import "GTKApplication.h"
+#import "GTKKeyedArchiver.h"
+#import "GTKKeyedUnarchiver.h"
+#import "OFArray+GTKCoding.h"
 
 static void
 close_button_clicked_handler(GtkButton *button, GTKWindow *window)
@@ -146,6 +149,9 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
     self.firstResponder = self;
     self.destroyWhenClosed = false;
+
+    _headerBarStartViews = [OFMutableArray new];
+    _headerBarEndViews = [OFMutableArray new];
 
     [GTKApp.dispatch.gtk sync: ^{
         _window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
@@ -298,6 +304,53 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     [GTKApp.windows addObject: self];
 
     return self;
+}
+
+- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+{
+	self = [self init];
+    self.contentView = [decoder decodeObjectForKey: @"GTKKit.coding.window.contentView"];
+    self.frame = [decoder decodeRectForKey: @"GTKKit.coding.window.contentView"];
+    self.title = [decoder decodeStringForKey: @"GTKKit.coding.window.title"];
+    self.title = [decoder decodeStringForKey: @"GTKKit.coding.window.subtitle"];
+    self.closeButtonHidden = [decoder decodeBoolForKey: @"GTKKit.coding.window.closeButtonHidden"];
+    self.minimizeButtonHidden = [decoder decodeBoolForKey: @"GTKKit.coding.window.minimizeButtonHidden"];
+    self.maximizeButtonHidden = [decoder decodeBoolForKey: @"GTKKit.coding.window.maximizeButtonHidden"];
+    self.menuButtonHidden = [decoder decodeBoolForKey: @"GTKKit.coding.window.menuButtonHidden"];
+    self.hidden = [decoder decodeBoolForKey: @"GTKKit.coding.window.hidden"];
+    self.titleVisible = [decoder decodeBoolForKey: @"GTKKit.coding.window.titleVisible"];
+    self.alpha = [decoder decodeDoubleForKey: @"GTKKit.coding.window.alpha"];
+    self.resizable = [decoder decodeBoolForKey: @"GTKKit.coding.window.resizable"];
+    self.destroyWhenClosed = [decoder decodeBoolForKey: @"GTKKit.coding.window.destroyWhenClosed"];
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.window.headerBarStartViews"]) {
+        [self addViewToHeaderBarStart: view];
+    }
+    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.window.headerBarEndViews"]) {
+        [self addViewToHeaderBarEnd: view];
+    }
+    //FIXME: Do the menu button popover.
+    return self;
+}
+
+- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+{
+    [encoder encodeObject: self.contentView forKey: @"GTKKit.coding.window.contentView"];
+    [encoder encodeRect: self.frame forKey: @"GTKKit.coding.window.frame"];
+    [encoder encodeString: self.title forKey: @"GTKKit.coding.window.title"];
+    [encoder encodeString: self.title forKey: @"GTKKit.coding.window.subtitle"];
+    [encoder encodeBool: self.isCloseButtonHidden forKey: @"GTKKit.coding.window.closeButtonHidden"];
+    [encoder encodeBool: self.isMinimizeButtonHidden forKey: @"GTKKit.coding.window.minimizeButtonHidden"];
+    [encoder encodeBool: self.isMaximizeButtonHidden forKey: @"GTKKit.coding.window.maximizeButtonHidden"];
+    [encoder encodeBool: self.isMenuButtonHidden forKey: @"GTKKit.coding.window.menuButtonHidden"];
+    [encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.window.hidden"];
+    [encoder encodeBool: self.titleVisible forKey: @"GTKKit.coding.window.titleVisible"];
+    [encoder encodeDouble: self.titleVisible forKey: @"GTKKit.coding.window.alpha"];
+    [encoder encodeBool: self.isResizable forKey: @"GTKKit.coding.window.resizable"];
+    [encoder encodeBool: self.destroyWhenClosed forKey: @"GTKKit.coding.window.destroyWhenClosed"];
+    [encoder encodeObject: self.titleView forKey: @"GTKKit.coding.window.titleView"];
+    [encoder encodeObject: _headerBarStartViews forKey: @"GTKKit.coding.window.headerBarStartViews"];
+    [encoder encodeObject: _headerBarEndViews forKey: @"GTKKit.coding.window.headerBarStartViews"];
+    //FIXME: Do the menu button popover.
 }
 
 - (void)dealloc
@@ -572,6 +625,11 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
 - (void)addViewToHeaderBarStart:(nonnull GTKView *)view
 {
+    [self removeViewFromHeaderBar: view];
+    [view removeFromSuperview];
+    view.nextResponder = self;
+    view.superview = self.contentView;
+    [_headerBarStartViews addObject: view];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_header_bar_pack_start(
             GTK_HEADER_BAR(_headerBar),
@@ -581,11 +639,27 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 
 - (void)addViewToHeaderBarEnd:(nonnull GTKView *)view
 {
+    [self removeViewFromHeaderBar: view];
+    [view removeFromSuperview];
+    view.nextResponder = self;
+    view.superview = self.contentView;
+    [_headerBarEndViews addObject: view];
     [GTKApp.dispatch.gtk sync: ^{
         gtk_header_bar_pack_end(
             GTK_HEADER_BAR(_headerBar),
             view.overlayWidget);
     }];
+}
+
+- (void)removeViewFromHeaderBar:(nonnull GTKView *)view
+{
+    view.nextResponder = nil;
+    view.superview = nil;
+    [_headerBarEndViews removeObjectIdenticalTo: view];
+    [_headerBarStartViews removeObjectIdenticalTo: view];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_widget_unparent(view.overlayWidget);
+	}];
 }
 
 - (nullable GTKView *)titleView
@@ -606,5 +680,13 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 - (void)addView:(nonnull GTKView *)subview
 {
     [self.contentView addSubview: subview];
+}
+
+- (id)copy
+{
+    GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
+    [coder encodeObject: self forKey: @"GTKKit.copying.GTKView"];
+    GTKKeyedUnarchiver *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.XMLString];
+    return [decoder decodeObjectForKey: @"GTKKit.copying.GTKView"];
 }
 @end

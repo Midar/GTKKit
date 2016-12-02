@@ -26,7 +26,7 @@
  * @brief A class representing a view controller that manages a toplevel
  * window and its view hierarchy.
  */
-@interface GTKWindow: GTKResponder
+@interface GTKWindow: GTKResponder <GTKCoding, OFCopying>
 {
     __block GtkWidget *_window;
     __block GtkWidget *_headerBar;
@@ -37,6 +37,8 @@
     __block GtkWidget *_maximizeButton;
     __block GtkWidget *_menuButton;
     __block GTKView   *_titleView;
+    __block OFMutableArray<__kindof GTKView *> *_headerBarStartViews;
+    __block OFMutableArray<__kindof GTKView *> *_headerBarEndViews;
 }
 
 /*!
@@ -125,8 +127,8 @@
 @property bool destroyWhenClosed;
 
 /*!
- * @brief The GTKPopOverViewController which manages the popover that is shown
- * when the menu button in the window's header bar is clicked.
+ * @brief The GTKPopOver that is shown when the menu button in the window's
+ * header bar is clicked.
  */
 @property (nonnull) GTKPopover *menuButtonPopOver;
 
@@ -162,6 +164,11 @@
  * only shown if any of the system-provided buttons on the left are shown).
  */
 - (void)addViewToHeaderBarStart:(nonnull GTKView *)view;
+
+/*!
+ * @brief Removes the specified view from the header bar.
+ */
+- (void)removeViewFromHeaderBar:(nonnull GTKView *)view;
 
 /*!
  * @brief Adds a GTKView to the header bar, before the right separator (which is

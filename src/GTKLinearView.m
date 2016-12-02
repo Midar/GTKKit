@@ -157,5 +157,21 @@
             GTK_ORIENTABLE(self.mainWidget),
             (GtkOrientation)(orientation));
     }];
+    for (GTKView *view in self.backgroundLayerSubviews) {
+        [view removeFromSuperview];
+        [self addSubview: view];
+    }
+    for (GTKView *view in self.defaultLayerSubviews) {
+        [view removeFromSuperview];
+        [self addSubview: view];
+    }
+    for (GTKView *view in self.foregroundLayerSubviews) {
+        [view removeFromSuperview];
+        [self addSubview: view];
+    }
+    for (GTKView *view in self.notificationLayerSubviews) {
+        [view removeFromSuperview];
+        [self addSubview: view];
+    }
 }
 @end

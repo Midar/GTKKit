@@ -34,6 +34,7 @@
 	self = [self init];
     self.tag = [decoder decodeIntForKey: @"GTKKit.coding.tab.tag"];
     self.contentView = [decoder decodeObjectForKey: @"GTKKit.coding.tab.contentView"];
+    self.label = [decoder decodeStringForKey: @"GTKKit.coding.tab.label"];
     return self;
 }
 
@@ -41,6 +42,7 @@
 {
     [encoder encodeInt: self.tag forKey: @"GTKKit.coding.tab.tag"];
     [encoder encodeObject: self.contentView forKey: @"GTKKit.coding.tab.contentView"];
+    [encoder encodeString: self.label forKey: @"GTKKit.coding.tab.label"];
 }
 
 - (OFString *)label

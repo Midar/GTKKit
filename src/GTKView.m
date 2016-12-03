@@ -384,7 +384,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 
     self.constraints = [decoder decodeObjectForKey: @"GTKKit.coding.view.constraints"];
 
-    _connections = [decoder decodeObjectForKey: @"GTKKit.coding.view.constraints"];
+    _connections = [decoder decodeObjectForKey: @"GTKKit.coding.view.connections"];
 
     self.hidden = [decoder decodeBoolForKey: @"GTKKit.coding.view.hidden"];
 

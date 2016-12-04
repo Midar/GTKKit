@@ -24,19 +24,21 @@
     GTKRect frame = self.frame;
     frame.x = 50;
     frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
+    frame.width = 300;
+    frame.height = 400;
     self.frame = frame;
 
-    self.info = [GTKInfoBar new];
-    self.info.layer = GTKViewLayerNotification;
-    self.info.stringValue = @"Example info bar";
-    [self.info addButtonWithLabel: @"Yes" response: GTKResponseTypeYes];
-    [self.info addButtonWithLabel: @"No" response: GTKResponseTypeNo];
+    self.tab1 = [GTKTab new];
+    self.tab1.label = @"Tab One";
+    [self.contentView addTab: self.tab1];
 
-    [self.contentView addSubview: self.info];
+    self.tab2 = [GTKTab new];
+    self.tab2.label = @"Tab Two";
+    [self.contentView addTab: self.tab2];
 
-    self.title = @"Info Bar";
+    self.tab3 = [GTKTab new];
+    self.tab3.label = @"Tab Three";
+    [self.contentView addTab: self.tab3];
 
     return self;
 }

@@ -52,8 +52,8 @@
     [self.combo insertItemWithTitle: @"Item Three" at: 2];
     [self.combo selectItemAt: 0];
 
-    [self addView: self.popup];
-    [self addView: self.combo];
+    [self.contentView addSubview: self.popup];
+    [self.contentView addSubview: self.combo];
 
     self.title = @"Combo Box and Pop-Up Button";
 

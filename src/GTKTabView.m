@@ -24,6 +24,7 @@
 - init
 {
     self = [super init];
+    self.frameHidden = false;
     _tabs = [OFMutableArray new];
     return self;
 }
@@ -34,6 +35,7 @@
     for (GTKTab *tab in [decoder decodeObjectForKey: @"GTKKit.coding.tabView.tabs"]) {
         [self addTab: tab];
     }
+    [decoder decodeBoolForKey: @"GTKKit.coding.tabView.tabsHidden"];
     return self;
 }
 
@@ -41,6 +43,7 @@
 {
     [super encodeWithCoder: encoder];
     [encoder encodeObject: _tabs forKey: @"GTKKit.coding.tabView.tabs"];
+    [encoder encodeBool: self.tabsHidden forKey: @"GTKKit.coding.tabView.tabsHidden"];
 }
 
 - (void)createMainWidget
@@ -154,5 +157,44 @@
 - (nullable GTKTab *)tabAtIndex:(int)index
 {
     return [_tabs objectAtIndex: index];
+}
+
+- (bool)tabsHidden
+{
+    return _tabsHidden;
+}
+
+- (void)setTabsHidden:(bool)hidden
+{
+    _tabsHidden = hidden;
+    [GTKApp.dispatch.gtk sync: ^{
+        gtk_widget_set_visible(_switcher, !hidden);
+    }];
+}
+
+- (bool)frameHidden
+{
+    return _tabsHidden;
+}
+
+- (void)setFrameHidden:(bool)hidden
+{
+    _frameHidden = hidden;
+    [GTKApp.dispatch.gtk sync: ^{
+        if (hidden) {
+            gtk_frame_set_shadow_type(
+                GTK_FRAME(self.mainWidget),
+                GTK_SHADOW_NONE);
+        } else {
+            gtk_frame_set_shadow_type(
+                GTK_FRAME(self.mainWidget),
+                GTK_SHADOW_IN);
+        }
+    }];
+}
+
+- (GtkWidget *)stack
+{
+    return _stack;
 }
 @end

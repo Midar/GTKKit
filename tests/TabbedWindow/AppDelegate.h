@@ -14,30 +14,9 @@
  * the packaging of this file.
  */
 
+#import "GTKKit.h"
 #import "MainWindow.h"
 
-@implementation MainWindow
-- init
-{
-    self = [super init];
-
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
-
-    self.info = [GTKInfoBar new];
-    self.info.layer = GTKViewLayerNotification;
-    self.info.stringValue = @"Example info bar";
-    [self.info addButtonWithLabel: @"Yes" response: GTKResponseTypeYes];
-    [self.info addButtonWithLabel: @"No" response: GTKResponseTypeNo];
-
-    [self.contentView addSubview: self.info];
-
-    self.title = @"Info Bar";
-
-    return self;
-}
+@interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowDelegate>
+@property (nullable) MainWindow *window;
 @end

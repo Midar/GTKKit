@@ -32,8 +32,27 @@
     __block OFMutableArray<__kindof GTKTab *> *_tabs;
     __block GtkWidget *_stack;
     __block GtkWidget *_switcher;
+    __block bool _tabsHidden;
+    __block bool _frameHidden;
 }
+
 @property (nonnull, readonly, copy) OFArray<__kindof GTKTab *> *tabs;
+
+/*!
+ * @brief Whether or not to hide the built-in tab switcher.
+ */
+@property bool tabsHidden;
+
+/*!
+ * @brief Whether or not to hide the frame around the subviews.
+ */
+@property bool frameHidden;
+
+/*
+ * The GtkStack widget used by this view. This is only useful for view
+ * implementations.
+ */
+- (nonnull GtkWidget *)stack;
 
 /*!
  * @brief Adds the specified tab to the end of the tab view's tabs.

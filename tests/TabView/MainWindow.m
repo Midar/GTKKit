@@ -29,7 +29,7 @@
     self.frame = frame;
 
     self.tabView = [GTKTabView new];
-    [self addView: self.tabView];
+    [self.contentView addSubview: self.tabView];
     [self.tabView.constraints fixedToTop: 10
                                   bottom: 10
                                     left: 10

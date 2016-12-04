@@ -14,30 +14,37 @@
  * the packaging of this file.
  */
 
-#import "MainWindow.h"
+#import "AppDelegate.h"
 
-@implementation MainWindow
+GTK_APPLICATION_DELEGATE(AppDelegate)
+
+@implementation AppDelegate
 - init
 {
     self = [super init];
+    // Put your custom initialization below this line.
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
+    self.window = [MainWindow new];
+    self.window.delegate = self;
 
-    self.info = [GTKInfoBar new];
-    self.info.layer = GTKViewLayerNotification;
-    self.info.stringValue = @"Example info bar";
-    [self.info addButtonWithLabel: @"Yes" response: GTKResponseTypeYes];
-    [self.info addButtonWithLabel: @"No" response: GTKResponseTypeNo];
-
-    [self.contentView addSubview: self.info];
-
-    self.title = @"Info Bar";
+    // It would be dangerous to modify anything below this line.
 
     return self;
+}
+
+- (void)applicationDidFinishLaunching
+{
+    // Put your custom post-launch startup code below this line.
+    self.window.hidden = false;
+}
+
+- (void)applicationWillTerminate
+{
+
+}
+
+- (void)windowDidClose
+{
+    [GTKApp terminate];
 }
 @end

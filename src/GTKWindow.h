@@ -39,12 +39,18 @@
     __block GTKView   *_titleView;
     __block OFMutableArray<__kindof GTKView *> *_headerBarStartViews;
     __block OFMutableArray<__kindof GTKView *> *_headerBarEndViews;
+    __block GTKView *_contentView;
 }
 
 /*!
  * @brief The GTKView that holds all this view controller's subviews.
  */
-@property (nullable) GTKView *contentView;
+- (nullable GTKView *)contentView;
+
+/*!
+ * @brief The GTKView that holds all this view controller's subviews.
+ */
+- (void)setContentView:(nullable GTKView *)view;
 
 /*!
  * @brief The GTKResponder which gets event messages first for this view controller.
@@ -176,11 +182,5 @@
  */
 - (void)addViewToHeaderBarEnd:(nonnull GTKView *)view;
 
-/*!
- * @brief Adds the specified view to this view controller's content view as a
- * subview.
- *
- * @pram subview The view to add
- */
-- (void)addView:(nonnull GTKView *)subview;
+- (void)createContentView;
 @end

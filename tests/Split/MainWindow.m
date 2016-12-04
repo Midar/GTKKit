@@ -36,7 +36,7 @@
     [self.split.constraints flexibleWidth: 0];
     [self.split.constraints flexibleHeight: 0];
 
-    [self addView: self.split];
+    [self.contentView addSubview: self.split];
 
     self.leftLabel = [GTKTextField new];
     self.leftLabel.stringValue = @"Left Pane";

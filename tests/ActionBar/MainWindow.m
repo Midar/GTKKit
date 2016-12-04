@@ -42,7 +42,7 @@
     control3.segments = 4;
     [self.actions addSubviewEnd: control3];
 
-    [self addView: self.actions];
+    [self.contentView addSubview: self.actions];
 
     self.title = @"Action Bar";
 

@@ -143,7 +143,8 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 {
     self = [super init];
 
-    self.contentView = [GTKView new];
+    [self createContentView];
+
     self.contentView.nextResponder = self;
     self.nextResponder = GTKApp;
 
@@ -304,6 +305,11 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     [GTKApp.windows addObject: self];
 
     return self;
+}
+
+- (void)createContentView
+{
+    self.contentView = [GTKView new];
 }
 
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
@@ -677,9 +683,14 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
     }];
 }
 
-- (void)addView:(nonnull GTKView *)subview
+- (nullable GTKView *)contentView
 {
-    [self.contentView addSubview: subview];
+    return _contentView;
+}
+
+- (void)setContentView:(nullable GTKView *)view
+{
+    _contentView = view;
 }
 
 - (id)copy

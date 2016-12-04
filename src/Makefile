@@ -12,6 +12,7 @@ SRCS =	GTKResponder.m                              \
 				GTKView.m                                   \
 				GTKControl.m                                \
 				GTKWindow.m                                 \
+				GTKTabbedWindow.m                           \
 				GTKSplitView.m                              \
 				GTKPopover.m                                \
 				GTKApplication.m                            \

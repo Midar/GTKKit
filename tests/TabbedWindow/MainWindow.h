@@ -14,30 +14,10 @@
  * the packaging of this file.
  */
 
-#import "MainWindow.h"
+#import "GTKKit.h"
 
-@implementation MainWindow
-- init
-{
-    self = [super init];
-
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
-
-    self.list = [GTKListView new];
-    [self.list.constraints fixedToTop: 5
-                               bottom: 5
-                                 left: 5
-                                right: 5];
-
-    [self.contentView addSubview: self.list];
-
-    self.title = @"List View";
-
-    return self;
-}
+@interface MainWindow: GTKTabbedWindow
+@property GTKTab *tab1;
+@property GTKTab *tab2;
+@property GTKTab *tab3;
 @end

@@ -35,7 +35,7 @@
                                      right: 10];
     self.progress.constraints.centerVertical = true;
     [self.progress.constraints fixedHeight: 20];
-    [self addView: self.progress];
+    [self.contentView addSubview: self.progress];
 
     self.button = [GTKButton new];
     self.button.stringValue = @"Toggle Animation";
@@ -47,7 +47,7 @@
     [self.button.constraints fixedWidth: 150];
     self.button.constraints.centerHorizontal = true;
     __weak MainWindow *weakSelf = self;
-    [self addView: self.button];
+    [self.contentView addSubview: self.button];
     self.button.actionBlock = ^{
         weakSelf.progress.doubleValue = weakSelf.progress.doubleValue + 0.1;
     };

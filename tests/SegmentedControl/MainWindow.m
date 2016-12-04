@@ -67,7 +67,7 @@
                                   left: 10
                                  right: 10];
     self.label.stringValue = @"This window shows three segmented controls in the header bar.";
-    [self addView: self.label];
+    [self.contentView addSubview: self.label];
 
     self.title = @"Segmented Controls";
 

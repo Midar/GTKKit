@@ -43,6 +43,7 @@ OFObject [part of ObjFW]
       GTKStatusbar
       GTKTabView
     GTKWindow
+      GTKTabbedWindow
     GTKOffscreenRenderingWindow
   GTKImage
   GTKEvent
@@ -50,9 +51,3 @@ OFObject [part of ObjFW]
   GTKLayoutConstraint
   GTKLayoutConstraints
   GTKTab
-
-To be rewritten:
-
-  GTKTabWindow
-
-New classes to be written:

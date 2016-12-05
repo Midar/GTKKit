@@ -22,6 +22,7 @@
 #import "GTKCoding.h"
 
 @class GTKTabView;
+@class GTKNotebookView;
 
 /*!
  * @brief A class representing a tab in a tab view. It wraps around a GTKView,
@@ -54,7 +55,12 @@
 @property (nonnull) GTKView *contentView;
 
 /*!
- * @brief The parent tab, if one exists.
+ * @brief The parent tab view, if one exists.
  */
 @property (nullable, weak) GTKTabView *tabView;
+
+/*!
+ * @brief The parent notebook view, if one exists.
+ */
+@property (nullable, weak) GTKNotebookView *notebookView;
 @end

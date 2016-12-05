@@ -19,6 +19,15 @@
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
 #import "GTKTabView.h"
+#import "GTKNotebookView.h"
+
+static GTKTab *
+gtk_widget_get_owning_tab(GtkWidget *widget)
+{
+    return (__bridge GTKTab *)g_object_get_data(
+        G_OBJECT(widget),
+        "_GTKKIT_OWNING_TAB_");
+}
 
 @implementation GTKTab
 - init
@@ -26,6 +35,12 @@
     self = [super init];
     self.tag = -1;
     self.contentView = [GTKView new];
+
+    g_object_set_data(
+        G_OBJECT(self.contentView.overlayWidget),
+        "_GTKKIT_OWNING_TAB_",
+        (__bridge gpointer)(self));
+
     return self;
 }
 
@@ -55,5 +70,7 @@
     _label = label.copy;
     [self.tabView renameTab: self
                    toString: label];
+    [self.notebookView renameTab: self
+                        toString: label];
 }
 @end

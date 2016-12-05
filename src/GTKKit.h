@@ -57,6 +57,7 @@
 #import "GTKLinearView.h"
 #import "GTKTab.h"
 #import "GTKTabView.h"
+#import "GTKNotebookView.h"
 #import "OFNull+GTKCoding.h"
 #import "OFURL+GTKCoding.h"
 #import "OFDate+GTKCoding.h"

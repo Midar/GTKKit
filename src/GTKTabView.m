@@ -31,7 +31,7 @@
 
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-	self = [self init];
+	self = [super initWithCoder: decoder];
     for (GTKTab *tab in [decoder decodeObjectForKey: @"GTKKit.coding.tabView.tabs"]) {
         [self addTab: tab];
     }

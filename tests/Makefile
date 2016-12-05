@@ -8,6 +8,7 @@ SUBDIRS = Window \
 					Popup \
 					Coder \
 					TabView \
-					TabbedWindow
+					TabbedWindow \
+					NotebookView
 
 include ../buildsys.mk

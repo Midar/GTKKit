@@ -23,8 +23,7 @@
 #import "GTKPopover.h"
 
 /*!
- * @brief A class representing a view controller that manages a toplevel
- * window and its view hierarchy.
+ * @brief A class representing a toplevel window.
  */
 @interface GTKWindow: GTKResponder <GTKCoding, OFCopying>
 {
@@ -43,91 +42,90 @@
 }
 
 /*!
- * @brief The GTKView that holds all this view controller's subviews.
+ * @brief The GTKView that holds all this window's subviews.
  */
 - (nullable GTKView *)contentView;
 
 /*!
- * @brief The GTKView that holds all this view controller's subviews.
+ * @brief The GTKView that holds all this window's subviews.
  */
 - (void)setContentView:(nullable GTKView *)view;
 
 /*!
- * @brief The GTKResponder which gets event messages first for this view controller.
+ * @brief The GTKResponder which gets event messages first for this window.
  */
 @property (nullable) GTKResponder *firstResponder;
 
 /*!
- * @brief Whether or not this view controller's window has a close button.
+ * @brief Whether or not this window has a close button.
  */
 @property (getter=isCloseButtonHidden) bool closeButtonHidden;
 
 /*!
- * @brief Whether or not this view controller's window has a close button.
+ * @brief Whether or not this view window has a close button.
  */
 @property (getter=isMinimizeButtonHidden) bool minimizeButtonHidden;
 
 /*!
- * @brief Whether or not this view controller's window has a close button.
+ * @brief Whether or not this window has a close button.
  */
 @property (getter=isMaximizeButtonHidden) bool maximizeButtonHidden;
 
 /*!
- * @brief Whether or not this view controller's window has a menu button.
+ * @brief Whether or not this window has a menu button.
  */
 @property (getter=isMenuButtonHidden) bool menuButtonHidden;
 
 /*!
- * @brief The delegate of this window.
+ * @brief The delegate object for this window.
  */
 @property (weak, nullable) OFObject<GTKWindowDelegate> *delegate;
 
 /*!
- * @brief Whether or not this view controller's window is the toplevel input focus.
+ * @brief Whether or not this window is the toplevel input focus.
  */
 @property (readonly) bool hasToplevelFocus;
 
 /*!
- * @brief The title of the window this view controller manages.
+ * @brief The title of this window.
  */
 @property (nonnull) OFString *title;
 
 /*!
- * @brief The subtitle of the window this view controller manages.
+ * @brief The subtitle of this window.
  */
 @property (nonnull) OFString *subtitle;
 
 /*!
- * @brief The position and size of this view controller's window.
+ * @brief The position and size of this window.
  */
 @property GTKRect frame;
 
 /*!
- * @brief A boolean indicating whether this view controller's window should be
- * visible to the user.
+ * @brief A boolean indicating whether this window should be hidden from the user.
  */
 @property (getter=isHidden) bool hidden;
 
 /*!
- * @brief A bool value indicating whether or not the window
- * this view manages should have a visible titlebar.
+ * @brief A bool value indicating whether or not this window should have a
+ * visible titlebar.
  */
 @property bool titleVisible;
 
 /*!
- * @brief The opacity level of the window managed by the view controller.
+ * @brief The opacity level of this window.
  */
 @property double alpha;
 
 /*!
- * @brief A bool value indicating whether or not the window should be
+ * @brief A bool value indicating whether or not this window should be
  * resizable.
  */
 @property (getter=isResizable) bool resizable;
 
 /*!
- * @brief A bool value indicating whether or not the window should be
- * resizable. Once a window is destroyed, all references to it should be
+ * @brief A bool value indicating whether or not this window should be
+ * destroyed once closed. Once a window is destroyed, all references to it should be
  * treated as invalid.
  */
 @property bool destroyWhenClosed;

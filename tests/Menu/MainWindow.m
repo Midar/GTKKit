@@ -43,10 +43,14 @@
 
     self.button = [GTKButton new];
     self.button.stringValue = @"Menu Button";
-    self.button.constraints
-        .fixedWidth(100)
-        .fixedHeight(30)
-        .centerInSuperview();
+    self.button.constraints.centerHorizontal = true;
+    self.button.constraints.centerVertical = true;
+    [self.button.constraints fixedWidth: 100];
+    [self.button.constraints fixedHeight: 30];
+    [self.button.constraints flexibleToTop: 0
+                                    bottom: 0
+                                      left: 0
+                                     right: 0];
     [self.contentView addSubview: self.button];
 
     self.button.menu = self.menu;

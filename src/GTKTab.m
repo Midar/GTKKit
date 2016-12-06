@@ -21,14 +21,6 @@
 #import "GTKTabView.h"
 #import "GTKNotebookView.h"
 
-static GTKTab *
-gtk_widget_get_owning_tab(GtkWidget *widget)
-{
-    return (__bridge GTKTab *)g_object_get_data(
-        G_OBJECT(widget),
-        "_GTKKIT_OWNING_TAB_");
-}
-
 @implementation GTKTab
 - init
 {

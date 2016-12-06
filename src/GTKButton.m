@@ -314,6 +314,9 @@ switch_activated_handler(GtkSwitch *widget, gboolean state, GTKButton *button)
         if (NULL != self.popOver) {
             self.popOver.hidden = false;
         }
+        if (NULL != self.menu) {
+            [self.menu popUpAtView: self];
+        }
     }];
 }
 

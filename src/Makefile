@@ -42,6 +42,8 @@ SRCS =	GTKResponder.m                              \
 				GTKTab.m                                    \
 				GTKTabView.m                                \
 				GTKNotebookView.m                           \
+				GTKMenu.m                                   \
+				GTKMenuItem.m                               \
 				OFNull+GTKCoding.m                          \
 				OFURL+GTKCoding.m                           \
 				OFDate+GTKCoding.m                          \

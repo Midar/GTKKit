@@ -9,6 +9,7 @@ SUBDIRS = Window \
 					Coder \
 					TabView \
 					TabbedWindow \
-					NotebookView
+					NotebookView \
+					Menu
 
 include ../buildsys.mk

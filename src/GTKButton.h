@@ -21,6 +21,7 @@
 #import "GTKControl.h"
 #import "GTKImage.h"
 #import "GTKPopover.h"
+#import "GTKMenu.h"
 
 /*!
  * @brief The state of an active button. Equal to true.
@@ -107,4 +108,10 @@ typedef enum GTKButtonType {
  * the target-action method and actionBlock might do.
  */
 @property (weak, nullable) GTKPopover *popOver;
+
+/*!
+ * @brief A GTKMenu associated with the button, which will be shown when the
+ * button is clicked.
+ */
+@property (weak, nullable) GTKMenu *menu;
 @end

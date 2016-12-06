@@ -58,6 +58,8 @@
 #import "GTKTab.h"
 #import "GTKTabView.h"
 #import "GTKNotebookView.h"
+#import "GTKMenu.h"
+#import "GTKMenuItem.h"
 #import "OFNull+GTKCoding.h"
 #import "OFURL+GTKCoding.h"
 #import "OFDate+GTKCoding.h"

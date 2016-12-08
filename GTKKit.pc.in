@@ -9,4 +9,4 @@ URL: https://github.com/KyleCardoza/GTKKit
 Version: @PACKAGE_VERSION@
 Requires: gtk+-3.0
 Libs: -L@libdir@ -lgtkkit
-Cflags: -I@prefix@/@includedir@
+Cflags: -I@includedir@/GTKKit -I@includedir@

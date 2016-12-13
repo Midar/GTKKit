@@ -60,6 +60,7 @@ INCLUDES =                                          \
 				GTKListViewDataSource.h                     \
 				GTKListViewDelegate.h                       \
 				GTKPositionType.h                           \
+				GTKOrientable.h                             \
 				GTKCoding.h                                 \
 				GTKKit.h
 

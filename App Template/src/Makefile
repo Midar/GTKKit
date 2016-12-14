@@ -2,7 +2,7 @@ include ../extra.mk
 
 PROG = ExampleApp
 
-SRCS =	AppDelegate.m
+SRCS =  AppDelegate.m
 
 include ../buildsys.mk
 

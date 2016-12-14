@@ -25,16 +25,16 @@
  * @brief The modes available to a GTKLevelIndicator.
  */
 typedef enum GTKLevelMode {
-    /*!
-     * @brief A continuous level indicator, with the level shown as a single
-     * bar.
-     */
-    GTKLevelModeContinuous = GTK_LEVEL_BAR_MODE_CONTINUOUS,
+	/*!
+	 * @brief A continuous level indicator, with the level shown as a single
+	 * bar.
+	 */
+	GTKLevelModeContinuous = GTK_LEVEL_BAR_MODE_CONTINUOUS,
 
-    /*!
-     * @brief A descrete level indicator, with the level shown in segments.
-     */
-    GTKLevelModeDiscrete = GTK_LEVEL_BAR_MODE_DISCRETE
+	/*!
+	 * @brief A descrete level indicator, with the level shown in segments.
+	 */
+	GTKLevelModeDiscrete = GTK_LEVEL_BAR_MODE_DISCRETE
 } GTKLevelMode;
 
 
@@ -44,11 +44,11 @@ typedef enum GTKLevelMode {
  */
 @interface GTKLevelIndicator: GTKView <GTKOrientable>
 {
-    __block double _minValue;
-    __block double _maxValue;
-    __block GTKLevelMode _mode;
-    __block bool _inverted;
-    __block GTKOrientation _orientation;
+	__block double _minValue;
+	__block double _maxValue;
+	__block GTKLevelMode _mode;
+	__block bool _inverted;
+	__block GTKOrientation _orientation;
 }
 
 /*!

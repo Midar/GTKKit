@@ -26,166 +26,166 @@
 @implementation GTKCoderKeyedCodingNotAllowedException
 - (OFString *)description
 {
-    return @"Error: Keyed coding not allowed.";
+	return @"Error: Keyed coding not allowed.";
 }
 @end
 
 @implementation GTKCoderInvalidKeyException
 - (OFString *)description
 {
-    return @"Error: Invalid key.";
+	return @"Error: Invalid key.";
 }
 @end
 
 @implementation GTKCoder
 - init
 {
-    self = [super init];
-    self.data = [OFXMLElement elementWithName: @"GTKKit.coding.coder"];
-    OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.coding.classNames"];
-    [self.data addChild: classNames];
-    return self;
+	self = [super init];
+	self.data = [OFXMLElement elementWithName: @"GTKKit.coding.coder"];
+	OFXMLElement *classNames = [OFXMLElement elementWithName: @"GTKKit.coding.classNames"];
+	[self.data addChild: classNames];
+	return self;
 }
 @end
 
 @implementation GTKCoder (KeyedCoding)
 - (bool)allowsKeyedCoding
 {
-    return false;
+	return false;
 }
 
-- (bool)containsValueForKey:(OFString *)key
+- (bool)containsValueForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return false;
+	KEYED_CODING_EXCEPTION_CHECK
+	return false;
 }
 
-- (void)encodeBool:(bool)value
-            forKey:(OFString *)key
+- (void)encodeBool: (bool)value
+	    forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeDouble:(double)value
-              forKey:(OFString *)key
+- (void)encodeDouble: (double)value
+	      forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeFloat:(float)value
-             forKey:(OFString *)key
+- (void)encodeFloat: (float)value
+	     forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeInt:(int)value
-           forKey:(OFString *)key
+- (void)encodeInt: (int)value
+	   forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeRect:(GTKRect)value
-            forKey:(OFString *)key
+- (void)encodeRect: (GTKRect)value
+	    forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeString:(OFString *)value
-              forKey:(OFString *)key
+- (void)encodeString: (OFString *)value
+	      forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeObject:(OFObject<GTKCoding> *)object
-              forKey:(OFString *)key
+- (void)encodeObject: (OFObject<GTKCoding> *)object
+	      forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (void)encodeSelector:(SEL)selector
-                forKey:(OFString *)key
+- (void)encodeSelector: (SEL)selector
+		forKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
+	KEYED_CODING_EXCEPTION_CHECK
 }
 
-- (bool)decodeBoolForKey:(OFString *)key
+- (bool)decodeBoolForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return false;
+	KEYED_CODING_EXCEPTION_CHECK
+	return false;
 }
 
-- (double)decodeDoubleForKey:(OFString *)key
+- (double)decodeDoubleForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return 0.0;
+	KEYED_CODING_EXCEPTION_CHECK
+	return 0.0;
 }
 
-- (float)decodeFloatForKey:(OFString *)key
+- (float)decodeFloatForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return 0.0f;
+	KEYED_CODING_EXCEPTION_CHECK
+	return 0.0f;
 }
 
-- (int)decodeIntForKey:(OFString *)key
+- (int)decodeIntForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return 0;
+	KEYED_CODING_EXCEPTION_CHECK
+	return 0;
 }
 
-- (GTKRect)decodeRectForKey:(OFString *)key
+- (GTKRect)decodeRectForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    GTKRect rect;
-    rect.x = 0;
-    rect.y = 0;
-    rect.width = 0;
-    rect.height = 0;
-    return rect;
+	KEYED_CODING_EXCEPTION_CHECK
+	GTKRect rect;
+	rect.x = 0;
+	rect.y = 0;
+	rect.width = 0;
+	rect.height = 0;
+	return rect;
 }
 
-- (OFString *)decodeStringForKey:(OFString *)key
+- (OFString *)decodeStringForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return nil;
+	KEYED_CODING_EXCEPTION_CHECK
+	return nil;
 }
 
-- (id)decodeObjectForKey:(OFString *)key
+- (id)decodeObjectForKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return nil;
+	KEYED_CODING_EXCEPTION_CHECK
+	return nil;
 }
 
-- (SEL)decodeSelectorforKey:(OFString *)key
+- (SEL)decodeSelectorforKey: (OFString *)key
 {
-    KEYED_CODING_EXCEPTION_CHECK
-    return NULL;
+	KEYED_CODING_EXCEPTION_CHECK
+	return NULL;
 }
 @end
 
 @implementation GTKCoder (OFCopying)
 - (GTKCoder *)copy
 {
-    GTKCoder *copy = [self.class new];
-    copy.data = self.data.copy;
-    return copy;
+	GTKCoder *copy = [self.class new];
+	copy.data = self.data.copy;
+	return copy;
 }
 @end
 
 @implementation GTKCoder (OFSerialization)
 - initWithSerialization:(OFXMLElement *)element
 {
-    self = [self init];
-    self.data = element.copy;
-    return self;
+	self = [self init];
+	self.data = element.copy;
+	return self;
 }
 
 - (OFXMLElement *)XMLElementBySerializing
 {
-    return self.data.copy;
+	return self.data.copy;
 }
 
 - (OFString *)XMLString
 {
-    return self.data.XMLString;
+	return self.data.XMLString;
 }
 @end

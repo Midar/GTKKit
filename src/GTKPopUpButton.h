@@ -27,7 +27,7 @@
  */
 @interface GTKPopUpButton: GTKControl
 {
-    __block OFMutableArray *_items;
+	__block OFMutableArray *_items;
 }
 
 /*!
@@ -50,7 +50,7 @@
  * specified index.
  */
 - (void)insertItemWithTitle:(OFString *)string
-                         at:(int)index;
+						 at:(int)index;
 
 /*!
  * @brief Removes the item at the specified index.

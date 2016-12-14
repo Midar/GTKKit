@@ -29,11 +29,11 @@
  */
 @interface GTKTabView: GTKView <GTKCoding>
 {
-    __block OFMutableArray<__kindof GTKTab *> *_tabs;
-    __block GtkWidget *_stack;
-    __block GtkWidget *_switcher;
-    __block bool _tabsHidden;
-    __block bool _frameHidden;
+	__block OFMutableArray<__kindof GTKTab *> *_tabs;
+	__block GtkWidget *_stack;
+	__block GtkWidget *_switcher;
+	__block bool _tabsHidden;
+	__block bool _frameHidden;
 }
 
 @property (nonnull, readonly, copy) OFArray<__kindof GTKTab *> *tabs;
@@ -69,10 +69,10 @@
  * view's tabs.
  */
 - (void)insertTab:(nonnull GTKTab *)tab
-          atIndex:(int)index;
+		  atIndex:(int)index;
 
 - (void)renameTab:(nonnull GTKTab *)tab
-         toString:(nonnull OFString *)string;
+		 toString:(nonnull OFString *)string;
 
 /*!
  * @brief Returns the index of the specified tab in the tab view's tabs.

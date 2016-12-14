@@ -25,11 +25,11 @@
  */
 @interface GTKActionBar: GTKView
 {
-    __block GTKView *_centerView;
-    __block OFMutableArray *_actionSubviewsStart;
-    __block OFMutableArray *_actionSubviewsEnd;
+	__block GTKView        *_centerView;
+	__block OFMutableArray *_actionSubviewsStart;
+	__block OFMutableArray *_actionSubviewsEnd;
 }
 @property (nullable) GTKView *centerView;
-- (void)addSubviewStart:(nonnull GTKView *)view;
-- (void)addSubviewEnd:(nonnull GTKView *)view;
+- (void)addSubviewStart: (nonnull GTKView *)view;
+- (void)addSubviewEnd: (nonnull GTKView *)view;
 @end

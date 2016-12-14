@@ -24,233 +24,235 @@
 
 GTKApplication * _Nonnull GTKApp = nil;
 
-of_thread_t gtkkit_gtk_thread;
-of_thread_t gtkkit_objfw_thread;
+of_thread_t            gtkkit_gtk_thread;
+of_thread_t            gtkkit_objfw_thread;
 const of_thread_attr_t gtkkit_objfw_thread_attr;
 
 static void
-gtkkit_application_main(GTKApplication *app)
+gtkkit_application_main (GTKApplication *app)
 {
-    of_application_main(app.argc, app.argv, [app.delegateClass class]);
+	of_application_main(
+	    app.argc,
+	    app.argv,
+	    [app.delegateClass class]);
 }
 
 @implementation GTKStandardDispatchQueues
 - init
 {
-    self = [super init];
-    self.main = GTKDispatchQueue.main;
-    self.background = GTKDispatchQueue.background;
-    self.gtk = GTKDispatchQueue.gtk;
-    return self;
+	self = [super init];
+	self.main = GTKDispatchQueue.main;
+	self.background = GTKDispatchQueue.background;
+	self.gtk = GTKDispatchQueue.gtk;
+	return self;
 }
 
 + (instancetype)sharedQueues
 {
-    static GTKStandardDispatchQueues *sharedQueues;
-    if (sharedQueues == nil) {
-        sharedQueues = [self new];
-    }
-    return sharedQueues;
+	static GTKStandardDispatchQueues *sharedQueues;
+	if (sharedQueues == nil) {
+		sharedQueues = [self new];
+	}
+	return sharedQueues;
 }
 @end
 
 @implementation GTKApplication
 - init
 {
-    self = [super init];
-    self.dispatch = GTKStandardDispatchQueues.sharedQueues;
-    return self;
+	self = [super init];
+	self.dispatch = GTKStandardDispatchQueues.sharedQueues;
+	return self;
 }
 
 - (GTKWindow *)keyWindow
 {
-    for (GTKWindow *window in self.windows) {
-        if (window.hasToplevelFocus) {
-            return window;
-        }
-    }
-    return nil;
+	for (GTKWindow *window in self.windows) {
+		if (window.hasToplevelFocus) {
+			return window;
+		}
+	}
+	return nil;
 }
 
 + (instancetype)sharedApplication
 {
-    static GTKApplication *sharedApplication;
-    if (nil == sharedApplication) {
-        sharedApplication = [self new];
-    }
-    return sharedApplication;
+	static GTKApplication *sharedApplication;
+	if (nil == sharedApplication) {
+		sharedApplication = [self new];
+	}
+	return sharedApplication;
 }
 
 - (int * _Nonnull)argc
 {
-    return _argc;
+	return _argc;
 }
 
-- (void)setArgc:(int * _Nonnull)argc
+- (void)setArgc: (int * _Nonnull)argc
 {
-    if (_argc == NULL) {
-        _argc = argc;
-    }
+	if (_argc == NULL) {
+		_argc = argc;
+	}
 }
 
 - (char * _Nonnull * _Nonnull * _Nonnull)argv
 {
-    return _argv;
+	return _argv;
 }
 
-- (void)setArgv:(char * _Nonnull * _Nonnull * _Nonnull)argv
+- (void)setArgv: (char * _Nonnull * _Nonnull * _Nonnull)argv
 {
-    if (_argv == NULL) {
-        _argv = argv;
-    }
+	if (_argv == NULL) {
+		_argv = argv;
+	}
 }
 
 - (void)terminate
 {
-    if ([self.delegate respondsToSelector: @selector(applicationShouldTerminate)]) {
-        if (![self.delegate applicationShouldTerminate]) {
-            return;
-        }
-    }
-    [self stop];
-    [OFApplication terminate];
+	if ([self.delegate respondsToSelector: @selector(applicationShouldTerminate)]) {
+		if (![self.delegate applicationShouldTerminate]) {
+			return;
+		}
+	}
+	[self stop];
+	[OFApplication terminate];
 }
 
 - (void)startup
 {
-    gtkkit_gtk_thread = of_thread_current();
-    gtk_init(self.argc, self.argv);
-    of_thread_new(
-        &gtkkit_objfw_thread,
-        &gtkkit_application_main,
-        self,
-        &gtkkit_objfw_thread_attr);
-	self.delegate =
-		(id<GTKApplicationDelegate>)(OFApplication.sharedApplication.delegate);
+	gtkkit_gtk_thread = of_thread_current();
+	gtk_init(self.argc, self.argv);
+	of_thread_new(
+	    &gtkkit_objfw_thread,
+	    &gtkkit_application_main,
+	    self,
+	    &gtkkit_objfw_thread_attr);
+	self.delegate = (id<GTKApplicationDelegate>) OFApplication.sharedApplication.delegate;
 }
 
 - (void)run
 {
-    gtk_main();
+	gtk_main();
 }
 
 - (void)stop
 {
-    gtk_main_quit();
+	gtk_main_quit();
 }
 
-- (id)forwardingTargetForSelector:(SEL)selector
+- (id)forwardingTargetForSelector: (SEL)selector
 {
-    return [super forwardingTargetForSelector: selector];
+	return [super forwardingTargetForSelector: selector];
 }
 
 - (void)becomeFirstResponder
 {
-    // Default implementation does nothing.
+	// Default implementation does nothing.
 }
 
 - (bool)canBecomeFirstResponder
 {
-    return false;
+	return false;
 }
 
 - (void)willBecomeMapped
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (void)didBecomeMapped
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (void)willBecomeUnmapped
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (void)didBecomeUnmapped
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (bool)shouldBecomeFirstResponder
 {
-    return false;
+	return false;
 }
 
 - (void)willBecomeFirstResponder
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (void)didBecomeFirstResponder
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (bool)shouldResignFirstResponder
 {
-    return true;
+	return true;
 }
 
 - (void)willResignFirstResopnder
 {
-    // Do nothing.
+	// Do nothing.
 }
 
 - (void)didResignFirstResponder
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)mouseDown:(nonnull GTKEvent*)event
+- (void)mouseDown: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)mouseUp:(nonnull GTKEvent*)event
+- (void)mouseUp: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)mouseClicked:(nonnull GTKEvent*)event
+- (void)mouseClicked: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)scrollWheel:(nonnull GTKEvent*)event
+- (void)scrollWheel: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)mouseEntered:(nonnull GTKEvent*)event
+- (void)mouseEntered: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)mouseLeft:(nonnull GTKEvent*)event
+- (void)mouseLeft: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)mouseDragged:(nonnull GTKEvent*)event
+- (void)mouseDragged: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)keyDown:(nonnull GTKEvent*)event
+- (void)keyDown: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)keyUp:(nonnull GTKEvent*)event
+- (void)keyUp: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 
-- (void)modifierKeysChanged:(nonnull GTKEvent*)event
+- (void)modifierKeysChanged: (nonnull GTKEvent*)event
 {
-    // Do nothing.
+	// Do nothing.
 }
 @end

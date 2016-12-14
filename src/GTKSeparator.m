@@ -22,48 +22,48 @@
 @implementation GTKSeparator
 - init
 {
-    self = [super init];
-    _orientation = GTKOrientationHorizontal;
-    return self;
+	self = [super init];
+	_orientation = GTKOrientationHorizontal;
+	return self;
 }
 
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
-    self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.separator.orientation"] isEqual: @"horizontal"] ?
-        GTKOrientationHorizontal : GTKOrientationVertical;
+	self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.separator.orientation"] isEqual: @"horizontal"] ?
+		GTKOrientationHorizontal : GTKOrientationVertical;
 
-    return self;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    [super encodeWithCoder: encoder];
+	[super encodeWithCoder: encoder];
 
-    [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-                   forKey: @"GTKKit.coding.separator.orientation"];
+	[encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
+				   forKey: @"GTKKit.coding.separator.orientation"];
 }
 
 - (void)createMainWidget
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		self.mainWidget = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+	}];
 }
 
 - (GTKOrientation)orientation
 {
-    return _orientation;
+	return _orientation;
 }
 
 - (void)setOrientation:(GTKOrientation)orientation
 {
-    _orientation = orientation;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_orientable_set_orientation(
-            GTK_ORIENTABLE(self.mainWidget),
-            (GtkOrientation)(orientation));
-    }];
+	_orientation = orientation;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_orientable_set_orientation(
+			GTK_ORIENTABLE(self.mainWidget),
+			(GtkOrientation)(orientation));
+	}];
 }
 @end

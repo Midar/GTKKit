@@ -26,6 +26,6 @@
  * GTKCoder objects.
  */
 @protocol GTKCoding <OFObject>
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder;
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder;
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder;
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder;
 @end

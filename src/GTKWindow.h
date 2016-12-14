@@ -27,18 +27,18 @@
  */
 @interface GTKWindow: GTKResponder <GTKCoding, OFCopying>
 {
-    __block GtkWidget *_window;
-    __block GtkWidget *_headerBar;
-    __block GtkWidget *_headerBarRightSeparator;
-    __block GtkWidget *_headerBarLeftSeparator;
-    __block GtkWidget *_closeButton;
-    __block GtkWidget *_minimizeButton;
-    __block GtkWidget *_maximizeButton;
-    __block GtkWidget *_menuButton;
-    __block GTKView   *_titleView;
-    __block OFMutableArray<__kindof GTKView *> *_headerBarStartViews;
-    __block OFMutableArray<__kindof GTKView *> *_headerBarEndViews;
-    __block GTKView *_contentView;
+	__block GtkWidget *_window;
+	__block GtkWidget *_headerBar;
+	__block GtkWidget *_headerBarRightSeparator;
+	__block GtkWidget *_headerBarLeftSeparator;
+	__block GtkWidget *_closeButton;
+	__block GtkWidget *_minimizeButton;
+	__block GtkWidget *_maximizeButton;
+	__block GtkWidget *_menuButton;
+	__block GTKView   *_titleView;
+	__block OFMutableArray<__kindof GTKView *> *_headerBarStartViews;
+	__block OFMutableArray<__kindof GTKView *> *_headerBarEndViews;
+	__block GTKView *_contentView;
 }
 
 /*!

@@ -27,5 +27,5 @@
 @interface GTKActionConnection: OFObject <GTKCoding>
 @property (nullable) OFString *objectKeyPath;
 @property (nullable) OFString *targetKeyPath;
-@property (nullable) SEL actionSelector;
+@property (nullable) SEL       actionSelector;
 @end

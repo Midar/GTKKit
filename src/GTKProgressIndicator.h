@@ -29,11 +29,11 @@
  */
 @interface GTKProgressIndicator: GTKView <GTKOrientable>
 {
-    __block bool _showLabel;
-    __block OFString *_stringValue;
-    __block double _doubleValue;
-    __block bool _inverted;
-    __block GTKOrientation _orientation;
+	__block bool _showLabel;
+	__block OFString *_stringValue;
+	__block double _doubleValue;
+	__block bool _inverted;
+	__block GTKOrientation _orientation;
 }
 
 /*!

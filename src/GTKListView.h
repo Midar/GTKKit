@@ -28,8 +28,8 @@
  */
 @interface GTKListView: GTKView
 {
-    GtkWidget *_scrollWindow;
-    OFMutableArray *_views;
+	GtkWidget *_scrollWindow;
+	OFMutableArray *_views;
 }
 @property (nullable, weak) id<GTKListViewDelegate> delegate;
 @property (nullable, weak) id<GTKListViewDataSource> dataSource;

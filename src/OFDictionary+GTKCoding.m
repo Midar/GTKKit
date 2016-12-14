@@ -24,30 +24,30 @@
 @implementation OFDictionary (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    GTKCoder *keyCoder, *valueCoder;
-    OFArray *keys, *values;
+	GTKCoder *keyCoder, *valueCoder;
+	OFArray *keys, *values;
 
-    keyCoder = [GTKKeyedUnarchiver new];
-    keyCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.keys"];
+	keyCoder = [GTKKeyedUnarchiver new];
+	keyCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.keys"];
 
-    valueCoder = [GTKKeyedUnarchiver new];
-    valueCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.values"];
+	valueCoder = [GTKKeyedUnarchiver new];
+	valueCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.values"];
 
-    keys = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: keyCoder];
-    values = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: valueCoder];
+	keys = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: keyCoder];
+	values = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: valueCoder];
 
-    self = [self initWithObjects: values forKeys: keys];
-    return self;
+	self = [self initWithObjects: values forKeys: keys];
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    GTKCoder *keys, *values;
-    keys = [GTKKeyedArchiver archiveRootObject: self.allKeys];
-    values = [GTKKeyedArchiver archiveRootObject: self.allObjects];
-    keys.data.name = @"GTKKit.coding.dictionary.keys";
-    values.data.name = @"GTKKit.coding.dictionary.values";
-    [encoder.data addChild: keys.data];
-    [encoder.data addChild: values.data];
+	GTKCoder *keys, *values;
+	keys = [GTKKeyedArchiver archiveRootObject: self.allKeys];
+	values = [GTKKeyedArchiver archiveRootObject: self.allObjects];
+	keys.data.name = @"GTKKit.coding.dictionary.keys";
+	values.data.name = @"GTKKit.coding.dictionary.values";
+	[encoder.data addChild: keys.data];
+	[encoder.data addChild: values.data];
 }
 @end

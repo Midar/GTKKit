@@ -20,8 +20,8 @@
 
 @interface GTKBackgroundDispatchQueue: GTKDispatchQueue
 @property (nonnull) OFThread *thread;
-- initWithLabel:(OFString *)label
-	   priority:(float)priority;
+- initWithLabel: (OFString *)label
+       priority: (float)priority;
 @end
 
 @interface GTKMainDispatchQueue: GTKDispatchQueue
@@ -39,94 +39,94 @@
 - (void)unlock;
 - (void)wait;
 - (void)signal;
-- (void)async:(DispatchWorkItem)block;
-- (void)sync:(DispatchWorkItem)block;
+- (void)async: (DispatchWorkItem)block;
+- (void)sync: (DispatchWorkItem)block;
 @end
 
 static gboolean
-runBlockInGTKThreadCallback(gpointer userdata)
+runBlockInGTKThreadCallback (gpointer userdata)
 {
 	GTKCallback *callback = (__bridge_transfer GTKCallback *)(userdata);
-    [callback lock];
-    callback.block();
-    callback.flag = true;
-    [callback signal];
-    [callback unlock];
-    return false;
+	[callback lock];
+	callback.block();
+	callback.flag = true;
+	[callback signal];
+	[callback unlock];
+	return false;
 }
 
 @implementation GTKDispatchQueue
 + main
 {
-    static GTKMainDispatchQueue *mainQueue;
-    if (mainQueue == nil) {
-        mainQueue = [GTKMainDispatchQueue new];
-    }
-    return mainQueue;
+	static GTKMainDispatchQueue *mainQueue;
+	if (mainQueue == nil) {
+		mainQueue = [GTKMainDispatchQueue new];
+	}
+	return mainQueue;
 }
 
 + background
 {
-    static GTKDispatchQueue *backgroundQueue;
-    if (backgroundQueue == nil) {
-        backgroundQueue = [GTKBackgroundDispatchQueue queueWithLabel: @"Default Background Queue"
-														    priority: 0.5];
-    }
-    return backgroundQueue;
+	static GTKDispatchQueue *backgroundQueue;
+	if (backgroundQueue == nil) {
+		backgroundQueue = [GTKBackgroundDispatchQueue queueWithLabel: @"Default Background Queue"
+								    priority: 0.5];
+	}
+	return backgroundQueue;
 }
 
 + gtk
 {
-    static GTKGUIDispatchQueue *gtkQueue;
-    if (gtkQueue == nil) {
-        gtkQueue = [GTKGUIDispatchQueue new];
-    }
-    return gtkQueue;
+	static GTKGUIDispatchQueue *gtkQueue;
+	if (gtkQueue == nil) {
+		gtkQueue = [GTKGUIDispatchQueue new];
+	}
+	return gtkQueue;
 }
 
 - init
 {
-    self = [super init];
-    self.label = @"";
-    return self;
+	self = [super init];
+	self.label = @"";
+	return self;
 }
 
-- (void)sync:(DispatchWorkItem)block
+- (void)sync: (DispatchWorkItem)block
 {
 
 }
 
-- (void)async:(DispatchWorkItem)block
+- (void)async: (DispatchWorkItem)block
 {
 
 }
 
-- (void)asyncAfter:(unsigned int)seconds
-           execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncAfter: (unsigned int)seconds
+	   execute: (_Nonnull DispatchWorkItem)block
 {
 
 }
 
-- (void)asyncRepeatAfter:(unsigned int)seconds
-                 execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncRepeatAfter: (unsigned int)seconds
+		 execute: (_Nonnull DispatchWorkItem)block
 {
 
 }
 
-+ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
-									priority:(float)priority
++ (nonnull GTKDispatchQueue *)queueWithLabel: (nonnull OFString *)label
+				    priority: (float)priority
 {
 	GTKBackgroundDispatchQueue *queue = \
 		[[GTKBackgroundDispatchQueue alloc] initWithLabel: label
-												 priority: priority];
+							 priority: priority];
 	return queue;
 }
 
-+ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
++ (nonnull GTKDispatchQueue *)queueWithLabel: (nonnull OFString *)label
 {
 	GTKBackgroundDispatchQueue *queue = \
 		[[GTKBackgroundDispatchQueue alloc] initWithLabel: label
-												 priority: 0.5];
+							 priority: 0.5];
 	return queue;
 }
 @end
@@ -141,8 +141,8 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	return self;
 }
 
-- initWithLabel:(OFString *)label
-	   priority:(float)priority
+- initWithLabel: (OFString *)label
+       priority: (float)priority
 {
 	self = [super init];
 	self.label = label;
@@ -152,54 +152,50 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	return self;
 }
 
-- (void)sync:(DispatchWorkItem)block
+- (void)sync: (DispatchWorkItem)block
 {
 	if (OFThread.currentThread == self.thread) {
 		block();
 	} else {
-		OFTimer *timer = [OFTimer
-				timerWithTimeInterval: 0
-				repeats: false
-				block: ^ (OFTimer *timer) { block(); }];
+		OFTimer *timer = [OFTimer timerWithTimeInterval: 0
+							repeats: false
+							  block: ^ (OFTimer *timer) { block(); }];
 		[self.thread.runLoop addTimer: timer];
 		[timer waitUntilDone];
 	}
 }
 
-- (void)async:(DispatchWorkItem)block
+- (void)async: (DispatchWorkItem)block
 {
 	if (OFThread.currentThread == self.thread) {
 		OFThread *thread = [OFThread threadWithThreadBlock: ^id _Nullable {
 			[self async: block];
 			return nil;
-	 	}];
+		 }];
 		[thread start];
 	} else {
-		OFTimer *timer = [OFTimer
-			timerWithTimeInterval: 0
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
+		OFTimer *timer = [OFTimer timerWithTimeInterval: 0
+							repeats: false
+							  block: ^ (OFTimer *timer) { block(); }];
 		[self.thread.runLoop addTimer: timer];
 	}
 }
 
-- (void)asyncAfter:(unsigned int)seconds
-           execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncAfter: (unsigned int)seconds
+	   execute: (_Nonnull DispatchWorkItem)block
 {
-	OFTimer *timer = [OFTimer
-			timerWithTimeInterval: seconds
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
+	OFTimer *timer = [OFTimer timerWithTimeInterval: seconds
+						repeats: false
+						  block: ^ (OFTimer *timer) { block(); }];
 	[self.thread.runLoop addTimer: timer];
 }
 
-- (void)asyncRepeatAfter:(unsigned int)seconds
-                 execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncRepeatAfter: (unsigned int)seconds
+		 execute: (_Nonnull DispatchWorkItem)block
 {
-	OFTimer *timer = [OFTimer
-			timerWithTimeInterval: seconds
-			repeats: true
-			block: ^ (OFTimer *timer) { block(); }];
+	OFTimer *timer = [OFTimer timerWithTimeInterval: seconds
+						repeats: true
+						  block: ^ (OFTimer *timer) { block(); }];
 	[self.thread.runLoop addTimer: timer];
 }
 @end
@@ -212,50 +208,46 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	return self;
 }
 
-- (void)sync:(DispatchWorkItem)block
+- (void)sync: (DispatchWorkItem)block
 {
 	if (of_thread_is_current(gtkkit_objfw_thread)) {
-	    block();
+		block();
 	} else {
-		OFTimer *timer = [OFTimer
-			timerWithTimeInterval: 0
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
+		OFTimer *timer = [OFTimer timerWithTimeInterval: 0
+							repeats: false
+							  block: ^ (OFTimer *timer) { block(); }];
 		[[OFRunLoop mainRunLoop] addTimer: timer];
 		[timer waitUntilDone];
 	}
 }
 
-- (void)async:(DispatchWorkItem)block
+- (void)async: (DispatchWorkItem)block
 {
 	if (of_thread_is_current(gtkkit_objfw_thread)) {
-	    block();
+		block();
 	} else {
-		OFTimer *timer = [OFTimer
-			timerWithTimeInterval: 0
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
+		OFTimer *timer = [OFTimer timerWithTimeInterval: 0
+							repeats: false
+							  block: ^ (OFTimer *timer) { block(); }];
 		[[OFRunLoop mainRunLoop] addTimer: timer];
 	}
 }
 
-- (void)asyncAfter:(unsigned int)seconds
-           execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncAfter: (unsigned int)seconds
+	   execute: (_Nonnull DispatchWorkItem)block
 {
-	OFTimer *timer = [OFTimer
-			timerWithTimeInterval: seconds
-			repeats: false
-			block: ^ (OFTimer *timer) { block(); }];
+	OFTimer *timer = [OFTimer timerWithTimeInterval: seconds
+						repeats: false
+						  block: ^ (OFTimer *timer) { block(); }];
 	[[OFRunLoop mainRunLoop] addTimer: timer];
 }
 
-- (void)asyncRepeatAfter:(unsigned int)seconds
-                 execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncRepeatAfter: (unsigned int)seconds
+		 execute: (_Nonnull DispatchWorkItem)block
 {
-	OFTimer *timer = [OFTimer
-			timerWithTimeInterval: seconds
-			repeats: true
-			block: ^ (OFTimer *timer) { block(); }];
+	OFTimer *timer = [OFTimer timerWithTimeInterval: seconds
+						repeats: true
+						  block: ^ (OFTimer *timer) { block(); }];
 	[[OFRunLoop mainRunLoop] addTimer: timer];
 }
 @end
@@ -263,64 +255,64 @@ runBlockInGTKThreadCallback(gpointer userdata)
 @implementation GTKCallback
 - init
 {
-    self = [super init];
-    self.mutex = calloc(1, sizeof(GMutex));
-    self.cond = calloc(1, sizeof(GCond));
-    g_mutex_init(self.mutex);
-    g_cond_init(self.cond);
-    return self;
+	self = [super init];
+	self.mutex = calloc(1, sizeof(GMutex));
+	self.cond = calloc(1, sizeof(GCond));
+	g_mutex_init(self.mutex);
+	g_cond_init(self.cond);
+	return self;
 }
 
 - (void)lock
 {
-    g_mutex_lock(self.mutex);
+	g_mutex_lock(self.mutex);
 }
 
 - (void)unlock
 {
-    g_mutex_unlock(self.mutex);
+	g_mutex_unlock(self.mutex);
 }
 
 - (void)wait
 {
 	// Waiting on the flag is to guard against spurious wakeups, per the
 	// Glib documentation.
-    while (self.flag == false) {
-        g_cond_wait(self.cond, self.mutex);
-    }
+	while (self.flag == false) {
+		g_cond_wait(self.cond, self.mutex);
+	}
 }
 
 - (void)signal
 {
-    g_cond_signal(self.cond);
+	g_cond_signal(self.cond);
 }
 
 - (void)dealloc
 {
-    g_cond_clear(self.cond);
-    g_mutex_clear(self.mutex);
-    free(self.mutex);
-    free(self.cond);
+	g_cond_clear(self.cond);
+	g_mutex_clear(self.mutex);
+	free(self.mutex);
+	free(self.cond);
 }
 
-- (void)sync:(DispatchWorkItem)block
+- (void)sync: (DispatchWorkItem)block
 {
 	if (of_thread_is_current(gtkkit_gtk_thread)) {
-	    block();
+		block();
 	} else {
-	    self.flag = false;
-	    [self lock];
-	    self.block = block;
-	    g_idle_add(
+		self.flag = false;
+		[self lock];
+		self.block = block;
+		g_idle_add(
 			runBlockInGTKThreadCallback,
 			(__bridge_retained gpointer)(self));
 		[self wait];
-	    [self unlock];
+		[self unlock];
 		self.flag = false;
 	}
 }
 
-- (void)async:(DispatchWorkItem)block
+- (void)async: (DispatchWorkItem)block
 {
 	[[OFThread threadWithThreadBlock: ^id _Nullable (){
 		[[GTKCallback new] sync: block];
@@ -337,34 +329,34 @@ runBlockInGTKThreadCallback(gpointer userdata)
 	return self;
 }
 
-- (void)sync:(_Nonnull DispatchWorkItem)block
+- (void)sync: (_Nonnull DispatchWorkItem)block
 {
-    [[GTKCallback new] sync: block];
+	[[GTKCallback new] sync: block];
 }
 
-- (void)async:(_Nonnull DispatchWorkItem)block
+- (void)async: (_Nonnull DispatchWorkItem)block
 {
-    [[GTKCallback new] async: block];
+	[[GTKCallback new] async: block];
 }
 
-- (void)asyncAfter:(unsigned int)seconds
-           execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncAfter: (unsigned int)seconds
+	   execute: (_Nonnull DispatchWorkItem)block
 {
 	[[OFThread threadWithThreadBlock: ^id _Nullable (){
-        sleep(seconds);
+		sleep(seconds);
 		[[GTKCallback new] sync: block];
 		return nil;
 	}] start];
 }
 
-- (void)asyncRepeatAfter:(unsigned int)seconds
-                 execute:(_Nonnull DispatchWorkItem)block
+- (void)asyncRepeatAfter: (unsigned int)seconds
+		 execute: (_Nonnull DispatchWorkItem)block
 {
 	[[OFThread threadWithThreadBlock: ^id _Nullable (){
-        while (true) {
-            sleep(seconds);
-    		[[GTKCallback new] sync: block];
-        }
+		while (true) {
+			sleep(seconds);
+			[[GTKCallback new] sync: block];
+		}
 		return nil;
 	}] start];
 }

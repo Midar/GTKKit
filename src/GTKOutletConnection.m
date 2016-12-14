@@ -26,7 +26,7 @@
 	self = [super init];
 	self.outletKeyPath = [decoder decodeStringForKey: @"GTKKit.coding.outletConnection.outletKeyPath"];
 	self.targetKeyPath = [decoder decodeStringForKey: @"GTKKit.coding.outletConnection.targetKeyPath"];
-    return self;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder

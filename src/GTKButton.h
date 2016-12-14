@@ -37,52 +37,51 @@ extern const bool GTKOffState;
  * @brief The types buttons can implement.
  */
 typedef enum GTKButtonType {
-    /*!
-     * @brief A standard push button. This is the default type.
-     */
-    GTKPushButton,
+	/*!
+	 * @brief A standard push button. This is the default type.
+	 */
+	GTKPushButton,
 
-    /*!
-     * @brief A toggle button.
-     */
-    GTKToggleButton,
+	/*!
+	 * @brief A toggle button.
+	 */
+	GTKToggleButton,
 
-    /*!
-     * @brief A check button.
-     */
-    GTKCheckButton,
+	/*!
+	 * @brief A check button.
+	 */
+	GTKCheckButton,
 
-    /*!
-     * @brief A radio button.
-     */
-    GTKRadioButton,
+	/*!
+	 * @brief A radio button.
+	 */
+	GTKRadioButton,
 
-    /*!
-     * @brief A button which resembles a switch.
-     */
-    GTKSwitchButton
+	/*!
+	 * @brief A button which resembles a switch.
+	 */
+	GTKSwitchButton
 } GTKButtonType;
-
 
 /*!
  * @brief A class implementing various types of GUI button.
  */
 @interface GTKButton: GTKControl
 {
-    __block GTKButtonType _buttonType;
-    __block GtkWidget *_pushButton;
-    __block GtkWidget *_pushButtonImage;
-    __block GtkWidget *_toggleButton;
-    __block GtkWidget *_toggleButtonImage;
-    __block GtkWidget *_checkButton;
-    __block GtkWidget *_checkButtonImage;
-    __block GtkWidget *_radioButton;
-    __block GtkWidget *_radioButtonImage;
-    __block GtkWidget *_hiddenRadioButton;
-    __block GtkWidget *_switchButton;
-    __block GTKImage *_image;
-    __block __weak GTKPopover *_popOver;
-    __block OFString *_stringValue;
+	__block GTKButtonType      _buttonType;
+	__block GtkWidget         *_pushButton;
+	__block GtkWidget         *_pushButtonImage;
+	__block GtkWidget         *_toggleButton;
+	__block GtkWidget         *_toggleButtonImage;
+	__block GtkWidget         *_checkButton;
+	__block GtkWidget         *_checkButtonImage;
+	__block GtkWidget         *_radioButton;
+	__block GtkWidget         *_radioButtonImage;
+	__block GtkWidget         *_hiddenRadioButton;
+	__block GtkWidget         *_switchButton;
+	__block GTKImage          *_image;
+	__block __weak GTKPopover *_popOver;
+	__block OFString          *_stringValue;
 }
 
 /*!

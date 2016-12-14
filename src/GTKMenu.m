@@ -24,119 +24,119 @@
 
 static void
 map_handler(GtkWidget *overlay,
-            GTKView   *view)
+			GTKView   *view)
 {
-    [GTKApp.dispatch.main async: ^{
-        //[view willBecomeMapped];
-    }];
+	[GTKApp.dispatch.main async: ^{
+		//[view willBecomeMapped];
+	}];
 }
 
 @implementation GTKMenu
 - init
 {
-    self = [super init];
-    _menuItems = [OFMutableArray new];
-    [GTKApp.dispatch.gtk sync: ^{
-        _menu = gtk_menu_new();
-        g_object_ref_sink(_menu);
+	self = [super init];
+	_menuItems = [OFMutableArray new];
+	[GTKApp.dispatch.gtk sync: ^{
+		_menu = gtk_menu_new();
+		g_object_ref_sink(_menu);
 
-        g_signal_connect(
-            G_OBJECT(_menu),
-            "map",
-            G_CALLBACK(map_handler),
-            (__bridge gpointer)(self));
-    }];
-    return self;
+		g_signal_connect(
+			G_OBJECT(_menu),
+			"map",
+			G_CALLBACK(map_handler),
+			(__bridge gpointer)(self));
+	}];
+	return self;
 }
 
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 
-    for (GTKMenuItem *item in [decoder decodeObjectForKey: @"GTKKit.coding.menu.items"]) {
-        [self addItem: item];
-    }
+	for (GTKMenuItem *item in [decoder decodeObjectForKey: @"GTKKit.coding.menu.items"]) {
+		[self addItem: item];
+	}
 
-    return self;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    [encoder encodeObject: _menuItems forKey: @"GTKKit.coding.menu.items"];
+	[encoder encodeObject: _menuItems forKey: @"GTKKit.coding.menu.items"];
 }
 
 - (void)dealloc
 {
-    g_object_unref(_menu);
+	g_object_unref(_menu);
 }
 
 - (void)addItem:(GTKMenuItem *)item
 {
-    [_menuItems addObject: item];
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_menu_shell_append(
-            GTK_MENU_SHELL(_menu),
-            item.menuItem);
-    }];
+	[_menuItems addObject: item];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_menu_shell_append(
+			GTK_MENU_SHELL(_menu),
+			item.menuItem);
+	}];
 }
 
 - (void)insertItem:(GTKMenuItem *)item atIndex:(int)index
 {
-    [_menuItems insertObject: item atIndex: index];
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_menu_shell_insert(
-            GTK_MENU_SHELL(_menu),
-            item.menuItem,
-            index);
-    }];
+	[_menuItems insertObject: item atIndex: index];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_menu_shell_insert(
+			GTK_MENU_SHELL(_menu),
+			item.menuItem,
+			index);
+	}];
 }
 
 - (void)removeItem:(GTKMenuItem *)item
 {
-    [_menuItems removeObjectIdenticalTo: item];
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_container_remove(
-            GTK_CONTAINER(_menu),
-            item.menuItem);
-    }];
+	[_menuItems removeObjectIdenticalTo: item];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_container_remove(
+			GTK_CONTAINER(_menu),
+			item.menuItem);
+	}];
 }
 
 - (int)numberOfItems
 {
-    return _menuItems.count;
+	return _menuItems.count;
 }
 
 - (GTKMenuItem *)itemAtIndex:(int)index
 {
-    return [_menuItems objectAtIndex: index];
+	return [_menuItems objectAtIndex: index];
 }
 
 - (GTKMenuItem *)itemWithTag:(int)tag
 {
-    for (GTKMenuItem *item in _menuItems) {
-        if (item.tag == tag) {
-            return item;
-        }
-    }
-    return nil;
+	for (GTKMenuItem *item in _menuItems) {
+		if (item.tag == tag) {
+			return item;
+		}
+	}
+	return nil;
 }
 
 - (OFArray *)itemArray
 {
-    OFMutableArray *array = _menuItems.copy;
-    [array makeImmutable];
-    return array;
+	OFMutableArray *array = _menuItems.copy;
+	[array makeImmutable];
+	return array;
 }
 
 - (void)popUpAtView:(GTKView *)view
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_menu_popup_at_widget(
-            GTK_MENU(_menu),
-            view.overlayWidget,
-            GDK_GRAVITY_SOUTH_WEST,
-            GDK_GRAVITY_NORTH_WEST,
-            NULL);
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_menu_popup_at_widget(
+			GTK_MENU(_menu),
+			view.overlayWidget,
+			GDK_GRAVITY_SOUTH_WEST,
+			GDK_GRAVITY_NORTH_WEST,
+			NULL);
+	}];
 }
 @end

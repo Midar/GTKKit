@@ -23,16 +23,16 @@
 @implementation OFURL (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.URL"];
-    OFURL *url = element.stringValue.objectByDeserializing;
-    self = url;
-    return self;
+	OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.URL"];
+	OFURL *url = element.stringValue.objectByDeserializing;
+	self = url;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.URL"];
-    element.stringValue = self.stringBySerializing;
-    [encoder.data addChild: element];
+	OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.URL"];
+	element.stringValue = self.stringBySerializing;
+	[encoder.data addChild: element];
 }
 @end

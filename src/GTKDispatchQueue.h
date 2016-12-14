@@ -48,13 +48,13 @@ typedef void (^DispatchWorkItem)();
 /*!
  * @brief Create and return a new dispatch queue with its own thread.
  */
-+ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label
-                                    priority:(float)priority;
++ (nonnull GTKDispatchQueue *)queueWithLabel: (nonnull OFString *)label
+				    priority: (float)priority;
 
 /*!
  * @brief Create and return a new dispatch queue with its own thread.
  */
-+ (nonnull GTKDispatchQueue *)queueWithLabel:(nonnull OFString *)label;
++ (nonnull GTKDispatchQueue *)queueWithLabel: (nonnull OFString *)label;
 
 /*!
  * @brief Run a work item, waiting for it to complete before returning.
@@ -70,13 +70,13 @@ typedef void (^DispatchWorkItem)();
  * @brief Run a work item once, after a given delay in seconds, without waiting
  * for the work item to run or complete before returning.
  */
-- (void)asyncAfter:(unsigned int)seconds
-           execute:(_Nonnull DispatchWorkItem)block;
+- (void)asyncAfter: (unsigned int)seconds
+	   execute: (_Nonnull DispatchWorkItem)block;
 
 /*!
  * @brief Run a work item, repeating after a given delay in seconds, without waiting
  * for the work item to run or complete before returning.
  */
-- (void)asyncRepeatAfter:(unsigned int)seconds
-                 execute:(_Nonnull DispatchWorkItem)block;
+- (void)asyncRepeatAfter: (unsigned int)seconds
+		 execute:(_Nonnull DispatchWorkItem)block;
 @end

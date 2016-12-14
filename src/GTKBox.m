@@ -23,46 +23,49 @@
 @implementation GTKBox
 - (void)createMainWidget
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_frame_new(NULL);
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		self.mainWidget = gtk_frame_new(NULL);
+	}];
 }
 
-+ (instancetype)boxWithLabel:(OFString *)label;
++ (instancetype)boxWithLabel: (OFString *)label;
 {
-    return [[self alloc] initWithLabel: label];
+	return [[self alloc] initWithLabel: label];
 }
 
-- (instancetype)initWithLabel:(OFString *)label;
+- (instancetype)initWithLabel: (OFString *)label;
 {
-    self = [self init];
-    self.label = label;
-    return self;
+	self = [self init];
+	self.label = label;
+	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.label = [decoder decodeStringForKey: @"GTKKit.coding.box.label"];
-    return self;
+	self.label = [decoder decodeStringForKey: @"GTKKit.coding.box.label"];
+	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-    [super encodeWithCoder: encoder];
-    [encoder encodeString: self.label forKey: @"GTKKit.coding.box.label"];
+	[super encodeWithCoder: encoder];
+	[encoder encodeString: self.label
+		       forKey: @"GTKKit.coding.box.label"];
 }
 
 - (OFString *)label
 {
-    return _label;
+	return _label;
 }
 
-- (void)setLabel:(OFString *)label
+- (void)setLabel: (OFString *)label
 {
-    _label = label;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_frame_set_label(GTK_FRAME(self.mainWidget), label.UTF8String);
-    }];
+	_label = label;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_frame_set_label(
+		    GTK_FRAME(self.mainWidget),
+		    label.UTF8String);
+	}];
 }
 @end

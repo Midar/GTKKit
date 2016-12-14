@@ -28,8 +28,8 @@
 @implementation GTKComboBox: GTKPopUpButton
 - (void)createMainWidget
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_combo_box_text_new_with_entry();
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		self.mainWidget = gtk_combo_box_text_new_with_entry();
+	}];
 }
 @end

@@ -148,7 +148,7 @@
  * @returns true if the message was sent, false otherwise.
  */
 - (bool)tryToPerform:(_Nonnull SEL)action
-                with:(nonnull id)object;
+				with:(nonnull id)object;
 
 /*!
  * @brief If this responder responds to the message given by SEL, send it

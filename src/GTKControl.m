@@ -22,89 +22,89 @@
 @implementation GTKControl
 - init
 {
-    self = [super init];
-    self.tag = -1;
-    return self;
+	self = [super init];
+	self.tag = -1;
+	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
-    self.tag = [decoder decodeIntForKey: @"GTKKit.coding.control.tag"];
-    return self;
+	self.tag = [decoder decodeIntForKey: @"GTKKit.coding.control.tag"];
+	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-    [super encodeWithCoder: encoder];
-    [encoder encodeInt: self.tag forKey: @"GTKKit.coding.control.tag"];
+	[super encodeWithCoder: encoder];
+	[encoder encodeInt: self.tag forKey: @"GTKKit.coding.control.tag"];
 }
 
 - (void)sendActionToTarget
 {
-    [GTKApp.dispatch.main sync: ^{
-        if (NULL == self.action) {
-            return;
-        }
+	[GTKApp.dispatch.main sync: ^{
+		if (NULL == self.action) {
+			return;
+		}
 
-        if (nil == self.target) {
-            GTKResponder *target = GTKApp.firstResponder;
-            if (nil == target) {
-                return;
-            }
-            IMP imp = [target methodForSelector: self.action];
-            void (*func)(id, SEL, id) = (void *)(imp);
-            func(target, self.action, self);
-        } else {
-            IMP imp = [self.target methodForSelector: self.action];
-            void (*func)(id, SEL, id) = (void *)(imp);
-            func(self.target, self.action, self);
-        }
-    }];
+		if (nil == self.target) {
+			GTKResponder *target = GTKApp.firstResponder;
+			if (nil == target) {
+				return;
+			}
+			IMP imp = [target methodForSelector: self.action];
+			void (*func)(id, SEL, id) = (void *)(imp);
+			func(target, self.action, self);
+		} else {
+			IMP imp = [self.target methodForSelector: self.action];
+			void (*func)(id, SEL, id) = (void *)(imp);
+			func(self.target, self.action, self);
+		}
+	}];
 }
 
-- (void)takeStringValueFrom:(nonnull id)target
+- (void)takeStringValueFrom: (nonnull id)target
 {
-    [GTKApp.dispatch.main sync: ^{
-        if ([target respondsToSelector: @selector(stringValue)]) {
-            self.stringValue = [target stringValue];
-        }
-    }];
+	[GTKApp.dispatch.main sync: ^{
+		if ([target respondsToSelector: @selector(stringValue)]) {
+			self.stringValue = [target stringValue];
+		}
+	}];
 }
 
-- (void)takeIntValueFrom:(nonnull id)target
+- (void)takeIntValueFrom: (nonnull id)target
 {
-    [GTKApp.dispatch.main sync: ^{
-        if ([target respondsToSelector: @selector(intValue)]) {
-            self.intValue = [target intValue];
-        }
-    }];
+	[GTKApp.dispatch.main sync: ^{
+		if ([target respondsToSelector: @selector(intValue)]) {
+			self.intValue = [target intValue];
+		}
+	}];
 }
 
-- (void)takeDoubleValueFrom:(nonnull id)target
+- (void)takeDoubleValueFrom: (nonnull id)target
 {
-    [GTKApp.dispatch.main sync: ^{
-        if ([target respondsToSelector: @selector(doubleValue)]) {
-            self.doubleValue = [target doubleValue];
-        }
-    }];
+	[GTKApp.dispatch.main sync: ^{
+		if ([target respondsToSelector: @selector(doubleValue)]) {
+			self.doubleValue = [target doubleValue];
+		}
+	}];
 }
 
-- (void)takeFloatValueFrom:(nonnull id)target
+- (void)takeFloatValueFrom: (nonnull id)target
 {
-    [GTKApp.dispatch.main sync: ^{
-        if ([target respondsToSelector: @selector(floatValue)]) {
-            self.floatValue = [target floatValue];
-        }
-    }];
+	[GTKApp.dispatch.main sync: ^{
+		if ([target respondsToSelector: @selector(floatValue)]) {
+			self.floatValue = [target floatValue];
+		}
+	}];
 }
 
-- (void)takeObjectValueFrom:(nonnull id)target
+- (void)takeObjectValueFrom: (nonnull id)target
 {
-    [GTKApp.dispatch.main sync: ^{
-        if ([target respondsToSelector: @selector(objectValue)]) {
-            self.objectValue = [target objectValue];
-        }
-    }];
+	[GTKApp.dispatch.main sync: ^{
+		if ([target respondsToSelector: @selector(objectValue)]) {
+			self.objectValue = [target objectValue];
+		}
+	}];
 }
 @end

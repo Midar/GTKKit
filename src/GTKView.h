@@ -76,7 +76,7 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  */
 @interface GTKView: GTKResponder <GTKCoding, OFCopying>
 {
-    __block OFMutableArray *_connections;
+	__block OFMutableArray *_connections;
 }
 
 /*!

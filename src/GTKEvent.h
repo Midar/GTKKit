@@ -21,35 +21,35 @@
  */
 typedef enum GTKEventType {
 
-    /*!
-     * @brief A key down event.
-     */
-    GTKEventTypeKeyDown,
+	/*!
+	 * @brief A key down event.
+	 */
+	GTKEventTypeKeyDown,
 
-    /*!
-     * @brief A key up event.
-     */
-    GTKEventTypeKeyUp,
+	/*!
+	 * @brief A key up event.
+	 */
+	GTKEventTypeKeyUp,
 
-    /*!
-     * @brief A mouse down event.
-     */
-    GTKEventTypeMouseDown,
+	/*!
+	 * @brief A mouse down event.
+	 */
+	GTKEventTypeMouseDown,
 
-    /*!
-     * @brief A mouse up event.
-     */
-    GTKEventTypeMouseUp,
+	/*!
+	 * @brief A mouse up event.
+	 */
+	GTKEventTypeMouseUp,
 
-    /*!
-     * @brief A mouse clicked event.
-     */
+	/*!
+	 * @brief A mouse clicked event.
+	 */
 
-    GTKEventTypeMouseClicked,
-    /*!
-     * @brief A mouse drag event.
-     */
-    GTKEventTypeMouseDragged
+	GTKEventTypeMouseClicked,
+	/*!
+	 * @brief A mouse drag event.
+	 */
+	GTKEventTypeMouseDragged
 } GTKEventType;
 
 
@@ -59,20 +59,20 @@ typedef enum GTKEventType {
  */
 typedef struct GTKEventKeyboardModifiers {
 
-    /*!
-     * @brief Whether or not the control key is held down.
-     */
-    bool control;
+	/*!
+	 * @brief Whether or not the control key is held down.
+	 */
+	bool control;
 
-        /*!
-         * @brief Whether or not the alt key is held down.
-         */
-    bool alt;
+		/*!
+		 * @brief Whether or not the alt key is held down.
+		 */
+	bool alt;
 
-        /*!
-         * @brief Whether or not the shift key is held down.
-         */
-    bool shift;
+		/*!
+		 * @brief Whether or not the shift key is held down.
+		 */
+	bool shift;
 } GTKEventKeyboardModifiers;
 
 /*!

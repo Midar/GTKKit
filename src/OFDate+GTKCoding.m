@@ -26,16 +26,16 @@
 @implementation OFDate (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.date"];
-    OFDate *date = element.stringValue.objectByDeserializing;
-    self = date;
-    return self;
+	OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.date"];
+	OFDate *date = element.stringValue.objectByDeserializing;
+	self = date;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.date"];
-    element.stringValue = self.stringBySerializing;
-    [encoder.data addChild: element];
+	OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.date"];
+	element.stringValue = self.stringBySerializing;
+	[encoder.data addChild: element];
 }
 @end

@@ -24,14 +24,14 @@
 typedef GdkRectangle GTKRect;
 
 #define KEYED_CODING_EXCEPTION_CHECK                                           \
-    if (!self.allowsKeyedCoding) {                                             \
-        @throw [GTKCoderKeyedCodingNotAllowedException exception];             \
-    }                                                                          \
+	if (!self.allowsKeyedCoding) {                                         \
+		@throw [GTKCoderKeyedCodingNotAllowedException exception];     \
+	}                                                                      \
 
 #define INVALID_KEY_EXCEPTION_CHECK                                            \
-    if (![key isKindOfClass: OFString.class]) {                                \
-        @throw [GTKCoderInvalidKeyException exception];                        \
-    }                                                                          \
+	if (![key isKindOfClass: OFString.class]) {                            \
+		@throw [GTKCoderInvalidKeyException exception];                \
+	}                                                                      \
 
 @interface GTKCoderKeyedCodingNotAllowedException: OFException
 @end
@@ -70,93 +70,93 @@ typedef GdkRectangle GTKRect;
 /*!
  * @brief Returns true if the coder has a value for the supplied key.
  */
-- (bool)containsValueForKey:(OFString *)key;
+- (bool)containsValueForKey: (OFString *)key;
 
  /*!
   * @brief Encode the supplied bool value for the supplied key.
   */
-- (void)encodeBool:(bool)value
-            forKey:(OFString *)key;
+- (void)encodeBool: (bool)value
+	    forKey: (OFString *)key;
 
 /*!
  * @brief Encode the supplied double value for the supplied key.
  */
-- (void)encodeDouble:(double)value
-              forKey:(OFString *)key;
+- (void)encodeDouble: (double)value
+	      forKey: (OFString *)key;
 
 /*!
  * @brief Encode the supplied float value for the supplied key.
  */
-- (void)encodeFloat:(float)value
-             forKey:(OFString *)key;
+- (void)encodeFloat: (float)value
+	     forKey: (OFString *)key;
 
 /*!
  * @brief Encode the supplied int value for the supplied key.
  */
-- (void)encodeInt:(int)value
-           forKey:(OFString *)key;
+- (void)encodeInt: (int)value
+	   forKey: (OFString *)key;
 
 /*!
 * @brief Encode the supplied GTKRect struct for the supplied key.
 */
-- (void)encodeRect:(GTKRect)value
-            forKey:(OFString *)key;
+- (void)encodeRect: (GTKRect)value
+	    forKey: (OFString *)key;
 
 /*!
  * @brief Encode the supplied int value for the supplied key.
  */
-- (void)encodeString:(OFString *)value
-              forKey:(OFString *)key;
+- (void)encodeString: (OFString *)value
+	      forKey: (OFString *)key;
 
 /*!
  * @brief Encode the supplied object for the supplied key.
  */
-- (void)encodeObject:(OFObject<GTKCoding> *)object
-              forKey:(OFString *)key;
+- (void)encodeObject: (OFObject<GTKCoding> *)object
+	      forKey: (OFString *)key;
 
 /*!
  * @brief Encode the supplied selector for the supplied key.
  */
-- (void)encodeSelector:(SEL)selector
-               forKey:(OFString *)key;
+- (void)encodeSelector: (SEL)selector
+		forKey: (OFString *)key;
 
 /*!
  * @brief Decode the bool value for the supplied key.
  */
-- (bool)decodeBoolForKey:(OFString *)key;
+- (bool)decodeBoolForKey: (OFString *)key;
 
 /*!
 * @brief Decode the double value for the supplied key.
 */
-- (double)decodeDoubleForKey:(OFString *)key;
+- (double)decodeDoubleForKey: (OFString *)key;
 
 /*!
 * @brief Decode the float value for the supplied key.
 */
-- (float)decodeFloatForKey:(OFString *)key;
+- (float)decodeFloatForKey: (OFString *)key;
 
 /*!
 * @brief Decode the int value for the supplied key.
 */
-- (int)decodeIntForKey:(OFString *)key;
+- (int)decodeIntForKey: (OFString *)key;
 
 /*!
 * @brief Decode the GTKRect value for the supplied key.
 */
-- (GTKRect)decodeRectForKey:(OFString *)key;
+- (GTKRect)decodeRectForKey: (OFString *)key;
 
 /*!
 * @brief Decode the int value for the supplied key.
 */
-- (OFString *)decodeStringForKey:(OFString *)key;
+- (OFString *)decodeStringForKey: (OFString *)key;
 
 /*!
 * @brief Decode the object for the supplied key.
 */
-- (id)decodeObjectForKey:(OFString *)key;
+- (id)decodeObjectForKey: (OFString *)key;
 
 /*!
  * @brief Decode the selector for the supplied key.
  */
-- (SEL)decodeSelectorforKey:(OFString *)key;
+- (SEL)decodeSelectorforKey: (OFString *)key;
 @end

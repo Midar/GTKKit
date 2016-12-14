@@ -28,7 +28,7 @@
 + (instancetype)keyedUnarchiverWithContentsOfURL:(OFURL *)url;
 + (instancetype)keyedUnarchiverWithXMLString:(OFString *)string;
 + (id)unarchiveObjectOfClass:(Class)class
-                   withCoder:(GTKCoder *)coder;
+				   withCoder:(GTKCoder *)coder;
 + (id)unarchiveObjectOfClass:(Class)class
-                     withURL:(OFURL *)url;
+					 withURL:(OFURL *)url;
 @end

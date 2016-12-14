@@ -25,25 +25,25 @@
  */
 typedef enum GTKJustification {
 
-    /*!
-     * @brief Left justification.
-     */
-    GTKJustificationLeft = GTK_JUSTIFY_LEFT,
+	/*!
+	 * @brief Left justification.
+	 */
+	GTKJustificationLeft = GTK_JUSTIFY_LEFT,
 
-    /*!
-     * @brief Center justification.
-     */
-    GTKJustificationCenter = GTK_JUSTIFY_CENTER,
+	/*!
+	 * @brief Center justification.
+	 */
+	GTKJustificationCenter = GTK_JUSTIFY_CENTER,
 
-    /*!
-     * @brief Right justification.
-     */
-    GTKJustificationRight = GTK_JUSTIFY_RIGHT,
+	/*!
+	 * @brief Right justification.
+	 */
+	GTKJustificationRight = GTK_JUSTIFY_RIGHT,
 
-    /*!
-     * @brief Fill justification.
-     */
-    GTKJustificationFill = GTK_JUSTIFY_FILL
+	/*!
+	 * @brief Fill justification.
+	 */
+	GTKJustificationFill = GTK_JUSTIFY_FILL
 } GTKJustification;
 
 
@@ -53,14 +53,14 @@ typedef enum GTKJustification {
  */
 @interface GTKTextField: GTKControl
 {
-    __block bool _editable;
-    __block bool _selectable;
-    __block GTKJustification _justify;
-    __block bool _multiline;
-    __block GtkWidget *_scrollWindow;
-    __block GtkWidget *_labelWidget;
-    __block GtkWidget *_entryWidget;
-    __block GtkWidget *_textViewWidget;
+	__block bool _editable;
+	__block bool _selectable;
+	__block GTKJustification _justify;
+	__block bool _multiline;
+	__block GtkWidget *_scrollWindow;
+	__block GtkWidget *_labelWidget;
+	__block GtkWidget *_entryWidget;
+	__block GtkWidget *_textViewWidget;
 }
 
 /*!

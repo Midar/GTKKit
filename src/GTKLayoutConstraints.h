@@ -144,8 +144,8 @@ typedef enum GTKLayoutConstraintType {
  * @param right The value of the right constraint
  */
 - (void)fixedToTop:(double)top
-		      left:(double)left
-		     right:(double)right;
+			  left:(double)left
+			 right:(double)right;
 
 /*!
  * @brief Set the constraint's top, bottom, and left to fixed, at the

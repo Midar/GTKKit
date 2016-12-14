@@ -23,16 +23,16 @@
 @implementation OFNumber (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.number"];
-    OFNumber *number = element.stringValue.objectByDeserializing;
-    self = number;
-    return self;
+	OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.number"];
+	OFNumber *number = element.stringValue.objectByDeserializing;
+	self = number;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.number"];
-    element.stringValue = self.stringBySerializing;
-    [encoder.data addChild: element];
+	OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.number"];
+	element.stringValue = self.stringBySerializing;
+	[encoder.data addChild: element];
 }
 @end

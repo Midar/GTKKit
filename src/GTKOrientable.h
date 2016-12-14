@@ -23,15 +23,15 @@
  */
 typedef enum GTKOrientation {
 
-    /*!
-     * @brief Horizontal orientation.
-     */
-    GTKOrientationHorizontal = GTK_ORIENTATION_HORIZONTAL,
+	/*!
+	 * @brief Horizontal orientation.
+	 */
+	GTKOrientationHorizontal = GTK_ORIENTATION_HORIZONTAL,
 
-    /*!
-     * @brief Vertical orientation.
-     */
-    GTKOrientationVertical = GTK_ORIENTATION_VERTICAL
+	/*!
+	 * @brief Vertical orientation.
+	 */
+	GTKOrientationVertical = GTK_ORIENTATION_VERTICAL
 } GTKOrientation;
 
 

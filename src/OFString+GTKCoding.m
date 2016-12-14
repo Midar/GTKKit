@@ -22,28 +22,28 @@
 
 OFString* OFStringFromSelector(SEL selector)
 {
-    const char *name = sel_getName(selector);
-    return [[OFString alloc] initWithUTF8String: name];
+	const char *name = sel_getName(selector);
+	return [[OFString alloc] initWithUTF8String: name];
 }
 
 SEL OFSelectorFromString(OFString *selector)
 {
-    return sel_registerName(selector.UTF8String);
+	return sel_registerName(selector.UTF8String);
 }
 
 @implementation OFString (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    OFString *value = [[decoder.data attributeForName: @"GTKKit.GTKCoding.string"] stringValue];
+	OFString *value = [[decoder.data attributeForName: @"GTKKit.GTKCoding.string"] stringValue];
 
-    self = [self initWithString: value];
+	self = [self initWithString: value];
 
-    return self;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    [encoder.data addAttributeWithName: @"GTKKit.GTKCoding.string"
-                           stringValue: self];
+	[encoder.data addAttributeWithName: @"GTKKit.GTKCoding.string"
+						   stringValue: self];
 }
 @end

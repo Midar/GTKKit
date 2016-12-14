@@ -22,23 +22,23 @@
  */
 typedef enum GTKPositionType {
 
-    /*!
-     * @brief The top position.
-     */
-    GTKPositionTypeTop = GTK_POS_TOP,
+	/*!
+	 * @brief The top position.
+	 */
+	GTKPositionTypeTop = GTK_POS_TOP,
 
-    /*!
-     * @brief The bottom position.
-     */
-    GTKPositionTypeBottom = GTK_POS_BOTTOM,
+	/*!
+	 * @brief The bottom position.
+	 */
+	GTKPositionTypeBottom = GTK_POS_BOTTOM,
 
-    /*!
-     * @brief The left position.
-     */
-    GTKPositionTypeLeft = GTK_POS_LEFT,
+	/*!
+	 * @brief The left position.
+	 */
+	GTKPositionTypeLeft = GTK_POS_LEFT,
 
-    /*!
-     * @brief The right position.
-     */
-    GTKPositionTypeRight = GTK_POS_RIGHT
+	/*!
+	 * @brief The right position.
+	 */
+	GTKPositionTypeRight = GTK_POS_RIGHT
 } GTKPositionType;

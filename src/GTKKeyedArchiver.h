@@ -27,6 +27,6 @@
 @interface GTKKeyedArchiver: GTKCoder
 + (instancetype)archiveRootObject:(id<GTKCoding>)object;
 + (void)archiveRootObject:(id<GTKCoding>)object
-                    toURL:(OFURL *)url;
+					toURL:(OFURL *)url;
 - (void)writeToURL:(OFURL *)url;
 @end

@@ -35,10 +35,10 @@
  */
 @interface GTKNotebookView: GTKView <GTKCoding>
 {
-    __block OFMutableArray<__kindof GTKTab *> *_tabs;
-    __block GTKPositionType _tabPosition;
-    __block bool _tabsHidden;
-    __block bool _scrollable;
+	__block OFMutableArray<__kindof GTKTab *> *_tabs;
+	__block GTKPositionType _tabPosition;
+	__block bool _tabsHidden;
+	__block bool _scrollable;
 }
 
 @property GTKPositionType tabPosition;
@@ -58,7 +58,7 @@
 - (void)removeTab:(nonnull GTKTab *)tab;
 
 - (void)renameTab:(nonnull GTKTab *)tab
-         toString:(nonnull OFString *)string;
+		 toString:(nonnull OFString *)string;
 
 /*!
  * @brief Returns the index of the specified tab in the notebook's tabs.
@@ -75,7 +75,7 @@
  * view's tabs.
  */
 - (void)insertTab:(nonnull GTKTab *)tab
-          atIndex:(int)index;
+		  atIndex:(int)index;
 
 /*!
  * @brief The GTKTab at the specified position in the tab view's tabs.

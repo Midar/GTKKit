@@ -26,40 +26,40 @@
 @implementation OFArray (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    OFMutableArray *array = [OFMutableArray new];
+	OFMutableArray *array = [OFMutableArray new];
 
-    unsigned long i = 0;
+	unsigned long i = 0;
 
-    OFString *key = [OFString stringWithFormat: @"GTKKIT.objects.array.%lu", i];
-    id value = [decoder decodeObjectForKey: key];
+	OFString *key = [OFString stringWithFormat: @"GTKKIT.objects.array.%lu", i];
+	id value = [decoder decodeObjectForKey: key];
 
-    while (value != nil) {
-        [array addObject: value];
-        i++;
-        key = [OFString stringWithFormat: @"GTKKIT.objects.array.%lu", i];
-        value = [decoder decodeObjectForKey: key];
-    }
+	while (value != nil) {
+		[array addObject: value];
+		i++;
+		key = [OFString stringWithFormat: @"GTKKIT.objects.array.%lu", i];
+		value = [decoder decodeObjectForKey: key];
+	}
 
-    self = [self initWithArray: array];
+	self = [self initWithArray: array];
 
-    return self;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    unsigned long i;
+	unsigned long i;
 
-    for (i = 0; i < self.count; i++) {
-        OFString *key = [OFString stringWithFormat: @"GTKKIT.objects.array.%lu", i];
+	for (i = 0; i < self.count; i++) {
+		OFString *key = [OFString stringWithFormat: @"GTKKIT.objects.array.%lu", i];
 
-        id object = [self objectAtIndex: i];
+		id object = [self objectAtIndex: i];
 
-        if ([object isKindOfClass: OFString.class]) {
-            object = [OFString stringWithString: object];
-        }
+		if ([object isKindOfClass: OFString.class]) {
+			object = [OFString stringWithString: object];
+		}
 
-        [encoder encodeObject: object
-                       forKey: key];
-    }
+		[encoder encodeObject: object
+					   forKey: key];
+	}
 }
 @end

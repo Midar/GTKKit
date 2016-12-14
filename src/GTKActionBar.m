@@ -24,88 +24,91 @@
 @implementation GTKActionBar
 - init
 {
-    self = [super init];
-    _actionSubviewsStart = [OFMutableArray new];
-    _actionSubviewsEnd = [OFMutableArray new];
-    [self.constraints flexibleToTop: 0];
-    [self.constraints fixedToBottom: 0
-                               left: 0
-                              right: 0];
-    [self.constraints fixedHeight: 48];
-    return self;
+	self = [super init];
+	_actionSubviewsStart = [OFMutableArray new];
+	_actionSubviewsEnd = [OFMutableArray new];
+	[self.constraints flexibleToTop: 0];
+	[self.constraints fixedToBottom: 0
+				   left: 0
+				  right: 0];
+	[self.constraints fixedHeight: 48];
+	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
-    self.centerView = [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.centerView"];
+	self.centerView = [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.centerView"];
 
-    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.actionSubviewsStart"]) {
-        [self addSubviewStart: view];
-    }
+	for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.actionSubviewsStart"]) {
+		[self addSubviewStart: view];
+	}
 
-    for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.actionSubviewsEnd"]) {
-        [self addSubviewEnd: view];
-    }
+	for (GTKView *view in [decoder decodeObjectForKey: @"GTKKit.coding.actionBar.actionSubviewsEnd"]) {
+		[self addSubviewEnd: view];
+	}
 
-    return self;
+	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-    [super encodeWithCoder: encoder];
+	[super encodeWithCoder: encoder];
 
-    [encoder encodeObject: self.centerView forKey: @"GTKKit.coding.actionBar.centerView"];
-    [encoder encodeObject: _actionSubviewsStart forKey: @"GTKKit.coding.actionBar.actionSubviewsStart"];
-    [encoder encodeObject: _actionSubviewsEnd forKey: @"GTKKit.coding.actionBar.actionSubviewsEnd"];
+	[encoder encodeObject: self.centerView
+		       forKey: @"GTKKit.coding.actionBar.centerView"];
+	[encoder encodeObject: _actionSubviewsStart
+		       forKey: @"GTKKit.coding.actionBar.actionSubviewsStart"];
+	[encoder encodeObject: _actionSubviewsEnd
+		       forKey: @"GTKKit.coding.actionBar.actionSubviewsEnd"];
 }
 
 - (void)createMainWidget
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_action_bar_new();
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		self.mainWidget = gtk_action_bar_new();
+	}];
 }
 
 - (GTKView *)centerView
 {
-    return _centerView;
+	return _centerView;
 }
 
-- (void)setCenterView:(GTKView *)view
+- (void)setCenterView: (GTKView *)view
 {
-    if (self.centerView != nil) {
-        [GTKApp.dispatch.gtk sync: ^{
-            gtk_widget_unparent(self.centerView.overlayWidget);
-        }];
-        //self.centerView = nil;
-    }
-    _centerView = view;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_action_bar_set_center_widget(
-            GTK_ACTION_BAR(self.mainWidget),
-            self.centerView.overlayWidget);
-    }];
+	if (self.centerView != nil) {
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_widget_unparent(self.centerView.overlayWidget);
+	}];
+	//self.centerView = nil;
+	}
+	_centerView = view;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_action_bar_set_center_widget(
+			GTK_ACTION_BAR(self.mainWidget),
+			self.centerView.overlayWidget);
+	}];
 }
 
-- (void)addSubviewStart:(GTKView *)view
+- (void)addSubviewStart: (GTKView *)view
 {
-    [_actionSubviewsStart addObject: view];
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_action_bar_pack_start(
-            GTK_ACTION_BAR(self.mainWidget),
-            view.overlayWidget);
-    }];
+	[_actionSubviewsStart addObject: view];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_action_bar_pack_start(
+			GTK_ACTION_BAR(self.mainWidget),
+			view.overlayWidget);
+	}];
 }
 
-- (void)addSubviewEnd:(GTKView *)view
+- (void)addSubviewEnd: (GTKView *)view
 {
-    [_actionSubviewsEnd addObject: view];
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_action_bar_pack_end(
-            GTK_ACTION_BAR(self.mainWidget),
-            view.overlayWidget);
-    }];
+	[_actionSubviewsEnd addObject: view];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_action_bar_pack_end(
+			GTK_ACTION_BAR(self.mainWidget),
+			view.overlayWidget);
+	}];
 }
 @end

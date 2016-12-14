@@ -27,7 +27,7 @@
  */
 @interface GTKBox: GTKView
 {
-    __block OFString *_label;
+	__block OFString *_label;
 }
 
 /*!
@@ -38,6 +38,6 @@
 /*!
  * @brief create and return a new GTKBox with the chosen label set.
  */
-+ (instancetype)boxWithLabel:(OFString *)label;
-- (instancetype)initWithLabel:(OFString *)label;
++ (instancetype)boxWithLabel: (OFString *)label;
+- (instancetype)initWithLabel: (OFString *)label;
 @end

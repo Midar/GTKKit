@@ -93,29 +93,29 @@ typedef void (^GTKControlActionBlock) ();
  * @brief Set the string value of this control from that of another object. The
  * target object must implement the -stringValue: method.
  */
-- (void)takeStringValueFrom:(nonnull id)target;
+- (void)takeStringValueFrom: (nonnull id)target;
 
 /*!
  * @brief Set the int value of this control from that of another object. The
  * target object must implement the -intValue: method.
  */
-- (void)takeIntValueFrom:(nonnull id)target;
+- (void)takeIntValueFrom: (nonnull id)target;
 
 /*!
  * @brief Set the double value of this control from that of another object. The
  * target object must implement the -doubleValue: method.
  */
-- (void)takeDoubleValueFrom:(nonnull id)target;
+- (void)takeDoubleValueFrom: (nonnull id)target;
 
 /*!
  * @brief Set the float value of this control from that of another object. The
  * target object must implement the -floatValue: method.
  */
-- (void)takeFloatValueFrom:(nonnull id)target;
+- (void)takeFloatValueFrom: (nonnull id)target;
 
 /*!
  * @brief Set the object value of this control from that of another object. The
  * target object must implement the -objectValue: method.
  */
-- (void)takeObjectValueFrom:(nonnull id)target;
+- (void)takeObjectValueFrom: (nonnull id)target;
 @end

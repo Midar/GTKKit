@@ -24,15 +24,16 @@
  */
 #define GTK_APPLICATION_DELEGATE(cls)                                          \
 int                                                                            \
-main(int argc, char *argv[])                                                   \
+main(int   argc,                                                               \
+     char *argv[])                                                             \
 {                                                                              \
-    GTKApp = [GTKApplication sharedApplication];                               \
-    GTKApp.delegateClass = [cls class];                                        \
-    GTKApp.argc = &argc;                                                       \
-    GTKApp.argv = &argv;                                                       \
-    [GTKApp startup];                                                          \
-    [GTKApp run];                                                              \
-    return 0;                                                                  \
+	GTKApp = [GTKApplication sharedApplication];                           \
+	GTKApp.delegateClass = [cls class];                                    \
+	GTKApp.argc = &argc;                                                   \
+	GTKApp.argv = &argv;                                                   \
+	[GTKApp startup];                                                      \
+	[GTKApp run];                                                          \
+	return 0;                                                              \
 }
 
 /*!

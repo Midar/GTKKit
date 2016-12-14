@@ -23,168 +23,168 @@
 // the chain.
 - (id)forwardingTargetForSelector:(SEL)selector
 {
-    if (nil == self.nextResponder) {
-        return [super forwardingTargetForSelector: selector];
-    }
+	if (nil == self.nextResponder) {
+		return [super forwardingTargetForSelector: selector];
+	}
 
-    return self.nextResponder;
+	return self.nextResponder;
 }
 
 - (void)becomeFirstResponder
 {
-    // Default implementation does nothing.
+	// Default implementation does nothing.
 }
 
 - (bool)canBecomeFirstResponder
 {
-    return false;
+	return false;
 }
 
 - (void)willBecomeMapped
 {
-    [self.nextResponder tryToPerform: @selector(willBecomeMapped:)];
+	[self.nextResponder tryToPerform: @selector(willBecomeMapped:)];
 }
 
 - (void)didBecomeMapped
 {
-    [self.nextResponder tryToPerform: @selector(didBecomeMapped:)];
+	[self.nextResponder tryToPerform: @selector(didBecomeMapped:)];
 }
 
 - (void)willBecomeUnmapped
 {
-    [self.nextResponder tryToPerform: @selector(willBecomeUnmapped:)];
+	[self.nextResponder tryToPerform: @selector(willBecomeUnmapped:)];
 }
 
 - (void)didBecomeUnmapped
 {
-    [self.nextResponder tryToPerform: @selector(didBecomeUnmapped:)];
+	[self.nextResponder tryToPerform: @selector(didBecomeUnmapped:)];
 }
 
 - (bool)shouldBecomeFirstResponder
 {
-    return false;
+	return false;
 }
 
 - (void)willBecomeFirstResponder
 {
-    [self.nextResponder tryToPerform: @selector(willBecomeFirstResponder:)];
+	[self.nextResponder tryToPerform: @selector(willBecomeFirstResponder:)];
 }
 
 - (void)didBecomeFirstResponder
 {
-    [self.nextResponder tryToPerform: @selector(didBecomeFirstResponder:)];
+	[self.nextResponder tryToPerform: @selector(didBecomeFirstResponder:)];
 }
 
 - (bool)shouldResignFirstResponder
 {
-    return true;
+	return true;
 }
 
 - (void)willResignFirstResopnder
 {
-    [self.nextResponder tryToPerform: @selector(willResignFirstResopnder:)];
+	[self.nextResponder tryToPerform: @selector(willResignFirstResopnder:)];
 }
 
 - (void)didResignFirstResponder
 {
-    [self.nextResponder tryToPerform: @selector(didResignFirstResponder:)];
+	[self.nextResponder tryToPerform: @selector(didResignFirstResponder:)];
 }
 
 - (void)mouseDown:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(mouseDown:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(mouseDown:)
+								with: event];
 }
 
 - (void)mouseUp:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(mouseUp:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(mouseUp:)
+								with: event];
 }
 
 - (void)mouseClicked:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(mouseClicked:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(mouseClicked:)
+								with: event];
 }
 
 - (void)mouseDragged:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(dragged:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(dragged:)
+								with: event];
 }
 
 - (void)scrollWheel:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(scrollWheel:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(scrollWheel:)
+								with: event];
 }
 
 - (void)mouseEntered:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(mouseEntered:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(mouseEntered:)
+								with: event];
 }
 
 - (void)mouseLeft:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(mouseLeft:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(mouseLeft:)
+								with: event];
 }
 
 - (void)keyDown:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(keyDown:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(keyDown:)
+								with: event];
 }
 
 - (void)keyUp:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(keyUp:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(keyUp:)
+								with: event];
 }
 
 - (void)modifierKeysChanged:(nonnull GTKEvent*)event
 {
-    [self.nextResponder tryToPerform: @selector(modifierKeysChanged:)
-                                with: event];
+	[self.nextResponder tryToPerform: @selector(modifierKeysChanged:)
+								with: event];
 }
 
 - (void)doCommandBySelector:(SEL)selector
 {
-    if ([self respondsToSelector: selector]) {
-        [GTKApp.dispatch.main sync: ^{
-            IMP imp = [self methodForSelector:selector];
-            void (*func)(id, SEL) = (void *)(imp);
-            func(self, selector);
-        }];
-    }
+	if ([self respondsToSelector: selector]) {
+		[GTKApp.dispatch.main sync: ^{
+			IMP imp = [self methodForSelector:selector];
+			void (*func)(id, SEL) = (void *)(imp);
+			func(self, selector);
+		}];
+	}
 }
 
 - (bool)tryToPerform:(SEL)action
-                with:(nonnull id)object
+				with:(nonnull id)object
 {
-    if ([self respondsToSelector: action]) {
-        [GTKApp.dispatch.main sync: ^{
-            [self performSelector: action
-                       withObject: object
-                       afterDelay: 0.0];
-        }];
-        return true;
-    }
-    return false;
+	if ([self respondsToSelector: action]) {
+		[GTKApp.dispatch.main sync: ^{
+			[self performSelector: action
+					   withObject: object
+					   afterDelay: 0.0];
+		}];
+		return true;
+	}
+	return false;
 }
 
 - (bool)tryToPerform:(SEL)action
 {
-    if ([self respondsToSelector: action]) {
-        [GTKApp.dispatch.main sync: ^{
-            IMP imp = [self methodForSelector:action];
-            void (*func)(id, SEL) = (void *)(imp);
-            func(self, action);
-        }];
-        return true;
-    }
-    return false;
+	if ([self respondsToSelector: action]) {
+		[GTKApp.dispatch.main sync: ^{
+			IMP imp = [self methodForSelector:action];
+			void (*func)(id, SEL) = (void *)(imp);
+			func(self, action);
+		}];
+		return true;
+	}
+	return false;
 }
 @end

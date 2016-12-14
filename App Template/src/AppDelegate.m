@@ -21,20 +21,20 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-    self = [super init];
-    // Put your custom initialization below this line.
+	self = [super init];
+	// Put your custom initialization below this line.
 
-    // It would be dangerous to modify anything below this line.
-    return self;
+	// It would be dangerous to modify anything below this line.
+	return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    // Put your custom post-launch startup code below this line.
+	// Put your custom post-launch startup code below this line.
 }
 
 - (void)applicationWillTerminate
 {
-    // Put your custom pre-shutdown code below this line.
+	// Put your custom pre-shutdown code below this line.
 }
 @end

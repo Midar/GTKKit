@@ -26,18 +26,18 @@
  * @brief The tracking modes available to segmented controls.
  */
 typedef enum GTKSegmentSwitchTracking {
-    /*!
-     * @brief Select one segment at a time.
-     */
-    GTKSegmentSwitchTrackingSelectOne,
-    /*!
-     * @brief Select any or all of the segments at once.
-     */
-    GTKSegmentSwitchTrackingSelectAny,
-    /*!
-     * @brief Make the control act like a row of momentary pushbuttons.
-     */
-    GTKSegmentSwitchTrackingMomentary
+	/*!
+	 * @brief Select one segment at a time.
+	 */
+	GTKSegmentSwitchTrackingSelectOne,
+	/*!
+	 * @brief Select any or all of the segments at once.
+	 */
+	GTKSegmentSwitchTrackingSelectAny,
+	/*!
+	 * @brief Make the control act like a row of momentary pushbuttons.
+	 */
+	GTKSegmentSwitchTrackingMomentary
 } GTKSegmentSwitchTracking;
 
 /*!
@@ -50,14 +50,14 @@ typedef enum GTKSegmentSwitchTracking {
  */
 @interface GTKSegmentedControl: GTKControl
 {
-    int _buttonIndex[32];
-    GtkWidget *_buttons[32];
-    int _segments;
-    OFMutableArray *_labelForSegment;
-    OFMutableArray *_imageForSegment;
-    OFMutableArray *_popOverForSegment;
-    bool _momentary;
-    GTKSegmentSwitchTracking _trackingMode;
+	int _buttonIndex[32];
+	GtkWidget *_buttons[32];
+	int _segments;
+	OFMutableArray *_labelForSegment;
+	OFMutableArray *_imageForSegment;
+	OFMutableArray *_popOverForSegment;
+	bool _momentary;
+	GTKSegmentSwitchTracking _trackingMode;
 }
 
 

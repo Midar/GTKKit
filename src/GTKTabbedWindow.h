@@ -28,7 +28,7 @@
  */
 @interface GTKTabbedWindow: GTKWindow
 {
-    __block GtkWidget *_switcher;
+	__block GtkWidget *_switcher;
 }
 
 /*!

@@ -22,30 +22,30 @@
  */
 typedef enum GTKImageFormat {
 
-    /*!
-     * @brief JPEG format.
-     */
-    GTKImageFormatJPEG,
+	/*!
+	 * @brief JPEG format.
+	 */
+	GTKImageFormatJPEG,
 
-    /*!
-     * @brief PNG format.
-     */
-    GTKImageFormatPNG,
+	/*!
+	 * @brief PNG format.
+	 */
+	GTKImageFormatPNG,
 
-    /*!
-     * @brief TIFF format.
-     */
-    GTKImageFormatTIFF,
+	/*!
+	 * @brief TIFF format.
+	 */
+	GTKImageFormatTIFF,
 
-    /*!
-     * @brief ICO format.
-     */
-    GTKImageFormatICO,
+	/*!
+	 * @brief ICO format.
+	 */
+	GTKImageFormatICO,
 
-    /*!
-     * @brief BMP format.
-     */
-    GTKImageFormatBMP
+	/*!
+	 * @brief BMP format.
+	 */
+	GTKImageFormatBMP
 } GTKImageFormat;
 
 /*!
@@ -53,25 +53,25 @@ typedef enum GTKImageFormat {
  */
 typedef enum GTKIconSize {
 
-    /*!
-     * @brief A small icon.
-     */
-    GTKIconSizeSmall = 16,
+	/*!
+	 * @brief A small icon.
+	 */
+	GTKIconSizeSmall = 16,
 
-    /*!
-     * @brief A medium icon.
-     */
-    GTKIconSizeMedium = 24,
+	/*!
+	 * @brief A medium icon.
+	 */
+	GTKIconSizeMedium = 24,
 
-    /*!
-     * @brief A large icon.
-     */
-    GTKIconSizeLarge = 36,
+	/*!
+	 * @brief A large icon.
+	 */
+	GTKIconSizeLarge = 36,
 
-    /*!
-     * @brief An extra-large icon.
-     */
-    GTKIconSizeXLarge = 48
+	/*!
+	 * @brief An extra-large icon.
+	 */
+	GTKIconSizeXLarge = 48
 } GTKIconSize;
 
 /*!
@@ -79,9 +79,9 @@ typedef enum GTKIconSize {
  */
 @interface GTKImage: OFObject
 {
-    __block GdkPixbuf *_pixbuf;
-    __block int _width;
-    __block int _height;
+	__block GdkPixbuf *_pixbuf;
+	__block int        _width;
+	__block int        _height;
 }
 
 /*!
@@ -97,31 +97,34 @@ typedef enum GTKIconSize {
 /*!
  * @brief Create an image from a local (file://) URL.
  */
-+ imageWithURL:(OFURL *)url;
++ imageWithURL: (OFURL *)url;
 
 /*!
  * @brief Create an image from a stock icon in the default theme, at the specified
  * pixel size.
  */
-+ imageWithIconName:(OFString *)name size:(int)size;
++ imageWithIconName: (OFString *)name
+	       size:(int)size;
 
-+ imageWithPixbuf:(GdkPixbuf *)pixbuf;
-
-/*!
- * @brief Save the image represented by this GTKImage to a file with the
- * specified format.
- */
-- (void)writeImageToURL:(OFURL *)url format:(GTKImageFormat)format;
++ imageWithPixbuf: (GdkPixbuf *)pixbuf;
 
 /*!
  * @brief Save the image represented by this GTKImage to a file with the
  * specified format.
  */
-- (void)writeImageToFile:(OFString *)url format:(GTKImageFormat)format;
+- (void)writeImageToURL: (OFURL *)url
+		 format: (GTKImageFormat)format;
+
+/*!
+ * @brief Save the image represented by this GTKImage to a file with the
+ * specified format.
+ */
+- (void)writeImageToFile: (OFString *)url
+		  format: (GTKImageFormat)format;
 
 // Private methods.
 - (GdkPixbuf *)pixbuf;
-- (GdkPixbuf *)pixbufScaledToWidth:(int)width
-                            height:(int)height
-                 maintainingAspect:(bool)aspect;
+- (GdkPixbuf *)pixbufScaledToWidth: (int)width
+			    height:(int)height
+		 maintainingAspect:(bool)aspect;
 @end

@@ -23,8 +23,8 @@
 @implementation OFNull (GTKCoding)
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
-    self = [self.class null];
-    return self;
+	self = [self.class null];
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder

@@ -25,29 +25,29 @@
  */
 typedef enum GTKImageScaling {
 
-    /*!
-     * @brief No scaling. The image will be shown at its native size, regardless
-     * of the size of the GTKImageView.
-     */
-    GTKImageScaleNone,
+	/*!
+	 * @brief No scaling. The image will be shown at its native size, regardless
+	 * of the size of the GTKImageView.
+	 */
+	GTKImageScaleNone,
 
-    /*!
-     * @brief Scale the image to fit the GTKImageView exactly, regardless of its
-     * native aspect ratio.
-     */
-    GTKImageScaleAxesIndependently,
+	/*!
+	 * @brief Scale the image to fit the GTKImageView exactly, regardless of its
+	 * native aspect ratio.
+	 */
+	GTKImageScaleAxesIndependently,
 
-    /*!
-     * @brief If the native size of the image is larger than the GTKImageView,
-     * scale it down to fit, maintiaining the native aspect ratio of the image.
-     */
-    GTKImageScaleProportionatelyDown,
+	/*!
+	 * @brief If the native size of the image is larger than the GTKImageView,
+	 * scale it down to fit, maintiaining the native aspect ratio of the image.
+	 */
+	GTKImageScaleProportionatelyDown,
 
-    /*!
-     * @brief Scale the image to fit the GTKImageView, maintaining its native
-     * aspect ratio.
-     */
-    GTKImageScaleProportionatelyUpOrDown
+	/*!
+	 * @brief Scale the image to fit the GTKImageView, maintaining its native
+	 * aspect ratio.
+	 */
+	GTKImageScaleProportionatelyUpOrDown
 } GTKImageScaling;
 
 
@@ -56,7 +56,7 @@ typedef enum GTKImageScaling {
  */
 @interface GTKImageView: GTKView
 {
-    __weak __block GTKImage *_image;
+	__weak __block GTKImage *_image;
 }
 
 /*!

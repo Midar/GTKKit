@@ -75,12 +75,12 @@
 
 - (GTKImage *)image
 {
-    return _image;
+	return _image;
 }
 
 - (void)setImage:(GTKImage *)image
 {
-    _image = image;
+	_image = image;
 	[self draw];
 }
 @end

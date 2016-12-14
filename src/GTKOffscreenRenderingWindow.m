@@ -20,61 +20,61 @@
 @implementation GTKOffscreenRenderingWindow
 - init
 {
-    self = [super init];
-    self.contentView = [GTKView new];
-    [GTKApp.dispatch.gtk sync: ^{
-        _offscreenWindow = gtk_offscreen_window_new();
-        g_object_ref_sink(G_OBJECT(_offscreenWindow));
-        g_object_set_data(
-            G_OBJECT(_offscreenWindow),
-            "_GTKKIT_OWNING_VIEW_CONTROLLER_",
-            (__bridge gpointer)(self));
-        gtk_widget_set_size_request(
-            _offscreenWindow,
-            1,
-            1);
-        gtk_container_add(
-            GTK_CONTAINER(_offscreenWindow),
-            self.contentView.overlayWidget);
-    }];
-    return self;
+	self = [super init];
+	self.contentView = [GTKView new];
+	[GTKApp.dispatch.gtk sync: ^{
+		_offscreenWindow = gtk_offscreen_window_new();
+		g_object_ref_sink(G_OBJECT(_offscreenWindow));
+		g_object_set_data(
+			G_OBJECT(_offscreenWindow),
+			"_GTKKIT_OWNING_VIEW_CONTROLLER_",
+			(__bridge gpointer)(self));
+		gtk_widget_set_size_request(
+			_offscreenWindow,
+			1,
+			1);
+		gtk_container_add(
+			GTK_CONTAINER(_offscreenWindow),
+			self.contentView.overlayWidget);
+	}];
+	return self;
 }
 
 - (void)dealloc
 {
-    g_object_unref(_offscreenWindow);
+	g_object_unref(_offscreenWindow);
 }
 
 - (GTKImage *)image
 {
-    GdkPixbuf *pixbuf = gtk_offscreen_window_get_pixbuf(
-        GTK_OFFSCREEN_WINDOW(_offscreenWindow));
-    return [GTKImage imageWithPixbuf: pixbuf];
+	GdkPixbuf *pixbuf = gtk_offscreen_window_get_pixbuf(
+		GTK_OFFSCREEN_WINDOW(_offscreenWindow));
+	return [GTKImage imageWithPixbuf: pixbuf];
 }
 
 - (void)addView:(nonnull GTKView *)subview
 {
-    [self.contentView addSubview: subview];
+	[self.contentView addSubview: subview];
 }
 
 - (GTKRect)frame
 {
-    __block GTKRect frame;
-    frame.x = 0;
-    frame.y = 0;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_get_size_request(
-            _offscreenWindow,
-            &frame.width,
-            &frame.height);
-    }];
-    return frame;
+	__block GTKRect frame;
+	frame.x = 0;
+	frame.y = 0;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_widget_get_size_request(
+			_offscreenWindow,
+			&frame.width,
+			&frame.height);
+	}];
+	return frame;
 }
 
 - (void)setFrame:(GTKRect)frame
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_widget_set_size_request(_offscreenWindow, frame.width, frame.height);
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_widget_set_size_request(_offscreenWindow, frame.width, frame.height);
+	}];
 }
 @end

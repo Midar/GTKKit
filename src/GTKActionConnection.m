@@ -21,19 +21,22 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation GTKActionConnection
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super init];
 	self.objectKeyPath = [decoder decodeStringForKey: @"GTKKit.coding.actionConnection.objectKeyPath"];
 	self.targetKeyPath = [decoder decodeStringForKey: @"GTKKit.coding.actionConnection.targetKeyPath"];
 	self.actionSelector = [decoder decodeSelectorforKey: @"GTKKit.coding.actionConnection.actionSelector"];
-  	return self;
+	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-	[encoder encodeString: self.objectKeyPath forKey: @"GTKKit.coding.actionConnection.objectKeyPath"];
-	[encoder encodeString: self.targetKeyPath forKey: @"GTKKit.coding.actionConnection.targetKeyPath"];
-	[encoder encodeSelector: self.actionSelector forKey: @"GTKKit.coding.actionConnection.actionSelector"];
+	[encoder encodeString: self.objectKeyPath
+		       forKey: @"GTKKit.coding.actionConnection.objectKeyPath"];
+	[encoder encodeString: self.targetKeyPath
+		       forKey: @"GTKKit.coding.actionConnection.targetKeyPath"];
+	[encoder encodeSelector: self.actionSelector
+		       forKey: @"GTKKit.coding.actionConnection.actionSelector"];
 }
 @end

@@ -23,132 +23,132 @@
 @implementation GTKProgressIndicator
 - init
 {
-    self = [super init];
-    self.showLabel = false;
-    self.stringValue = @"";
-    self.doubleValue = 0.0;
-    return self;
+	self = [super init];
+	self.showLabel = false;
+	self.stringValue = @"";
+	self.doubleValue = 0.0;
+	return self;
 }
 
 - (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
-    self.showLabel = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.showLabel"];
-    self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.inverted"];
-    self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.stringValue"];
-    self.doubleValue = [decoder decodeDoubleForKey: @"GTKKit.coding.progressIndicator.doubleValue"];
-    self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.orientation"] isEqual: @"horizontal"] ?
-        GTKOrientationHorizontal : GTKOrientationVertical;
+	self.showLabel = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.showLabel"];
+	self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.progressIndicator.inverted"];
+	self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.stringValue"];
+	self.doubleValue = [decoder decodeDoubleForKey: @"GTKKit.coding.progressIndicator.doubleValue"];
+	self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.progressIndicator.orientation"] isEqual: @"horizontal"] ?
+		GTKOrientationHorizontal : GTKOrientationVertical;
 
-    return self;
+	return self;
 }
 
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
-    [super encodeWithCoder: encoder];
+	[super encodeWithCoder: encoder];
 
-    [encoder encodeBool: self.showLabel forKey: @"GTKKit.coding.progressIndicator.showLabel"];
-    [encoder encodeBool: self.inverted forKey: @"GTKKit.coding.progressIndicator.inverted"];
-    [encoder encodeString: self.stringValue forKey: @"GTKKit.coding.progressIndicator.stringValue"];
-    [encoder encodeDouble: self.doubleValue forKey: @"GTKKit.coding.progressIndicator.doubleValue"];
-    [encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-                   forKey: @"GTKKit.coding.progressIndicator.orientation"];
+	[encoder encodeBool: self.showLabel forKey: @"GTKKit.coding.progressIndicator.showLabel"];
+	[encoder encodeBool: self.inverted forKey: @"GTKKit.coding.progressIndicator.inverted"];
+	[encoder encodeString: self.stringValue forKey: @"GTKKit.coding.progressIndicator.stringValue"];
+	[encoder encodeDouble: self.doubleValue forKey: @"GTKKit.coding.progressIndicator.doubleValue"];
+	[encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
+				   forKey: @"GTKKit.coding.progressIndicator.orientation"];
 }
 
 - (void)createMainWidget
 {
-    [GTKApp.dispatch.gtk sync: ^{
-        self.mainWidget = gtk_progress_bar_new();
-        gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.mainWidget), PANGO_ELLIPSIZE_END);
-        gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(self.mainWidget), 0.1);
-    }];
+	[GTKApp.dispatch.gtk sync: ^{
+		self.mainWidget = gtk_progress_bar_new();
+		gtk_progress_bar_set_ellipsize(GTK_PROGRESS_BAR(self.mainWidget), PANGO_ELLIPSIZE_END);
+		gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(self.mainWidget), 0.1);
+	}];
 }
 
 - (bool)showLabel
 {
-    return _showLabel;
+	return _showLabel;
 }
 
 - (void)setShowLabel:(bool)showLabel
 {
-    _showLabel = showLabel;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(self.mainWidget), _showLabel);
-    }];
+	_showLabel = showLabel;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_progress_bar_set_show_text(GTK_PROGRESS_BAR(self.mainWidget), _showLabel);
+	}];
 }
 
 - (bool)inverted
 {
-    return _inverted;
+	return _inverted;
 }
 
 - (void)setInverted:(bool)inverted
 {
-    _inverted = inverted;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(self.mainWidget), _inverted);
-    }];
+	_inverted = inverted;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_progress_bar_set_inverted(GTK_PROGRESS_BAR(self.mainWidget), _inverted);
+	}];
 }
 
 - (OFString *)stringValue
 {
-    return _stringValue;
+	return _stringValue;
 }
 
 - (void)setStringValue:(OFString *)stringValue
 {
-    _stringValue = stringValue;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.mainWidget), _stringValue.UTF8String);
-    }];
+	_stringValue = stringValue;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_progress_bar_set_text(GTK_PROGRESS_BAR(self.mainWidget), _stringValue.UTF8String);
+	}];
 }
 
 - (double)doubleValue
 {
-    return _doubleValue;
+	return _doubleValue;
 }
 
 - (void)setDoubleValue:(double)doubleValue
 {
-    _doubleValue = doubleValue;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(self.mainWidget), _doubleValue);
-    }];
+	_doubleValue = doubleValue;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_progress_bar_set_fraction(GTK_PROGRESS_BAR(self.mainWidget), _doubleValue);
+	}];
 }
 
 - (int)intValue
 {
-    return (int)(ceil(self.doubleValue));
+	return (int)(ceil(self.doubleValue));
 }
 
 - (void)setIntValue:(int)intValue
 {
-    self.doubleValue = (double)(intValue);
+	self.doubleValue = (double)(intValue);
 }
 
 - (float)floatValue
 {
-    return (float)(self.doubleValue);
+	return (float)(self.doubleValue);
 }
 
 - (void)setFloatValue:(float)floatValue
 {
-    self.doubleValue = (double)(floatValue);
+	self.doubleValue = (double)(floatValue);
 }
 
 - (GTKOrientation)orientation
 {
-    return _orientation;
+	return _orientation;
 }
 
 - (void)setOrientation:(GTKOrientation)orientation
 {
-    _orientation = orientation;
-    [GTKApp.dispatch.gtk sync: ^{
-        gtk_orientable_set_orientation(
-            GTK_ORIENTABLE(self.mainWidget),
-            (GtkOrientation)(orientation));
-    }];
+	_orientation = orientation;
+	[GTKApp.dispatch.gtk sync: ^{
+		gtk_orientable_set_orientation(
+			GTK_ORIENTABLE(self.mainWidget),
+			(GtkOrientation)(orientation));
+	}];
 }
 @end

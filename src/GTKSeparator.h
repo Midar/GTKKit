@@ -25,6 +25,6 @@
  */
 @interface GTKSeparator: GTKView <GTKOrientable>
 {
-    __block GTKOrientation _orientation;
+	__block GTKOrientation _orientation;
 }
 @end

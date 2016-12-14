@@ -135,22 +135,22 @@
 
 - (int)intValue
 {
-	return (int)(ceil(self.doubleValue));
+	return (int) ceil(self.doubleValue);
 }
 
 - (void)setIntValue: (int)intValue
 {
-	self.doubleValue = (double)(intValue);
+	self.doubleValue = (double) intValue;
 }
 
 - (float)floatValue
 {
-	return (float)(self.doubleValue);
+	return (float) self.doubleValue;
 }
 
 - (void)setFloatValue: (float)floatValue
 {
-	self.doubleValue = (double)(floatValue);
+	self.doubleValue = (double) floatValue;
 }
 
 - (GTKOrientation)orientation
@@ -164,7 +164,7 @@
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
 		    GTK_ORIENTABLE(self.mainWidget),
-		    (GtkOrientation)(orientation));
+		    (GtkOrientation) orientation);
 	}];
 }
 @end

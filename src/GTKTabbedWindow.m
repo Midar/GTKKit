@@ -53,13 +53,13 @@
 
 - (nullable GTKTabView *)contentView
 {
-	return (GTKTabView *)(_contentView);
+	return (GTKTabView *) _contentView;
 }
 
 - (void)setContentView: (nullable GTKTabView *)view
 {
 	if (_contentView == NULL) {
-		_contentView = (GTKView *)(view);
+		_contentView = (GTKView *) view;
 	}
 }
 

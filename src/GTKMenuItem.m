@@ -53,7 +53,7 @@ activate_handler(GtkMenuItem *widget,
 		    G_OBJECT(_menuItem),
 		    "activate",
 		    G_CALLBACK(activate_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		GtkWidget *defaultLabel = gtk_bin_get_child(GTK_BIN(_menuItem));
 		gtk_widget_destroy(defaultLabel);

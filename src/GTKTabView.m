@@ -58,7 +58,9 @@
 		gtk_container_add(
 		    GTK_CONTAINER(self.mainWidget),
 		    _stack);
-		gtk_stack_set_homogeneous(GTK_STACK(_stack), true);
+		gtk_stack_set_homogeneous(
+		    GTK_STACK(_stack),
+		    true);
 		gtk_widget_show(_stack);
 
 		_switcher = gtk_stack_switcher_new();

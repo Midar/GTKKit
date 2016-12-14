@@ -37,7 +37,8 @@
 - (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
-	[encoder encodeInt: self.tag forKey: @"GTKKit.coding.control.tag"];
+	[encoder encodeInt: self.tag
+		    forKey: @"GTKKit.coding.control.tag"];
 }
 
 - (void)sendActionToTarget

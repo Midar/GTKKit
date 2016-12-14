@@ -28,7 +28,7 @@
 		g_object_set_data(
 		    G_OBJECT(_offscreenWindow),
 		    "_GTKKIT_OWNING_VIEW_CONTROLLER_",
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_size_request(
 		    _offscreenWindow,
 		    1,

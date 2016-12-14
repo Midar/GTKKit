@@ -47,7 +47,6 @@
 		_pixbuf = gdk_pixbuf_new_from_file(
 		    url.path.UTF8String,
 		    &err);
-
 		_width = gdk_pixbuf_get_width(_pixbuf);
 		_height = gdk_pixbuf_get_height(_pixbuf);
 	}];
@@ -85,8 +84,8 @@
 	int targetWidth = width;
 	int targetHeight = height;
 
-	double widthRatio = (double)(self.width) / (double)(width);
-	double heightRatio = (double)(self.height) / (double)(height);
+	double widthRatio = (double) self.width / (double) width;
+	double heightRatio = (double) self.height / (double) height;
 
 	if (aspect == true) {
 		if (heightRatio > widthRatio) {
@@ -157,7 +156,8 @@
 		  format: (GTKImageFormat)format
 {
 	OFURL *url = [OFURL fileURLWithPath: path];
-	[self writeImageToURL: url format: format];
+	[self writeImageToURL: url
+		       format: format];
 }
 
 + imageWithIconName: (OFString *)name

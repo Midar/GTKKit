@@ -98,7 +98,8 @@
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
 			    view.overlayWidget,
-			    frame.width, frame.height);
+			    frame.width,
+			    frame.height);
 		}];
 	}
 
@@ -107,7 +108,8 @@
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
 			    view.overlayWidget,
-			    frame.width, frame.height);
+			    frame.width,
+			    frame.height);
 		}];
 	}
 
@@ -116,7 +118,8 @@
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
 			    view.overlayWidget,
-			    frame.width, frame.height);
+			    frame.width,
+			    frame.height);
 		}];
 	}
 
@@ -125,7 +128,8 @@
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
 			    view.overlayWidget,
-			    frame.width, frame.height);
+			    frame.width,
+			    frame.height);
 		}];
 	}
 }
@@ -155,7 +159,7 @@
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
 		    GTK_ORIENTABLE(self.mainWidget),
-		    (GtkOrientation)(orientation));
+		    (GtkOrientation) orientation);
 	}];
 	for (GTKView *view in self.backgroundLayerSubviews) {
 		[view removeFromSuperview];

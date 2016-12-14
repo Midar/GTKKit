@@ -204,13 +204,15 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    GTK_HEADER_BAR(_headerBar),
 		    _closeButton);
 
-		gtk_button_set_relief(GTK_BUTTON(_closeButton), GTK_RELIEF_NONE);
+		gtk_button_set_relief(
+		    GTK_BUTTON(_closeButton),
+		    GTK_RELIEF_NONE);
 
 		g_signal_connect(
 		    G_OBJECT(_closeButton),
 		    "clicked",
 		    G_CALLBACK(close_button_clicked_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		_minimizeButton = gtk_button_new_from_icon_name(
 		    "zoom-out-symbolic",
@@ -222,13 +224,15 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    GTK_HEADER_BAR(_headerBar),
 		    _minimizeButton);
 
-		gtk_button_set_relief(GTK_BUTTON(_minimizeButton), GTK_RELIEF_NONE);
+		gtk_button_set_relief(
+		    GTK_BUTTON(_minimizeButton),
+		    GTK_RELIEF_NONE);
 
 		g_signal_connect(
 		    G_OBJECT(_minimizeButton),
 		    "clicked",
 		    G_CALLBACK(minimize_button_clicked_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		_maximizeButton = gtk_button_new_from_icon_name(
 		    "zoom-in-symbolic",
@@ -241,13 +245,15 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    GTK_HEADER_BAR(_headerBar),
 		    _maximizeButton);
 
-		gtk_button_set_relief(GTK_BUTTON(_maximizeButton), GTK_RELIEF_NONE);
+		gtk_button_set_relief(
+		    GTK_BUTTON(_maximizeButton),
+		    GTK_RELIEF_NONE);
 
 		g_signal_connect(
 		    G_OBJECT(_maximizeButton),
 		    "clicked",
 		    G_CALLBACK(maximize_button_clicked_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		_headerBarRightSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
 		g_object_ref_sink(_headerBarRightSeparator);
@@ -267,13 +273,15 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    GTK_HEADER_BAR(_headerBar),
 		    _menuButton);
 
-		gtk_button_set_relief(GTK_BUTTON(_menuButton), GTK_RELIEF_NONE);
+		gtk_button_set_relief(
+		    GTK_BUTTON(_menuButton),
+		    GTK_RELIEF_NONE);
 
 		g_signal_connect(
 		    G_OBJECT(_menuButton),
 		    "clicked",
 		    G_CALLBACK(menu_button_clicked_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		_headerBarLeftSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
 		g_object_ref_sink(_headerBarLeftSeparator);
@@ -288,19 +296,19 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    gesture,
 		    "drag-begin",
 		    G_CALLBACK(gesture_drag_begin_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    gesture,
 		    "drag-update",
 		    G_CALLBACK(gesture_drag_update_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    gesture,
 		    "drag-end",
 		    G_CALLBACK(gesture_drag_end_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 
 	self.closeButtonHidden = false;
@@ -433,8 +441,14 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 - (void)setFrame: (GTKRect)frame
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_window_resize(GTK_WINDOW(_window), frame.width, frame.height);
-		gtk_window_move(GTK_WINDOW(_window), frame.x, frame.y);
+		gtk_window_resize(
+		    GTK_WINDOW(_window),
+		    frame.width,
+		    frame.height);
+		gtk_window_move(
+		    GTK_WINDOW(_window),
+		    frame.x,
+		    frame.y);
 	}];
 }
 
@@ -446,7 +460,9 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 - (void)setTitleVisible: (bool)visible
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_window_set_decorated(GTK_WINDOW(_window), visible);
+		gtk_window_set_decorated(
+		    GTK_WINDOW(_window),
+		    visible);
 	}];
 }
 
@@ -462,7 +478,9 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 - (void)setResizable: (bool)resizable
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_window_set_resizable(GTK_WINDOW(_window), resizable);
+		gtk_window_set_resizable(
+		    GTK_WINDOW(_window),
+		    resizable);
 	}];
 }
 

@@ -92,12 +92,12 @@ text_view_focus_out_handler (GtkTextView  *textView,
 		    G_OBJECT(_entryWidget),
 		    "activate",
 		    G_CALLBACK(entry_activated_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		g_signal_connect(
 		    G_OBJECT(_entryWidget),
 		    "insert-at-cursor",
 		    G_CALLBACK(entry_insert_at_cursor_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		_scrollWindow = gtk_scrolled_window_new(NULL, NULL);
 		g_object_ref_sink(_scrollWindow);
@@ -124,7 +124,7 @@ text_view_focus_out_handler (GtkTextView  *textView,
 		    G_OBJECT(_textViewWidget),
 		    "focus-out-event",
 		    G_CALLBACK(text_view_focus_out_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 	}];
 }
@@ -244,10 +244,17 @@ text_view_focus_out_handler (GtkTextView  *textView,
 - (void)setStringValue: (OFString *)stringValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(_textViewWidget)));
-		gtk_text_buffer_set_text(buf, stringValue.UTF8String, stringValue.length);
-		gtk_entry_set_text(GTK_ENTRY(_entryWidget), stringValue.UTF8String);
-		gtk_label_set_markup(GTK_LABEL(_labelWidget), stringValue.UTF8String);
+		GtkTextBuffer *buf = gtk_text_view_get_buffer(
+		    (GTK_TEXT_VIEW(_textViewWidget)));
+		gtk_text_buffer_set_text(buf,
+		    stringValue.UTF8String,
+		    stringValue.length);
+		gtk_entry_set_text(
+		    GTK_ENTRY(_entryWidget),
+		    stringValue.UTF8String);
+		gtk_label_set_markup(
+		    GTK_LABEL(_labelWidget),
+		    stringValue.UTF8String);
 	}];
 }
 
@@ -259,7 +266,9 @@ text_view_focus_out_handler (GtkTextView  *textView,
 - (void)setSelectable: (bool)selectable
 {
 	_selectable = selectable;
-	gtk_label_set_selectable(GTK_LABEL(_labelWidget), selectable);
+	gtk_label_set_selectable(
+	    GTK_LABEL(_labelWidget),
+	    selectable);
 }
 
 - (bool)canBecomeFirstResponder
@@ -287,7 +296,7 @@ text_view_focus_out_handler (GtkTextView  *textView,
 	_justify = justify;
 	gtk_label_set_justify(
 	    GTK_LABEL(_labelWidget),
-	    (GtkJustification)(_justify));
+	    (GtkJustification) _justify);
 }
 
 - (bool)isMultiline

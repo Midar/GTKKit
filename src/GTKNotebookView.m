@@ -40,7 +40,8 @@ page_reordered_handler (GtkNotebook     *widget,
 			GTKNotebookView *notebook)
 {
 	GTKTab *tab = gtk_widget_get_owning_tab(child);
-	[notebook reorderTab: tab toIndex: index];
+	[notebook reorderTab: tab
+		     toIndex: index];
 }
 
 @implementation GTKNotebookView
@@ -111,7 +112,7 @@ page_reordered_handler (GtkNotebook     *widget,
 		    G_OBJECT(self.mainWidget),
 		    "page-reordered",
 		    G_CALLBACK(page_reordered_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 }
 
@@ -131,7 +132,7 @@ page_reordered_handler (GtkNotebook     *widget,
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_notebook_set_tab_pos(
 		    GTK_NOTEBOOK(self.mainWidget),
-		    (GtkPositionType)(position));
+		    (GtkPositionType) position);
 	}];
 }
 
@@ -210,7 +211,8 @@ page_reordered_handler (GtkNotebook     *widget,
 		gtk_container_child_set(
 		    GTK_CONTAINER(self.mainWidget),
 		    tab.contentView.overlayWidget,
-		    "tab-label", tab.label.UTF8String,
+		    "tab-label",
+		    tab.label.UTF8String,
 		    NULL);
 	}];
 }
@@ -247,7 +249,8 @@ page_reordered_handler (GtkNotebook     *widget,
 		gtk_container_child_set(
 		    GTK_CONTAINER(self.mainWidget),
 		    tab.contentView.overlayWidget,
-		    "tab-label", tab.label.UTF8String,
+		    "tab-label",
+		    tab.label.UTF8String,
 		    NULL);
 	}];
 	tab.notebookView = self;

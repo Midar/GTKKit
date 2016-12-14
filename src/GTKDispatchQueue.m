@@ -305,7 +305,7 @@ runBlockInGTKThreadCallback (gpointer userdata)
 		self.block = block;
 		g_idle_add(
 			runBlockInGTKThreadCallback,
-			(__bridge_retained gpointer)(self));
+			(__bridge_retained gpointer) self);
 		[self wait];
 		[self unlock];
 		self.flag = false;

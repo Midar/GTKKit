@@ -223,43 +223,43 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		g_object_set_data(
 		    G_OBJECT(self.overlayWidget),
 		    "_GTKKIT_OWNING_VIEW_",
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "get-child-position",
 		    G_CALLBACK(get_child_position_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "destroy",
 		    G_CALLBACK(overlay_widget_destroyed_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "map",
 		    G_CALLBACK(map_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "map-event",
 		    G_CALLBACK(map_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "unmap",
 		    G_CALLBACK(unmap_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "unmap-event",
 		    G_CALLBACK(unmap_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		[self createMainWidget];
 		g_object_ref_sink(self.mainWidget);
@@ -276,13 +276,13 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    G_OBJECT(self.mainWidget),
 		    "button-press-event",
 		    G_CALLBACK(press_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    G_OBJECT(self.mainWidget),
 		    "button-release-event",
 		    G_CALLBACK(release_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		GtkGesture *_overlayDragGesture = gtk_gesture_drag_new(self.overlayWidget);
 
@@ -290,19 +290,19 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    _overlayDragGesture,
 		    "drag-begin",
 		    G_CALLBACK(gesture_drag_begin_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _overlayDragGesture,
 		    "drag-update",
 		    G_CALLBACK(gesture_drag_update_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _overlayDragGesture,
 		    "drag-end",
 		    G_CALLBACK(gesture_drag_end_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_object_set_data_full(
 		    G_OBJECT(self.overlayWidget),
@@ -316,19 +316,19 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    _mainWidgetDragGesture,
 		    "drag-begin",
 		    G_CALLBACK(gesture_drag_begin_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _mainWidgetDragGesture,
 		    "drag-update",
 		    G_CALLBACK(gesture_drag_update_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _mainWidgetDragGesture,
 		    "drag-end",
 		    G_CALLBACK(gesture_drag_end_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_object_set_data_full(
 		    G_OBJECT(self.mainWidget),
@@ -340,7 +340,7 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    G_OBJECT(self.mainWidget),
 		    "draw",
 		    G_CALLBACK(draw_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 	}];
 
@@ -448,19 +448,19 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    _overlayDragGesture,
 		    "drag-begin",
 		    G_CALLBACK(gesture_drag_begin_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _overlayDragGesture,
 		    "drag-update",
 		    G_CALLBACK(gesture_drag_update_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _overlayDragGesture,
 		    "drag-end",
 		    G_CALLBACK(gesture_drag_end_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_object_set_data_full(
 		    G_OBJECT(self.overlayWidget),
@@ -474,19 +474,19 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    _mainWidgetDragGesture,
 		    "drag-begin",
 		    G_CALLBACK(gesture_drag_begin_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _mainWidgetDragGesture,
 		    "drag-update",
 		    G_CALLBACK(gesture_drag_update_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_signal_connect(
 		    _mainWidgetDragGesture,
 		    "drag-end",
 		    G_CALLBACK(gesture_drag_end_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
 		g_object_set_data_full(
 		    G_OBJECT(self.mainWidget),
@@ -498,7 +498,7 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 		    G_OBJECT(self.mainWidget),
 		    "draw",
 		    G_CALLBACK(draw_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 }
 
@@ -542,7 +542,7 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 	}];
 	alloc.width = MAX(alloc.width, req.width);
 	alloc.height = MAX(alloc.height, req.height);
-	return (GTKRect)alloc;
+	return (GTKRect) alloc;
 }
 
 - (GTKRect)layoutSubview: (nonnull GTKView*)subview
@@ -640,11 +640,11 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 	subframe.height = frame.height - top - bottom;
 
 	if (constraints.centerVertical) {
-		subframe.y = ((double)frame.height - subframe.height) / 2;
+		subframe.y = ((double) frame.height - subframe.height) / 2;
 	}
 
 	if (constraints.centerHorizontal) {
-		subframe.x = ((double)frame.width - subframe.width) / 2;
+		subframe.x = ((double) frame.width - subframe.width) / 2;
 	}
 
 	if (subframe.width < 0) {
@@ -801,7 +801,9 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 - (void)setAlpha:(double)alpha
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_widget_set_opacity(self.mainWidget, alpha);
+		gtk_widget_set_opacity(
+		    self.mainWidget,
+		    alpha);
 	}];
 }
 

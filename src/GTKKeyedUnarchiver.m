@@ -33,7 +33,6 @@
 + (instancetype)keyedUnarchiverWithContentsOfURL: (OFURL *)url
 {
 	OFString *string = [OFString stringWithContentsOfURL: url];
-
 	return [self keyedUnarchiverWithXMLString: string];
 }
 

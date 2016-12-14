@@ -149,11 +149,13 @@
 	REMOVE_OLD_VALUE_FOR_KEY
 
 	if ([object isKindOfClass: OFString.class]) {
-		[self encodeString: (OFString *)(object) forKey: key];
+		[self encodeString: (OFString *) object
+		 	    forKey: key];
 		return;
 	}
 
-	[self setClass: object.class forKey: key];
+	[self setClass: object.class
+		forKey: key];
 	GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
 	[object encodeWithCoder: coder];
 	coder.data.name = key;
@@ -165,7 +167,8 @@
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
-	[self encodeString: OFStringFromSelector(selector) forKey: key];
+	[self encodeString: OFStringFromSelector(selector)
+		    forKey: key];
 }
 @end
 
@@ -180,6 +183,6 @@
 	OFXMLElement *classNames = [self.data elementForName: @"GTKKit.coding.classNames"];
 	[classNames removeAttributeForName: key];
 	[classNames addAttributeWithName: key
-						 stringValue: className];
+			     stringValue: className];
 }
 @end

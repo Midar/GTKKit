@@ -108,7 +108,7 @@
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_level_bar_set_mode(
 		    GTK_LEVEL_BAR(self.mainWidget),
-		    (GtkLevelBarMode)(mode));
+		    (GtkLevelBarMode) mode);
 	}];
 }
 
@@ -137,17 +137,17 @@
 
 - (void)setFloatValue: (float)floatValue
 {
-	self.doubleValue = (double)(floatValue);
+	self.doubleValue = (double) floatValue;
 }
 
 - (int)intValue
 {
-	return (int)(ceil(self.doubleValue));
+	return (int) ceil(self.doubleValue);
 }
 
 - (void)setIntValue: (int)intValue
 {
-	self.doubleValue = (double)(intValue);
+	self.doubleValue = (double) intValue;
 }
 
 - (bool)isInverted

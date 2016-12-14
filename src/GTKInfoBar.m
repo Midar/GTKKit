@@ -45,7 +45,7 @@ response_handler (GtkInfoBar *info_bar,
 		    G_OBJECT(self.mainWidget),
 		    "response",
 		    G_CALLBACK(response_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 	_buttonLabels = [OFMutableArray new];
 	_buttonResponses = [OFMutableArray new];
@@ -192,7 +192,7 @@ response_handler (GtkInfoBar *info_bar,
 		gtk_info_bar_add_button(
 		    GTK_INFO_BAR(self.mainWidget),
 		    label.UTF8String,
-		    (int)(response));
+		    (int) response);
 	}];
 }
 
@@ -217,7 +217,7 @@ response_handler (GtkInfoBar *info_bar,
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_info_bar_set_message_type(
 		    GTK_INFO_BAR(self.mainWidget),
-		    (GtkMessageType)(messageType));
+		    (GtkMessageType) messageType);
 	}];
 }
 @end

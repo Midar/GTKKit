@@ -47,7 +47,7 @@ changed_handler (GtkComboBox    *widget,
 		    G_OBJECT(self.mainWidget),
 		    "changed",
 		    G_CALLBACK(changed_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 	return self;
 }

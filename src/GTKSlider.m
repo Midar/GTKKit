@@ -42,7 +42,10 @@ value_changed_handler (GtkScale  *scale,
 	_min = 0.0;
 	_max = 100.0;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
+		gtk_range_set_range(
+		    GTK_RANGE(self.mainWidget),
+		    _min,
+		    _max);
 	}];
 	self.showFillLevel = false;
 	self.fillLevel = 0.0;
@@ -135,14 +138,18 @@ value_changed_handler (GtkScale  *scale,
 - (void)createMainWidget
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
+		self.mainWidget = gtk_scale_new(
+		    GTK_ORIENTATION_HORIZONTAL,
+		    NULL);
 		_orientation = GTKOrientationHorizontal;
 		g_signal_connect(
 		    G_OBJECT(self.mainWidget),
 		    "value-changed",
 		    G_CALLBACK(value_changed_handler),
-		    (__bridge gpointer)(self));
-		gtk_range_set_flippable(GTK_RANGE(self.mainWidget), true);
+		    (__bridge gpointer) self);
+		gtk_range_set_flippable(
+		    GTK_RANGE(self.mainWidget),
+		    true);
 	}];
 }
 
@@ -172,22 +179,33 @@ value_changed_handler (GtkScale  *scale,
 		_orientation = orientation;
 
 		if (_orientation == GTKOrientationHorizontal) {
-			self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
+			self.mainWidget = gtk_scale_new(
+			    GTK_ORIENTATION_HORIZONTAL,
+			    NULL);
 		} else {
-			self.mainWidget = gtk_scale_new(GTK_ORIENTATION_VERTICAL, NULL);
+			self.mainWidget = gtk_scale_new(
+			    GTK_ORIENTATION_VERTICAL,
+			    NULL);
 		}
 
-		gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
+		gtk_range_set_range(
+		    GTK_RANGE(self.mainWidget),
+		    _min,
+		    _max);
 
 		g_signal_connect(
 		    G_OBJECT(self.mainWidget),
 		    "value-changed",
 		    G_CALLBACK(value_changed_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 
-		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
+		gtk_container_add(
+		    GTK_CONTAINER(self.overlayWidget),
+		    self.mainWidget);
 		gtk_widget_show(self.mainWidget);
-		gtk_range_set_flippable(GTK_RANGE(self.mainWidget), true);
+		gtk_range_set_flippable(
+		    GTK_RANGE(self.mainWidget),
+		    true);
 	}];
 
 	self.showValue = showValue;
@@ -210,7 +228,10 @@ value_changed_handler (GtkScale  *scale,
 {
 	_min = min;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
+		gtk_range_set_range(
+		    GTK_RANGE(self.mainWidget),
+		    _min,
+		    _max);
 	}];
 }
 
@@ -223,7 +244,10 @@ value_changed_handler (GtkScale  *scale,
 {
 	_max = max;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
+		gtk_range_set_range(
+		    GTK_RANGE(self.mainWidget),
+		    _min,
+		    _max);
 	}];
 }
 
@@ -239,7 +263,9 @@ value_changed_handler (GtkScale  *scale,
 - (void)setDoubleValue: (double)doubleValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_value(GTK_RANGE(self.mainWidget), doubleValue);
+		gtk_range_set_value(
+		    GTK_RANGE(self.mainWidget),
+		    doubleValue);
 	}];
 }
 
@@ -249,13 +275,15 @@ value_changed_handler (GtkScale  *scale,
 	[GTKApp.dispatch.gtk sync: ^{
 		doubleValue = gtk_range_get_value(GTK_RANGE(self.mainWidget));
 	}];
-	return (int)(ceil(doubleValue));
+	return (int) ceil(doubleValue);
 }
 
 - (void)setIntValue: (int)intValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_value(GTK_RANGE(self.mainWidget), (double)(intValue));
+		gtk_range_set_value(
+		    GTK_RANGE(self.mainWidget),
+		    (double) intValue);
 	}];
 }
 
@@ -265,13 +293,15 @@ value_changed_handler (GtkScale  *scale,
 	[GTKApp.dispatch.gtk sync: ^{
 		doubleValue = gtk_range_get_value(GTK_RANGE(self.mainWidget));
 	}];
-	return (float)(doubleValue);
+	return (float) doubleValue;
 }
 
 - (void)setFloatValue: (float)floatValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_value(GTK_RANGE(self.mainWidget), (double)(floatValue));
+		gtk_range_set_value(
+		    GTK_RANGE(self.mainWidget),
+		    (double) floatValue);
 	}];
 }
 
@@ -284,7 +314,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_restrict = restrictToFillLevel;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_restrict_to_fill_level(GTK_RANGE(self.mainWidget), _restrict);
+		gtk_range_set_restrict_to_fill_level(
+		    GTK_RANGE(self.mainWidget),
+		    _restrict);
 	}];
 }
 
@@ -297,7 +329,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_fillLevel = fillLevel;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_fill_level(GTK_RANGE(self.mainWidget), _fillLevel);
+		gtk_range_set_fill_level(
+		    GTK_RANGE(self.mainWidget),
+		    _fillLevel);
 	}];
 }
 
@@ -310,7 +344,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_showFillLevel = showFillLevel;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_show_fill_level(GTK_RANGE(self.mainWidget), _showFillLevel);
+		gtk_range_set_show_fill_level(
+		    GTK_RANGE(self.mainWidget),
+		    _showFillLevel);
 	}];
 }
 
@@ -323,7 +359,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_inverted = inverted;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_inverted(GTK_RANGE(self.mainWidget), _inverted);
+		gtk_range_set_inverted(
+		    GTK_RANGE(self.mainWidget),
+		    _inverted);
 	}];
 }
 
@@ -336,7 +374,10 @@ value_changed_handler (GtkScale  *scale,
 {
 	_increment = increment;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_range_set_increments(GTK_RANGE(self.mainWidget), _increment, _increment);
+		gtk_range_set_increments(
+		    GTK_RANGE(self.mainWidget),
+		    _increment,
+		    _increment);
 	}];
 }
 
@@ -349,7 +390,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_roundDigits = roundDigits;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_scale_set_digits(GTK_SCALE(self.mainWidget), _roundDigits);
+		gtk_scale_set_digits(
+		    GTK_SCALE(self.mainWidget),
+		    _roundDigits);
 	}];
 }
 
@@ -362,7 +405,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_showValue = showValue;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_scale_set_draw_value(GTK_SCALE(self.mainWidget), _showValue);
+		gtk_scale_set_draw_value(
+		    GTK_SCALE(self.mainWidget),
+		    _showValue);
 	}];
 }
 
@@ -375,7 +420,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_valuePosition = valuePosition;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_scale_set_value_pos(GTK_SCALE(self.mainWidget), (GtkPositionType)(_valuePosition));
+		gtk_scale_set_value_pos(
+		    GTK_SCALE(self.mainWidget),
+		    (GtkPositionType) _valuePosition);
 	}];
 }
 
@@ -388,7 +435,9 @@ value_changed_handler (GtkScale  *scale,
 {
 	_highlightOrigin = highlightOrigin;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_scale_set_has_origin(GTK_SCALE(self.mainWidget), _highlightOrigin);
+		gtk_scale_set_has_origin(
+		    GTK_SCALE(self.mainWidget),
+		    _highlightOrigin);
 	}];
 }
 

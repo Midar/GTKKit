@@ -33,10 +33,13 @@
 	valueCoder = [GTKKeyedUnarchiver new];
 	valueCoder.data = [decoder.data elementForName: @"GTKKit.coding.dictionary.values"];
 
-	keys = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: keyCoder];
-	values = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class withCoder: valueCoder];
+	keys = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class
+						withCoder: keyCoder];
+	values = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class
+						  withCoder: valueCoder];
 
-	self = [self initWithObjects: values forKeys: keys];
+	self = [self initWithObjects: values
+			     forKeys: keys];
 	return self;
 }
 

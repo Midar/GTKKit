@@ -22,7 +22,8 @@
 + (nullable instancetype)layoutConstraintWithType: (GTKLayoutConstraintType)type
 					    value: (double)value
 {
-	return [[self alloc] initWithType: type value: value];
+	return [[self alloc] initWithType: type
+				    value: value];
 }
 
 - initWithType: (GTKLayoutConstraintType)type

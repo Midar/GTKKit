@@ -164,7 +164,7 @@ switch_activated_handler (GtkSwitch *widget,
 		    G_OBJECT(_pushButton),
 		    "clicked",
 		    G_CALLBACK(clicked_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_focus_on_click (
 		    _pushButton,
 		    false);
@@ -184,7 +184,7 @@ switch_activated_handler (GtkSwitch *widget,
 		    G_OBJECT(_toggleButton),
 		    "clicked",
 		    G_CALLBACK(clicked_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_focus_on_click (
 		    _toggleButton,
 		    false);
@@ -204,7 +204,7 @@ switch_activated_handler (GtkSwitch *widget,
 		    G_OBJECT(_checkButton),
 		    "clicked",
 		    G_CALLBACK(clicked_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_focus_on_click (
 		    _checkButton,
 		    false);
@@ -224,7 +224,7 @@ switch_activated_handler (GtkSwitch *widget,
 		    G_OBJECT(_hiddenRadioButton),
 		    "clicked",
 		    G_CALLBACK(clicked_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_focus_on_click (
 		    _hiddenRadioButton,
 		    false);
@@ -235,7 +235,7 @@ switch_activated_handler (GtkSwitch *widget,
 		    G_OBJECT(_radioButton),
 		    "clicked",
 		    G_CALLBACK(clicked_event_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_focus_on_click (
 		    _radioButton,
 		    false);
@@ -255,7 +255,7 @@ switch_activated_handler (GtkSwitch *widget,
 		    G_OBJECT(_switchButton),
 		    "state-set",
 		    G_CALLBACK(switch_activated_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 		gtk_widget_set_focus_on_click (
 		    _switchButton,
 		    false);
@@ -350,11 +350,21 @@ switch_activated_handler (GtkSwitch *widget,
 - (void)setState: (bool)state
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_toggleButton), state);
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_checkButton), state);
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_hiddenRadioButton), !state);
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_radioButton), state);
-		gtk_switch_set_active(GTK_SWITCH(_switchButton), state);
+		gtk_toggle_button_set_active(
+		    GTK_TOGGLE_BUTTON(_toggleButton),
+		    state);
+		gtk_toggle_button_set_active(
+		    GTK_TOGGLE_BUTTON(_checkButton),
+		    state);
+		gtk_toggle_button_set_active(
+		    GTK_TOGGLE_BUTTON(_hiddenRadioButton),
+		    !state);
+		gtk_toggle_button_set_active(
+		    GTK_TOGGLE_BUTTON(_radioButton),
+		    state);
+		gtk_switch_set_active(
+		    GTK_SWITCH(_switchButton),
+		    state);
 	}];
 }
 

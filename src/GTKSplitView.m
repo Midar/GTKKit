@@ -93,13 +93,15 @@ realize_handler (GtkWidget    *widget,
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		self.mainWidget = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
-		gtk_paned_set_wide_handle(GTK_PANED(self.mainWidget), true);
+		gtk_paned_set_wide_handle(
+		    GTK_PANED(self.mainWidget),
+		    true);
 
 		g_signal_connect(
 		    G_OBJECT(self.overlayWidget),
 		    "realize",
 		    G_CALLBACK(realize_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 }
 
@@ -140,7 +142,7 @@ realize_handler (GtkWidget    *widget,
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
 		    GTK_ORIENTABLE(self.mainWidget),
-		    (GtkOrientation)(orientation));
+		    (GtkOrientation) orientation);
 	}];
 	self.dividerPosition = self.dividerPosition;
 }
@@ -154,14 +156,16 @@ realize_handler (GtkWidget    *widget,
 {
 	position = CLAMP(position, 0.0, 1.0);
 	_handlePosition = position;
-	double width = (double)(self.frame.width);
-	double height = (double)(self.frame.height);
+	double width = (double) self.frame.width;
+	double height = (double) self.frame.height;
 	double pos;
 	if (self.orientation == GTKOrientationHorizontal) {
 		pos = width * position;
 	} else {
 		pos = height * position;
 	}
-	gtk_paned_set_position(GTK_PANED(self.mainWidget), (int)(pos));
+	gtk_paned_set_position(
+	    GTK_PANED(self.mainWidget),
+	    (int) pos);
 }
 @end

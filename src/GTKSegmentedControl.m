@@ -31,9 +31,9 @@ button_press_event_handler (GtkWidget           *widget,
 			    GdkEvent            *event,
 			    GTKSegmentedControl *control)
 {
-	control.selectedSegment = *(int*)(g_object_get_data(
+	control.selectedSegment = *(int*) g_object_get_data(
 	    G_OBJECT(widget),
-	    "_GTKKIT_SEGMENTED_CONTROL_INDEX_"));
+	    "_GTKKIT_SEGMENTED_CONTROL_INDEX_");
 	[GTKApp.dispatch.main async: ^ {
 		GTKEvent *evt = [GTKEvent new];
 		evt.type = GTKEventTypeMouseClicked;
@@ -158,8 +158,12 @@ button_press_event_handler (GtkWidget           *widget,
 		gtk_widget_destroy(self.mainWidget);
 		self.mainWidget = gtk_grid_new();
 		g_object_ref_sink(G_OBJECT(self.mainWidget));
-		gtk_grid_set_column_homogeneous(GTK_GRID(self.mainWidget), false);
-		gtk_grid_set_column_spacing(GTK_GRID(self.mainWidget), 0);
+		gtk_grid_set_column_homogeneous(
+		    GTK_GRID(self.mainWidget),
+		    false);
+		gtk_grid_set_column_spacing(
+		    GTK_GRID(self.mainWidget),
+		    0);
 		gtk_orientable_set_orientation(
 		    GTK_ORIENTABLE(self.mainWidget),
 		    GTK_ORIENTATION_HORIZONTAL);
@@ -172,7 +176,8 @@ button_press_event_handler (GtkWidget           *widget,
 
 		int i = 0;
 		while (i <= 31) {
-			[_labelForSegment replaceObjectAtIndex: i withObject: [OFNull null]];
+			[_labelForSegment replaceObjectAtIndex: i
+						    withObject: [OFNull null]];
 			_buttons[i] = gtk_button_new();
 			_buttonIndex[i] = i;
 			g_object_ref_sink(G_OBJECT(_buttons[i]));
@@ -184,7 +189,7 @@ button_press_event_handler (GtkWidget           *widget,
 			    G_OBJECT(_buttons[i]),
 			    "button-press-event",
 			    G_CALLBACK(button_press_event_handler),
-			    (__bridge gpointer)(self));
+			    (__bridge gpointer) self);
 			g_object_set_data(
 			    G_OBJECT(_buttons[i]),
 			    "_GTKKIT_SEGMENTED_CONTROL_INDEX_",
@@ -343,7 +348,7 @@ button_press_event_handler (GtkWidget           *widget,
 	if ((id)(label) == [OFNull null]) {
 		return nil;
 	} else {
-		return (OFString *)(label);
+		return (OFString *) label;
 	}
 }
 
@@ -360,18 +365,26 @@ button_press_event_handler (GtkWidget           *widget,
 						    withObject: [OFNull null]];
 			_imageWidget = gtk_button_get_image(GTK_BUTTON(_buttons[segment]));
 			if (_imageWidget != NULL) {
-				gtk_container_remove(GTK_CONTAINER(_buttons[segment]), _imageWidget);
+				gtk_container_remove(
+				    GTK_CONTAINER(_buttons[segment]),
+				    _imageWidget);
 				gtk_widget_destroy(_imageWidget);
 			}
 		} else {
 			_imageWidget = gtk_button_get_image(GTK_BUTTON(_buttons[segment]));
 			if (_imageWidget != NULL) {
-				gtk_container_remove(GTK_CONTAINER(_buttons[segment]), _imageWidget);
+				gtk_container_remove(
+				    GTK_CONTAINER(_buttons[segment]),
+				    _imageWidget);
 				gtk_widget_destroy(_imageWidget);
 			}
 			_imageWidget = gtk_image_new();
-			gtk_image_set_from_pixbuf(GTK_IMAGE(_imageWidget), image.pixbuf);
-			gtk_button_set_image(GTK_BUTTON(_buttons[segment]), _imageWidget);
+			gtk_image_set_from_pixbuf(
+			    GTK_IMAGE(_imageWidget),
+			    image.pixbuf);
+			gtk_button_set_image(
+			    GTK_BUTTON(_buttons[segment]),
+			    _imageWidget);
 		}
 	}];
 }
@@ -385,7 +398,7 @@ button_press_event_handler (GtkWidget           *widget,
 	if ((id)(image) == [OFNull null]) {
 		return nil;
 	} else {
-		return (GTKImage *)(image);
+		return (GTKImage *) image;
 	}
 }
 
@@ -415,7 +428,7 @@ button_press_event_handler (GtkWidget           *widget,
 	if ((id)(popOver) == [OFNull null]) {
 		return nil;
 	} else {
-		return (GTKPopover *)(popOver);
+		return (GTKPopover *) popOver;
 	}
 }
 
@@ -462,7 +475,7 @@ button_press_event_handler (GtkWidget           *widget,
 			    G_OBJECT(_buttons[i]),
 			    "button-press-event",
 			    G_CALLBACK(button_press_event_handler),
-			    (__bridge gpointer)(self));
+			    (__bridge gpointer) self);
 			g_object_set_data(
 			    G_OBJECT(_buttons[i]),
 			    "_GTKKIT_SEGMENTED_CONTROL_INDEX_",
@@ -492,7 +505,9 @@ button_press_event_handler (GtkWidget           *widget,
 		return;
 	}
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(_buttons[segment]), state);
+		gtk_toggle_button_set_active(
+		    GTK_TOGGLE_BUTTON(_buttons[segment]),
+		    state);
 	}];
 }
 

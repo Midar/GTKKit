@@ -163,7 +163,7 @@
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_popover_set_position(
 		    GTK_POPOVER(_popOver),
-		    (GtkPositionType)(_preferredPosition));
+		    (GtkPositionType) _preferredPosition);
 	}];
 }
 

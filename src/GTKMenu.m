@@ -44,7 +44,7 @@ map_handler(GtkWidget *overlay,
 		    G_OBJECT(_menu),
 		    "map",
 		    G_CALLBACK(map_handler),
-		    (__bridge gpointer)(self));
+		    (__bridge gpointer) self);
 	}];
 	return self;
 }

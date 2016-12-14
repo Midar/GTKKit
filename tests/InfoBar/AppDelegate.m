@@ -21,31 +21,31 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-    self = [super init];
-    // Put your custom initialization below this line.
+	self = [super init];
+	// Put your custom initialization below this line.
 
-    self.window = [MainWindow new];
-    self.window.delegate = self;
+	self.window = [MainWindow new];
+	self.window.delegate = self;
 
-    __weak AppDelegate *weakSelf = self;
-    self.window.info.actionBlock = ^{
-        if (weakSelf.window.info.response == GTKResponseTypeYes) {
-            printf("Response: Yes\n");
-        } else {
-            printf("Response: No\n");
-        }
-        weakSelf.window.info.hidden = true;
-    };
+	__weak AppDelegate *weakSelf = self;
+	self.window.info.actionBlock = ^{
+		if (weakSelf.window.info.response == GTKResponseTypeYes) {
+			printf("Response: Yes\n");
+		} else {
+			printf("Response: No\n");
+		}
+		weakSelf.window.info.hidden = true;
+	};
 
-    // It would be dangerous to modify anything below this line.
+	// It would be dangerous to modify anything below this line.
 
-    return self;
+	return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    // Put your custom post-launch startup code below this line.
-    self.window.hidden = false;
+	// Put your custom post-launch startup code below this line.
+	self.window.hidden = false;
 }
 
 - (void)applicationWillTerminate
@@ -55,6 +55,6 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowDidClose
 {
-    [GTKApp terminate];
+	[GTKApp terminate];
 }
 @end

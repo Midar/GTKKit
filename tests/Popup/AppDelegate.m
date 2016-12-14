@@ -21,27 +21,27 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-    self = [super init];
-    // Put your custom initialization below this line.
+	self = [super init];
+	// Put your custom initialization below this line.
 
-    self.window = [MainWindow new];
-    self.window.delegate = self;
+	self.window = [MainWindow new];
+	self.window.delegate = self;
 
-    self.window.popup.target = self;
-    self.window.popup.action = @selector(popupClicked:);
+	self.window.popup.target = self;
+	self.window.popup.action = @selector(popupClicked:);
 
-    self.window.combo.target = self;
-    self.window.combo.action = @selector(comboClicked:);
+	self.window.combo.target = self;
+	self.window.combo.action = @selector(comboClicked:);
 
-    // It would be dangerous to modify anything below this line.
+	// It would be dangerous to modify anything below this line.
 
-    return self;
+	return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    // Put your custom post-launch startup code below this line.
-    self.window.hidden = false;
+	// Put your custom post-launch startup code below this line.
+	self.window.hidden = false;
 }
 
 - (void)applicationWillTerminate
@@ -51,16 +51,16 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 
 - (void)windowDidClose
 {
-    [GTKApp terminate];
+	[GTKApp terminate];
 }
 
-- (void)popupClicked:(GTKPopUpButton *)sender
+- (void)popupClicked: (GTKPopUpButton *)sender
 {
-    printf("Pop-up button activated!\n");
+	printf("Pop-up button activated!\n");
 }
 
-- (void)comboClicked:(GTKPopUpButton *)sender
+- (void)comboClicked: (GTKPopUpButton *)sender
 {
-    printf("Combo box activated!\n");
+	printf("Combo box activated!\n");
 }
 @end

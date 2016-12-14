@@ -19,33 +19,33 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 500;
+	frame.height = 200;
+	self.frame = frame;
 
-    self.actions = [GTKActionBar new];
+	self.actions = [GTKActionBar new];
 
-    GTKSegmentedControl *control1 = [GTKSegmentedControl new];
-    control1.segments = 3;
-    [self.actions addSubviewStart: control1];
+	GTKSegmentedControl *control1 = [GTKSegmentedControl new];
+	control1.segments = 3;
+	[self.actions addSubviewStart: control1];
 
-    GTKSegmentedControl *control2 = [GTKSegmentedControl new];
-    control2.segments = 2;
-    self.actions.centerView = control2;
+	GTKSegmentedControl *control2 = [GTKSegmentedControl new];
+	control2.segments = 2;
+	self.actions.centerView = control2;
 
-    GTKSegmentedControl *control3 = [GTKSegmentedControl new];
-    control3.segments = 4;
-    [self.actions addSubviewEnd: control3];
+	GTKSegmentedControl *control3 = [GTKSegmentedControl new];
+	control3.segments = 4;
+	[self.actions addSubviewEnd: control3];
 
-    [self.contentView addSubview: self.actions];
+	[self.contentView addSubview: self.actions];
 
-    self.title = @"Action Bar";
+	self.title = @"Action Bar";
 
-    return self;
+	return self;
 }
 @end

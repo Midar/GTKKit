@@ -17,6 +17,6 @@
 #import "GTKKit.h"
 
 @interface MainWindow: GTKWindow
-@property (nonnull) GTKMenu *menu;
+@property (nonnull) GTKMenu   *menu;
 @property (nonnull) GTKButton *button;
 @end

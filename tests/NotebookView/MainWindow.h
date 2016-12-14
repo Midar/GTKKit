@@ -18,12 +18,12 @@
 
 @interface MainWindow: GTKWindow
 @property (nonnull) GTKNotebookView *notebook;
-@property (nonnull) GTKTab *tab1;
-@property (nonnull) GTKTab *tab2;
-@property (nonnull) GTKTab *tab3;
-@property (nonnull) GTKTab *tab4;
-@property (nonnull) GTKTextField *label1;
-@property (nonnull) GTKTextField *label2;
-@property (nonnull) GTKTextField *label3;
-@property (nonnull) GTKTextField *label4;
+@property (nonnull) GTKTab          *tab1;
+@property (nonnull) GTKTab          *tab2;
+@property (nonnull) GTKTab          *tab3;
+@property (nonnull) GTKTab          *tab4;
+@property (nonnull) GTKTextField    *label1;
+@property (nonnull) GTKTextField    *label2;
+@property (nonnull) GTKTextField    *label3;
+@property (nonnull) GTKTextField    *label4;
 @end

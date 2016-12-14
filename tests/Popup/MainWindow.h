@@ -18,5 +18,5 @@
 
 @interface MainWindow: GTKWindow
 @property (nonnull) GTKPopUpButton *popup;
-@property (nonnull) GTKComboBox *combo;
+@property (nonnull) GTKComboBox    *combo;
 @end

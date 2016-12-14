@@ -19,56 +19,56 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 700;
-    frame.height = 500;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 700;
+	frame.height = 500;
+	self.frame = frame;
 
-    self.tabView = [GTKTabView new];
-    [self.contentView addSubview: self.tabView];
-    [self.tabView.constraints fixedToTop: 10
-                                  bottom: 10
-                                    left: 10
-                                   right: 10];
+	self.tabView = [GTKTabView new];
+	[self.contentView addSubview: self.tabView];
+	[self.tabView.constraints fixedToTop: 10
+				      bottom: 10
+					left: 10
+				       right: 10];
 
-    self.tab1 = [GTKTab new];
-    self.tab1.label = @"Tab One";
-    [self.tabView addTab: self.tab1];
+	self.tab1 = [GTKTab new];
+	self.tab1.label = @"Tab One";
+	[self.tabView addTab: self.tab1];
 
-    self.tab2 = [GTKTab new];
-    self.tab2.label = @"Tab Two";
-    [self.tabView addTab: self.tab2];
+	self.tab2 = [GTKTab new];
+	self.tab2.label = @"Tab Two";
+	[self.tabView addTab: self.tab2];
 
-    self.tab3 = [GTKTab new];
-    self.tab3.label = @"Tab Three";
-    [self.tabView addTab: self.tab3];
+	self.tab3 = [GTKTab new];
+	self.tab3.label = @"Tab Three";
+	[self.tabView addTab: self.tab3];
 
-    self.tab4 = [GTKTab new];
-    self.tab4.label = @"Tab Four";
-    [self.tabView addTab: self.tab4];
+	self.tab4 = [GTKTab new];
+	self.tab4.label = @"Tab Four";
+	[self.tabView addTab: self.tab4];
 
-    self.label1 = [GTKTextField new];
-    self.label1.stringValue = @"Tab One";
-    [self.tab1.contentView addSubview: self.label1];
+	self.label1 = [GTKTextField new];
+	self.label1.stringValue = @"Tab One";
+	[self.tab1.contentView addSubview: self.label1];
 
-    self.label2 = [GTKTextField new];
-    self.label2.stringValue = @"Tab Two";
-    [self.tab2.contentView addSubview: self.label2];
+	self.label2 = [GTKTextField new];
+	self.label2.stringValue = @"Tab Two";
+	[self.tab2.contentView addSubview: self.label2];
 
-    self.label3 = [GTKTextField new];
-    self.label3.stringValue = @"Tab Three";
-    [self.tab3.contentView addSubview: self.label3];
+	self.label3 = [GTKTextField new];
+	self.label3.stringValue = @"Tab Three";
+	[self.tab3.contentView addSubview: self.label3];
 
-    self.label4 = [GTKTextField new];
-    self.label4.stringValue = @"Tab Four";
-    [self.tab4.contentView addSubview: self.label4];
+	self.label4 = [GTKTextField new];
+	self.label4.stringValue = @"Tab Four";
+	[self.tab4.contentView addSubview: self.label4];
 
-    self.title = @"Tab View";
+	self.title = @"Tab View";
 
-    return self;
+	return self;
 }
 @end

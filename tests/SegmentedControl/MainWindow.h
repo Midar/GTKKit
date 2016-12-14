@@ -17,7 +17,7 @@
 #import "GTKKit.h"
 
 @interface MainWindow: GTKWindow
-@property (nonnull) GTKTextField *label;
+@property (nonnull) GTKTextField        *label;
 @property (nonnull) GTKSegmentedControl *segment1;
 @property (nonnull) GTKSegmentedControl *segment2;
 @property (nonnull) GTKSegmentedControl *segment3;

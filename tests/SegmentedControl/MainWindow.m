@@ -19,58 +19,58 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 500;
+	frame.height = 200;
+	self.frame = frame;
 
-    self.segment1 = [GTKSegmentedControl new];
-    self.segment1.segments = 3;
-    self.segment1.trackingMode = GTKSegmentSwitchTrackingMomentary;
-    [self.segment1 setImage: [GTKImage imageWithIconName: @"document-new" size: GTKIconSizeSmall]
-                 forSegment: 0];
-    [self.segment1 setImage: [GTKImage imageWithIconName: @"document-open" size: GTKIconSizeSmall]
-                 forSegment: 1];
-    [self.segment1 setImage: [GTKImage imageWithIconName: @"document-save" size: GTKIconSizeSmall]
-                 forSegment: 2];
+	self.segment1 = [GTKSegmentedControl new];
+	self.segment1.segments = 3;
+	self.segment1.trackingMode = GTKSegmentSwitchTrackingMomentary;
+	[self.segment1 setImage: [GTKImage imageWithIconName: @"document-new" size: GTKIconSizeSmall]
+				 forSegment: 0];
+	[self.segment1 setImage: [GTKImage imageWithIconName: @"document-open" size: GTKIconSizeSmall]
+				 forSegment: 1];
+	[self.segment1 setImage: [GTKImage imageWithIconName: @"document-save" size: GTKIconSizeSmall]
+				 forSegment: 2];
 
-    self.segment2 = [GTKSegmentedControl new];
-    self.segment2.segments = 2;
-    self.segment2.trackingMode = GTKSegmentSwitchTrackingSelectAny;
-    [self.segment2 setImage: [GTKImage imageWithIconName: @"format-text-bold" size: GTKIconSizeSmall]
-                 forSegment: 0];
-    [self.segment2 setImage: [GTKImage imageWithIconName: @"format-text-italic" size: GTKIconSizeSmall]
-                 forSegment: 1];
+	self.segment2 = [GTKSegmentedControl new];
+	self.segment2.segments = 2;
+	self.segment2.trackingMode = GTKSegmentSwitchTrackingSelectAny;
+	[self.segment2 setImage: [GTKImage imageWithIconName: @"format-text-bold" size: GTKIconSizeSmall]
+				 forSegment: 0];
+	[self.segment2 setImage: [GTKImage imageWithIconName: @"format-text-italic" size: GTKIconSizeSmall]
+				 forSegment: 1];
 
-    self.segment3 = [GTKSegmentedControl new];
-    self.segment3.segments = 3;
-    self.segment3.trackingMode = GTKSegmentSwitchTrackingSelectOne;
-    [self.segment3 setImage: [GTKImage imageWithIconName: @"zoom-in" size: GTKIconSizeSmall]
-                 forSegment: 0];
-    [self.segment3 setImage: [GTKImage imageWithIconName: @"zoom-original" size: GTKIconSizeSmall]
-                 forSegment: 1];
-    [self.segment3 setImage: [GTKImage imageWithIconName: @"zoom-out" size: GTKIconSizeSmall]
-                 forSegment: 2];
+	self.segment3 = [GTKSegmentedControl new];
+	self.segment3.segments = 3;
+	self.segment3.trackingMode = GTKSegmentSwitchTrackingSelectOne;
+	[self.segment3 setImage: [GTKImage imageWithIconName: @"zoom-in" size: GTKIconSizeSmall]
+				 forSegment: 0];
+	[self.segment3 setImage: [GTKImage imageWithIconName: @"zoom-original" size: GTKIconSizeSmall]
+				 forSegment: 1];
+	[self.segment3 setImage: [GTKImage imageWithIconName: @"zoom-out" size: GTKIconSizeSmall]
+				 forSegment: 2];
 
-    [self addViewToHeaderBarStart: self.segment1];
-    [self addViewToHeaderBarStart: self.segment2];
-    [self addViewToHeaderBarEnd: self.segment3];
+	[self addViewToHeaderBarStart: self.segment1];
+	[self addViewToHeaderBarStart: self.segment2];
+	[self addViewToHeaderBarEnd: self.segment3];
 
-    self.label = [GTKTextField new];
-    self.label.multiline = true;
-    [self.label.constraints fixedToTop: 10
-                                bottom: 10
-                                  left: 10
-                                 right: 10];
-    self.label.stringValue = @"This window shows three segmented controls in the header bar.";
-    [self.contentView addSubview: self.label];
+	self.label = [GTKTextField new];
+	self.label.multiline = true;
+	[self.label.constraints fixedToTop: 10
+				    bottom: 10
+				      left: 10
+				     right: 10];
+	self.label.stringValue = @"This window shows three segmented controls in the header bar.";
+	[self.contentView addSubview: self.label];
 
-    self.title = @"Segmented Controls";
+	self.title = @"Segmented Controls";
 
-    return self;
+	return self;
 }
 @end

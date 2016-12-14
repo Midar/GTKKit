@@ -21,27 +21,27 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-    self = [super init];
-    // Put your custom initialization below this line.
+	self = [super init];
+	// Put your custom initialization below this line.
 
-    self.window = [MainWindow new];
-    self.window.delegate = self;
+	self.window = [MainWindow new];
+	self.window.delegate = self;
 
-    self.window.split.dividerPosition = 0.3;
+	self.window.split.dividerPosition = 0.3;
 
-    // It would be dangerous to modify anything below this line.
+	// It would be dangerous to modify anything below this line.
 
-    return self;
+	return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    // Put your custom post-launch startup code below this line.
-    self.window.hidden = false;
+	// Put your custom post-launch startup code below this line.
+	self.window.hidden = false;
 }
 
 - (void)windowDidClose
 {
-    [GTKApp terminate];
+	[GTKApp terminate];
 }
 @end

@@ -19,25 +19,25 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 500;
+	frame.height = 200;
+	self.frame = frame;
 
-    self.info = [GTKInfoBar new];
-    self.info.layer = GTKViewLayerNotification;
-    self.info.stringValue = @"Example info bar";
-    [self.info addButtonWithLabel: @"Yes" response: GTKResponseTypeYes];
-    [self.info addButtonWithLabel: @"No" response: GTKResponseTypeNo];
+	self.info = [GTKInfoBar new];
+	self.info.layer = GTKViewLayerNotification;
+	self.info.stringValue = @"Example info bar";
+	[self.info addButtonWithLabel: @"Yes" response: GTKResponseTypeYes];
+	[self.info addButtonWithLabel: @"No" response: GTKResponseTypeNo];
 
-    [self.contentView addSubview: self.info];
+	[self.contentView addSubview: self.info];
 
-    self.title = @"Info Bar";
+	self.title = @"Info Bar";
 
-    return self;
+	return self;
 }
 @end

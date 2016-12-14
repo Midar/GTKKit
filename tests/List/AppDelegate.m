@@ -21,46 +21,46 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-    self = [super init];
-    // Put your custom initialization below this line.
+	self = [super init];
+	// Put your custom initialization below this line.
 
-    self.window = [MainWindow new];
-    self.window.delegate = self;
+	self.window = [MainWindow new];
+	self.window.delegate = self;
 
-    self.window.list.delegate = self;
-    self.window.list.dataSource = self;
+	self.window.list.delegate = self;
+	self.window.list.dataSource = self;
 
-    // It would be dangerous to modify anything below this line.
+	// It would be dangerous to modify anything below this line.
 
-    return self;
+	return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    // Put your custom post-launch startup code below this line.
-    self.window.hidden = false;
-    [self.window.list reloadData];
+	// Put your custom post-launch startup code below this line.
+	self.window.hidden = false;
+	[self.window.list reloadData];
 }
 
 - (void)windowDidClose
 {
-    [GTKApp terminate];
+	[GTKApp terminate];
 }
 
 - (int)numberOfRows
 {
-    return 5;
+	return 5;
 }
 
-- (GTKView *)viewForRow:(int)row
+- (GTKView *)viewForRow: (int)row
 {
-    GTKTextField *tf = [GTKTextField new];
-    tf.stringValue = [OFString stringWithFormat: @"Row %d", row];
-    return tf;
+	GTKTextField *tf = [GTKTextField new];
+	tf.stringValue = [OFString stringWithFormat: @"Row %d", row];
+	return tf;
 }
 
-- (int)heightForRow:(int)row
+- (int)heightForRow: (int)row
 {
-    return 30;
+	return 30;
 }
 @end

@@ -19,45 +19,45 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    self.menu = [GTKMenu new];
+	self.menu = [GTKMenu new];
 
-    GTKRect frame = self.frame;
-    frame.width = 300;
-    frame.height = 200;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.width = 300;
+	frame.height = 200;
+	self.frame = frame;
 
-    GTKMenuItem *item = [GTKMenuItem new];
-    item.label = @"About Long App Name";
-    [self.menu addItem: item];
+	GTKMenuItem *item = [GTKMenuItem new];
+	item.label = @"About Long App Name";
+	[self.menu addItem: item];
 
-    item = [GTKMenuItem separator];
-    [self.menu addItem: item];
+	item = [GTKMenuItem separator];
+	[self.menu addItem: item];
 
-    item = [GTKMenuItem new];
-    item.label = @"Quit Long App Name";
-    item.target = GTKApp;
-    item.action = @selector(terminate);
-    [self.menu addItem: item];
+	item = [GTKMenuItem new];
+	item.label = @"Quit Long App Name";
+	item.target = GTKApp;
+	item.action = @selector(terminate);
+	[self.menu addItem: item];
 
-    self.button = [GTKButton new];
-    self.button.stringValue = @"Menu Button";
-    self.button.constraints.centerHorizontal = true;
-    self.button.constraints.centerVertical = true;
-    [self.button.constraints fixedWidth: 100];
-    [self.button.constraints fixedHeight: 30];
-    [self.button.constraints flexibleToTop: 0
-                                    bottom: 0
-                                      left: 0
-                                     right: 0];
-    [self.contentView addSubview: self.button];
+	self.button = [GTKButton new];
+	self.button.stringValue = @"Menu Button";
+	self.button.constraints.centerHorizontal = true;
+	self.button.constraints.centerVertical = true;
+	[self.button.constraints fixedWidth: 100];
+	[self.button.constraints fixedHeight: 30];
+	[self.button.constraints flexibleToTop: 0
+					bottom: 0
+					  left: 0
+					 right: 0];
+	[self.contentView addSubview: self.button];
 
-    self.button.menu = self.menu;
+	self.button.menu = self.menu;
 
-    self.title = @"Menus";
-    self.subtitle = @"";
+	self.title = @"Menus";
+	self.subtitle = @"";
 
-    return self;
+	return self;
 }
 @end

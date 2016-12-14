@@ -17,11 +17,11 @@
 #import "GTKKit.h"
 
 @interface MainWindow: GTKWindow
-@property (nonnull) GTKTabView *tabView;
-@property (nonnull) GTKTab *tab1;
-@property (nonnull) GTKTab *tab2;
-@property (nonnull) GTKTab *tab3;
-@property (nonnull) GTKTab *tab4;
+@property (nonnull) GTKTabView   *tabView;
+@property (nonnull) GTKTab       *tab1;
+@property (nonnull) GTKTab       *tab2;
+@property (nonnull) GTKTab       *tab3;
+@property (nonnull) GTKTab       *tab4;
 @property (nonnull) GTKTextField *label1;
 @property (nonnull) GTKTextField *label2;
 @property (nonnull) GTKTextField *label3;

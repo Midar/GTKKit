@@ -17,6 +17,6 @@
 #import "GTKKit.h"
 
 @interface MainWindow: GTKWindow
-@property (nonnull) GTKButton *button;
+@property (nonnull) GTKButton            *button;
 @property (nonnull) GTKProgressIndicator *progress;
 @end

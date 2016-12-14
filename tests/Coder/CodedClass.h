@@ -17,10 +17,10 @@
 #import "GTKKit.h"
 
 @interface CodedClass: OFObject <GTKCoding>
-@property OFString *stringValue;
-@property double doubleValue;
-@property float floatValue;
-@property int intValue;
+@property OFString            *stringValue;
+@property double               doubleValue;
+@property float                floatValue;
+@property int                  intValue;
 @property OFObject<GTKCoding> *objectValue;
-@property CodedClass *codedClassValue;
+@property CodedClass          *codedClassValue;
 @end

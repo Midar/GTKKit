@@ -19,86 +19,86 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    self.menuButtonHidden = false;
-    self.menuButtonPopOver.width = 150;
-    self.menuButtonPopOver.height = 75;
-    self.menuLabel = [GTKTextField new];
-    [self.menuLabel.constraints fixedToTop: 10];
-    [self.menuLabel.constraints flexibleToBottom: 0
-                                            left: 0
-                                           right: 0];
-    self.menuLabel.constraints.centerHorizontal = true;
-    [self.menuLabel.constraints fixedWidth: 100];
-    [self.menuLabel.constraints fixedHeight: 30];
-    self.menuLabel.stringValue = @"Hi there!";
-    [self.menuButtonPopOver.contentView addSubview: self.menuLabel];
+	self.menuButtonHidden = false;
+	self.menuButtonPopOver.width = 150;
+	self.menuButtonPopOver.height = 75;
+	self.menuLabel = [GTKTextField new];
+	[self.menuLabel.constraints fixedToTop: 10];
+	[self.menuLabel.constraints flexibleToBottom: 0
+						left: 0
+					       right: 0];
+	self.menuLabel.constraints.centerHorizontal = true;
+	[self.menuLabel.constraints fixedWidth: 100];
+	[self.menuLabel.constraints fixedHeight: 30];
+	self.menuLabel.stringValue = @"Hi there!";
+	[self.menuButtonPopOver.contentView addSubview: self.menuLabel];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 300;
-    frame.height = 400;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 300;
+	frame.height = 400;
+	self.frame = frame;
 
-    self.box = [GTKBox new];
-    [self.box.constraints flexibleToTop: 0];
-    [self.box.constraints fixedToBottom: 10
-                                   left: 10
-                                  right: 10];
-    [self.box.constraints fixedHeight: 150];
+	self.box = [GTKBox new];
+	[self.box.constraints flexibleToTop: 0];
+	[self.box.constraints fixedToBottom: 10
+				       left: 10
+				      right: 10];
+	[self.box.constraints fixedHeight: 150];
 
-    self.toggleEditableButton = [GTKButton new];
-    [self.toggleEditableButton.constraints flexibleToTop: 0
-                                 left: 0
-                                right: 0];
-    [self.toggleEditableButton.constraints fixedToBottom: 10];
-    self.toggleEditableButton.constraints.centerHorizontal = true;
-    [self.toggleEditableButton.constraints fixedWidth: 150];
-    [self.toggleEditableButton.constraints fixedHeight: 30];
-    self.toggleEditableButton.stringValue = @"Toggle editable";
+	self.toggleEditableButton = [GTKButton new];
+	[self.toggleEditableButton.constraints flexibleToTop: 0
+							left: 0
+						       right: 0];
+	[self.toggleEditableButton.constraints fixedToBottom: 10];
+	self.toggleEditableButton.constraints.centerHorizontal = true;
+	[self.toggleEditableButton.constraints fixedWidth: 150];
+	[self.toggleEditableButton.constraints fixedHeight: 30];
+	self.toggleEditableButton.stringValue = @"Toggle editable";
 
-    self.toggleMultilineButton = [GTKButton new];
-    [self.toggleMultilineButton.constraints flexibleToTop: 0
-                                 left: 0
-                                right: 0];
-    [self.toggleMultilineButton.constraints fixedToBottom: 55];
-    self.toggleMultilineButton.constraints.centerHorizontal = true;
-    [self.toggleMultilineButton.constraints fixedWidth: 150];
-    [self.toggleMultilineButton.constraints fixedHeight: 30];
-    self.toggleMultilineButton.stringValue = @"Toggle multiline";
+	self.toggleMultilineButton = [GTKButton new];
+	[self.toggleMultilineButton.constraints flexibleToTop: 0
+							 left: 0
+							right: 0];
+	[self.toggleMultilineButton.constraints fixedToBottom: 55];
+	self.toggleMultilineButton.constraints.centerHorizontal = true;
+	[self.toggleMultilineButton.constraints fixedWidth: 150];
+	[self.toggleMultilineButton.constraints fixedHeight: 30];
+	self.toggleMultilineButton.stringValue = @"Toggle multiline";
 
-    self.slider = [GTKSlider new];
-    [self.slider.constraints flexibleToBottom: 0];
-    [self.slider.constraints fixedToTop: 10
-                                 left: 10
-                                right: 10];
-    [self.slider.constraints fixedHeight: 50];
-    self.slider.minValue = 0.0;
-    self.slider.maxValue = 1.0;
-    self.slider.doubleValue = 1.0;
-    self.slider.numberOfTickMarks = 11;
+	self.slider = [GTKSlider new];
+	[self.slider.constraints flexibleToBottom: 0];
+	[self.slider.constraints fixedToTop: 10
+				       left: 10
+				      right: 10];
+	[self.slider.constraints fixedHeight: 50];
+	self.slider.minValue = 0.0;
+	self.slider.maxValue = 1.0;
+	self.slider.doubleValue = 1.0;
+	self.slider.numberOfTickMarks = 11;
 
-    self.label = [GTKTextField new];
-    [self.label.constraints fixedToTop: 10];
-    [self.label.constraints flexibleToBottom: 0
-                                   left: 0
-                                  right: 0];
-    self.label.constraints.centerHorizontal = true;
-    [self.label.constraints fixedWidth: 200];
-    [self.label.constraints fixedHeight: 30];
-    self.label.stringValue = @"Hello, World!";
+	self.label = [GTKTextField new];
+	[self.label.constraints fixedToTop: 10];
+	[self.label.constraints flexibleToBottom: 0
+					    left: 0
+					   right: 0];
+	self.label.constraints.centerHorizontal = true;
+	[self.label.constraints fixedWidth: 200];
+	[self.label.constraints fixedHeight: 30];
+	self.label.stringValue = @"Hello, World!";
 
-    [self.box addSubview: self.toggleEditableButton];
-    [self.box addSubview: self.toggleMultilineButton];
-    [self.box addSubview: self.slider];
-    [self.contentView addSubview: self.box];
-    [self.contentView addSubview: self.label];
+	[self.box addSubview: self.toggleEditableButton];
+	[self.box addSubview: self.toggleMultilineButton];
+	[self.box addSubview: self.slider];
+	[self.contentView addSubview: self.box];
+	[self.contentView addSubview: self.label];
 
-    self.title = @"Example Window";
-    self.subtitle = @"Example Subtitle";
+	self.title = @"Example Window";
+	self.subtitle = @"Example Subtitle";
 
-    return self;
+	return self;
 }
 @end

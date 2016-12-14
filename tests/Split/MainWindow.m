@@ -19,44 +19,44 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 400;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 500;
+	frame.height = 400;
+	self.frame = frame;
 
-    self.split = [GTKSplitView new];
-    [self.split.constraints fixedToTop: 0
-                                bottom: 0
-                                  left: 0
-                                 right: 0];
-    [self.split.constraints flexibleWidth: 0];
-    [self.split.constraints flexibleHeight: 0];
+	self.split = [GTKSplitView new];
+	[self.split.constraints fixedToTop: 0
+				    bottom: 0
+				      left: 0
+				     right: 0];
+	[self.split.constraints flexibleWidth: 0];
+	[self.split.constraints flexibleHeight: 0];
 
-    [self.contentView addSubview: self.split];
+	[self.contentView addSubview: self.split];
 
-    self.leftLabel = [GTKTextField new];
-    self.leftLabel.stringValue = @"Left Pane";
-    self.leftLabel.constraints.centerHorizontal = true;
-    self.leftLabel.constraints.centerVertical = true;
-    [self.leftLabel.constraints fixedWidth: 100];
-    [self.leftLabel.constraints fixedHeight: 30];
-    [self.split.leftView addSubview: self.leftLabel];
+	self.leftLabel = [GTKTextField new];
+	self.leftLabel.stringValue = @"Left Pane";
+	self.leftLabel.constraints.centerHorizontal = true;
+	self.leftLabel.constraints.centerVertical = true;
+	[self.leftLabel.constraints fixedWidth: 100];
+	[self.leftLabel.constraints fixedHeight: 30];
+	[self.split.leftView addSubview: self.leftLabel];
 
-    self.rightLabel = [GTKTextField new];
-    self.rightLabel.stringValue = @"Right Pane";
-    self.rightLabel.constraints.centerHorizontal = true;
-    self.rightLabel.constraints.centerVertical = true;
-    [self.rightLabel.constraints fixedWidth: 100];
-    [self.rightLabel.constraints fixedHeight: 30];
-    [self.split.rightView addSubview: self.rightLabel];
+	self.rightLabel = [GTKTextField new];
+	self.rightLabel.stringValue = @"Right Pane";
+	self.rightLabel.constraints.centerHorizontal = true;
+	self.rightLabel.constraints.centerVertical = true;
+	[self.rightLabel.constraints fixedWidth: 100];
+	[self.rightLabel.constraints fixedHeight: 30];
+	[self.split.rightView addSubview: self.rightLabel];
 
-    self.title = @"Spit View";
-    self.subtitle = @"Example Subtitle";
+	self.title = @"Spit View";
+	self.subtitle = @"Example Subtitle";
 
-    return self;
+	return self;
 }
 @end

@@ -21,52 +21,52 @@ GTK_APPLICATION_DELEGATE(AppDelegate)
 @implementation AppDelegate
 - init
 {
-    self = [super init];
-    // Put your custom initialization below this line.
+	self = [super init];
+	// Put your custom initialization below this line.
 
-    self.window = [MainWindow new];
-    self.window.delegate = self;
+	self.window = [MainWindow new];
+	self.window.delegate = self;
 
-    __weak typeof(self) weakSelf = self;
-    self.window.slider.actionBlock = ^{
-        weakSelf.window.label.alpha = weakSelf.window.slider.doubleValue;
-    };
+	__weak typeof(self) weakSelf = self;
+	self.window.slider.actionBlock = ^{
+		weakSelf.window.label.alpha = weakSelf.window.slider.doubleValue;
+	};
 
-    self.window.toggleEditableButton.target = self;
-    self.window.toggleEditableButton.action = @selector(toggleEditableButtonClicked:);
+	self.window.toggleEditableButton.target = self;
+	self.window.toggleEditableButton.action = @selector(toggleEditableButtonClicked:);
 
-    self.window.toggleMultilineButton.target = self;
-    self.window.toggleMultilineButton.action = @selector(toggleMultilineButtonClicked:);
+	self.window.toggleMultilineButton.target = self;
+	self.window.toggleMultilineButton.action = @selector(toggleMultilineButtonClicked:);
 
-    // It would be dangerous to modify anything below this line.
+	// It would be dangerous to modify anything below this line.
 
-    return self;
+	return self;
 }
 
 - (void)applicationDidFinishLaunching
 {
-    // Put your custom post-launch startup code below this line.
-    self.window.hidden = false;
-    printf("Hello!\n");
+	// Put your custom post-launch startup code below this line.
+	self.window.hidden = false;
+	printf("Hello!\n");
 }
 
 - (void)applicationWillTerminate
 {
-    printf("Goodbye!\n");
+	printf("Goodbye!\n");
 }
 
-- (void)toggleEditableButtonClicked:(GTKButton *)sender
+- (void)toggleEditableButtonClicked: (GTKButton *)sender
 {
-    self.window.label.editable = !self.window.label.editable;
+	self.window.label.editable = !self.window.label.editable;
 }
 
-- (void)toggleMultilineButtonClicked:(GTKButton *)sender
+- (void)toggleMultilineButtonClicked: (GTKButton *)sender
 {
-    self.window.label.multiline = !self.window.label.multiline;
+	self.window.label.multiline = !self.window.label.multiline;
 }
 
 - (void)windowDidClose
 {
-    [GTKApp terminate];
+	[GTKApp terminate];
 }
 @end

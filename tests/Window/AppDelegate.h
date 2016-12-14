@@ -19,6 +19,6 @@
 
 @interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowDelegate>
 @property (nullable) MainWindow *window;
-- (void)toggleEditableButtonClicked:(nonnull GTKButton *)sender;
-- (void)toggleMultilineButtonClicked:(nonnull GTKButton *)sender;
+- (void)toggleEditableButtonClicked: (nonnull GTKButton *)sender;
+- (void)toggleMultilineButtonClicked: (nonnull GTKButton *)sender;
 @end

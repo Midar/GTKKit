@@ -19,6 +19,6 @@
 
 @interface AppDelegate: OFObject <GTKApplicationDelegate, GTKWindowDelegate>
 @property (nullable) MainWindow *window;
-- (void)popupClicked:(nonnull GTKPopUpButton *)sender;
-- (void)comboClicked:(nonnull GTKPopUpButton *)sender;
+- (void)popupClicked: (nonnull GTKPopUpButton *)sender;
+- (void)comboClicked: (nonnull GTKPopUpButton *)sender;
 @end

@@ -19,25 +19,25 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 500;
+	frame.height = 200;
+	self.frame = frame;
 
-    self.list = [GTKListView new];
-    [self.list.constraints fixedToTop: 5
-                               bottom: 5
-                                 left: 5
-                                right: 5];
+	self.list = [GTKListView new];
+	[self.list.constraints fixedToTop: 5
+				   bottom: 5
+				     left: 5
+				    right: 5];
 
-    [self.contentView addSubview: self.list];
+	[self.contentView addSubview: self.list];
 
-    self.title = @"List View";
+	self.title = @"List View";
 
-    return self;
+	return self;
 }
 @end

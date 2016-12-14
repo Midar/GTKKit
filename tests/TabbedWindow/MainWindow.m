@@ -19,27 +19,27 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 300;
-    frame.height = 400;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 300;
+	frame.height = 400;
+	self.frame = frame;
 
-    self.tab1 = [GTKTab new];
-    self.tab1.label = @"Tab One";
-    [self.contentView addTab: self.tab1];
+	self.tab1 = [GTKTab new];
+	self.tab1.label = @"Tab One";
+	[self.contentView addTab: self.tab1];
 
-    self.tab2 = [GTKTab new];
-    self.tab2.label = @"Tab Two";
-    [self.contentView addTab: self.tab2];
+	self.tab2 = [GTKTab new];
+	self.tab2.label = @"Tab Two";
+	[self.contentView addTab: self.tab2];
 
-    self.tab3 = [GTKTab new];
-    self.tab3.label = @"Tab Three";
-    [self.contentView addTab: self.tab3];
+	self.tab3 = [GTKTab new];
+	self.tab3.label = @"Tab Three";
+	[self.contentView addTab: self.tab3];
 
-    return self;
+	return self;
 }
 @end

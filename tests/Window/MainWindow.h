@@ -19,8 +19,8 @@
 @interface MainWindow: GTKWindow
 @property (nonnull) GTKTextField *label;
 @property (nonnull) GTKTextField *menuLabel;
-@property (nonnull) GTKSlider *slider;
-@property (nonnull) GTKButton *toggleEditableButton;
-@property (nonnull) GTKButton *toggleMultilineButton;
-@property (nonnull) GTKBox *box;
+@property (nonnull) GTKSlider    *slider;
+@property (nonnull) GTKButton    *toggleEditableButton;
+@property (nonnull) GTKButton    *toggleMultilineButton;
+@property (nonnull) GTKBox       *box;
 @end

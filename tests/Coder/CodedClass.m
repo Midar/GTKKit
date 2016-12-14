@@ -17,25 +17,30 @@
 #import "CodedClass.h"
 
 @implementation CodedClass
-- (instancetype)initWithCoder:(GTKCoder *)decoder
+- (instancetype)initWithCoder: (GTKCoder *)decoder
 {
-    self = [self init];
+	self = [self init];
 
-    self.stringValue = [decoder decodeStringForKey: @"string"];
-    self.doubleValue = [decoder decodeDoubleForKey: @"double"];
-    self.floatValue = [decoder decodeFloatForKey: @"float"];
-    self.intValue = [decoder decodeIntForKey: @"int"];
-    self.codedClassValue = [decoder decodeObjectForKey: @"codedClass"];
+	self.stringValue = [decoder decodeStringForKey: @"string"];
+	self.doubleValue = [decoder decodeDoubleForKey: @"double"];
+	self.floatValue = [decoder decodeFloatForKey: @"float"];
+	self.intValue = [decoder decodeIntForKey: @"int"];
+	self.codedClassValue = [decoder decodeObjectForKey: @"codedClass"];
 
-    return self;
+	return self;
 }
 
-- (void)encodeWithCoder:(GTKCoder *)encoder
+- (void)encodeWithCoder: (GTKCoder *)encoder
 {
-    [encoder encodeString: self.stringValue forKey: @"string"];
-    [encoder encodeDouble: self.doubleValue forKey: @"double"];
-    [encoder encodeFloat: self.floatValue forKey: @"float"];
-    [encoder encodeInt: self.intValue forKey: @"int"];
-    [encoder encodeObject: self.codedClassValue forKey: @"codedClass"];
+	[encoder encodeString: self.stringValue
+		       forKey: @"string"];
+	[encoder encodeDouble: self.doubleValue
+		       forKey: @"double"];
+	[encoder encodeFloat: self.floatValue
+		      forKey: @"float"];
+	[encoder encodeInt: self.intValue
+		    forKey: @"int"];
+	[encoder encodeObject: self.codedClassValue
+		       forKey: @"codedClass"];
 }
 @end

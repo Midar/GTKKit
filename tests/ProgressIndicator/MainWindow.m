@@ -19,41 +19,41 @@
 @implementation MainWindow
 - init
 {
-    self = [super init];
+	self = [super init];
 
-    GTKRect frame = self.frame;
-    frame.x = 50;
-    frame.y = 200;
-    frame.width = 500;
-    frame.height = 200;
-    self.frame = frame;
+	GTKRect frame = self.frame;
+	frame.x = 50;
+	frame.y = 200;
+	frame.width = 500;
+	frame.height = 200;
+	self.frame = frame;
 
-    self.progress = [GTKProgressIndicator new];
-    [self.progress.constraints flexibleToTop: 0
-                                      bottom: 0];
-    [self.progress.constraints fixedToLeft: 10
-                                     right: 10];
-    self.progress.constraints.centerVertical = true;
-    [self.progress.constraints fixedHeight: 20];
-    [self.contentView addSubview: self.progress];
+	self.progress = [GTKProgressIndicator new];
+	[self.progress.constraints flexibleToTop: 0
+					  bottom: 0];
+	[self.progress.constraints fixedToLeft: 10
+					 right: 10];
+	self.progress.constraints.centerVertical = true;
+	[self.progress.constraints fixedHeight: 20];
+	[self.contentView addSubview: self.progress];
 
-    self.button = [GTKButton new];
-    self.button.stringValue = @"Toggle Animation";
-    [self.button.constraints fixedToTop: 10];
-    [self.button.constraints flexibleToBottom: 0
-                                         left: 0
-                                        right: 0];
-    [self.button.constraints fixedHeight: 30];
-    [self.button.constraints fixedWidth: 150];
-    self.button.constraints.centerHorizontal = true;
-    __weak MainWindow *weakSelf = self;
-    [self.contentView addSubview: self.button];
-    self.button.actionBlock = ^{
-        weakSelf.progress.doubleValue = weakSelf.progress.doubleValue + 0.1;
-    };
+	self.button = [GTKButton new];
+	self.button.stringValue = @"Toggle Animation";
+	[self.button.constraints fixedToTop: 10];
+	[self.button.constraints flexibleToBottom: 0
+					     left: 0
+					    right: 0];
+	[self.button.constraints fixedHeight: 30];
+	[self.button.constraints fixedWidth: 150];
+	self.button.constraints.centerHorizontal = true;
+	__weak MainWindow *weakSelf = self;
+	[self.contentView addSubview: self.button];
+	self.button.actionBlock = ^{
+		weakSelf.progress.doubleValue = weakSelf.progress.doubleValue + 0.1;
+	};
 
-    self.title = @"Progress Indicator";
+	self.title = @"Progress Indicator";
 
-    return self;
+	return self;
 }
 @end

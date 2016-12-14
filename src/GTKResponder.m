@@ -167,8 +167,8 @@
 	if ([self respondsToSelector: action]) {
 		[GTKApp.dispatch.main sync: ^{
 			[self performSelector: action
-					   withObject: object
-					   afterDelay: 0.0];
+				   withObject: object
+				   afterDelay: 0.0];
 		}];
 		return true;
 	}

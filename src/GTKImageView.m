@@ -67,7 +67,9 @@
 	if (NULL != newPixbuf) {
 		[GTKApp.dispatch.gtk sync: ^{
 			GdkPixbuf *oldPixbuf = gtk_image_get_pixbuf(GTK_IMAGE(self.mainWidget));
-			gtk_image_set_from_pixbuf(GTK_IMAGE(self.mainWidget), newPixbuf);
+			gtk_image_set_from_pixbuf(
+			    GTK_IMAGE(self.mainWidget),
+			    newPixbuf);
 			g_object_unref(G_OBJECT(oldPixbuf));
 		}];
 	}

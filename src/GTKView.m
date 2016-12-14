@@ -94,7 +94,7 @@ get_child_position_handler (GtkOverlay   *overlay,
 	GTKView *subview = gtk_widget_get_owning_view(widget);
 
 	GtkRequisition min, req;
-	gtk_widget_get_preferred_size (widget, &min, &req);
+	gtk_widget_get_preferred_size(widget, &min, &req);
 
 	GTKRect frame = [view layoutSubview: subview];
 
@@ -218,7 +218,9 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 	[GTKApp.dispatch.gtk sync: ^{
 		self.overlayWidget = gtk_overlay_new();
 		g_object_ref_sink(G_OBJECT(self.overlayWidget));
-		gtk_container_set_border_width(GTK_CONTAINER(self.overlayWidget), 0);
+		gtk_container_set_border_width(
+		    GTK_CONTAINER(self.overlayWidget),
+		    0);
 
 		g_object_set_data(
 		    G_OBJECT(self.overlayWidget),
@@ -263,7 +265,9 @@ gesture_drag_end_handler (GtkGestureDrag *gesture,
 
 		[self createMainWidget];
 		g_object_ref_sink(self.mainWidget);
-		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
+		gtk_container_add(
+		    GTK_CONTAINER(self.overlayWidget),
+		    self.mainWidget);
 		gtk_widget_show(self.mainWidget);
 		gtk_widget_show(self.overlayWidget);
 

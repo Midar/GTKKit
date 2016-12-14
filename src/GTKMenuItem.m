@@ -184,11 +184,11 @@ activate_handler(GtkMenuItem *widget,
 				return;
 			}
 			IMP imp = [target methodForSelector: self.action];
-			void (*func)(id, SEL, id) = (void *)(imp);
+			void (*func)(id, SEL, id) = (void *) imp;
 			func(target, self.action, self);
 		} else {
 			IMP imp = [self.target methodForSelector: self.action];
-			void (*func)(id, SEL, id) = (void *)(imp);
+			void (*func)(id, SEL, id) = (void *) imp;
 			func(self.target, self.action, self);
 		}
 	}];

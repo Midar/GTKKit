@@ -62,7 +62,8 @@ map_handler(GtkWidget *overlay,
 
 - (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-	[encoder encodeObject: _menuItems forKey: @"GTKKit.coding.menu.items"];
+	[encoder encodeObject: _menuItems
+		       forKey: @"GTKKit.coding.menu.items"];
 }
 
 - (void)dealloc

@@ -53,15 +53,15 @@ SRCS =  GTKResponder.m                                                         \
 	OFNumber+GTKCoding.m                                                   \
 	OFDictionary+GTKCoding.m
 
-INCLUDES =      ${SRCS:.m=.h}	                                               \
-		GTKApplicationDelegate.h                                       \
-		GTKWindowDelegate.h                                            \
-		GTKListViewDataSource.h                                        \
-		GTKListViewDelegate.h                                          \
-		GTKPositionType.h                                              \
-		GTKOrientable.h                                                \
-		GTKCoding.h                                                    \
-		GTKKit.h
+INCLUDES = ${SRCS:.m=.h}	                                               \
+	   GTKApplicationDelegate.h                                            \
+	   GTKWindowDelegate.h                                                 \
+	   GTKListViewDataSource.h                                             \
+	   GTKListViewDelegate.h                                               \
+	   GTKPositionType.h                                                   \
+	   GTKOrientable.h                                                     \
+	   GTKCoding.h                                                         \
+	   GTKKit.h
 
 include ../buildsys.mk
 

@@ -31,7 +31,7 @@ response_handler (GtkInfoBar *info_bar,
 		  GTKInfoBar *infoBar)
 {
 	[GTKApp.dispatch.main async: ^{
-		infoBar.response = (GTKResponseType)(response_id);
+		infoBar.response = (GTKResponseType) response_id;
 		[infoBar userResponded];
 	}];
 }
@@ -110,8 +110,9 @@ response_handler (GtkInfoBar *info_bar,
 			response = GTKResponseTypeNone;
 		}
 		[self addButtonWithLabel: [_buttonLabels objectAtIndex: i]
-						response: response];
-		self.stringValue = [decoder decodeStringForKey: @"GTKKit.coding.infoBar.stringValue"];
+				response: response];
+		self.stringValue = [decoder
+		    decodeStringForKey: @"GTKKit.coding.infoBar.stringValue"];
 	}
 	return self;
 }
@@ -142,8 +143,8 @@ response_handler (GtkInfoBar *info_bar,
 	_label = label;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_label_set_markup(
-			GTK_LABEL(_labelWidget),
-			_label.UTF8String);
+		    GTK_LABEL(_labelWidget),
+		    _label.UTF8String);
 	}];
 }
 

@@ -31,10 +31,10 @@
 @end
 
 @interface GTKCallback: OFObject
-@property (copy) DispatchWorkItem block;
-@property GMutex *mutex;
-@property GCond *cond;
-@property gboolean flag;
+@property (copy) DispatchWorkItem  block;
+@property        GMutex           *mutex;
+@property        GCond            *cond;
+@property        gboolean          flag;
 - (void)lock;
 - (void)unlock;
 - (void)wait;
@@ -46,7 +46,7 @@
 static gboolean
 runBlockInGTKThreadCallback (gpointer userdata)
 {
-	GTKCallback *callback = (__bridge_transfer GTKCallback *)(userdata);
+	GTKCallback *callback = (__bridge_transfer GTKCallback *) userdata;
 	[callback lock];
 	callback.block();
 	callback.flag = true;
@@ -256,8 +256,8 @@ runBlockInGTKThreadCallback (gpointer userdata)
 - init
 {
 	self = [super init];
-	self.mutex = calloc(1, sizeof(GMutex));
-	self.cond = calloc(1, sizeof(GCond));
+	self.mutex = g_malloc0(sizeof(GMutex));
+	self.cond = g_malloc0(sizeof(GCond));
 	g_mutex_init(self.mutex);
 	g_cond_init(self.cond);
 	return self;
@@ -291,8 +291,8 @@ runBlockInGTKThreadCallback (gpointer userdata)
 {
 	g_cond_clear(self.cond);
 	g_mutex_clear(self.mutex);
-	free(self.mutex);
-	free(self.cond);
+	g_free(self.mutex);
+	g_free(self.cond);
 }
 
 - (void)sync: (DispatchWorkItem)block

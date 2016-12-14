@@ -269,11 +269,14 @@ button_press_event_handler (GtkWidget           *widget,
 				gtk_widget_hide(_buttons[i]);
 			}
 			OFString *label = [self labelForSegment: i];
-			[self setLabel: label forSegment: i];
+			[self setLabel: label
+			    forSegment: i];
 			GTKImage *image = [self imageForSegment: i];
-			[self setImage: image forSegment: i];
+			[self setImage: image
+			    forSegment: i];
 			GTKPopover *popOver = [self popOverForSegment: i];
-			[self setPopOver: popOver forSegment: i];
+			[self setPopOver: popOver
+			      forSegment: i];
 			i++;
 		}
 		self.hidden = self.segments == 0;

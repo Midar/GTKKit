@@ -176,7 +176,7 @@
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
 		    GTK_ORIENTABLE(self.mainWidget),
-		    (GtkOrientation)(orientation));
+		    (GtkOrientation) orientation);
 	}];
 }
 @end

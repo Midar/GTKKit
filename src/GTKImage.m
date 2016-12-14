@@ -166,11 +166,11 @@
 	GdkScreen *screen = gdk_screen_get_default();
 	GtkIconTheme *theme = gtk_icon_theme_get_for_screen(screen);
 	GdkPixbuf *pixbuf = gtk_icon_theme_load_icon (
-		theme,
-		name.UTF8String,
-		size,
-		GTK_ICON_LOOKUP_FORCE_SYMBOLIC | GTK_ICON_LOOKUP_DIR_LTR,
-		NULL);
+	    theme,
+	    name.UTF8String,
+	    size,
+	    GTK_ICON_LOOKUP_FORCE_SYMBOLIC | GTK_ICON_LOOKUP_DIR_LTR,
+	    NULL);
 	return [[self alloc] initWithPixbuf: pixbuf];
 }
 @end

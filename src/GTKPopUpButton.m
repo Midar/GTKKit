@@ -56,7 +56,8 @@ changed_handler (GtkComboBox    *widget,
 {
 	self = [super initWithCoder: decoder];
 	for (OFString *title in [decoder decodeObjectForKey: @"GTKKit.coding.popUpButton.popUpItems"]) {
-		[self insertItemWithTitle: title at: -1];
+		[self insertItemWithTitle: title
+				       at: -1];
 	}
 	return self;
 }

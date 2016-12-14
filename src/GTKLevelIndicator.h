@@ -44,10 +44,10 @@ typedef enum GTKLevelMode {
  */
 @interface GTKLevelIndicator: GTKView <GTKOrientable>
 {
-	__block double _minValue;
-	__block double _maxValue;
-	__block GTKLevelMode _mode;
-	__block bool _inverted;
+	__block double         _minValue;
+	__block double         _maxValue;
+	__block GTKLevelMode   _mode;
+	__block bool           _inverted;
 	__block GTKOrientation _orientation;
 }
 

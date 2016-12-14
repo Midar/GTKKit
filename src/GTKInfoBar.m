@@ -26,7 +26,9 @@
 @end
 
 static void
-response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
+response_handler (GtkInfoBar *info_bar,
+		  int         response_id,
+		  GTKInfoBar *infoBar)
 {
 	[GTKApp.dispatch.main async: ^{
 		infoBar.response = (GTKResponseType)(response_id);
@@ -40,10 +42,10 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	self = [super init];
 	[GTKApp.dispatch.gtk sync: ^{
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"response",
-			G_CALLBACK(response_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "response",
+		    G_CALLBACK(response_handler),
+		    (__bridge gpointer)(self));
 	}];
 	_buttonLabels = [OFMutableArray new];
 	_buttonResponses = [OFMutableArray new];
@@ -51,10 +53,10 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	self.response = GTKResponseTypeNone;
 	self.messageType = GTKMessageTypeInfo;
 	[self.constraints fixedToTop: 0
-							left: 0
-						   right: 0];
-   [self.constraints flexibleToBottom: 0];
-   [self.constraints fixedHeight: 30];
+				left: 0
+			       right: 0];
+	[self.constraints flexibleToBottom: 0];
+	[self.constraints fixedHeight: 30];
 	return self;
 }
 
@@ -68,12 +70,12 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 		GtkWidget *contentArea = \
 			gtk_info_bar_get_content_area(GTK_INFO_BAR(self.mainWidget));
 		gtk_container_add(
-			GTK_CONTAINER(contentArea),
-			_labelWidget);
+		    GTK_CONTAINER(contentArea),
+		    _labelWidget);
 	}];
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 	_buttonLabels = [decoder decodeObjectForKey: @"GTKKit.coding.infoBar.buttonLabels"];
@@ -114,12 +116,15 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
-	[encoder encodeObject: _buttonLabels forKey: @"GTKKit.coding.infoBar.buttonLabels"];
-	[encoder encodeObject: _buttonResponses forKey: @"GTKKit.coding.infoBar.buttonResponses"];
-	[encoder encodeString: self.stringValue forKey: @"GTKKit.coding.infoBar.stringValue"];
+	[encoder encodeObject: _buttonLabels
+		       forKey: @"GTKKit.coding.infoBar.buttonLabels"];
+	[encoder encodeObject: _buttonResponses
+		       forKey: @"GTKKit.coding.infoBar.buttonResponses"];
+	[encoder encodeString: self.stringValue
+		       forKey: @"GTKKit.coding.infoBar.stringValue"];
 }
 
 - (void)dealloc
@@ -132,7 +137,7 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	return _label;
 }
 
-- (void)setStringValue:(OFString *)label
+- (void)setStringValue: (OFString *)label
 {
 	_label = label;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -142,7 +147,8 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	}];
 }
 
-- (void)addButtonWithLabel:(OFString *)label response:(GTKResponseType)response
+- (void)addButtonWithLabel: (OFString *)label
+		  response: (GTKResponseType)response
 {
 	[_buttonLabels addObject: label];
 	OFString *responseString;
@@ -184,9 +190,9 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	[_buttonResponses addObject: responseString];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_info_bar_add_button(
-			GTK_INFO_BAR(self.mainWidget),
-			label.UTF8String,
-			(int)(response));
+		    GTK_INFO_BAR(self.mainWidget),
+		    label.UTF8String,
+		    (int)(response));
 	}];
 }
 
@@ -205,13 +211,13 @@ response_handler(GtkInfoBar *info_bar, int response_id, GTKInfoBar *infoBar)
 	return _messageType;
 }
 
-- (void)setMessageType:(GTKMessageType)messageType
+- (void)setMessageType: (GTKMessageType)messageType
 {
 	_messageType = messageType;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_info_bar_set_message_type(
-			GTK_INFO_BAR(self.mainWidget),
-			(GtkMessageType)(messageType));
+		    GTK_INFO_BAR(self.mainWidget),
+		    (GtkMessageType)(messageType));
 	}];
 }
 @end

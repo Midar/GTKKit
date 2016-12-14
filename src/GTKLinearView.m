@@ -36,22 +36,22 @@
 	}];
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 	self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.linearView.orientation"] isEqual: @"horizontal"] ?
-		GTKOrientationHorizontal : GTKOrientationVertical;
+	    GTKOrientationHorizontal : GTKOrientationVertical;
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
 	[encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-				   forKey: @"GTKKit.coding.linearView.orientation"];
+		       forKey: @"GTKKit.coding.linearView.orientation"];
 }
 
-- (void)addSubview:(GTKView *)view
+- (void)addSubview: (GTKView *)view
 {
 	switch (view.layer) {
 	case GTKViewLayerBackground:
@@ -82,8 +82,8 @@
 
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_container_add(
-			GTK_CONTAINER(self.mainWidget),
-			view.overlayWidget);
+		    GTK_CONTAINER(self.mainWidget),
+		    view.overlayWidget);
 	}];
 
 	[self layoutSubviews];
@@ -97,8 +97,8 @@
 		__block GTKRect frame = [self layoutSubview: view];
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
-				view.overlayWidget,
-				frame.width, frame.height);
+			    view.overlayWidget,
+			    frame.width, frame.height);
 		}];
 	}
 
@@ -106,8 +106,8 @@
 		__block GTKRect frame = [self layoutSubview: view];
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
-				view.overlayWidget,
-				frame.width, frame.height);
+			    view.overlayWidget,
+			    frame.width, frame.height);
 		}];
 	}
 
@@ -115,8 +115,8 @@
 		__block GTKRect frame = [self layoutSubview: view];
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
-				view.overlayWidget,
-				frame.width, frame.height);
+			    view.overlayWidget,
+			    frame.width, frame.height);
 		}];
 	}
 
@@ -124,14 +124,14 @@
 		__block GTKRect frame = [self layoutSubview: view];
 		[GTKApp.dispatch.gtk sync: ^{
 			gtk_widget_set_size_request(
-				view.overlayWidget,
-				frame.width, frame.height);
+			    view.overlayWidget,
+			    frame.width, frame.height);
 		}];
 	}
 }
 
 
-- (GTKRect)layoutSubview:(nonnull GTKView*)subview
+- (GTKRect)layoutSubview: (nonnull GTKView*)subview
 {
 	GTKRect frame = [super layoutSubview: subview];
 	frame.x = 0;
@@ -149,13 +149,13 @@
 	return _orientation;
 }
 
-- (void)setOrientation:(GTKOrientation)orientation
+- (void)setOrientation: (GTKOrientation)orientation
 {
 	_orientation = orientation;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
-			GTK_ORIENTABLE(self.mainWidget),
-			(GtkOrientation)(orientation));
+		    GTK_ORIENTABLE(self.mainWidget),
+		    (GtkOrientation)(orientation));
 	}];
 	for (GTKView *view in self.backgroundLayerSubviews) {
 		[view removeFromSuperview];

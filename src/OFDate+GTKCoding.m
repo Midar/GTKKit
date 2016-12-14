@@ -24,7 +24,7 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation OFDate (GTKCoding)
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.date"];
 	OFDate *date = element.stringValue.objectByDeserializing;
@@ -32,7 +32,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.date"];
 	element.stringValue = self.stringBySerializing;

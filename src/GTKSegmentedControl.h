@@ -50,13 +50,13 @@ typedef enum GTKSegmentSwitchTracking {
  */
 @interface GTKSegmentedControl: GTKControl
 {
-	int _buttonIndex[32];
-	GtkWidget *_buttons[32];
-	int _segments;
-	OFMutableArray *_labelForSegment;
-	OFMutableArray *_imageForSegment;
-	OFMutableArray *_popOverForSegment;
-	bool _momentary;
+	int                      _buttonIndex[32];
+	GtkWidget               *_buttons[32];
+	int                      _segments;
+	OFMutableArray          *_labelForSegment;
+	OFMutableArray          *_imageForSegment;
+	OFMutableArray          *_popOverForSegment;
+	bool                     _momentary;
 	GTKSegmentSwitchTracking _trackingMode;
 }
 
@@ -84,7 +84,8 @@ typedef enum GTKSegmentSwitchTracking {
  * @param label The label to apply to the segment.
  * @param segment The segment to which the label should be applied.
  */
-- (void)setLabel:(OFString *)label forSegment:(int)segment;
+- (void)setLabel: (OFString *)label
+      forSegment: (int)segment;
 
 /*!
  * @brief Gets the label for the specified segment, if one exists.
@@ -93,7 +94,7 @@ typedef enum GTKSegmentSwitchTracking {
  *
  * @returns An OFString representing the label, or nil if there is no label.
  */
-- (OFString *)labelForSegment:(int)segment;
+- (OFString *)labelForSegment: (int)segment;
 
 /*!
  * @brief Sets the given image as the image for the specified segment.
@@ -101,7 +102,8 @@ typedef enum GTKSegmentSwitchTracking {
  * @param image The GTKImage to apply to the segment.
  * @param segment The segment to which the image should be applied.
  */
-- (void)setImage:(GTKImage *)image forSegment:(int)segment;
+- (void)setImage: (GTKImage *)image
+      forSegment: (int)segment;
 
 /*!
  * @brief Gets the image for the specified segment, if one exists.
@@ -110,7 +112,7 @@ typedef enum GTKSegmentSwitchTracking {
  *
  * @returns The GTKImage instance used by the segment, or nil if there is no image.
  */
-- (GTKImage *)imageForSegment:(int)segment;
+- (GTKImage *)imageForSegment: (int)segment;
 
 /*!
  * @brief Sets the given GTKPopOverViewController as the pop-over for the specified segment.
@@ -118,7 +120,8 @@ typedef enum GTKSegmentSwitchTracking {
  * @param popOver The GTKPopOverViewController to attach to the segment.
  * @param segment The segment to which the pop-over should be attached.
  */
-- (void)setPopOver:(GTKPopover *)popOver forSegment:(int)segment;
+- (void)setPopOver: (GTKPopover *)popOver
+	forSegment: (int)segment;
 
 /*!
  * @brief Gets the GTKPopOverViewController for the specified segment, if one exists.
@@ -127,7 +130,7 @@ typedef enum GTKSegmentSwitchTracking {
  *
  * @returns The GTKPopOverViewController attached to the segment, or nil if there is no pop-over.
  */
-- (GTKPopover *)popOverForSegment:(int)segment;
+- (GTKPopover *)popOverForSegment: (int)segment;
 
 /*!
  * @brief The state of the specified statement, i.e. if it is pressed or not. This
@@ -137,7 +140,7 @@ typedef enum GTKSegmentSwitchTracking {
  *
  * @returns The state of the segment, either GTKOnState or GTKOffState.
  */
-- (bool)stateForSegment:(int)segment;
+- (bool)stateForSegment: (int)segment;
 
 /*!
  * @brief Sets the state for the specified segment. This is only useful if the
@@ -146,5 +149,6 @@ typedef enum GTKSegmentSwitchTracking {
  * @param state The state to apply to the segment.
  * @param segment The segment to which the state should be applied.
  */
-- (void)setState:(bool)state forSegment:(int)segment;
+- (void)setState: (bool)state
+      forSegment: (int)segment;
 @end

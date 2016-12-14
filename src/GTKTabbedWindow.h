@@ -39,5 +39,5 @@
 /*!
  * @brief The GTKTabView that holds all this view controller's subviews.
  */
-- (void)setContentView:(nullable GTKTabView *)view;
+- (void)setContentView: (nullable GTKTabView *)view;
 @end

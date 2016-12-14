@@ -28,7 +28,7 @@
 {
 	__block unsigned int _contextID;
 }
-- (void)push:(OFString *)message;
+- (void)push: (OFString *)message;
 - (void)pop;
 - (void)clear;
 @end

@@ -25,10 +25,10 @@
  * write themselves to files.
  */
 @interface GTKKeyedUnarchiver: GTKCoder
-+ (instancetype)keyedUnarchiverWithContentsOfURL:(OFURL *)url;
-+ (instancetype)keyedUnarchiverWithXMLString:(OFString *)string;
-+ (id)unarchiveObjectOfClass:(Class)class
-				   withCoder:(GTKCoder *)coder;
-+ (id)unarchiveObjectOfClass:(Class)class
-					 withURL:(OFURL *)url;
++ (instancetype)keyedUnarchiverWithContentsOfURL: (OFURL *)url;
++ (instancetype)keyedUnarchiverWithXMLString: (OFString *)string;
++ (id)unarchiveObjectOfClass: (Class)class
+		   withCoder: (GTKCoder *)coder;
++ (id)unarchiveObjectOfClass: (Class)class
+		     withURL: (OFURL *)url;
 @end

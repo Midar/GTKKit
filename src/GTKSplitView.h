@@ -25,11 +25,11 @@
 @interface GTKSplitView: GTKView <GTKOrientable>
 {
 	__block GTKOrientation _orientation;
-	__block GTKView *_topLeftView;
-	__block GTKView *_bottomRightView;
-	__block GtkWidget *_topLeftFrame;
-	__block GtkWidget *_bottomRightFrame;
-	__block double _handlePosition;
+	__block GTKView       *_topLeftView;
+	__block GTKView       *_bottomRightView;
+	__block GtkWidget     *_topLeftFrame;
+	__block GtkWidget     *_bottomRightFrame;
+	__block double         _handlePosition;
 }
 
 /*!

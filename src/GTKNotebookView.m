@@ -21,22 +21,23 @@
 #import "OFArray+GTKCoding.h"
 
 @interface GTKNotebookView ()
-- (void)reorderTab:(GTKTab *)tab toIndex:(int)index;
+- (void)reorderTab: (GTKTab *)tab
+	   toIndex: (int)index;
 @end
 
 static GTKTab *
-gtk_widget_get_owning_tab(GtkWidget *widget)
+gtk_widget_get_owning_tab (GtkWidget *widget)
 {
-	return (__bridge GTKTab *)g_object_get_data(
-		G_OBJECT(widget),
-		"_GTKKIT_OWNING_TAB_");
+	return (__bridge GTKTab *) g_object_get_data(
+	    G_OBJECT(widget),
+	    "_GTKKIT_OWNING_TAB_");
 }
 
 static void
-page_reordered_handler(GtkNotebook     *widget,
-					   GtkWidget       *child,
-					   guint            index,
-					   GTKNotebookView *notebook)
+page_reordered_handler (GtkNotebook     *widget,
+			GtkWidget       *child,
+			guint            index,
+			GTKNotebookView *notebook)
 {
 	GTKTab *tab = gtk_widget_get_owning_tab(child);
 	[notebook reorderTab: tab toIndex: index];
@@ -49,7 +50,7 @@ page_reordered_handler(GtkNotebook     *widget,
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
@@ -73,25 +74,31 @@ page_reordered_handler(GtkNotebook     *widget,
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	switch (self.tabPosition) {
 	case GTKPositionTypeTop:
-		[encoder encodeString: @"top" forKey: @"GTKKit.coding.notebookView.tabPosition"];
+		[encoder encodeString: @"top"
+			       forKey: @"GTKKit.coding.notebookView.tabPosition"];
 		break;
 	case GTKPositionTypeBottom:
-		[encoder encodeString: @"bottom" forKey: @"GTKKit.coding.notebookView.tabPosition"];
+		[encoder encodeString: @"bottom"
+			       forKey: @"GTKKit.coding.notebookView.tabPosition"];
 		break;
 	case GTKPositionTypeLeft:
-		[encoder encodeString: @"left" forKey: @"GTKKit.coding.notebookView.tabPosition"];
+		[encoder encodeString: @"left"
+			       forKey: @"GTKKit.coding.notebookView.tabPosition"];
 		break;
 	case GTKPositionTypeRight:
-		[encoder encodeString: @"right" forKey: @"GTKKit.coding.notebookView.tabPosition"];
+		[encoder encodeString: @"right"
+			       forKey: @"GTKKit.coding.notebookView.tabPosition"];
 		break;
 	}
 
-	[encoder encodeBool: self.tabsHidden forKey: @"GTKKit.coding.notebookView.tabsHidden"];
-	[encoder encodeObject: _tabs forKey: @"GTKKit.coding.tabView.tabs"];
+	[encoder encodeBool: self.tabsHidden
+		     forKey: @"GTKKit.coding.notebookView.tabsHidden"];
+	[encoder encodeObject: _tabs
+		       forKey: @"GTKKit.coding.tabView.tabs"];
 }
 
 - (void)createMainWidget
@@ -100,12 +107,11 @@ page_reordered_handler(GtkNotebook     *widget,
 		self.mainWidget = gtk_notebook_new();
 		gtk_notebook_popup_disable(GTK_NOTEBOOK(self.mainWidget));
 
-
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"page-reordered",
-			G_CALLBACK(page_reordered_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "page-reordered",
+		    G_CALLBACK(page_reordered_handler),
+		    (__bridge gpointer)(self));
 	}];
 }
 
@@ -119,13 +125,13 @@ page_reordered_handler(GtkNotebook     *widget,
 	return _tabPosition;
 }
 
-- (void)setTabPosition:(GTKPositionType)position
+- (void)setTabPosition: (GTKPositionType)position
 {
 	_tabPosition = position;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_notebook_set_tab_pos(
-			GTK_NOTEBOOK(self.mainWidget),
-			(GtkPositionType)(position));
+		    GTK_NOTEBOOK(self.mainWidget),
+		    (GtkPositionType)(position));
 	}];
 }
 
@@ -134,13 +140,13 @@ page_reordered_handler(GtkNotebook     *widget,
 	return _tabsHidden;
 }
 
-- (void)setTabsHidden:(bool)hidden
+- (void)setTabsHidden: (bool)hidden
 {
 	_tabsHidden = hidden;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_notebook_set_show_tabs(
-			GTK_NOTEBOOK(self.mainWidget),
-			!hidden);
+		    GTK_NOTEBOOK(self.mainWidget),
+		    !hidden);
 	}];
 }
 
@@ -149,13 +155,13 @@ page_reordered_handler(GtkNotebook     *widget,
 	return _scrollable;
 }
 
-- (void)setScrollable:(bool)scrollable
+- (void)setScrollable: (bool)scrollable
 {
 	_scrollable = scrollable;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_notebook_set_scrollable(
-			GTK_NOTEBOOK(self.mainWidget),
-			scrollable);
+		    GTK_NOTEBOOK(self.mainWidget),
+		    scrollable);
 	}];
 }
 
@@ -166,57 +172,58 @@ page_reordered_handler(GtkNotebook     *widget,
 	return tabs;
 }
 
-- (void)addTab:(GTKTab *)tab
+- (void)addTab: (GTKTab *)tab
 {
 	[_tabs addObject: tab];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_notebook_append_page(
-			GTK_NOTEBOOK(self.mainWidget),
-			tab.contentView.overlayWidget,
-			NULL);
+		    GTK_NOTEBOOK(self.mainWidget),
+		    tab.contentView.overlayWidget,
+		    NULL);
 		gtk_notebook_set_tab_label_text(
-			GTK_NOTEBOOK(self.mainWidget),
-			tab.contentView.overlayWidget,
-			tab.label.UTF8String);
+		    GTK_NOTEBOOK(self.mainWidget),
+		    tab.contentView.overlayWidget,
+		    tab.label.UTF8String);
 		gtk_notebook_set_tab_reorderable(
-			GTK_NOTEBOOK(self.mainWidget),
-			tab.contentView.overlayWidget,
-			true);
+		    GTK_NOTEBOOK(self.mainWidget),
+		    tab.contentView.overlayWidget,
+		    true);
 	}];
 	tab.notebookView = self;
 }
 
-- (void)removeTab:(GTKTab *)tab
+- (void)removeTab: (GTKTab *)tab
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_container_remove(
-			GTK_CONTAINER(self.mainWidget),
-			tab.contentView.overlayWidget);
+		    GTK_CONTAINER(self.mainWidget),
+		    tab.contentView.overlayWidget);
 	}];
 	[_tabs removeObjectIdenticalTo: tab];
 	tab.notebookView = nil;
 }
 
-- (void)renameTab:(nonnull GTKTab *)tab
-		 toString:(OFString *)string
+- (void)renameTab: (nonnull GTKTab *)tab
+	 toString: (OFString *)string
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_container_child_set(
-			GTK_CONTAINER(self.mainWidget),
-			tab.contentView.overlayWidget,
-			"tab-label", tab.label.UTF8String,
-			NULL);
+		    GTK_CONTAINER(self.mainWidget),
+		    tab.contentView.overlayWidget,
+		    "tab-label", tab.label.UTF8String,
+		    NULL);
 	}];
 }
 
-- (void)reorderTab:(GTKTab *)tab toIndex:(int)index
+- (void)reorderTab: (GTKTab *)tab
+	   toIndex: (int)index
 {
 	[_tabs removeObjectIdenticalTo: tab];
 	[_tabs insertObject: tab
-				atIndex: index];
+		    atIndex: index];
 }
 
-- (int)indexOfTab:(GTKTab *)tab
+- (int)indexOfTab: (GTKTab *)tab
 {
 	return [_tabs indexOfObjectIdenticalTo: tab];
 }
@@ -226,27 +233,27 @@ page_reordered_handler(GtkNotebook     *widget,
 	return _tabs.count;
 }
 
-- (void)insertTab:(nonnull GTKTab *)tab
-		  atIndex:(int)index
+- (void)insertTab: (nonnull GTKTab *)tab
+	  atIndex: (int)index
 {
 	[_tabs insertObject: tab
-				atIndex: index];
+		    atIndex: index];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_notebook_insert_page(
-			GTK_NOTEBOOK(self.mainWidget),
-			tab.contentView.overlayWidget,
-			NULL,
-			index);
+		    GTK_NOTEBOOK(self.mainWidget),
+		    tab.contentView.overlayWidget,
+		    NULL,
+		    index);
 		gtk_container_child_set(
-			GTK_CONTAINER(self.mainWidget),
-			tab.contentView.overlayWidget,
-			"tab-label", tab.label.UTF8String,
-			NULL);
+		    GTK_CONTAINER(self.mainWidget),
+		    tab.contentView.overlayWidget,
+		    "tab-label", tab.label.UTF8String,
+		    NULL);
 	}];
 	tab.notebookView = self;
 }
 
-- (nullable GTKTab *)tabAtIndex:(int)index
+- (nullable GTKTab *)tabAtIndex: (int)index
 {
 	return [_tabs objectAtIndex: index];
 }

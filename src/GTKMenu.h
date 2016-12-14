@@ -28,23 +28,24 @@
  */
 @interface GTKMenu: OFObject <GTKCoding>
 {
-	__block GtkWidget *_menu;
+	__block GtkWidget                              *_menu;
 	__block OFMutableArray<__kindof GTKMenuItem *> *_menuItems;
 }
 
 @property (readonly) int numberOfItems;
 
-- (void)addItem:(nonnull GTKMenuItem *)item;
+- (void)addItem: (nonnull GTKMenuItem *)item;
 
-- (void)insertItem:(nonnull GTKMenuItem *)item atIndex:(int)index;
+- (void)insertItem: (nonnull GTKMenuItem *)item
+	   atIndex: (int)index;
 
-- (void)removeItem:(nonnull GTKMenuItem *)item;
+- (void)removeItem: (nonnull GTKMenuItem *)item;
 
-- (nullable GTKMenuItem *)itemAtIndex:(int)index;
+- (nullable GTKMenuItem *)itemAtIndex: (int)index;
 
-- (nullable GTKMenuItem *)itemWithTag:(int)tag;
+- (nullable GTKMenuItem *)itemWithTag: (int)tag;
 
 - (nonnull OFArray *)itemArray;
 
-- (void)popUpAtView:(nonnull GTKView *)view;
+- (void)popUpAtView: (nonnull GTKView *)view;
 @end

@@ -29,7 +29,7 @@
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 	for (GTKTab *tab in [decoder decodeObjectForKey: @"GTKKit.coding.tabView.tabs"]) {
@@ -42,8 +42,10 @@
 - (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
-	[encoder encodeObject: _tabs forKey: @"GTKKit.coding.tabView.tabs"];
-	[encoder encodeBool: self.tabsHidden forKey: @"GTKKit.coding.tabView.tabsHidden"];
+	[encoder encodeObject: _tabs
+		       forKey: @"GTKKit.coding.tabView.tabs"];
+	[encoder encodeBool: self.tabsHidden
+		     forKey: @"GTKKit.coding.tabView.tabsHidden"];
 }
 
 - (void)createMainWidget
@@ -54,22 +56,22 @@
 		_stack = gtk_stack_new();
 		g_object_ref_sink(G_OBJECT(_stack));
 		gtk_container_add(
-			GTK_CONTAINER(self.mainWidget),
-			_stack);
+		    GTK_CONTAINER(self.mainWidget),
+		    _stack);
 		gtk_stack_set_homogeneous(GTK_STACK(_stack), true);
 		gtk_widget_show(_stack);
 
 		_switcher = gtk_stack_switcher_new();
 		g_object_ref_sink(G_OBJECT(_switcher));
 		gtk_frame_set_label_widget(
-			GTK_FRAME(self.mainWidget),
-			_switcher);
+		    GTK_FRAME(self.mainWidget),
+		    _switcher);
 		gtk_frame_set_label_align(
-			GTK_FRAME(self.mainWidget),
-			0.5, 0.5);
+		    GTK_FRAME(self.mainWidget),
+		    0.5, 0.5);
 		gtk_stack_switcher_set_stack(
-			GTK_STACK_SWITCHER(_switcher),
-			GTK_STACK(_stack));
+		    GTK_STACK_SWITCHER(_switcher),
+		    GTK_STACK(_stack));
 		gtk_widget_show(_switcher);
 	}];
 }
@@ -87,44 +89,44 @@
 	return tabs;
 }
 
-- (void)addTab:(GTKTab *)tab
+- (void)addTab: (GTKTab *)tab
 {
 	[_tabs addObject: tab];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_stack_add_titled(
-			GTK_STACK(_stack),
-			tab.contentView.overlayWidget,
-			tab.label.UTF8String,
-			tab.label.UTF8String);
+		    GTK_STACK(_stack),
+		    tab.contentView.overlayWidget,
+		    tab.label.UTF8String,
+		    tab.label.UTF8String);
 	}];
 	tab.tabView = self;
 }
 
-- (void)removeTab:(GTKTab *)tab
+- (void)removeTab: (GTKTab *)tab
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_container_remove(
-			GTK_CONTAINER(_stack),
-			tab.contentView.overlayWidget);
+		    GTK_CONTAINER(_stack),
+		    tab.contentView.overlayWidget);
 	}];
 	[_tabs removeObjectIdenticalTo: tab];
 	tab.tabView = nil;
 }
 
-- (void)renameTab:(nonnull GTKTab *)tab
-		 toString:(OFString *)string
+- (void)renameTab: (nonnull GTKTab *)tab
+	 toString: (OFString *)string
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_container_child_set(
-			GTK_CONTAINER(_stack),
-			tab.contentView.overlayWidget,
-			"name", tab.label.UTF8String,
-			"title", tab.label.UTF8String,
-			NULL);
+		    GTK_CONTAINER(_stack),
+		    tab.contentView.overlayWidget,
+		    "name", tab.label.UTF8String,
+		    "title", tab.label.UTF8String,
+		    NULL);
 	}];
 }
 
-- (int)indexOfTab:(GTKTab *)tab
+- (int)indexOfTab: (GTKTab *)tab
 {
 	return [_tabs indexOfObjectIdenticalTo: tab];
 }
@@ -134,27 +136,28 @@
 	return _tabs.count;
 }
 
-- (void)insertTab:(nonnull GTKTab *)tab
-		  atIndex:(int)index
+- (void)insertTab: (nonnull GTKTab *)tab
+	  atIndex: (int)index
 {
 	[_tabs insertObject: tab
-				atIndex: index];
+		    atIndex: index];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_stack_add_titled(
-			GTK_STACK(_stack),
-			tab.contentView.overlayWidget,
-			tab.label.UTF8String,
-			tab.label.UTF8String);
+		    GTK_STACK(_stack),
+		    tab.contentView.overlayWidget,
+		    tab.label.UTF8String,
+		    tab.label.UTF8String);
 		gtk_container_child_set(
-			GTK_CONTAINER(_stack),
-			tab.contentView.overlayWidget,
-			"position", index,
-			NULL);
+		    GTK_CONTAINER(_stack),
+		    tab.contentView.overlayWidget,
+		    "position",
+		    index,
+		    NULL);
 	}];
 	tab.tabView = self;
 }
 
-- (nullable GTKTab *)tabAtIndex:(int)index
+- (nullable GTKTab *)tabAtIndex: (int)index
 {
 	return [_tabs objectAtIndex: index];
 }
@@ -164,7 +167,7 @@
 	return _tabsHidden;
 }
 
-- (void)setTabsHidden:(bool)hidden
+- (void)setTabsHidden: (bool)hidden
 {
 	_tabsHidden = hidden;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -177,18 +180,18 @@
 	return _tabsHidden;
 }
 
-- (void)setFrameHidden:(bool)hidden
+- (void)setFrameHidden: (bool)hidden
 {
 	_frameHidden = hidden;
 	[GTKApp.dispatch.gtk sync: ^{
 		if (hidden) {
 			gtk_frame_set_shadow_type(
-				GTK_FRAME(self.mainWidget),
-				GTK_SHADOW_NONE);
+			    GTK_FRAME(self.mainWidget),
+			    GTK_SHADOW_NONE);
 		} else {
 			gtk_frame_set_shadow_type(
-				GTK_FRAME(self.mainWidget),
-				GTK_SHADOW_IN);
+			    GTK_FRAME(self.mainWidget),
+			    GTK_SHADOW_IN);
 		}
 	}];
 }

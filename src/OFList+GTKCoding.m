@@ -24,20 +24,20 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation OFList (GTKCoding)
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 	GTKCoder *coder = [GTKKeyedUnarchiver new];
 	coder.data = [decoder.data elementForName: @"GTKKit.coding.list"];
 	OFArray *array = [GTKKeyedUnarchiver unarchiveObjectOfClass: OFArray.class
-													  withCoder: coder];
+							  withCoder: coder];
 	for (id object in array) {
 		[self appendObject: object];
 	}
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	OFArray *array = self.objectEnumerator.allObjects;
 	GTKCoder *coder = [GTKKeyedArchiver archiveRootObject: array];

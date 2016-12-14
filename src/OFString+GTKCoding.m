@@ -20,19 +20,19 @@
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
 
-OFString* OFStringFromSelector(SEL selector)
+OFString* OFStringFromSelector (SEL selector)
 {
 	const char *name = sel_getName(selector);
 	return [[OFString alloc] initWithUTF8String: name];
 }
 
-SEL OFSelectorFromString(OFString *selector)
+SEL OFSelectorFromString (OFString *selector)
 {
 	return sel_registerName(selector.UTF8String);
 }
 
 @implementation OFString (GTKCoding)
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	OFString *value = [[decoder.data attributeForName: @"GTKKit.GTKCoding.string"] stringValue];
 
@@ -41,9 +41,9 @@ SEL OFSelectorFromString(OFString *selector)
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[encoder.data addAttributeWithName: @"GTKKit.GTKCoding.string"
-						   stringValue: self];
+			       stringValue: self];
 }
 @end

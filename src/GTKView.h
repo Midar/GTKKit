@@ -24,22 +24,22 @@
  * @brief An enumeration of the layers in which a view can render its subviews.
  */
 typedef enum GTKViewLayer {
-  /*!
-   * @brief The background layer.
-   */
-  GTKViewLayerBackground,
-  /*!
-   * @brief The default layer.
-   */
-  GTKViewLayerDefault,
-  /*!
-   * @brief The foreground layer.
-   */
-  GTKViewLayerForeground,
-  /*!
-   * @brief The notification layer.
-   */
-  GTKViewLayerNotification
+	/*!
+	 * @brief The background layer.
+	 */
+	GTKViewLayerBackground,
+	/*!
+	 * @brief The default layer.
+	 */
+	GTKViewLayerDefault,
+	/*!
+	 * @brief The foreground layer.
+	 */
+	GTKViewLayerForeground,
+	/*!
+	 * @brief The notification layer.
+	 */
+	GTKViewLayerNotification
 } GTKViewLayer;
 
 /*!
@@ -57,7 +57,7 @@ typedef GdkRectangle GTKRect;
 @class GTKView;
 
 GTKView * _Nullable
-gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
+gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 
 /*!
  * @brief A class representing "views" in the model-view-controller (MVC)
@@ -169,7 +169,7 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
  * The default implementation of this method uses the view's width and height,
  * combined with the subview's constraints, to generate the layout rectangle.
  */
-- (GTKRect)layoutSubview:(nonnull GTKView*)subview;
+- (GTKRect)layoutSubview: (nonnull GTKView*)subview;
 
 /*!
  * @brief Render each of this view's subviews within this view's area.
@@ -188,7 +188,7 @@ gtk_widget_get_owning_view(GtkWidget * _Nonnull widget);
 /*!
  * @brief Adds the given view to this view as a subview.
  */
-- (void)addSubview:(nonnull GTKView *)view;
+- (void)addSubview: (nonnull GTKView *)view;
 
 /*!
  * @brief Removes this view from its superview.

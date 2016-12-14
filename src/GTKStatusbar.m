@@ -24,8 +24,8 @@
 	self = [super init];
 	[GTKApp.dispatch.gtk sync: ^{
 		_contextID = gtk_statusbar_get_context_id(
-			GTK_STATUSBAR(self.mainWidget),
-			"GTKKit Internal Statusbar Context");
+		    GTK_STATUSBAR(self.mainWidget),
+		    "GTKKit Internal Statusbar Context");
 	}];
 	return self;
 }
@@ -37,13 +37,13 @@
 	}];
 }
 
-- (void)push:(OFString *)message
+- (void)push: (OFString *)message
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_statusbar_push(
-			GTK_STATUSBAR(self.mainWidget),
-			_contextID,
-			message.UTF8String);
+		    GTK_STATUSBAR(self.mainWidget),
+		    _contextID,
+		    message.UTF8String);
 	}];
 }
 
@@ -51,8 +51,8 @@
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_statusbar_pop(
-			GTK_STATUSBAR(self.mainWidget),
-			_contextID);
+		    GTK_STATUSBAR(self.mainWidget),
+		    _contextID);
 	}];
 }
 
@@ -60,8 +60,8 @@
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_statusbar_remove_all(
-			GTK_STATUSBAR(self.mainWidget),
-			_contextID);
+		    GTK_STATUSBAR(self.mainWidget),
+		    _contextID);
 	}];
 }
 @end

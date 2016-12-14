@@ -27,22 +27,22 @@
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
 	self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.separator.orientation"] isEqual: @"horizontal"] ?
-		GTKOrientationHorizontal : GTKOrientationVertical;
+	    GTKOrientationHorizontal : GTKOrientationVertical;
 
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
 
 	[encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-				   forKey: @"GTKKit.coding.separator.orientation"];
+		       forKey: @"GTKKit.coding.separator.orientation"];
 }
 
 - (void)createMainWidget
@@ -62,8 +62,8 @@
 	_orientation = orientation;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
-			GTK_ORIENTABLE(self.mainWidget),
-			(GtkOrientation)(orientation));
+		    GTK_ORIENTABLE(self.mainWidget),
+		    (GtkOrientation)(orientation));
 	}];
 }
 @end

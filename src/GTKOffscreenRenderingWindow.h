@@ -53,5 +53,5 @@
  *
  * @pram subview The view to add
  */
-- (void)addView:(nonnull GTKView *)subview;
+- (void)addView: (nonnull GTKView *)subview;
 @end

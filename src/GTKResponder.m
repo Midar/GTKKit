@@ -21,7 +21,7 @@
 
 // Override the default behavior, to try forwarding to the next responder in
 // the chain.
-- (id)forwardingTargetForSelector:(SEL)selector
+- (id)forwardingTargetForSelector: (SEL)selector
 {
 	if (nil == self.nextResponder) {
 		return [super forwardingTargetForSelector: selector];
@@ -90,67 +90,67 @@
 	[self.nextResponder tryToPerform: @selector(didResignFirstResponder:)];
 }
 
-- (void)mouseDown:(nonnull GTKEvent*)event
+- (void)mouseDown: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(mouseDown:)
-								with: event];
+				    with: event];
 }
 
-- (void)mouseUp:(nonnull GTKEvent*)event
+- (void)mouseUp: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(mouseUp:)
-								with: event];
+				    with: event];
 }
 
-- (void)mouseClicked:(nonnull GTKEvent*)event
+- (void)mouseClicked: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(mouseClicked:)
-								with: event];
+				    with: event];
 }
 
-- (void)mouseDragged:(nonnull GTKEvent*)event
+- (void)mouseDragged: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(dragged:)
-								with: event];
+				    with: event];
 }
 
-- (void)scrollWheel:(nonnull GTKEvent*)event
+- (void)scrollWheel: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(scrollWheel:)
-								with: event];
+				    with: event];
 }
 
-- (void)mouseEntered:(nonnull GTKEvent*)event
+- (void)mouseEntered: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(mouseEntered:)
-								with: event];
+				    with: event];
 }
 
-- (void)mouseLeft:(nonnull GTKEvent*)event
+- (void)mouseLeft: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(mouseLeft:)
-								with: event];
+				    with: event];
 }
 
-- (void)keyDown:(nonnull GTKEvent*)event
+- (void)keyDown: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(keyDown:)
-								with: event];
+				    with: event];
 }
 
-- (void)keyUp:(nonnull GTKEvent*)event
+- (void)keyUp: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(keyUp:)
-								with: event];
+				    with: event];
 }
 
-- (void)modifierKeysChanged:(nonnull GTKEvent*)event
+- (void)modifierKeysChanged: (nonnull GTKEvent*)event
 {
 	[self.nextResponder tryToPerform: @selector(modifierKeysChanged:)
-								with: event];
+				    with: event];
 }
 
-- (void)doCommandBySelector:(SEL)selector
+- (void)doCommandBySelector: (SEL)selector
 {
 	if ([self respondsToSelector: selector]) {
 		[GTKApp.dispatch.main sync: ^{
@@ -161,8 +161,8 @@
 	}
 }
 
-- (bool)tryToPerform:(SEL)action
-				with:(nonnull id)object
+- (bool)tryToPerform: (SEL)action
+		with: (nonnull id)object
 {
 	if ([self respondsToSelector: action]) {
 		[GTKApp.dispatch.main sync: ^{
@@ -175,7 +175,7 @@
 	return false;
 }
 
-- (bool)tryToPerform:(SEL)action
+- (bool)tryToPerform: (SEL)action
 {
 	if ([self respondsToSelector: action]) {
 		[GTKApp.dispatch.main sync: ^{

@@ -30,10 +30,10 @@
 @interface GTKTabView: GTKView <GTKCoding>
 {
 	__block OFMutableArray<__kindof GTKTab *> *_tabs;
-	__block GtkWidget *_stack;
-	__block GtkWidget *_switcher;
-	__block bool _tabsHidden;
-	__block bool _frameHidden;
+	__block GtkWidget                         *_stack;
+	__block GtkWidget                         *_switcher;
+	__block bool                              _tabsHidden;
+	__block bool                              _frameHidden;
 }
 
 @property (nonnull, readonly, copy) OFArray<__kindof GTKTab *> *tabs;
@@ -57,27 +57,27 @@
 /*!
  * @brief Adds the specified tab to the end of the tab view's tabs.
  */
-- (void)addTab:(nonnull GTKTab *)tab;
+- (void)addTab: (nonnull GTKTab *)tab;
 
 /*!
  * @brief Removes the specified tab from the tab view's tabs.
  */
-- (void)removeTab:(nonnull GTKTab *)tab;
+- (void)removeTab: (nonnull GTKTab *)tab;
 
 /*!
  * @brief Inserts the specified tab at the specified position in the tab
  * view's tabs.
  */
-- (void)insertTab:(nonnull GTKTab *)tab
-		  atIndex:(int)index;
+- (void)insertTab: (nonnull GTKTab *)tab
+	  atIndex: (int)index;
 
-- (void)renameTab:(nonnull GTKTab *)tab
-		 toString:(nonnull OFString *)string;
+- (void)renameTab: (nonnull GTKTab *)tab
+	 toString: (nonnull OFString *)string;
 
 /*!
  * @brief Returns the index of the specified tab in the tab view's tabs.
  */
-- (int)indexOfTab:(nonnull GTKTab *)tab;
+- (int)indexOfTab: (nonnull GTKTab *)tab;
 
 /*!
  * @brief The number of tabs in this tab view.
@@ -87,5 +87,5 @@
 /*!
  * @brief The GTKTab at the specified position in the tab view's tabs.
  */
-- (nullable GTKTab *)tabAtIndex:(int)index;
+- (nullable GTKTab *)tabAtIndex: (int)index;
 @end

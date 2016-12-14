@@ -44,23 +44,23 @@
 
 	case GTKImageScaleAxesIndependently:
 		newPixbuf = [self.image pixbufScaledToWidth: self.frame.width
-											 height: self.frame.height
-								  maintainingAspect: false];
+						     height: self.frame.height
+					  maintainingAspect: false];
 		break;
 
 	case GTKImageScaleProportionatelyDown:
 		if (self.frame.width < self.image.width ||
-			self.frame.height < self.image.height) {
+		    self.frame.height < self.image.height) {
 			newPixbuf = [self.image pixbufScaledToWidth: self.frame.width
-												 height: self.frame.height
-									  maintainingAspect: true];
+							     height: self.frame.height
+						  maintainingAspect: true];
 		}
 		break;
 
 	case GTKImageScaleProportionatelyUpOrDown:
 		newPixbuf = [self.image pixbufScaledToWidth: self.frame.width
-											 height: self.frame.height
-								  maintainingAspect: true];
+						     height: self.frame.height
+					  maintainingAspect: true];
 		break;
 	}
 
@@ -78,7 +78,7 @@
 	return _image;
 }
 
-- (void)setImage:(GTKImage *)image
+- (void)setImage: (GTKImage *)image
 {
 	_image = image;
 	[self draw];

@@ -35,12 +35,12 @@
 		gtk_widget_show(_scrollWindow);
 
 		gtk_container_add(
-			GTK_CONTAINER(_scrollWindow),
-			self.mainWidget);
+		    GTK_CONTAINER(_scrollWindow),
+		    self.mainWidget);
 
 		gtk_container_add(
-			GTK_CONTAINER(self.overlayWidget),
-			_scrollWindow);
+		    GTK_CONTAINER(self.overlayWidget),
+		    _scrollWindow);
 
 	}];
 	return self;
@@ -58,8 +58,8 @@
 		children = gtk_container_get_children(GTK_CONTAINER(self.mainWidget));
 		for(iter = children; iter != NULL; iter = g_list_next(iter)) {
 			gtk_container_remove(
-				GTK_CONTAINER(self.mainWidget),
-				GTK_WIDGET(iter->data));
+			    GTK_CONTAINER(self.mainWidget),
+			    GTK_WIDGET(iter->data));
 		}
 		g_list_free(children);
 
@@ -75,17 +75,17 @@
 			GTKView *view = [self.dataSource viewForRow: i];
 			[_views addObject: view];
 			gtk_list_box_insert (
-				GTK_LIST_BOX(self.mainWidget),
-				view.overlayWidget,
-				i);
+			    GTK_LIST_BOX(self.mainWidget),
+			    view.overlayWidget,
+			    i);
 			if ([self.delegate respondsToSelector: @selector(heightForRow:)]) {
 				GtkListBoxRow *row = gtk_list_box_get_row_at_index(
-					GTK_LIST_BOX(self.mainWidget),
-					i);
+				    GTK_LIST_BOX(self.mainWidget),
+				    i);
 				gtk_widget_set_size_request(
-					GTK_WIDGET(row),
-					-1,
-					[self.delegate heightForRow: i]);
+				    GTK_WIDGET(row),
+				    -1,
+				    [self.delegate heightForRow: i]);
 			}
 		}
 	}];

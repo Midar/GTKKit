@@ -21,7 +21,7 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation GTKOutletConnection
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super init];
 	self.outletKeyPath = [decoder decodeStringForKey: @"GTKKit.coding.outletConnection.outletKeyPath"];
@@ -29,9 +29,11 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-	[encoder encodeString: self.outletKeyPath forKey: @"GTKKit.coding.outletConnection.outletKeyPath"];
-	[encoder encodeString: self.targetKeyPath forKey: @"GTKKit.coding.outletConnection.targetKeyPath"];
+	[encoder encodeString: self.outletKeyPath
+		       forKey: @"GTKKit.coding.outletConnection.outletKeyPath"];
+	[encoder encodeString: self.targetKeyPath
+		       forKey: @"GTKKit.coding.outletConnection.targetKeyPath"];
 }
 @end

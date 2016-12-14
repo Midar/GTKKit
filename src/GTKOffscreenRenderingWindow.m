@@ -26,16 +26,16 @@
 		_offscreenWindow = gtk_offscreen_window_new();
 		g_object_ref_sink(G_OBJECT(_offscreenWindow));
 		g_object_set_data(
-			G_OBJECT(_offscreenWindow),
-			"_GTKKIT_OWNING_VIEW_CONTROLLER_",
-			(__bridge gpointer)(self));
+		    G_OBJECT(_offscreenWindow),
+		    "_GTKKIT_OWNING_VIEW_CONTROLLER_",
+		    (__bridge gpointer)(self));
 		gtk_widget_set_size_request(
-			_offscreenWindow,
-			1,
-			1);
+		    _offscreenWindow,
+		    1,
+		    1);
 		gtk_container_add(
-			GTK_CONTAINER(_offscreenWindow),
-			self.contentView.overlayWidget);
+		    GTK_CONTAINER(_offscreenWindow),
+		    self.contentView.overlayWidget);
 	}];
 	return self;
 }
@@ -48,11 +48,11 @@
 - (GTKImage *)image
 {
 	GdkPixbuf *pixbuf = gtk_offscreen_window_get_pixbuf(
-		GTK_OFFSCREEN_WINDOW(_offscreenWindow));
+	    GTK_OFFSCREEN_WINDOW(_offscreenWindow));
 	return [GTKImage imageWithPixbuf: pixbuf];
 }
 
-- (void)addView:(nonnull GTKView *)subview
+- (void)addView: (nonnull GTKView *)subview
 {
 	[self.contentView addSubview: subview];
 }
@@ -64,17 +64,20 @@
 	frame.y = 0;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_get_size_request(
-			_offscreenWindow,
-			&frame.width,
-			&frame.height);
+		    _offscreenWindow,
+		    &frame.width,
+		    &frame.height);
 	}];
 	return frame;
 }
 
-- (void)setFrame:(GTKRect)frame
+- (void)setFrame: (GTKRect)frame
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_widget_set_size_request(_offscreenWindow, frame.width, frame.height);
+		gtk_widget_set_size_request(
+		    _offscreenWindow,
+		    frame.width,
+		    frame.height);
 	}];
 }
 @end

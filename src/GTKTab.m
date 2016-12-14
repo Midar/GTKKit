@@ -29,14 +29,14 @@
 	self.contentView = [GTKView new];
 
 	g_object_set_data(
-		G_OBJECT(self.contentView.overlayWidget),
-		"_GTKKIT_OWNING_TAB_",
-		(__bridge gpointer)(self));
+	    G_OBJECT(self.contentView.overlayWidget),
+	    "_GTKKIT_OWNING_TAB_",
+	    (__bridge gpointer)(self));
 
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 	self.tag = [decoder decodeIntForKey: @"GTKKit.coding.tab.tag"];
@@ -45,11 +45,14 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-	[encoder encodeInt: self.tag forKey: @"GTKKit.coding.tab.tag"];
-	[encoder encodeObject: self.contentView forKey: @"GTKKit.coding.tab.contentView"];
-	[encoder encodeString: self.label forKey: @"GTKKit.coding.tab.label"];
+	[encoder encodeInt: self.tag
+		    forKey: @"GTKKit.coding.tab.tag"];
+	[encoder encodeObject: self.contentView
+		       forKey: @"GTKKit.coding.tab.contentView"];
+	[encoder encodeString: self.label
+		       forKey: @"GTKKit.coding.tab.label"];
 }
 
 - (OFString *)label
@@ -57,12 +60,12 @@
 	return _label.copy;
 }
 
-- (void)setLabel:(OFString *)label
+- (void)setLabel: (OFString *)label
 {
 	_label = label.copy;
 	[self.tabView renameTab: self
-				   toString: label];
+		       toString: label];
 	[self.notebookView renameTab: self
-						toString: label];
+			    toString: label];
 }
 @end

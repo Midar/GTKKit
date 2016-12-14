@@ -43,8 +43,8 @@ typedef enum GTKLayoutConstraintType {
  */
 @interface GTKLayoutConstraint: OFObject <GTKCoding>
 
-- initWithType:(GTKLayoutConstraintType)type
-		 value:(double)value;
+- initWithType: (GTKLayoutConstraintType)type
+	 value: (double)value;
 
 /*!
  * @brief The type of the constraint, either GTKLayoutConstraintTypeFixed or
@@ -64,8 +64,8 @@ typedef enum GTKLayoutConstraintType {
  * acceptable. If 0% is actually desired, 0 fixed is mathematically identical.
  */
 @property double value;
-+ (nullable instancetype)layoutConstraintWithType:(GTKLayoutConstraintType)type
-											value:(double)value;
++ (nullable instancetype)layoutConstraintWithType: (GTKLayoutConstraintType)type
+					    value: (double)value;
 @end
 
 /*!
@@ -130,10 +130,10 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
- - (void)fixedToTop:(double)top
-			bottom:(double)bottom
-			  left:(double)left
-			 right:(double)right;
+ - (void)fixedToTop: (double)top
+	     bottom: (double)bottom
+	       left: (double)left
+	      right: (double)right;
 
 /*!
  * @brief Set the constraint's top, left and right to fixed, at the
@@ -143,9 +143,9 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param right The value of the right constraint
  */
-- (void)fixedToTop:(double)top
-			  left:(double)left
-			 right:(double)right;
+- (void)fixedToTop: (double)top
+	      left: (double)left
+	     right: (double)right;
 
 /*!
  * @brief Set the constraint's top, bottom, and left to fixed, at the
@@ -155,9 +155,9 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param left The value of the left constraint
  */
-- (void)fixedToTop:(double)top
-			bottom:(double)bottom
-			  left:(double)left;
+- (void)fixedToTop: (double)top
+	    bottom: (double)bottom
+	      left: (double)left;
 
 /*!
  * @brief Set the constraint's top, bottom, and right to fixed, at the
@@ -167,9 +167,9 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param right The value of the right constraint
  */
-- (void)fixedToTop:(double)top
-			bottom:(double)bottom
-			 right:(double)right;
+- (void)fixedToTop: (double)top
+	    bottom: (double)bottom
+	     right: (double)right;
 
 /*!
  * @brief Set the constraint's bottom, left and right to fixed, at the
@@ -179,9 +179,9 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
-- (void)fixedToBottom:(double)bottom
-				 left:(double)left
-				right:(double)right;
+- (void)fixedToBottom: (double)bottom
+		 left: (double)left
+		right: (double)right;
 
 /*!
  * @brief Set the constraint's top and bottom to fixed, at the given values.
@@ -189,8 +189,8 @@ typedef enum GTKLayoutConstraintType {
  * @param top The value of the top constraint
  * @param bottom The value of the bottom constraint
  */
-- (void)fixedToTop:(double)top
-			bottom:(double)bottom;
+- (void)fixedToTop: (double)top
+	    bottom: (double)bottom;
 
 /*!
  * @brief Set the constraint's top and left to fixed, at the given values.
@@ -198,8 +198,8 @@ typedef enum GTKLayoutConstraintType {
  * @param top The value of the top constraint
  * @param left The value of the left constraint
  */
-- (void)fixedToTop:(double)top
-			  left:(double)left;
+- (void)fixedToTop: (double)top
+	      left: (double)left;
 
 /*!
  * @brief Set the constraint's top and right to fixed, at the given values.
@@ -207,8 +207,8 @@ typedef enum GTKLayoutConstraintType {
  * @param top The value of the top constraint
  * @param right The value of the right constraint
  */
-- (void)fixedToTop:(double)top
-			 right:(double)right;
+- (void)fixedToTop: (double)top
+	     right: (double)right;
 
 /*!
  * @brief Set the constraint's bottom and left to fixed, at the given values.
@@ -216,8 +216,8 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param left The value of the left constraint
  */
-- (void)fixedToBottom:(double)bottom
-				 left:(double)left;
+- (void)fixedToBottom: (double)bottom
+		 left: (double)left;
 
 /*!
  * @brief Set the constraint's bottom and right to fixed, at the given values.
@@ -225,8 +225,8 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param right The value of the right constraint
  */
-- (void)fixedToBottom:(double)bottom
-				right:(double)right;
+- (void)fixedToBottom: (double)bottom
+		right: (double)right;
 
 /*!
  * @brief Set the constraint's left and right to fixed, at the given values.
@@ -234,50 +234,50 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
-- (void)fixedToLeft:(double)left
-			  right:(double)right;
+- (void)fixedToLeft: (double)left
+	      right: (double)right;
 
 /*!
 * @brief Set the constraint's top fixed, at the given values.
 *
 * @param top The value of the top constraint
 */
-- (void)fixedToTop:(double)top;
+- (void)fixedToTop: (double)top;
 
 /*!
 * @brief Set the constraint's bottom fixed, at the given values.
 *
 * @param bottom The value of the bottom constraint
 */
-- (void)fixedToBottom:(double)bottom;
+- (void)fixedToBottom: (double)bottom;
 
 /*!
 * @brief Set the constraint's left fixed, at the given values.
 *
 * @param left The value of the left constraint
 */
-- (void)fixedToLeft:(double)left;
+- (void)fixedToLeft: (double)left;
 
 /*!
 * @brief Set the constraint's right fixed, at the given values.
 *
 * @param right The value of the right constraint
 */
-- (void)fixedToRight:(double)right;
+- (void)fixedToRight: (double)right;
 
 /*!
 * @brief Set the constraint's horizontal flexible, at the given values.
 *
 * @param horizontal The value of the right constraint
 */
-- (void)fixedWidth:(double)width;
+- (void)fixedWidth: (double)width;
 
 /*!
 * @brief Set the constraint's vertical flexible, at the given values.
 *
 * @param vertical The value of the right constraint
 */
-- (void)fixedHeight:(double)height;
+- (void)fixedHeight: (double)height;
 
 /*!
  * @brief Set the constraint's top, bottom, left and right to flexible, at the
@@ -288,10 +288,10 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToTop:(double)top
-			   bottom:(double)bottom
-				 left:(double)left
-				right:(double)right;
+- (void)flexibleToTop: (double)top
+	       bottom: (double)bottom
+		 left: (double)left
+		right: (double)right;
 
 /*!
  * @brief Set the constraint's top, left and right to flexible, at the given values.
@@ -300,9 +300,9 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToTop:(double)top
-				 left:(double)left
-				right:(double)right;
+- (void)flexibleToTop: (double)top
+		 left: (double)left
+		right: (double)right;
 
 /*!
  * @brief Set the constraint's top, bottom, and left to flexible, at the
@@ -312,9 +312,9 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param left The value of the left constraint
  */
-- (void)flexibleToTop:(double)top
-			   bottom:(double)bottom
-				 left:(double)left;
+- (void)flexibleToTop: (double)top
+	       bottom: (double)bottom
+		 left: (double)left;
 
 /*!
  * @brief Set the constraint's top, bottom, and right to flexible, at the
@@ -324,9 +324,9 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToTop:(double)top
-			   bottom:(double)bottom
-				right:(double)right;
+- (void)flexibleToTop: (double)top
+	       bottom: (double)bottom
+		right: (double)right;
 
 /*!
  * @brief Set the constraint's bottom, left and right to flexible, at the
@@ -336,9 +336,9 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToBottom:(double)bottom
-					left:(double)left
-				   right:(double)right;
+- (void)flexibleToBottom: (double)bottom
+		    left: (double)left
+		   right: (double)right;
 
 /*!
  * @brief Set the constraint's top and bottom  to flexible, at the
@@ -347,8 +347,8 @@ typedef enum GTKLayoutConstraintType {
  * @param top The value of the top constraint
  * @param bottom The value of the bottom constraint
  */
-- (void)flexibleToTop:(double)top
-			   bottom:(double)bottom;
+- (void)flexibleToTop: (double)top
+	       bottom: (double)bottom;
 
 /*!
  * @brief Set the constraint's top and left and right to flexible, at the
@@ -357,8 +357,8 @@ typedef enum GTKLayoutConstraintType {
  * @param top The value of the top constraint
  * @param left The value of the left constraint
  */
-- (void)flexibleToTop:(double)top
-				 left:(double)left;
+- (void)flexibleToTop: (double)top
+		 left: (double)left;
 
 /*!
  * @brief Set the constraint's top and right to flexible, at the given values.
@@ -366,8 +366,8 @@ typedef enum GTKLayoutConstraintType {
  * @param top The value of the top constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToTop:(double)top
-				right:(double)right;
+- (void)flexibleToTop: (double)top
+		right: (double)right;
 
 /*!
  * @brief Set the constraint's bottom and left to flexible, at the given values.
@@ -375,8 +375,8 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param left The value of the left constraint
  */
-- (void)flexibleToBottom:(double)bottom
-					left:(double)left;
+- (void)flexibleToBottom: (double)bottom
+		    left: (double)left;
 
 /*!
  * @brief Set the constraint's bottom and right to flexible, at the given values.
@@ -384,8 +384,8 @@ typedef enum GTKLayoutConstraintType {
  * @param bottom The value of the bottom constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToBottom:(double)bottom
-				   right:(double)right;
+- (void)flexibleToBottom: (double)bottom
+		   right: (double)right;
 
 /*!
  * @brief Set the constraint's left and right to flexible, at the
@@ -394,49 +394,49 @@ typedef enum GTKLayoutConstraintType {
  * @param left The value of the left constraint
  * @param right The value of the right constraint
  */
-- (void)flexibleToLeft:(double)left
-				 right:(double)right;
+- (void)flexibleToLeft: (double)left
+		 right: (double)right;
 
 /*!
 * @brief Set the constraint's top flexible, at the given values.
 *
 * @param top The value of the top constraint
 */
-- (void)flexibleToTop:(double)top;
+- (void)flexibleToTop: (double)top;
 
 /*!
 * @brief Set the constraint's bottom flexible, at the given values.
 *
 * @param bottom The value of the bottom constraint
 */
-- (void)flexibleToBottom:(double)bottom;
+- (void)flexibleToBottom: (double)bottom;
 
 /*!
 * @brief Set the constraint's left flexible, at the given values.
 *
 * @param left The value of the left constraint
 */
-- (void)flexibleToLeft:(double)left;
+- (void)flexibleToLeft: (double)left;
 
 /*!
 * @brief Set the constraint's right flexible, at the given values.
 *
 * @param right The value of the right constraint
 */
-- (void)flexibleToRight:(double)right;
+- (void)flexibleToRight: (double)right;
 
 /*!
 * @brief Set the constraint's horizontal flexible, at the given values.
 *
 * @param horizontal The value of the right constraint
 */
-- (void)flexibleWidth:(double)width;
+- (void)flexibleWidth: (double)width;
 
 /*!
 * @brief Set the constraint's vertical flexible, at the given values.
 *
 * @param vertical The value of the right constraint
 */
-- (void)flexibleHeight:(double)height;
+- (void)flexibleHeight: (double)height;
 
 @end

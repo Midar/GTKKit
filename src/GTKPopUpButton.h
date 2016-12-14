@@ -38,7 +38,7 @@
 /*!
  * @brief Select the item at the specified index.
  */
-- (void)selectItemAt:(int)index;
+- (void)selectItemAt: (int)index;
 
 /*!
  * @brief The title of the selected item.
@@ -49,13 +49,13 @@
  * @brief Add an item to the button's menu, with the specified label, at the
  * specified index.
  */
-- (void)insertItemWithTitle:(OFString *)string
-						 at:(int)index;
+- (void)insertItemWithTitle: (OFString *)string
+			 at: (int)index;
 
 /*!
  * @brief Removes the item at the specified index.
  */
-- (void)removeItemAt:(int)index;
+- (void)removeItemAt: (int)index;
 
 /*!
  * @brief Remove all the items in the menu.

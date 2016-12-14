@@ -22,7 +22,7 @@
 #import "OFArray+GTKCoding.h"
 
 @implementation OFDictionary (GTKCoding)
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	GTKCoder *keyCoder, *valueCoder;
 	OFArray *keys, *values;
@@ -40,7 +40,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	GTKCoder *keys, *values;
 	keys = [GTKKeyedArchiver archiveRootObject: self.allKeys];

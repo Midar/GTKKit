@@ -24,7 +24,8 @@
 #import "GTKKeyedUnarchiver.h"
 
 static void
-value_changed_handler(GtkScale *scale, GTKSlider *slider)
+value_changed_handler (GtkScale  *scale,
+		       GTKSlider *slider)
 {
 	[GTKApp.dispatch.main async: ^ {
 		[slider sendActionToTarget];
@@ -55,7 +56,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 	self.minValue = [decoder decodeDoubleForKey: @"GTKKit.coding.slider.minValue"];
@@ -80,40 +81,55 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	self.highlightOrigin = [decoder decodeBoolForKey: @"GTKKit.coding.slider.highlightOrigin"];
 	self.numberOfTickMarks = [decoder decodeIntForKey: @"GTKKit.coding.slider.numberOfTickMarks"];
 	self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.slider.orientation"] isEqual: @"horizontal"] ?
-		GTKOrientationHorizontal : GTKOrientationVertical;
+	    GTKOrientationHorizontal : GTKOrientationVertical;
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
-	[encoder encodeDouble: self.minValue forKey: @"GTKKit.coding.slider.minValue"];
-	[encoder encodeDouble: self.maxValue forKey: @"GTKKit.coding.slider.maxValue"];
-	[encoder encodeBool: self.restrictToFillLevel forKey: @"GTKKit.coding.slider.restrictToFillLevel"];
-	[encoder encodeDouble: self.fillLevel forKey: @"GTKKit.coding.slider.fillLevel"];
-	[encoder encodeBool: self.showFillLevel forKey: @"GTKKit.coding.slider.showFillLevel"];
-	[encoder encodeBool: self.isInverted forKey: @"GTKKit.coding.slider.inverted"];
-	[encoder encodeDouble: self.increment forKey: @"GTKKit.coding.slider.increment"];
-	[encoder encodeInt: self.roundDigits forKey: @"GTKKit.coding.slider.roundDigits"];
-	[encoder encodeBool: self.showValue forKey: @"GTKKit.coding.slider.showValue"];
+	[encoder encodeDouble: self.minValue
+		       forKey: @"GTKKit.coding.slider.minValue"];
+	[encoder encodeDouble: self.maxValue
+		       forKey: @"GTKKit.coding.slider.maxValue"];
+	[encoder encodeBool: self.restrictToFillLevel
+		     forKey: @"GTKKit.coding.slider.restrictToFillLevel"];
+	[encoder encodeDouble: self.fillLevel
+		       forKey: @"GTKKit.coding.slider.fillLevel"];
+	[encoder encodeBool: self.showFillLevel
+		     forKey: @"GTKKit.coding.slider.showFillLevel"];
+	[encoder encodeBool: self.isInverted
+		     forKey: @"GTKKit.coding.slider.inverted"];
+	[encoder encodeDouble: self.increment
+		       forKey: @"GTKKit.coding.slider.increment"];
+	[encoder encodeInt: self.roundDigits
+		    forKey: @"GTKKit.coding.slider.roundDigits"];
+	[encoder encodeBool: self.showValue
+		     forKey: @"GTKKit.coding.slider.showValue"];
 	switch (self.valuePosition) {
 	case GTKPositionTypeTop:
-		[encoder encodeString: @"top" forKey: @"valuePosition"];
+		[encoder encodeString: @"top"
+			       forKey: @"valuePosition"];
 		break;
 	case GTKPositionTypeBottom:
-		[encoder encodeString: @"bottom" forKey: @"valuePosition"];
+		[encoder encodeString: @"bottom"
+			       forKey: @"valuePosition"];
 		break;
 	case GTKPositionTypeLeft:
-		[encoder encodeString: @"left" forKey: @"valuePosition"];
+		[encoder encodeString: @"left"
+			       forKey: @"valuePosition"];
 		break;
 	case GTKPositionTypeRight:
-		[encoder encodeString: @"right" forKey: @"valuePosition"];
+		[encoder encodeString: @"right"
+			       forKey: @"valuePosition"];
 		break;
 	}
-	[encoder encodeBool: self.highlightOrigin forKey: @"GTKKit.coding.slider.highlightOrigin"];
-	[encoder encodeInt: self.numberOfTickMarks forKey: @"GTKKit.coding.slider.numberOfTickMarks"];
+	[encoder encodeBool: self.highlightOrigin
+		     forKey: @"GTKKit.coding.slider.highlightOrigin"];
+	[encoder encodeInt: self.numberOfTickMarks
+		     forKey: @"GTKKit.coding.slider.numberOfTickMarks"];
 	[encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-				   forKey: @"GTKKit.coding.slider.orientation"];
+		       forKey: @"GTKKit.coding.slider.orientation"];
 }
 
 - (void)createMainWidget
@@ -122,10 +138,10 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 		self.mainWidget = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
 		_orientation = GTKOrientationHorizontal;
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"value-changed",
-			G_CALLBACK(value_changed_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "value-changed",
+		    G_CALLBACK(value_changed_handler),
+		    (__bridge gpointer)(self));
 		gtk_range_set_flippable(GTK_RANGE(self.mainWidget), true);
 	}];
 }
@@ -135,7 +151,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _orientation;
 }
 
-- (void)setOrientation:(GTKOrientation)orientation
+- (void)setOrientation: (GTKOrientation)orientation
 {
 	if (orientation == _orientation) {
 		return;
@@ -164,10 +180,10 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 		gtk_range_set_range(GTK_RANGE(self.mainWidget), _min, _max);
 
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"value-changed",
-			G_CALLBACK(value_changed_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "value-changed",
+		    G_CALLBACK(value_changed_handler),
+		    (__bridge gpointer)(self));
 
 		gtk_container_add(GTK_CONTAINER(self.overlayWidget), self.mainWidget);
 		gtk_widget_show(self.mainWidget);
@@ -190,7 +206,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _min;
 }
 
-- (void)setMinValue:(double)min
+- (void)setMinValue: (double)min
 {
 	_min = min;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -203,7 +219,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _max;
 }
 
-- (void)setMaxValue:(double)max
+- (void)setMaxValue: (double)max
 {
 	_max = max;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -220,7 +236,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return doubleValue;
 }
 
-- (void)setDoubleValue:(double)doubleValue
+- (void)setDoubleValue: (double)doubleValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_range_set_value(GTK_RANGE(self.mainWidget), doubleValue);
@@ -236,7 +252,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return (int)(ceil(doubleValue));
 }
 
-- (void)setIntValue:(int)intValue
+- (void)setIntValue: (int)intValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_range_set_value(GTK_RANGE(self.mainWidget), (double)(intValue));
@@ -252,7 +268,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return (float)(doubleValue);
 }
 
-- (void)setFloatValue:(float)floatValue
+- (void)setFloatValue: (float)floatValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_range_set_value(GTK_RANGE(self.mainWidget), (double)(floatValue));
@@ -264,7 +280,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _restrict;
 }
 
-- (void)setRestrictToFillLevel:(bool)restrictToFillLevel
+- (void)setRestrictToFillLevel: (bool)restrictToFillLevel
 {
 	_restrict = restrictToFillLevel;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -277,7 +293,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _fillLevel;
 }
 
-- (void)setFillLevel:(double)fillLevel
+- (void)setFillLevel: (double)fillLevel
 {
 	_fillLevel = fillLevel;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -290,7 +306,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _showFillLevel;
 }
 
-- (void)setShowFillLevel:(bool)showFillLevel
+- (void)setShowFillLevel: (bool)showFillLevel
 {
 	_showFillLevel = showFillLevel;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -303,7 +319,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _inverted;
 }
 
-- (void)setInverted:(bool)inverted
+- (void)setInverted: (bool)inverted
 {
 	_inverted = inverted;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -316,7 +332,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _increment;
 }
 
-- (void)setIncrement:(double)increment
+- (void)setIncrement: (double)increment
 {
 	_increment = increment;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -329,7 +345,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _roundDigits;
 }
 
-- (void)setRoundDigits:(int)roundDigits
+- (void)setRoundDigits: (int)roundDigits
 {
 	_roundDigits = roundDigits;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -342,7 +358,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _showValue;
 }
 
-- (void)setShowValue:(bool)showValue
+- (void)setShowValue: (bool)showValue
 {
 	_showValue = showValue;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -355,7 +371,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _valuePosition;
 }
 
-- (void)setValuePosition:(GTKPositionType)valuePosition
+- (void)setValuePosition: (GTKPositionType)valuePosition
 {
 	_valuePosition = valuePosition;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -368,7 +384,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _highlightOrigin;
 }
 
-- (void)setHighlightOrigin:(bool)highlightOrigin
+- (void)setHighlightOrigin: (bool)highlightOrigin
 {
 	_highlightOrigin = highlightOrigin;
 	[GTKApp.dispatch.gtk sync: ^{
@@ -381,7 +397,7 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 	return _numberOfTickMarks;
 }
 
-- (void)setNumberOfTickMarks:(unsigned int)numberOfTickMarks
+- (void)setNumberOfTickMarks: (unsigned int)numberOfTickMarks
 {
 	_numberOfTickMarks = numberOfTickMarks;
 	int i = 0;
@@ -393,10 +409,10 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 		[GTKApp.dispatch.gtk sync: ^{
 			double pos = (_max - _min) / 2;
 			gtk_scale_add_mark(
-				GTK_SCALE(self.mainWidget),
-				pos,
-				GTK_POS_TOP,
-				NULL);
+			    GTK_SCALE(self.mainWidget),
+			    pos,
+			    GTK_POS_TOP,
+			    NULL);
 		}];
 		return;
 	}
@@ -404,10 +420,10 @@ value_changed_handler(GtkScale *scale, GTKSlider *slider)
 		[GTKApp.dispatch.gtk sync: ^{
 			double pos = i * ((_max - _min) / (_numberOfTickMarks - 1));
 			gtk_scale_add_mark(
-				GTK_SCALE(self.mainWidget),
-				pos,
-				GTK_POS_TOP,
-				NULL);
+			    GTK_SCALE(self.mainWidget),
+			    pos,
+			    GTK_POS_TOP,
+			    NULL);
 		}];
 		i++;
 	}

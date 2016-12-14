@@ -24,7 +24,7 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation OFArray (GTKCoding)
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	OFMutableArray *array = [OFMutableArray new];
 
@@ -45,7 +45,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	unsigned long i;
 
@@ -59,7 +59,7 @@
 		}
 
 		[encoder encodeObject: object
-					   forKey: key];
+			       forKey: key];
 	}
 }
 @end

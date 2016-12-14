@@ -27,13 +27,13 @@
 @end
 
 static gboolean
-button_press_event_handler(GtkWidget *widget,
-						   GdkEvent *event,
-						   GTKSegmentedControl *control)
+button_press_event_handler (GtkWidget           *widget,
+			    GdkEvent            *event,
+			    GTKSegmentedControl *control)
 {
 	control.selectedSegment = *(int*)(g_object_get_data(
-		G_OBJECT(widget),
-		"_GTKKIT_SEGMENTED_CONTROL_INDEX_"));
+	    G_OBJECT(widget),
+	    "_GTKKIT_SEGMENTED_CONTROL_INDEX_"));
 	[GTKApp.dispatch.main async: ^ {
 		GTKEvent *evt = [GTKEvent new];
 		evt.type = GTKEventTypeMouseClicked;
@@ -161,11 +161,11 @@ button_press_event_handler(GtkWidget *widget,
 		gtk_grid_set_column_homogeneous(GTK_GRID(self.mainWidget), false);
 		gtk_grid_set_column_spacing(GTK_GRID(self.mainWidget), 0);
 		gtk_orientable_set_orientation(
-			GTK_ORIENTABLE(self.mainWidget),
-			GTK_ORIENTATION_HORIZONTAL);
+		    GTK_ORIENTABLE(self.mainWidget),
+		    GTK_ORIENTATION_HORIZONTAL);
 		gtk_container_add(
-			GTK_CONTAINER(self.overlayWidget),
-			self.mainWidget);
+		    GTK_CONTAINER(self.overlayWidget),
+		    self.mainWidget);
 		gtk_widget_show(self.mainWidget);
 		GtkStyleContext *ctx = gtk_widget_get_style_context(self.mainWidget);
 		gtk_style_context_add_class(ctx, "linked");
@@ -177,18 +177,18 @@ button_press_event_handler(GtkWidget *widget,
 			_buttonIndex[i] = i;
 			g_object_ref_sink(G_OBJECT(_buttons[i]));
 			gtk_container_add(
-				GTK_CONTAINER(self.mainWidget),
-				_buttons[i]);
+			    GTK_CONTAINER(self.mainWidget),
+			    _buttons[i]);
 			gtk_widget_hide(_buttons[i]);
 			g_signal_connect(
-				G_OBJECT(_buttons[i]),
-				"button-press-event",
-				G_CALLBACK(button_press_event_handler),
-				(__bridge gpointer)(self));
+			    G_OBJECT(_buttons[i]),
+			    "button-press-event",
+			    G_CALLBACK(button_press_event_handler),
+			    (__bridge gpointer)(self));
 			g_object_set_data(
-				G_OBJECT(_buttons[i]),
-				"_GTKKIT_SEGMENTED_CONTROL_INDEX_",
-				&_buttonIndex[i]);
+			    G_OBJECT(_buttons[i]),
+			    "_GTKKIT_SEGMENTED_CONTROL_INDEX_",
+			    &_buttonIndex[i]);
 			i++;
 		}
 	}];
@@ -197,7 +197,7 @@ button_press_event_handler(GtkWidget *widget,
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 
@@ -214,30 +214,36 @@ button_press_event_handler(GtkWidget *widget,
 
 	OFMutableArray *labels =  [decoder decodeObjectForKey: @"GTKKit.coding.segmentedControl.labelForSegment"];
 	for (int i = 0; i < 32; i++) {
-		[self setLabel: [labels objectAtIndex: i] forSegment: i];
+		[self setLabel: [labels objectAtIndex: i]
+		    forSegment: i];
 	}
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
 
 	switch (self.trackingMode) {
 	case GTKSegmentSwitchTrackingMomentary:
-		[encoder encodeString: @"momentary" forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
+		[encoder encodeString: @"momentary"
+			       forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
 		break;
 	case GTKSegmentSwitchTrackingSelectAny:
-		[encoder encodeString: @"selectAny" forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
+		[encoder encodeString: @"selectAny"
+			       forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
 		break;
 	case GTKSegmentSwitchTrackingSelectOne:
-		[encoder encodeString: @"selectOne" forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
+		[encoder encodeString: @"selectOne"
+			       forKey: @"GTKKit.coding.segmentedControl.trackingMode"];
 		break;
 	}
 
-	[encoder encodeInt: self.segments forKey: @"GTKKit.coding.segmentedControl.segments"];
+	[encoder encodeInt: self.segments
+		    forKey: @"GTKKit.coding.segmentedControl.segments"];
 
-	[encoder encodeObject: _labelForSegment forKey: @"GTKKit.coding.segmentedControl.labelForSegment"];
+	[encoder encodeObject: _labelForSegment
+		       forKey: @"GTKKit.coding.segmentedControl.labelForSegment"];
 }
 
 - (void)dealloc
@@ -274,7 +280,7 @@ button_press_event_handler(GtkWidget *widget,
 	return _segments;
 }
 
-- (void)setSegments:(int)segmentCount
+- (void)setSegments: (int)segmentCount
 {
 	if (segmentCount > 32) {
 		segmentCount = 32;
@@ -283,7 +289,7 @@ button_press_event_handler(GtkWidget *widget,
 	[self update];
 }
 
-- (void)mouseDown:(nonnull GTKEvent*)event
+- (void)mouseDown: (nonnull GTKEvent*)event
 {
 	[GTKApp.dispatch.main sync: ^{
 		[self sendActionToTarget];
@@ -298,7 +304,8 @@ button_press_event_handler(GtkWidget *widget,
 			int i = 0;
 			while (i <= 31) {
 				if (i != self.selectedSegment) {
-					[self setState: GTKOffState forSegment: i];
+					[self setState: GTKOffState
+					    forSegment: i];
 				}
 				i++;
 			}
@@ -306,27 +313,28 @@ button_press_event_handler(GtkWidget *widget,
 	}];
 }
 
-- (void)setLabel:(OFString *)label forSegment:(int)segment
+- (void)setLabel: (OFString *)label
+      forSegment: (int)segment
 {
 	if (segment >= 32) {
 		segment = 31;
 	}
 	if (nil == label) {
 		[_labelForSegment replaceObjectAtIndex: segment
-									  withObject: [OFNull null]];
+					    withObject: [OFNull null]];
 	   gtk_button_set_label(
 		   GTK_BUTTON(_buttons[segment]),
 		   NULL);
 	} else {
 		[_labelForSegment replaceObjectAtIndex: segment
-									   withObject: label];
+					    withObject: label];
 		gtk_button_set_label(
-			GTK_BUTTON(_buttons[segment]),
-			label.UTF8String);
+		    GTK_BUTTON(_buttons[segment]),
+		    label.UTF8String);
 	}
 }
 
-- (OFString *)labelForSegment:(int)segment
+- (OFString *)labelForSegment: (int)segment
 {
 	if (segment >= 32) {
 		segment = 31;
@@ -339,7 +347,8 @@ button_press_event_handler(GtkWidget *widget,
 	}
 }
 
-- (void)setImage:(GTKImage *)image forSegment:(int)segment
+- (void)setImage: (GTKImage *)image
+      forSegment: (int)segment
 {
 	if (segment >= 32) {
 		segment = 31;
@@ -348,7 +357,7 @@ button_press_event_handler(GtkWidget *widget,
 		GtkWidget *_imageWidget;
 		if (nil == image) {
 			[_imageForSegment replaceObjectAtIndex: segment
-										withObject: [OFNull null]];
+						    withObject: [OFNull null]];
 			_imageWidget = gtk_button_get_image(GTK_BUTTON(_buttons[segment]));
 			if (_imageWidget != NULL) {
 				gtk_container_remove(GTK_CONTAINER(_buttons[segment]), _imageWidget);
@@ -367,7 +376,7 @@ button_press_event_handler(GtkWidget *widget,
 	}];
 }
 
-- (GTKImage *)imageForSegment:(int)segment
+- (GTKImage *)imageForSegment: (int)segment
 {
 	if (segment >= 32) {
 		segment = 31;
@@ -380,23 +389,24 @@ button_press_event_handler(GtkWidget *widget,
 	}
 }
 
-- (void)setPopOver:(GTKPopover *)popOver forSegment:(int)segment
+- (void)setPopOver: (GTKPopover *)popOver
+	forSegment: (int)segment
 {
 	if (segment >= 32) {
 		segment = 31;
 	}
 	if (nil == popOver) {
 		[_popOverForSegment replaceObjectAtIndex: segment
-									  withObject: [OFNull null]];
+					      withObject: [OFNull null]];
 	   popOver.relativeWidget = nil;
 	} else {
 		[_popOverForSegment replaceObjectAtIndex: segment
-										 withObject: popOver];
+					      withObject: popOver];
 		popOver.relativeWidget = _buttons[segment];
 	}
 }
 
-- (GTKPopover *)popOverForSegment:(int)segment
+- (GTKPopover *)popOverForSegment: (int)segment
 {
 	if (segment >= 32) {
 		segment = 31;
@@ -414,7 +424,7 @@ button_press_event_handler(GtkWidget *widget,
 	return _momentary;
 }
 
-- (void)setMomentary:(bool)momentary
+- (void)setMomentary: (bool)momentary
 {
 	if (_momentary == momentary) {
 		return;
@@ -445,25 +455,25 @@ button_press_event_handler(GtkWidget *widget,
 		while (i <= 31) {
 			g_object_ref_sink(G_OBJECT(_buttons[i]));
 			gtk_container_add(
-				GTK_CONTAINER(self.mainWidget),
-				_buttons[i]);
+			    GTK_CONTAINER(self.mainWidget),
+			    _buttons[i]);
 			gtk_widget_hide(_buttons[i]);
 			g_signal_connect(
-				G_OBJECT(_buttons[i]),
-				"button-press-event",
-				G_CALLBACK(button_press_event_handler),
-				(__bridge gpointer)(self));
+			    G_OBJECT(_buttons[i]),
+			    "button-press-event",
+			    G_CALLBACK(button_press_event_handler),
+			    (__bridge gpointer)(self));
 			g_object_set_data(
-				G_OBJECT(_buttons[i]),
-				"_GTKKIT_SEGMENTED_CONTROL_INDEX_",
-				&_buttonIndex[i]);
+			    G_OBJECT(_buttons[i]),
+			    "_GTKKIT_SEGMENTED_CONTROL_INDEX_",
+			    &_buttonIndex[i]);
 			i++;
 		}
 	}];
 	[self update];
 }
 
-- (bool)stateForSegment:(int)segment
+- (bool)stateForSegment: (int)segment
 {
 	if (self.isMomentary) {
 		return GTKOffState;
@@ -475,7 +485,8 @@ button_press_event_handler(GtkWidget *widget,
 	return state;
 }
 
-- (void)setState:(bool)state forSegment:(int)segment
+- (void)setState: (bool)state
+      forSegment: (int)segment
 {
 	if (self.isMomentary) {
 		return;
@@ -490,7 +501,7 @@ button_press_event_handler(GtkWidget *widget,
 	return _trackingMode;
 }
 
-- (void)setTrackingMode:(GTKSegmentSwitchTracking)trackingMode
+- (void)setTrackingMode: (GTKSegmentSwitchTracking)trackingMode
 {
 	if (_trackingMode == trackingMode) {
 		return;

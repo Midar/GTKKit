@@ -31,11 +31,11 @@
 		g_object_ref_sink(G_OBJECT(_switcher));
 		gtk_widget_show(_switcher);
 		gtk_stack_switcher_set_stack(
-			GTK_STACK_SWITCHER(_switcher),
-			GTK_STACK(self.contentView.stack));
+		    GTK_STACK_SWITCHER(_switcher),
+		    GTK_STACK(self.contentView.stack));
 		gtk_header_bar_set_custom_title(
-			GTK_HEADER_BAR(_headerBar),
-			_switcher);
+		    GTK_HEADER_BAR(_headerBar),
+		    _switcher);
 	}];
 
 	return self;
@@ -56,7 +56,7 @@
 	return (GTKTabView *)(_contentView);
 }
 
-- (void)setContentView:(nullable GTKTabView *)view
+- (void)setContentView: (nullable GTKTabView *)view
 {
 	if (_contentView == NULL) {
 		_contentView = (GTKView *)(view);
@@ -68,7 +68,7 @@
 	return _titleView;
 }
 
-- (void)setTitleView:(nullable GTKView *)view
+- (void)setTitleView: (nullable GTKView *)view
 {
 	// Do nothing.
 }

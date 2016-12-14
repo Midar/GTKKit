@@ -29,17 +29,17 @@
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 	self.mode = [[decoder decodeStringForKey: @"GTKKit.coding.levelIndicator.mode"] isEqual: @"continuous"] ?
-		GTKLevelModeContinuous : GTKLevelModeDiscrete;
+	    GTKLevelModeContinuous : GTKLevelModeDiscrete;
 	self.minValue = [decoder decodeDoubleForKey: @"GTKKit.coding.levelIndicator.minValue"];
 	self.maxValue = [decoder decodeDoubleForKey: @"GTKKit.coding.levelIndicator.maxValue"];
 	self.doubleValue = [decoder decodeDoubleForKey: @"GTKKit.coding.levelIndicator.doubleValue"];
 	self.inverted = [decoder decodeBoolForKey: @"GTKKit.coding.levelIndicator.inverted"];
 	self.orientation = [[decoder decodeStringForKey: @"GTKKit.coding.levelIndicator.orientation"] isEqual: @"horizontal"] ?
-		GTKOrientationHorizontal : GTKOrientationVertical;
+	    GTKOrientationHorizontal : GTKOrientationVertical;
 	return self;
 }
 
@@ -47,13 +47,17 @@
 {
 	[super encodeWithCoder: encoder];
 	[encoder encodeString: self.mode == GTKLevelModeContinuous ? @"continuous" : @"discrete"
-				   forKey: @"GTKKit.coding.levelIndicator.mode"];
-	[encoder encodeDouble: self.minValue forKey: @"GTKKit.coding.levelIndicator.minValue"];
-	[encoder encodeDouble: self.maxValue forKey: @"GTKKit.coding.levelIndicator.maxValue"];
-	[encoder encodeDouble: self.doubleValue forKey: @"GTKKit.coding.levelIndicator.doubleValue"];
-	[encoder encodeBool: self.isInverted forKey: @"GTKKit.coding.levelIndicator.inverted"];
+		       forKey: @"GTKKit.coding.levelIndicator.mode"];
+	[encoder encodeDouble: self.minValue
+		       forKey: @"GTKKit.coding.levelIndicator.minValue"];
+	[encoder encodeDouble: self.maxValue
+		       forKey: @"GTKKit.coding.levelIndicator.maxValue"];
+	[encoder encodeDouble: self.doubleValue
+		       forKey: @"GTKKit.coding.levelIndicator.doubleValue"];
+	[encoder encodeBool: self.isInverted
+		     forKey: @"GTKKit.coding.levelIndicator.inverted"];
 	[encoder encodeString: self.orientation == GTKOrientationHorizontal ? @"horizontal" : @"vertical"
-				   forKey: @"GTKKit.coding.levelIndicator.orientation"];
+		       forKey: @"GTKKit.coding.levelIndicator.orientation"];
 }
 
 - (void)createMainWidget
@@ -68,11 +72,13 @@
 	return _minValue;
 }
 
-- (void)setMinValue:(double)minValue
+- (void)setMinValue: (double)minValue
 {
 	_minValue = minValue;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_level_bar_set_min_value(GTK_LEVEL_BAR(self.mainWidget), _minValue);
+		gtk_level_bar_set_min_value(
+		    GTK_LEVEL_BAR(self.mainWidget),
+		    _minValue);
 	}];
 }
 
@@ -81,11 +87,13 @@
 	return _maxValue;
 }
 
-- (void)setMaxValue:(double)maxValue
+- (void)setMaxValue: (double)maxValue
 {
 	_maxValue = maxValue;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_level_bar_set_max_value(GTK_LEVEL_BAR(self.mainWidget), _maxValue);
+		gtk_level_bar_set_max_value(
+		    GTK_LEVEL_BAR(self.mainWidget),
+		    _maxValue);
 	}];
 }
 
@@ -94,11 +102,13 @@
 	return _mode;
 }
 
-- (void)setMode:(GTKLevelMode)mode
+- (void)setMode: (GTKLevelMode)mode
 {
 	_mode = mode;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_level_bar_set_mode(GTK_LEVEL_BAR(self.mainWidget), (GtkLevelBarMode)(mode));
+		gtk_level_bar_set_mode(
+		    GTK_LEVEL_BAR(self.mainWidget),
+		    (GtkLevelBarMode)(mode));
 	}];
 }
 
@@ -111,10 +121,12 @@
 	return doubleValue;
 }
 
-- (void)setDoubleValue:(double)doubleValue
+- (void)setDoubleValue: (double)doubleValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_level_bar_set_value(GTK_LEVEL_BAR(self.mainWidget), doubleValue);
+		gtk_level_bar_set_value(
+		    GTK_LEVEL_BAR(self.mainWidget),
+		    doubleValue);
 	}];
 }
 
@@ -123,7 +135,7 @@
 	return (float)(self.doubleValue);
 }
 
-- (void)setFloatValue:(float)floatValue
+- (void)setFloatValue: (float)floatValue
 {
 	self.doubleValue = (double)(floatValue);
 }
@@ -133,7 +145,7 @@
 	return (int)(ceil(self.doubleValue));
 }
 
-- (void)setIntValue:(int)intValue
+- (void)setIntValue: (int)intValue
 {
 	self.doubleValue = (double)(intValue);
 }
@@ -143,11 +155,13 @@
 	return _inverted;
 }
 
-- (void)setInverted:(bool)inverted
+- (void)setInverted: (bool)inverted
 {
 	_inverted = inverted;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_level_bar_set_inverted(GTK_LEVEL_BAR(self.mainWidget), inverted);
+		gtk_level_bar_set_inverted(
+		    GTK_LEVEL_BAR(self.mainWidget),
+		    _inverted);
 	}];
 }
 
@@ -156,13 +170,13 @@
 	return _orientation;
 }
 
-- (void)setOrientation:(GTKOrientation)orientation
+- (void)setOrientation: (GTKOrientation)orientation
 {
 	_orientation = orientation;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_orientable_set_orientation(
-			GTK_ORIENTABLE(self.mainWidget),
-			(GtkOrientation)(orientation));
+		    GTK_ORIENTABLE(self.mainWidget),
+		    (GtkOrientation)(orientation));
 	}];
 }
 @end

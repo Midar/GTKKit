@@ -21,7 +21,8 @@
 #import "GTKKeyedUnarchiver.h"
 
 static void
-entry_activated_handler(GtkEntry *entry, GTKTextField *field)
+entry_activated_handler (GtkEntry     *entry,
+			 GTKTextField *field)
 {
 	[GTKApp.dispatch.main async: ^ {
 		[field sendActionToTarget];
@@ -32,7 +33,8 @@ entry_activated_handler(GtkEntry *entry, GTKTextField *field)
 }
 
 static void
-entry_insert_at_cursor_handler(GtkEntry *entry, GTKTextField *field)
+entry_insert_at_cursor_handler (GtkEntry     *entry,
+				GTKTextField *field)
 {
 	if (field.isContinuous) {
 		[GTKApp.dispatch.main async: ^ {
@@ -45,7 +47,9 @@ entry_insert_at_cursor_handler(GtkEntry *entry, GTKTextField *field)
 }
 
 static gboolean
-text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField *field)
+text_view_focus_out_handler (GtkTextView  *textView,
+			     GdkEvent     *event,
+			     GTKTextField *field)
 {
 	[GTKApp.dispatch.main async: ^ {
 		[field sendActionToTarget];
@@ -63,38 +67,37 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	[GTKApp.dispatch.gtk sync: ^{
 		self.mainWidget = gtk_grid_new();
 		gtk_orientable_set_orientation(
-			GTK_ORIENTABLE(self.mainWidget),
-			GTK_ORIENTATION_VERTICAL);
+		    GTK_ORIENTABLE(self.mainWidget),
+		    GTK_ORIENTATION_VERTICAL);
 
 		_labelWidget = gtk_label_new(NULL);
 		g_object_ref_sink(_labelWidget);
 		gtk_widget_hide(_labelWidget);
 		gtk_container_add(
-			GTK_CONTAINER(self.mainWidget),
-			_labelWidget);
+		    GTK_CONTAINER(self.mainWidget),
+		    _labelWidget);
 		gtk_widget_set_hexpand(_labelWidget, true);
 		gtk_widget_set_vexpand(_labelWidget, true);
-
 
 		_entryWidget = gtk_entry_new();
 		g_object_ref_sink(_entryWidget);
 		gtk_widget_hide(_entryWidget);
 		gtk_container_add(
-			GTK_CONTAINER(self.mainWidget),
-			_entryWidget);
+		    GTK_CONTAINER(self.mainWidget),
+		    _entryWidget);
 		gtk_widget_set_hexpand(_entryWidget, true);
 		gtk_widget_set_vexpand(_entryWidget, true);
 
 		g_signal_connect(
-			G_OBJECT(_entryWidget),
-			"activate",
-			G_CALLBACK(entry_activated_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_entryWidget),
+		    "activate",
+		    G_CALLBACK(entry_activated_handler),
+		    (__bridge gpointer)(self));
 		g_signal_connect(
-			G_OBJECT(_entryWidget),
-			"insert-at-cursor",
-			G_CALLBACK(entry_insert_at_cursor_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_entryWidget),
+		    "insert-at-cursor",
+		    G_CALLBACK(entry_insert_at_cursor_handler),
+		    (__bridge gpointer)(self));
 
 		_scrollWindow = gtk_scrolled_window_new(NULL, NULL);
 		g_object_ref_sink(_scrollWindow);
@@ -111,17 +114,17 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 		gtk_widget_set_vexpand(_textViewWidget, true);
 
 		gtk_container_add(
-			GTK_CONTAINER(_scrollWindow),
-			_textViewWidget);
+		    GTK_CONTAINER(_scrollWindow),
+		    _textViewWidget);
 		gtk_container_add(
-			GTK_CONTAINER(self.mainWidget),
-			_scrollWindow);
+		    GTK_CONTAINER(self.mainWidget),
+		    _scrollWindow);
 
 		g_signal_connect(
-			G_OBJECT(_textViewWidget),
-			"focus-out-event",
-			G_CALLBACK(text_view_focus_out_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_textViewWidget),
+		    "focus-out-event",
+		    G_CALLBACK(text_view_focus_out_handler),
+		    (__bridge gpointer)(self));
 
 	}];
 }
@@ -145,7 +148,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	g_object_unref(_labelWidget);
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [super initWithCoder: decoder];
 	self.editable = [decoder decodeBoolForKey: @"GTKKit.coding.textField.editable"];
@@ -166,28 +169,37 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[super encodeWithCoder: encoder];
-	[encoder encodeBool: self.isEditable forKey: @"GTKKit.coding.textField.editable"];
-	[encoder encodeBool: self.isContinuous forKey: @"GTKKit.coding.textField.continuous"];
-	[encoder encodeBool: self.isSelectable forKey: @"GTKKit.coding.textField.selectable"];
+	[encoder encodeBool: self.isEditable
+		     forKey: @"GTKKit.coding.textField.editable"];
+	[encoder encodeBool: self.isContinuous
+		     forKey: @"GTKKit.coding.textField.continuous"];
+	[encoder encodeBool: self.isSelectable
+		     forKey: @"GTKKit.coding.textField.selectable"];
 	switch (self.justify) {
 	case GTKJustificationLeft:
-		[encoder encodeString: @"left" forKey: @"GTKKit.coding.textField.justify"];
+		[encoder encodeString: @"left"
+			       forKey: @"GTKKit.coding.textField.justify"];
 		break;
 	case GTKJustificationCenter:
-		[encoder encodeString: @"center" forKey: @"GTKKit.coding.textField.justify"];
+		[encoder encodeString: @"center"
+			       forKey: @"GTKKit.coding.textField.justify"];
 		break;
 	case GTKJustificationRight:
-		[encoder encodeString: @"right" forKey: @"GTKKit.coding.textField.justify"];
+		[encoder encodeString: @"right"
+			       forKey: @"GTKKit.coding.textField.justify"];
 		break;
 	case GTKJustificationFill:
-		[encoder encodeString: @"fill" forKey: @"GTKKit.coding.textField.justify"];
+		[encoder encodeString: @"fill"
+			       forKey: @"GTKKit.coding.textField.justify"];
 		break;
 	}
-	[encoder encodeBool: self.isMultiline forKey: @"GTKKit.coding.textField.multiline"];
-	[encoder encodeString: self.stringValue forKey: @"GTKKit.coding.textField.stringValue"];
+	[encoder encodeBool: self.isMultiline
+		     forKey: @"GTKKit.coding.textField.multiline"];
+	[encoder encodeString: self.stringValue
+		       forKey: @"GTKKit.coding.textField.stringValue"];
 }
 
 - (bool)isEditable
@@ -195,7 +207,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	return _editable;
 }
 
-- (void)setEditable:(bool)editable
+- (void)setEditable: (bool)editable
 {
 	_editable = editable;
 	self.stringValue = self.stringValue;
@@ -229,7 +241,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	return stringValue;
 }
 
-- (void)setStringValue:(OFString *)stringValue
+- (void)setStringValue: (OFString *)stringValue
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		GtkTextBuffer *buf = gtk_text_view_get_buffer((GTK_TEXT_VIEW(_textViewWidget)));
@@ -244,7 +256,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	return _selectable;
 }
 
-- (void)setSelectable:(bool)selectable
+- (void)setSelectable: (bool)selectable
 {
 	_selectable = selectable;
 	gtk_label_set_selectable(GTK_LABEL(_labelWidget), selectable);
@@ -270,10 +282,12 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	return _justify;
 }
 
-- (void)setJustify:(GTKJustification)justify
+- (void)setJustify: (GTKJustification)justify
 {
 	_justify = justify;
-	gtk_label_set_justify(GTK_LABEL(_labelWidget), (GtkJustification)(_justify));
+	gtk_label_set_justify(
+	    GTK_LABEL(_labelWidget),
+	    (GtkJustification)(_justify));
 }
 
 - (bool)isMultiline
@@ -281,7 +295,7 @@ text_view_focus_out_handler(GtkTextView *textView, GdkEvent *event, GTKTextField
 	return _multiline;
 }
 
-- (void)setMultiline:(bool)multiline
+- (void)setMultiline: (bool)multiline
 {
 	_multiline = multiline;
 	self.stringValue = self.stringValue;

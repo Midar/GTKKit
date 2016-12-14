@@ -27,18 +27,18 @@
  */
 @interface GTKWindow: GTKResponder <GTKCoding, OFCopying>
 {
-	__block GtkWidget *_window;
-	__block GtkWidget *_headerBar;
-	__block GtkWidget *_headerBarRightSeparator;
-	__block GtkWidget *_headerBarLeftSeparator;
-	__block GtkWidget *_closeButton;
-	__block GtkWidget *_minimizeButton;
-	__block GtkWidget *_maximizeButton;
-	__block GtkWidget *_menuButton;
-	__block GTKView   *_titleView;
+	__block GtkWidget                          *_window;
+	__block GtkWidget                          *_headerBar;
+	__block GtkWidget                          *_headerBarRightSeparator;
+	__block GtkWidget                          *_headerBarLeftSeparator;
+	__block GtkWidget                          *_closeButton;
+	__block GtkWidget                          *_minimizeButton;
+	__block GtkWidget                          *_maximizeButton;
+	__block GtkWidget                          *_menuButton;
+	__block GTKView                            *_titleView;
 	__block OFMutableArray<__kindof GTKView *> *_headerBarStartViews;
 	__block OFMutableArray<__kindof GTKView *> *_headerBarEndViews;
-	__block GTKView *_contentView;
+	__block GTKView                            *_contentView;
 }
 
 /*!
@@ -49,7 +49,7 @@
 /*!
  * @brief The GTKView that holds all this window's subviews.
  */
-- (void)setContentView:(nullable GTKView *)view;
+- (void)setContentView: (nullable GTKView *)view;
 
 /*!
  * @brief The GTKResponder which gets event messages first for this window.
@@ -167,18 +167,18 @@
  * @brief Adds a GTKView to the header bar, after the left separator (which is
  * only shown if any of the system-provided buttons on the left are shown).
  */
-- (void)addViewToHeaderBarStart:(nonnull GTKView *)view;
+- (void)addViewToHeaderBarStart: (nonnull GTKView *)view;
 
 /*!
  * @brief Removes the specified view from the header bar.
  */
-- (void)removeViewFromHeaderBar:(nonnull GTKView *)view;
+- (void)removeViewFromHeaderBar: (nonnull GTKView *)view;
 
 /*!
  * @brief Adds a GTKView to the header bar, before the right separator (which is
  * only shown if any of the system-provided buttons on the right are shown).
  */
-- (void)addViewToHeaderBarEnd:(nonnull GTKView *)view;
+- (void)addViewToHeaderBarEnd: (nonnull GTKView *)view;
 
 - (void)createContentView;
 @end

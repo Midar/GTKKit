@@ -22,9 +22,9 @@
 #import "GTKKeyedUnarchiver.h"
 
 static gboolean
-draw_handler(GtkWidget *widget,
-			   cairo_t   *cr,
-			   GTKView   *view)
+draw_handler (GtkWidget *widget,
+	      cairo_t   *cr,
+	      GTKView   *view)
 {
 	view.cairoContext = cr;
 	[view draw];
@@ -35,9 +35,9 @@ draw_handler(GtkWidget *widget,
 }
 
 static gboolean
-press_event_handler(GtkWidget *widget,
-					GdkEvent  *event,
-					GTKView   *view)
+press_event_handler (GtkWidget *widget,
+		     GdkEvent  *event,
+		     GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^ {
 		GTKEvent *evt = [GTKEvent new];
@@ -61,9 +61,9 @@ press_event_handler(GtkWidget *widget,
 }
 
 static gboolean
-release_event_handler(GtkWidget *widget,
-					  GdkEvent  *event,
-					  GTKView   *view)
+release_event_handler (GtkWidget *widget,
+		       GdkEvent  *event,
+		       GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^ {
 		GTKEvent *evt = [GTKEvent new];
@@ -78,18 +78,18 @@ release_event_handler(GtkWidget *widget,
 }
 
 GTKView *
-gtk_widget_get_owning_view(GtkWidget *widget)
+gtk_widget_get_owning_view (GtkWidget *widget)
 {
-	return (__bridge GTKView *)g_object_get_data(
-		G_OBJECT(widget),
-		"_GTKKIT_OWNING_VIEW_");
+	return (__bridge GTKView *) g_object_get_data(
+	    G_OBJECT(widget),
+	    "_GTKKIT_OWNING_VIEW_");
 }
 
 static gboolean
-get_child_position_handler(GtkOverlay   *overlay,
-							  GtkWidget    *widget,
-							  GdkRectangle *allocation,
-							  GTKView      *view)
+get_child_position_handler (GtkOverlay   *overlay,
+			    GtkWidget    *widget,
+			    GdkRectangle *allocation,
+			    GTKView      *view)
 {
 	GTKView *subview = gtk_widget_get_owning_view(widget);
 
@@ -107,15 +107,15 @@ get_child_position_handler(GtkOverlay   *overlay,
 }
 
 static void
-overlay_widget_destroyed_handler(GtkWidget *overlay,
-								 GTKView   *view)
+overlay_widget_destroyed_handler (GtkWidget *overlay,
+				  GTKView   *view)
 {
 
 }
 
 static void
-map_handler(GtkWidget *overlay,
-			GTKView   *view)
+map_handler (GtkWidget *overlay,
+	     GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^{
 		[view willBecomeMapped];
@@ -123,8 +123,8 @@ map_handler(GtkWidget *overlay,
 }
 
 static void
-map_event_handler(GtkWidget *overlay,
-				  GTKView   *view)
+map_event_handler (GtkWidget *overlay,
+		   GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^{
 		[view didBecomeMapped];
@@ -132,8 +132,8 @@ map_event_handler(GtkWidget *overlay,
 }
 
 static void
-unmap_handler(GtkWidget *overlay,
-			  GTKView   *view)
+unmap_handler (GtkWidget *overlay,
+	       GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^{
 		[view willBecomeUnmapped];
@@ -141,8 +141,8 @@ unmap_handler(GtkWidget *overlay,
 }
 
 static void
-unmap_event_handler(GtkWidget *overlay,
-					GTKView   *view)
+unmap_event_handler (GtkWidget *overlay,
+		     GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^{
 		[view didBecomeUnmapped];
@@ -150,19 +150,19 @@ unmap_event_handler(GtkWidget *overlay,
 }
 
 static void
-gesture_drag_begin_handler(GtkGestureDrag *gesture,
-						   gdouble start_x,
-						   gdouble start_y,
-						   GTKView *view)
+gesture_drag_begin_handler (GtkGestureDrag *gesture,
+			    gdouble         start_x,
+			    gdouble         start_y,
+			    GTKView        *view)
 {
 
 }
 
 static void
-gesture_drag_update_handler(GtkGestureDrag *gesture,
-							gdouble offset_x,
-							gdouble offset_y,
-							GTKView *view)
+gesture_drag_update_handler (GtkGestureDrag *gesture,
+			     gdouble         offset_x,
+			     gdouble         offset_y,
+			     GTKView        *view)
 {
 	[GTKApp.dispatch.main async: ^{
 		GTKEvent *event = [GTKEvent new];
@@ -187,10 +187,10 @@ gesture_drag_update_handler(GtkGestureDrag *gesture,
 }
 
 static void
-gesture_drag_end_handler(GtkGestureDrag *gesture,
-						 gdouble offset_x,
-						 gdouble offset_y,
-						 GTKView *view)
+gesture_drag_end_handler (GtkGestureDrag *gesture,
+			  gdouble         offset_x,
+			  gdouble         offset_y,
+			  GTKView        *view)
 {
 
 }
@@ -221,45 +221,45 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 		gtk_container_set_border_width(GTK_CONTAINER(self.overlayWidget), 0);
 
 		g_object_set_data(
-			G_OBJECT(self.overlayWidget),
-			"_GTKKIT_OWNING_VIEW_",
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "_GTKKIT_OWNING_VIEW_",
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"get-child-position",
-			G_CALLBACK(get_child_position_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "get-child-position",
+		    G_CALLBACK(get_child_position_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"destroy",
-			G_CALLBACK(overlay_widget_destroyed_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "destroy",
+		    G_CALLBACK(overlay_widget_destroyed_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"map",
-			G_CALLBACK(map_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "map",
+		    G_CALLBACK(map_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"map-event",
-			G_CALLBACK(map_event_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "map-event",
+		    G_CALLBACK(map_event_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"unmap",
-			G_CALLBACK(unmap_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "unmap",
+		    G_CALLBACK(unmap_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.overlayWidget),
-			"unmap-event",
-			G_CALLBACK(unmap_event_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.overlayWidget),
+		    "unmap-event",
+		    G_CALLBACK(unmap_event_handler),
+		    (__bridge gpointer)(self));
 
 		[self createMainWidget];
 		g_object_ref_sink(self.mainWidget);
@@ -268,79 +268,79 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 		gtk_widget_show(self.overlayWidget);
 
 		gtk_widget_add_events(
-			self.mainWidget,
-			GDK_BUTTON_PRESS_MASK |
-			GDK_BUTTON_RELEASE_MASK);
+		    self.mainWidget,
+		    GDK_BUTTON_PRESS_MASK |
+		    GDK_BUTTON_RELEASE_MASK);
 
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"button-press-event",
-			G_CALLBACK(press_event_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "button-press-event",
+		    G_CALLBACK(press_event_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"button-release-event",
-			G_CALLBACK(release_event_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "button-release-event",
+		    G_CALLBACK(release_event_handler),
+		    (__bridge gpointer)(self));
 
 		GtkGesture *_overlayDragGesture = gtk_gesture_drag_new(self.overlayWidget);
 
 		g_signal_connect(
-			_overlayDragGesture,
-			"drag-begin",
-			G_CALLBACK(gesture_drag_begin_handler),
-			(__bridge gpointer)(self));
+		    _overlayDragGesture,
+		    "drag-begin",
+		    G_CALLBACK(gesture_drag_begin_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_overlayDragGesture,
-			"drag-update",
-			G_CALLBACK(gesture_drag_update_handler),
-			(__bridge gpointer)(self));
+		    _overlayDragGesture,
+		    "drag-update",
+		    G_CALLBACK(gesture_drag_update_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_overlayDragGesture,
-			"drag-end",
-			G_CALLBACK(gesture_drag_end_handler),
-			(__bridge gpointer)(self));
+		    _overlayDragGesture,
+		    "drag-end",
+		    G_CALLBACK(gesture_drag_end_handler),
+		    (__bridge gpointer)(self));
 
 		g_object_set_data_full(
-			G_OBJECT(self.overlayWidget),
-			"overlayWidget-drag-gesture",
-			_overlayDragGesture,
-			g_object_unref);
+		    G_OBJECT(self.overlayWidget),
+		    "overlayWidget-drag-gesture",
+		    _overlayDragGesture,
+		    g_object_unref);
 
 		GtkGesture *_mainWidgetDragGesture = gtk_gesture_drag_new(self.mainWidget);
 
 		g_signal_connect(
-			_mainWidgetDragGesture,
-			"drag-begin",
-			G_CALLBACK(gesture_drag_begin_handler),
-			(__bridge gpointer)(self));
+		    _mainWidgetDragGesture,
+		    "drag-begin",
+		    G_CALLBACK(gesture_drag_begin_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_mainWidgetDragGesture,
-			"drag-update",
-			G_CALLBACK(gesture_drag_update_handler),
-			(__bridge gpointer)(self));
+		    _mainWidgetDragGesture,
+		    "drag-update",
+		    G_CALLBACK(gesture_drag_update_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_mainWidgetDragGesture,
-			"drag-end",
-			G_CALLBACK(gesture_drag_end_handler),
-			(__bridge gpointer)(self));
+		    _mainWidgetDragGesture,
+		    "drag-end",
+		    G_CALLBACK(gesture_drag_end_handler),
+		    (__bridge gpointer)(self));
 
 		g_object_set_data_full(
-			G_OBJECT(self.mainWidget),
-			"mainWidget-drag-gesture",
-			_mainWidgetDragGesture,
-			g_object_unref);
+		    G_OBJECT(self.mainWidget),
+		    "mainWidget-drag-gesture",
+		    _mainWidgetDragGesture,
+		    g_object_unref);
 
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"draw",
-			G_CALLBACK(draw_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "draw",
+		    G_CALLBACK(draw_handler),
+		    (__bridge gpointer)(self));
 
 	}];
 
@@ -351,7 +351,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 
@@ -393,44 +393,50 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	switch (self.layer) {
 	case GTKViewLayerBackground:
-		[encoder encodeString: @"background" forKey: @"GTKKit.coding.view.layer"];
+		[encoder encodeString: @"background"
+			       forKey: @"GTKKit.coding.view.layer"];
 		break;
 	case GTKViewLayerDefault:
-		[encoder encodeString: @"default" forKey: @"GTKKit.coding.view.layer"];
+		[encoder encodeString: @"default"
+			       forKey: @"GTKKit.coding.view.layer"];
 		break;
 	case GTKViewLayerForeground:
-		[encoder encodeString: @"foreground" forKey: @"GTKKit.coding.view.layer"];
+		[encoder encodeString: @"foreground"
+			       forKey: @"GTKKit.coding.view.layer"];
 		break;
 	case GTKViewLayerNotification:
-		[encoder encodeString: @"notification" forKey: @"GTKKit.coding.view.layer"];
+		[encoder encodeString: @"notification"
+			       forKey: @"GTKKit.coding.view.layer"];
 		break;
 	}
 
 	[encoder encodeObject: self.backgroundLayerSubviews
-				   forKey: @"GTKKit.coding.view.backgroundLayerSubviews"];
+		       forKey: @"GTKKit.coding.view.backgroundLayerSubviews"];
 
 	[encoder encodeObject: self.defaultLayerSubviews
-				   forKey: @"GTKKit.coding.view.defaultLayerSubviews"];
+		       forKey: @"GTKKit.coding.view.defaultLayerSubviews"];
 
 	[encoder encodeObject: self.foregroundLayerSubviews
-				   forKey: @"GTKKit.coding.view.foregroundLayerSubviews"];
+		       forKey: @"GTKKit.coding.view.foregroundLayerSubviews"];
 
 	[encoder encodeObject: self.notificationLayerSubviews
-				   forKey: @"GTKKit.coding.view.notificationLayerSubviews"];
+		       forKey: @"GTKKit.coding.view.notificationLayerSubviews"];
 
 	[encoder encodeObject: self.constraints
-				   forKey: @"GTKKit.coding.view.constraints"];
+		       forKey: @"GTKKit.coding.view.constraints"];
 
 	[encoder encodeObject: _connections
-				   forKey: @"GTKKit.coding.view.connections"];
+		       forKey: @"GTKKit.coding.view.connections"];
 
-	[encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.view.hidden"];
+	[encoder encodeBool: self.isHidden
+		     forKey: @"GTKKit.coding.view.hidden"];
 
-	[encoder encodeDouble: self.alpha forKey: @"GTKKit.coding.view.alpha"];
+	[encoder encodeDouble: self.alpha
+		       forKey: @"GTKKit.coding.view.alpha"];
 }
 
 - (void)reconnectSignals
@@ -439,60 +445,60 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 		GtkGesture *_overlayDragGesture = gtk_gesture_drag_new(self.overlayWidget);
 
 		g_signal_connect(
-			_overlayDragGesture,
-			"drag-begin",
-			G_CALLBACK(gesture_drag_begin_handler),
-			(__bridge gpointer)(self));
+		    _overlayDragGesture,
+		    "drag-begin",
+		    G_CALLBACK(gesture_drag_begin_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_overlayDragGesture,
-			"drag-update",
-			G_CALLBACK(gesture_drag_update_handler),
-			(__bridge gpointer)(self));
+		    _overlayDragGesture,
+		    "drag-update",
+		    G_CALLBACK(gesture_drag_update_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_overlayDragGesture,
-			"drag-end",
-			G_CALLBACK(gesture_drag_end_handler),
-			(__bridge gpointer)(self));
+		    _overlayDragGesture,
+		    "drag-end",
+		    G_CALLBACK(gesture_drag_end_handler),
+		    (__bridge gpointer)(self));
 
 		g_object_set_data_full(
-			G_OBJECT(self.overlayWidget),
-			"overlayWidget-drag-gesture",
-			_overlayDragGesture,
-			g_object_unref);
+		    G_OBJECT(self.overlayWidget),
+		    "overlayWidget-drag-gesture",
+		    _overlayDragGesture,
+		    g_object_unref);
 
 		GtkGesture *_mainWidgetDragGesture = gtk_gesture_drag_new(self.mainWidget);
 
 		g_signal_connect(
-			_mainWidgetDragGesture,
-			"drag-begin",
-			G_CALLBACK(gesture_drag_begin_handler),
-			(__bridge gpointer)(self));
+		    _mainWidgetDragGesture,
+		    "drag-begin",
+		    G_CALLBACK(gesture_drag_begin_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_mainWidgetDragGesture,
-			"drag-update",
-			G_CALLBACK(gesture_drag_update_handler),
-			(__bridge gpointer)(self));
+		    _mainWidgetDragGesture,
+		    "drag-update",
+		    G_CALLBACK(gesture_drag_update_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			_mainWidgetDragGesture,
-			"drag-end",
-			G_CALLBACK(gesture_drag_end_handler),
-			(__bridge gpointer)(self));
+		    _mainWidgetDragGesture,
+		    "drag-end",
+		    G_CALLBACK(gesture_drag_end_handler),
+		    (__bridge gpointer)(self));
 
 		g_object_set_data_full(
-			G_OBJECT(self.mainWidget),
-			"mainWidget-drag-gesture",
-			_mainWidgetDragGesture,
-			g_object_unref);
+		    G_OBJECT(self.mainWidget),
+		    "mainWidget-drag-gesture",
+		    _mainWidgetDragGesture,
+		    g_object_unref);
 
 		g_signal_connect(
-			G_OBJECT(self.mainWidget),
-			"draw",
-			G_CALLBACK(draw_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(self.mainWidget),
+		    "draw",
+		    G_CALLBACK(draw_handler),
+		    (__bridge gpointer)(self));
 	}];
 }
 
@@ -519,7 +525,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 	return hidden;
 }
 
-- (void)setHidden:(bool)hidden
+- (void)setHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_visible(self.overlayWidget, !hidden);
@@ -539,7 +545,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 	return (GTKRect)alloc;
 }
 
-- (GTKRect)layoutSubview:(nonnull GTKView*)subview
+- (GTKRect)layoutSubview: (nonnull GTKView*)subview
 {
 	GTKRect frame = self.frame;
 	GTKLayoutConstraints *constraints = subview.constraints;
@@ -686,30 +692,30 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 
 		for (GTKView *view in self.backgroundLayerSubviews) {
 			gtk_overlay_reorder_overlay(
-				GTK_OVERLAY(self.overlayWidget),
-				view.overlayWidget,
-				-1);
+			    GTK_OVERLAY(self.overlayWidget),
+			    view.overlayWidget,
+			    -1);
 		}
 
 		for (GTKView *view in self.defaultLayerSubviews) {
 			gtk_overlay_reorder_overlay(
-				GTK_OVERLAY(self.overlayWidget),
-				view.overlayWidget,
-				-1);
+			    GTK_OVERLAY(self.overlayWidget),
+			    view.overlayWidget,
+			    -1);
 		}
 
 		for (GTKView *view in self.foregroundLayerSubviews) {
 			gtk_overlay_reorder_overlay(
-				GTK_OVERLAY(self.overlayWidget),
-				view.overlayWidget,
-				-1);
+			    GTK_OVERLAY(self.overlayWidget),
+			    view.overlayWidget,
+			    -1);
 		}
 
 		for (GTKView *view in self.notificationLayerSubviews) {
 			gtk_overlay_reorder_overlay(
-				GTK_OVERLAY(self.overlayWidget),
-				view.overlayWidget,
-				-1);
+			    GTK_OVERLAY(self.overlayWidget),
+			    view.overlayWidget,
+			    -1);
 		}
 	}];
 	for (GTKView *view in self.backgroundLayerSubviews) {
@@ -762,8 +768,8 @@ gesture_drag_end_handler(GtkGestureDrag *gesture,
 
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_overlay_add_overlay(
-			GTK_OVERLAY(self.overlayWidget),
-			view.overlayWidget);
+		    GTK_OVERLAY(self.overlayWidget),
+		    view.overlayWidget);
 	}];
 
 	[self layoutSubviews];

@@ -25,8 +25,8 @@
  * write themselves to files.
  */
 @interface GTKKeyedArchiver: GTKCoder
-+ (instancetype)archiveRootObject:(id<GTKCoding>)object;
-+ (void)archiveRootObject:(id<GTKCoding>)object
-					toURL:(OFURL *)url;
-- (void)writeToURL:(OFURL *)url;
++ (instancetype)archiveRootObject: (id<GTKCoding>)object;
++ (void)archiveRootObject: (id<GTKCoding>)object
+		    toURL: (OFURL *)url;
+- (void)writeToURL: (OFURL *)url;
 @end

@@ -24,7 +24,7 @@
 
 static void
 map_handler(GtkWidget *overlay,
-			GTKView   *view)
+	    GTKView   *view)
 {
 	[GTKApp.dispatch.main async: ^{
 		//[view willBecomeMapped];
@@ -41,15 +41,15 @@ map_handler(GtkWidget *overlay,
 		g_object_ref_sink(_menu);
 
 		g_signal_connect(
-			G_OBJECT(_menu),
-			"map",
-			G_CALLBACK(map_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_menu),
+		    "map",
+		    G_CALLBACK(map_handler),
+		    (__bridge gpointer)(self));
 	}];
 	return self;
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 
@@ -60,7 +60,7 @@ map_handler(GtkWidget *overlay,
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	[encoder encodeObject: _menuItems forKey: @"GTKKit.coding.menu.items"];
 }
@@ -70,34 +70,36 @@ map_handler(GtkWidget *overlay,
 	g_object_unref(_menu);
 }
 
-- (void)addItem:(GTKMenuItem *)item
+- (void)addItem: (GTKMenuItem *)item
 {
 	[_menuItems addObject: item];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_menu_shell_append(
-			GTK_MENU_SHELL(_menu),
-			item.menuItem);
+		    GTK_MENU_SHELL(_menu),
+		    item.menuItem);
 	}];
 }
 
-- (void)insertItem:(GTKMenuItem *)item atIndex:(int)index
+- (void)insertItem: (GTKMenuItem *)item
+	   atIndex: (int)index
 {
-	[_menuItems insertObject: item atIndex: index];
+	[_menuItems insertObject: item
+			 atIndex: index];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_menu_shell_insert(
-			GTK_MENU_SHELL(_menu),
-			item.menuItem,
-			index);
+		    GTK_MENU_SHELL(_menu),
+		    item.menuItem,
+		    index);
 	}];
 }
 
-- (void)removeItem:(GTKMenuItem *)item
+- (void)removeItem: (GTKMenuItem *)item
 {
 	[_menuItems removeObjectIdenticalTo: item];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_container_remove(
-			GTK_CONTAINER(_menu),
-			item.menuItem);
+		    GTK_CONTAINER(_menu),
+		    item.menuItem);
 	}];
 }
 
@@ -106,12 +108,12 @@ map_handler(GtkWidget *overlay,
 	return _menuItems.count;
 }
 
-- (GTKMenuItem *)itemAtIndex:(int)index
+- (GTKMenuItem *)itemAtIndex: (int)index
 {
 	return [_menuItems objectAtIndex: index];
 }
 
-- (GTKMenuItem *)itemWithTag:(int)tag
+- (GTKMenuItem *)itemWithTag: (int)tag
 {
 	for (GTKMenuItem *item in _menuItems) {
 		if (item.tag == tag) {
@@ -128,15 +130,15 @@ map_handler(GtkWidget *overlay,
 	return array;
 }
 
-- (void)popUpAtView:(GTKView *)view
+- (void)popUpAtView: (GTKView *)view
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_menu_popup_at_widget(
-			GTK_MENU(_menu),
-			view.overlayWidget,
-			GDK_GRAVITY_SOUTH_WEST,
-			GDK_GRAVITY_NORTH_WEST,
-			NULL);
+		    GTK_MENU(_menu),
+		    view.overlayWidget,
+		    GDK_GRAVITY_SOUTH_WEST,
+		    GDK_GRAVITY_NORTH_WEST,
+		    NULL);
 	}];
 }
 @end

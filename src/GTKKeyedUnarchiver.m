@@ -22,7 +22,7 @@
 #import "OFArray+GTKCoding.h"
 
 @interface GTKKeyedUnarchiver (Private)
-- (Class)classForKey:(OFString *)key;
+- (Class)classForKey: (OFString *)key;
 @end
 
 /*!
@@ -30,14 +30,14 @@
  * write themselves to files.
  */
 @implementation GTKKeyedUnarchiver
-+ (instancetype)keyedUnarchiverWithContentsOfURL:(OFURL *)url
++ (instancetype)keyedUnarchiverWithContentsOfURL: (OFURL *)url
 {
 	OFString *string = [OFString stringWithContentsOfURL: url];
 
 	return [self keyedUnarchiverWithXMLString: string];
 }
 
-+ (instancetype)keyedUnarchiverWithXMLString:(OFString *)string
++ (instancetype)keyedUnarchiverWithXMLString: (OFString *)string
 {
 	GTKKeyedUnarchiver *coder = [self new];
 	OFXMLElement *data = [OFXMLElement elementWithXMLString: string];
@@ -45,19 +45,19 @@
 	return coder;
 }
 
-+ (id)unarchiveObjectOfClass:(Class)class
-				   withCoder:(GTKKeyedUnarchiver *)coder
++ (id)unarchiveObjectOfClass: (Class)class
+		   withCoder: (GTKKeyedUnarchiver *)coder
 {
 	id object = [[class alloc] initWithCoder: coder];
 	return object;
 }
 
-+ (id)unarchiveObjectOfClass:(Class)class
-					 withURL:(OFURL *)url
++ (id)unarchiveObjectOfClass: (Class)class
+		     withURL: (OFURL *)url
 {
 	GTKKeyedUnarchiver *coder = [self keyedUnarchiverWithContentsOfURL: url];
 	return [self unarchiveObjectOfClass: class
-							  withCoder: coder];
+				  withCoder: coder];
 }
 
 - (bool)allowsKeyedCoding
@@ -65,14 +65,14 @@
 	return true;
 }
 
-- (bool)containsValueForKey:(OFString *)key
+- (bool)containsValueForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
 	return [[self.data elementsForName: key] count] > 0;
 }
 
-- (bool)decodeBoolForKey:(OFString *)key
+- (bool)decodeBoolForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -81,7 +81,7 @@
 	return [string isEqual: @"true"];
 }
 
-- (double)decodeDoubleForKey:(OFString *)key
+- (double)decodeDoubleForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -90,7 +90,7 @@
 	return number.doubleValue;
 }
 
-- (float)decodeFloatForKey:(OFString *)key
+- (float)decodeFloatForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -99,7 +99,7 @@
 	return number.floatValue;
 }
 
-- (int)decodeIntForKey:(OFString *)key
+- (int)decodeIntForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -108,7 +108,7 @@
 	return number.intValue;
 }
 
-- (GTKRect)decodeRectForKey:(OFString *)key
+- (GTKRect)decodeRectForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -126,7 +126,7 @@
 	return rect;
 }
 
-- (OFString *)decodeStringForKey:(OFString *)key
+- (OFString *)decodeStringForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -134,7 +134,7 @@
 	return element.stringValue;
 }
 
-- (id)decodeObjectForKey:(OFString *)key
+- (id)decodeObjectForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -149,7 +149,7 @@
 	return [[class alloc] initWithCoder: coder];
 }
 
-- (SEL)decodeSelectorforKey:(OFString *)key
+- (SEL)decodeSelectorforKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -159,7 +159,7 @@
 @end
 
 @implementation GTKKeyedUnarchiver (Private)
-- (Class)classForKey:(OFString *)key
+- (Class)classForKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 

@@ -95,13 +95,14 @@ typedef enum GTKResponseType {
  */
 @interface GTKInfoBar: GTKControl
 {
-	__block GTKMessageType _messageType;
-	__block OFString *_label;
-	__block GtkWidget *_labelWidget;
+	__block GTKMessageType  _messageType;
+	__block OFString       *_label;
+	__block GtkWidget      *_labelWidget;
 	__block OFMutableArray *_buttonLabels;
 	__block OFMutableArray *_buttonResponses;
 }
 @property GTKMessageType messageType;
 @property GTKResponseType response;
-- (void)addButtonWithLabel:(OFString *)label response:(GTKResponseType)response;
+- (void)addButtonWithLabel: (OFString *)label
+		  response: (GTKResponseType)response;
 @end

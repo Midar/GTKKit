@@ -22,7 +22,7 @@
 
 static void
 activate_handler(GtkMenuItem *widget,
-				 GTKMenuItem *menuItem)
+		 GTKMenuItem *menuItem)
 {
 	[GTKApp.dispatch.main async: ^{
 		[menuItem sendActionToTarget];
@@ -47,13 +47,13 @@ activate_handler(GtkMenuItem *widget,
 		g_object_ref_sink(_menuItem);
 		gtk_widget_show(_menuItem);
 		gtk_menu_item_set_reserve_indicator(
-			GTK_MENU_ITEM(_menuItem),
-			true);
+		    GTK_MENU_ITEM(_menuItem),
+		    true);
 		g_signal_connect(
-			G_OBJECT(_menuItem),
-			"activate",
-			G_CALLBACK(activate_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_menuItem),
+		    "activate",
+		    G_CALLBACK(activate_handler),
+		    (__bridge gpointer)(self));
 
 		GtkWidget *defaultLabel = gtk_bin_get_child(GTK_BIN(_menuItem));
 		gtk_widget_destroy(defaultLabel);
@@ -63,48 +63,48 @@ activate_handler(GtkMenuItem *widget,
 		g_object_ref_sink(_grid);
 		gtk_widget_show(_grid);
 		gtk_orientable_set_orientation(
-			GTK_ORIENTABLE(_grid),
-			GTK_ORIENTATION_HORIZONTAL);
+		    GTK_ORIENTABLE(_grid),
+		    GTK_ORIENTATION_HORIZONTAL);
 		gtk_widget_set_hexpand(
-			_grid,
-			true);
+		    _grid,
+		    true);
 		gtk_widget_set_vexpand(
-			_grid,
-			true);
+		    _grid,
+		    true);
 		gtk_grid_set_column_homogeneous(
-			GTK_GRID(_grid),
-			false);
+		    GTK_GRID(_grid),
+		    false);
 		gtk_container_add(
-			GTK_CONTAINER(_menuItem),
-			_grid);
+		    GTK_CONTAINER(_menuItem),
+		    _grid);
 
 		_labelWidget = gtk_label_new(NULL);
 		g_object_ref_sink(_labelWidget);
 		gtk_widget_show(_labelWidget);
 		gtk_label_set_markup(
-			GTK_LABEL(_labelWidget),
-			"SECOND LABEL");
+		    GTK_LABEL(_labelWidget),
+		    "SECOND LABEL");
 		gtk_label_set_justify(
-			GTK_LABEL(_labelWidget),
-			GTK_JUSTIFY_LEFT);
+		    GTK_LABEL(_labelWidget),
+		    GTK_JUSTIFY_LEFT);
 		gtk_widget_set_hexpand(
-			_labelWidget,
-			true);
+		    _labelWidget,
+		    true);
 		gtk_widget_set_vexpand(
-			_labelWidget,
-			true);
+		    _labelWidget,
+		    true);
 		gtk_widget_set_halign(
-			_labelWidget,
-			GTK_ALIGN_START);
+		    _labelWidget,
+		    GTK_ALIGN_START);
 		gtk_label_set_xalign(
-			GTK_LABEL(_labelWidget),
-			0.0);
+		    GTK_LABEL(_labelWidget),
+		    0.0);
 		gtk_label_set_yalign(
-			GTK_LABEL(_labelWidget),
-			0.5);
+		    GTK_LABEL(_labelWidget),
+		    0.5);
 		gtk_container_add(
-			GTK_CONTAINER(_grid),
-			_labelWidget);
+		    GTK_CONTAINER(_grid),
+		    _labelWidget);
 
 	}];
 	return self;
@@ -121,8 +121,8 @@ activate_handler(GtkMenuItem *widget,
 		_menuItem = gtk_separator_menu_item_new();
 		g_object_ref_sink(_menuItem);
 		gtk_widget_set_vexpand(
-			_menuItem,
-			true);
+		    _menuItem,
+		    true);
 		gtk_widget_set_margin_top(_menuItem, 4);
 		gtk_widget_set_margin_bottom(_menuItem, 4);
 		gtk_widget_show(_menuItem);
@@ -139,7 +139,7 @@ activate_handler(GtkMenuItem *widget,
 	g_object_unref(_menuItem);
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	if ([decoder decodeBoolForKey: @"GTKKit.coding.menuItem.isSeparator"]) {
 		self = [self initWithSeparator];
@@ -151,14 +151,18 @@ activate_handler(GtkMenuItem *widget,
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	if (!_isSeparator) {
-		[encoder encodeString: self.label forKey: @"GTKKit.coding.menuItem.label"];
-		[encoder encodeString: self.accelerator forKey: @"GTKKit.coding.menuItem.accelerator"];
-		[encoder encodeBool: false forKey: @"GTKKit.coding.menuItem.isSeparator"];
+		[encoder encodeString: self.label
+			       forKey: @"GTKKit.coding.menuItem.label"];
+		[encoder encodeString: self.accelerator
+			       forKey: @"GTKKit.coding.menuItem.accelerator"];
+		[encoder encodeBool: false
+			     forKey: @"GTKKit.coding.menuItem.isSeparator"];
 	} else {
-		[encoder encodeBool: true forKey: @"GTKKit.coding.menuItem.isSeparator"];
+		[encoder encodeBool: true
+			     forKey: @"GTKKit.coding.menuItem.isSeparator"];
 	}
 }
 
@@ -195,13 +199,13 @@ activate_handler(GtkMenuItem *widget,
 	return _label.copy;
 }
 
-- (void)setLabel:(OFString *)label
+- (void)setLabel: (OFString *)label
 {
 	_label = label.copy;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_label_set_markup(
-			GTK_LABEL(_labelWidget),
-			_label.UTF8String);
+		    GTK_LABEL(_labelWidget),
+		    _label.UTF8String);
 	}];
 }
 
@@ -210,13 +214,13 @@ activate_handler(GtkMenuItem *widget,
 	return _label.copy;
 }
 
-- (void)setAccelerator:(OFString *)label
+- (void)setAccelerator: (OFString *)label
 {
 	_label = label.copy;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_label_set_markup(
-			GTK_LABEL(_acceleratorWidget),
-			_label.UTF8String);
+		    GTK_LABEL(_acceleratorWidget),
+		    _label.UTF8String);
 	}];
 }
 

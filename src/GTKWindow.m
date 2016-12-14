@@ -23,7 +23,8 @@
 #import "OFArray+GTKCoding.h"
 
 static void
-close_button_clicked_handler(GtkButton *button, GTKWindow *window)
+close_button_clicked_handler (GtkButton *button,
+			      GTKWindow *window)
 {
 	[GTKApp.dispatch.main async: ^{
 		if ([window.delegate respondsToSelector: @selector(windowShouldClose)]) {
@@ -49,7 +50,8 @@ close_button_clicked_handler(GtkButton *button, GTKWindow *window)
 }
 
 static void
-minimize_button_clicked_handler(GtkButton *button, GTKWindow *window)
+minimize_button_clicked_handler (GtkButton *button,
+				 GTKWindow *window)
 {
 	[GTKApp.dispatch.main async: ^{
 		if ([window.delegate respondsToSelector: @selector(windowShouldMinimize)]) {
@@ -71,7 +73,8 @@ minimize_button_clicked_handler(GtkButton *button, GTKWindow *window)
 }
 
 static void
-maximize_button_clicked_handler(GtkButton *button, GTKWindow *window)
+maximize_button_clicked_handler (GtkButton *button,
+				 GTKWindow *window)
 {
 	[GTKApp.dispatch.main async: ^{
 		if ([window.delegate respondsToSelector: @selector(windowShouldMaximize)]) {
@@ -93,19 +96,26 @@ maximize_button_clicked_handler(GtkButton *button, GTKWindow *window)
 }
 
 static void
-menu_button_clicked_handler(GtkButton *button, GTKWindow *window)
+menu_button_clicked_handler (GtkButton *button,
+			     GTKWindow *window)
 {
 	window.menuButtonPopOver.hidden = false;
 }
 
 static void
-gesture_drag_begin_handler(GtkGestureDrag *gesture, gdouble start_x, gdouble start_y, GTKView *view)
+gesture_drag_begin_handler (GtkGestureDrag *gesture,
+			    gdouble         start_x,
+			    gdouble         start_y,
+			    GTKView        *view)
 {
 
 }
 
 static void
-gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+gesture_drag_update_handler (GtkGestureDrag *gesture,
+			     gdouble         offset_x,
+			     gdouble         offset_y,
+			     GTKView        *view)
 {
 	GTKEvent *event = [GTKEvent new];
 
@@ -129,7 +139,10 @@ gesture_drag_update_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble o
 }
 
 static void
-gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offset_y, GTKView *view)
+gesture_drag_end_handler (GtkGestureDrag *gesture,
+			  gdouble         offset_x,
+			  gdouble         offset_y,
+			  GTKView        *view)
 {
 
 }
@@ -158,139 +171,136 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 		_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 		g_object_ref_sink(G_OBJECT(_window));
 		gtk_widget_set_size_request(
-			_window,
-			1,
-			1);
+		    _window,
+		    1, 1);
 		gtk_window_set_default_size(
-			GTK_WINDOW(_window),
-			100,
-			100);
+		    GTK_WINDOW(_window),
+		    100, 100);
 		gtk_container_add(
-			GTK_CONTAINER(_window),
-			self.contentView.overlayWidget);
-
+		    GTK_CONTAINER(_window),
+		    self.contentView.overlayWidget);
 
 		_headerBar = gtk_header_bar_new();
 		g_object_ref_sink(G_OBJECT(_headerBar));
 		gtk_widget_show(_headerBar);
 
 		gtk_header_bar_set_has_subtitle(
-			GTK_HEADER_BAR(_headerBar),
-			false);
+		    GTK_HEADER_BAR(_headerBar),
+		    false);
 		gtk_window_set_titlebar(
-			GTK_WINDOW(_window),
-			_headerBar);
+		    GTK_WINDOW(_window),
+		    _headerBar);
 		gtk_header_bar_set_decoration_layout(
-			GTK_HEADER_BAR(_headerBar),
-			":");
+		    GTK_HEADER_BAR(_headerBar),
+		    ":");
 
 		_closeButton = gtk_button_new_from_icon_name(
-			"window-close-symbolic",
-			GTK_ICON_SIZE_BUTTON);
+		    "window-close-symbolic",
+		    GTK_ICON_SIZE_BUTTON);
 		g_object_ref_sink(_closeButton);
 		gtk_widget_show(_closeButton);
 
 		gtk_header_bar_pack_end(
-			GTK_HEADER_BAR(_headerBar),
-			_closeButton);
+		    GTK_HEADER_BAR(_headerBar),
+		    _closeButton);
 
 		gtk_button_set_relief(GTK_BUTTON(_closeButton), GTK_RELIEF_NONE);
 
 		g_signal_connect(
-			G_OBJECT(_closeButton),
-			"clicked",
-			G_CALLBACK(close_button_clicked_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_closeButton),
+		    "clicked",
+		    G_CALLBACK(close_button_clicked_handler),
+		    (__bridge gpointer)(self));
 
 		_minimizeButton = gtk_button_new_from_icon_name(
-			"zoom-out-symbolic",
-			GTK_ICON_SIZE_BUTTON);
+		    "zoom-out-symbolic",
+		    GTK_ICON_SIZE_BUTTON);
 		g_object_ref_sink(_minimizeButton);
 		gtk_widget_show(_minimizeButton);
 
 		gtk_header_bar_pack_end(
-			GTK_HEADER_BAR(_headerBar),
-			_minimizeButton);
+		    GTK_HEADER_BAR(_headerBar),
+		    _minimizeButton);
 
 		gtk_button_set_relief(GTK_BUTTON(_minimizeButton), GTK_RELIEF_NONE);
 
 		g_signal_connect(
-			G_OBJECT(_minimizeButton),
-			"clicked",
-			G_CALLBACK(minimize_button_clicked_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_minimizeButton),
+		    "clicked",
+		    G_CALLBACK(minimize_button_clicked_handler),
+		    (__bridge gpointer)(self));
 
 		_maximizeButton = gtk_button_new_from_icon_name(
-			"zoom-in-symbolic",
-			GTK_ICON_SIZE_BUTTON);
+		    "zoom-in-symbolic",
+		    GTK_ICON_SIZE_BUTTON);
 		g_object_ref_sink(_maximizeButton);
 
 		gtk_widget_show(_maximizeButton);
 
 		gtk_header_bar_pack_end(
-			GTK_HEADER_BAR(_headerBar),
-			_maximizeButton);
+		    GTK_HEADER_BAR(_headerBar),
+		    _maximizeButton);
 
 		gtk_button_set_relief(GTK_BUTTON(_maximizeButton), GTK_RELIEF_NONE);
 
 		g_signal_connect(
-			G_OBJECT(_maximizeButton),
-			"clicked",
-			G_CALLBACK(maximize_button_clicked_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_maximizeButton),
+		    "clicked",
+		    G_CALLBACK(maximize_button_clicked_handler),
+		    (__bridge gpointer)(self));
 
 		_headerBarRightSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
 		g_object_ref_sink(_headerBarRightSeparator);
 		gtk_widget_show(_headerBarRightSeparator);
 		gtk_header_bar_pack_end(
-			GTK_HEADER_BAR(_headerBar),
-			_headerBarRightSeparator);
+		    GTK_HEADER_BAR(_headerBar),
+		    _headerBarRightSeparator);
 
 		_menuButton = gtk_button_new_from_icon_name(
-			"open-menu-symbolic",
-			GTK_ICON_SIZE_BUTTON);
+		    "open-menu-symbolic",
+		    GTK_ICON_SIZE_BUTTON);
 		g_object_ref_sink(_menuButton);
 
 		gtk_widget_show(_menuButton);
 
 		gtk_header_bar_pack_start(
-			GTK_HEADER_BAR(_headerBar),
-			_menuButton);
+		    GTK_HEADER_BAR(_headerBar),
+		    _menuButton);
 
 		gtk_button_set_relief(GTK_BUTTON(_menuButton), GTK_RELIEF_NONE);
 
 		g_signal_connect(
-			G_OBJECT(_menuButton),
-			"clicked",
-			G_CALLBACK(menu_button_clicked_handler),
-			(__bridge gpointer)(self));
+		    G_OBJECT(_menuButton),
+		    "clicked",
+		    G_CALLBACK(menu_button_clicked_handler),
+		    (__bridge gpointer)(self));
 
 		_headerBarLeftSeparator = gtk_separator_new(GTK_ORIENTATION_VERTICAL);
 		g_object_ref_sink(_headerBarLeftSeparator);
 		gtk_widget_show(_headerBarLeftSeparator);
 		gtk_header_bar_pack_start(
-			GTK_HEADER_BAR(_headerBar),
-			_headerBarLeftSeparator);
+		    GTK_HEADER_BAR(_headerBar),
+		    _headerBarLeftSeparator);
 
 		GtkGesture *gesture = gtk_gesture_drag_new(_window);
 
 		g_signal_connect(
-			gesture,
-			"drag-begin",
-			G_CALLBACK(gesture_drag_begin_handler),
-			(__bridge gpointer)(self));
+		    gesture,
+		    "drag-begin",
+		    G_CALLBACK(gesture_drag_begin_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			gesture,
-			"drag-update",
-			G_CALLBACK(gesture_drag_update_handler),
-			(__bridge gpointer)(self));
+		    gesture,
+		    "drag-update",
+		    G_CALLBACK(gesture_drag_update_handler),
+		    (__bridge gpointer)(self));
 
 		g_signal_connect(
-			gesture,
-			"drag-end",
-			G_CALLBACK(gesture_drag_end_handler),
-			(__bridge gpointer)(self));
+		    gesture,
+		    "drag-end",
+		    G_CALLBACK(gesture_drag_end_handler),
+		    (__bridge gpointer)(self));
 	}];
 
 	self.closeButtonHidden = false;
@@ -312,7 +322,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	self.contentView = [GTKView new];
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 	self.contentView = [decoder decodeObjectForKey: @"GTKKit.coding.window.contentView"];
@@ -338,25 +348,42 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-	[encoder encodeObject: self.contentView forKey: @"GTKKit.coding.window.contentView"];
-	[encoder encodeRect: self.frame forKey: @"GTKKit.coding.window.frame"];
-	[encoder encodeString: self.title forKey: @"GTKKit.coding.window.title"];
-	[encoder encodeString: self.title forKey: @"GTKKit.coding.window.subtitle"];
-	[encoder encodeBool: self.isCloseButtonHidden forKey: @"GTKKit.coding.window.closeButtonHidden"];
-	[encoder encodeBool: self.isMinimizeButtonHidden forKey: @"GTKKit.coding.window.minimizeButtonHidden"];
-	[encoder encodeBool: self.isMaximizeButtonHidden forKey: @"GTKKit.coding.window.maximizeButtonHidden"];
-	[encoder encodeBool: self.isMenuButtonHidden forKey: @"GTKKit.coding.window.menuButtonHidden"];
-	[encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.window.hidden"];
-	[encoder encodeBool: self.titleVisible forKey: @"GTKKit.coding.window.titleVisible"];
-	[encoder encodeDouble: self.titleVisible forKey: @"GTKKit.coding.window.alpha"];
-	[encoder encodeBool: self.isResizable forKey: @"GTKKit.coding.window.resizable"];
-	[encoder encodeBool: self.destroyWhenClosed forKey: @"GTKKit.coding.window.destroyWhenClosed"];
-	[encoder encodeObject: self.titleView forKey: @"GTKKit.coding.window.titleView"];
-	[encoder encodeObject: _headerBarStartViews forKey: @"GTKKit.coding.window.headerBarStartViews"];
-	[encoder encodeObject: _headerBarEndViews forKey: @"GTKKit.coding.window.headerBarStartViews"];
-	[encoder encodeObject: self.menuButtonPopOver forKey: @"GTKKit.coding.window.menuButtonPopOver"];
+	[encoder encodeObject: self.contentView
+		       forKey: @"GTKKit.coding.window.contentView"];
+	[encoder encodeRect: self.frame
+		       forKey: @"GTKKit.coding.window.frame"];
+	[encoder encodeString: self.title
+		       forKey: @"GTKKit.coding.window.title"];
+	[encoder encodeString: self.title
+		       forKey: @"GTKKit.coding.window.subtitle"];
+	[encoder encodeBool: self.isCloseButtonHidden
+		       forKey: @"GTKKit.coding.window.closeButtonHidden"];
+	[encoder encodeBool: self.isMinimizeButtonHidden
+		       forKey: @"GTKKit.coding.window.minimizeButtonHidden"];
+	[encoder encodeBool: self.isMaximizeButtonHidden
+		       forKey: @"GTKKit.coding.window.maximizeButtonHidden"];
+	[encoder encodeBool: self.isMenuButtonHidden
+		       forKey: @"GTKKit.coding.window.menuButtonHidden"];
+	[encoder encodeBool: self.isHidden
+		       forKey: @"GTKKit.coding.window.hidden"];
+	[encoder encodeBool: self.titleVisible
+		       forKey: @"GTKKit.coding.window.titleVisible"];
+	[encoder encodeDouble: self.titleVisible
+		       forKey: @"GTKKit.coding.window.alpha"];
+	[encoder encodeBool: self.isResizable
+		     forKey: @"GTKKit.coding.window.resizable"];
+	[encoder encodeBool: self.destroyWhenClosed
+		     forKey: @"GTKKit.coding.window.destroyWhenClosed"];
+	[encoder encodeObject: self.titleView
+		       forKey: @"GTKKit.coding.window.titleView"];
+	[encoder encodeObject: _headerBarStartViews
+		       forKey: @"GTKKit.coding.window.headerBarStartViews"];
+	[encoder encodeObject: _headerBarEndViews
+		       forKey: @"GTKKit.coding.window.headerBarStartViews"];
+	[encoder encodeObject: self.menuButtonPopOver
+		       forKey: @"GTKKit.coding.window.menuButtonPopOver"];
 }
 
 - (void)dealloc
@@ -380,7 +407,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return hidden;
 }
 
-- (void)setHidden:(bool)hidden
+- (void)setHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_visible(_window, !hidden);
@@ -392,18 +419,18 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	__block GTKRect frame;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_window_get_size(
-			GTK_WINDOW(_window),
-			&frame.width,
-			&frame.height);
+		    GTK_WINDOW(_window),
+		    &frame.width,
+		    &frame.height);
 		gtk_window_get_position(
-			GTK_WINDOW(_window),
-			&frame.x,
-			&frame.y);
+		    GTK_WINDOW(_window),
+		    &frame.x,
+		    &frame.y);
 	}];
 	return frame;
 }
 
-- (void)setFrame:(GTKRect)frame
+- (void)setFrame: (GTKRect)frame
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_window_resize(GTK_WINDOW(_window), frame.width, frame.height);
@@ -416,7 +443,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	self.hidden = true;
 }
 
-- (void)setTitleVisible:(bool)visible
+- (void)setTitleVisible: (bool)visible
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_window_set_decorated(GTK_WINDOW(_window), visible);
@@ -432,7 +459,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return visible;
 }
 
-- (void)setResizable:(bool)resizable
+- (void)setResizable: (bool)resizable
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_window_set_resizable(GTK_WINDOW(_window), resizable);
@@ -467,12 +494,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return title;
 }
 
-- (void)setTitle:(OFString *)title
+- (void)setTitle: (OFString *)title
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_header_bar_set_title(
-			GTK_HEADER_BAR(_headerBar),
-			title.UTF8String);
+		    GTK_HEADER_BAR(_headerBar),
+		    title.UTF8String);
 	}];
 }
 
@@ -486,12 +513,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return subtitle;
 }
 
-- (void)setSubtitle:(OFString *)subtitle
+- (void)setSubtitle: (OFString *)subtitle
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_header_bar_set_subtitle(
-			GTK_HEADER_BAR(_headerBar),
-			subtitle.UTF8String);
+		    GTK_HEADER_BAR(_headerBar),
+		    subtitle.UTF8String);
 	}];
 }
 
@@ -504,7 +531,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return alpha;
 }
 
-- (void)setAlpha:(double)alpha
+- (void)setAlpha: (double)alpha
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_opacity(_window, alpha);
@@ -544,7 +571,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return hidden;
 }
 
-- (void)setCloseButtonHidden:(bool)hidden
+- (void)setCloseButtonHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_visible(_closeButton, !hidden);
@@ -561,7 +588,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return hidden;
 }
 
-- (void)setMinimizeButtonHidden:(bool)hidden
+- (void)setMinimizeButtonHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_visible(_minimizeButton, !hidden);
@@ -578,7 +605,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return hidden;
 }
 
-- (void)setMaximizeButtonHidden:(bool)hidden
+- (void)setMaximizeButtonHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_visible(_maximizeButton, !hidden);
@@ -595,7 +622,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return hidden;
 }
 
-- (void)setMenuButtonHidden:(bool)hidden
+- (void)setMenuButtonHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_widget_set_visible(_menuButton, !hidden);
@@ -629,7 +656,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	[GTKApp.windows removeObject: self];
 }
 
-- (void)addViewToHeaderBarStart:(nonnull GTKView *)view
+- (void)addViewToHeaderBarStart: (nonnull GTKView *)view
 {
 	[self removeViewFromHeaderBar: view];
 	[view removeFromSuperview];
@@ -638,12 +665,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	[_headerBarStartViews addObject: view];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_header_bar_pack_start(
-			GTK_HEADER_BAR(_headerBar),
-			view.overlayWidget);
+		    GTK_HEADER_BAR(_headerBar),
+		    view.overlayWidget);
 	}];
 }
 
-- (void)addViewToHeaderBarEnd:(nonnull GTKView *)view
+- (void)addViewToHeaderBarEnd: (nonnull GTKView *)view
 {
 	[self removeViewFromHeaderBar: view];
 	[view removeFromSuperview];
@@ -652,12 +679,12 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	[_headerBarEndViews addObject: view];
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_header_bar_pack_end(
-			GTK_HEADER_BAR(_headerBar),
-			view.overlayWidget);
+		    GTK_HEADER_BAR(_headerBar),
+		    view.overlayWidget);
 	}];
 }
 
-- (void)removeViewFromHeaderBar:(nonnull GTKView *)view
+- (void)removeViewFromHeaderBar: (nonnull GTKView *)view
 {
 	view.nextResponder = nil;
 	view.superview = nil;
@@ -673,13 +700,13 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return _titleView;
 }
 
-- (void)setTitleView:(nullable GTKView *)view
+- (void)setTitleView: (nullable GTKView *)view
 {
 	_titleView = view;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_header_bar_set_custom_title(
-			GTK_HEADER_BAR(_headerBar),
-			view.overlayWidget);
+		    GTK_HEADER_BAR(_headerBar),
+		    view.overlayWidget);
 	}];
 }
 
@@ -688,7 +715,7 @@ gesture_drag_end_handler(GtkGestureDrag *gesture, gdouble offset_x, gdouble offs
 	return _contentView;
 }
 
-- (void)setContentView:(nullable GTKView *)view
+- (void)setContentView: (nullable GTKView *)view
 {
 	_contentView = view;
 }

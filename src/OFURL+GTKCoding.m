@@ -21,7 +21,7 @@
 #import "GTKKeyedUnarchiver.h"
 
 @implementation OFURL (GTKCoding)
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	OFXMLElement *element = [decoder.data elementForName: @"GTKKit.coding.URL"];
 	OFURL *url = element.stringValue.objectByDeserializing;
@@ -29,7 +29,7 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
 	OFXMLElement *element = [OFXMLElement elementWithName: @"GTKKit.coding.URL"];
 	element.stringValue = self.stringBySerializing;

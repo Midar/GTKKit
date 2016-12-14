@@ -66,77 +66,77 @@
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)mouseDown:(nonnull GTKEvent *)event;
+- (void)mouseDown: (nonnull GTKEvent *)event;
 
 /*!
  * @brief Respond to a mouse button being released.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)mouseUp:(nonnull GTKEvent*)event;
+- (void)mouseUp: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to a mouse button being clicked.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)mouseClicked:(nonnull GTKEvent*)event;
+- (void)mouseClicked: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to a mouse drag event.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)mouseDragged:(nonnull GTKEvent*)event;
+- (void)mouseDragged: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to the scroll wheel being moved.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)scrollWheel:(nonnull GTKEvent*)event;
+- (void)scrollWheel: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to the mouse entering the view's on-screen rectangle.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)mouseEntered:(nonnull GTKEvent*)event;
+- (void)mouseEntered: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to the mouse leaving the view's on-screen rectangle.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)mouseLeft:(nonnull GTKEvent*)event;
+- (void)mouseLeft: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to a key bring pressed.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)keyDown:(nonnull GTKEvent*)event;
+- (void)keyDown: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to a key being released.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)keyUp:(nonnull GTKEvent*)event;
+- (void)keyUp: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Respond to the modifier-key state being changed.
  *
  * @param event A GTKEvent instance containing information about the event.
  */
-- (void)modifierKeysChanged:(nonnull GTKEvent*)event;
+- (void)modifierKeysChanged: (nonnull GTKEvent*)event;
 
 /*!
  * @brief Attempt to perform a given command.
  *
  * @param selector The selector of the command to attempt.
  */
-- (void)doCommandBySelector:(_Nonnull SEL)selector;
+- (void)doCommandBySelector: (_Nonnull SEL)selector;
 
 /*!
  * @brief If this responder responds to the message given by SEL, send it
@@ -147,8 +147,8 @@
  *
  * @returns true if the message was sent, false otherwise.
  */
-- (bool)tryToPerform:(_Nonnull SEL)action
-				with:(nonnull id)object;
+- (bool)tryToPerform: (_Nonnull SEL)action
+		with: (nonnull id)object;
 
 /*!
  * @brief If this responder responds to the message given by SEL, send it
@@ -158,7 +158,7 @@
  *
  * @returns true if the message was sent, false otherwise.
  */
-- (bool)tryToPerform:(_Nonnull SEL)action;
+- (bool)tryToPerform: (_Nonnull SEL)action;
 
 /*!
  * @brief Respond to the view being told that it will be rendered on-screen.

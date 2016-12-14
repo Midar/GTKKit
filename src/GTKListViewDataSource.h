@@ -16,6 +16,6 @@
 
 @protocol GTKListViewDataSource <OFObject>
 - (int)numberOfRows;
-- (GTKView *)viewForRow:(int)row;
+- (GTKView *)viewForRow: (int)row;
 @optional
 @end

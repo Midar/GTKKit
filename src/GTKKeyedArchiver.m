@@ -19,25 +19,26 @@
 #import "OFArray+GTKCoding.h"
 
 #define REMOVE_OLD_VALUE_FOR_KEY                                               \
-	OFArray *elements = [self.data elementsForName: key];                      \
-	for (OFXMLElement *element in elements) {                                  \
-		[self.data removeChild: element];                                      \
-	}                                                                          \
+	OFArray *elements = [self.data elementsForName: key];                  \
+	for (OFXMLElement *element in elements) {                              \
+		[self.data removeChild: element];                              \
+	}                                                                      \
 
 @interface GTKKeyedArchiver (Private)
-- (void)setClass:(Class)class forKey:(OFString *)key;
+- (void)setClass: (Class)class
+	  forKey: (OFString *)key;
 @end
 
 @implementation GTKKeyedArchiver
-+ (instancetype)archiveRootObject:(id<GTKCoding>)object
++ (instancetype)archiveRootObject: (id<GTKCoding>)object
 {
 	GTKKeyedArchiver *coder = [self new];
 	[object encodeWithCoder: coder];
 	return coder;
 }
 
-+ (void)archiveRootObject:(id<GTKCoding>)object
-					toURL:(OFURL *)url
++ (void)archiveRootObject: (id<GTKCoding>)object
+		    toURL: (OFURL *)url
 {
 	GTKKeyedArchiver *coder = [self archiveRootObject: object];
 	[coder writeToURL: url];
@@ -49,7 +50,7 @@
 	return self;
 }
 
-- (void)writeToURL:(OFURL *)url
+- (void)writeToURL: (OFURL *)url
 {
 	of_comparison_result_t result = [url.scheme caseInsensitiveCompare: @"file"];
 	if (result != 0) {
@@ -66,8 +67,8 @@
 	return true;
 }
 
-- (void)encodeBool:(bool)value
-			forKey:(OFString *)key
+- (void)encodeBool: (bool)value
+	    forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 	REMOVE_OLD_VALUE_FOR_KEY
@@ -78,8 +79,8 @@
 	[self.data addChild: element];
 }
 
-- (void)encodeDouble:(double)value
-			  forKey:(OFString *)key
+- (void)encodeDouble: (double)value
+	      forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 	REMOVE_OLD_VALUE_FOR_KEY
@@ -90,8 +91,8 @@
 	[self.data addChild: element];
 }
 
-- (void)encodeFloat:(float)value
-			 forKey:(OFString *)key
+- (void)encodeFloat: (float)value
+	     forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 	REMOVE_OLD_VALUE_FOR_KEY
@@ -102,8 +103,8 @@
 	[self.data addChild: element];
 }
 
-- (void)encodeInt:(int)value
-		   forKey:(OFString *)key
+- (void)encodeInt: (int)value
+	   forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 	REMOVE_OLD_VALUE_FOR_KEY
@@ -114,8 +115,8 @@
 	[self.data addChild: element];
 }
 
-- (void)encodeRect:(GTKRect)value
-			forKey:(OFString *)key
+- (void)encodeRect: (GTKRect)value
+	    forKey: (OFString *)key
 {
 	OFNumber *x = [OFNumber numberWithInt: value.x];
 	OFNumber *y = [OFNumber numberWithInt: value.y];
@@ -129,8 +130,8 @@
 	[self.data addChild: coder.XMLElementBySerializing];
 }
 
-- (void)encodeString:(OFString *)value
-			  forKey:(OFString *)key
+- (void)encodeString: (OFString *)value
+	      forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 	REMOVE_OLD_VALUE_FOR_KEY
@@ -141,8 +142,8 @@
 	[self.data addChild: element];
 }
 
-- (void)encodeObject:(OFObject<GTKCoding> *)object
-			  forKey:(OFString *)key
+- (void)encodeObject: (OFObject<GTKCoding> *)object
+	      forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 	REMOVE_OLD_VALUE_FOR_KEY
@@ -159,8 +160,8 @@
 	[self.data addChild: coder.XMLElementBySerializing];
 }
 
-- (void)encodeSelector:(SEL)selector
-				forKey:(OFString *)key
+- (void)encodeSelector: (SEL)selector
+		forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
@@ -169,8 +170,8 @@
 @end
 
 @implementation GTKKeyedArchiver (Private)
-- (void)setClass:(Class)class
-		  forKey:(OFString *)key
+- (void)setClass: (Class)class
+	  forKey: (OFString *)key
 {
 	INVALID_KEY_EXCEPTION_CHECK
 

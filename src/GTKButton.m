@@ -37,7 +37,7 @@ clicked_event_handler (GtkWidget *widget,
 
 static gboolean
 switch_activated_handler (GtkSwitch *widget,
-			  gboolean state,
+			  gboolean   state,
 			  GTKButton *button)
 {
 	[GTKApp.dispatch.main async: ^ {

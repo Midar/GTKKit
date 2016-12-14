@@ -29,16 +29,19 @@
 	[GTKApp.dispatch.gtk sync: ^{
 		_popOver = gtk_popover_new(NULL);
 		g_object_ref_sink(_popOver);
-		gtk_widget_set_size_request(_popOver, _width, _height);
+		gtk_widget_set_size_request(
+		    _popOver,
+		    _width,
+		    _height);
 		gtk_popover_set_constrain_to(
-			GTK_POPOVER(_popOver),
-			GTK_POPOVER_CONSTRAINT_NONE);
+		    GTK_POPOVER(_popOver),
+		    GTK_POPOVER_CONSTRAINT_NONE);
 		gtk_popover_set_modal(
-			GTK_POPOVER(_popOver),
-			true);
+		    GTK_POPOVER(_popOver),
+		    true);
 		gtk_container_add(
-			GTK_CONTAINER(_popOver),
-			self.contentView.overlayWidget);
+		    GTK_CONTAINER(_popOver),
+		    self.contentView.overlayWidget);
 	}];
 	self.preferredPosition = GTKPositionTypeBottom;
 	return self;
@@ -49,7 +52,7 @@
 	g_object_unref(_popOver);
 }
 
-- (instancetype)initWithCoder:(GTKKeyedUnarchiver *)decoder
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {
 	self = [self init];
 	self.contentView = [decoder decodeObjectForKey: @"GTKKit.coding.popover.contentView"];
@@ -69,24 +72,32 @@
 	return self;
 }
 
-- (void)encodeWithCoder:(GTKKeyedArchiver *)encoder
+- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder
 {
-	[encoder encodeObject: self.contentView forKey: @"GTKKit.coding.popover.contentView"];
-	[encoder encodeBool: self.isHidden forKey: @"GTKKit.coding.popover.hidden"];
-	[encoder encodeInt: self.width forKey: @"GTKKit.coding.popover.width"];
-	[encoder encodeInt: self.height forKey: @"GTKKit.coding.popover.height"];
+	[encoder encodeObject: self.contentView
+		       forKey: @"GTKKit.coding.popover.contentView"];
+	[encoder encodeBool: self.isHidden
+		     forKey: @"GTKKit.coding.popover.hidden"];
+	[encoder encodeInt: self.width
+		    forKey: @"GTKKit.coding.popover.width"];
+	[encoder encodeInt: self.height
+		    forKey: @"GTKKit.coding.popover.height"];
 	switch (self.preferredPosition) {
 	case GTKPositionTypeTop:
-		[encoder encodeString: @"top" forKey: @"GTKKit.coding.popover.preferredPosition"];
+		[encoder encodeString: @"top"
+			       forKey: @"GTKKit.coding.popover.preferredPosition"];
 		break;
 	case GTKPositionTypeBottom:
-		[encoder encodeString: @"bottom" forKey: @"GTKKit.coding.popover.preferredPosition"];
+		[encoder encodeString: @"bottom"
+			       forKey: @"GTKKit.coding.popover.preferredPosition"];
 		break;
 	case GTKPositionTypeLeft:
-		[encoder encodeString: @"left" forKey: @"GTKKit.coding.popover.preferredPosition"];
+		[encoder encodeString: @"left"
+			       forKey: @"GTKKit.coding.popover.preferredPosition"];
 		break;
 	case GTKPositionTypeRight:
-		[encoder encodeString: @"right" forKey: @"GTKKit.coding.popover.preferredPosition"];
+		[encoder encodeString: @"right"
+			       forKey: @"GTKKit.coding.popover.preferredPosition"];
 		break;
 	}
 }
@@ -100,7 +111,7 @@
 	return hidden;
 }
 
-- (void)setHidden:(bool)hidden
+- (void)setHidden: (bool)hidden
 {
 	[GTKApp.dispatch.gtk sync: ^{
 		if (hidden) {
@@ -116,13 +127,13 @@
 	return _relativeView;
 }
 
-- (void)setRelativeView:(GTKView *)view
+- (void)setRelativeView: (GTKView *)view
 {
 	_relativeView = view;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_popover_set_relative_to(
-			GTK_POPOVER(_popOver),
-			view.overlayWidget);
+		    GTK_POPOVER(_popOver),
+		    view.overlayWidget);
 	}];
 }
 
@@ -131,13 +142,13 @@
 	return _relativeWidget;
 }
 
-- (void)setRelativeWidget:(GtkWidget *)widget
+- (void)setRelativeWidget: (GtkWidget *)widget
 {
 	_relativeWidget = widget;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_popover_set_relative_to(
-			GTK_POPOVER(_popOver),
-			_relativeWidget);
+		    GTK_POPOVER(_popOver),
+		    _relativeWidget);
 	}];
 }
 
@@ -146,13 +157,13 @@
 	return _preferredPosition;
 }
 
-- (void)setPreferredPosition:(GTKPositionType)preferredPosition
+- (void)setPreferredPosition: (GTKPositionType)preferredPosition
 {
 	_preferredPosition = preferredPosition;
 	[GTKApp.dispatch.gtk sync: ^{
 		gtk_popover_set_position(
-			GTK_POPOVER(_popOver),
-			(GtkPositionType)(_preferredPosition));
+		    GTK_POPOVER(_popOver),
+		    (GtkPositionType)(_preferredPosition));
 	}];
 }
 
@@ -161,11 +172,14 @@
 	return _width;
 }
 
-- (void)setWidth:(int)width
+- (void)setWidth: (int)width
 {
 	_width = width;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_widget_set_size_request(_popOver, _width, _height);
+		gtk_widget_set_size_request(
+		    _popOver,
+		    _width,
+		    _height);
 	}];
 }
 
@@ -174,18 +188,22 @@
 	return _height;
 }
 
-- (void)setHeight:(int)height
+- (void)setHeight: (int)height
 {
 	_height = height;
 	[GTKApp.dispatch.gtk sync: ^{
-		gtk_widget_set_size_request(_popOver, _width, _height);
+		gtk_widget_set_size_request(
+		    _popOver,
+		    _width,
+		    _height);
 	}];
 }
 
 - (id)copy
 {
 	GTKKeyedArchiver *coder = [GTKKeyedArchiver new];
-	[coder encodeObject: self forKey: @"GTKKit.copying.GTKPopover"];
+	[coder encodeObject: self
+		     forKey: @"GTKKit.copying.GTKPopover"];
 	GTKKeyedUnarchiver *decoder = [GTKKeyedUnarchiver keyedUnarchiverWithXMLString: coder.XMLString];
 	return [decoder decodeObjectForKey: @"GTKKit.copying.GTKPopover"];
 }

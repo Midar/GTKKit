@@ -28,7 +28,7 @@
  */
 @interface GTKListView: GTKView
 {
-	GtkWidget *_scrollWindow;
+	GtkWidget      *_scrollWindow;
 	OFMutableArray *_views;
 }
 @property (nullable, weak) id<GTKListViewDelegate> delegate;

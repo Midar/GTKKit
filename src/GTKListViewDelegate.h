@@ -16,6 +16,6 @@
 
 @protocol GTKListViewDelegate <OFObject>
 @optional
-- (int)heightForRow:(int)row;
-- (int)indentationForRow:(int)row;
+- (int)heightForRow: (int)row;
+- (int)indentationForRow: (int)row;
 @end

@@ -42,10 +42,8 @@
 }
 
 @property GTKPositionType tabPosition;
-
-@property bool tabsHidden;
-
-@property bool scrollable;
+@property bool            tabsHidden;
+@property bool            scrollable;
 
 /*!
  * @brief Adds the specified tab to the end of the tab view's tabs.

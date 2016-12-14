@@ -73,10 +73,10 @@ extern GTKApplication * _Nonnull GTKApp;
 /*!
  * @brief The object which is the current first responder.
  */
-@property (nonnull) GTKResponder *firstResponder;
-@property int * _Nonnull argc;
-@property char * _Nonnull * _Nonnull * _Nonnull argv;
-@property (nonnull) Class delegateClass;
+@property (nonnull) GTKResponder                *firstResponder;
+@property (nonnull) Class                        delegateClass;
+@property           int * _Nonnull               argc;
+@property           char * _Nonnull * _Nonnull * _Nonnull argv;
 
 /*!
  * @brief An array which contains all the active GTKWindowViewController instances.

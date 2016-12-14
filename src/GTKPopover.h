@@ -25,12 +25,12 @@
  */
 @interface GTKPopover: GTKResponder <GTKCoding, OFCopying>
 {
-	__block GtkWidget      *_popOver;
-	__block __weak GTKView *_relativeView;
-	__block GtkWidget      *_relativeWidget;
-	__block GTKPositionType _preferredPosition;
-	__block int             _width;
-	__block int             _height;
+	__block GtkWidget       *_popOver;
+	__block __weak GTKView  *_relativeView;
+	__block GtkWidget       *_relativeWidget;
+	__block GTKPositionType  _preferredPosition;
+	__block int              _width;
+	__block int              _height;
 }
 
 /*!
@@ -46,9 +46,8 @@
 /*!
  * @brief The view relative to which this pop-up should be shown.
  */
-@property (weak, nullable) GTKView *relativeView;
-
-@property (nullable) GtkWidget *relativeWidget;
+@property (weak, nullable) GTKView   *relativeView;
+@property (nullable)       GtkWidget *relativeWidget;
 
 /*!
  * @brief The pop-up's preferred position relative to its relativeView. Depending

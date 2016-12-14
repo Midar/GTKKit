@@ -64,9 +64,9 @@ typedef enum GTKSegmentSwitchTracking {
 /*!
  * @brief The tracking mode of the control.
  */
-@property GTKSegmentSwitchTracking trackingMode;
-@property (getter=isMomentary) bool momentary;
-@property bool selectAny;
+@property                      GTKSegmentSwitchTracking trackingMode;
+@property (getter=isMomentary) bool                     momentary;
+@property                      bool                     selectAny;
 
 /*!
  * @brief The number of segments int the control; can be any integer from 0 to 32.

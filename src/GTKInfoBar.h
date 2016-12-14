@@ -101,7 +101,7 @@ typedef enum GTKResponseType {
 	__block OFMutableArray *_buttonLabels;
 	__block OFMutableArray *_buttonResponses;
 }
-@property GTKMessageType messageType;
+@property GTKMessageType  messageType;
 @property GTKResponseType response;
 - (void)addButtonWithLabel: (OFString *)label
 		  response: (GTKResponseType)response;

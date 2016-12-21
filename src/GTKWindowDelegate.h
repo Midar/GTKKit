@@ -32,7 +32,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Ask the delegete whether or not the window should allow itself to be
  *	  closed.
  */
-- (BOOL)windowShouldClose;
+- (bool)windowShouldClose;
 
 /*!
  * @brief Inform the delegate that the window will be closed.
@@ -48,7 +48,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Ask the delegate whether or not the window should allow itself to be
  *	  minimized.
  */
-- (BOOL)windowShouldMinimize;
+- (bool)windowShouldMinimize;
 
 /*!
  * @brief Inform the delegate that the window will be minimized.
@@ -64,7 +64,7 @@ OF_ASSUME_NONNULL_BEGIN
  * @brief Ask the delegate whether or not the window should allow itself to be
  *	  maximized.
  */
-- (BOOL)windowShouldMaximize;
+- (bool)windowShouldMaximize;
 
 /*!
  * @brief Inform the delegate that the window will be maximized.

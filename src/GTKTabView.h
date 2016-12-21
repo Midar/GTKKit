@@ -29,11 +29,11 @@
  */
 @interface GTKTabView: GTKView <GTKCoding>
 {
-	__block OFMutableArray<__kindof GTKTab *> *_tabs;
-	__block GtkWidget                         *_stack;
-	__block GtkWidget                         *_switcher;
-	__block bool                              _tabsHidden;
-	__block bool                              _frameHidden;
+	OFMutableArray<__kindof GTKTab *> *_tabs;
+	GtkWidget                         *_stack;
+	GtkWidget                         *_switcher;
+	bool                              _tabsHidden;
+	bool                              _frameHidden;
 }
 
 @property (nonnull, readonly, copy) OFArray<__kindof GTKTab *> *tabs;

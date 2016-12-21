@@ -28,7 +28,7 @@
  */
 @interface GTKOffscreenRenderingWindow: GTKResponder
 {
-	__block GtkWidget *_offscreenWindow;
+	GtkWidget *_offscreenWindow;
 }
 
 /*!

@@ -27,7 +27,7 @@
  */
 @interface GTKPopUpButton: GTKControl
 {
-	__block OFMutableArray *_items;
+	OFMutableArray *_items;
 }
 
 /*!

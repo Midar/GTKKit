@@ -25,13 +25,13 @@
  */
 @interface GTKMenuItem: OFObject <GTKCoding>
 {
-	__block GtkWidget *_menuItem;
-	__block GtkWidget *_grid;
-	__block GtkWidget *_labelWidget;
-	__block GtkWidget *_acceleratorWidget;
-	__block OFString  *_label;
-	__block OFString  *_accelerator;
-	__block bool       _isSeparator;
+	GtkWidget *_menuItem;
+	GtkWidget *_grid;
+	GtkWidget *_labelWidget;
+	GtkWidget *_acceleratorWidget;
+	OFString  *_label;
+	OFString  *_accelerator;
+	bool       _isSeparator;
 }
 
 @property (readonly) bool isSeparator;

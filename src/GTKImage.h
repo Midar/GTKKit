@@ -79,9 +79,9 @@ typedef enum GTKIconSize {
  */
 @interface GTKImage: OFObject
 {
-	__block GdkPixbuf *_pixbuf;
-	__block int        _width;
-	__block int        _height;
+	GdkPixbuf *_pixbuf;
+	int        _width;
+	int        _height;
 }
 
 /*!

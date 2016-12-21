@@ -35,10 +35,10 @@
  */
 @interface GTKNotebookView: GTKView <GTKCoding>
 {
-	__block OFMutableArray<__kindof GTKTab *> *_tabs;
-	__block GTKPositionType                    _tabPosition;
-	__block bool                               _tabsHidden;
-	__block bool                               _scrollable;
+	OFMutableArray<__kindof GTKTab *> *_tabs;
+	GTKPositionType                    _tabPosition;
+	bool                               _tabsHidden;
+	bool                               _scrollable;
 }
 
 @property GTKPositionType tabPosition;

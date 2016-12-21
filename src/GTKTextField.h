@@ -53,14 +53,14 @@ typedef enum GTKJustification {
  */
 @interface GTKTextField: GTKControl
 {
-	__block bool             _editable;
-	__block bool             _selectable;
-	__block GTKJustification _justify;
-	__block bool             _multiline;
-	__block GtkWidget       *_scrollWindow;
-	__block GtkWidget       *_labelWidget;
-	__block GtkWidget       *_entryWidget;
-	__block GtkWidget       *_textViewWidget;
+	bool             _editable;
+	bool             _selectable;
+	GTKJustification _justify;
+	bool             _multiline;
+	GtkWidget       *_scrollWindow;
+	GtkWidget       *_labelWidget;
+	GtkWidget       *_entryWidget;
+	GtkWidget       *_textViewWidget;
 }
 
 /*!

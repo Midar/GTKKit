@@ -56,7 +56,7 @@ typedef enum GTKImageScaling {
  */
 @interface GTKImageView: GTKView
 {
-	__weak __block GTKImage *_image;
+	__weak GTKImage *_image;
 }
 
 /*!

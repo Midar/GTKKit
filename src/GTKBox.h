@@ -27,7 +27,7 @@
  */
 @interface GTKBox: GTKView
 {
-	__block OFString *_label;
+	OFString *_label;
 }
 
 /*!

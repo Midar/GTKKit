@@ -31,7 +31,7 @@
  */
 @interface GTKTab: OFObject <GTKCoding>
 {
-	__block OFString *_label;
+	OFString *_label;
 }
 
 /*!

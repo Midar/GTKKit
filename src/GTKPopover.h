@@ -25,12 +25,12 @@
  */
 @interface GTKPopover: GTKResponder <GTKCoding, OFCopying>
 {
-	__block GtkWidget       *_popOver;
-	__block __weak GTKView  *_relativeView;
-	__block GtkWidget       *_relativeWidget;
-	__block GTKPositionType  _preferredPosition;
-	__block int              _width;
-	__block int              _height;
+	GtkWidget       *_popOver;
+	__weak GTKView  *_relativeView;
+	GtkWidget       *_relativeWidget;
+	GTKPositionType  _preferredPosition;
+	int              _width;
+	int              _height;
 }
 
 /*!

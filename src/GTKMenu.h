@@ -28,8 +28,8 @@
  */
 @interface GTKMenu: OFObject <GTKCoding>
 {
-	__block GtkWidget                              *_menu;
-	__block OFMutableArray<__kindof GTKMenuItem *> *_menuItems;
+	GtkWidget                              *_menu;
+	OFMutableArray<__kindof GTKMenuItem *> *_menuItems;
 }
 
 @property (readonly) int numberOfItems;

@@ -26,7 +26,7 @@
  */
 @interface GTKStatusbar: GTKView
 {
-	__block unsigned int _contextID;
+	unsigned int _contextID;
 }
 - (void)push: (OFString *)message;
 - (void)pop;

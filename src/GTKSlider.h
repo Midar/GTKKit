@@ -28,19 +28,19 @@
  */
 @interface GTKSlider: GTKControl <GTKOrientable>
 {
-	__block GTKOrientation  _orientation;
-	__block double          _min;
-	__block double          _max;
-	__block bool            _restrict;
-	__block double          _fillLevel;
-	__block bool            _showFillLevel;
-	__block bool            _inverted;
-	__block double          _increment;
-	__block int             _roundDigits;
-	__block bool            _showValue;
-	__block GTKPositionType _valuePosition;
-	__block bool            _highlightOrigin;
-	__block unsigned int    _numberOfTickMarks;
+	GTKOrientation  _orientation;
+	double          _min;
+	double          _max;
+	bool            _restrict;
+	double          _fillLevel;
+	bool            _showFillLevel;
+	bool            _inverted;
+	double          _increment;
+	int             _roundDigits;
+	bool            _showValue;
+	GTKPositionType _valuePosition;
+	bool            _highlightOrigin;
+	unsigned int    _numberOfTickMarks;
 }
 
 /*!

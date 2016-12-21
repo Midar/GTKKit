@@ -1,5 +1,4 @@
-/*! @file GTKTabView.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKTabView.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -23,20 +24,22 @@
 #import "GTKApplication.h"
 #import "GTKCoding.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing a view that manages a set of tabs, each of which
- * has its own view hierarchy.
+ *	  has its own view hierarchy.
  */
 @interface GTKTabView: GTKView <GTKCoding>
 {
-	OFMutableArray<__kindof GTKTab *> *_tabs;
-	GtkWidget                         *_stack;
-	GtkWidget                         *_switcher;
-	bool                              _tabsHidden;
-	bool                              _frameHidden;
+	OFMutableArray <__kindof GTKTab*> *_tabs;
+	GtkWidget *_stack;
+	GtkWidget *_switcher;
+	bool _tabsHidden;
+	bool _frameHidden;
 }
 
-@property (nonnull, readonly, copy) OFArray<__kindof GTKTab *> *tabs;
+@property (readonly, copy) OFArray <__kindof GTKTab*> *tabs;
 
 /*!
  * @brief Whether or not to hide the built-in tab switcher.
@@ -48,36 +51,36 @@
  */
 @property bool frameHidden;
 
-/*
- * The GtkStack widget used by this view. This is only useful for view
- * implementations.
+/*!
+ * @brief The GtkStack widget used by this view. This is only useful for view
+ *	  implementations.
  */
-- (nonnull GtkWidget *)stack;
+- (GtkWidget*)stack;
 
 /*!
  * @brief Adds the specified tab to the end of the tab view's tabs.
  */
-- (void)addTab: (nonnull GTKTab *)tab;
+- (void)addTab: (GTKTab*)tab;
 
 /*!
  * @brief Removes the specified tab from the tab view's tabs.
  */
-- (void)removeTab: (nonnull GTKTab *)tab;
+- (void)removeTab: (GTKTab*)tab;
 
 /*!
- * @brief Inserts the specified tab at the specified position in the tab
- * view's tabs.
+ * @brief Inserts the specified tab at the specified position in the tab view's
+ *	  tabs.
  */
-- (void)insertTab: (nonnull GTKTab *)tab
+- (void)insertTab: (GTKTab*)tab
 	  atIndex: (int)index;
 
-- (void)renameTab: (nonnull GTKTab *)tab
-	 toString: (nonnull OFString *)string;
+- (void)renameTab: (GTKTab*)tab
+	 toString: (OFString*)string;
 
 /*!
  * @brief Returns the index of the specified tab in the tab view's tabs.
  */
-- (int)indexOfTab: (nonnull GTKTab *)tab;
+- (int)indexOfTab: (GTKTab*)tab;
 
 /*!
  * @brief The number of tabs in this tab view.
@@ -87,5 +90,7 @@
 /*!
  * @brief The GTKTab at the specified position in the tab view's tabs.
  */
-- (nullable GTKTab *)tabAtIndex: (int)index;
+- (nullable GTKTab*)tabAtIndex: (int)index;
 @end
+
+OF_ASSUME_NONNULL_END

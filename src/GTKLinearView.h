@@ -1,5 +1,4 @@
-/*! @file GTKLinearView.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,18 +14,24 @@
  * the packaging of this file.
  */
 
+/*! @file GTKLinearView.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
 #import "GTKOrientable.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing a view that arranges its subviews in a single
- * row or a single column.
+ *	  row or a single column.
  */
 @interface GTKLinearView: GTKView <GTKOrientable>
 {
 	GTKOrientation _orientation;
 }
 @end
+
+OF_ASSUME_NONNULL_END

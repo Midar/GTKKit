@@ -1,5 +1,4 @@
-/*! @file GTKCoding.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,17 +14,23 @@
  * the packaging of this file.
  */
 
+/*! @file GTKCoding.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
+
+OF_ASSUME_NONNULL_BEGIN
 
 @class GTKKeyedArchiver;
 @class GTKKeyedUnarchiver;
 
 /*!
- * @brief A protocol for objects which serialize and deserialize themselves using
- * GTKCoder objects.
+ * @brief A protocol for objects which serialize and deserialize themselves
+ *	  using GTKCoder objects.
  */
 @protocol GTKCoding <OFObject>
-- (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder;
-- (void)encodeWithCoder: (GTKKeyedArchiver *)encoder;
+- (instancetype)initWithCoder: (GTKKeyedUnarchiver*)decoder;
+- (void)encodeWithCoder: (GTKKeyedArchiver*)encoder;
 @end
+
+OF_ASSUME_NONNULL_END

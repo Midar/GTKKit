@@ -1,5 +1,4 @@
-/*! @file OFString+GTKCoding.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,21 +14,33 @@
  * the packaging of this file.
  */
 
+/*! @file OFString+GTKCoding.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoding.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 /*!
  * @brief Returns a new OFString containing the name of the selector.
  */
-OFString* OFStringFromSelector (SEL selector);
+OFString* OFStringFromSelector(SEL selector);
 
 /*!
  * @brief Returns a selector for the specified name; if there is no such selector,
  * one is registered for that name.
  */
 SEL OFSelectorFromString (OFString *selector);
+#ifdef __cplusplus
+}
+#endif
 
 @interface OFString (GTKCoding) <GTKCoding>
 @end
+
+OF_ASSUME_NONNULL_END

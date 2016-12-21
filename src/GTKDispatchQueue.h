@@ -1,5 +1,4 @@
-/*! @file GTKDispatchQueue.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,68 +14,77 @@
  * the packaging of this file.
  */
 
+/*! @file GTKDispatchQueue.h */
+
 #import <ObjFW/ObjFW.h>
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A block of code to be run as a work item by a GTKDispatchQueue. Takes
- * no parameters, returns no value.
+ *	  no parameters, returns no value.
  */
-typedef void (^DispatchWorkItem)();
+typedef void (^DispatchWorkItem)(void);
 
 /*!
- * @brief A class representing objects which dispatch work items (blocks) to
- * a pool of threads managed by the system. GTKDispatchQueue is the public
- * interface to a class cluster implementing specific types of dispatch
- * queues; the public interfaces it defines are the only ones needed to use
- * any type of queue, and your code need not be aware of any specific subclass.
+ * @brief A class representing objects which dispatch work items (blocks) to a
+ *	  pool of threads managed by the system.
  *
- * GTKDispatchQueue represents the public interface to multithreaded programming
- * in GTKKit. It allows you to run code in multiple threads, synchronously or
- * asynchronously, optionally repeating, with an optional delay in seconds.
+ * GTKDispatchQueue is the public interface to a class cluster implementing
+ * specific types of dispatch queues; the public interfaces it defines are the
+ * only ones needed to use any type of queue, and your code need not be aware
+ * of any specific subclass.
+ *
+ * GTKDispatchQueue represents the public interface to multithreaded
+ * programming in GTKKit. It allows you to run code in multiple threads,
+ * synchronously or asynchronously, optionally repeating, with an optional
+ * delay in seconds.
  */
 @interface GTKDispatchQueue: OFObject
 
 /*!
  * @brief A string label applied to the queue.
  */
-@property (nonnull, copy) OFString *label;
+@property (copy) OFString *label;
 
-+ (nonnull instancetype)main;
-+ (nonnull instancetype)background;
-+ (nonnull instancetype)gtk;
-
-/*!
- * @brief Create and return a new dispatch queue with its own thread.
- */
-+ (nonnull GTKDispatchQueue *)queueWithLabel: (nonnull OFString *)label
-				    priority: (float)priority;
++ (instancetype)main;
++ (instancetype)background;
++ (instancetype)gtk;
 
 /*!
  * @brief Create and return a new dispatch queue with its own thread.
  */
-+ (nonnull GTKDispatchQueue *)queueWithLabel: (nonnull OFString *)label;
++ (GTKDispatchQueue*)queueWithLabel: (OFString*)label
+			   priority: (float)priority;
+
+/*!
+ * @brief Create and return a new dispatch queue with its own thread.
+ */
++ (GTKDispatchQueue *)queueWithLabel: (OFString *)label;
 
 /*!
  * @brief Run a work item, waiting for it to complete before returning.
  */
-- (void)sync:(_Nonnull DispatchWorkItem)block;
+- (void)sync: (DispatchWorkItem)block;
 
 /*!
  * @brief Run a work item without waiting for it to complete before returning.
  */
-- (void)async:(_Nonnull DispatchWorkItem)block;
+- (void)async: (DispatchWorkItem)block;
 
 /*!
  * @brief Run a work item once, after a given delay in seconds, without waiting
- * for the work item to run or complete before returning.
+ *	  for the work item to run or complete before returning.
  */
 - (void)asyncAfter: (unsigned int)seconds
-	   execute: (_Nonnull DispatchWorkItem)block;
+	   execute: (DispatchWorkItem)block;
 
 /*!
- * @brief Run a work item, repeating after a given delay in seconds, without waiting
- * for the work item to run or complete before returning.
+ * @brief Run a work item, repeating after a given delay in seconds, without
+ *	  waiting for the work item to run or complete before returning.
  */
 - (void)asyncRepeatAfter: (unsigned int)seconds
-		 execute:(_Nonnull DispatchWorkItem)block;
+		 execute: (DispatchWorkItem)block;
 @end
+
+OF_ASSUME_NONNULL_END

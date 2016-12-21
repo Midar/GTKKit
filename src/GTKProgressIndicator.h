@@ -1,5 +1,4 @@
-/*! @file GTKProgressIndicator.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKProgressIndicator.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -22,23 +23,24 @@
 #import "GTKOrientable.h"
 #import "GTKApplication.h"
 
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a view that displays the progress of a task as
- * a bar that fills or pulses back and forth.
+ * @brief A class representing a view that displays the progress of a task as a
+ *	  bar that fills or pulses back and forth.
  */
 @interface GTKProgressIndicator: GTKView <GTKOrientable>
 {
-	bool           _showLabel;
-	OFString      *_stringValue;
-	double         _doubleValue;
-	bool           _inverted;
+	bool _showLabel;
+	OFString *_stringValue;
+	double _doubleValue;
+	bool _inverted;
 	GTKOrientation _orientation;
 }
 
 /*!
- * @brief Whether or not to display the string value associated with the progress
- * indicator as a label on the progress indicator.
+ * @brief Whether or not to display the string value associated with the
+ *	  progress indicator as a label on the progress indicator.
  */
 @property bool showLabel;
 
@@ -49,7 +51,7 @@
 
 /*!
  * @brief The string associated with the progress indicator, which may be used
- * as a label.
+ *	  as a label.
  */
 @property OFString *stringValue;
 
@@ -68,3 +70,5 @@
  */
 @property float floatValue;
 @end
+
+OF_ASSUME_NONNULL_END

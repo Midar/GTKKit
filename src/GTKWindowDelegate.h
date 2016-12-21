@@ -1,4 +1,4 @@
-/*! @file GTKWindowDelegate.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,19 +14,23 @@
  * the packaging of this file.
  */
 
+/*! @file GTKWindowDelegate.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
- * @brief A protocol composed of the optional methods GTKWindowViewController delegate
- * classes can implement.
+ * @brief A protocol composed of the optional methods GTKWindowViewController
+ *	  delegate classes can implement.
  */
 @protocol GTKWindowDelegate
 @optional
 
 /*!
  * @brief Ask the delegete whether or not the window should allow itself to be
- * closed.
+ *	  closed.
  */
 - (BOOL)windowShouldClose;
 
@@ -42,7 +46,7 @@
 
 /*!
  * @brief Ask the delegate whether or not the window should allow itself to be
- * minimized.
+ *	  minimized.
  */
 - (BOOL)windowShouldMinimize;
 
@@ -58,7 +62,7 @@
 
 /*!
  * @brief Ask the delegate whether or not the window should allow itself to be
- * maximized.
+ *	  maximized.
  */
 - (BOOL)windowShouldMaximize;
 
@@ -72,3 +76,5 @@
  */
 - (void)windowDidMaximize;
 @end
+
+OF_ASSUME_NONNULL_END

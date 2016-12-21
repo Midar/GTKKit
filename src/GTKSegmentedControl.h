@@ -1,5 +1,4 @@
-/*! @file GTKSegmentedControl.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,12 +14,16 @@
  * the packaging of this file.
  */
 
+/*! @file GTKSegmentedControl.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKControl.h"
 #import "GTKImage.h"
 #import "GTKPopover.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief The tracking modes available to segmented controls.
@@ -50,26 +53,26 @@ typedef enum GTKSegmentSwitchTracking {
  */
 @interface GTKSegmentedControl: GTKControl
 {
-	int                      _buttonIndex[32];
-	GtkWidget               *_buttons[32];
-	int                      _segments;
-	OFMutableArray          *_labelForSegment;
-	OFMutableArray          *_imageForSegment;
-	OFMutableArray          *_popOverForSegment;
-	bool                     _momentary;
+	int _buttonIndex[32];
+	GtkWidget *_buttons[32];
+	int _segments;
+	OFMutableArray *_labelForSegment;
+	OFMutableArray *_imageForSegment;
+	OFMutableArray *_popOverForSegment;
+	bool _momentary;
 	GTKSegmentSwitchTracking _trackingMode;
 }
-
 
 /*!
  * @brief The tracking mode of the control.
  */
-@property                      GTKSegmentSwitchTracking trackingMode;
-@property (getter=isMomentary) bool                     momentary;
-@property                      bool                     selectAny;
+@property GTKSegmentSwitchTracking trackingMode;
+@property (getter=isMomentary) bool momentary;
+@property bool selectAny;
 
 /*!
- * @brief The number of segments int the control; can be any integer from 0 to 32.
+ * @brief The number of segments int the control; can be any integer from 0 to
+ *	  32.
  */
 @property int segments;
 
@@ -84,17 +87,16 @@ typedef enum GTKSegmentSwitchTracking {
  * @param label The label to apply to the segment.
  * @param segment The segment to which the label should be applied.
  */
-- (void)setLabel: (OFString *)label
+- (void)setLabel: (OFString*)label
       forSegment: (int)segment;
 
 /*!
  * @brief Gets the label for the specified segment, if one exists.
  *
  * @param segment The segment from which the label should be returned.
- *
  * @returns An OFString representing the label, or nil if there is no label.
  */
-- (OFString *)labelForSegment: (int)segment;
+- (OFString*)labelForSegment: (int)segment;
 
 /*!
  * @brief Sets the given image as the image for the specified segment.
@@ -102,7 +104,7 @@ typedef enum GTKSegmentSwitchTracking {
  * @param image The GTKImage to apply to the segment.
  * @param segment The segment to which the image should be applied.
  */
-- (void)setImage: (GTKImage *)image
+- (void)setImage: (GTKImage*)image
       forSegment: (int)segment;
 
 /*!
@@ -110,31 +112,36 @@ typedef enum GTKSegmentSwitchTracking {
  *
  * @param segment The segment for which the image should be returned.
  *
- * @returns The GTKImage instance used by the segment, or nil if there is no image.
+ * @returns The GTKImage instance used by the segment, or nil if there is no
+ *	    image.
  */
-- (GTKImage *)imageForSegment: (int)segment;
+- (GTKImage*)imageForSegment: (int)segment;
 
 /*!
- * @brief Sets the given GTKPopOverViewController as the pop-over for the specified segment.
+ * @brief Sets the given GTKPopOverViewController as the pop-over for the
+ *	  specified segment.
  *
  * @param popOver The GTKPopOverViewController to attach to the segment.
  * @param segment The segment to which the pop-over should be attached.
  */
-- (void)setPopOver: (GTKPopover *)popOver
+- (void)setPopOver: (GTKPopover*)popOver
 	forSegment: (int)segment;
 
 /*!
- * @brief Gets the GTKPopOverViewController for the specified segment, if one exists.
+ * @brief Gets the GTKPopOverViewController for the specified segment, if one
+ *	  exists.
  *
  * @param segment The segment for which the pop-over should be returned.
  *
- * @returns The GTKPopOverViewController attached to the segment, or nil if there is no pop-over.
+ * @returns The GTKPopOverViewController attached to the segment, or nil if
+ *	    there is no pop-over.
  */
-- (GTKPopover *)popOverForSegment: (int)segment;
+- (GTKPopover*)popOverForSegment: (int)segment;
 
 /*!
- * @brief The state of the specified statement, i.e. if it is pressed or not. This
- * always returns GTKOffState when the control is momentary.
+ * @brief The state of the specified statement, i.e. if it is pressed or not.
+ *
+ * This always returns GTKOffState when the control is momentary.
  *
  * @param segment The segment for which the state should be returned.
  *
@@ -144,7 +151,7 @@ typedef enum GTKSegmentSwitchTracking {
 
 /*!
  * @brief Sets the state for the specified segment. This is only useful if the
- * control is not momentary.
+ *	  control is not momentary.
  *
  * @param state The state to apply to the segment.
  * @param segment The segment to which the state should be applied.
@@ -152,3 +159,5 @@ typedef enum GTKSegmentSwitchTracking {
 - (void)setState: (bool)state
       forSegment: (int)segment;
 @end
+
+OF_ASSUME_NONNULL_END

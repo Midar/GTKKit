@@ -1,4 +1,4 @@
-/*! @file GTKSeparator.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,11 +14,15 @@
  * the packaging of this file.
  */
 
+/*! @file GTKSeparator.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
 #import "GTKOrientable.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A class representing a separator.
@@ -28,3 +32,5 @@
 	GTKOrientation _orientation;
 }
 @end
+
+OF_ASSUME_NONNULL_END

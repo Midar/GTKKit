@@ -1,5 +1,4 @@
-/*! @file GTKTab.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,19 +14,24 @@
  * the packaging of this file.
  */
 
+/*! @file GTKTab.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
 #import "GTKCoding.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 @class GTKTabView;
 @class GTKNotebookView;
 
 /*!
- * @brief A class representing a tab in a tab view. It wraps around a GTKView,
- * which will be used as the view when the tab is shown. It is also used in
- * tabbed windows.
+ * @brief A class representing a tab in a tab view.
+ *
+ * It wraps around a GTKView, which will be used as the view when the tab is
+ * shown. It is also used in tabbed windows.
  */
 @interface GTKTab: OFObject <GTKCoding>
 {
@@ -52,7 +56,7 @@
 /*!
  * @brief The GTKView that holds the tab's content.
  */
-@property (nonnull) GTKView *contentView;
+@property GTKView *contentView;
 
 /*!
  * @brief The parent tab view, if one exists.
@@ -64,3 +68,5 @@
  */
 @property (nullable, weak) GTKNotebookView *notebookView;
 @end
+
+OF_ASSUME_NONNULL_END

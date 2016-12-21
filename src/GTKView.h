@@ -1,4 +1,4 @@
-/*! @file GTKView.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,11 +14,15 @@
  * the packaging of this file.
  */
 
+/*! @file GTKView.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKResponder.h"
 #import "GTKLayoutConstraints.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief An enumeration of the layers in which a view can render its subviews.
@@ -28,14 +32,17 @@ typedef enum GTKViewLayer {
 	 * @brief The background layer.
 	 */
 	GTKViewLayerBackground,
+
 	/*!
 	 * @brief The default layer.
 	 */
 	GTKViewLayerDefault,
+
 	/*!
 	 * @brief The foreground layer.
 	 */
 	GTKViewLayerForeground,
+
 	/*!
 	 * @brief The notification layer.
 	 */
@@ -43,25 +50,27 @@ typedef enum GTKViewLayer {
 } GTKViewLayer;
 
 /*!
- * @brief A block that takes a single cairo_t pointer argument, used to customize
- * the drawing of a given GTKView instance.
+ * @brief A block that takes a single cairo_t pointer argument, used to
+ *	  customize the drawing of a given GTKView instance.
  */
 typedef void (^GTKViewDrawingBlock) (cairo_t * _Nullable cr);
 
 /*!
- * @brief A structure representing a rectangle, with x, y, width and height integer
- * values.
+ * @brief A structure representing a rectangle, with x, y, width and height
+ *	  integer values.
  */
 typedef GdkRectangle GTKRect;
 
 @class GTKView;
 
-GTKView * _Nullable
-gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
+GTKView *_Nullable
+gtk_widget_get_owning_view(GtkWidget *_Nonnull widget);
 
 /*!
  * @brief A class representing "views" in the model-view-controller (MVC)
- * paradigm. It is the parent class for all such views, and one of the most
+ *	  paradigm.
+ *
+ * It is the parent class for all such views, and one of the most
  * important classes in GTKKit.
  *
  * GTKView instances hold strong references to all of their subviews,
@@ -81,7 +90,9 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 
 /*!
  * @brief The internal cairo context for the widget, used for the default draw
- * method. This is not guaranteed to be valid except while the draw method is
+ *	  method.
+ *
+ * This is not guaranteed to be valid except while the draw method is
  * run by the GTK+ draw signal handler. This is primarily useful for doing
  * custom drawing in your own GTKView subclasses.
  */
@@ -94,8 +105,9 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 
 /*!
  * @brief The GtkWidget sub-instance used as the "main" widget in the overlay.
- * In the default GTKView implementation, this is a GtkDrawingArea, but virtually
- * every GTKView subclass overrides this with its own widget type.
+ *
+ * In the default GTKView implementation, this is a GtkDrawingArea, but
+ * virtually every GTKView subclass overrides this with its own widget type.
  */
 @property (nullable) GtkWidget *mainWidget;
 
@@ -112,27 +124,27 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 /*!
  * @brief A mutable array of the background layer subviews of this view.
  */
-@property (nonnull) OFMutableArray<__kindof GTKView *> *backgroundLayerSubviews;
+@property OFMutableArray <__kindof GTKView*> *backgroundLayerSubviews;
 
 /*!
  * @brief A mutable array of the default layer subviews of this view.
  */
-@property (nonnull) OFMutableArray<__kindof GTKView *> *defaultLayerSubviews;
+@property OFMutableArray <__kindof GTKView*> *defaultLayerSubviews;
 
 /*!
  * @brief A mutable array of the foreground layer subviews of this view.
  */
-@property (nonnull) OFMutableArray<__kindof GTKView *> *foregroundLayerSubviews;
+@property OFMutableArray <__kindof GTKView*> *foregroundLayerSubviews;
 
 /*!
  * @brief A mutable array of the notification layer subviews of this view.
  */
-@property (nonnull) OFMutableArray<__kindof GTKView *> *notificationLayerSubviews;
+@property OFMutableArray <__kindof GTKView*> *notificationLayerSubviews;
 
 /*!
  * @brief The constraints used in laying out this view.
  */
-@property (nonnull) GTKLayoutConstraints *constraints;
+@property GTKLayoutConstraints *constraints;
 
 /*!
  * @brief Whether or not to draw this view at all.
@@ -141,26 +153,28 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 
 /*!
  * @brief The opacity level of the view; if it is drawn at all, it will be
- * drawn with this opacity level. The default implementation of this property
- * only affects the view itself, not any of its subviews.
+ *	  drawn with this opacity level.
+ *
+ * The default implementation of this property only affects the view itself,
+ * not any of its subviews.
  */
 @property double alpha;
 
 /*!
- * @brief The frame of the view - its position and size, in the coordinate space
- * of its superview.
+ * @brief The frame of the view - its position and size, in the coordinate
+ *	  space of its superview.
  */
 @property (readonly) GTKRect frame;
 
 /*!
  * @brief A block, taking a single cairo_t argument, which can handle custom
- * drawing for a GTKView instance.
+ *	  drawing for a GTKView instance.
  */
-@property _Nullable GTKViewDrawingBlock drawingBlock;
+@property (nullable) GTKViewDrawingBlock drawingBlock;
 
 /*!
- * @brief Given a subview, return a rectangle in this view's coordinate space which
- * represents the subview's position and size.
+ * @brief Given a subview, return a rectangle in this view's coordinate space
+ *	  which represents the subview's position and size.
  *
  * This is used by the GtkOverlay "get-child-position" signal callback of this
  * view's overlay. Subclasses can override this method to implement custom
@@ -169,7 +183,7 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
  * The default implementation of this method uses the view's width and height,
  * combined with the subview's constraints, to generate the layout rectangle.
  */
-- (GTKRect)layoutSubview: (nonnull GTKView*)subview;
+- (GTKRect)layoutSubview: (GTKView*)subview;
 
 /*!
  * @brief Render each of this view's subviews within this view's area.
@@ -179,16 +193,16 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 /*!
  * @brief This method handles any custom drawing the view requires.
  *
- * The default implementation of this method does nothing; subclasses can override
- * it as needed. Cairo drawing is permissible in this method, with the cairo
- * context available as self.cairoContext.
+ * The default implementation of this method does nothing; subclasses can
+ * override it as needed. Cairo drawing is permissible in this method, with the
+ * cairo context available as self.cairoContext.
  */
 - (void)draw;
 
 /*!
  * @brief Adds the given view to this view as a subview.
  */
-- (void)addSubview: (nonnull GTKView *)view;
+- (void)addSubview: (GTKView*)view;
 
 /*!
  * @brief Removes this view from its superview.
@@ -197,3 +211,5 @@ gtk_widget_get_owning_view (GtkWidget * _Nonnull widget);
 
 - (void)reconnectSignals;
 @end
+
+OF_ASSUME_NONNULL_END

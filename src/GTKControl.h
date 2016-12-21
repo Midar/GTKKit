@@ -1,4 +1,4 @@
-/*! @file GTKControl.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,34 +14,38 @@
  * the packaging of this file.
  */
 
+/*! @file GTKControl.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKEvent.h"
 #import "GTKView.h"
 
-typedef void (^GTKControlActionBlock) ();
+OF_ASSUME_NONNULL_BEGIN
+
+typedef void (^GTKControlActionBlock)(void);
 
 /*!
  * @brief A class represnting GUI controls
  *
  * GTKControl is the parent class of all the "control" views: views which
- * implement buttons, sliders, etc. Controls are distinguished from other
- * views by their implementation of the target-action pattern - when a control
- * is activated, it sends a message to another object with itself as an argument,
+ * implement buttons, sliders, etc. Controls are distinguished from other views
+ * by their implementation of the target-action pattern - when a control is
+ * activated, it sends a message to another object with itself as an argument,
  * which decouples behaviour from the class itself.
  */
 @interface GTKControl: GTKView
 
 /*!
  * @brief The target of the action for the control. If this is nil, the action
- * message will be sent to the first responder.
+ *	  message will be sent to the first responder.
  */
 @property (nullable, weak) id target;
 
 /*!
  * @brief The selector of the message which is sent to the target or first
- * responder. If this is NULL, no action is attempted.
+ *	  responder. If this is NULL, no action is attempted.
  */
 @property (nullable) SEL action;
 
@@ -93,29 +97,31 @@ typedef void (^GTKControlActionBlock) ();
  * @brief Set the string value of this control from that of another object. The
  * target object must implement the -stringValue: method.
  */
-- (void)takeStringValueFrom: (nonnull id)target;
+- (void)takeStringValueFrom: (id)target;
 
 /*!
  * @brief Set the int value of this control from that of another object. The
  * target object must implement the -intValue: method.
  */
-- (void)takeIntValueFrom: (nonnull id)target;
+- (void)takeIntValueFrom: (id)target;
 
 /*!
  * @brief Set the double value of this control from that of another object. The
  * target object must implement the -doubleValue: method.
  */
-- (void)takeDoubleValueFrom: (nonnull id)target;
+- (void)takeDoubleValueFrom: (id)target;
 
 /*!
  * @brief Set the float value of this control from that of another object. The
  * target object must implement the -floatValue: method.
  */
-- (void)takeFloatValueFrom: (nonnull id)target;
+- (void)takeFloatValueFrom: (id)target;
 
 /*!
  * @brief Set the object value of this control from that of another object. The
  * target object must implement the -objectValue: method.
  */
-- (void)takeObjectValueFrom: (nonnull id)target;
+- (void)takeObjectValueFrom: (id)target;
 @end
+
+OF_ASSUME_NONNULL_END

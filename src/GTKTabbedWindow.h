@@ -1,4 +1,4 @@
-/*! @file GTKTabbedWindow.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,6 +14,7 @@
  * the packaging of this file.
  */
 
+/*! @file GTKTabbedWindow.h */
 
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
@@ -21,10 +22,12 @@
 #import "GTKWindow.h"
 #import "GTKTabView.h"
 
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A class representing a window whose contentView is a GTKTabView whose
- * tab switcher is located in the window's header bar, in place of a title.
+ *	  tab switcher is located in the window's header bar, in place of a
+ *	  title.
  */
 @interface GTKTabbedWindow: GTKWindow
 {
@@ -34,10 +37,12 @@
 /*!
  * @brief The GTKTabView that holds all this view controller's subviews.
  */
-- (nullable GTKTabView *)contentView;
+- (nullable GTKTabView*)contentView;
 
 /*!
  * @brief The GTKTabView that holds all this view controller's subviews.
  */
-- (void)setContentView: (nullable GTKTabView *)view;
+- (void)setContentView: (nullable GTKTabView*)view;
 @end
+
+OF_ASSUME_NONNULL_END

@@ -1,4 +1,4 @@
-/*! @file GTKPopOver.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,23 +14,27 @@
  * the packaging of this file.
  */
 
+/*! @file GTKPopOver.h */
+
 #import "GTKResponder.h"
 #import "GTKPositionType.h"
 #import "GTKView.h"
 #import "GTKCoding.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing a view controller that presents a view hierarchy
- * as a pop-up attached to another view.
+ *	  as a pop-up attached to another view.
  */
 @interface GTKPopover: GTKResponder <GTKCoding, OFCopying>
 {
-	GtkWidget       *_popOver;
-	__weak GTKView  *_relativeView;
-	GtkWidget       *_relativeWidget;
-	GTKPositionType  _preferredPosition;
-	int              _width;
-	int              _height;
+	GtkWidget *_popOver;
+	__weak GTKView *_relativeView;
+	GtkWidget *_relativeWidget;
+	GTKPositionType _preferredPosition;
+	int _width;
+	int _height;
 }
 
 /*!
@@ -46,12 +50,13 @@
 /*!
  * @brief The view relative to which this pop-up should be shown.
  */
-@property (weak, nullable) GTKView   *relativeView;
-@property (nullable)       GtkWidget *relativeWidget;
+@property (weak, nullable) GTKView *relativeView;
+@property (nullable) GtkWidget *relativeWidget;
 
 /*!
- * @brief The pop-up's preferred position relative to its relativeView. Depending
- * on the available screen-space, this may be ignored.
+ * @brief The pop-up's preferred position relative to its relativeView.
+ *
+ * Depending on the available screen-space, this may be ignored.
  */
 @property GTKPositionType preferredPosition;
 
@@ -65,3 +70,5 @@
  */
 @property int height;
 @end
+
+OF_ASSUME_NONNULL_END

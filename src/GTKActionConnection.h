@@ -1,5 +1,4 @@
-/*! @file GTKActionConnection.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,10 +14,14 @@
  * the packaging of this file.
  */
 
+/*! @file GTKActionConnection.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoder.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A class representing the connection between a serialized object and a
@@ -27,5 +30,7 @@
 @interface GTKActionConnection: OFObject <GTKCoding>
 @property (nullable) OFString *objectKeyPath;
 @property (nullable) OFString *targetKeyPath;
-@property (nullable) SEL       actionSelector;
+@property (nullable) SEL actionSelector;
 @end
+
+OF_ASSUME_NONNULL_END

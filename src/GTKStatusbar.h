@@ -1,5 +1,4 @@
-/*! @file GTKStatusbar.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,20 +14,27 @@
  * the packaging of this file.
  */
 
+/*! @file GTKStatusbar.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing a view that displays the top message of an
- * internal stack.
+ *	  internal stack.
  */
 @interface GTKStatusbar: GTKView
 {
 	unsigned int _contextID;
 }
-- (void)push: (OFString *)message;
+
+- (void)push: (OFString*)message;
 - (void)pop;
 - (void)clear;
 @end
+
+OF_ASSUME_NONNULL_END

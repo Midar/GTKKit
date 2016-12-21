@@ -1,5 +1,4 @@
-/*! @file GTKButton.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKButton.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -22,6 +23,8 @@
 #import "GTKImage.h"
 #import "GTKPopover.h"
 #import "GTKMenu.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief The state of an active button. Equal to true.
@@ -68,20 +71,20 @@ typedef enum GTKButtonType {
  */
 @interface GTKButton: GTKControl
 {
-	GTKButtonType      _buttonType;
-	GtkWidget         *_pushButton;
-	GtkWidget         *_pushButtonImage;
-	GtkWidget         *_toggleButton;
-	GtkWidget         *_toggleButtonImage;
-	GtkWidget         *_checkButton;
-	GtkWidget         *_checkButtonImage;
-	GtkWidget         *_radioButton;
-	GtkWidget         *_radioButtonImage;
-	GtkWidget         *_hiddenRadioButton;
-	GtkWidget         *_switchButton;
-	GTKImage          *_image;
+	GTKButtonType _buttonType;
+	GtkWidget *_pushButton;
+	GtkWidget *_pushButtonImage;
+	GtkWidget *_toggleButton;
+	GtkWidget *_toggleButtonImage;
+	GtkWidget *_checkButton;
+	GtkWidget *_checkButtonImage;
+	GtkWidget *_radioButton;
+	GtkWidget *_radioButtonImage;
+	GtkWidget *_hiddenRadioButton;
+	GtkWidget *_switchButton;
+	GTKImage *_image;
 	__weak GTKPopover *_popOver;
-	OFString          *_stringValue;
+	OFString *_stringValue;
 }
 
 /*!
@@ -114,3 +117,5 @@ typedef enum GTKButtonType {
  */
 @property (weak, nullable) GTKMenu *menu;
 @end
+
+OF_ASSUME_NONNULL_END

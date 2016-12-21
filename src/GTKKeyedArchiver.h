@@ -1,5 +1,4 @@
-/*! @file GTKKeyedArchiver.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,18 +14,24 @@
  * the packaging of this file.
  */
 
+/*! @file GTKKeyedArchiver.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoder.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing keyed archiver objects which have the ability to
- * write themselves to files.
+ *	  write themselves to files.
  */
 @interface GTKKeyedArchiver: GTKCoder
-+ (instancetype)archiveRootObject: (id<GTKCoding>)object;
-+ (void)archiveRootObject: (id<GTKCoding>)object
-		    toURL: (OFURL *)url;
-- (void)writeToURL: (OFURL *)url;
++ (instancetype)archiveRootObject: (id <GTKCoding>)object;
++ (void)archiveRootObject: (id <GTKCoding>)object
+		    toURL: (OFURL*)URL;
+- (void)writeToURL: (OFURL*)URL;
 @end
+
+OF_ASSUME_NONNULL_END

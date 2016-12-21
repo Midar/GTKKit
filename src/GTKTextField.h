@@ -1,5 +1,4 @@
-/*! @file GTKTextField.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,16 +14,19 @@
  * the packaging of this file.
  */
 
+/*! @file GTKTextField.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKControl.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
- * @brief The available justifications in GTKKit
+ * @brief The available justifications in GTKKit.
  */
 typedef enum GTKJustification {
-
 	/*!
 	 * @brief Left justification.
 	 */
@@ -46,21 +48,20 @@ typedef enum GTKJustification {
 	GTKJustificationFill = GTK_JUSTIFY_FILL
 } GTKJustification;
 
-
 /*!
  * @brief A class representing a control that acts as a single- or multi-line
- * label or text-entry field.
+ *	  label or text-entry field.
  */
 @interface GTKTextField: GTKControl
 {
-	bool             _editable;
-	bool             _selectable;
+	bool _editable;
+	bool _selectable;
 	GTKJustification _justify;
-	bool             _multiline;
-	GtkWidget       *_scrollWindow;
-	GtkWidget       *_labelWidget;
-	GtkWidget       *_entryWidget;
-	GtkWidget       *_textViewWidget;
+	bool _multiline;
+	GtkWidget *_scrollWindow;
+	GtkWidget *_labelWidget;
+	GtkWidget *_entryWidget;
+	GtkWidget *_textViewWidget;
 }
 
 /*!
@@ -69,9 +70,9 @@ typedef enum GTKJustification {
 @property (getter=isEditable) bool editable;
 
 /*!
- * @brief Whether or not the text field sends its target-action message and runs
- * its action block whenever the content changes, or if it does so only when
- * enter is pressed.
+ * @brief Whether or not the text field sends its target-action message and
+ *	  runs its action block whenever the content changes, or if it does so
+ *	  only when enter is pressed.
  */
 @property (getter=isContinuous) bool continuous;
 
@@ -90,3 +91,5 @@ typedef enum GTKJustification {
  */
 @property (getter=isMultiline) bool multiline;
 @end
+
+OF_ASSUME_NONNULL_END

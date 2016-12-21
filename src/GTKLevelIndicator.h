@@ -1,5 +1,4 @@
-/*! @file GTKLevelIndicator.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,19 +14,23 @@
  * the packaging of this file.
  */
 
+/*! @file GTKLevelIndicator.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
 #import "GTKOrientable.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief The modes available to a GTKLevelIndicator.
  */
 typedef enum GTKLevelMode {
 	/*!
-	 * @brief A continuous level indicator, with the level shown as a single
-	 * bar.
+	 * @brief A continuous level indicator, with the level shown as a
+	 *	  single bar.
 	 */
 	GTKLevelModeContinuous = GTK_LEVEL_BAR_MODE_CONTINUOUS,
 
@@ -39,15 +42,15 @@ typedef enum GTKLevelMode {
 
 
 /*!
- * @brief A class representing a view that displays a value as a graphical level,
- * such as you might see in a volume meter.
+ * @brief A class representing a view that displays a value as a graphical
+ *	  level, such as you might see in a volume meter.
  */
 @interface GTKLevelIndicator: GTKView <GTKOrientable>
 {
-	double         _minValue;
-	double         _maxValue;
-	GTKLevelMode   _mode;
-	bool           _inverted;
+	double _minValue;
+	double _maxValue;
+	GTKLevelMode _mode;
+	bool _inverted;
 	GTKOrientation _orientation;
 }
 
@@ -86,3 +89,5 @@ typedef enum GTKLevelMode {
  */
 @property float floatValue;
 @end
+
+OF_ASSUME_NONNULL_END

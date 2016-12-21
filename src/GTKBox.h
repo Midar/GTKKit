@@ -1,5 +1,4 @@
-/*! @file GTKBox.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,15 +14,18 @@
  * the packaging of this file.
  */
 
+/*! @file GTKBox.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
 
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief A class representing a view that draws a border around itself, and has
- * an optional label string.
+ * @brief A class representing a view that draws a border around itself, and
+ *	  has an optional label string.
  */
 @interface GTKBox: GTKView
 {
@@ -38,6 +40,8 @@
 /*!
  * @brief create and return a new GTKBox with the chosen label set.
  */
-+ (instancetype)boxWithLabel: (OFString *)label;
-- (instancetype)initWithLabel: (OFString *)label;
++ (instancetype)boxWithLabel: (OFString*)label;
+- (instancetype)initWithLabel: (OFString*)label;
 @end
+
+OF_ASSUME_NONNULL_END

@@ -1,4 +1,4 @@
-/*! @file GTKApplicationDelegate.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,37 +14,43 @@
  * the packaging of this file.
  */
 
+/*! @file GTKApplicationDelegate.h */
+
 #import <ObjFW/ObjFW.h>
 
 #import <gtk/gtk.h>
 
-/*!
- * @brief This macro sets the class used as the app delegate, and provides the
- * main() function.
- */
-#define GTK_APPLICATION_DELEGATE(cls)                                          \
-int                                                                            \
-main(int   argc,                                                               \
-     char *argv[])                                                             \
-{                                                                              \
-	GTKApp = [GTKApplication sharedApplication];                           \
-	GTKApp.delegateClass = [cls class];                                    \
-	GTKApp.argc = &argc;                                                   \
-	GTKApp.argv = &argv;                                                   \
-	[GTKApp startup];                                                      \
-	[GTKApp run];                                                          \
-	return 0;                                                              \
-}
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
- * @brief The protocol adopted by classes which are used as GTKApplication delegates.
+ * @brief This macro sets the class used as the app delegate, and provides the
+ *	  main() function.
+ */
+#define GTK_APPLICATION_DELEGATE(cls)				\
+	int							\
+	main(int argc, char *argv[])				\
+	{							\
+		GTKApp = [GTKApplication sharedApplication];	\
+		GTKApp.delegateClass = [cls class];		\
+		GTKApp.argc = &argc;				\
+		GTKApp.argv = &argv;				\
+		[GTKApp startup];				\
+		[GTKApp run];					\
+		return 0;					\
+	}
+
+/*!
+ * @brief The protocol adopted by classes which are used as GTKApplication
+ *	  delegates.
  */
 @protocol GTKApplicationDelegate <OFObject, OFApplicationDelegate>
 @optional
 
 /*!
- * @brief Ask the application delegate whether or not the application should allow
- * itself to be terminated.
+ * @brief Ask the application delegate whether or not the application should
+ *	  allow itself to be terminated.
  */
 - (bool)applicationShouldTerminate;
 @end
+
+OF_ASSUME_NONNULL_END

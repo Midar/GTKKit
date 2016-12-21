@@ -1,4 +1,4 @@
-/*! @file GTKMenu.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,12 +14,15 @@
  * the packaging of this file.
  */
 
+/*! @file GTKMenu.h */
 
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoding.h"
 #import "GTKMenuItem.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 @class GTKView;
 
@@ -28,24 +31,26 @@
  */
 @interface GTKMenu: OFObject <GTKCoding>
 {
-	GtkWidget                              *_menu;
-	OFMutableArray<__kindof GTKMenuItem *> *_menuItems;
+	GtkWidget *_menu;
+	OFMutableArray <__kindof GTKMenuItem*> *_menuItems;
 }
 
 @property (readonly) int numberOfItems;
 
-- (void)addItem: (nonnull GTKMenuItem *)item;
+- (void)addItem: (GTKMenuItem *)item;
 
-- (void)insertItem: (nonnull GTKMenuItem *)item
+- (void)insertItem: (GTKMenuItem *)item
 	   atIndex: (int)index;
 
-- (void)removeItem: (nonnull GTKMenuItem *)item;
+- (void)removeItem: (GTKMenuItem *)item;
 
-- (nullable GTKMenuItem *)itemAtIndex: (int)index;
+- (nullable GTKMenuItem*)itemAtIndex: (int)index;
 
-- (nullable GTKMenuItem *)itemWithTag: (int)tag;
+- (nullable GTKMenuItem*)itemWithTag: (int)tag;
 
-- (nonnull OFArray *)itemArray;
+- (OFArray*)itemArray;
 
-- (void)popUpAtView: (nonnull GTKView *)view;
+- (void)popUpAtView: (GTKView*)view;
 @end
+
+OF_ASSUME_NONNULL_END

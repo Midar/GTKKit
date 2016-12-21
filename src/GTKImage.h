@@ -1,4 +1,4 @@
-/*! @file GTKImage.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,14 +14,17 @@
  * the packaging of this file.
  */
 
+/*! @file GTKImage.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief An enumeration of the image file formats supported by GTKImage
  */
 typedef enum GTKImageFormat {
-
 	/*!
 	 * @brief JPEG format.
 	 */
@@ -52,7 +55,6 @@ typedef enum GTKImageFormat {
  * @brief An enumeration of the supported sizes for stock icons.
  */
 typedef enum GTKIconSize {
-
 	/*!
 	 * @brief A small icon.
 	 */
@@ -80,8 +82,8 @@ typedef enum GTKIconSize {
 @interface GTKImage: OFObject
 {
 	GdkPixbuf *_pixbuf;
-	int        _width;
-	int        _height;
+	int _width;
+	int _height;
 }
 
 /*!
@@ -97,34 +99,36 @@ typedef enum GTKIconSize {
 /*!
  * @brief Create an image from a local (file://) URL.
  */
-+ imageWithURL: (OFURL *)url;
++ (instancetype)imageWithURL: (OFURL*)url;
 
 /*!
- * @brief Create an image from a stock icon in the default theme, at the specified
- * pixel size.
+ * @brief Create an image from a stock icon in the default theme, at the
+ *	  specified pixel size.
  */
-+ imageWithIconName: (OFString *)name
-	       size:(int)size;
++ (instancetype)imageWithIconName: (OFString*)name
+			     size: (int)size;
 
-+ imageWithPixbuf: (GdkPixbuf *)pixbuf;
++ (instancetype)imageWithPixbuf: (GdkPixbuf*)pixbuf;
 
 /*!
  * @brief Save the image represented by this GTKImage to a file with the
- * specified format.
+ *	  specified format.
  */
-- (void)writeImageToURL: (OFURL *)url
+- (void)writeImageToURL: (OFURL*)url
 		 format: (GTKImageFormat)format;
 
 /*!
  * @brief Save the image represented by this GTKImage to a file with the
- * specified format.
+ *	  specified format.
  */
-- (void)writeImageToFile: (OFString *)url
+- (void)writeImageToFile: (OFString*)url
 		  format: (GTKImageFormat)format;
 
-// Private methods.
-- (GdkPixbuf *)pixbuf;
-- (GdkPixbuf *)pixbufScaledToWidth: (int)width
-			    height:(int)height
-		 maintainingAspect:(bool)aspect;
+/* Private methods. */
+- (GdkPixbuf*)pixbuf;
+- (GdkPixbuf*)pixbufScaledToWidth: (int)width
+			   height: (int)height
+		maintainingAspect: (bool)aspect;
 @end
+
+OF_ASSUME_NONNULL_END

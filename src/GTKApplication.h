@@ -1,5 +1,4 @@
-/*! @file GTKApplication.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKApplication.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -23,19 +24,27 @@
 #import "GTKDispatchQueue.h"
 #import "GTKWindow.h"
 
-extern _Nonnull of_thread_t      gtkkit_objfw_thread;
-extern _Nonnull of_thread_t      gtkkit_gtk_thread;
-extern const    of_thread_attr_t gtkkit_objfw_thread_attr;
+OF_ASSUME_NONNULL_BEGIN
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+extern _Nonnull of_thread_t gtkkit_objfw_thread;
+extern _Nonnull of_thread_t gtkkit_gtk_thread;
+extern const of_thread_attr_t gtkkit_objfw_thread_attr;
+#ifdef __cplusplus
+}
+#endif
 
 @class GTKApplication;
 
-extern GTKApplication * _Nonnull GTKApp;
+extern GTKApplication *_Nonnull GTKApp;
 
 @interface GTKStandardDispatchQueues: OFObject
-@property (nonnull) GTKDispatchQueue *main;
-@property (nonnull) GTKDispatchQueue *background;
-@property (nonnull) GTKDispatchQueue *gtk;
-+ (nonnull GTKStandardDispatchQueues *)sharedQueues;
+@property GTKDispatchQueue *main;
+@property GTKDispatchQueue *background;
+@property GTKDispatchQueue *gtk;
++ (GTKStandardDispatchQueues*)sharedQueues;
 @end
 
 /*!
@@ -45,8 +54,8 @@ extern GTKApplication * _Nonnull GTKApp;
  */
 @interface GTKApplication: GTKResponder
 {
-  int * _Nonnull _argc;
-  char * _Nonnull * _Nonnull * _Nonnull _argv;
+	int *_Nonnull _argc;
+	char *_Nonnull *_Nonnull *_Nonnull _argv;
 }
 
 /*!
@@ -56,13 +65,13 @@ extern GTKApplication * _Nonnull GTKApp;
  * the default background queue. The easy way to get these is through the GTKApp
  * global constant.
  */
-@property (nonnull) GTKStandardDispatchQueues *dispatch;
+@property GTKStandardDispatchQueues *dispatch;
 
 /*!
  * @brief The application delegate. This can be of any class that implements the
  * GTKApplicationDelegate protocol.
  */
-@property (nullable) id<GTKApplicationDelegate> delegate;
+@property (nullable) id <GTKApplicationDelegate> delegate;
 
 /*!
  * @brief The view controller representing the current key window, if there is
@@ -73,20 +82,21 @@ extern GTKApplication * _Nonnull GTKApp;
 /*!
  * @brief The object which is the current first responder.
  */
-@property (nonnull) GTKResponder                *firstResponder;
-@property (nonnull) Class                        delegateClass;
-@property           int * _Nonnull               argc;
-@property           char * _Nonnull * _Nonnull * _Nonnull argv;
+@property GTKResponder *firstResponder;
+@property Class delegateClass;
+@property int *_Nonnull argc;
+@property char *_Nonnull *_Nonnull *_Nonnull argv;
 
 /*!
- * @brief An array which contains all the active GTKWindowViewController instances.
+ * @brief An array which contains all the active GTKWindowViewController
+ *	  instances.
  */
-@property (nonnull) OFMutableArray *windows;
+@property OFMutableArray *windows;
 
 /*!
  * @brief The shared instance of GTKApplication.
  */
-+ (nonnull instancetype)sharedApplication;
++ (instancetype)sharedApplication;
 - (void)startup;
 
 /*!
@@ -104,3 +114,5 @@ extern GTKApplication * _Nonnull GTKApp;
  */
 - (void)stop;
 @end
+
+OF_ASSUME_NONNULL_END

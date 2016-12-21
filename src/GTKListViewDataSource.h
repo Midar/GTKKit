@@ -1,4 +1,4 @@
-/*! @file GTKListViewDataSource.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,8 +14,15 @@
  * the packaging of this file.
  */
 
+/*! @file GTKListViewDataSource.h */
+
+#import <ObjFW/OFObject.h>
+
+OF_ASSUME_NONNULL_BEGIN
+
 @protocol GTKListViewDataSource <OFObject>
 - (int)numberOfRows;
-- (GTKView *)viewForRow: (int)row;
-@optional
+- (GTKView*)viewForRow: (int)row;
 @end
+
+OF_ASSUME_NONNULL_END

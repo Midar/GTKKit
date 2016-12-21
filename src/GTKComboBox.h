@@ -1,5 +1,4 @@
-/*! @file GTKComboBox.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,15 +14,21 @@
  * the packaging of this file.
  */
 
+/*! @file GTKComboBox.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKPopUpButton.h"
 #import "GTKApplication.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A button with an associated menu of items, any of which can be
- * selected.
+ *	  selected.
  */
 @interface GTKComboBox: GTKPopUpButton
 @end
+
+OF_ASSUME_NONNULL_END

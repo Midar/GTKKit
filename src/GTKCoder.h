@@ -1,5 +1,4 @@
-/*! @file GTKCoder.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,23 +14,25 @@
  * the packaging of this file.
  */
 
+/*! @file GTKCoder.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoding.h"
 #import "OFString+GTKCoding.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 typedef GdkRectangle GTKRect;
 
-#define KEYED_CODING_EXCEPTION_CHECK                                           \
-	if (!self.allowsKeyedCoding) {                                         \
-		@throw [GTKCoderKeyedCodingNotAllowedException exception];     \
-	}                                                                      \
+#define KEYED_CODING_EXCEPTION_CHECK					   \
+	if (!self.allowsKeyedCoding)					   \
+		@throw [GTKCoderKeyedCodingNotAllowedException exception];
 
-#define INVALID_KEY_EXCEPTION_CHECK                                            \
-	if (![key isKindOfClass: OFString.class]) {                            \
-		@throw [GTKCoderInvalidKeyException exception];                \
-	}                                                                      \
+#define INVALID_KEY_EXCEPTION_CHECK				\
+	if (![key isKindOfClass: OFString.class])		\
+		@throw [GTKCoderInvalidKeyException exception];
 
 @interface GTKCoderKeyedCodingNotAllowedException: OFException
 @end
@@ -41,7 +42,7 @@ typedef GdkRectangle GTKRect;
 
 /*!
  * @brief An abstract parent class for classes which transfer data between
- * memory and other storage.
+ *	  memory and other storage.
  */
 @interface GTKCoder: OFObject
 /*!
@@ -57,13 +58,13 @@ typedef GdkRectangle GTKRect;
 /*!
  * @brief An OFString containing an XML representation of this coder.
  */
-- (OFString *)XMLString;
+- (OFString*)XMLString;
 @end
 
 @interface GTKCoder (KeyedCoding)
 /*!
  * @brief A boolean value dependent on whether or not the coder allows keyed
- * encoding and decoding.
+ *	  encoding and decoding.
  */
 @property (readonly) bool allowsKeyedCoding;
 
@@ -126,33 +127,33 @@ typedef GdkRectangle GTKRect;
 - (bool)decodeBoolForKey: (OFString *)key;
 
 /*!
-* @brief Decode the double value for the supplied key.
-*/
+ * @brief Decode the double value for the supplied key.
+ */
 - (double)decodeDoubleForKey: (OFString *)key;
 
 /*!
-* @brief Decode the float value for the supplied key.
-*/
+ * @brief Decode the float value for the supplied key.
+ */
 - (float)decodeFloatForKey: (OFString *)key;
 
 /*!
-* @brief Decode the int value for the supplied key.
-*/
+ * @brief Decode the int value for the supplied key.
+ */
 - (int)decodeIntForKey: (OFString *)key;
 
 /*!
-* @brief Decode the GTKRect value for the supplied key.
-*/
+ * @brief Decode the GTKRect value for the supplied key.
+ */
 - (GTKRect)decodeRectForKey: (OFString *)key;
 
 /*!
-* @brief Decode the int value for the supplied key.
-*/
+ * @brief Decode the int value for the supplied key.
+ */
 - (OFString *)decodeStringForKey: (OFString *)key;
 
 /*!
-* @brief Decode the object for the supplied key.
-*/
+ * @brief Decode the object for the supplied key.
+ */
 - (id)decodeObjectForKey: (OFString *)key;
 
 /*!
@@ -160,3 +161,5 @@ typedef GdkRectangle GTKRect;
  */
 - (SEL)decodeSelectorforKey: (OFString *)key;
 @end
+
+OF_ASSUME_NONNULL_END

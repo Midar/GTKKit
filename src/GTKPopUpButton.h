@@ -1,5 +1,4 @@
-/*! @file GTKPopUpButton.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,15 +14,18 @@
  * the packaging of this file.
  */
 
+/*! @file GTKPopUpButton.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKControl.h"
 
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A button with an associated menu of items, any of which can be
- * selected.
+ *	  selected.
  */
 @interface GTKPopUpButton: GTKControl
 {
@@ -43,13 +45,13 @@
 /*!
  * @brief The title of the selected item.
  */
-- (OFString *)titleOfSelectedItem;
+- (OFString*)titleOfSelectedItem;
 
 /*!
  * @brief Add an item to the button's menu, with the specified label, at the
- * specified index.
+ *	  specified index.
  */
-- (void)insertItemWithTitle: (OFString *)string
+- (void)insertItemWithTitle: (OFString*)string
 			 at: (int)index;
 
 /*!
@@ -62,3 +64,5 @@
  */
 - (void)removeAllItems;
 @end
+
+OF_ASSUME_NONNULL_END

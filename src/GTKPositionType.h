@@ -1,4 +1,4 @@
-/*! @file GTKPositionType.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,14 +14,17 @@
  * the packaging of this file.
  */
 
+/*! @file GTKPositionType.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief An enumeration of positions.
  */
 typedef enum GTKPositionType {
-
 	/*!
 	 * @brief The top position.
 	 */
@@ -42,3 +45,5 @@ typedef enum GTKPositionType {
 	 */
 	GTKPositionTypeRight = GTK_POS_RIGHT
 } GTKPositionType;
+
+OF_ASSUME_NONNULL_END

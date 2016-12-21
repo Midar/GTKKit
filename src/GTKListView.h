@@ -1,4 +1,4 @@
-/*! @file GTKListView.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKListView.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -22,17 +24,21 @@
 #import "GTKListViewDelegate.h"
 #import "GTKListViewDataSource.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
- * @brief A class representing a view that manages a vertical list
- * of views.
+ * @brief A class representing a view that manages a vertical list of views.
  */
 @interface GTKListView: GTKView
 {
-	GtkWidget      *_scrollWindow;
+	GtkWidget *_scrollWindow;
 	OFMutableArray *_views;
 }
-@property (nullable, weak) id<GTKListViewDelegate> delegate;
-@property (nullable, weak) id<GTKListViewDataSource> dataSource;
+
+@property (nullable, weak) id <GTKListViewDelegate> delegate;
+@property (nullable, weak) id <GTKListViewDataSource> dataSource;
 
 - (void)reloadData;
 @end
+
+OF_ASSUME_NONNULL_END

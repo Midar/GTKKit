@@ -1,5 +1,4 @@
-/*! @file GTKOrientable.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,14 +14,17 @@
  * the packaging of this file.
  */
 
+/*! @file GTKOrientable.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief The orientations available to orientable views.
  */
 typedef enum GTKOrientation {
-
 	/*!
 	 * @brief Horizontal orientation.
 	 */
@@ -34,7 +36,6 @@ typedef enum GTKOrientation {
 	GTKOrientationVertical = GTK_ORIENTATION_VERTICAL
 } GTKOrientation;
 
-
 /*!
  * @brief A protocol for views which can be oriented.
  */
@@ -45,3 +46,5 @@ typedef enum GTKOrientation {
  */
 @property GTKOrientation orientation;
 @end
+
+OF_ASSUME_NONNULL_END

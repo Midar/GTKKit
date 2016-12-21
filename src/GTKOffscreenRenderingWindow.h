@@ -1,4 +1,4 @@
-/*! @file GTKOffscreenRenderingWindow.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,6 +14,7 @@
  * the packaging of this file.
  */
 
+/*! @file GTKOffscreenRenderingWindow.h */
 
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
@@ -22,9 +23,12 @@
 #import "GTKView.h"
 #import "GTKImage.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
- * @brief A class representing a view controller that renders its view hierarchy
- * off-screen, allowing GTKImage instances to be generated from a view hierarchy.
+ * @brief A class representing a view controller that renders its view
+ *	  hierarchy off-screen, allowing GTKImage instances to be generated
+ *	  from a view hierarchy.
  */
 @interface GTKOffscreenRenderingWindow: GTKResponder
 {
@@ -45,13 +49,14 @@
 /*!
  * @brief The current state of this window, rendered as a GTKImage.
  */
-@property (nonnull, readonly) GTKImage *image;
+@property (readonly) GTKImage *image;
 
 /*!
- * @brief Adds the specified view to this window's content view as a
- * subview.
+ * @brief Adds the specified view to this window's content view as a subview.
  *
- * @pram subview The view to add
+ * @param subview The view to add
  */
-- (void)addView: (nonnull GTKView *)subview;
+- (void)addView: (GTKView*)subview;
 @end
+
+OF_ASSUME_NONNULL_END

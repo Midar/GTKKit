@@ -1,4 +1,4 @@
-/*! @file GTKInfoBar.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,14 +14,17 @@
  * the packaging of this file.
  */
 
+/*! @file GTKInfoBar.h */
 
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKControl.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 typedef enum GTKMessageType {
-	GTKMessageTypeInfo = GTK_MESSAGE_INFO, // DEFAULT
+	GTKMessageTypeInfo = GTK_MESSAGE_INFO, /* DEFAULT */
 	GTKMessageTypeWarning = GTK_MESSAGE_WARNING,
 	GTKMessageTypeQuestion = GTK_MESSAGE_QUESTION,
 	GTKMessageTypeError = GTK_MESSAGE_ERROR,
@@ -35,22 +38,22 @@ typedef enum GTKResponseType {
 	/*!
 	 * @brief No response.
 	 */
-	 GTKResponseTypeNone = GTK_RESPONSE_NONE,
+	GTKResponseTypeNone = GTK_RESPONSE_NONE,
 
 	 /*!
 	  * @brief Generic "rejected" response.
 	  */
-	 GTKResponseTypeReject = GTK_RESPONSE_REJECT,
+	GTKResponseTypeReject = GTK_RESPONSE_REJECT,
 
 	/*!
 	 * @brief Generic "accepted" response.
 	 */
-	 GTKResponseTypeAccept = GTK_RESPONSE_ACCEPT,
+	GTKResponseTypeAccept = GTK_RESPONSE_ACCEPT,
 
 	/*!
 	 * @brief "Deleted" response used if the dialog was deleted.
 	 */
-	 GTKResponseTypeDelete = GTK_RESPONSE_DELETE_EVENT,
+	GTKResponseTypeDelete = GTK_RESPONSE_DELETE_EVENT,
 
 	/*!
 	 * @brief "OK" response
@@ -90,19 +93,24 @@ typedef enum GTKResponseType {
 
 /*!
  * @brief A class representing a view that implements a horizontal bar used to
- * show messages to the user without showing a full dialog. It is usually
- * shown at the top or bottom of a window.
+ *	  show messages to the user without showing a full dialog.
+ *
+ * It is usually shown at the top or bottom of a window.
  */
 @interface GTKInfoBar: GTKControl
 {
-	GTKMessageType  _messageType;
-	OFString       *_label;
-	GtkWidget      *_labelWidget;
+	GTKMessageType _messageType;
+	OFString *_label;
+	GtkWidget *_labelWidget;
 	OFMutableArray *_buttonLabels;
 	OFMutableArray *_buttonResponses;
 }
-@property GTKMessageType  messageType;
+
+@property GTKMessageType messageType;
 @property GTKResponseType response;
-- (void)addButtonWithLabel: (OFString *)label
+
+- (void)addButtonWithLabel: (OFString*)label
 		  response: (GTKResponseType)response;
 @end
+
+OF_ASSUME_NONNULL_END

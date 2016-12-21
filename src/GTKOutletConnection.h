@@ -1,5 +1,4 @@
-/*! @file GTKOutletConnection.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,16 +14,22 @@
  * the packaging of this file.
  */
 
+/*! @file GTKOutletConnection.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoding.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing the connection between a serialized object and a
- * reference to that object. This is implemented using key-value coding.
+ *	  reference to that object. This is implemented using key-value coding.
  */
 @interface GTKOutletConnection: OFObject <GTKCoding>
 @property (nullable) OFString *outletKeyPath;
 @property (nullable) OFString *targetKeyPath;
 @end
+
+OF_ASSUME_NONNULL_END

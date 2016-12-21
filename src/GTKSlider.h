@@ -1,5 +1,4 @@
-/*! @file GTKSlider.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKSlider.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -22,25 +23,27 @@
 #import "GTKOrientable.h"
 #import "GTKPositionType.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing a control that sets a numeric value in a given
- * range.
+ *	  range.
  */
 @interface GTKSlider: GTKControl <GTKOrientable>
 {
-	GTKOrientation  _orientation;
-	double          _min;
-	double          _max;
-	bool            _restrict;
-	double          _fillLevel;
-	bool            _showFillLevel;
-	bool            _inverted;
-	double          _increment;
-	int             _roundDigits;
-	bool            _showValue;
+	GTKOrientation _orientation;
+	double _min;
+	double _max;
+	bool _restrict;
+	double _fillLevel;
+	bool _showFillLevel;
+	bool _inverted;
+	double _increment;
+	int _roundDigits;
+	bool _showValue;
 	GTKPositionType _valuePosition;
-	bool            _highlightOrigin;
-	unsigned int    _numberOfTickMarks;
+	bool _highlightOrigin;
+	unsigned int _numberOfTickMarks;
 }
 
 /*!
@@ -54,7 +57,8 @@
 @property double maxValue;
 
 /*!
- * @brief Whether or not the index of the slider is restricted to its fill level.
+ * @brief Whether or not the index of the slider is restricted to its fill
+ *	  level.
  */
 @property bool restrictToFillLevel;
 
@@ -100,7 +104,9 @@
 
 /*!
  * @brief The number of tick marks on the slider, distributed evenly across its
- * width.
+ *	  width.
  */
 @property unsigned int numberOfTickMarks;
 @end
+
+OF_ASSUME_NONNULL_END

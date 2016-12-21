@@ -1,4 +1,4 @@
-/*! @file GTKMenuItem.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,11 +14,14 @@
  * the packaging of this file.
  */
 
+/*! @file GTKMenuItem.h */
 
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKCoding.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A class representing an item in a menu.
@@ -29,9 +32,9 @@
 	GtkWidget *_grid;
 	GtkWidget *_labelWidget;
 	GtkWidget *_acceleratorWidget;
-	OFString  *_label;
-	OFString  *_accelerator;
-	bool       _isSeparator;
+	OFString *_label;
+	OFString *_accelerator;
+	bool _isSeparator;
 }
 
 @property (readonly) bool isSeparator;
@@ -63,8 +66,10 @@
  */
 @property int tag;
 
-+ (nonnull instancetype)separator;
++ (instancetype)separator;
 
-- (nonnull GtkWidget *)menuItem;
+- (GtkWidget*)menuItem;
 - (void)sendActionToTarget;
 @end
+
+OF_ASSUME_NONNULL_END

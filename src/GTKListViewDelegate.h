@@ -1,4 +1,4 @@
-/*! @file GTKListViewDelegate.h
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -14,8 +14,16 @@
  * the packaging of this file.
  */
 
+/*! @file GTKListViewDelegate.h */
+
+#import <ObjFW/OFObject.h>
+
+OF_ASSUME_NONNULL_BEGIN
+
 @protocol GTKListViewDelegate <OFObject>
 @optional
 - (int)heightForRow: (int)row;
 - (int)indentationForRow: (int)row;
 @end
+
+OF_ASSUME_NONNULL_END

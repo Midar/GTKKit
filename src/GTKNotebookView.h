@@ -1,5 +1,4 @@
-/*! @file GTKNotebookView.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,6 +14,8 @@
  * the packaging of this file.
  */
 
+/*! @file GTKNotebookView.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
@@ -24,44 +25,48 @@
 #import "GTKCoding.h"
 #import "GTKPositionType.h"
 
+OF_ASSUME_NONNULL_BEGIN
+
 /*!
  * @brief A class representing a view that manages a set of tabs, each of which
- * has its own view hierarchy. This is very much like a GTKTabView (and both
- * use the GTKTab class to manage their contents), but with a distinct style;
- * notebook views are primarily used in "tabbed windows" of the type made
- * popular by web browsers, and in other places where the set of tabs may
- * change during the program's lifetime. Usually, GTKTabView will be a more
- * appropriate choice in your own interface designs.
+ * has its own view hierarchy.
+ *
+ * This is very much like a GTKTabView (and both use the GTKTab class to manage
+ * their contents), but with a distinct style; notebook views are primarily
+ * used in "tabbed windows" of the type made popular by web browsers, and in
+ * other places where the set of tabs may change during the program's lifetime.
+ * Usually, GTKTabView will be a more appropriate choice in your own interface
+ * designs.
  */
 @interface GTKNotebookView: GTKView <GTKCoding>
 {
-	OFMutableArray<__kindof GTKTab *> *_tabs;
-	GTKPositionType                    _tabPosition;
-	bool                               _tabsHidden;
-	bool                               _scrollable;
+	OFMutableArray <__kindof GTKTab*> *_tabs;
+	GTKPositionType _tabPosition;
+	bool _tabsHidden;
+	bool _scrollable;
 }
 
 @property GTKPositionType tabPosition;
-@property bool            tabsHidden;
-@property bool            scrollable;
+@property bool tabsHidden;
+@property bool scrollable;
 
 /*!
  * @brief Adds the specified tab to the end of the tab view's tabs.
  */
-- (void)addTab: (nonnull GTKTab *)tab;
+- (void)addTab: (GTKTab*)tab;
 
 /*!
  * @brief Removes the specified tab from the tab view's tabs.
  */
-- (void)removeTab: (nonnull GTKTab *)tab;
+- (void)removeTab: (GTKTab*)tab;
 
-- (void)renameTab: (nonnull GTKTab *)tab
-	 toString: (nonnull OFString *)string;
+- (void)renameTab: (GTKTab*)tab
+	 toString: (OFString*)string;
 
 /*!
  * @brief Returns the index of the specified tab in the notebook's tabs.
  */
-- (int)indexOfTab: (nonnull GTKTab *)tab;
+- (int)indexOfTab: (GTKTab*)tab;
 
 /*!
  * @brief The number of tabs in this tab view.
@@ -69,14 +74,16 @@
 - (int)numberOfTabs;
 
 /*!
- * @brief Inserts the specified tab at the specified position in the tab
- * view's tabs.
+ * @brief Inserts the specified tab at the specified position in the tab view's
+ *	  tabs.
  */
-- (void)insertTab: (nonnull GTKTab *)tab
+- (void)insertTab: (GTKTab *)tab
 	  atIndex: (int)index;
 
 /*!
  * @brief The GTKTab at the specified position in the tab view's tabs.
  */
-- (nullable GTKTab *)tabAtIndex: (int)index;
+- (nullable GTKTab*)tabAtIndex: (int)index;
 @end
+
+OF_ASSUME_NONNULL_END

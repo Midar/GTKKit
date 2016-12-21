@@ -1,5 +1,4 @@
-/*! @file GTKActionBar.h
- *
+/*
  * Copyright (c) 2014, 2015, 2016
  *   Kyle Cardoza <Kyle.Cardoza@icloud.com>
  *
@@ -15,21 +14,29 @@
  * the packaging of this file.
  */
 
+/*! @file GTKActionBar.h */
+
 #import <ObjFW/ObjFW.h>
 #import <gtk/gtk.h>
 
 #import "GTKView.h"
+
+OF_ASSUME_NONNULL_BEGIN
 
 /*!
  * @brief A class representing a view that displays contextual actions.
  */
 @interface GTKActionBar: GTKView
 {
-	GTKView        *_centerView;
+	GTKView *_centerView;
 	OFMutableArray *_actionSubviewsStart;
 	OFMutableArray *_actionSubviewsEnd;
 }
-@property (nullable) GTKView *centerView;
-- (void)addSubviewStart: (nonnull GTKView *)view;
-- (void)addSubviewEnd: (nonnull GTKView *)view;
+
+@property GTKView *centerView;
+
+- (void)addSubviewStart: (GTKView*)view;
+- (void)addSubviewEnd: (GTKView*)view;
 @end
+
+OF_ASSUME_NONNULL_END

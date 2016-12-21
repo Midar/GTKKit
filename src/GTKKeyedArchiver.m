@@ -167,7 +167,7 @@
 {
 	INVALID_KEY_EXCEPTION_CHECK
 
-	[self encodeString: OFStringFromSelector(selector)
+	[self encodeString: @(sel_getName(selector))
 		    forKey: key];
 }
 @end

@@ -20,17 +20,6 @@
 #import "GTKKeyedArchiver.h"
 #import "GTKKeyedUnarchiver.h"
 
-OFString* OFStringFromSelector (SEL selector)
-{
-	const char *name = sel_getName(selector);
-	return [[OFString alloc] initWithUTF8String: name];
-}
-
-SEL OFSelectorFromString (OFString *selector)
-{
-	return sel_registerName(selector.UTF8String);
-}
-
 @implementation OFString (GTKCoding)
 - (instancetype)initWithCoder: (GTKKeyedUnarchiver *)decoder
 {

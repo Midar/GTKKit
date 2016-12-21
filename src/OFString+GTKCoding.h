@@ -23,23 +23,6 @@
 
 OF_ASSUME_NONNULL_BEGIN
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-/*!
- * @brief Returns a new OFString containing the name of the selector.
- */
-OFString* OFStringFromSelector(SEL selector);
-
-/*!
- * @brief Returns a selector for the specified name; if there is no such selector,
- * one is registered for that name.
- */
-SEL OFSelectorFromString (OFString *selector);
-#ifdef __cplusplus
-}
-#endif
-
 @interface OFString (GTKCoding) <GTKCoding>
 @end
 

@@ -153,7 +153,7 @@
 	INVALID_KEY_EXCEPTION_CHECK
 
 	OFString *selector = [self decodeStringForKey: key];
-	return OFSelectorFromString(selector);
+	return sel_registerName([selector UTF8String]);
 }
 @end
 
